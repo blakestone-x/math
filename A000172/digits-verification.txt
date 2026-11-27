@@ -1,0 +1,5 @@
+4780 entire digit polynomials and unshifted classifications checked.
+64 translated constants independently evaluated modulo p squared.
+664577 primes from 5 to 10000000: W=0 only at 23, 2W+5=0 only at 53047.
+23-adic vertices for f_1058(10+X): [(0, 2), (23, 1), (529, 0)]
+Three next-prime checks and six polynomial gcd certificates over F_827 passed.

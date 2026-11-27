@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=.94in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\ee}{\varepsilon}
+\DeclareMathOperator{\degop}{deg}
+\title{Reciprocal numerators for shifted Hankel determinants of Catalan powers}
+\author{Blake Stone's mathematics project\\ \small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\setlength{\emergencystretch}{1.6em}
+\begin{document}\maketitle
+\begin{abstract}
+For every positive Catalan power and every shift in the range of Cigler's generating-function conjectures, we prove a signed quasipolynomial formula for the Hankel determinants and determine the degree and reciprocity sign of the numerator. This proves Conjecture~15 of his 2023 preprint and gives Conjecture~16 with its single previously identified degree exception. For odd powers the resulting denominator bound improves the proposed exponent by the multiplicity of a zero of the moment polynomial. The proofs use a confluent determinant of Chebyshev polynomials, finite differences, and reflection in the determinant size.
+\end{abstract}
+
+\section{The generating functions}
+For an integer $r\ge1$ let $C_{r,j}$ be the coefficient of $z^j$ in the $r$th power of the Catalan generating function. Equivalently,
+\[
+ C_{r,j}=\frac{r}{2j+r}\binom{2j+r}{j}\quad(j\ge0),
+ \qquad C_{r,j}=0\quad(j<0).
+\]
+For an integer $m$ set $D(n)=D_{r,m}(n)=\det(C_{r,i+j+m})_{0\le i,j<n}$, with $D(0)=1$, and $F(z)=\sum_{n\ge0}D(n)z^n$.
+Use the following parameters, where $k\ge1$, $m\ge1-k$, $b=k-1$, and $d=a+b$:
+\[
+\begin{array}{cccc}
+\toprule
+r & a & h & \ee\\\midrule
+2k   & k+m   & k & (-1)^{\binom{k}{2}}\\
+2k-1 & k+m-1 & 2k-1 & (-1)^{k-1}\\\bottomrule
+\end{array}
+\]
+Write $e_0=1+\binom{a}{2}$, where $\binom{0}{2}=0$.
+\begin{theorem}\label{thm}
+For $0\le t<h$ there is a polynomial $p_t\in\Q[X]$ of degree at most $e_0-1$ such that
+\[
+ D(t+hj)=\ee^j p_t(j)\qquad(j\ge0).
+\]
+For each $e\ge e_0$, $P_e(z)=(1-\ee z^h)^e F(z)$ lies in $\Z[z]$. If $d\ge1$ its degree is $he-d$, its constant coefficient is $1$, and
+\[
+ z^{he-d}P_e(1/z)=-(-\ee)^e(-1)^{\binom{d}{2}}P_e(z).
+\]
+The sole case $d=0$ is $(r,m)=(1,0)$. Then $D(n)=1$ for all $n\ge0$ and $P_e(z)=(1-z)^{e-1}$.
+\end{theorem}
+
+For the even powers, set $e=e_0$. For the odd powers, Cigler's exponent in \cite[Conjectures 15--16, (28), (30)]{cigler} is $e_C=1+\binom{k+m}{2}=e_0+a$. In particular the odd-power numerator has the factor $(1-\ee z^h)^a$. Let \(\pi_s(t)=(s-2)\binom{t+1}{2}-t\). For $d\ge1$ Theorem~\ref{thm} gives the proposed degrees
+\[
+ \degop P_{e_0}=\pi_{k+2}(k+m-1)\quad(r=2k),\qquad
+ \degop P_{e_C}=\pi_{2k+1}(k+m-1)+k\quad(r=2k-1).
+\]
+Substituting $a,d,\ee,e$ into the sign in the theorem gives the following residue classes of $m$ for which the source numerator is palindromic. The remaining classes give a skew-palindromic numerator. Entries list residues modulo four.
+\[
+\begin{array}{c|cccc}\toprule
+ k\bmod4&0&1&2&3\\\midrule
+ r=2k&1,3&0,1,2,3&0,3&1,2\\
+ r=2k-1&0,1&0,2&0,1&1,3\\\bottomrule
+\end{array}
+\]
+These are the sign classes of the two conjectures. At $(r,m)=(1,0)$ the source numerator $1$ is palindromic and its degree is zero. The literal degree prediction one at this parameter was already refuted in \cite{omega}. Wang and Xin~\cite{wang} studied the unshifted powers by continued fractions, including evaluations for $r\le31$. Our argument concerns the generating functions for all admissible shifts. It does not require conjectural evaluations of the determinants in any particular size class.
+
+\section{A determinant in the size of the moment modification}
+Let $\mu$ be the semicircle probability measure $\sqrt{4-y^2}\,dy/(2\pi)$ on $[-2,2]$ and put $L(f)=\int f(y^2)\,d\mu(y)$. Write $U_j$ for the Chebyshev polynomial of the second kind, with $U_j(\cos\theta)=\sin((j+1)\theta)/\sin\theta$. The substitution $y=2\cos\theta$ gives orthonormality of $U_j(y/2)$ for $\mu$. The monic orthonormal polynomials of $L$ are therefore
+\[
+ q_n(x)=U_{2n}(\sqrt{x}/2)
+       =\sum_{i=0}^n(-1)^{n-i}\binom{n+i}{2i}x^i.
+\]
+Multiplication of $U_j(y/2)$ by $y$ sums its two neighbors, with $U_{-1}=0$. The coefficient of $U_{r-1}(y/2)$ in $y^N$ thus counts nonnegative nearest-neighbor paths of length $N$ from $0$ to $r-1$. For $N=2u+r-1\ge0$ reflection at $-1$ gives $\binom N u-\binom N{u-1}=C_{r,u}$ when $u\ge0$. For $u<0$ no path reaches $r-1$. Consequently
+\[
+ L(x^\ell M(x))=C_{r,\ell+m}\qquad(\ell\ge0),
+ \quad M(y^2)=y^{2m+r-1}U_{r-1}(y/2).
+\]
+The exponent of $y$ is nonnegative in our shift range. The parity, leading coefficient and zeros of $U_{r-1}$ give
+\[
+ M(x)=x^a\prod_{j=1}^b(x-\alpha_j),\qquad
+ \alpha_j=4\cos^2(j\pi/r).
+\]
+These $b$ interior roots are positive and distinct. The additional simple zero of $U_{r-1}$ at $y=0$ when $r$ is even is included in $x^a$.
+
+Let $\Lambda$ be the ordered list of $d$ linear functionals consisting of coefficient extraction $[x^i]$ for $0\le i<a$, followed by evaluation at the $b$ roots $\alpha_j$. Define
+\[
+ E(n)=\big(\lambda(q_{n+j})\big)_{\lambda\in\Lambda,\,0\le j<d}.
+\]
+An empty determinant is one. The standard Christoffel formula for modified moments (compare \cite{kratt}) specializes as follows.
+\begin{lemma}\label{chris}
+For $n\ge0$, \(D(n)=(-1)^{nd}\det E(n)/\det E(0)\).
+\end{lemma}
+\begin{proof}
+The evaluations $\Lambda$ are independent on polynomials of degree less than $d$, since their common kernel consists of multiples of $M$. Thus $\det E(0)\ne0$. On polynomials of degree less than $n+d$, use the ordered rows $L(x^\ell\,\cdot)$, $0\le\ell<n$, followed by $\Lambda$. In the monic basis $q_0,\ldots,q_{n+d-1}$ the top block is lower triangular with diagonal one in its first $n$ columns and vanishes in the remaining columns, by orthonormality. The full determinant is $\det E(n)$. Change to the ordered columns
+\[
+ M,xM,\ldots,x^{n-1}M,\quad 1,x,\ldots,x^{d-1}.
+\]
+Their degrees are a block permutation of $0,\ldots,n+d-1$ with sign $(-1)^{nd}$ and their leading coefficients are one. The lower left block vanishes, the upper left block has determinant $D(n)$, and the lower right block has determinant $\det E(0)$ by monicity. The stated identity follows.
+\end{proof}
+
+\section{Polynomial dependence and reflection}
+For $N\in\Z$ use the evaluation formulas
+\[
+ [x^i]q_N=(-1)^{N-i}\binom{N+i}{2i},\qquad
+ q_N(\alpha_j)=\frac{\sin((2N+1)j\pi/r)}{\sin(j\pi/r)}
+\]
+with the polynomial definition of the binomial coefficient. Both formulas also result from setting $q_{-N-1}=-q_N$ for $N\ge0$. Use Lemma~\ref{chris} to extend $D(n)$ to all integer $n$.
+
+Expand $\det E(n)$ along the first $a$ rows. For selected columns with offsets $j_1,\ldots,j_a$ the corresponding endpoint minor, after extracting the signs, is
+\[
+ \det(B_i(n+j_\ell))_{0\le i<a,\,1\le\ell\le a},
+ \qquad B_i(X)=\binom{X+i}{2i}.
+\]
+Its degree in $n$ is at most $\binom a2$. Indeed, use the finite Taylor expansion $B_i(n+j_\ell)=\sum_{v\ge0} B_i^{(v)}(n)j_\ell^v/v!$ columnwise. In the multilinear expansion, repeated derivative indices make two columns dependent. The sum of $a$ distinct nonnegative indices is at least $\binom a2$, and $\sum_{i=0}^{a-1}\degop B_i=a(a-1)$. This also covers empty minors.
+
+On increasing $n$ by $h$, the endpoint signs change by $(-1)^{ha}$, while the prefactor of Lemma~\ref{chris} changes by $(-1)^{hd}$. For $r=2k$, each interior row $j$ changes by $(-1)^j$; for $r=2k-1$ every interior row stays fixed. The combined multipliers are respectively $(-1)^{k(k-1)+\binom{k}{2}}$ and $(-1)^{(2k-1)(k-1)}$. Hence on each residue the extended $D(n)$ is a polynomial of the asserted degree times the stated sign. Interpolation on nonnegative integer arguments gives rational coefficients. Finite differencing $e$ times on each signed arithmetic progression shows that $P_e$ is a polynomial, with integer coefficients from its defining series.
+
+For $d\ge1$, the column list in $E(-n-d)$ is the reversed and negated list in $E(n)$. The factors from negating $d$ columns and from the two prefactors $(-1)^{nd}$ cancel because $d+d^2$ is even. Thus
+\[
+ D(-n-d)=(-1)^{\binom d2}D(n)\quad(n\in\Z).
+\]
+Moreover $D(-j)=0$ for $1\le j<d$, since those consecutive columns include both $q_{-1}=-q_0$ and $q_0$.
+
+As rational functions expanded at zero we have
+\[
+ F(1/z)=-\sum_{j\ge1}D(-j)z^j.
+\]
+To see this directly, the bilateral sequence $D$ is annihilated by the convolution with $B(z)=(1-\ee z^h)^e$ by the preceding progression formula. Thus the positive half $\sum_{n\ge0}D(n)z^n$ and the negative half $\sum_{n<0}D(n)z^n$, multiplied separately by $B$, give opposite finite Laurent polynomials. Their rational functions sum to zero. Substitution of $1/z$ proves the displayed identity. The vanishing entries and reflection give $F(1/z)=-(-1)^{\binom d2}z^d F(z)$. Since $B(1/z)=(-\ee)^e z^{-he}B(z)$, this proves the stated reciprocal identity. Its constant term $P_e(0)=1$ forces degree exactly $he-d$. Finally, $d=0$ gives $M=1$ and $D(n)=1$ by Lemma~\ref{chris}.
+\section{The explicit low shifts}
+We give the six families displayed after (28) and (30) in \cite{cigler}. Write $s_j=(-1)^{\binom j2}$ for $j\ge0$. In this section $P$ is the numerator at the exponent in (28), and $Q$ the numerator at the exponent in (30). The even formulas are
+\begin{align*}
+ P_{2k,1-k}&=1 &&(k\ge1),\\
+ P_{2k,2-k}&=1+s_{k-1}z^{k-1} &&(k\ge2),\\
+ P_{2k,3-k}&=(1+s_{k-2}z^{k-2})(1-z^{2k})\\
+ &\quad+s_{k-1}k^2z^{k-1}(1+s_k z^k) &&(k\ge3).
+\end{align*}
+Put $U=1+(-1)^kz^{2k-1}$. For the odd powers,
+\begin{align*}
+ Q_{2k-1,1-k}&=1+s_k z^k &&(k\ge2),\\
+ Q_{2k-1,2-k}&=(1+s_{k-1}z^{k-1})U &&(k\ge2),\\
+ Q_{2k-1,3-k}&=U^2\big[(1+s_{k-2}z^{k-2})U\\
+ &\qquad\quad +(2k-1)z^{k-1}(z^{k-1}+s_{k-1})\big] &&(k\ge3).
+\end{align*}
+The last bracket is precisely the expression printed on p.~11 of \cite{cigler}. It uses the exponent $e_0=2$; equation (30) calls for $e_C=4$, hence the external factor $U^2$. Also $C_{2,j}=C_{1,j+1}$ for $j\ge0$, so for $m\ge0$ the comparison after (30) reads $Q_{1,m+1}=(1-z)^{m+1}P_{2,m}$. Reversing $1-z$ changes that identity's sign when $m$ is even.
+
+For the first two shifts in each parity class, Theorem~\ref{thm} gives the degree of the numerator at $e_0$. If $m=-M\le0$, then $D(n)=0$ for $1\le n\le M$ by the first row, and $D(M+1)=s_{M+1}$ by the opposite diagonal of ones. The stated low-shift identities in these four cases follow from the degree and the initial coefficients, inserting $U^{e_C-e_0}$ for the odd powers.
+
+For $m=3-k$ put $\ell=k-2$. Write $A(z)=C(z)^r$ and $B(z)=1/A(z)=\sum b_j z^j$, where $C$ is the Catalan series. For $N=\ell+q$, $q\ge0$, complementary minors give
+\begin{equation}\label{comp}
+ D(N)=s_\ell(-1)^q\det(b_{\ell+1+i+j})_{0\le i,j<q}.
+\end{equation}
+Indeed, in the $(N+q)$-dimensional unit lower triangular Toeplitz matrix of $A$, take rows $q,\ldots,q+N-1$ and columns $0,\ldots,N-1$. Reversing its columns gives the Hankel determinant up to $s_N$. The inverse is the Toeplitz matrix of $B$. Jacobi's complementary minor identity gives the complementary inverse minor with rows $N,\ldots,N+q-1$, columns $0,\ldots,q-1$, and sign $(-1)^{Nq}$. Reverse its columns to obtain the indicated $b$-determinant. The total sign $s_Ns_q(-1)^{Nq}=s_{\ell+2q}=s_\ell(-1)^q$.
+
+The roots $\lambda_\pm=(1\pm\sqrt{1-4z})/2$ satisfy $\lambda_+=C(z)^{-1}$ and $\lambda_-=zC(z)$. Hence $B(z)+z^r A(z)=\lambda_+^r+\lambda_-^r$. By the recursion $T_r=T_{r-1}-zT_{r-2}$ with $T_0=2,T_1=1$, the latter polynomial has coefficients
+\[
+ [z^j]T_r=(-1)^j\frac{r}{r-j}\binom{r-j}{j},\quad
+ 0\le j\le\lfloor r/2\rfloor .
+\]
+For $k-1\le j<r$, the nonzero $b_j$ are therefore
+\[
+ \begin{array}{c|cc}
+   & b_{k-1}& b_k\\\hline
+ r=2k   &(-1)^{k-1}k^2&2(-1)^k\\
+ r=2k-1 &(-1)^{k-1}(2k-1)&0 .
+ \end{array}
+\]
+For even $r$, the degree is $3k-2$, so reciprocity only needs coefficients through $N=\lfloor(3k-2)/2\rfloor$. For odd $r$ use $e_0$ first; its degree is $3k-3$ so $N\le\lfloor(3k-3)/2\rfloor$ suffices. Throughout these ranges the largest $b$-index in \eqref{comp} is $\ell+2q-1=2N-\ell-1<r$. The right-hand determinant vanishes for $q\ge3$ in the even case and $q\ge2$ in the odd case, by its last row. At $q=0$ it is one. At $q=1$ it is $b_{k-1}$, and at $q=2$ in the even case it is $-b_k^2=-4$.
+
+In both cases the lower half of the numerator thus consists of coefficient one at zero, $s_{k-2}$ at $k-2$, and $s_{k-1}k^2$ (even) or $s_{k-1}(2k-1)$ (odd) at $k-1$. In the even case the intermediate $D(k)=-4s_{k-2}$ cancels the contribution $-4s_kD(0)$ from the multiplier since $s_k=-s_{k-2}$. In the odd case the multiplier starts beyond the lower half. Theorem~\ref{thm} reflects these three coefficients with sign $s_k$ for the even case and $s_{k-1}$ for the smaller odd numerator. This proves the two remaining expressions.
+\begin{thebibliography}{9}
+\bibitem{cigler} J. Cigler, \emph{Some experimental observations about Hankel determinants of convolution powers of Catalan numbers}, v2, 2023, \S3, Conjectures 15 and 16. \href{https://arxiv.org/abs/2308.07642v2}{arXiv:2308.07642v2}.
+\bibitem{kratt} C. Krattenthaler, \emph{Hankel determinants of linear combinations of moments of orthogonal polynomials, II}, Ramanujan J. \href{https://doi.org/10.1007/s11139-021-00514-8}{doi:10.1007/s11139-021-00514-8}.
+\bibitem{omega} TrureTuring, \emph{The literal numerator degree in Cigler's Conjecture 16}, research record for $(k,m)=(1,0)$. \href{https://www.trureturing.org/research/cigler-sixteen-literal-numerator-degree/}{Public record}.
+\bibitem{wang} Y. Wang and G. Xin, \emph{Hankel determinants for convolution powers of Catalan numbers}, Discrete Math. 342 (2019), 2694--2716. \href{https://doi.org/10.1016/j.disc.2019.05.025}{doi:10.1016/j.disc.2019.05.025}.
+\end{thebibliography}
+\end{document}

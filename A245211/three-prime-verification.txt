@@ -1,0 +1,11 @@
+least profiles orders surviving_orders intervals smallest_primes middle_primes last_candidates
+4 502 2991 14 92 2539 3555960 1299327
+6 324 1941 4 31 1009 685122 267767
+8 5849 34986 15 46 2359 3628090 1476059
+9 13779 82429 4 12 146 181561 75958
+Largest middle-prime sieve bound: 48554105
+Full equalities: 0
+Intervals, smallest-prime rows: 181 6053
+Rows with a local divisor, rows requiring integer roots: 5225 828
+Exact monotone completions: 1030
+Ordered integer equalities: 0

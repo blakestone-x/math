@@ -1,5 +1,7 @@
 # Shallit’s shifted Hankel determinants
 
+For Shallit's integer-alphabet Problem 43, an explicit word on $\{1,4,7\}$ has nonzero determinants of every odd order at every shift, and of every order at a prescribed shift. The paper determines the exact 3-adic valuation on a larger set of order–shift pairs. For each cutoff $R$ it also constructs a three-symbol alphabet in $[1,48R]$ working through order $R$ at every shift. [Integer-word manuscript and checks](integer-lifts.md)
+
 For a word $w$, write $H_r(s)=\det(w_{s+i+j})_{0\le i,j<r}$. Shallit’s 2010 Oberwolfach article asks both about one particular four-letter word over the integers (Problem 44) and about every possible integer word modulo a fixed modulus (Conjecture 45). [Original problem statements, p. 2234](https://doi.org/10.4171/OWR/2010/37)
 
 ## Uniform bounds at every order and shift

@@ -1,0 +1,5 @@
+q=3 normalized tables=3 insoluble=1 image-size counts: 3=1 bad permutations (even,odd)=0,1
+q=4 normalized tables=16 insoluble=3 image-size counts: 4=3 bad permutations (even,odd)=3,0
+q=5 normalized tables=125 insoluble=1 image-size counts: 5=1 bad permutations (even,odd)=1,0
+q=7 normalized tables=16807 insoluble=1 image-size counts: 7=1 bad permutations (even,odd)=0,1
+q=8 normalized tables=262144 insoluble=2520 image-size counts: 8=2520 bad permutations (even,odd)=2520,0

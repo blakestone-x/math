@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,xcolor,hyperref}
+\geometry{margin=0.88in}
+\hypersetup{colorlinks=true,allcolors=blue!60!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\fl}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\title{The three-prime classification for Krizek's weighted proper-divisor fixed points}
+\author{Blake Stone\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+The only positive integer with at most three distinct prime factors that equals the sum of $d\tau(d)$ over its proper divisors is $21$. The outstanding case was exactly three primes, with arbitrary bases and exponents. A positive integer obtained by truncating any subset of the local moment factors imposes simultaneous inequalities on the logarithms of the bases. These give a direct contradiction when all exponents are at least ten and reduce the remaining cases to 6,053 possibilities for the least prime, counting the different exponent assignments. Two exact methods complete the proof. For four distinct primes at least one exponent would have to be at most 24. Krizek's unrestricted uniqueness conjecture remains open.
+\end{abstract}
+
+\section{The local factors and a useful integer}
+Krizek's conjecture in OEIS A245211 asks whether $21$ is the unique fixed point of $S(n)=\sum_{d\mid n,\,d<n}d\tau(d)$ \cite{oeis}. Write $H_e(p)=\sum_{t=0}^e(t+1)p^t$ and $F_e(p)=p^{-e}H_e(p)$. For $n=\prod p_i^{e_i}$, put $D=\prod(e_i+1)$. Multiplicativity gives the fixed-point equation $\prod F_{e_i}(p_i)=D+1$. For at least two distinct primes, the two proper divisors $1$ and $n/p_i$ imply
+\begin{equation}
+ p_i>e_iD/(e_i+1)\ge D/2. \label{prime-bound}
+\end{equation}
+The previous work \cite{first,second} proved that the only solution on at most two distinct primes is 21 and that a three-prime solution with exponents $a\ge b\ge c$ must satisfy
+\begin{equation}
+ 4\le c\le25,\qquad b\le10c+7,\qquad a\le(3c+4)b+3c.\label{box}
+\end{equation}
+The same work excludes exponents $5\pmod6$. No exponent can be $3\pmod4$, since its local moment is even while $D+1$ and all prime bases in \eqref{box} are odd. We give an analytic upper bound $c\le9$ and an exact resolution for the four remaining values. Earlier parity and local restrictions are also discussed in \cite{sugui,community}.
+
+For $p>1$, evaluate the weighted geometric sum to obtain
+\begin{equation}
+ F_e(p)= e+1+\frac e{p-1}-\frac{1-p^{-e}}{(p-1)^2}
+       =F'_e(p)+\frac{1}{p^e(p-1)^2},\quad
+ F'_e(p)=\frac{(e+1)p^2-(e+2)p}{(p-1)^2}>0. \label{truncate}
+\end{equation}
+Also $e/p\le F_e(p)-(e+1)<e/(p-1)$ by the defining sum and \eqref{truncate}.
+
+\begin{lemma}\label{subsets}
+For any nonempty subset $I$ of the prime indices, put $d_j=2$ on $I$ and $d_j=e_j$ elsewhere. Some $i\in I$ satisfies
+\begin{equation}
+ p_i^{e_i}\le \frac{|I|(D+1)}{e_i+1}\prod_{j\ne i}p_j^{d_j}.\label{ineq}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Replace the factors indexed by $I$ in the fixed-point equation by $F'$. The new product is strictly smaller than $D+1$ and its denominator divides $Q=\prod_{j\in I}(p_j-1)^2\prod_{j\notin I}p_j^{e_j}$. The positive difference times $Q$ is an integer, hence at least one. Telescope the difference of the two products, replacing one factor at a time. Each error coefficient is at most the product of all the other exact factors, which equals $(D+1)/F_{e_i}(p_i)\le(D+1)/(e_i+1)$. After multiplying by $Q$, at least one summand is at least $1/|I|$. Using $p_j-1\le p_j$ gives \eqref{ineq}.
+\end{proof}
+
+\begin{lemma}\label{ten}
+In a three-prime fixed point at least one exponent is at most nine.
+\end{lemma}
+\begin{proof}
+Suppose every exponent is at least ten. Put $w_i=\log p_i$, $L_i=e_iw_i$ and $w=\min_iw_i$. Since $3(D+1)/11<D/2$, the prefactor in \eqref{ineq} is strictly below $\exp(w)$. Sort the three indices by $L_i+2w_i$ in nondecreasing order. For any suffix $I$ of this order, \eqref{ineq} with that common upper bound holds for its first index. Indeed the right side after moving $2w_i$ to the left is independent of the chosen $i\in I$. The successive suffixes give
+\[
+ L_1<w+2w_2+2w_3,\qquad L_2<w+L_1+2w_3,\qquad L_3<w+L_1+L_2.
+\]
+Now $w\le L_1/10$ and $w_i\le L_i/10$. The last two inequalities give $L_2<(11/10)L_1+L_3/5$ and $L_3<(11/10)L_1+L_2$, whence $L_2<(33/20)L_1$ and $L_3<(11/4)L_1$. The first inequality then gives $L_1<(49/50)L_1$, impossible.
+\end{proof}
+
+\section{A bound at arbitrary prime support}
+Let $r\ge2$ be the number of distinct primes, let $x$ be the least of them, and write $P=\operatorname{rad}(n)=\prod p_i$. Lemma~\ref{subsets} yields an additional necessary condition for every fixed point:
+\begin{equation}
+ n<P^{\,2^{r+1}+2(2^r-1)/r}.\label{radical}
+\end{equation}
+To see this, order $L_i+2w_i$ as before and put $C=\log(rx)$. The prefactor in \eqref{ineq} is at most $rx$ by \eqref{prime-bound}. With $U_s=C+\sum_{j<s}L_j+2\sum_{j\ge s}w_j$, the suffix inequalities give $L_s+2w_s\le U_s$. Hence $U_{s+1}=U_s+(e_s-2)w_s<2U_s$. Iteration gives $C+\log n<2^r(C+2\log P)$. Since $x>D/2\ge2^{r-1}\ge r$ and $x^r\le P$, we have $C\le(2/r)\log P$, proving \eqref{radical}.
+
+A sharper test applies when all exponents are at least $E\ge2r$. Now the prefactor in \eqref{ineq} is below $x$, since $D>2r$. Put $w=\log x$, $S_s=\sum_{j\le s}L_j$ and $S_0=0$. Replacing $2w_j$ by $2L_j/E$ in the suffix inequality gives
+\[
+ S_s<\frac{2E}{E+2} S_{s-1}+\frac{Ew+2S_r}{E+2}.
+\]
+At $s=1$ the same inequality and $Ew\le L_1$ imply $(E+1)L_1<2S_r$. Iterating to $s=r$ therefore requires
+\begin{equation}
+ 1<\frac{2}{E+1}\sum_{j=0}^{r-1}\left(\frac{2E}{E+2}\right)^j .\label{four}
+\end{equation}
+For $r=4,E=25$ the right side is $248633/255879<1$. Every hypothetical four-prime fixed point therefore has an exponent at most $24$.
+
+\section{Finite intervals for the three bases}
+The only possible minima in \eqref{box} are now $c=4,6,8,9$. Assign an admissible exponent triple to bases $x<y<z$ in any order, calling their respective exponents $i,j,k$. At a putative solution let $R_s$ be $D+1$ minus the product with only its first $s$ factors exact and each remaining $F_e$ replaced by $e+1$. For $s<3$ this is positive and
+\begin{equation}
+ \frac{R_s}{D+1}=1-\prod_{p\ \mathrm{remaining}}\frac{e+1}{F_e(p)}
+ <\sum_{p\ \mathrm{remaining}}\frac1{p-1}.\label{res}
+\end{equation}
+This follows from $1-\prod(1-u)\le\sum u$ and \eqref{truncate}. At $s=0$, $R_0=1$ and $x\le1+3(D+1)$.
+
+Write $K=(j+1)(k+1)$ and $g=R_1=D+1-KF_i(x)$. The useful integer threshold is
+\[
+ A=(x-1-iK)(x-1)+K,\qquad t(x)=\fl{(D+1)(x-1)^2/A}.
+\]
+We have $x>iK$ and $g=(A-Kx^{-i})/(x-1)^2$. In particular
+\begin{equation}
+ t(x)\le (D+1)/g < t(x)+2.\label{approx}
+\end{equation}
+Indeed $A\ge K$, $Ax^i-K\ge Ax^i/2$, and $D+1\le2x$ give
+\[
+ 0<\frac{D+1}{g}-\frac{(D+1)(x-1)^2}{A}
+ =\frac{(D+1)(x-1)^2K}{A(Ax^i-K)}<\frac{4x^{3-i}}A<1.
+\]
+The function inside the floor decreases with $x$. With $v=x-1$, the derivative of $v^2/(v^2-iKv+K)$ has the sign of $2-iv<0$.
+
+By \eqref{res}, $y\le2t(x)+5$. Also $R_2>0$ implies $y>j(k+1)F_i(x)/g=\frac{j}{j+1}((D+1)/g-1)$. Thus on any integer interval $l\le x\le u$ the bounds used for $y$ are
+\begin{equation}
+ y\ge\max\left(l+1,\,jD/(j+1)+1,\,1+\fl{j(t(u)-1)/(j+1)}\right),\qquad y\le2t(l)+5.\label{yrange}
+\end{equation}
+
+Because $H_k(z)\equiv1\pmod z$, the original integral equation implies $z^k\mid H_i(x)H_j(y)$ and hence $z^k\le(D+1)x^iy^j$. For a second bound, truncate any nonempty subset $T$ of the first two factors in $R_2$ to $F'$, with weights $d_x,d_y$ equal to two when truncated and the respective exponent otherwise. The new positive residual has denominator at most $Q$, the product of the actual denominators in \eqref{truncate}. If $x$ is truncated, its contribution to the error times $Q$ is at most $(D+1)y^{d_y}/x^i$. The corresponding expression for $y$ is $(D+1)x^{d_x}/y^j$. This follows by the telescoping argument of Lemma~\ref{subsets}, including the unselected last factor $k+1$ in the coefficient. If each error present is at most $1/4$, we have $R_2\ge1/(2Q)$, and \eqref{res} yields
+\begin{equation}
+ z\le 1+2(D+1)x^{d_x}y^{d_y}\le 4(D+1)x^{d_x}y^{d_y}.\label{zrange}
+\end{equation}
+
+\section{Coverage and exact completion}
+\begin{theorem}No integer with exactly three distinct prime factors is fixed by $S$. Among integers with at most three distinct prime factors, $21$ is the only fixed point.\end{theorem}
+\begin{proof}
+Use \eqref{box} for each of the four minimum exponents. For any modulus $m<D/2$ all bases are units. Enumerate all local values of $F_e$ on units modulo $m$, rejecting a profile if their triple products omit $D+1$. The 22 moduli are $8,16,32,64,3,9,27,81,5,25,7,49,11,13,17,19,23,29,31,37,41,43$. For a unit reciprocal $v$, its geometric sums obey $G_0=1$, $G_e=1+vG_{e-1}$. Its moment obeys $F_0=1$, $F_e=F_{e-1}+G_e$. This gives the exact local value tables.
+
+For each distinct ordering of each surviving profile, partition $[iK+1,1+3(D+1)]$ successively into intervals $[l,u]$, beginning at $l=iK+1$ and taking $u=\min(1+3(D+1),iK+1+2(l-iK-1))$, then advancing to $u+1$. Use \eqref{yrange}, \eqref{zrange}, and the bound on $z^k$ to enclose the three logarithms on this interval. Apply \eqref{ineq} with the relaxed numerator $|I|(D+1)$ for each of the seven nonempty subsets. A possible witness must satisfy
+\[
+ e_i\log p_i\le \log(|I|(D+1))+\sum_{j\ne i}d_j\log p_j.
+\]
+If the left lower bound exceeds the right upper bound for every witness, discard the interval. If only one witness remains, its inequality bounds its own variable above and each other variable below using the other endpoints. Sort-order comparisons additionally tighten the bounds since $x<y<z$. Three passes suffice for the following table. Further tightening is unnecessary for completeness.
+
+Every comparison encloses $32\log_2 p$ with outward integer rounding. For $1\le h\le256$ the table $b(h)=\fl{\log_2 h^{32}}$ comes from the exact binary length. For $p\ge128$ put $s=\fl{\log_2 p}-7$ and $h=\fl{p/2^s}$. Use $32s+b(h)$ below and $32s+b(h+1)+1$ above. For smaller $p$ use $b(p)$ and $b(p)+1$. These integer rules also certify the two quarter-error tests in \eqref{zrange}.
+
+\begin{center}\small
+\begin{tabular}{rrrrrrr}\toprule
+$c$ & Profiles & Orders & Orders left & Intervals left & Prime $x$ & Tested prime $y$\\\midrule
+4&502&2,991&14&92&2,539&3,555,960\\
+6&324&1,941&4&31&1,009&685,122\\
+8&5,849&34,986&15&46&2,359&3,628,090\\
+9&13,779&82,429&4&12&146&181,561\\\bottomrule\end{tabular}
+\end{center}
+
+For every prime $x$ in every surviving interval the direct verifier tests all primes $y$ in \eqref{yrange}, also using the exact already established lower bound $y>j(k+1)F_i(x)/g$. The largest sieve endpoint is $48{,}554{,}105$. Put $W=H_i(x)H_j(y)$, $N=(D+1)x^iy^j$, and $G=N-(k+1)W$. Equality requires $G>0$ and $G/W=F_k(z)-(k+1)$. The local tail bounds yield exactly one integer candidate $z=\ceil{kW/G}$. Test every odd candidate $z>\max(y,kD/(k+1))$ against the exact equality $W H_k(z)=Nz^k$. None works. This eliminates three primes. The at-most-two result follows from \cite{first}; directly $S(21)=1+6+14=21$.
+\end{proof}
+
+A second completion uses a different search. Set $B=H_i(x)/\gcd(H_i(x),D+1)>1$. At a solution $B\mid y^j z^k$, since $H_i(x)\equiv1\pmod x$. Try to find any prime divisor of $B$ through the exact upper bound $1+\fl{2(D+1)/g}$ for $y$. A found divisor must be either $y$ or $z$. If there is no such divisor, $B=z^h$ for some $1\le h\le k$, and exact integer roots give the choices. With two bases fixed the remaining normalized local moment is strictly decreasing in the last integer base. Binary search with polynomial evaluation by Horner's rule checks the final equality. Of the 6,053 rows, 5,225 yielded a prime divisor and 828 required integer roots. The 1,030 monotone completions gave no ordered integer equality. The release includes both programs and their expected output.\par
+\small\begin{thebibliography}{9}
+\bibitem{oeis} J. Krizek, \href{https://oeis.org/A245211}{OEIS A245211}, July 23, 2014.
+\bibitem{first} B. Stone with OpenAI Astra, \href{https://github.com/blakestone-x/math/blob/a80ee14b88981065189113eace98e1b8fba58c28/A245211/A245211-research.pdf}{Fixed points of the weighted proper-divisor sum in OEIS A245211} (2026).
+\bibitem{second} B. Stone with OpenAI Codex, \href{https://github.com/blakestone-x/math/blob/5a9d2730dd28ae3031c488960ae2f6cd08a36803/A245211/simple-prime.pdf}{All prime exponents of a three-prime divisor-moment fixed point must be at least four} (2026).
+\bibitem{sugui} M. A. Sugui, \href{https://doi.org/10.5281/zenodo.24437886}{Formal Verification of Parity Obstructions and Fixed-Point Exclusions for Proper-Divisor Moments} (2026).
+\bibitem{community} The agentic-conjectures contributors, \href{https://github.com/umaia1234/agentic-conjectures/blob/78a56edb19eadb6a23f5f791273f016e0b3e0f50/problems/oeis-a245211/DETAILS.md}{Weighted proper-divisor sum}, A245211 project notes.
+\end{thebibliography}\end{document}

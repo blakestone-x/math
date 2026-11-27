@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=.94in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\title{Three integer symbols for nonvanishing shifted Hankel determinants}
+\author{Blake Stone's mathematics project\\ \small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For any prescribed starting position we construct a word on $\{1,4,7\}$ whose Hankel determinants of every order there, and of every odd order at every position, are nonzero. At these positions the exact $3$-adic valuations equal the order minus one. Separately, for each $R\ge1$, we construct a word on three positive integers at most $48R$ for which every determinant of every order through $R$ is nonzero at every starting position. The first construction integrates Lunnon's ternary Pagoda sequence twice. The second uses factor complexity and the Dakota sequence.
+\end{abstract}
+
+For a one-sided word $w=(w_n)_{n\ge0}$ write
+\[
+ H_r(w;s)=\det(w_{s+i+j})_{0\le i,j<r},\qquad H_0(w;s)=1 .
+\]
+Shallit's Problem~43 asks for a word over a finite subset of $\Z$ for which $H_r(w;s)\ne0$ for all $r\ge1,s\ge0$ \cite{shallit}. Problem~44 asks this of a particular substitution word. Our results concern the choice of integer alphabet in Problem~43. The solution using a finite alphabet of real numbers via the Dakota sequence was already given by Cavalcante~\cite{dakcert}.
+
+\section{All odd orders and a prescribed starting position}
+Put $\nu_2(0)=+\infty$ and take $\nu_2$ of any other integer in its usual sense.
+\begin{theorem}\label{thm}
+For each $s_0\ge0$ there is an explicit word $w$ on $\{1,4,7\}$ such that for all $r\ge1$, $s\ge0$,
+\[
+ \nu_2(r)\le\nu_2(s-s_0)
+ \quad\Longrightarrow\quad
+ \nu_3(H_r(w;s))=r-1 .
+\]
+Thus all orders work at $s_0$ and all odd orders work at every shift. At every $s\equiv s_0\pmod{2^k}$ the result also includes all orders not divisible by $2^{k+1}$.
+\end{theorem}
+
+\begin{lemma}\label{difference}
+For a prime $p$ and $w_n=1+p y_n$ with $y_n\in\Z$, we have $p^{r-1}\mid H_r(w;s)$ and
+\[
+ p^{1-r}H_r(w;s)\equiv H_{r-1}(\Delta^2 y;s)\pmod{p},
+ \qquad \Delta^2y_n=y_{n+2}-2y_{n+1}+y_n .
+\]
+\end{lemma}
+\begin{proof}
+Subtract each preceding row from its successor, starting at the bottom. The last $r-1$ rows have entries $p\,\Delta y_{s+i+j-1}$. Factor out $p$ from each. Subtract each preceding column from its successor, starting at the right. The first row now reduces to $(1,0,\ldots,0)$ modulo $p$, and the lower right block has entries $\Delta^2 y_{s+i+j-2}$ for $1\le i,j\le r-1$. Expansion in the first row gives the congruence, including the empty lower block at $r=1$.
+\end{proof}
+
+For clarity, define the Rook sequence by $R_0=0$, $R_{-n}=1-R_n$ for $n>0$ and, for positive $n=2^t v$ with $v$ odd, $R_n=0$ if $v\equiv1\pmod4$ and $R_n=1$ if $v\equiv3\pmod4$. Put $P_n=R_{n+1}-R_{n-1}\pmod3$ for all $n\in\Z$. In the ternary number wall of this Pagoda sequence, Lunnon~\cite[p.~145]{pagoda} proves that a zero in row $i$, column $j$ can occur only when $\nu_2(i+2)>\nu_2(j)$. The wall entry there is a Toeplitz determinant of size $i+1$ with main diagonal $P_j$. Reversing columns, or rows according to the diagonal convention, turns it up to sign into $H_{i+1}(P;j-i)$. In particular all even orders are already nonzero modulo three in Lunnon's sequence.
+
+\begin{proof}[Proof of Theorem~\ref{thm}]
+Take $y_0=y_1=0$ and choose each $y_{n+2}\in\{0,1,2\}$ by
+\[
+ y_{n+2}\equiv 2y_{n+1}-y_n+P_{n+2-s_0}\pmod3 .
+\]
+Set $w_n=1+3y_n$. For $r=1$, $w_s\equiv1\pmod3$. For $r\ge2$, Lemma~\ref{difference} identifies the normalized determinant modulo three with $H_{r-1}(P;s+2-s_0)$. Its wall coordinates are $i=r-2$, $j=s+r-s_0$. Since $2^{\nu_2(r)}$ divides $r$, the hypothesis implies that it divides $j$. Lunnon's criterion makes the normalized determinant a unit modulo three, proving the exact valuation.
+\end{proof}
+For example, with $s_0=2$ the initial entries are $1,1,7,4,4,4$, and $H_2(w;3)=0$. The order and shift restriction in Theorem~\ref{thm} matters for this construction.
+
+\section{Three positive symbols at a prescribed order cutoff}
+\begin{theorem}\label{cutoff}
+For every $R\ge1$, there is a word on three positive integers at most $48R$ with $H_r(w;s)\ne0$ whenever $1\le r\le R$ and $s\ge0$. The letters form an arithmetic progression and can be computed by a finite search.
+\end{theorem}
+Let $D$ be Lunnon's Dakota sequence~\cite{dak}. Its symbols are $-1,0,1$. Start in state $1$, iterate the substitution
+\[
+ 1\mapsto 13,\quad 2\mapsto 23,\quad 3\mapsto 14,\quad 4\mapsto 24,
+\]
+and apply the length-two output coding
+\[
+ 1\mapsto(0,1),\quad 2\mapsto(1,-1),\quad
+ 3\mapsto(0,-1),\quad 4\mapsto(1,0).
+\]
+The output starts at Dakota index $-1$. The Dakota number-wall theorem of Lunnon, with a finite certificate reconstructed in \cite{dakcert}, gives a zero-free wall after translation by an element of $\F_9\setminus\F_3$. For each factor $v$ of length $2r-1$ it follows that
+\[
+ f_v(T)=\det(v_{i+j}+T)_{0\le i,j<r}\in\Z[T]
+\]
+is nonzero. Moreover $\deg f_v\le1$, since two columns from the translation term are proportional. Thus at most one rational translation is forbidden by each factor.
+
+\begin{proof}[Proof of Theorem~\ref{cutoff}]
+There are at most $32L$ distinct length-$L$ factors in $D$. Indeed choose the smallest block length $M=2^{j+1}\ge L$, $j\ge0$, obtained by $j$ substitutions and the output coding. Then $M\le2L$, and a factor lies in the images of two adjacent symbols with one of $M$ starting offsets. The $4^2$ pairs suffice. Across all orders up to $R$, at most $32\sum_{r=1}^R(2r-1)=32R^2$ rational translations can therefore be forbidden.
+
+Put $B=12R$. Among pairs $1\le u,v\le B$, fewer than $3B^2/4$ are not coprime: those divisible in both coordinates by some $k\ge2$ number at most $B^2\sum_{k\ge2}k^{-2}<3B^2/4$, by bounding the terms for $k\ge3$ by $1/(k(k-1))$. The coprime pairs give more than $B^2/4=36R^2$ distinct rationals $T=2+u/v$. Choose one outside the forbidden set. Let $w_n=u+2v+vD_n$. All its required determinants equal $v^r f_{\rm factor}(T)\ne0$. The largest letter is $u+3v\le4B$. To implement the finite search one may enumerate the actual adjacent pairs by closing the substitution on pairs and then enumerate their block images as above.
+\end{proof}
+The cutoff here applies simultaneously to every starting position. The choice of alphabet depends on $R$. The existence of one finite integer alphabet and one word working at all orders and all starting positions remains open.
+
+\begin{thebibliography}{9}
+\bibitem{shallit} J. Shallit, On patterns and pattern avoidance, in \emph{Mini-Workshop: Combinatorics on Words}, Oberwolfach Reports 7 (2010), 2233--2234, Problems 43--45. \href{https://doi.org/10.4171/OWR/2010/37}{Workshop report}.
+\bibitem{pagoda} F. Lunnon, \emph{The Pagoda sequence: a ramble through linear complexity, number walls, D0L sequences, finite state automata, and aperiodic tilings}, EPTCS 1 (2009), 130--148. \href{https://doi.org/10.4204/EPTCS.1.13}{doi:10.4204/EPTCS.1.13}.
+\bibitem{dak} F. Lunnon, \emph{The Dakota sequence}, OEIS A301850 and source morphism A301848 (2018). \href{https://oeis.org/A301850}{Sequence and coding}.
+\bibitem{dakcert} C. Cavalcante, \emph{A verified Dakota number-wall certificate for nonvanishing shifted Hankel determinants}, Zenodo preprint (2026). \href{https://doi.org/10.5281/zenodo.21728308}{doi:10.5281/zenodo.21728308}.
+\end{thebibliography}
+\end{document}

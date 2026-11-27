@@ -1,0 +1,7 @@
+Minimum 4 profiles 502 orders 2991
+Minimum 6 profiles 324 orders 1941
+Minimum 8 profiles 5849 orders 34986
+Minimum 9 profiles 13779 orders 82429
+Ordered profiles 122347, Fibonacci intervals 3482803, surviving intervals 178, surviving orders 26, prime-x cases 2992
+Prime-x cases 2992 nonempty y ranges 2989 locally possible x 563
+Largest prime bound 48554101 prime pairs 6518125 local survivors 13 ordered candidates with z dividing W 0 equalities 0

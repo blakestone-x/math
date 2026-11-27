@@ -1,0 +1,5 @@
+exact lift congruences 2728
+predicted exact valuations checked 1852
+all-shift Dakota cutoff 16, distinct factors over these orders 1083
+forbidden rational translations 973
+verified integer letters [2, 3, 4]

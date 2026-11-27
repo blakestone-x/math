@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\title{Odd-prime Eisenstein families for Sun's Franel polynomials}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For every odd prime $p$ and $t\ge1$, Sun's Franel polynomials of indices $(p-1)p^t$ and $(p-1)p^t+1$ are irreducible over $\mathbb Q$. We classify all indices for which the defining polynomial satisfies Eisenstein's criterion at an odd prime without a translation, using a digitwise factorization over $\mathbb F_p$. A shifted test proves irreducibility at $2p^t$ for each $p\ge5$ non-Wieferich to base $3/2$, and at $2p^t+1$ for $t\ge2$ under the same condition. Two residual checks prove both $2p^t$ and $2p^t+1$ for every prime $p\le10^7$ and all $t\ge1$.
+\end{abstract}
+
+Zhi-Wei Sun conjectured in 2013 that every polynomial
+\[
+ f_n(X)=\sum_{j=0}^{\lfloor n/2\rfloor}\binom nj^2\binom{2n-2j}{n}X^j,
+ \qquad n\ge2,
+\]
+is irreducible over the rationals \cite{sun}. Earlier project papers give four shifts of primes, irreducibility for $2\le n\le2048$, and families obtained by repeated doubling \cite{earlier}. We give uniform families over all odd primes. Constant integer factors are units in $\mathbb Q[X]$.
+
+\section{The support modulo an odd prime}
+Let $p=2h+1$ be prime and write $n=\sum_i d_i p^i$. If $j=\sum_i u_i p^i$, coefficient $j$ in $f_n$ is nonzero modulo $p$ exactly when
+\begin{equation}\label{digit}
+ \max(0,d_i-h)\le u_i\le\lfloor d_i/2\rfloor \qquad\text{at every digit.}
+\end{equation}
+Moreover, the polynomials satisfy the full digit factorization
+\begin{equation}\label{lucas}
+ f_n(X)\equiv\prod_i f_{d_i}(X^{p^i})\pmod p .
+\end{equation}
+Indeed the coefficient is also $\binom n{2j}\binom{2j}j\binom{2(n-j)}{n-j}$, by the factorial formula. The last two binomials are units exactly when doubling $j$ and doubling $n-j$ have no base-$p$ carries, by Lucas's theorem. If $j$ doubles without carries, the first binomial is a unit exactly when $2u_i\le d_i$ for every $i$. Then subtracting $j$ from $n$ introduces no borrow, and doubling $n-j$ without a carry means $d_i-u_i\le h$. This gives \eqref{digit}. On this support Lucas's theorem factors each binomial over the digits. The surviving digit indices are all below $p$, so the product in \eqref{lucas} has a unique contribution per surviving index. Each interval in \eqref{digit} is nonempty.
+
+\begin{theorem}\label{unshifted}
+For odd prime $p$ and $n\ge2$, the displayed integer polynomial $f_n$ satisfies Eisenstein's criterion at $p$ exactly at the following indices, restricted to the domain:
+\[
+ p-2,\quad p-1,\quad (p-1)p^t,\quad (p-1)p^t+1\qquad(t\ge1).
+\]
+Consequently all these polynomials are irreducible over $\mathbb Q$.
+\end{theorem}
+\begin{proof}
+The reduction must consist of exactly the leading monomial. The digit interval in \eqref{digit} is a singleton precisely when $d_i\in\{0,1,p-2,p-1\}$. Its largest allowed index globally is $\sum_i\lfloor d_i/2\rfloor p^i$. For that to equal $\lfloor n/2\rfloor$, the nonnegative integer $\sum_i (d_i\bmod2)p^i$ must be zero or one. Thus each digit above the units place is either zero or $p-1$; the units digit may be any of the four listed values. Conversely these conditions give exactly the leading monomial.
+
+The constant coefficient is $\binom{2n}{n}$, whose valuation counts the carries in doubling $n$ by the factorial valuation formula. Each upper digit equal to $p-1$ creates a carry, and an upper digit zero clears any incoming carry. The units digit contributes one if it is at least $(p+1)/2$. Thus valuation one requires either a single upper digit $p-1$ and units digit zero or one, or no nonzero upper digits and units digit $p-1$ or $p-2$ in the domain. At $p=3$ the digit $p-2$ equals one and gives no carry, and the index one is outside the domain. These are exactly the asserted indices. Eisenstein's criterion applies after removing the content, which is prime to $p$ since the leading coefficient is a unit.\end{proof}
+
+\section{A shifted criterion and the first successor}
+For $p\ge5$ put $r=-3/2$ in $\mathbb Z_{(p)}$ and $W_p=(r^{p-1}-1)/p$. In congruences, $W_p$ can be computed by modular exponentiation modulo $p^2$. The condition $W_p\not\equiv0\pmod p$ is equivalent to $3^{p-1}\not\equiv2^{p-1}\pmod {p^2}$.
+\begin{theorem}\label{shifted}
+If $p\nmid W_p$ then $f_{2p^t}$ is irreducible for every $t\ge1$, and $f_{2p^t+1}$ is irreducible for every $t\ge2$. For $t=1$, the polynomial $f_{2p+1}$ is irreducible whenever $2W_p+5\not\equiv0\pmod p$. In each assertion the stated condition is necessary and sufficient for a translate to meet Eisenstein's criterion at the indicated prime. A failed test gives no conclusion on irreducibility.
+\end{theorem}
+\begin{proof}
+For $0\le j\le b$ one has $\binom{pb}{pj}\equiv\binom bj\pmod {p^2}$. To see this, remove the indices divisible by $p$ from the numerator/denominator product. The remaining factors are $1+p(b-j)/i$, with $1\le i\le pj$ and $p\nmid i$. In each complete block the nonzero residues are a permutation of their inverses and sum to zero modulo the odd prime. For the coefficients of $f_{pb}$ at indices prime to $p$ the square $\binom{pb}{j}^2$ is divisible by $p^2$. At multiples of $p$ apply the preceding congruence to both binomials. We obtain
+\[
+ f_{pb}(X)\equiv f_b(X^p)\pmod {p^2} .
+\]
+In particular $f_{2p^t}(X)\equiv 6+4X^{p^t}\pmod {p^2}$. Modulo $p$ it reduces to $4(X-r)^{p^t}$. The only possible translating residue is $r$, and all its lifts give the same value modulo $p^2$, since the derivative vanishes modulo $p$. Fermat's theorem gives $r^{p^t}\equiv r^p\pmod {p^2}$ for $t\ge1$. Thus the translated constant is $4r p W_p\pmod{p^2}$.
+
+For the second family put $N=2p^t$. We recall an elementary constant-term model. With $A=z+z^{-1}$ put $P=A^2+A(w+Xw^{-1})$. Then $f_b(X)=\mathrm{CT}_{z,w}P^b$: to contribute, $2j$ factors supplying $w$ must contribute exactly $j$ of each sign. The $z$-constant term of $A^{2b-2j}$ is the needed central coefficient. If $p^2\mid N$, Frobenius and the binomial expansion give
+\[
+ P(X,z,w)^N\equiv P(X^p,z^p,w^p)^{N/p}\pmod {p^2}.
+\]
+In the product with one more $P$ only the constant Laurent term of that additional factor can contribute, since its exponents have magnitude at most two. That term is 2. Hence $f_{N+1}(X)\equiv2f_N(X)\pmod{p^2}$. The degrees are equal, so the same shifted criterion applies.
+
+At $N=2p$ only the indices $0,1,p$ in $f_{2p+1}$ can survive modulo $p^2$, by the squared binomial factor. Using $\binom{4p}{2p}\equiv6$ and $\binom{2p}p\equiv2\pmod{p^2}$ gives
+\[
+ f_{2p+1}(X)\equiv12(1+2p)+12pX+8(1+3p)X^p\pmod{p^2}.
+\]
+For instance the constant is $2(4p+1)\binom{4p}{2p}/(2p+1)$, and the leading coefficient is $(2p+2)\binom{2p+1}p^2$. The reduction is $8(X-r)^p$ and its value at $r$ is $-6p(2W_p+5)$ modulo $p^2$. This proves all claims. Integer representatives of $r$ may be used throughout.\end{proof}
+
+\section{All prime bases through ten million}
+\begin{theorem}
+For every prime $p\le10^7$ and every $t\ge1$, the polynomials $f_{2p^t}$ and $f_{2p^t+1}$ are irreducible over $\mathbb Q$.
+\end{theorem}
+\begin{proof}
+The dyadic theorem of \cite{earlier} covers $p=2$, and Theorem~\ref{unshifted} covers $p=3$. A sieve of the 664,577 primes $5\le p\le10^7$ gives just $p=23$ for $W_p=0$ modulo $p$ and just $p=53047$ for $2W_p+5=0$ modulo $p$. We treat these residual cases.
+
+For $p=23$ put $N_t=2p^t$. The lower Newton polygon of $f_{1058}(10+X)$ at 23 has vertices $(0,2),(23,1),(529,0)$. The verifier obtains these by a direct Taylor translation modulo $23^3$. For $t\ge2$ each increase of $t$ dilates the polygon horizontally by 23: use the constant-term model in the proof above with $Q=P(10+X,z,w)$. Frobenius gives $Q^{p N_t}\equiv Q(X^p,z^p,w^p)^{N_t}\pmod {p^{t+1}}$. The two endpoints have valuation at most two, so coefficients above height two cannot affect the hull. For $t\ge3$ the same constant-term argument with an extra factor $Q$ gives $f_{N_t+1}(10+X)\equiv2f_{N_t}(10+X)\pmod {p^3}$. Thus the two slope denominators are $23^{t-1}$ and $22\cdot23^{t-1}$. The Newton polygon of a product is obtained by combining its slope multisets with their horizontal lengths. Since every edge of a rational factor has integral endpoints, its length is a multiple of its reduced slope denominator. Every rational factor degree is therefore divisible by $23^{t-1}$ in the stated ranges.
+
+For clarity, the earlier prime-gap bound \cite{earlier} states that if $Q_n$ is the next prime after $n$, the complement of one irreducible factor has degree at most $g(n)=(Q_n-1)/2-\lceil n/2\rceil$. It follows by reduction modulo $Q_n$: one primitive factor has constant term divisible by $Q_n$ to exponent one, and it must account for all of the zero root in that reduction. For $t\le2$ both indices lie below 2048 and are covered in \cite{earlier}. At $t=3$, the next prime after 24334 or 24335 is 24337, giving $g(n)\le1$. For $t\ge4$, $n\ge559682$, so Dusart's Proposition 6.8 \cite{dusart} gives $g(n)\le n/(50\log^2n)<(n-1)/46\le23^{t-1}$. This excludes every positive complementary degree.
+
+It remains to check the single index $n=2\cdot53047+1=106095$. The next prime is $106103$, so $g(n)=3$. In base 827 the digits of $106095$ from low to high are 239 and 128. Equation~\eqref{lucas} gives the reduction $f_{239}(X) f_{128}(X)^{827}$, with full degree $119+64\cdot827=53047$. For each $a=239,128$ an exact Euclidean algorithm over $\mathbb F_{827}$ gives
+\[
+ \gcd(f_a,X^{827^i}-X)=1,\qquad i=1,2,3.
+\]
+These six small polynomial remainders exclude irreducible factors of degrees one through three modulo 827. Since the leading coefficient survives reduction, they exclude every possible rational complementary factor at $n=106095$. This completes the finite part of the proof.\end{proof}
+
+The general classification in Theorem~\ref{unshifted} covers arbitrary odd primes. Unrestricted irreducibility at every index remains open.
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, conjecture of March 21, 2013, entry A000172, \emph{The On-Line Encyclopedia of Integer Sequences}. \url{https://oeis.org/A000172}.
+\bibitem{lucas} A. Granville, \emph{Arithmetic properties of binomial coefficients I: Binomial coefficients modulo prime powers}, Canadian Math. Soc. Conf. Proc. 20 (1997), 253--275. \url{https://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/binomial.html}.
+\bibitem{dusart} P. Dusart, \emph{Estimates of some functions over primes without R.H.}, Proposition 6.8 (2010). \url{https://arxiv.org/abs/1002.0442}.
+\bibitem{earlier} Blake Stone's mathematics project, \emph{Large irreducible factors of Sun's Franel-number polynomials} and \emph{Irreducibility of Sun's Franel polynomials on dyadic families} (2026). \href{https://github.com/blakestone-x/math/tree/5a9d2730dd28ae3031c488960ae2f6cd08a36803/A000172}{Manuscripts and verifiers}.
+\end{thebibliography}\end{document}

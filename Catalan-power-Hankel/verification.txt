@@ -1,0 +1,5 @@
+power and shift pairs 64
+original integer Hankel determinants computed 1433
+numerators checked for degree, reciprocity and zero tail 83
+all exact checks passed
+explicit low-shift numerator formulas checked 42

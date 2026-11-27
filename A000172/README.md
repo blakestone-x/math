@@ -1,5 +1,9 @@
 # Large irreducible factors of Sun’s Franel-number polynomials
 
+For every odd prime $p$ and $t\ge1$, the two indices $(p-1)p^t$ and $(p-1)p^t+1$ give irreducible polynomials. The new paper also proves irreducibility for both $2p^t$ and $2p^t+1$ at every prime $p\le10^7$ and every $t\ge1$. It classifies unshifted odd-prime Eisenstein tests and gives the shifted tests valid for arbitrary $p\ge5$. [Manuscript](digits.pdf) · [LaTeX](digits.tex) · [Verifier](verify_digits.py) · [Exact checks](digits-verification.txt)
+
+For every $n\ge2$, all zeros are simple and negative. Their absolute values have limiting distribution function $2\arctan(\sqrt{s})/\pi$ on $s\ge0$. The paper also determines the limits of every fixed extreme root, with different constants at the large end for even and odd indices. [Zero distribution manuscript](zeros.pdf) · [LaTeX](zeros.tex) · [Sturm checks](verify_zeros.py) · [Recorded output](zeros-verification.txt)
+
 The [dyadic continuation](dyadic.pdf) proves irreducibility whenever the odd part of $n$ or $n-1$ is at most 127. For fixed offset $c$ from a certified dyadic family, the total degree outside one irreducible factor is eventually at most $\lfloor c/2\rfloor$. This also holds for each fixed odd base with no adjacent binary ones. [LaTeX source](dyadic.tex) · [Exact polygon verifier](verify_dyadic.py) · [Certificate transcript](dyadic-verification.txt)
 
 Zhi-Wei Sun conjectured in March 2013 that $f_n(X)=\sum_{j=0}^{\lfloor n/2\rfloor}\binom nj^2\binom{2n-2j}{n}X^j$ is irreducible over the rationals for every $n\ge2$. The manuscript proves the conjecture for four infinite families and for every index through 2048. The general case remains open here. [Sun’s statement in OEIS A000172](https://oeis.org/A000172/internal)

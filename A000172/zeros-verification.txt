@@ -1,0 +1,5 @@
+Exact squarefree and Sturm checks through n=48: 576 negative roots.
+n=64: transformed mean at x=1 is 0.497368518
+n=128: transformed mean at x=1 is 0.498691111
+n=256: transformed mean at x=1 is 0.499347260
+n=512: transformed mean at x=1 is 0.499674055

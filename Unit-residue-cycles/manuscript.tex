@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.97in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\U}{U}
+\title{Circular orderings of the units with all differences prescribed as a set}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For every odd integer $n>1$ we construct a circular ordering of the units modulo $n$ whose successive directed differences run through every unit once. This proves Zhi-Wei Sun's conjecture for composite moduli with several distinct prime factors, extending his prime-power proof. We also classify when the adjacent sums run through the units: this holds exactly when $\gcd(n,6)=1$, and then one ordering works simultaneously for sums and differences. The construction is an explicit iteration of the Chinese remainder theorem.
+\end{abstract}
+
+Put $U_n=(\mathbb Z/n\mathbb Z)^\times$. Read the indices of a circular ordering modulo its length. The assertion for differences is Conjecture (2013-10-04) in Sun's lecture \cite{lecture}, restated in Remark~1.4 of \cite{sun}. There Theorem~1.4 proves the prime-power case by taking successive powers of a primitive root. Here is the full classification for $n>2$.
+\begin{theorem}\label{th:class}
+A circular ordering $(a_i)$ of $U_n$ for which the multiset $(a_i-a_{i+1})_i$ equals $U_n$ exists exactly for odd $n$. A circular ordering for which $(a_i+a_{i+1})_i$ equals $U_n$ exists exactly for $\gcd(n,6)=1$. In the latter case a single circular ordering has both properties.
+\end{theorem}
+When $n$ is even all units are odd, so both types of edge labels are even. If $3\mid n$, an adjacent sum of two units is a unit modulo three only when its two terms are equal modulo three. Going around the circle would make all terms congruent modulo three, contrary to the presence of $1$ and $-1$. It remains to give the constructions.
+
+\begin{lemma}\label{lem:lift}
+Let $(a_i)_{i\in\mathbb Z/L\mathbb Z}$ be a circular ordering of $U_m$ for an odd $m>1$. Let $Q=p^e$ be coprime to $m$ with $p$ odd, and take $r_0,\ldots,r_{L-1}\in U_Q$ whose product generates $U_Q$. On $U_m\times U_Q$, set
+\[
+ T(a_i,y)=(a_{i+1},r_i y).
+\]
+This is a single cycle on the whole product. For $\epsilon\in\{-1,1\}$ suppose that $a_i+\epsilon a_{i+1}$ runs through $U_m$ and $1+\epsilon r_i\in U_Q$ for all $i$. Then the corresponding adjacent labels run through $U_{mQ}$ under the Chinese remainder identification.
+\end{lemma}
+\begin{proof}
+Each step is bijective between the corresponding fibers. After $L$ steps the first coordinate returns to its initial value and the second has been multiplied by $\prod r_i$. Its powers visit all $\varphi(Q)$ points in the initial fiber. Each other fiber receives the entire initial fiber under the fixed intervening bijections, so the resulting orbit has length $L\varphi(Q)$. For edges from phase $i$ the label is
+\[
+  (a_i+\epsilon a_{i+1},(1+\epsilon r_i)y).
+\]
+Every possible first coordinate determines a unique phase $i$; within that phase the unit multiplier permutes the entire second coordinate. This proves both assertions.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:class}]
+For $n=p^e$ take the cyclic ordering of successive powers of a primitive root $g$ modulo $p^e$. Its reduction has order $p-1$ modulo $p$, by surjectivity $U_{p^e}\to U_p$. Thus $1-g$ is a unit for every odd $p$, and $1+g$ is a unit when $p\ge5$. Multiplication by the respective factor takes the displayed ordering to its edge labels.
+
+For a general odd $n$, start at the power of its least prime divisor. Append the remaining prime-power factors in increasing prime order. At each step $L=\varphi(m)$ is even, since negation pairs all the units. For the new factor $Q=p^e$ choose a primitive root $g$. Use the following $L$ multipliers in Lemma~\ref{lem:lift}:
+\[
+ (g^2,g^{-1}),\qquad \underbrace{(g,g^{-1}),\ldots,(g,g^{-1})}_{(L-2)/2\text{ pairs}}.
+\]
+Their product is $g$. Each appended $p$ is at least five, so none of $g,g^{-1},g^2$ equals $1$ modulo $p$, and the differences are all units as required. If $3\nmid n$, each appended $p$ is at least seven. Now $g^2\ne-1$ modulo $p$ because $g$ has order $p-1>4$ modulo $p$. The other two multipliers also differ from $-1$. Consequently the same lift carries both properties across every step.
+\end{proof}
+
+\begin{corollary}
+For a fixed admissible cycle at modulus $m$ and an appended factor $p^e$ as above, the construction gives at least
+\[ L\binom{L-1}{L/2}\quad\text{distinct directed circular orderings at modulus }mp^e.\]
+\end{corollary}
+\begin{proof}
+Fix the first-coordinate labels and their phases. Permute the multiset with one copy of $g^2$, $(L-2)/2$ copies of $g$, and $L/2$ copies of $g^{-1}$. The three multipliers are distinct as the order of $g$ is even and at least four. The same proof applies in every arrangement. Two distinct arrangements change the successor of $(a_i,1)$ at some phase, hence define different directed cycles even after rotation.
+\end{proof}
+
+For example, modulo $15$ the constructed order is $(1,14,7,8,4,11,13,2)$ and its cyclic differences are $(2,7,14,4,8,13,11,1)$. The accompanying Python program constructs the order from the prime powers and checks the edge labels by direct modular arithmetic. The proof applies without a bound on $n$.
+
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, \emph{Some new problems in additive combinatorics}, Nanjing Univ. J. Math. Biquarterly \textbf{36} (2019), no.~2, 134--155, Theorem~1.4 and Remark~1.4. \url{https://arxiv.org/abs/1309.1679}.
+\bibitem{lecture} Z.-W. Sun, \emph{Determinants, Permutations and Additive Combinatorics}, Zhejiang University lecture, 15 November 2013, slide headed ``Two conjectures related to coprime properties.'' \url{https://www.mathnet.ru/PresentFiles/21090/sun.pdf}.
+\end{thebibliography}
+\end{document}
