@@ -1,6 +1,8 @@
 # math
 math proofs
 
+- [Largest endpoints of signed smooth gaps — exact values of A391077 and A376924, and a distribution theorem for every finite prime set](Smooth-gaps/README.md) · [Gap manuscript](Smooth-gaps/smooth-gaps.pdf) · [Three classes of smooth decimal rotations](Smooth-gaps/smooth-rotations.pdf)
+
 - [A326925 — the even-degree factorization, completing the odd/even conjecture; Fibonacci/Lucas factor constants](A326925Even/README.md) · [Exact reduced-numerator Lean proof](A326925Even/EvenDerivative.lean)
 - [A288520/A288523 — the literal replacement-length conjecture and a stronger affine recurrence](A288523/README.md) · [Lean proof](A288523/Proof.lean)
 - [A400939 — exactly one division and an explicit permanent tail for infinitely many prime divisors (partial result)](A400939/README.md) · [Lean proof](A400939/Proof.lean)

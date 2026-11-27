@@ -1,0 +1,98 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdfauthor={Blake Stone},pdftitle={Three classes of decimal words with smooth cyclic rotations}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\rad}{\operatorname{rad}}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Three classes of decimal words\\[2pt] with smooth cyclic rotations}\par\medskip
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+We classify the decimal integers whose fixed-width cyclic rotations are all 7-smooth when there are exactly two nonzero digits, when two consecutive nonzero digits have cyclic distance at most three, or when at least one quarter of the digits are nonzero. The union contains precisely 33 nontrivial integers. The argument bounds the entire word length using two rotations and a published table of coprime sums. We also show that every positive 7-smooth decimal integer has full period as a word.
+\end{abstract}
+
+\section{The classification}
+Let $S=\{2,3,5,7\}$. A positive integer is 7-smooth if all its prime factors belong to $S$. Decimal rotations act on a word of its original width. A rotation beginning with zeros is evaluated at its integer value, and those zeros stay in the word for the next rotation. In 2003 Murthy and Srikanth asked in OEIS A085135 whether there are only finitely many such integers with at least two nonzero digits \cite{oeis}. A previous note proves finiteness by the three-variable unit equation \cite{earlier}. We address the enumeration.
+
+Let $d$ be the width and $t\ge2$ the number of nonzero digits. The cyclic distances between successive nonzero positions are positive integers summing to $d$. Adjacent nonzero digits have distance $1$.
+\begin{theorem}\label{th:list}
+Suppose every rotation is 7-smooth. All nontrivial integers satisfying at least one of the conditions $t=2$, a cyclic distance at most $3$, or $4t\ge d$ are in the table below. Every entry in the table satisfies the rotation property and at least one condition.
+\[
+\begin{array}{cl}
+\toprule
+d&\text{integers}\\
+\midrule
+2&12,18,21,24,27,36,42,45,48,54,63,72,81,84\\
+3&108,243,324,405,432,450,486,504,540,567,648,675,756,810,864\\
+4&1008,4050,5040,8100\\
+\bottomrule
+\end{array}
+\]
+Exactly 24 of the 33 integers have two nonzero digits. In particular, every further nontrivial term of A085135 would have width at least $19$, at least three nonzero digits, $4t<d$, and at least three zeros between every two successive nonzero digits.
+\end{theorem}
+
+\section{A height bound from two nonzero digits}
+Put $L=10^d-1$. For a chosen pair of successive nonzero digits $a,b$, let $h$ be their cyclic distance. Start the rotation at $a$ and call its value $R$. Let $Y$ be the value after moving $a$ to the end and $Z$ the value after also moving the next $h-1$ zeros and $b$ to the end. Then
+\[
+ 10R=Y+aL,\qquad 10^hY=Z+bL.
+\]
+Eliminating $L$ gives the positive-sum identity
+\begin{equation}\label{eq:sum}
+ 10bR+aZ=KY,\qquad K=10^h a+b .
+\end{equation}
+Let $K_0$ be the product of the distinct primes dividing $K$ that are outside $S$, taking the empty product to be $1$.
+
+\begin{lemma}\label{lem:bound}
+If $210K_0\le10^7$, then $10^d-1\le 63d\cdot 10K B$, where $B=8{,}251{,}953{,}408$.
+\end{lemma}
+\begin{proof}
+Divide all terms of \eqref{eq:sum} by the gcd of its summands. Write $P$ for the summand corresponding to $10bR$ and $C$ for the sum in the primitive triple. Its radical divides $210K_0$ by smoothness of $R,Y,Z,10,a,b$. The complete radical table of von K\"anel and Matschke has maximum $C=B$ over all its rows \cite{data}. In particular $P<C\le B$. The ratio of the sum to the indicated summand gives $KP Y=10bC R$. Substituting into $10R=Y+aL$ gives
+\[
+ 10(KP-bC)R=aKP L .
+\]
+The factor $KP-bC$ is positive. Write $R/L=U/V$ in lowest terms. Then $V\mid10(KP-bC)$, whence $V\le10KB$.
+
+The integer $G=\gcd(R,L)=L/V$ is 7-smooth and coprime to 10. Thus only 3 and 7 can divide it. The valuation formulas are
+\[
+ v_3(L)=2+v_3(d),\qquad
+ v_7(L)=
+ \begin{cases}1+v_7(d)&6\mid d,\\0&6\nmid d.\end{cases}
+\]
+For the first formula use $10-1=9$. For the second, $10$ has order $6$ modulo $7$ and $7$ divides $10^6-1$ exactly once. Both formulas follow by expanding $(1+p^e u)^m$ for odd $p$ and $p\nmid u$. The difference from $1$ has valuation $e$ when $p\nmid m$, and raising to the $p$th power increases the valuation by one. Hence $G\le9\cdot7\cdot3^{v_3(d)}7^{v_7(d)}\le63d$. Multiplication by $V$ proves the bound.
+\end{proof}
+
+If $h\le3$, then $K\le9009$ and $210K_0\le210\cdot9009<10^7$. Lemma~\ref{lem:bound} implies $d\le17$. Indeed $(10^d-1)/d$ increases with $d$ and the inequality already fails at $d=18$. If $h=4$ and $210K_0\le10^7$, then $K\le90009$ gives $d\le18$ in exactly the same way.
+
+\section{Two digits and the density threshold}
+First suppose $t=2$, and let the two distances be $i,j$ with $i+j=d$. Rotations ending at the second and first nonzero digits have values $a10^i+b$ and $b10^j+a$, respectively. Each is a sum of two positive 7-smooth integers. Their common divisor within each sum is at most $9$, since it divides the final digit. The largest sum in the 63 primitive 7-smooth triples is $4375$ \cite{data}. Consequently both rotations are at most $9\cdot4375<10^5$. This gives $i,j\le4$ and $d\le8$.
+
+Next assume $4t\ge d$ while all cyclic distances are at least $4$. Summing the distances forces them all to equal $4$. For $h=4$ one can test $K=10000a+b$ for all 81 ordered digit pairs. The pairs for which $210K_0>10^7$ are exactly
+\[
+ (5,3),(5,9),(6,1),(6,7),(7,1),(7,3),(7,9),(8,9),(9,1),(9,7).
+\]
+If any pair in the word lies outside this list, the width is at most $18$. Otherwise the nonzero digits give a closed directed walk in the displayed list. Digits $1$ and $3$ have no outgoing edges there, and $5,6,8$ have no incoming edges. The only possible closed walks alternate $7$ and $9$. A rotation ending in $9$ is then $70009(1+10^8+\cdots+10^{8(m-1)})$ for some $m\ge1$. The factor $70009>1$ is coprime to $210$, which contradicts smoothness.
+
+It remains to enumerate widths through $18$. Generate the integers $2^i3^j5^k7^\ell<10^{18}$ by successive prime powers. There are $66{,}060$, including $1$. For each with at least two nonzero digits, rotate its original decimal string through each position and test membership in this same set. Every rotation has value below $10^{18}$, so all tests are exact. The output is precisely the table in Theorem~\ref{th:list}. The accompanying script reproduces the digit-pair and rotation checks.
+
+\section{Repeated decimal blocks}
+\begin{theorem}
+Every positive 7-smooth integer has full period in its decimal expansion.
+\end{theorem}
+\begin{proof}
+A $d$-digit integer formed from $m\ge2$ repeats of a block of length $w=d/m$ is divisible by
+$Q=(10^d-1)/(10^w-1)$. If the integer is 7-smooth then $Q$, a divisor of $10^d-1$ coprime to 10, is at most $63d$ by the valuation calculation above. But $Q>10^{d-w}\ge10^{d/2}$. For $d=5$, $10^5>(63\cdot5)^2$, and $10^{d/2}/d$ increases thereafter. For $d=2,3,4$ the possible factors $Q$ are $11,111,1111,101$, each divisible by a prime exceeding $7$. This exhausts every possible period shorter than $d$.
+\end{proof}
+
+The complete enumeration for sparse words of arbitrary width remains open here. The Lean file proves the elimination identity and the denominator inequality, and the exhaustive decimal enumeration is in Python. Completeness of the primitive tables is an external result.
+
+\begin{thebibliography}{9}\small
+\bibitem{oeis} A. Murthy and M. Srikanth, \href{https://oeis.org/A085135}{OEIS A085135}, 2003.
+\bibitem{earlier} B. Stone, \href{https://github.com/blakestone-x/math/tree/main/A085135}{Smooth numbers and a single cyclic digit rotation}, repository note.
+\bibitem{data} R. von K\"anel and B. Matschke, \href{https://bmatschke.github.io/solving-classical-diophantine-equations/}{Data for elliptic curves and classical Diophantine equations}, $S$-unit equations, Tables 1 and 2. See also \href{https://arxiv.org/abs/1605.06079}{arXiv:1605.06079}, Section 3.
+\end{thebibliography}
+\end{document}

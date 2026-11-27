@@ -1,0 +1,188 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.91in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdfauthor={Blake Stone},pdftitle={Largest endpoints of signed smooth gaps}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Hs}{H_S}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\rough}{\rho_S}
+\newcommand{\lcm}{\operatorname{lcm}}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Largest endpoints of signed smooth gaps}\par\medskip
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+For a finite set of primes $S$, let $A_S(n)$ be the largest positive $S$-smooth integer $x$ for which $|x-n|$ is positive and $S$-smooth, with value zero if the set is empty. We give an exact formula in terms of primitive coprime sums. The complete tables of von K\"anel and Matschke then settle every displayed term and both first-shortfall assertions in OEIS A391077 and A376924, and give exact answers at infinitely many indices beyond the certified prefixes. For arbitrary $S$ we prove a joint distribution law for the sign and logarithmic size of the partner at the largest endpoint. Gaps with several representations form a finite union of translates under multiplication by $S$-smooth integers.
+\end{abstract}
+
+\section{A finite calculation for an unbounded maximum}
+Fix a nonempty finite set $S$ of primes. Put
+$\Hs=\{\prod_{p\in S}p^{e_p}:e_p\in\mathbb Z_{\ge0}\}$,
+$P_S=\prod_{p\in S}p$, and let $\rough(n)$ be the result of dividing $n$ by every factor in $S$, with multiplicity. Write $n=rh$ with $r=\rough(n)$ and $h\in\Hs$. We use $\rad(1)=1$.
+For $n>0$, a representation is either $n=x-y$ with $x>y$ in $\Hs$, or $n=x+y$ with $x\ge y$ in $\Hs$. Its upper endpoint is $x$. In a sum the smaller of the two positive endpoints also meets the signed definition, so retaining the larger gives the same maximum. Finiteness below ensures the maximum exists.
+
+Take a primitive triple $a+b=c$, $0<a\le b$, $\gcd(a,b)=1$. Form a pair $(d,u)$ from each applicable row of the following table. Equal pairs are recorded only once.
+\[
+\begin{array}{lll}
+\toprule
+\text{smooth entries} & (d,u) & \text{gap representation}\\
+\midrule
+b,c &(a,c)&a=c-b\\
+a,c &(b,c)&b=c-a\\
+a,b &(c,b)&c=b+a\\
+\bottomrule
+\end{array}
+\]
+For each $r$ coprime to $P_S$, let $T_r$ be the set of such pairs with $\rough(d)=r$.
+
+\begin{theorem}\label{th:templates}
+For fixed $r$, $T_r$ is finite. For $n=rh$ the upper endpoints of its representations are precisely
+\[
+ \left\{\frac{n}{d}u:(d,u)\in T_r,\ d\mid n\right\}.
+\]
+Distinct eligible pairs give distinct upper endpoints. Thus the maximum of this set together with $0$ is $A_S(n)$, and its cardinality before adjoining $0$ is the number of representations.
+\end{theorem}
+\begin{proof}
+Divide $x,y$ by $g=\gcd(x,y)$. Both quotients are smooth, $g\in\Hs$, and $d=n/g$ is their difference or sum. Sorting produces one of the three rows. Conversely, $d\mid n$ and equality of rough parts give $n/d\in\Hs$, so multiplication by $n/d$ gives a representation. Each primitive pair has $\gcd(d,u)=1$. Hence $u/d$ in lowest terms recovers the pair from the endpoint ratio. Every prime of $abc$ lies in $S\cup\{p:p\mid r\}$. The unit equation $a/c+b/c=1$ in this fixed set of primes has finitely many solutions \cite{ess,vkm}.
+\end{proof}
+
+If $T_r$ is nonempty, every member is eligible once $h$ is divisible by $\lcm_{(d,u)\in T_r}(d/r)$. On these multiples $A_S(n)/n$ is the largest ratio $u/d$, and the number of representations is $|T_r|$. For the maximum alone, a pair $(d,u)$ may be erased if another pair $(e,v)$ satisfies $e\mid d$ and $u e\le v d$. This observation gives the compact catalogue supplied with the paper.
+
+\section{The two conjectural endpoint sequences}
+Write $A_5$ for $S=\{2,3,5\}$ and $A_7$ for $S=\{2,3,5,7\}$. Wei's entries explicitly allow a negative partner \cite{oeis}. Table 2 of von K\"anel and Matschke \cite{data} lists all 432,408 positive primitive triples up to $\rad(abc)\le10^7$. For every triple needed at $n$,
+\[
+ \rad(abc)\mid P_S\rad(\rough(n)).
+\]
+Consequently the catalogue is exhaustive on the entire domain
+$P_S\rad(\rough(n))\le10^7$. This includes all $n\le\lfloor10^7/P_S\rfloor$ and arbitrarily large indices. The limit here concerns the primes in the gap. It imposes no trial bound on the endpoint.
+
+\begin{theorem}\label{th:numeric}
+The following counts and first indices hold. A shortfall means $0<A_S(n)<n$.
+\[
+\begin{array}{lrrrrr}
+\toprule
+ &\text{certified prefix}&\text{nonzero in prefix}&\text{first shortfall}&A_S\text{ there}&\text{first zero}\\
+\midrule
+A_5 &333{,}333&73{,}096&281&256&583\\
+A_7 &47{,}619&42{,}257&1{,}849&1{,}800&3{,}737\\
+\bottomrule
+\end{array}
+\]
+At gap $31$, $A_5(31)=256$ and $A_7(31)=4000$. All 49 displayed entries of A391077 and all 40 of A376924 agree with these maxima. For every $h$ in the indicated smooth monoid and every $j\ge0$,
+\[
+\begin{array}{lll}
+ A_5(h)=81h,   & A_5(11^{4+j}h)=0, & A_5(11^3)=1250,\\
+ A_7(h)=4375h, & A_7(11^{5+j}h)=0, & A_7(11^4)=18225 .
+\end{array}
+\]
+\end{theorem}
+\begin{proof}
+Apply Theorem~\ref{th:templates} to each primitive row of the radical table. There are 6,113 distinct pairs $(d,u)$ on the certified domain for $S=\{2,3,5\}$ and 20,429 for $S=\{2,3,5,7\}$. The divisibility comparison leaves 5,123 and 9,813 rows for the maxima. Computing the maxima gives the table. The witnesses at $31$ have partners $225$ and $3969$. At the two first shortfalls the partners are $-25$ and $-49$.
+
+There is a second finite computation of every prefix value. The largest $c$ in the radical table is $B=8{,}251{,}953{,}408$. For $n\le N$ in either prefix, Theorem~\ref{th:templates} gives $x\le Bn\le BN$. Generate all smooth integers through $BN$ by their exponent vectors. At each $x$, visit every smooth $y\le x$ with $0<x-y\le N$ or $x+y\le N$, retaining the greatest endpoint at each index. The resulting arrays agree entry by entry. The two calculations share the published completeness input.
+
+For smooth $h$, Table 1 of \cite{data} gives 17 or 63 primitive triples, respectively. On each of them $c/a$ and $c/b$ are at most $81$ or $4375$, as applicable. The pairs $(80,81)$ and $(4374,4375)$ realize these bounds at unit gap and scale by every $h$. For the vanishing assertions, use $S\cup\{11\}$ instead. The 47 triples supported on $\{2,3,5,11\}$ have no entry divisible by $11^4$. The 190 triples supported on $\{2,3,5,7,11\}$ have no entry divisible by $11^5$. Since $11\nmid g$, the forbidden power would have to divide $d$. The rows $81+1250=1331$ and $3584+14641=18225$ give the last asserted values by the same finite maximum.
+\end{proof}
+
+The full representation count has information absent from the reduced catalogue. On smooth gaps its maximum is $50$ or $188$, respectively, attained precisely at smooth multiples of
+\[
+ 2^7 3^4 5^3=1{,}296{,}000
+ \quad\text{or}\quad
+ 2^{10}3^7 5^4 7^4=3{,}360{,}631{,}680{,}000.
+\]
+Indeed, each primitive triple yields three rows except $1+1=2$, which yields two. The two thresholds are the least common multiples of all of the primitive gaps.
+
+\section{How many gaps admit several representations?}
+Call $r$ an exceptional rough part at level $j$ if $|T_r|\ge j$. Put $k=|S|$ and
+\[
+ c_S=\frac1{k!\prod_{p\in S}\log p}.
+\]
+\begin{theorem}\label{th:collision}
+For each $j\ge2$ there are finitely many exceptional rough parts. Write $R_{S,j}$ for their number. The positive integers having at least $j$ representations form a finite union of sets $d\Hs$. Their count up to $X\ge2$ is
+\[
+ R_{S,j}\,c_S(\log X)^k+O_{S,j}((1+\log X)^{k-1}).
+\]
+In the two numerical cases above at least $466$ and $3992$ rough parts, respectively, are exceptional at level $2$.
+\end{theorem}
+\begin{proof}
+Equating two distinct representations gives a signed relation among four positive smooth terms. A singleton cannot vanish. A vanishing triple would leave a zero singleton. A vanishing pair leaves a second vanishing pair. For two sums such a cancellation identifies the unordered summands. For two differences it identifies both endpoints or would give a zero gap. In the mixed case one positive term equals the sum of three positive terms and no proper cancellation is possible. Hence all these four-term relations are nondegenerate.
+
+Divide by one term and apply the finite-rank unit-equation theorem of Evertse, Schlickewei and Schmidt \cite{ess} to the other three ratios with their signs. There are only finitely many projective quadruples. Dividing the integer entries of each by their common gcd gives its unique primitive integral quadruple. Every integral representative is a smooth integer multiple of this quadruple, since its entries are smooth and their primitive gcd is $1$. In particular all collision gaps lie in finitely many sets $d\Hs$ and only finitely many rough parts occur. The number of \emph{representations involved} in collisions with gap at most $X$ is also $O_S((1+\log X)^k)$, by counting the permissible multiples separately for each quadruple.
+
+For a fixed exceptional $r$, select any $j$ distinct members of $T_r$. They are simultaneously eligible exactly on multiples of the least common multiple of their gaps within $r\Hs$. Taking the finite union over these choices proves the assertion about sets. In particular the contribution for $r$ lies between the counts for $rH\Hs$ and $r\Hs$, where $H=\lcm_{(d,u)\in T_r}(d/r)$. The number of smooth integers up to $e^L$ is
+\begin{equation}\label{eq:lattice}
+ F(L)=c_S L^k+O_S((1+L)^{k-1})\qquad(L\ge0).
+\end{equation}
+Indeed, the nonnegative exponent vectors of weight $\sum e_p\log p\le L$ index unit cubes. Their union contains the weight-$L$ simplex and lies in the weight-$(L+\sum\log p)$ simplex. The two counts with fixed multipliers therefore have the same leading term. Summing over the finite set of $r$ gives the formula. Counting the distinct unreduced pairs in the certified radical domain gives the stated lower bounds.
+\end{proof}
+
+\section{The distribution at the largest endpoint}
+For $0\le t\le1$, let $N_+(X,t)$ count represented $n\le X$ for which $A_S(n)>n$ and $A_S(n)-n\le n^t$. Define $N_-(X,t)$ using $A_S(n)<n$ and $n-A_S(n)\le n^t$, again requiring $A_S(n)>0$.
+\begin{theorem}\label{th:law}
+Uniformly for $0\le t\le1$ and $X\ge2$,
+\[
+ N_\pm(X,t)=\frac{c_S^2}{2}\,t^k(\log X)^{2k}
+                +O_S((1+\log X)^{2k-1}).
+\]
+The total number of represented gaps is $c_S^2(\log X)^{2k}+O_S((1+\log X)^{2k-1})$.
+For a uniformly chosen represented $2\le n\le X$, put
+$U=\log n/\log X$ and $V=\log|A_S(n)-n|/\log n$.
+For either specified sign of $A_S(n)-n$ and $0\le s,t\le1$,
+\[
+ \lim_{X\to\infty}\Pr(U\le s,\ V\le t,\ \text{specified sign})
+       =\tfrac12 s^{2k}t^k .
+\]
+\end{theorem}
+\begin{proof}
+Write $L=\log X$. First count ordered-by-size pairs $1\le y\le x\le X$ of smooth integers with $y\le x^t$. By \eqref{eq:lattice} the count is
+\[
+ \sum_{x\in\Hs,\ x\le X} F(t\log x)
+  = c_S t^k \sum_{x\in\Hs,\ x\le X} (\log x)^k
+    +O_S((1+L)^{2k-1}).
+\]
+The error is uniform even at $t=0$. Partial summation gives the last sum as
+$L^kF(L)-k\int_0^L z^{k-1}F(z)\,dz
+=\tfrac12 c_S L^{2k}+O_S((1+L)^{2k-1})$.
+
+For $x\ge2y$ the gap $n=x+y$ or $n=x-y$ is within a factor of two of $x$. Changing $x\le X$ to $n\le X$ affects a shell of bounded logarithmic width at $X$, containing $O_S((1+L)^{k-1})$ choices of $x$ by \eqref{eq:lattice}. Each has $O_S((1+L)^k)$ choices of $y$. Changing $y\le x^t$ to $y\le n^t$ affects a shell of bounded logarithmic width at $x^t$ for each $x$. This costs $O_S((1+L)^{2k-1})$ by the same estimate, uniformly in $t$.
+
+Among $x\le2X$, the pairs with $x/2<y\le x$ also number $O_S((1+L)^{2k-1})$ by the shell estimate. There is one further possibility for a difference, namely $x>2X$ and $0<x-y\le X$. The fixed-primes gap bound of Tijdeman \cite{tijdeman} gives constants $b,B>0$ depending only on $S$ with $x-y\ge b x/(1+\log x)^B$ for distinct smooth $x>y$. Increasing constants handles the small integers. It follows first that $x\ll_S X^2$, since $(1+\log x)^B\ll_S\sqrt{x}$, and then that $x\ll_S X(1+L)^B$. The extra $x$ thus lie in a logarithmic interval of length $O_S(1+\log(1+L))$. Counting bounded-width shells there gives $O_S((1+L)^{k-1}(1+\log(1+L)))$ choices. For each, $x/2<y<x$ gives $O_S((1+L)^{k-1})$ choices. Their product is within the claimed error, including when $k=1$.
+
+We have obtained the formula separately for representations by sums and by differences. Converting these counts to distinct gaps carrying the sign and partner of their maximum costs at most the number of representations involved in collisions. The proof of Theorem~\ref{th:collision} bounds this by $O_S((1+L)^k)$. A partner exceeding the gap itself has $y>x/2$ and was included in the shell estimates. Taking $t=1$ and adding the signs gives the total. Applying the same result at $X^s$ and dividing by the total proves the joint limit, with $s=0$ immediate.
+\end{proof}
+
+It follows that representable gaps have natural density zero among the positive integers. Within those gaps almost all have exactly one representation, and each sign has limiting proportion $1/2$. Also $A_S(n)/n$ tends to $1$ in relative density on the represented gaps. Indeed, for any fixed $t<1$, a proportion tending to $t^k$ has $|A_S(n)-n|\le n^t$. Now let $t$ increase to $1$. Quantitative counting of sums of units has an extensive literature, including work of Fuchs, Tichy and Ziegler \cite{ftz}. The statistic here records the signed partner selected by the largest ordinary integer endpoint.
+
+\section{Six further values of A376925}
+Wei's separate sequence asks for the largest $c$ in a primitive smooth triple for the first $m$ primes \cite{oeis}. Its displayed data end at $m=10$. Filter Table 1 for the first 16 primes \cite{data} by the largest prime dividing the radical and take prefix maxima. The counts match all 16 published table sizes. The following six further values are direct extractions from that earlier computation.
+\[
+\begin{array}{rrr}
+\toprule
+m & \max c & \text{smaller summand of a maximizing triple}\\
+\midrule
+11 &162618817224501 &3466384181\\
+12 &162618817224501 &3466384181\\
+13 &7401121252140000 &1169745467950813\\
+14 &31266763186590547 &1792160394037\\
+15 &3178648864589290499 &176202799695875\\
+16 &7058844079092540383 &98936203248000000\\
+\bottomrule
+\end{array}
+\]
+
+\paragraph{Verification.} The accompanying package includes exact Python calculations, a compressed lookup catalogue, and hashes of the pinned inputs and output prefixes. Lean proves the gcd reduction, the four infinite families, both maxima at gap 31, and the values at the two first shortfalls and two first zeros. Completeness of the indicated triple lists is explicit in the corresponding theorem hypotheses and follows from the published tables. For every smaller index, Lean checks smooth witnesses establishing the claimed first occurrences without any catalogue hypothesis. The analytic and unit-equation arguments are given above as mathematical proofs.
+
+\begin{thebibliography}{9}\small
+\bibitem{oeis} Z. Wei, OEIS entries \href{https://oeis.org/A391077}{A391077}, \href{https://oeis.org/A376924}{A376924} and \href{https://oeis.org/A376925}{A376925}, with subsequent contributions recorded there.
+\bibitem{data} R. von K\"anel and B. Matschke, \href{https://bmatschke.github.io/solving-classical-diophantine-equations/}{Data for elliptic curves and classical Diophantine equations}, $S$-unit equations, Tables 1 and 2. The data files credit the authors and specify CC BY-NC 3.0.
+\bibitem{vkm} R. von K\"anel and B. Matschke, \href{https://arxiv.org/abs/1605.06079}{Solving $S$-unit, Mordell, Thue, Thue--Mahler and generalized Ramanujan--Nagell equations via the Shimura--Taniyama conjecture}, arXiv:1605.06079, especially Section 3.
+\bibitem{ess} J.-H. Evertse, H. P. Schlickewei and W. M. Schmidt, \href{https://doi.org/10.2307/3062133}{Linear equations in variables which lie in a multiplicative group}, Ann. of Math. 155 (2002), 807--836, Theorem 1.1.
+\bibitem{tijdeman} R. Tijdeman, \href{https://www.numdam.org/item/CM_1973__26_3_319_0/}{On integers with many small prime factors}, Compositio Math. 26 (1973), 319--330, Theorem 1.
+\bibitem{ftz} C. Fuchs, R. F. Tichy and V. Ziegler, \href{https://math.sbg.ac.at/fuchsc/publ/QuantUnits4.pdf}{On quantitative aspects of the unit sum number problem}, Arch. Math. 93 (2009), 259--268.
+\end{thebibliography}
+\end{document}
