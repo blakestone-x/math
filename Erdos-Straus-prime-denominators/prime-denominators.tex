@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=.93in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\op}{o_{\mathbb P}}
+\title{Near-minimal denominators in three-term Egyptian fractions at primes}
+\author{Blake Stone\\\small Research and manuscript developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fix an integer $m\ge2$ and write $L_p=\log\log p$. For any real $t$ and any function $H(p)\to\infty$, almost every prime $p$ admits a single integer $x$ with $0<mx-p\le H(p)$ such that $m/p=1/x+1/y+1/z$, $x<y\le z$, has at least $3^{L_p+t\sqrt{L_p}}$ representations of each of two types: exactly one or exactly two denominators divisible by $p$. We also determine the limiting probability for any fixed finite set of offsets. The proof combines the fixed-denominator divisor parametrization with character orthogonality and a joint Erd\H{o}s--Kac argument for shifted primes.
+\end{abstract}
+
+\section{The statements}
+Fix a reduced residue class $b\bmod m$. For $a>0$ with $a\equiv-b\pmod m$ and a prime $p\equiv b\pmod m$, set $x=(p+a)/m$. For $p>\max(a,m)$, we have $x<p$ and $\gcd(a,px)=1$. Let $I_a(p),II_a(p)$ count representations of $m/p$ by $1/x+1/y+1/z$ with $x<y\le z$ and exactly one or two denominators divisible by $p$, respectively. Put $M_a=\min(I_a,II_a)$ and let $\Phi$ be the standard normal distribution function. All logarithms are natural. Density within a class means the limit of the proportion among primes $p\le X$ in that class.
+
+\begin{theorem}\label{finite}
+For distinct fixed positive offsets $a_1,\ldots,a_s\equiv-b\pmod m$ and real $t$,
+\[
+ \lim_{X\to\infty}\PP_{\substack{p\le X\\p\equiv b\ (m)}}
+ \left\{\exists i:\ M_{a_i}(p)\ge 3^{L_p+t\sqrt{L_p}}\right\}
+ =1-\Phi(t)^s .
+\]
+More precisely, the standardized logarithms
+\[
+ \left(\frac{\log(1+M_{a_i})/\log 3-L_p}{\sqrt{L_p}}\right)_{i=1}^{s}
+\]
+converge in distribution to independent standard normals. At each fixed offset the ratio $I_a/II_a$ tends to $2$ in probability, with both counts positive with probability tending to one.
+\end{theorem}
+
+\begin{corollary}\label{infinite}
+For every fixed $m\ge2$, every function $H(p)\to\infty$ and every fixed real $t$, the primes for which some $0<a\le H(p)$ gives $M_a(p)\ge 3^{L_p+t\sqrt{L_p}}$ have relative density one. Here $a\equiv-p\pmod m$ is required. In particular the conclusion holds for the Erd\H{o}s--Straus numerator $m=4$, simultaneously for the two types at one first denominator.
+\end{corollary}
+\begin{proof}
+In each reduced class fix any $s$ admissible offsets. All eventually lie below $H(p)$. Theorem~\ref{finite} gives lower density at least $1-\Phi(t)^s$. Let $s\to\infty$, then combine the finitely many classes. No uniformity in growing offsets is required.
+\end{proof}
+
+For $4/p$, Elsholtz and Tao prove a relative-density-one lower bound $(\log p)^{(\log 3)/2-o(1)}$ for the total number of ordered representations (Theorem 1.8 of \cite{ET}). Already $t=0$ in Corollary~\ref{infinite} gives $(\log p)^{\log 3}$ for each type with $x$ fixed once $p$ is chosen. Ordering conventions can affect constants but cannot account for the change of exponent. Elsholtz and Planitzer \cite{EP} also treat density-one sets of integer denominators and large counts on infinite subsets of primes. Our statement concerns relative density among primes. It leaves the universal existence question for $4/n$ open.
+
+\section{Counting the two types at an offset}
+For $r\in G=(\mathbb Z/a\mathbb Z)^\times$, denote by $D_r$ the number of divisors $d\mid x^2$ with $d\equiv r\pmod a$. Use the trivial group convention for $a=1$. The fixed-denominator parametrization for $m=4$ is due in this form to Bradford \cite{Bradford}; it has also been used to compare types \cite{Jiang}. We give the algebra to specify our normalization. Writing $B=px$, we have
+\[
+ (ay-B)(az-B)=B^2.
+\]
+Positive divisors $u\mid B^2$ with $u\equiv-B\pmod a$ give $y=(B+u)/a$ and $z=(B+B^2/u)/a$. The complementary divisor is in the same class, and each solution arises in this way. Both denominators exceed $B/a>x$. As $p\nmid ax$, their divisibility by $p$ is read from $u$ and $B^2/u$. In Type I exactly one of these factors is coprime to $p$; choose it as $d\mid x^2$. In Type II both have $p$-valuation one; they are $pd$ and $p x^2/d$. Thus
+\[
+ I_a=D_{-px},\qquad
+ II_a=\tfrac12\left(D_{-x}+\mathbf 1_{a\mid 2x}\right).
+ \tag{1}
+\]
+The indicator counts the fixed divisor $d=x$ under complementation. The convention $y\le z$ counts this solution once.
+
+\paragraph{An elementary check at the smallest possible denominator.}
+For $m=4$ and $p>3$, the first possible offset is $1$ or $3$. At $a=1$ formula (1) gives the exact pair $(\tau(x^2),(\tau(x^2)+1)/2)$. At $a=3$, if a prime $q\equiv2\pmod3$ divides $x$, the difference of the two residue counts in absolute value is at most $\tau(x^2)/3$. Indeed, in the signed divisor sum for the nontrivial character modulo 3, the factor at $q^e\parallel x$ has absolute value $1$ in place of $2e+1$. Both residue counts are therefore at least $\tau(x^2)/3$, and $M_3\ge\tau(x^2)/6$. If all prime factors of $x$ are $1\pmod3$, then $p=4x-3\equiv1\pmod3$ and both target classes are $-1$, giving zero solutions there. For instance, $p=73$ gives zero at $x=19$, while $p=277$ gives twelve Type I and six Type II solutions at $x=70$.
+
+\begin{lemma}\label{mix}
+At each fixed admissible offset, uniformly over the finitely many $r\in G$,
+\[
+ D_r/\tau(x^2)=1/\varphi(a)+\op(1)
+\]
+along primes in the given progression. Here $\tau$ counts positive divisors.
+\end{lemma}
+\begin{proof}
+The Fourier coefficient of the residue of a uniformly chosen divisor of $x^2$ at a character $\chi$ is
+\[
+ \prod_{q^e\parallel x}\frac{1+\chi(q)+\cdots+\chi(q)^{2e}}{2e+1}.
+\]
+All factors have modulus at most one. For nontrivial $\chi$, choose $c\in G$ with $\chi(c)\ne1$. For $q\equiv c\pmod a$ the factor has modulus at most some $\rho<1$, uniformly for $e\ge1$: each such average has modulus strictly below one and it tends to zero as $e\to\infty$.
+
+The number of distinct primes $q\equiv c\pmod a$, $q\nmid ma$, dividing $x$ tends to infinity in probability. Indeed, restrict first to a fixed finite set of such primes. In the limit $X\to\infty$ their divisibility indicators are independent Bernoulli variables with probabilities $1/(q-1)$, by the prime number theorem in fixed progressions and the Chinese remainder theorem: $q\mid x$ is the single reduced class $p\equiv-a\pmod q$. As the finite set increases through this progression, the sum of these probabilities diverges by Dirichlet's reciprocal-prime theorem and the variance is at most the mean. Chebyshev's inequality proves the assertion by taking the two limits in that order. The coefficient therefore tends to zero in probability. Character orthogonality finishes the proof, including the trivial-group case.
+\end{proof}
+
+\section{Prime factors at finitely many offsets}
+Here and below $p$ is uniform among primes $p\le X$, $p\equiv b\pmod m$. We supply the moment argument because the independence between different offsets matters in Corollary~\ref{infinite}. Let $x_i=(p+a_i)/m$, and let $\omega$ count distinct prime factors.
+
+\begin{lemma}\label{ek}
+With $L=\log\log X$, the vector $((\omega(x_i)-L)/\sqrt L)_{i\le s}$ converges in law to independent standard normals. Also
+\[
+ \log\tau(x_i^2)=(\log 3)\omega(x_i)+O_{\PP}(1),
+\]
+where $O_{\PP}(1)$ means bounded in probability.
+\end{lemma}
+\begin{proof}
+Put $Y=X^{1/L^{1/4}}$. Omit the finite set of primes dividing $m\prod_i a_i\prod_{i<j}(a_i-a_j)$, and all primes $q\le s+1$. Count only the remaining $q\le Y$ dividing $x_i$; denote this count by $S_i$. Uniformly in $p\le X$, the omitted factors contribute $O_{m,\mathbf a}(1+L^{1/4})$ to each $\omega(x_i)$, by taking the product of the prime factors above $Y$.
+
+For each retained $q$, introduce a model vector $V_q$ taking the $i$th standard basis vector with probability $1/(q-1)$ for each $i$, and zero with the remaining probability. Take these vectors independent over $q$. The categories correspond to distinct nonzero residues $-a_i\bmod q$. For fixed real coefficients $u_i$, write $S=\sum_i u_i S_i$ and $S^*=\sum_q u\cdot V_q$. For every fixed positive integer $h$ and $A>0$,
+\[
+ \EE S^h-\EE(S^*)^h=O_{h,A,m,\mathbf a,u}((\log X)^{-A}).
+ \tag{2}
+\]
+To see this, expand the raw moments. A term prescribing two categories at one prime vanishes in both models; repeated equal prescriptions collapse. The other terms specify a single reduced class modulo $md$, where $d$ is a squarefree product of at most $h$ retained primes. Given $d$, there are $O_{h,s}(1)$ such terms including repetitions and orderings, each with bounded coefficient. The model probability is $1/\varphi(d)$. Replacing the prime count in each class by $\operatorname{li}(X)/\varphi(md)$ costs in total $O_B(X/(\log X)^B)$ for any fixed $B$, by Bombieri--Vinogradov in prime-count form \cite{BV}, since $mY^h\le X^{1/3}$ eventually. Divide by $\pi(X;m,b)$. Its replacement by $\operatorname{li}(X)/\varphi(m)$ in the main term introduces a relative error $O_B((\log X)^{-B})$ by the fixed-modulus prime number theorem. The sum of absolute model terms is $O_{h,s,u}((1+L)^h)$, by summing products of $1/(q-1)$ for the distinct primes. This proves (2).
+
+Write $U=\sum_i u_i$. The model mean is $U\sum_q1/(q-1)=U(L+O(\log L))$, by Mertens' theorem. Its variance is
+\[
+ \sum_q\left(\frac{\sum_i u_i^2}{q-1}-\frac{U^2}{(q-1)^2}\right)
+   =(\|u\|_2^2+o(1))L.
+\]
+For each fixed order $j\ge3$ the cumulant of a single summand is $O_{j,u,s}(1/(q-1))$: each positive raw moment has this bound and cumulants are polynomials in these moments with zero constant term. Independence adds cumulants. Thus after centering at $UL$ and scaling by $\sqrt L$ the higher cumulants vanish, and all model moments tend to the moments of a centered normal with variance $\|u\|_2^2$. Equation (2), applied to all degrees through any fixed $h$, transfers the centered moments to $S$. The normal law is determined by its moments, so the method of moments and the Cram\'er--Wold criterion prove the vector claim.
+
+For the second assertion let $\Omega$ count prime factors with multiplicity. The excess $\Omega(x_i)-\omega(x_i)$ is at most the number of prime powers $q^j\mid p+a_i$ with $j\ge2$, counted over pairs $(q,j)$. Discard the finitely many primes $p\mid a_i$. For $q^j\le X^{1/3}$ the expected count is bounded uniformly in $X$ by Brun--Titchmarsh, even after dropping the fixed progression from the numerator:
+\[
+ \ll_m \sum_{q,\,j\ge2}\frac{1}{\varphi(q^j)}<\infty.
+\]
+Larger powers contribute with probability $o(1)$. For $q>X^{1/12}$, bounding by all integers $p\le X$ for which $q^2\mid p+a_i$ gives $O(X^{11/12}+\sqrt X)$ candidates after summing $q\le\sqrt{X+a_i}$. For each $q\le X^{1/12}$ use the first power exceeding $X^{1/3}$; there are $O(X^{2/3}+1)$ candidates per $q$. Both bounds are $o(\pi(X;m,b))$. Hence the excess is bounded in probability. The inequalities $3^{\omega(x_i)}\le\tau(x_i^2)\le3^{\Omega(x_i)}$ give the result.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{finite}]
+By Lemma~\ref{ek}, $\tau(x_i^2)\to\infty$ in probability. Equation (1) and Lemma~\ref{mix} give $I_{a_i}/\tau(x_i^2)\to1/\varphi(a_i)$ and $II_{a_i}/\tau(x_i^2)\to1/(2\varphi(a_i))$ in probability. This proves the ratio assertion, and $\log(1+M_{a_i})=\log\tau(x_i^2)+O_{\PP}(1)$. These estimates hold jointly at finitely many offsets. Apply Lemma~\ref{ek} and Slutsky's theorem. Primes below $\sqrt X$ have negligible proportion; on the rest $L_p=L+O(1)$ uniformly, so the normalization by $L_p$ has the same limit. The distribution of the maximum has continuous distribution function $\Phi(t)^s$. Replacing $1+M_a$ by $M_a$ in the threshold comparison changes the standardized threshold by $o(1)$; this gives the stated limit.
+\end{proof}
+
+\paragraph{Verification and scope.} The accompanying program tests (1) by directly enumerating all possible middle denominators at each of 4,642 triples $(p,m,a)$. The checks include 278 cells with a diagonal Type II solution and 1,912 with no solution of either type. These are checks on the exact formula. The distributional statements follow from the analytic arguments. The estimates are qualitative in the offset window and supply no cutoff or test for a particular exceptional prime.
+
+\begin{thebibliography}{9}
+\bibitem{ET} C. Elsholtz and T. Tao, Counting the number of solutions to the Erd\H{o}s--Straus equation on unit fractions, \emph{J. Aust. Math. Soc.} 94 (2013), 50--105, \href{https://arxiv.org/abs/1107.1010}{arXiv:1107.1010}.
+\bibitem{EP} C. Elsholtz and S. Planitzer, The number of solutions of the Erd\H{o}s--Straus equation and sums of $k$ unit fractions, \href{https://arxiv.org/abs/1805.02945}{arXiv:1805.02945}.
+\bibitem{Bradford} K. Bradford, Elemental patterns from the Erd\H{o}s Straus conjecture, \href{https://arxiv.org/abs/2403.16047}{arXiv:2403.16047}.
+\bibitem{Jiang} X. Jiang, Counting Type I and Type II solutions of the Erd\H{o}s--Straus equation, \href{https://arxiv.org/abs/2609.09204v1}{arXiv:2609.09204v1} (2026); withdrawn in v2. This is related work on the comparison; no result from it is an input to the proof.
+\bibitem{BV} A. C. Cojocaru and M. R. Murty, \emph{An Introduction to Sieve Methods and Their Applications}, Cambridge University Press, 2006, chapter on the Bombieri--Vinogradov theorem. See also \href{https://personal.science.psu.edu/rcv4/571s25/Class571-06.pdf}{R. C. Vaughan's notes, Chapter 6}.
+\end{thebibliography}
+\end{document}
