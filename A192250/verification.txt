@@ -1,0 +1,26 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A192250_author_m8h2y8w2
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2794/2797] Built Reduction
+✔ [2795/2797] Built SourceReduction
+ℹ [2796/2797] Built Proof
+info: ././././Proof.lean:42:0: 'A192250.polynomial_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:43:0: 'A192250.sourceStep_natDegree_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:44:0: 'A192250.sourceReduction_eq_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:45:0: 'A192250.sourceReduction_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:46:0: 'A192250.component_mathar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:47:0: 'A192250.a192250_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:48:0: 'A192250.a192251_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:49:0: 'A192250.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Proof.lean: edba804375881ea9cace2ba11303a194990c4dd07e8a4c64ab5bfa63d50d68b4
+SHA256 Reduction.lean: dd7a3146aa5269fbd535d0669ddc2271087a386842df5abffa7b0d491592d360
+SHA256 SourceReduction.lean: 681560602805f7150b4caac39b4847411e770db32d582fd775119b356f9e2bd4
+SHA256 lakefile.lean: a0e67fef0227db51433031765f4e36f32ab18191048b3b1843298de4717e1122
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 446b61df46e12225e2585f37ee74ba5f3563a600822c01dd3b46ba69c42ca7e2

@@ -1,0 +1,150 @@
+\section{Eventual doubling in the binary-weight array}
+
+For positive integers $i,j$, let $T(i,j)$ be the $j$th positive integer
+whose ordinary binary expansion contains exactly $i$ ones, listed in
+increasing order. This is the array of OEIS A067576, introduced by
+Wilson in 2002. Kimberling conjectured in November 2025 that every
+column of $T(i,j)+1$ eventually forms a geometric progression of ratio
+two \cite{oeis067576}. We prove the conjecture and determine its exact
+starting row.
+
+\begin{theorem}\label{a067576:main}
+For positive $i,j$ with $i\ge j-1$,
+\begin{equation}\label{a067576:formula}
+ T(i,j)+1=(2^j-1)2^{i+1-j}.
+\end{equation}
+Consequently the least positive row $r$ such that
+\[
+ T(i+1,j)+1=2\bigl(T(i,j)+1\bigr)\qquad\text{for every }i\ge r
+\]
+is exactly $\max(1,j-1)$.
+\end{theorem}
+
+\subsection*{Exact ranks from binary prefix counts}
+Let $w(n)$ be the number of ones in the binary expansion of the natural
+number $n$, including $w(0)=0$, and put
+\[
+ C_i(m)=\#\{n\in\mathbb N: n<m,\ w(n)=i\}.
+\]
+The identities $w(2n)=w(n)$ and $w(2n+1)=w(n)+1$ imply
+\begin{align}
+ C_{i+1}(2m)&=C_{i+1}(m)+C_i(m),\label{a067576:even}\\
+ C_{i+1}(2m+1)&=C_{i+1}(m+1)+C_i(m).\label{a067576:odd}
+\end{align}
+Indeed, the even integers below $2m$ correspond to integers below $m$
+of unchanged weight; the odd integers correspond to integers below $m$
+of weight one less. Below $2m+1$, the even part additionally contains
+$2m$, giving the second equation.
+
+Binary induction proves $2^{w(n)}\le n+1$. At an even successor step,
+$2^{w(2n)}=2^{w(n)}\le n+1\le2n+1$; at an odd step,
+$2^{w(2n+1)}=2\cdot2^{w(n)}\le2n+2$. The base $n=0$ is equality.
+Also $w(2^i-1)=i$, since the binary expansion is a string of $i$ ones.
+It follows that
+\begin{equation}\label{a067576:minimum}
+ C_i(m)=0\quad(m<2^i),\qquad C_i(2^i)=1.
+\end{equation}
+For the first equality, every $n<m$ satisfies $n+1\le m<2^i$ and
+therefore cannot have weight $i$. The second follows by adjoining the
+single integer $2^i-1$.
+
+Induction in \eqref{a067576:even} now gives
+\begin{equation}\label{a067576:nearfull}
+ C_i(2^{i+1})=i+1.
+\end{equation}
+The case $i=0$ counts only zero. For the induction step, the two terms
+in \eqref{a067576:even} are $C_{i+1}(2^{i+1})=1$ and
+$C_i(2^{i+1})=i+1$. The two largest integers below $2^{i+1}$ have
+weights
+\[
+ w(2^{i+1}-2)=i,\qquad w(2^{i+1}-1)=i+1.
+\]
+Subtracting their contributions from \eqref{a067576:nearfull} shows
+\begin{equation}\label{a067576:base}
+ w(2^{i+1}-2)=i,\qquad C_i(2^{i+1}-2)=i.
+\end{equation}
+
+\begin{lemma}\label{a067576:rank}
+For all $k,d\ge0$, set $v(k,d)=(2^{k+1}-1)2^d-1$. Then
+\[
+ w(v(k,d))=k+d,\qquad C_{k+d}(v(k,d))=k.
+\]
+\end{lemma}
+\begin{proof}
+For $d=0$, this is \eqref{a067576:base}. Suppose it holds for $d$,
+and write $v=v(k,d)$. Then
+\[
+ v(k,d+1)=2v+1,\qquad
+ v+1=(2^{k+1}-1)2^d<2^{k+d+1}.
+\]
+The weight of $2v+1$ is $k+d+1$. Equations
+\eqref{a067576:odd} and \eqref{a067576:minimum} give
+\[
+ C_{k+d+1}(2v+1)
+ =C_{k+d+1}(v+1)+C_{k+d}(v)=0+k.
+\]
+This proves the induction step.
+\end{proof}
+
+For every positive $i$, the integers $(2^i-1)2^a$, as $a$ varies, show
+that the weight-$i$ row is infinite. Its increasing enumeration is
+therefore characterized by membership and the exact number of smaller
+members. Lemma~\ref{a067576:rank} says that $v(k,d)$ is the $(k+1)$st
+integer of weight $k+d$. For $j\ge1$ and $i\ge j-1$, take
+$k=j-1$ and $d=i+1-j$. Then $k+d=i$, and the lemma gives
+\eqref{a067576:formula}. Multiplying its right side by two gives the
+formula at row $i+1$, proving eventual doubling from
+$\max(1,j-1)$ onward.
+
+\subsection*{The starting row is minimal}
+For $k\ge0$, consider
+\[
+ u=2^{k+2}+(2^k-1).
+\]
+Adding the isolated leading bit shows $w(u)=k+1$. More generally, for
+$0\le n<2^r$ one has $w(2^r+n)=1+w(n)$, and hence for
+$0\le m\le2^r$,
+\begin{equation}\label{a067576:leading}
+ C_{i+1}(2^r+m)=C_{i+1}(2^r)+C_i(m).
+\end{equation}
+The equality splits the count into the integers below $2^r$ and those
+having the new leading bit. Applying it with $i=k$, $r=k+2$ and
+$m=2^k-1$, and then using \eqref{a067576:nearfull} and
+\eqref{a067576:minimum}, yields
+\[
+ C_{k+1}(u)=C_{k+1}(2^{k+2})+C_k(2^k-1)=k+2.
+\]
+Thus $u=T(k+1,k+3)$, so
+\[
+ T(k+1,k+3)+1=5\cdot2^k.
+\]
+At the next row, the already proved formula gives
+\[
+ T(k+2,k+3)+1=2^{k+3}-1=8\cdot2^k-1
+ \ne10\cdot2^k=2\bigl(T(k+1,k+3)+1\bigr).
+\]
+For a column $j\ge3$, choosing $k=j-3$ proves failure at row $j-2$.
+Any earlier proposed onset would include this transition and therefore
+cannot work. For $j=1,2$, doubling already holds from the least positive
+row, namely one. This completes Theorem~\ref{a067576:main}.
+
+\paragraph{Formalization and attribution.}
+The formal weight is \texttt{Nat.bitIndices.length}, and the source
+entry is the zero-based selector \texttt{Nat.nth} at index $j-1$.
+The proof establishes infinite positive rows, strict increase, exact
+membership, and exact rank, as well as the universal formula and the
+\texttt{IsLeast} onset statement. All four source modules compile with
+Lean 4.19.0 and pinned mathlib, and their principal theorem audits use
+only the standard axioms \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}.
+
+Binary-weight ranking is classical. A036563 records the diagonal
+special case, and A066884 presents this array with reversed
+antidiagonals. The paper of Dobri\'c, Skyers and Stanley develops
+polynomial-time weight ranking and unranking \cite{dobric2016}.
+The minimum-onset formula was also already posed as an admitted Lean
+statement in open-math-agents \cite{oma067576}; that file contains no
+proof. We claim a complete proof of the recorded eventual-doubling
+assertion and its exact onset, with no claim of first formulation or
+global historical priority. The package counts as one source-conjecture
+resolution.

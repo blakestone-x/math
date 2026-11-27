@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "method": "Direct enumeration of every positive integer below 2^18, using Python bit_count; no fixed-weight successor or proposed recurrence used to generate entries",
+  "source_terms": 66,
+  "formula_checks": 171,
+  "doubling_checks": 153,
+  "sharpness_checks": 16,
+  "source_exact_byte_match": true,
+  "source_bytes": 2333,
+  "source_sha256": "5fc8472d8dc9c5b2afe7e374bc5261150bf3d5cdaff75d0effe24746268ee8ab",
+  "proof_config_hashes_match_independent_build": true,
+  "manuscript_environments_balanced": true,
+  "scope": "Supplementary finite checks; universal claims verified by the independent fresh Lean build."
+}

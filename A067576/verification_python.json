@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "method": "independent fixed-popcount successor enumeration, validated against direct enumeration below 2^16",
+  "rows": [
+    1,
+    80
+  ],
+  "columns": [
+    1,
+    80
+  ],
+  "source_antidiagonal_terms": 66,
+  "closed_form_checks": 3319,
+  "doubling_checks": 3239,
+  "sharpness_counterexamples": 78,
+  "source_sha256": "5fc8472d8dc9c5b2afe7e374bc5261150bf3d5cdaff75d0effe24746268ee8ab",
+  "verifier_sha256": "40c1be04464bfd6d8a74a15fb0722e14bf2424494d68dd65ab6f074116d9fc4e",
+  "scope": "Finite independent replay only; the unbounded source theorem and minimality are kernel-checked in Lean."
+}

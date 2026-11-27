@@ -1,0 +1,143 @@
+{
+  "checked": "2026-11-27",
+  "source": "https://github.com/oeis/oeisdata/blob/eb3c646fa1194774d4a21422a028616eaf549691/seq/A067/A067576.seq",
+  "revision": 57,
+  "conjecture_date": "2025-11-08",
+  "queries": [
+    {
+      "query": "A067576",
+      "scope": "global",
+      "limit": 25,
+      "returned": 25,
+      "relevant_urls": [
+        "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a067/A067576.java",
+        "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/f693962b3ae1941c83adb252edce356d5cba356e/statements/oeis-a067576.lean",
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/v1/batches/batch-04.jsonl",
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/combined-survivors.jsonl",
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/v1/reviews/review-04.jsonl",
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/v1/support/accepted-compact.tsv"
+      ]
+    },
+    {
+      "query": "A067576",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "returned": 0,
+      "relevant_urls": []
+    },
+    {
+      "query": "A067576",
+      "scope": "GuillaumeBAUD-coder/open-math-agents",
+      "returned": 1,
+      "relevant_urls": [
+        "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/3a0039bdf1da87d3915b73dabafd68415871f2e4/statements/oeis-a067576.lean"
+      ]
+    },
+    {
+      "query": "\"binary\" \"eventually geometric\" \"column\"",
+      "scope": "global",
+      "limit": 30,
+      "returned": 4,
+      "relevant_urls": [
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/v1/reviews/review-04.jsonl",
+        "https://github.com/weiyangzen/awesome_theorems/blob/32e5f75412a804463a0b0c6fff1362d4ab5275b3/Docs/catalog/v5/curation/oeis_v5_5/v1/support/accepted-compact.tsv"
+      ]
+    },
+    {
+      "query": "\"popcount\" \"column\" \"geometric\"",
+      "scope": "global",
+      "limit": 30,
+      "returned": 30,
+      "relevant_urls": []
+    },
+    {
+      "query": "\"binary expansion\" \"doubling\" \"Kimberling\"",
+      "scope": "global",
+      "limit": 30,
+      "returned": 7,
+      "relevant_urls": [
+        "https://github.com/the-omega-institute/trureturing-pages/blob/5665185be1a26a75882c20f89683256c9a4bbfd3/site/assets/research-news.json"
+      ]
+    },
+    {
+      "query": "\"set bits\" \"doubling\" \"column\"",
+      "scope": "global",
+      "limit": 30,
+      "returned": 30,
+      "relevant_urls": []
+    },
+    {
+      "query": "\"bitIndices\" \"column\"",
+      "scope": "global",
+      "limit": 30,
+      "returned": 30,
+      "relevant_urls": [
+        "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/3a0039bdf1da87d3915b73dabafd68415871f2e4/statements/oeis-a067576.lean"
+      ]
+    },
+    {
+      "query": "\"popcount\" \"doubling\"",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "limit": 30,
+      "returned": 30,
+      "relevant_urls": [
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/1980/EXPLORATION_LIFE_THRESHOLD_MASKS.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/1980/EXPLORATION_LIFE_ONE_FIELD_MASK.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/DiophantineConsistency/research/sorted-selector-independent/README.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/research-wip/native-stream-queue/pell_kernel_half_binomial42.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/SubexponentialSAT/README.md",
+        "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Blueprint/D5/S3/Combinatorics/Permutation/KurkovA329369ConjectureFour.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/1980/EXPLORATION_LIFE_POSITIVE_BOOTSTRAP.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/research-wip/native-stream-queue/positive7_repeated_pack_compiler_root.md",
+        "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Blueprint/D5/S3/Combinatorics/Circle/FourNegative/OppositeFirstThirdMaximum/Endpoint.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/research-wip/native-stream-queue/group_projective_joint_bound_unit.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/DiophantineConsistency/candidates/ten-positive-scaled-norm/ONE_WORD_WINDOW.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68/Computability/HilbertTenthProblem/Papers/EDITORIAL_NOTES.md"
+      ]
+    },
+    {
+      "query": "\"binary\" \"eventually geometric\"",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "limit": 20,
+      "returned": 0,
+      "relevant_urls": []
+    }
+  ],
+  "web": {
+    "system1": [
+      "\"A067576\" conjecture proof",
+      "\"A067576\" proof",
+      "\"binary\" \"eventually geometric\" \"Kimberling\"",
+      "\"Polynomial Time Computable Triangular Arrays For Almost Sure Convergence\""
+    ],
+    "system2": [
+      "\"A067576\" proof conjecture",
+      "\"Kimberling\" \"binary\" \"doubling\"",
+      "\"popcount\" \"columns\" \"eventually\" geometric",
+      "\"binary expansion\" \"column\" \"geometric\" \"A067576\""
+    ],
+    "assessment": "Exact and semantic results led to the primary OEIS record, related records and the 2016 ranking paper; no target proof located within visible results."
+  },
+  "positive_prior": [
+    {
+      "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/3a0039bdf1da87d3915b73dabafd68415871f2e4/statements/oeis-a067576.lean",
+      "assessment": "Exact minimum-onset theorem already stated using literal Nat.nth; complete proof body is sorry. First formulation is not claimed."
+    },
+    {
+      "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a067/A067576.java",
+      "assessment": "Complete jOEIS generator inspected; fixed-weight successor enumeration, no eventual-column proof."
+    },
+    {
+      "url": "https://oeis.org/A036563",
+      "assessment": "Diagonal T(n,n)=2^(n+1)-3 is an earlier known special case."
+    },
+    {
+      "url": "https://oeis.org/A066884",
+      "assessment": "Same array with reversed antidiagonals; classical first columns and diagonals."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1603.04896",
+      "assessment": "Primary PDF inspected, especially Section3.4; weight ranking/unranking and polynomial-time result, no stated target doubling or onset theorem found."
+    }
+  ],
+  "conclusion": "One recorded conjecture resolution; closed form and exact onset are components. No first-formulation or global-priority claim."
+}

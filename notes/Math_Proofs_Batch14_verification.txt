@@ -1,0 +1,21 @@
+Batch 14 manuscript verification
+Date: 2026-11-27
+PDF SHA256: b1cbedd0c0a4f26a5fd0162693a95e392584b5e320b4a0576e9d6268bf0b60ff
+LaTeX SHA256: a0d516eb92c596266bd606461fccd483ad7a08b8104592990756b0ab0b5d1eb7
+
+Two final pdfLaTeX passes completed successfully.
+Final-pass warnings: none (no undefined references, missing citations, or box warnings).
+PDF pages: 11, US Letter, PDF 1.7, unencrypted.
+All 17 fonts reported embedded and with Unicode mappings.
+
+Visual review: all final pages rendered with pdftoppm and inspected individually.
+Pages 1-3: title, abstract, exact count scope, binary prefix counts, formula and least-onset proof; legible, no clipping or overlap.
+Pages 4-5: polynomial reduction, divisibility certificate, recurrence and literal formal source bridge; legible, no clipping or overlap. Long formal identifiers wrap within the margins.
+Pages 5-8: quartic harmonic-mean theorem, finite moment bounds, exact rational identities, floor identification, recurrence, generating function and source-index corrections; legible, no clipping or overlap.
+Page 9: all 25 rows of the two positive-coefficient certificates; legible, no clipping or overlap.
+Pages 10-11: verification scope and complete references; legible, URLs wrap within margins.
+
+An initial layout overflow in a long formal identifier was corrected in the assembled LaTeX manuscript using breakable path formatting. No mathematical content or frozen proof-package file changed.
+
+Three packages, 15 local proof modules. Separate author and independent source-only builds and mathematical/source reviews are retained in the packages; exact source/configuration hashes are validated at staging.
+Status: PASS.

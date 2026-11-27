@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "method": "literal repeated division by X^2 and substitution by X+1 using integer coefficient arrays; no quotient-ring or polynomial-remainder library",
+  "source_indices": [
+    1,
+    120
+  ],
+  "recurrence_indices": [
+    4,
+    120
+  ],
+  "components": [
+    0,
+    1
+  ],
+  "strict_degree_decrease_checks": 7021,
+  "frozen_terms_matched_per_component": 23,
+  "first_six_pairs": [
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      27,
+      48
+    ],
+    [
+      167,
+      258
+    ],
+    [
+      923,
+      1518
+    ]
+  ],
+  "source_sha256": {
+    "A192250": "4a4e0eea7fdf52ba28543e63ff001cfef20bde10fee83f1c1b1d24e68d0cfad4",
+    "A192251": "b0c83e6ddd8c5ce61ccbaa3fa2cc5e847acb13e356c584ac96d7795b34a2b578"
+  },
+  "scope": "Supplementary finite source-fidelity check; the complete recurrences and termination are proved in Lean."
+}

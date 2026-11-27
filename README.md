@@ -1,6 +1,11 @@
 # math
 math proofs
 
+- [A067576 — binary-column doubling and the exact least starting row](A067576/README.md) · [Complete Lean proof](A067576/Proof.lean)
+- [A192250 / A192251 — both central-binomial reduction recurrences](A192250/README.md) · [Complete Lean proofs](A192250/Proof.lean)
+- [A227013 — quartic harmonic-mean floors and the generating function](A227013/README.md) · [Complete Lean proof](A227013/Proof.lean)
+- [Binary columns, polynomial reductions, and quartic harmonic means — Batch 14 manuscript](notes/Math_Proofs_Batch14.pdf) · [Collection guide](notes/Math_Proofs_Batch14_README.md)
+
 - [Cyclotomic cosets — four quadratic formulas for multipliers 3, 7, 9, 13](A220018/README.md) · [Complete Lean proofs](A220018/Proof.lean)
 - [A052392 — the subdiagonal generating function and exact recurrence](A052392/README.md) · [Complete Lean proof](A052392/Proof.lean)
 - [A184534 — the reciprocal cube-root floor and generating function](A184534/README.md) · [Complete Lean proof](A184534/Proof.lean)

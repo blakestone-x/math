@@ -1,0 +1,87 @@
+[
+  {
+    "query": "A227013; global GitHub, first 100",
+    "returned": 100,
+    "relevant_urls": [
+      "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a227/A227013.java",
+      "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/227/A227013.asm",
+      "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A227016.txt",
+      "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A227015.txt",
+      "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A227012.txt",
+      "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A227014.txt",
+      "https://github.com/carolreis/mathreader-training/blob/5c19a7f065697349c606f6347d9404a7e4708a60/treatment/datasets/handwrittenmathsymbols_all/2/2_41606.jpg",
+      "https://github.com/carolreis/mathreader-training/blob/5c19a7f065697349c606f6347d9404a7e4708a60/treatment/datasets/handwrittenmathsymbols_all/2/exp39661.jpg"
+    ]
+  },
+  {
+    "query": "A227013 in ProveIt, trureturing, and kimberling-a227012-lean",
+    "returned": 0,
+    "relevant_urls": []
+  },
+  {
+    "query": "A227013 harmonic proof; global GitHub",
+    "returned": 0,
+    "relevant_urls": []
+  },
+  {
+    "query": "quartic harmonic mean Kimberling; global GitHub",
+    "returned": 28,
+    "relevant_urls": [
+      "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8g/TextFilter/WRT-short-Math.dic",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8i/TextFilter/WRT-short-Math.dic",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8b/TextFilter/wrt-short-math.dic",
+      "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp9-chk/names.md",
+      "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp5-chk/names.md",
+      "https://github.com/MMiDS-textbook/MMiDS-textbook.github.io/blob/18b6d1e3b2d79dbcbda42b2135cb0433d752366b/utils/datasets/mathworld-titles.csv",
+      "https://github.com/kotrenn/MathworldCrawl/blob/4a58f4673431a209cc0f346bc59cc05df0e05f64/K.html",
+      "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8h/TextFilter/WRT-short-Math.dic",
+      "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8i/TextFilter/WRT-short-Math.dic",
+      "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8g/TextFilter/WRT-short-Math.dic",
+      "https://github.com/Garnett-Liang/Omnibench-RAG/blob/a1bc6975a0119deb926cb9ef00916a7abf881fab/data/RAG_material/cleaned/cleaned_mathematics.txt",
+      "https://github.com/IR1401-Spring-Final-Projects/MathGenealogy1401-36_42/blob/c0d4a40de430d568d75e852e2283ac7afe872919/text_biographies/Leonhard_Euler.txt",
+      "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.NT/2026-08-10_math.NT.xml",
+      "https://github.com/IR1401-Spring-Final-Projects/MathGenealogy1401-36_42/blob/c0d4a40de430d568d75e852e2283ac7afe872919/raw_biographies/Leonhard_Euler",
+      "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.NT/2026-10-06_math.NT.xml",
+      "https://github.com/the-omega-institute/trureturing-pages/blob/5665185be1a26a75882c20f89683256c9a4bbfd3/site/assets/research-catalog.json",
+      "https://github.com/the-omega-institute/trureturing-pages/blob/5665185be1a26a75882c20f89683256c9a4bbfd3/site/assets/research-news.json",
+      "https://github.com/the-omega-institute/trureturing-pages/blob/5665185be1a26a75882c20f89683256c9a4bbfd3/site/assets/open-math/problem-resolutions.json",
+      "https://github.com/Samcil/intro_ml_rebecca_willett/blob/ad363f8f8c6f1a255ef8cc9c9d94d6db4f03cdb4/sebastian_roch_mmids/datasets/mathworld-titles.csv",
+      "https://github.com/rdolmedo/synth-data/blob/c98076ee35fc58e53d667014606ad1c9c37f3faa/m5/omniscience/taxonomy/leaves/Science_Engineering_and_Mathematics__Geometry.json",
+      "https://github.com/rpinho/math-certificates/blob/3e1a88166f69be96a9f1c91ba1823620d6cae34a/erdos/1183/sources/publish-trees/the-omega-institute__trureturing@c0bb36be76f99139a5068f434597476d4682e29b.json"
+    ]
+  },
+  {
+    "query": "\"harmonic mean\" \"fourth\" proof; global GitHub",
+    "returned": 20,
+    "relevant_urls": [
+      "https://github.com/mxym/math/blob/7671b200ab98a5958ecd2fa796da728338519a0e/notes/mixed-bellman-product-join-improved/proof.md",
+      "https://github.com/mxym/math/blob/7671b200ab98a5958ecd2fa796da728338519a0e/notes/mixed-bellman-product-join/proof.md",
+      "https://github.com/mxym/math/blob/7671b200ab98a5958ecd2fa796da728338519a0e/notes/mixed-bellman-product-join/mixed_tail_proof.md",
+      "https://github.com/mxym/math/blob/7671b200ab98a5958ecd2fa796da728338519a0e/notes/mixed-bellman-product-join/finite_proof.md",
+      "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+      "https://github.com/MathsFans/Euclidea/blob/4bce4fc750bb07a8fcd55bc550bd530fa22fab1d/translate/readme.md",
+      "https://github.com/MathsFans/Euclidea/blob/4bce4fc750bb07a8fcd55bc550bd530fa22fab1d/js/level.js"
+    ]
+  },
+  {
+    "query": "\"quartic\" \"Kimberling\"; global GitHub",
+    "returned": 20,
+    "relevant_urls": [
+      "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+      "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A184536.txt",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8b/TextFilter/wrt-short-math.dic",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8g/TextFilter/WRT-short-Math.dic",
+      "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8i/TextFilter/WRT-short-Math.dic",
+      "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Library/RecurrenceAlgebraic/mazhang2026a400645siblings.md",
+      "https://github.com/tamnd/wikipedia-math/blob/3c7d6486ce6986856da402e7bb30dc5a2d85fa2e/content/markdown/0058/589167.md",
+      "https://github.com/mathesis-papers/bernath-a400645-consecutive-ratio/blob/dcc6eda1e68c2f8e443ed1a4219a3ef535e6e3df/manuscript/note.tex",
+      "https://github.com/tamnd/wikipedia-math/blob/3c7d6486ce6986856da402e7bb30dc5a2d85fa2e/content/wikitext/0058/589167.wiki",
+      "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp9-chk/names.md",
+      "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp5-chk/names.md",
+      "https://github.com/mathesis-papers/bernath-a400645-consecutive-ratio/blob/dcc6eda1e68c2f8e443ed1a4219a3ef535e6e3df/versions/v2/manuscript/note.tex",
+      "https://github.com/MMiDS-textbook/MMiDS-textbook.github.io/blob/18b6d1e3b2d79dbcbda42b2135cb0433d752366b/utils/datasets/mathworld-titles.csv",
+      "https://github.com/tamnd/wikipedia-math/blob/3c7d6486ce6986856da402e7bb30dc5a2d85fa2e/content/wikitext/1961/19616384.wiki"
+    ]
+  }
+]
