@@ -1,0 +1,21 @@
+Two fresh project builds completed with identical packaged Lean sources.
+The second build transcript follows. Both used the same pinned toolchain and dependency cache.
+Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b and the package revisions in lake-manifest.json.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+$ lake build
+ℹ [1344/1345] Built Bounds
+info: ././././Bounds.lean:300:0: 'MorphicBounds.a284894' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Bounds.lean:301:0: 'MorphicBounds.a284895' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Bounds.lean:302:0: 'MorphicBounds.a284902' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Bounds.lean:303:0: 'MorphicBounds.a284903' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Bounds.lean:304:0: 'MorphicBounds.a285669' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Bounds.lean:305:0: 'MorphicBounds.a285670' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+$ python3 verify.py
+PASS A284893: exact scale, all edge inequalities, witnesses (1, 4, 2, 2), four sharp endpoints and 65,536 positions
+PASS A284901: exact scale, all edge inequalities, witnesses (2, 2, 1, 1), four sharp endpoints and 65,536 positions
+PASS A285668: exact scale, all edge inequalities, witnesses (1, 4, 1, 5), four sharp endpoints and 65,536 positions

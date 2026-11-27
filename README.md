@@ -3,6 +3,10 @@ math proofs
 
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
+- [Throwback queues — a perfect-mixing criterion for every increasing input](Throwback-mixing/README.md) · [Manuscript](Throwback-mixing/throwback.pdf)
+- [Layman's sieve — triangular stabilization and the residue-class sieve conjectures](Layman-sieve/README.md) · [Manuscript](Layman-sieve/sieve.pdf)
+- [Binary substitutions — sharp position errors for six OEIS sequences](Morphic-discrepancy/README.md) · [Manuscript](Morphic-discrepancy/discrepancy.pdf)
+
 - [Modular Ducci sequences — the sharp maximum and the number of tuples entering a cycle at each step](Ducci-preperiod/README.md) · [Manuscript (PDF)](Ducci-preperiod/Ducci-preperiods.pdf)
 - [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
 - [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md)

@@ -1,0 +1,22 @@
+Two fresh project builds completed with identical packaged Lean sources.
+The second build transcript follows. Both used the same pinned toolchain and dependency cache.
+Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b and the package revisions in lake-manifest.json.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+$ lake build
+ℹ [723/725] Built Periods
+info: ././././Periods.lean:159:0: 'Throwback.cycle_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Periods.lean:160:0: 'Throwback.perfect_mixing' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [724/725] Built QueueAndGaps
+info: ././././QueueAndGaps.lean:139:0: 'Throwback.erase_crossed_throw' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QueueAndGaps.lean:140:0: 'Throwback.gap_period' depends on axioms: [propext, Quot.sound]
+info: ././././QueueAndGaps.lean:141:0: 'Throwback.gap_palindrome' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QueueAndGaps.lean:142:0: 'Throwback.gap_period_divides' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+$ python3 verify.py
+PASS: periods and free steps for 511 increasing prefixes from 1..9
+PASS: full-orbit mean positions for every compatible prefix in that set
+PASS: 96,000 literal queue moves; exact occurrence indices and gap symmetries

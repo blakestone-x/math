@@ -1,0 +1,177 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\NN}{\mathbb N_{>0}}
+\newcommand{\oeis}[1]{\href{https://oeis.org/#1}{\textup{#1}}}
+\title{Triangular stabilization of Layman's iterated sieve}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Layman asked whether repeatedly applying his index-deletion sieve produces
+the triangular numbers in the limit. For every nonempty deletion mask with
+infinite complement we prove that its first $k$ outputs are permanently
+triangular after at most $2k-1$ transforms. We also obtain an exact recurrence
+for a single deleted residue class. It proves Kimberling's jump-set conjecture
+for A214972 and answers Schoenfield's sieve-identification question for every
+modulus $d\ge2$.
+\end{abstract}
+
+\section{The transform and its rank}
+A mask $A\subseteq\NN$ specifies positions in a list. Starting with
+$1,2,3,\ldots$, record and remove the first item. In the remaining list,
+index again from one and delete the items at the positions in $A$.
+Repeat, using the same $A$ at every stage. The recorded items form
+$S(A)$. For iteration of the transform, the output itself becomes the mask
+of the next transform. This is the operator defined by Layman in 2008
+\cite{layman}. The transform depends only on the set of positions
+appearing in the input sequence.
+
+Suppose $A$ is nonempty and its complement in $\NN$ is infinite. Write
+$b_A(j)$ for the $j$-th member of that complement and
+$F_A(j)=1+b_A(j)$. If the current list is $L(1),L(2),\ldots$,
+the list after one stage is $L(F_A(1)),L(F_A(2)),\ldots$. Thus if
+$s_1<s_2<\cdots$ enumerate $S(A)$,
+\begin{equation}
+ s_1=1,\qquad s_{i+1}=F_A(s_i).
+ \label{eq:orbit}
+\end{equation}
+Every $F_A(j)\ge j+1$. For all large $j$, $b_A(j)\ge j+1$ because $A$
+contains at least one integer. The output is therefore infinite, with
+infinitely many gaps. Every subsequent transform exists on the same domain.
+
+If $C_A(n)=|A\cap[1,n]|$ and $R(n)=C_{S(A)}(n)$, then
+\begin{equation}
+ R(0)=0,\qquad R(n+1)=1+R(n-C_A(n))\quad(n\ge0).
+ \label{eq:rank}
+\end{equation}
+Indeed $s_{i+1}\le n+1$ precisely when $b_A(s_i)\le n$, or
+$s_i\le n-C_A(n)$. The additional term counts $s_1$.
+This gives a finite-index description of the transform even for purposes
+of verifying a single output threshold.
+
+\section{Convergence for every admissible input}
+Put $T_i=i(i+1)/2$ for $i\ge0$. We use $T_0=0$ only for indexing.
+\begin{lemma}\label{lem:prefix}
+Suppose a mask $B$ has first $k\ge1$ elements $T_1,\ldots,T_k$.
+Then $S(B)$ retains these first $k$ elements and its $(k+1)$-st
+element is at least $T_{k+1}$. If $B$ has no element strictly between
+$T_k$ and $T_{k+1}$, the $(k+1)$-st element of $S(B)$ equals $T_{k+1}$.
+\end{lemma}
+\begin{proof}
+For $1\le i<k$, exactly $i$ members of $B$ lie in
+$[1,T_{i+1}-1]$, and $T_{i+1}-1$ is outside $B$. Since
+$T_{i+1}-1-i=T_i$, we have $b_B(T_i)=T_{i+1}-1$. Equation~\eqref{eq:orbit}
+starting at $1=T_1$ gives the retained prefix.
+
+Now $[1,T_{k+1}-2]$ already contains at least $k$ members of $B$,
+so it contains at most $T_{k+1}-2-k=T_k-1$ survivors. Thus
+$b_B(T_k)\ge T_{k+1}-1$. If the stated gap holds, $T_{k+1}-1$
+survives and is exactly the $T_k$-th survivor. Equation~\eqref{eq:orbit}
+finishes both claims.
+\end{proof}
+
+\begin{theorem}\label{thm:stable}
+For each nonempty $A\subseteq\NN$ with infinite complement and each $k\ge1$,
+the first $k$ elements of $S^t(A)$ are $T_1,\ldots,T_k$ at every time
+$t\ge2k-1$. The triangular numbers form the unique fixed point on this
+domain, and every periodic orbit is this fixed point.
+\end{theorem}
+\begin{proof}
+One transform fixes the first element at $1$. Once a prefix of length
+$k$ is correct, one transform retains it and excludes any subsequent output
+strictly below $T_{k+1}$. The next transform therefore produces $T_{k+1}$
+in position $k+1$. Reapplying the retention assertion preserves the larger
+prefix. Induction gives the bound. Applying Lemma~\ref{lem:prefix} to the
+whole triangular sequence proves that it is fixed, as observed by Layman.
+If $S^p(A)=A$ for $p\ge1$, arbitrarily large multiples of $p$ fix every
+prescribed prefix of $A$ at the triangular values. Hence $A$ equals the
+triangular sequence.
+\end{proof}
+This proves the coordinatewise limit in Layman's question with a uniform
+finite stabilization time. It applies to every realization in the stated
+domain, without a choice of probability law.
+
+\section{Sieve transforms of a residue class}
+\begin{theorem}\label{thm:residue}
+Let $d\ge2$, $1\le c\le d$, and $A=\{c,c+d,c+2d,\ldots\}$. The increasing
+enumeration of $S(A)$ starts at $s_1=1$ and satisfies
+\begin{equation}
+ s_{i+1}=1+s_i+\left\lfloor\frac{s_i+d-c-1}{d-1}\right\rfloor.
+ \label{eq:res}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Write $j=(d-1)q+u$, $1\le u\le d-1$. In block $q$ of $d$ positions, the
+$u$-th surviving position is $dq+u+\mathbf 1_{u\ge c}$. Subtracting $j$
+gives $q+\mathbf 1_{u\ge c}=\lfloor(j+d-c-1)/(d-1)\rfloor$.
+Insert the resulting $b_A(j)$ into \eqref{eq:orbit}.
+\end{proof}
+For $d=3$ the three residue classes give the following results. Each row
+starts with the first positive output $1$.
+\[
+\begin{array}{cll}
+\toprule
+ c & s_{i+1}\text{ in terms of }s=s_i & \text{OEIS identification}\\
+\midrule
+1 & \lfloor(3s+3)/2\rfloor & \oeis{A152009}\\
+2 & 1+\lfloor3s/2\rfloor & \oeis{A006999}\text{ after its initial zero}\\
+3 & \lceil3s/2\rceil & \oeis{A061419}\\
+\bottomrule
+\end{array}
+\]
+The recurrence in the first row and the sieve interpretations in the
+other two rows were recorded as experimental identifications.
+
+\begin{corollary}
+The jumps of \oeis{A214972} occur exactly at the members of \oeis{A152009}.
+\end{corollary}
+\begin{proof}
+For $c=1$ and $d=3$ one has
+$C_A(n)=\lfloor(n+2)/3\rfloor$, so $n-C_A(n)=\lfloor2n/3\rfloor$.
+By \eqref{eq:rank} the rank of A152009 has $R(0)=0$ and
+$R(n+1)=1+R(\lfloor2n/3\rfloor)$. This recurrence uniquely determines
+A214972 by induction. The rank increases by one precisely at a member
+of the set.
+\end{proof}
+
+\begin{corollary}\label{cor:stopping}
+Let $d\ge2$ and let $M_t$ be the largest nonnegative integer that takes
+exactly $t$ iterations of $x\mapsto x-\lceil x/d\rceil$ to reach zero.
+Then $M_0=0$ and $M_1,M_2,\ldots$ is the $L$-sieve transform of
+$\{d-1,2d-1,3d-1,\ldots\}$.
+\end{corollary}
+\begin{proof}
+The step is $x\mapsto\lfloor(d-1)x/d\rfloor$. By monotonicity the integers
+that have reached zero by time $t$ are an initial interval $[0,M_t]$:
+its upper endpoint changes by
+\[
+ M_{t+1}=\left\lfloor\frac{d(M_t+1)-1}{d-1}\right\rfloor
+       =1+\left\lfloor\frac{dM_t}{d-1}\right\rfloor .
+\]
+Each endpoint is strictly larger than the preceding one, so it first
+reaches zero at its stated time. $M_1=1$, and the same recursion follows
+from \eqref{eq:res} for $c=d-1$.
+\end{proof}
+This answers the single family question shared by \oeis{A279075} through
+\oeis{A279080} ($d=5,\ldots,10$) for every $d\ge2$. The earlier listed
+cases are $d=2$ (\oeis{A000225}), $d=3$ (\oeis{A006999}), and $d=4$
+(\oeis{A155167}). A155167 starts at $M_1=1$; the sequences in that list
+with initial term zero start at $M_0$.
+
+\begin{thebibliography}{9}
+\bibitem{layman} J. W. Layman, \oeis{A152009} (2008), definition and convergence
+question. Related observations appear in \oeis{A006999}, \oeis{A061419},
+and \oeis{A155167}.
+\bibitem{kim} C. Kimberling, \oeis{A214972} (2012), formula section.
+\bibitem{schoenfield} J. E. Schoenfield, \oeis{A279075}--\oeis{A279080}
+(2016), shared question in the cross-references.
+\end{thebibliography}
+\end{document}

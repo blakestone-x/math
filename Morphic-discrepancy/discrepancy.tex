@@ -1,0 +1,177 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\oeis}[1]{\href{https://oeis.org/#1}{\textup{#1}}}
+\title{Sharp position discrepancies for three binary substitutions}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For three of Kimberling's binary fixed points we calculate the infimum and
+supremum of the error in the linear approximation to the position of the
+$n$-th zero or one. The six pairs of error bounds settle five recorded
+inequalities and Dekking's corrected inequality for A284895. In that case the
+error $a(n)-n\sqrt2$ lies strictly between 0 and 2 and approaches each
+endpoint arbitrarily closely. The proof uses finite equations for extrema of
+prefix weights; all computations take place in real quadratic fields.
+\end{abstract}
+
+\section{Results}
+Each substitution below fixes an infinite word obtained by iterating it on
+the stated first letter. Let $p_e(n)$ be the position of its $n$-th letter
+$e\in\{0,1\}$, counting both $n$ and positions from one. Assign weight $h$
+to zero and $-1$ to one, and define
+\[
+ D_0(n)=(1+h)n-p_0(n),\qquad D_1(n)=(1+1/h)n-p_1(n).
+\]
+These use Kimberling's sign convention except that the corrected question
+for A284895 is phrased in terms of $-D_1$. In each row of the tables $s$
+is the square root indicated for that word.
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Word & Seed & $\sigma(0)$ & $\sigma(1)$ & $h$ & $\mu$\\
+\midrule
+\oeis{A284893}, $s=\sqrt2$ & 0 & 01 & 0111 & $1+s$ & $2-s$\\
+\oeis{A284901}, $s=\sqrt3$ & 0 & 01 & 1000 & $s/3$ & $1-s$\\
+\oeis{A285668}, $s=\sqrt{17}$ & 1 & 11 & 1101 & $(3+s)/2$ & $(3-s)/2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The exact position-error endpoints for all six sequences are as follows.
+The last column gives the strict bounds posed in the corresponding entry,
+using the sign convention above.
+\begin{center}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Sequence & Error & Infimum & Supremum & Proposed interval\\
+\midrule
+\oeis{A284894} & $D_0$ & $1+s$ & $3+2s$ & $(2,6)$\\
+\oeis{A284895} & $D_1$ & $-2$ & $0$ & $(-2,0)$, corrected\\[2pt]
+\oeis{A284902} & $D_0$ & $(-4-2s)/3$ & $(5+2s)/3$ & $(-3,3)$\\
+\oeis{A284903} & $D_1$ & $(-6-2s)/3$ & $(9+4s)/3$ & $(-4,6)$\\[2pt]
+\oeis{A285669} & $D_0$ & $(-7+s)/16$ & $(29+5s)/16$ & $(-1,4)$\\
+\oeis{A285670} & $D_1$ & $(-23+s)/32$ & $(13+5s)/32$ & $(-1,4)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every indicated strict inequality holds for every $n\ge1$.
+\end{theorem}
+
+Dekking proved boundedness for A284894 and A285669, and identified the
+slope in the latter case \cite{oeis}. He also observed that A284895 has
+$p_1(2)=4$, refuting the original proposed upper bound of one. The
+replacement upper bound of two in his comment is optimal. Our argument
+uses the classical prefix decomposition of a substitution, as in
+Adamczewski \cite{adam}. Jung used a contraction for exact position
+endpoints of the different substitution $0\mapsto11,1\mapsto1110$ in
+\oeis{A045671} and \oeis{A045672} \cite{jung}.
+
+\section{From positions to finitely many extrema}
+Write $w(v)=h|v|_0-|v|_1$ for the weight of a finite word $v$. Direct
+substitution in the table of substitutions gives
+\begin{equation}
+ w(\sigma(v))=\mu w(v),\qquad |\mu|<1.
+ \label{eq:scale}
+\end{equation}
+For example, for A285668 one has $-2=\mu h$ and $h-3=-\mu$. For a letter
+$e$, let $B_e$ be the set of weights of prefixes ending \emph{immediately
+before} an occurrence of $e$ in the infinite word. For each factorization
+$\sigma(a)=v e u$ draw an incoming edge to $e$ with data $(a,w(v))$.
+Then
+\begin{equation}
+ B_e=\bigcup_{(a,d)\to e}(d+\mu B_a).
+ \label{eq:sets}
+\end{equation}
+Indeed every position lies in a substituted block of the fixed word, and
+every listed letter in a block contributes a position at each occurrence of
+its parent.
+
+Both sets are nonempty. They are bounded because each occurrence lies in
+some finite $\sigma^k(\text{seed})$, and tracing it through its ancestors
+expresses the prefix weight as a sum of at most $k$ edge offsets times
+$1,\mu,\mu^2,\ldots$. If $C$ is the largest absolute offset, this sum has
+absolute value at most $C/(1-|\mu|)$.
+
+Put $L_e=\inf B_e$ and $U_e=\sup B_e$. For $\mu>0$, the equation for
+$L_e$ takes the minimum of $d+\mu L_a$ over incoming edges, and the
+equation for $U_e$ takes the maximum of $d+\mu U_a$. For $\mu<0$ use
+$U_a$ in the minimum and $L_a$ in the maximum. These equations have at
+most one solution: the minimum/maximum map obeys $\|F(x)-F(y)\|_\infty\le|\mu|\,\|x-y\|_\infty$.
+Since the genuine infima and suprema satisfy the equations, checking a
+fixed vector proves sharpness as well as enclosure.
+
+\section{The endpoint calculation}
+In each list below, $(a,d)$ gives the parent and the offset from the start
+of its image. Edges are numbered from one within each list.
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Word & Edges into zero & Edges into one\\
+\midrule
+A284893 & $(0,0),(1,0)$ & $(0,h),(1,h),(1,h-1),(1,h-2)$\\
+A284901 & $(0,0),(1,-1),(1,h-1),(1,2h-1)$ & $(0,h),(1,0)$\\
+A285668 & $(1,-2)$ & $(0,0),(0,-1),(1,0),(1,-1),(1,h-2)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Substitution in \eqref{eq:sets} gives the following four extrema before
+the letter in question.
+\begin{center}\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Word & $L_0$ & $L_1$ & $U_0$ & $U_1$\\
+\midrule
+A284893 & $0$ & $1$ & $2+s$ & $3+2s$\\
+A284901 & $(-4-3s)/3$ & $(-1-3s)/3$ & $(5+s)/3$ & $(5+2s)/3$\\
+A285668 & $(-31-7s)/16$ & $(-15-7s)/16$ & $(5-3s)/16$ & $(29+5s)/16$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the four columns in order, the attaining edge numbers in their
+respective lists are $(1,4,2,2)$, $(2,2,1,1)$, and $(1,4,1,5)$.
+These certify equality once the remaining candidates satisfy the
+corresponding weak inequalities. All comparisons follow by substituting
+the displayed values and using $s^2=2,3,17$, respectively. For example, in
+the last row the lower and upper endpoints for zero must be
+$-2+\mu U_1$ and $-2+\mu L_1$, since its only edge is from one. For the
+lower endpoint for one the five candidates are
+$\mu U_0$, $-1+\mu U_0$, $\mu U_1$, $-1+\mu U_1$, and $h-2+\mu U_1$.
+Here $U_1>U_0$, $\mu<0$, and $h>2$, giving the fourth candidate.
+The supplied exact-arithmetic verifier checks every comparison and the
+four attaining equalities in each row.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If the $n$-th zero has a preceding prefix of weight $x$, the prefix
+ending at that zero has weight $x+h=(1+h)n-p_0(n)$. At the $n$-th
+one, the analogous weight is $x-1=-hD_1(n)$. It follows that the endpoint
+pairs are
+\[
+ [L_0+h,U_0+h],\qquad [(1-U_1)/h,(1-L_1)/h].
+\]
+Simplifying yields the table in Theorem~\ref{thm:main}. In five rows both
+endpoints are strictly inside the proposed interval. In the remaining
+row $D_1(n)=n\sqrt2-p_1(n)$ is irrational for $n\ge1$, so it cannot
+attain either integer endpoint. This proves the corrected strict bounds.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{oeis} C. Kimberling, OEIS \oeis{A284894}, \oeis{A284895},
+\oeis{A284902}, \oeis{A284903}, \oeis{A285669}, \oeis{A285670} (2017).
+M. Dekking's notes on A284894 and A284895 date to 2018, and his note on
+A285669 to 2021.
+\bibitem{adam} B. Adamczewski, \emph{Symbolic discrepancy and self-similar
+dynamics}, Ann. Inst. Fourier 54 (2004), 2201--2234.
+\href{https://doi.org/10.5802/aif.2079}{doi:10.5802/aif.2079}.
+\bibitem{jung} J. M. Jung, comments on \oeis{A045671} and \oeis{A045672},
+November 18, 2026, including sharp extrema for the $1110$ substitution.
+\end{thebibliography}
+\end{document}
