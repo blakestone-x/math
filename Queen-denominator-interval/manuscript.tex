@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[hmargin=.87in,vmargin=.76in]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\ph}{\varphi}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+\begin{center}
+{\LARGE Fibonacci bounds for ordinary queen\\[2pt]vertex denominators\par}
+\medskip November 26, 2026
+\end{center}
+\begin{abstract}
+Let $I_q$ be the greatest integer such that every $1\le d\le I_q$ occurs as the denominator of a vertex of the ordinary $q$-queens inside-out polytope. We prove $I_q\ge\exp(q\log\varphi-O(q/\log q))$, where $\varphi$ is the golden ratio. The interval thus reaches the exponential scale predicted in Conjecture 6.2 of Chaiken, Hanusa and Zaslavsky. Their discrete Fibonacci spiral is used as a multiplication circuit, with rational coordinates on the unit square encoding integers in a Fibonacci-number radix. The finite interval endpoint remains open. We also prove the exact maximum $F_q$ from their Conjecture 6.1 for every shape obtained by successive intersections of earlier attack lines. For ordinary semiqueens an analogous interval has exponential rate at least the plastic constant.
+\end{abstract}
+
+\section{The interval}
+We use $F_0=0,F_1=1$, $F_{j+2}=F_{j+1}+F_j$ and $\varphi=(1+\sqrt5)/2$. Each ordinary queen has four attack coordinates: $x$, $y$, $x+y$, and $x-y$. For different labels, equality of the same attack coordinate is a permitted equation. A board fixation sets a coordinate equal to $0$ or $1$. A point in $[0,1]^{2q}$ uniquely specified by such equations is a vertex. Its denominator is the least common denominator of all its coordinates. Extra queens can always be fixed at $(0,0)$.
+
+Chaiken, Hanusa and Zaslavsky exhibited a $q$-label discrete Fibonacci spiral with denominator $F_q$. Their Example 6.3 gives $F_8=21$, fixing the indexing in their ordinary-queen conjecture. They conjectured that every smaller denominator also occurs~\cite[Conj.~6.2]{chz}. A preceding note~\cite[Thm.~3]{previous} constructed all denominators through $2^{\lfloor(q-1)/2\rfloor}$ by binary doubling. The present construction uses blocks of increasing length.
+
+\begin{theorem}\label{t:interval}
+Fix $k\ge3$, set $b=F_k$, and suppose $q\ge2b-1$. Put
+\[
+ h=\left\lfloor\frac{q-2b+1}{k+4}\right\rfloor .
+\]
+Every $1\le d<b^{h+1}$ is the exact denominator of an ordinary $q$-queen vertex. In particular, for all sufficiently large $q$ an absolute constant $C$ gives
+\[
+ I_q\ \ge\ \exp\!\left(q\log\varphi-C\frac{q}{\log q}\right),
+ \qquad \liminf_{q\to\infty} I_q^{1/q}\ge\varphi .
+\]
+\end{theorem}
+
+\section{Multiplication by a Fibonacci number}
+\begin{lemma}\label{l:spiral}
+For each $k\ge3$ there is an integral $k$-label queen shape specified by attack equations up to translation and scalar multiplication. It can be oriented with horizontal span $F_k$, vertical span $F_{k-1}$, and two labels $L,H$ satisfying $x_H-x_L=1$.
+\end{lemma}
+\begin{proof}
+This is the discrete Fibonacci spiral of \cite[\S6]{chz}. For the coordinate details, start with $P_1=(0,0)$, $P_2=(1,-1)$, $P_3=(0,-2)$. The first two are on one descending diagonal. The third shares $x$ with $P_1$ and an ascending diagonal with $P_2$. For each subsequent odd $i$ choose $x_i=x_{i-3}$ and the ascending diagonal through $P_{i-1}$. For each even $i$ choose $y_i=y_{i-3}$ and the descending diagonal through $P_{i-1}$. With variable $P_1$ and $P_2-P_1=(t,-t)$, these independent intersections leave precisely translation and scale.
+
+For the integral shape ($t=1$), both components of $P_i-P_{i-1}$ have magnitude $F_{i-1}$ for $i\ge2$. In the horizontal component the signs for $i=2,3,4,5$ repeat as $+,-,-,+$, and in the vertical component they repeat as $-,-,+,+$. Indeed, the coordinate fixed to its value at $i-3$ has increment equal to the negative sum of its previous two increments, which have the same sign. The selected diagonal supplies the second component. This proves the assertion by induction. Consecutive even-indexed horizontal coordinates differ by alternating increments of magnitudes $F_4,F_6,\dots$; odd-indexed horizontal coordinates repeat earlier values apart from the initial coordinates. Since successive increments alternate and grow, the last two even terms are the extremes from $i=4$ onward. Likewise the odd-indexed vertical coordinates give alternating extreme gaps $F_3,F_5,\dots$. The initial three coordinates have spans $1,2$. Thus at even $k$ the spans are $F_k,F_{k-1}$ and at odd $k$ they are reversed. Swap the axes if necessary. In either orientation, the first two points have horizontal coordinates differing by one. Choose their order to obtain $L,H$.
+\end{proof}
+
+\begin{lemma}\label{l:mult}
+Suppose a previously specified label has second coordinate $u>0$, and a digit label has second coordinate $v\ge0$. Within the board, whenever $bu+v\le1$, $k+4$ new queens can be specified uniquely by permitted equations so that a new label has second coordinate $bu+v$. If $u$ and $v$ are integer multiples of $t>0$, all new coordinates are integer multiples of $t$.
+\end{lemma}
+\begin{proof}
+Introduce the $k$ labels and attack equations of Lemma~\ref{l:spiral}. Put a fixation $x=0$ on a label attaining the template's minimum horizontal coordinate, and a fixation $y=0$ on one attaining its minimum vertical coordinate. Introduce labels $T,U$ by the equations
+\[
+ x_T=x_H,\qquad y_T=0,\qquad x_U=x_L,\qquad y_U=u,
+ \qquad x_T+y_T=x_U+y_U.
+\]
+The fourth equation is an equality to the given input label's second coordinate. Together these equations impose $x_H-x_L=u$, fixing the positive scale of the spiral. Its horizontal and vertical coordinates now range from zero to $bu$ and $F_{k-1}u$, respectively, and the chosen two fixations determine its translations. The auxiliary points lie on the board since their coordinates are taken from these ranges or equal $u$.
+
+Choose a rightmost spiral label, of horizontal coordinate $bu$. Set $x_V$ equal to that coordinate and $y_V$ to the digit label's $v$. Fix $x_W=0$ and require $x_W+y_W=x_V+y_V$. This gives $W=(0,bu+v)$ and proves uniqueness. Every new coordinate is an integer multiple of $u$, equals $v$, or equals $bu+v$.
+\end{proof}
+
+\section{Radix construction}
+\begin{proof}[Proof of Theorem~\ref{t:interval}]
+Fix $d\ge2$. Leave a scale $t>0$ temporarily unknown. Set $O=(0,0)$ and construct digit labels $Y_j=(0,jt)$ up to $J=\min(d,b-1)$, with $Y_0=O$. Start with $X=(t,0)$ and $Y_1=(0,t)$, by fixing the zero coordinates and equating their coordinate sums. For $2\le j\le J$, introduce a label with $x=x_X$, $y=y_{Y_{j-1}}$, and equate its sum to the sum of the new label $Y_j$ fixed on $x=0$. All have the claimed coordinates and leave just one free parameter. Including $O,X,Y_1$, the table costs $2J+1\le2b-1$ labels.
+
+Read the usual base-$b$ representation of $d$ from the leading digit. Its label is the initial input. For each next digit $j$, apply Lemma~\ref{l:mult} with the current input and the label $Y_j$. If the current prefix is $p$, the next input has second coordinate $(bp+j)t$. After the last digit, fix that second coordinate to one. All equations before this fixation have the described unique solution for a given $t$, and the fixation now gives $t=1/d$. The same elimination works over all real $t$; the unique solution has $t>0$. All prefixes and all table digits are at most $d$, so the board condition of each block holds. All coordinates are multiples of $1/d$, and $x_X=1/d$ proves exactness of the denominator. If $d<b$, the final fixation is on $Y_d$ itself. Denominator one occurs already at a board corner.
+
+There are $\lfloor\log_b d\rfloor$ nonleading digits. Hence
+\[
+ q(d)\le 2b-1+(k+4)\lfloor\log_b d\rfloor
+\]
+labels suffice. Padding by corner labels proves the asserted interval.
+
+For large $q$ take $k=\lfloor\log_\varphi(q/(\log q)^2)\rfloor$. Then $k\asymp\log q$, $2\le b=F_k\le q/(\log q)^2$ and $\log b=k\log\varphi+O(1)$. Taking logarithms of $I_q\ge b^{h+1}-1$ gives
+\[
+ \log I_q\ \ge\ \frac{q-2b+1}{k+4}\log b-O(1)
+ \ \ge\ q\log\varphi-O(q/\log q).
+\]
+\end{proof}
+
+\begin{corollary}
+Let $D_q$ be the least common multiple of all ordinary $q$-queen vertex denominators. Then $\liminf_{q\to\infty} q^{-1}\log\log D_q\ge\log\varphi$.
+\end{corollary}
+\begin{proof}
+For $m=I_q$, $\operatorname{lcm}(1,\ldots,m)$ divides $D_q$. The valuation formula for factorials shows that each binomial coefficient $\binom{m}{j}$ divides that least common multiple: every prime-power term in the valuation difference is at most one and vanishes for powers exceeding $m$. Since the binomial coefficients sum to $2^m$, it follows that $D_q\ge2^m/(m+1)$. Theorem~\ref{t:interval} now gives the inequality.
+\end{proof}
+
+\section{A sharp Fibonacci upper bound for successive intersections}
+Call a nonconstant shape \emph{successively constructed} if two distinct labels attack each other and every subsequent label is the unique intersection of two nonparallel attack lines through preceding labels. The chosen move equations leave two translations and one scale free. A vertex obtained by fitting such a shape to its smallest enclosing square is a subcase of the maximal-denominator conjecture of \cite[Conj.~6.1]{chz}.
+\begin{theorem}\label{t:upper}
+For every $q\ge2$ the largest vertex denominator of a successively constructed ordinary $q$-queen shape is exactly $F_q$.
+\end{theorem}
+\begin{proof}
+Normalize the first queen to $(0,0)$ and take the difference to the second queen to be a primitive move vector. At each stage express the whole shape in primitive integer coordinates. Let $W\ge H$ be its two coordinate spans in decreasing order. Write
+\[
+ V_j(W,H)=F_{j+1}W+F_j H\qquad (j\ge0).
+\]
+In particular $V_0=W$. We assign each operation a cost $c\in\{0,1,2\}$ and show that $V_j$ after that operation is at most $V_{j+c}$ before it, for every $j\ge0$.
+
+Intersecting a horizontal and a vertical line preserves the bounding rectangle and costs zero. An axis line with a diagonal yields an integer point. The axis coordinate stays in its existing range, and any increase in the other span is at most the first span. The new ordered pair is bounded componentwise by $(W+H,W)$, so this costs one. For an intersection of two diagonals, take the sums $x_A+y_A$ and differences $x_B-y_B$ of old points $A,B$. The new point is
+\[
+  \left(\frac{x_A+x_B+y_A-y_B}{2},\,
+        \frac{y_A+y_B+x_A-x_B}{2}\right).
+\]
+If it extends the horizontal span, its overshoot is at most half the vertical span, and conversely. It cannot extend both: a point outside both coordinate intervals would have either sum or difference outside its range on the old rectangle. If the intersection is integral, these observations again give cost one.
+
+If it is half-integral, double all coordinates, including the new point. The old differences had content one, and the new coordinates after doubling are odd in both axes, so the representation is primitive. If the larger span is extended, the new pair is bounded by $(2W+H,2H)$, componentwise at most $(2W+H,W+H)$. The latter is the result of two cost-one Fibonacci updates, giving cost two. If the smaller span is extended, use the ordered version of $(2W,W+2H)$. When $W\ge2H$, its $V_j$ equals $F_{j+3}W+2F_jH\le V_{j+2}(W,H)$. When $W\le2H$, the difference between $V_{j+2}(W,H)$ and its $V_j$ equals $(F_{j+1}-F_j)(W-H)\ge0$. With no overshoot either estimate applies. This proves the asserted cost bounds.
+
+To bound the total cost, color the primitive grid by the parity of $x+y$. After each half-integral intersection and doubling, all old points have even coordinates and the new one has two odd coordinates. Thus all occupied points have the same color. Integral intersections involving a diagonal preserve monochromaticity because they inherit the color of the point defining that diagonal. With a monochromatic shape, the sum and difference selected for a two-diagonal intersection have the same parity, so that intersection is integral. Hence a horizontal--vertical intersection is required between two half-integral intersections.
+
+A diagonal seed has spans $(1,1)$ and starts monochromatic. It has at least as many zero-cost steps as cost-two steps; its total cost is at most $q-2$. Chaining the $V_j$ inequalities backwards gives final width at most $V_{q-2}(1,1)=F_q$. An axis seed has spans $(1,0)$ and allows one unpaired half-integral intersection. Its cost is at most $q-1$, giving $V_{q-1}(1,0)=F_q$. Fitting a primitive shape by two opposing facets and a perpendicular fixation makes the denominator its larger span. The Fibonacci spiral of Lemma~\ref{l:spiral} attains the bound for $q\ge3$; the two-piece case has denominator one.
+\end{proof}
+
+\section{An interval for ordinary semiqueens}
+For the piece having just horizontal, vertical and negative-diagonal moves, write $I_q^{\mathrm{semi}}$ for the analogous initial interval.
+\begin{corollary}
+If $\rho>1$ satisfies $\rho^3=\rho+1$, then
+\[
+  I_q^{\mathrm{semi}}\ge\exp\!\left(q\log\rho-O(q/\log q)\right).
+\]
+\end{corollary}
+\begin{proof}
+The cyclic semiqueen construction of the companion paper~\cite[Thm.~2]{riders} gives, for each $k\ge3$, an internally rigid integral shape of primitive bounding side $b_k=\Theta(\rho^k)$. For the unit step, its original seed $(-1,-1),(2,-1),(-1,2)$ has a pair three units apart in each coordinate, and the content of the whole configuration is three. Thus the translated primitive shape has a pair of horizontal coordinates differing by one in either orientation. Swapping axes preserves these three moves. Orient the shape so that its horizontal span is $b_k$.
+
+Use this shape in Lemma~\ref{l:mult}. The scale constraint in the displayed equations uses only equality of coordinate sums; the digit table and final addition also use just the three semiqueen moves. Therefore $2b_k-1+(k+4)\lfloor\log_{b_k}d\rfloor$ labels suffice for denominator $d$ whenever $b_k\ge2$. As $\log b_k=k\log\rho+O(1)$, one can take $k=\lfloor\log_\rho(q/(\log q)^2)\rfloor$ in the same estimate as for Theorem~\ref{t:interval}.
+\end{proof}
+
+\small
+\begin{thebibliography}{9}
+\bibitem{chz} S. Chaiken, C. R. H. Hanusa and T. Zaslavsky, \emph{A $q$-Queens Problem IV. Attacking configurations and their denominators}, Discrete Math. \textbf{343} (2020), 111649. \href{https://doi.org/10.1016/j.disc.2019.111649}{doi:10.1016/j.disc.2019.111649}, \href{https://arxiv.org/abs/1807.04741}{arXiv:1807.04741}.
+\bibitem{riders} \emph{Boundary constructions for large vertex denominators of chess riders}, companion research manuscript, November 2026, Theorem 2.
+\bibitem{previous} \emph{Least periods for toroidal semiqueens and vertex denominators for ordinary queens}, research manuscript, November 2026. \href{https://github.com/blakestone-x/math/blob/proof-fleet-2026-11-26/A342372/periods.pdf}{Manuscript and prior construction}.
+\end{thebibliography}
+\end{document}

@@ -1,5 +1,9 @@
 # Binary reverse subtraction always reaches a palindrome
 
+The [hitting-time continuation](shells.pdf) improves the upper bound at widths $2m$ and $2m+1$ to $O(58^{m/20})$, with exponential base below 1.2251. A four-pair graph already gives $O(5^{m/4})$. The twenty-pair proof covers 1,743,392,201 normalized states. [LaTeX source](shells.tex) · [C++17 verifier](shells.cpp) · [Exact table](shells.txt) · [Low-memory verifier](shells_independent.cpp) · [Independent small complete-word verifier](check_shells.py)
+
+Compile both C++ files using `c++ -O3 -std=c++17`. Run the queue-based verifier with argument `18` for the first eighteen rows, and the low-memory verifier with arguments `19` and `20` in separate runs for the last two. The twenty-pair check uses about 3.25 GiB. Run `python3 -B check_shells.py` for the independent full-word check through six pairs.
+
 Fix a width of $n$ bits, keep leading zeroes, and repeatedly subtract the reversal of the current word modulo $2^n$. **Every starting word reaches a palindrome.** The argument answers Thomas Scheuerle’s termination question for OEIS A338203. His 2020 entry reported computations through 32 bits and recorded Kevin Ryde’s suggestion to follow the central pair. [Source question](https://oeis.org/A338203) · [Row maxima](https://oeis.org/A338205)
 
 [Proof manuscript (PDF)](manuscript.pdf) · [LaTeX](manuscript.tex) · [Lean proof](Proof.lean) · [Exact maxima and witnesses](maxima.txt)
