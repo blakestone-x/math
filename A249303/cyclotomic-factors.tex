@@ -1,0 +1,75 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Cyclotomic factors of rational iterates},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Cyclotomic factors of rational iterates}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Cyclotomic factors of Kimberling's\\[0.12em] iterated rational functions\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Starting from $f_0=1$, iterate $f_n=1+(x+c)/f_{n-1}$. Over the rationals the reduced numerator for $n>2$ is irreducible exactly when $n+2$ is prime, as Clark Kimberling conjectured. We identify the problem with the known factorization of path independence polynomials, explain the different indexing of the tiling triangle, and describe the degrees and multiplicities of all factors over finite fields.
+\end{abstract}
+
+Put $F_0=0$, $F_1=1$ and $F_{m+2}=F_{m+1}+tF_m$. Then
+\[
+ f_n=\frac{F_{n+2}(t)}{F_{n+1}(t)},\qquad t=x+c,\qquad
+ F_m(t)=\sum_{j=0}^{\lfloor(m-1)/2\rfloor}\binom{m-1-j}{j}t^j\quad(m\ge1).
+\]
+Both formulas follow by induction. At $t=0$ every $F_m$ with $m\ge1$ equals one. A common root of consecutive terms would be nonzero and would propagate backwards to $F_1=1$, so no factor cancels. In characteristic zero $F_{n+2}$ is also the independence polynomial of the path on $n$ vertices: excluding or including its end vertex gives the same recurrence and initial values. The cyclotomic factorization here is a specialization of Lucas atoms of Sagan and Tirrell and of the path factors treated by Ng. We record a direct derivation to identify both OEIS conventions.
+
+\begin{theorem}
+In $\mathbb Q[t]$, $F_m(t)$ has one distinct irreducible factor for each divisor $d\ge3$ of $m$, of degree $\varphi(d)/2$. Its roots are
+\[
+          -\frac{1}{2+\zeta+\zeta^{-1}},
+          \qquad \zeta\text{ primitive of order }d,
+\]
+where $\zeta$ and $\zeta^{-1}$ specify the same root.
+\end{theorem}
+\begin{proof}
+The two roots $\alpha,\beta$ of $u^2-u-t=0$ give
+$F_m=(\alpha^m-\beta^m)/(\alpha-\beta)$. For a root of unity $\zeta$ of order $d\mid m$, $d\ge3$, take $\alpha=\zeta/(1+\zeta)$ and $\beta=1/(1+\zeta)$. They are distinct, sum to one, and their negative product is the displayed value of $t$. The quotient giving $F_m$ vanishes. Two such $t$ agree exactly when the values of $\zeta+\zeta^{-1}$ agree, hence exactly for an inverse pair by the quadratic equation with these two roots. The number of inverse pairs among the $m$th roots after deleting $1$ and, if present, $-1$, is $\lfloor(m-1)/2\rfloor$, the degree of $F_m$. This accounts for all roots with multiplicity one. The rational Galois group acts transitively on primitive roots of each given order, so their inverse pairs form one orbit of size $\varphi(d)/2$.
+\end{proof}
+
+For $m\ge5$, a prime $m$ gives a single factor. Every composite $m\ge5$ has some proper divisor at least $3$ as well as $m$ itself. Thus for $n>2$ the numerator is irreducible exactly when $n+2$ is prime. Translation by any $c\in\mathbb Q$ preserves irreducibility; the same holds over $\mathbb Q(c)$ for an indeterminate $c$. An algebraic coefficient-field extension can split a factor. For example $F_5(t)=1+3t+t^2$ splits over $\mathbb Q(\sqrt5)$.
+
+In \oeis{249303} the iterate index starts at zero, with $c=-1$. In the $2$-by-$r$ tiling triangle \oeis{128100}, the polynomial of row $r$ is instead $F_{r+1}(1+x)$: the first column of tiles consists of a vertical domino, or of a width-two block tiled by two horizontal dominoes or one marked square. The recurrence starts with the two rows $1,1$. Thus row $r=n+1$ gives iterate $n$ with $c=1$. In the tiling width convention, for $r\ge4$ the prime test is $r+1$; width $3$ also gives an irreducible linear polynomial.
+
+\section{Over finite fields}
+Let $\mathbb F_q$ have characteristic $p$. Write $m=p^a s$, $p\nmid s$. For $d\ge3$ dividing $s$ put
+\[
+ e_q(d)=\min\{j\ge1:q^j\equiv1\ \text{or}\ -1\pmod d\}.
+\]
+\begin{theorem}
+For each such $d$, the inverse pairs of primitive $d$th roots give $\varphi(d)/(2e_q(d))$ irreducible factors of degree $e_q(d)$, each with multiplicity $p^a$ in $F_m$. For odd $p$ there is also the factor $1+4t$ with multiplicity $(p^a-1)/2$ when $a>0$. These give all factors up to nonzero scalars.
+\end{theorem}
+\begin{proof}
+For $s$ prime to $p$, the $s$th roots of unity are distinct. When $s$ is odd the highest coefficient of $F_s$ is one. When $s$ is even it is $s/2$, nonzero in the field because then $p$ is odd and $p\nmid s$. Thus the inverse-pair count gives every root of $F_s$ just as above (in characteristic two $s$ is odd and $-1=1$). Frobenius sends $\zeta$ to $\zeta^q$, so its orbit on the inverse pair has length exactly $e_q(d)$.
+
+In characteristic $p$, the identity for $\alpha,\beta$ gives
+\[
+ F_m=(\alpha-\beta)^{p^a-1}F_s^{p^a}.
+\]
+For odd $p$ the extra factor is $(1+4t)^{(p^a-1)/2}$ because $(\alpha-\beta)^2=1+4t$. Its root $-1/4$ has $F_s(-1/4)=s(1/2)^{s-1}\ne0$, using the polynomial identity $F_s=\sum_{j=0}^{s-1}\alpha^{s-1-j}\beta^j$. For $p=2$, $\alpha-\beta=\alpha+\beta=1$. This proves the description, including reductions in degree in characteristic two.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{kim} C. Kimberling, comments in OEIS \oeis{249303} and \oeis{128100}, 2014.
+\bibitem{st} B. E. Sagan and J. Tirrell, \emph{Lucas atoms}, Adv. Math. \textbf{374} (2020), 107387. \href{https://arxiv.org/abs/1909.02593}{arXiv:1909.02593}.
+\bibitem{ng} B. L. Ng, \emph{Independence equivalence classes of paths}, Discrete Math. \textbf{346} (2023), no.~1. \href{https://arxiv.org/abs/2105.01592}{arXiv:2105.01592}, Section 2.
+\end{thebibliography}
+\end{document}

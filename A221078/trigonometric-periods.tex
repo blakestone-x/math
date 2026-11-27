@@ -1,0 +1,88 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Prime-power periods of trigonometric sums},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Prime-power periods of trigonometric sums}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Prime-power congruences for sums\\[0.12em] of trigonometric powers\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+For $f=\sin,\tan,\sinh,\tanh$, let $A_f(n)$ be the $n$th exponential coefficient of $\sum_{k\ge1} f(kx)^k$. At every odd prime power $p^a$, with $\phi=p^{a-1}(p-1)$, the hyperbolic sequences repeat after $\phi$ steps from $n=a$ on. The circular sequences satisfy $A_f(n+\phi)=(-1)^{\phi/2}A_f(n)$ modulo $p^a$. At $p=2$, sine and hyperbolic sine have alternating parity; tangent and hyperbolic tangent are even at every index past the first. These formulas give periods in four questions of Peter Bala and distinguish the exceptional prime in the tangent question.
+\end{abstract}
+
+We start at $n=1$. Paul D. Hanna contributed \oeis{224899} ($\sinh$), \oeis{221077} ($\tanh$), and \oeis{221078} ($\tan$); V\'aclav Kotesovec contributed \oeis{245322} ($\sin$). Adding the $k=0$ term changes only the constant coefficient. The derivatives of these functions at zero are integers: this follows from the derivative cycles for sine and hyperbolic sine, and from $f'=1\pm f^2$ for tangent and hyperbolic tangent. The product rule and the vanishing $f(0)=0$ give integrality of $A_f(n)$ and restrict the coefficient sum to $k\le n$.
+
+\section{A finite sum of powers}
+Fix an odd prime $p$ and $a\ge1$. Write $P=p^a$ and $\phi=\varphi(P)$. Take a formal square root $i$ of $-1$. In the following table $f(x)=H(e^{cx})$ as characteristic-zero formal series.
+\[
+\begin{array}{c|cccc}
+ f&\sinh&\sin&\tanh&\tan\\ \hline
+ c&1&i&1&i\\
+ H(z)&(z-z^{-1})/2&(z-z^{-1})/(2i)&
+ (z^2-1)/(z^2+1)&(z^2-1)/(i(z^2+1))
+\end{array}
+\]
+Let $\delta=z\,d/dz$. Before reducing any coefficient we have the exact identity
+\[
+ \left.\frac{d^n}{dx^n}f(kx)^k\right|_{x=0}
+     =(ck)^n\bigl(\delta^n H(z)^k\bigr)(1).
+\]
+All rational functions on the right have denominators at $z=1$ that are units modulo $P$.
+
+\begin{lemma}
+There exist $b_{kj}\in R=(\mathbb Z/P\mathbb Z)[i]$, independent of $n$, such that for every $n\ge1$,
+\[
+ A_f(n)\equiv\sum_{k=1}^{aP-1}\sum_{j=0}^{P-1}b_{kj}(ckj)^n \pmod{P}.
+\]
+\end{lemma}
+\begin{proof}
+Work in $S=R[z]/(z^P-1)$. The operator $\delta$ descends because $\delta(z^P-1)=Pz^P=0$ there. Modulo $p$, $(z-1)^P=z^P-1=0$, so $(z-1)^{aP}=0$ in $S$. Every denominator in the table is therefore invertible in $S$: its difference from its invertible value at $1$ is nilpotent. Also $H(1)=0$, so $H$ is a multiple of $z-1$ and $H^k=0$ for $k\ge aP$.
+
+Represent the remaining $H^k$ by $\sum_{j=0}^{P-1}b_{kj}z^j$ in the quotient. Evaluation at $1$ is well-defined, and $(\delta^n z^j)(1)=j^n$. The chain-rule identity now gives the sum. Terms with $k>n$ have vanishing $n$th derivative in characteristic zero, so enlarging the finite range when $n<aP-1$ is valid.
+\end{proof}
+
+\begin{theorem}
+For $n\ge a$, modulo $p^a$ one has
+\[
+ A_f(n+\phi)\equiv
+ \begin{cases}
+ A_f(n),&f=\sinh,\tanh,\\
+ (-1)^{\phi/2}A_f(n),&f=\sin,\tan .
+ \end{cases}
+\]
+\end{theorem}
+\begin{proof}
+In the finite sum, $p\mid kj$ makes the term vanish for $n\ge a$. Otherwise $(kj)^\phi=1$ modulo $p^a$ by Euler's theorem. Thus replacing $n$ by $n+\phi$ multiplies each surviving term by $c^\phi$, which is the indicated sign. Integers inject from $\mathbb Z/P\mathbb Z$ into $R$ since $i^2+1$ is monic.
+\end{proof}
+
+For $a=1$ this gives pure periodicity from $n=1$. The circular sequences admit period $p-1$ for $p\equiv1\bmod4$ and $2(p-1)$ for $p\equiv3\bmod4$. In the latter case a shift of $p-1$ changes the sign, and cannot itself be a period since $A_f(1)=1$. We prove the displayed shifts; a uniform classification of their minimality among all shifts is a separate question.
+
+For the scaled hyperbolic-tangent entry \oeis{195415}, set $C(n)=4^{1-n}A_{\tanh}(n)$. At odd primes this quotient has a well-defined reduction since its denominator is a power of two. Fermat--Euler gives $C(n+\phi)\equiv C(n)\pmod{p^a}$ for $n\ge a$. At $2$ the proposed period one already fails on the integral entries $C(1)=1$ and $C(2)=2$. The odd-prime argument takes place in $\mathbb Z[1/2]$ and does not establish $2$-integrality of all normalized coefficients.
+
+\section{Parity and the tangent exception}
+For $\sin$ and $\sinh$, a $k$th power of a series vanishing at zero with integral exponential coefficients has all its exponential coefficients divisible by $k!$. Indeed the product rule sums over ordered decompositions of a labeled $n$-set into $k$ nonempty blocks, weighted by the coefficient at the size of each block. Permuting the blocks acts freely and preserves the weight. Thus modulo $2$ only $k=1$ remains. The sine and hyperbolic-sine derivatives give one on odd indices and zero on even ones, proving exact period two for both.
+
+For tangent and hyperbolic tangent, put $D=(1\pm t^2)d/dt$ on $\mathbb Z[t]$, with the sign chosen according to $f'=1\pm f^2$. The second iterate $D^2$ sends every polynomial into $2\mathbb Z[t]$, because $(1\pm t^2)'$ and every second derivative have even coefficients. Induction shows $2^{\lfloor n/2\rfloor}\mid (D^n t^k)(0)$. Scaling by $k^n$ and summing gives
+\[
+                       2^{\lfloor n/2\rfloor}\mid A_f(n).
+\]
+Since $A_f(1)=1$, neither tangent sequence is purely periodic modulo two. In particular the sine question has a positive answer for every prime as to pure periodicity, while the all-prime tangent assertion fails.
+
+\paragraph{Earlier results.}
+Bala recorded the prime questions in 2022. The trureturing project gave prime-level proofs for unscaled $\sinh$ and $\tanh$ via finite Stirling sums. The common rational-function argument above also handles the circular functions and gives the odd-prime-power congruences and sign change. See the \href{https://www.trureturing.org/research/oeis-a224899-sinh-power-prime-period/}{hyperbolic-sine} and \href{https://www.trureturing.org/research/oeis-a221077-tanh-power-prime-period/}{hyperbolic-tangent} proofs, and the five OEIS entries linked above.
+\end{document}

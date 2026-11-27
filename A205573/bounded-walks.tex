@@ -1,0 +1,77 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={A reflecting walk and Jeffery's array},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small A reflecting walk and Jeffery's array}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries A reflecting walk and three questions\\[0.12em] on Jeffery's matrix array\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+The bottom corner of a power of L. Edson Jeffery's matrix counts dispersed Dyck paths with bounded height. This identifies the first degree where the central binomial row approximation fails, proves the proposed column generating function, and gives the reduced row generating function with its necessary index shifts. Its denominator has degree $n+1$ in row $n$.
+\end{abstract}
+
+Reverse the order of the rows and columns of Jeffery's matrix from \oeis{205573}. The resulting adjacency matrix $B_n$ is that of the path on $0,1,\ldots,n$ with one loop at $0$. This includes $B_0=(1)$. Write $M(n,j)=(B_n^j)_{0,0}$. By matrix multiplication this counts walks of length $j$ starting and ending at $0$, with steps up or down by one, or a horizontal step at $0$. These are precisely the dispersed Dyck paths of length $j$ and maximum height at most $n$. The pieces of the following formulas also occur in E. Deutsch's height enumeration \oeis{191314} and G. W. Adamson's comments relating the two arrays.
+
+\begin{theorem}
+For $0\le j\le2n+1$ one has $M(n,j)=\binom{j}{\lfloor j/2\rfloor}$. At $j=2n+2$ the bounded count is smaller by one, and it is strictly smaller at all later $j$.
+\end{theorem}
+\begin{proof}
+Fold an unrestricted nearest-neighbor walk on $\mathbb Z$ started at $0$ by mapping $z\ge0$ to $z$ and $z<0$ to $-1-z$. A crossing of the edge $\{-1,0\}$ becomes a loop at height zero. Every allowed height walk lifts uniquely once the initial integer is fixed: at every integer the two possible steps have distinct height images. To have final height $0$ the unrestricted endpoint must be $0$ for even $j$ and $-1$ for odd $j$. The walk has $\lfloor j/2\rfloor$ up-steps in either case.
+
+An excursion reaching $n+1$ needs at least $2n+2$ steps to return. At equality exactly one path does so, consisting of $n+1$ rises followed by $n+1$ falls. Prepending loops gives at least one excluded path at every larger length.
+\end{proof}
+
+Let $H(j,h)$ be the number of length-$j$ dispersed Dyck paths of maximum height exactly $h$, the entry of \oeis{191314} in \emph{row} $j$, \emph{column} $h$. Summing the preceding path interpretation over height bounds yields
+\[
+ \sum_{n\ge0}M(n,j)y^n
+   =\frac{\sum_{h=0}^{\lfloor j/2\rfloor} H(j,h)y^h}{1-y}.
+\]
+This proves Jeffery's third generating-function assertion in its intended orientation.
+
+\section{The exact row denominator}
+Set $P_0=P_1=1$ and $P_{m+1}=P_m-x^2P_{m-1}$ for $m\ge1$. The determinant of $I-xA$ for a loop-free path on $m$ vertices is $P_m$, by end expansion. Splitting according to the edge at the end or applying the recurrence gives
+\[
+             P_m=\sum_{i=0}^{\lfloor m/2\rfloor}
+                        (-1)^i\binom{m-i}{i}x^{2i}.
+\]
+\begin{theorem}
+For every $n\ge0$ the reduced generating function of row $n$ is
+\[
+ F_n(x)=\sum_{j\ge0}M(n,j)x^j
+       =\frac{P_n(x)}{P_{n+1}(x)-xP_n(x)}.
+\]
+Its denominator has degree $n+1$, so $n+1$ is the least order of a homogeneous constant-coefficient recurrence for the row over $\mathbb Q$.
+\end{theorem}
+\begin{proof}
+The geometric matrix series is $(I-xB_n)^{-1}$. The $(0,0)$ cofactor is $P_n$. Changing the end diagonal entry from $1$ to $1-x$ changes the determinant from $P_{n+1}$ to $P_{n+1}-xP_n$. Consecutive $P_m$ are coprime: a common root would be nonzero since their constant terms are one, and the recurrence would propagate that root back to $P_0$. Thus the quotient is reduced. The two denominator terms have opposite parity of exponents. The displayed coefficients give $\deg P_m=2\lfloor m/2\rfloor$, hence the denominator degree is exactly $n+1$. Any homogeneous recurrence for a tail gives a generating function with a denominator of degree at most its order.
+\end{proof}
+
+The coefficients of $P_n$, omitting zero odd powers, form row $n+1$ of \oeis{115139} in its one-based indexing. By the binomial formula above the coefficient of $x^j$ in the denominator is
+\[
+ (-1)^{\lfloor(j+1)/2\rfloor}
+ \binom{n+1-\lfloor(j+1)/2\rfloor}{\lfloor j/2\rfloor},
+ \qquad 0\le j\le n+1 .
+\]
+This is row $n+1$ of the zero-based triangle \oeis{108299}. Thus the literal row-$n$, degree-$n$ denominator in Conjecture~2 needs a shift. The source's worked example for $n=3$ already has the correct formula
+$(1-2x^2)/(1-x-3x^2+2x^3+x^4)$.
+
+\begin{thebibliography}{9}
+\bibitem{jeffery} L. Edson Jeffery, OEIS \oeis{205573}, 2012, and its three conjectures.
+\bibitem{deutsch} E. Deutsch, OEIS \oeis{191314}, 2011. Its height generating functions use the same denominator polynomials. See also \oeis{115139} and \oeis{108299}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Largest remainders at prime moduli},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Largest remainders at prime moduli}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries The unique largest remainder\\[0.12em] on division by smaller primes\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+For an integer $N\ge3$, list $N\bmod p$ over the primes $p<N$ in increasing order. The largest entry is always unique. Its modulus is the first prime above $N/2$, with the single exception $N=14$. For $N\ge4$ the entry preceding the maximum has the parity of $N$, except at $N=9,21$. Restricting to prime $N$ proves Mike Jones's conjecture on OEIS \oeis{207409}.
+\end{abstract}
+
+Charles R. Greathouse IV used Nagura's theorem in \oeis{039731} to identify the value of the maximum for prime dividends. We use the neighboring primes around $N/2$ to locate the preceding entry as well and give the exceptions for arbitrary dividends.
+
+\begin{lemma}
+If $r\ge11$ is prime and $q$ is the next prime, then $q<4r/3$.
+\end{lemma}
+\begin{proof}
+For $r\ge25$, Nagura's theorem \cite{nagura} gives $q<6r/5$. For $r=11,13,17,19,23$ the respective successors are $13,17,19,23,29$, all less than $4r/3$.
+\end{proof}
+
+\begin{theorem}
+For every $N\ge22$ let $r\le N/2<q$ be consecutive primes. The unique maximum is $N-q$, at $q$. The immediately preceding modulus is $r$ and its entry is $N-2r$.
+\end{theorem}
+\begin{proof}
+Here $r\ge11$. By the lemma, $q<4r/3\le2N/3$ and $N<2q<8r/3<3r$. For a modulus $p\le N/3$, the remainder is less than $p$ and hence at most $N/3$. For $N/3<p\le N/2$ it is $N-2p<N/3$. But $N\bmod q=N-q>N/3$, and at every larger prime $p<N$ the value $N-p$ is strictly smaller. This proves uniqueness. Since $N/3<r\le N/2$, the entry at $r$ is $N-2r$.
+\end{proof}
+
+For completeness the two short rows below list the winning modulus $w$ and the entry $b$ immediately before it for the remaining dividends. Direct division by the primes below $N$ gives a unique winner in each case.
+\[
+\begin{array}{c|rrrrrrrrrr}
+ N&3&4&5&6&7&8&9&10&11&12\\\hline
+ w&2&3&3&5&5&5&5&7&7&7\\
+ b&-&0&1&0&1&2&0&0&1&2\\[3pt]\hline
+ N&13&14&15&16&17&18&19&20&21\\\hline
+ w&7&5&11&11&11&11&11&11&11\\
+ b&3&2&1&2&3&4&5&6&0
+\end{array}
+\]
+Thus $N=14$ is the only exception to the winning-modulus rule. The only parity exceptions for $N\ge4$ are $9$ and $21$. In particular for every prime dividend $N\ge5$ the maximum has a preceding entry, and this entry is odd. The row for $N=3$ has just one member.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} C. Kimberling, OEIS \oeis{207409}, including M. Jones's conjecture of July 12, 2024. C. R. Greathouse IV, comment of the same date in \oeis{039731}.
+\bibitem{nagura} J. Nagura, \emph{On the interval containing at least one prime number}, Proc. Japan Acad. \textbf{28} (1952), 177--181. \href{https://doi.org/10.3792/pja/1195570997}{doi:10.3792/pja/1195570997}.
+\end{thebibliography}
+\end{document}
