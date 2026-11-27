@@ -108,6 +108,7 @@ math proofs
 - [A217280 — a complete base-five digit test for the weighted binomial sum](A217280/README.md) · [Lean proof](A217280/Proof.lean)
 - [A221078 and four related sequences — prime-power periods of trigonometric power sums](A221078/README.md) · [Manuscript](A221078/trigonometric-periods.pdf)
 - [Nakamura’s 2013 conjecture for every prescribed pair of 123 and 132 counts](Nakamura-123-132/README.md) · [Manuscript](Nakamura-123-132/prescribed-patterns.pdf) · [Lean proof of the cluster bounds](Nakamura-123-132/ClusterBound.lean)
+- [Fulmek’s fixed-count 321 generating function, two counterexamples to the Conway–Guttmann refinements, and the asymptotic amplitude](Fulmek-321/README.md) · [Manuscript](Fulmek-321/fulmek-321.pdf) · [Independent count](Fulmek-321/subset_check.cpp)
 - [A224292 and A224293 — exact counts for one or two occurrences of 1234 and 1243](A224292/README.md) · [Manuscript](A224292/one-pattern.pdf)
 - [A224294 — the exact two-of-each formula and the quadratic generating-function field for all fixed counts](A224294/README.md) · [Manuscript](A224294/fixed-patterns.pdf)
 - [A224341 and A224342 — the unique composition two-cycle and five corrected terms](A224341/README.md)
