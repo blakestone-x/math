@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="516" viewBox="0 0 920 516" role="img" aria-labelledby="title desc">
+<title id="title">A triple crossing in the square separates in the pentagon</title>
+<desc id="desc">With corner parameters 2/3 and 5/6 at B, and 1/2 at C, the upper diagrams show the three full segments. Below, the black point indicates the square triple and three black points mark the pentagon pairwise intersections.</desc>
+<rect width="920" height="516" fill="white"/>
+<line x1="28.0000" y1="26.0000" x2="59.0000" y2="26.0000" stroke="#146e77" stroke-width="3.1" stroke-linecap="round"/>
+<text x="69" y="31" font-family="system-ui, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#253849">At B, fraction 2/3</text>
+<line x1="296.0000" y1="26.0000" x2="327.0000" y2="26.0000" stroke="#9c5518" stroke-width="3.1" stroke-linecap="round"/>
+<text x="337" y="31" font-family="system-ui, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#253849">At B, fraction 5/6</text>
+<line x1="569.0000" y1="26.0000" x2="600.0000" y2="26.0000" stroke="#76559a" stroke-width="3.1" stroke-linecap="round"/>
+<text x="610" y="31" font-family="system-ui, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#253849">At C, fraction 1/2</text>
+<rect x="24" y="54" width="424" height="438" rx="8" fill="#fbfcfd" stroke="#dae0e4"/>
+<text x="42" y="83" font-family="system-ui, sans-serif" font-size="19" font-weight="650" text-anchor="start" fill="#253849">Regular square</text>
+<polygon points="155.000,268.000 319.000,268.000 319.000,104.000 155.000,104.000" fill="white" stroke="#79909a" stroke-width="1.7"/>
+<line x1="155.0000" y1="213.3333" x2="264.3333" y2="268.0000" stroke="#146e77" stroke-width="2.25" stroke-linecap="round"/>
+<line x1="155.0000" y1="240.6667" x2="291.6667" y2="268.0000" stroke="#9c5518" stroke-width="2.25" stroke-linecap="round"/>
+<line x1="237.0000" y1="268.0000" x2="319.0000" y2="186.0000" stroke="#76559a" stroke-width="2.25" stroke-linecap="round"/>
+<text x="147.0" y="285.0" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#253849">B</text>
+<text x="325.0" y="285.0" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#253849">C</text>
+<circle cx="246.1111" cy="258.8889" r="2.8" fill="#142835" stroke="white" stroke-width="1"/>
+<text x="42" y="315" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#4f6472">Enlarged crossing</text>
+<defs><clipPath id="clip4"><rect x="41" y="327" width="390" height="121" rx="4"/></clipPath></defs>
+<rect x="41" y="327" width="390" height="121" rx="4" fill="white" stroke="#d8e0e4"/>
+<g clip-path="url(#clip4)">
+<line x1="-2863.0000" y1="-1163.0000" x2="857.0000" y2="697.0000" stroke="#146e77" stroke-width="2.9" stroke-linecap="round"/>
+<line x1="-2863.0000" y1="-233.0000" x2="1787.0000" y2="697.0000" stroke="#9c5518" stroke-width="2.9" stroke-linecap="round"/>
+<line x1="-73.0000" y1="697.0000" x2="2717.0000" y2="-2093.0000" stroke="#76559a" stroke-width="2.9" stroke-linecap="round"/>
+<circle cx="237.0000" cy="387.0000" r="4.9" fill="#142835" stroke="white" stroke-width="1"/>
+</g>
+<text x="42" y="475" font-family="system-ui, sans-serif" font-size="15" font-weight="650" text-anchor="start" fill="#253849">One common point</text>
+<rect x="476" y="54" width="424" height="438" rx="8" fill="#fbfcfd" stroke="#dae0e4"/>
+<text x="494" y="83" font-family="system-ui, sans-serif" font-size="19" font-weight="650" text-anchor="start" fill="#253849">Regular pentagon</text>
+<polygon points="635.713,268.000 742.287,268.000 775.220,166.642 689.000,104.000 602.780,166.642" fill="white" stroke="#79909a" stroke-width="1.7"/>
+<line x1="624.7355" y1="234.2141" x2="706.7623" y2="268.0000" stroke="#146e77" stroke-width="2.25" stroke-linecap="round"/>
+<line x1="630.2243" y1="251.1071" x2="724.5246" y2="268.0000" stroke="#9c5518" stroke-width="2.25" stroke-linecap="round"/>
+<line x1="689.0000" y1="268.0000" x2="758.7534" y2="217.3212" stroke="#76559a" stroke-width="2.25" stroke-linecap="round"/>
+<text x="627.7131698178034" y="285.0" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#253849">B</text>
+<text x="748.2868301821966" y="285.0" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#253849">C</text>
+<circle cx="693.0911" cy="262.3690" r="2.8" fill="#142835" stroke="white" stroke-width="1"/>
+<circle cx="695.4265" cy="263.3309" r="2.8" fill="#142835" stroke="white" stroke-width="1"/>
+<circle cx="696.0266" cy="262.8949" r="2.8" fill="#142835" stroke="white" stroke-width="1"/>
+<text x="494" y="315" font-family="system-ui, sans-serif" font-size="13" font-weight="650" text-anchor="start" fill="#4f6472">Enlarged crossing</text>
+<defs><clipPath id="clip5"><rect x="493" y="327" width="390" height="121" rx="4"/></clipPath></defs>
+<rect x="493" y="327" width="390" height="121" rx="4" fill="white" stroke="#d8e0e4"/>
+<g clip-path="url(#clip5)">
+<line x1="-2963.1416" y1="-1110.2191" x2="1331.6300" y2="658.7460" stroke="#146e77" stroke-width="2.9" stroke-linecap="round"/>
+<line x1="-2675.7558" y1="-225.7366" x2="2261.6300" y2="658.7460" stroke="#9c5518" stroke-width="2.9" stroke-linecap="round"/>
+<line x1="401.6300" y1="658.7460" x2="4053.7874" y2="-1994.7017" stroke="#76559a" stroke-width="2.9" stroke-linecap="round"/>
+<circle cx="615.8347" cy="363.9185" r="4.9" fill="#142835" stroke="white" stroke-width="1"/>
+<circle cx="738.1072" cy="414.2810" r="4.9" fill="#142835" stroke="white" stroke-width="1"/>
+<circle cx="769.5295" cy="391.4513" r="4.9" fill="#142835" stroke="white" stroke-width="1"/>
+</g>
+<text x="494" y="475" font-family="system-ui, sans-serif" font-size="15" font-weight="650" text-anchor="start" fill="#253849">Three distinct pairwise crossings</text>
+</svg>
