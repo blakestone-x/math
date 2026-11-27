@@ -1,0 +1,248 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={A universal 3-adic limit for Fibonacci-Collatz sequences},pdfauthor={Blake Stone},pdfsubject={Proofs of the OEIS A105801 and A181717 residue conjectures}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\title{A universal $3$-adic limit for Fibonacci--Collatz sequences\\
+\large Resolving the residue conjectures in OEIS A105801 and A181717}
+\author{Blake Stone\\\normalsize Proof developed with OpenAI Astra 6.2}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the recurrence that applies a Collatz step to the sum of the two previous
+terms, we prove that every pair of distinct nonnegative starting values gives
+a sequence converging $3$-adically to $-1/5$. Equivalently, for every $k\ge0$,
+all sufficiently late terms satisfy $3^k\mid 5a_n+1$. This proves Giovanni
+Resta's residue-stabilization conjectures for A105801 and A181717 and gives
+the stable residue explicitly. The proof uses an affine change of variables,
+integer descent, and repeated increases of common divisibility by $3$.
+\end{abstract}
+
+\section{Statement and change of variables}
+
+For nonnegative integers $x,y$, define $a_1=x$, $a_2=y$, and, for $n\ge1$,
+\begin{equation}
+ a_{n+2}=F(a_n,a_{n+1}),\qquad
+ F(u,v)=
+ \begin{cases}
+ (u+v)/2,&u+v\text{ even},\\
+ 3(u+v)+1,&u+v\text{ odd}.
+ \end{cases}
+ \label{eq:recurrence}
+\end{equation}
+We call these the averaging and expanding branches, respectively.
+The seeds $(1,2)$ give OEIS A105801~\cite{A105801}; the seeds $(0,1)$ give
+A181717~\cite{A181717}. Both entries record Resta's November 17, 2010
+conjecture that the sequence eventually has a constant residue modulo
+every power of $3$.
+
+\begin{theorem}\label{thm:main}
+If $x,y\in\N$ and $x\ne y$, then for every integer $k\ge0$ there exists
+$N_k$ such that
+\begin{equation}
+ 3^k\mid 5a_n+1\qquad\text{for every }n\ge N_k.
+ \label{eq:divisibility}
+\end{equation}
+Consequently, every such sequence eventually has the same residue
+$-5^{-1}\pmod{3^k}$, independently of its starting values.
+\end{theorem}
+
+The decisive change of variables is
+\begin{equation}
+ b_n=5a_n+1.
+ \label{eq:change}
+\end{equation}
+The branch condition is unchanged because $b_n+b_{n+1}=5(a_n+a_{n+1})+2$
+has the same parity as $a_n+a_{n+1}$. Direct substitution gives
+\begin{equation}
+ b_{n+2}=
+ \begin{cases}
+ (b_n+b_{n+1})/2,&\text{averaging branch},\\
+ 3(b_n+b_{n+1}),&\text{expanding branch}.
+ \end{cases}
+ \label{eq:transformed}
+\end{equation}
+Every $b_n$ is a positive integer. The additive constant in
+\eqref{eq:recurrence} has disappeared.
+
+\section{Parity and the recurrence of two expanding steps}
+
+\begin{lemma}\label{lem:distinct}
+Consecutive terms remain unequal. Moreover, no tail of the sequence can
+consist entirely of averaging steps.
+\end{lemma}
+\begin{proof}
+If $u\ne v$ and the averaging branch applies, then $F(u,v)=v$ would imply
+$u=v$. On the expanding branch, $F(u,v)=3u+3v+1>v$. Thus inequality of
+consecutive terms is preserved by induction.
+
+Set $d_n=|a_{n+1}-a_n|$. These are positive integers. At every averaging
+step,
+\[
+ d_{n+1}
+ =\left|\frac{a_n+a_{n+1}}2-a_{n+1}\right|
+ =\frac{d_n}{2}.
+\]
+An infinite averaging tail would therefore give an infinite strictly
+decreasing sequence of positive integers, which is impossible.
+\end{proof}
+
+\begin{lemma}\label{lem:blocks}
+There are arbitrarily late indices $j$ for which $a_{j-1}$ is even and
+$a_j$ is odd. Each such index forces two consecutive expanding steps.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:distinct}, some expanding step occurs. Its output is
+even. From that point onward, each consecutive pair contains an even term:
+an expanding step outputs an even term, while an averaging step from a pair
+containing an even term must start from two even terms, leaving the previous
+even term in the next pair.
+
+Odd terms occur arbitrarily late. Otherwise an all-even tail would have only
+averaging steps, contradicting Lemma~\ref{lem:distinct}. Every sufficiently
+late odd term $a_j$ has an even predecessor. Hence $a_{j-1}+a_j$ is odd,
+so $a_{j+1}$ is produced by an expanding step and is even. Then
+$a_j+a_{j+1}$ is odd as well, forcing a second expanding step.
+\end{proof}
+
+This argument also handles two odd starting values: the even-term invariant
+is established after the first expanding step, rather than assumed at the
+initial pair.
+
+\section{Divisibility increases without bound}
+
+\begin{lemma}\label{lem:preserve}
+If $3^k$ divides two consecutive transformed terms $b_n,b_{n+1}$, then it
+divides every subsequent transformed term. If the next two steps are
+expanding, both $b_{n+2}$ and $b_{n+3}$ are divisible by $3^{k+1}$.
+\end{lemma}
+\begin{proof}
+For an averaging step, $2b_{n+2}=b_n+b_{n+1}$ is divisible by $3^k$.
+Since $2$ is coprime to $3^k$, the same is true of $b_{n+2}$. For an
+expanding step, $b_{n+2}=3(b_n+b_{n+1})$ is divisible by $3^{k+1}$ and
+therefore by $3^k$. This proves persistence by induction along the sequence.
+
+If two expanding steps follow, then
+\[
+ b_{n+2}=3(b_n+b_{n+1}),\qquad
+ b_{n+3}=3(b_{n+1}+b_{n+2}).
+\]
+Both right-hand sides are divisible by $3^{k+1}$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+We induct on $k$. The case $k=0$ is immediate. Suppose all terms $b_n$
+from index $N_k$ onward are divisible by $3^k$. By
+Lemma~\ref{lem:blocks}, choose an odd term $a_j$ with even predecessor and
+$j-1\ge N_k$. The next two steps are expanding. Lemma~\ref{lem:preserve}
+therefore gives $3^{k+1}\mid b_{j+1},b_{j+2}$, and its persistence statement
+extends this to every later term. We may take $N_{k+1}=j+1$.
+
+Finally, $5$ is invertible modulo $3^k$. Thus $3^k\mid 5a_n+1$ determines
+a unique residue for $a_n$, namely $-5^{-1}\pmod{3^k}$.
+\end{proof}
+
+\section{The stable residue and the \texorpdfstring{$3$}{3}-adic interpretation}
+
+An explicit representative is
+\begin{equation}
+ c_k=2^k\bmod5,\qquad
+ r_k=\frac{c_k3^k-1}{5}
+     =\left\lfloor\frac{c_k3^k}{5}\right\rfloor.
+ \label{eq:residue}
+\end{equation}
+Indeed $1\le c_k\le4$ and $c_k3^k\equiv6^k\equiv1\pmod5$, so $r_k$ is
+an integer satisfying $0\le r_k<3^k$ and $5r_k+1=c_k3^k$.
+The coefficients $c_k$ have period $4$:
+\[
+ c_k=1,2,4,3\quad\text{as }k\equiv0,1,2,3\pmod4.
+\]
+
+The following examples use OEIS indexing. Each displayed $N$ is the first
+index at which two adjacent terms are congruent to $r_k$; the persistence
+lemma then certifies every term from $N$ onward. The finite calculations are
+reproduced by \texttt{examples.py} and are illustrations of the theorem.
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & $3^k$ & $r_k$ & $N$ for A105801 & $N$ for A181717\\
+\midrule
+1&3&1&6&2\\
+2&9&7&10&7\\
+3&27&16&13&10\\
+4&81&16&15&15\\
+5&243&97&19&19\\
+6&729&583&22&23\\
+7&2187&1312&24&25\\
+8&6561&1312&28&30\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+In the $3$-adic metric, \eqref{eq:divisibility} says that
+$|a_n+1/5|_3\le3^{-k}$ eventually for each $k$, since $|5|_3=1$.
+Thus
+\[
+ \boxed{\displaystyle a_n\longrightarrow-\frac15\quad\text{in }\Z_3.}
+\]
+The compatible base-$3$ digits repeat the block $0121$:
+$-1/5=16\sum_{j\ge0}81^j$ in $\Z_3$.
+If the two starting values are equal to $x$, the sequence instead remains
+constant at $x$. This accounts for every pair of nonnegative starting values.
+
+\section{Formal verification and relation to earlier work}
+
+The accompanying \texttt{Proof.lean} formalizes the original recurrence,
+descent, parity arguments, divisibility persistence and lifting, and the
+eventual residue statement for every distinct pair of nonnegative seeds.
+It also proves \eqref{eq:residue} and specializes the general theorem to both
+OEIS sequences as \texttt{A105801.conjecture} and \texttt{A181717.conjecture}.
+The complete package passed a fresh Lean 4.19.0 build. It imports only
+\texttt{Std}, has no external dependencies, and uses only the standard
+logical axioms \texttt{propext} and \texttt{Quot.sound}. There are no
+unfinished proofs, added axioms, or \texttt{native\_decide} calls.
+Build commands, axiom reports, and a separate review are supplied.
+
+The $3$-adic formulation above is the standard interpretation of the proved
+arbitrary-power congruences. The formal result is stated directly using
+natural-number divisibility and residues, without requiring $3$-adic
+topological machinery.
+
+Greene~\cite{Greene} studied a larger family of integer difference equations.
+The transformed recurrence \eqref{eq:transformed} is its case
+$c_1=c_2=3$, $d=6$; his result already gives ordinary divergence for unequal
+positive starting values. That result concerns size, while the theorem here
+establishes eventual stabilization modulo every $3^k$ and identifies the
+common $3$-adic limit. A 2025 Math.StackExchange discussion~\cite{MSE}
+also observes the persistence of the residue $7$ modulo $9$.
+
+The retrieved OEIS entries still state the arbitrary-power claims as
+conjectures. Searches by identifier and equivalent recurrence found no
+earlier proof of those claims. This records the scope of the source check;
+it does not establish exhaustive publication priority or OEIS acceptance.
+
+\begin{thebibliography}{9}
+\bibitem{A105801} Z. Seidov, OEIS A105801, September 12, 2006;
+conjecture by G. Resta, November 17, 2010.
+\url{https://oeis.org/A105801}.
+\bibitem{A181717} R. Stephan, OEIS A181717, November 17, 2010;
+conjecture by G. Resta, same date.
+\url{https://oeis.org/A181717}.
+\bibitem{Greene} J. Greene, ``The Unboundedness of a Family of Difference
+Equations Over the Integers,'' \emph{The Fibonacci Quarterly} 46/47(2)
+(2008/2009), 146--152.
+\url{https://www.fq.math.ca/Papers1/46_47-2/Greene_1-09.pdf}.
+\bibitem{MSE} Exit load, question on Fibonacci--Collatz digital roots,
+with a comment by Blue, January 27--28, 2025.
+\url{https://math.stackexchange.com/questions/5028237/}.
+\end{thebibliography}
+\end{document}

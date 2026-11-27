@@ -8,6 +8,7 @@ math proofs
 - [A087304 — multiples preserving the nonzero digit product](A087304/README.md)
 - [A087324 — prime signatures of decimal 9's complements](A087324/README.md)
 - [A087325 — least 10's complements with a given prime factor count](A087325/README.md) · [Finite-case verifier](A087325/verify.py)
+- [A105801 and A181717 — stabilization modulo every power of three](A105801/README.md) · [Lean proof](A105801/Proof.lean) · [PDF](A105801/A105801_A181717_proof.pdf)
 - [A110734 and A110735 — an infinite family of digit-insertion counterexamples](A110734/README.md)
 - [A245211 — partial results on fixed points of the weighted proper-divisor sum](A245211/README.md) · [PDF](A245211/A245211-research.pdf) · [Computations](A245211/verification/README.md)
 - [A265385 — the growth rate of a Gray-code Fibonacci recurrence](A265385/README.md) · [Lean invariant](A265385/Proof.lean) · [Lean limit](A265385/Limit.lean) · [PDF](A265385/A265385_proof.pdf)
