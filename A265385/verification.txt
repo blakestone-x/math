@@ -1,0 +1,22 @@
+Commands run from the A265385 package directory with the pinned Lean toolchain.
+The project Proof.olean and Limit.olean outputs were absent before this build.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Exit status: 0
+
+$ lake --version
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+Exit status: 0
+
+$ lake build
+ℹ [1805/1807] Built Proof
+info: ././././Proof.lean:133:0: 'A265385.binary_prefix' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:134:0: 'A265385.exponential_bounds' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:135:0: 'A265385.scaled_bounds' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:136:0: 'A265385.ratio_cross_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1806/1807] Built Limit
+info: ././././Limit.lean:84:0: 'A265385.growth_rate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit status: 0
+

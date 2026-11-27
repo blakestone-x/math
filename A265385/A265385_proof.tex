@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype,booktabs,xcolor}
+\usepackage[colorlinks=true,urlcolor=blue!45!black,linkcolor=blue!45!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\G}{\operatorname{G}}
+\newcommand{\xor}{\mathbin{\mathrm{xor}}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\hypersetup{pdftitle={The growth rate of OEIS A265385},pdfauthor={Blake Stone}}
+\begin{document}
+\begin{center}
+{\Large\bfseries The growth rate of OEIS A265385}\\[0.2em]
+{\normalsize A fixed binary prefix proves Sykora's conjectured limit}\\[0.65em]
+Blake Stone\\[0.15em]
+{\small Proof developed with OpenAI Astra 6.2\quad$\vert$\quad November 26, 2026}
+\end{center}
+\begin{quote}\small\textbf{Abstract.}
+We prove the exponential-growth assertion stated conjecturally in OEIS A265385: if each step of the Fibonacci recurrence is followed by the binary-reflected Gray transform, then $\bigl(a(2n)/a(n)\bigr)^{1/n}\to2$. The essential observation is an exact invariant: every term from $a(7)$ onward starts with the binary digits $110100$. The integer argument and the real limit are formalized in Lean.
+\end{quote}
+
+\section*{1. Definition and invariant}
+For a nonnegative integer $m$, let
+\[
+ \G(m)=m\xor\left\lfloor\frac m2\right\rfloor,
+\]
+where $\xor$ is bitwise exclusive-or. Define
+\[
+ a(1)=a(2)=1,\qquad
+ a(n)=\G\bigl(a(n-1)+a(n-2)\bigr)\quad(n\ge3).
+\]
+This is the recurrence in OEIS A265385, contributed by Stanislav Sykora in 2015~\cite{oeis}.
+
+\begin{lemma}[Gray code preserves prefixes]
+For all nonnegative integers $m,k$,
+\begin{equation}\label{eq:shift}
+ \left\lfloor\frac{\G(m)}{2^k}\right\rfloor
+   =\G\left(\left\lfloor\frac{m}{2^k}\right\rfloor\right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $b_i$ for the binary digit of $m$ at position $i$, taking $b_i=0$ above the most significant digit. The digit of $\G(m)$ at position $i$ is $b_i\xor b_{i+1}$. Both sides of \eqref{eq:shift} therefore have digit $b_{i+k}\xor b_{i+k+1}$ at position $i$. Uniqueness of binary expansion proves equality.
+\end{proof}
+
+\begin{theorem}[Uniform exponential bounds]\label{thm:bounds}
+For every integer $n\ge5$,
+\begin{equation}\label{eq:bounds}
+ 52\,2^n\ \le\ 128\,a(n)\ <\ 53\,2^n.
+\end{equation}
+In particular, for $n\ge7$,
+\begin{equation}\label{eq:prefix}
+ \left\lfloor\frac{a(n)}{2^{n-7}}\right\rfloor=52=(110100)_2.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Direct evaluation gives $a(3),\ldots,a(6)=3,6,13,26$. Thus \eqref{eq:bounds} holds at $n=5,6$, with equality on the left. Suppose $n\ge7$ and the bound holds at $n-1$ and $n-2$. Put $S=a(n-1)+a(n-2)$. Adding the two lower bounds and the two upper bounds yields
+\[
+ 156\,2^{n-2}\ \le\ 128S\ <\ 159\,2^{n-2}\ <\ 160\,2^{n-2}.
+\]
+Since $n\ge7$, division by $128$ gives
+\[
+ 39\,2^{n-7}\ \le\ S\ <\ 40\,2^{n-7}.
+\]
+Hence $\lfloor S/2^{n-7}\rfloor=39$. The lemma and the exact identity
+\[
+ \G(39)=39\xor19=(100111)_2\xor(010011)_2=(110100)_2=52
+\]
+give \eqref{eq:prefix} at index $n$. Equivalently,
+$52\,2^{n-7}\le a(n)<53\,2^{n-7}$; multiplying by $128$ proves the induction step in \eqref{eq:bounds}. Two-step induction completes the proof. Formula \eqref{eq:prefix} follows from \eqref{eq:bounds} for every $n\ge7$.
+\end{proof}
+
+\section*{2. The conjectured limit}
+\begin{corollary}\label{cor:limit}
+The sequence satisfies
+\begin{equation}\label{eq:limit}
+ \boxed{\displaystyle\lim_{n\to\infty}
+       \left(\frac{a(2n)}{a(n)}\right)^{1/n}=2.}
+\end{equation}
+\end{corollary}
+\begin{proof}
+For $n\ge5$, Theorem~\ref{thm:bounds} implies $a(n)>0$ and, upon applying the bounds at $n$ and $2n$,
+\begin{equation}\label{eq:ratio}
+ \frac{52}{53}\,2^n
+ <\frac{a(2n)}{a(n)}
+ <\frac{53}{52}\,2^n.
+\end{equation}
+Taking positive real $n$th roots gives
+\[
+ 2\left(\frac{52}{53}\right)^{1/n}
+ <\left(\frac{a(2n)}{a(n)}\right)^{1/n}
+ <2\left(\frac{53}{52}\right)^{1/n}.
+\]
+For each fixed $c>0$, $c^{1/n}=\exp((\log c)/n)\to1$. Both bounding expressions tend to $2$, so the squeeze theorem proves \eqref{eq:limit}.
+\end{proof}
+
+The proof also supplies an explicit error bound. If $r_n=(a(2n)/a(n))^{1/n}$, then
+\[
+ \left|\log\frac{r_n}{2}\right|<\frac{\log(53/52)}{n}\qquad(n\ge5).
+\]
+The same exponential bounds imply $a(n)^{1/n}\to2$. These conclusions concern exponential growth; no convergence of adjacent-term ratios is needed.
+
+\section*{3. Formal verification and scope}
+The accompanying \texttt{Proof.lean} defines $a(1)=a(2)=1$ and the exact Gray-sum recurrence; its value at $0$ is unused. It proves the prefix invariant, the bounds for every $n\ge5$, and the integer cross-multiplied form of \eqref{eq:ratio}. It imports only Lean's bundled \texttt{Std} library.
+
+The companion \texttt{Limit.lean} uses Mathlib to prove the real limit \eqref{eq:limit}, starting from those checked integer inequalities. The project pins Lean 4.19.0 and Mathlib's matching revision. The supplied verification record identifies the final theorems and their standard logical dependencies. There are no unfinished proofs or additional axioms. See \texttt{README.md} for reproduction commands.
+
+\textbf{Source status.} The live OEIS entry inspected on November 26, 2026 still stated the limit conjecturally; its internal revision was \#18, dated January 16, 2016. A targeted search found no earlier proof of this assertion. This note proves the stated limit; it does not establish exhaustive bibliographic priority. The separate descriptive observation about persistent fluctuations of adjacent-term ratios is outside the theorem's scope.
+
+\begin{thebibliography}{9}
+\bibitem{oeis}
+S. Sykora, \emph{A265385: Sequence defined by a Gray-transformed Fibonacci recurrence}, The On-Line Encyclopedia of Integer Sequences, December 7, 2015. \url{https://oeis.org/A265385}. Accessed November 26, 2026.
+\end{thebibliography}
+\end{document}
