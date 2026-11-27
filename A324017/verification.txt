@@ -1,0 +1,15 @@
+Fresh pinned package build
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: a3716c9e0da21b2a3604ed97c8021b20ffafa0cac079745c2afa42d8dcdaa240
+Build directory: /workspace/scratch/5f072ff518ad/tmp/batch6_A324017_build_8vr48w9k
+Command: lake build
+Exit code: 0
+
+ℹ [2794/2795] Built Proof
+info: ././././Proof.lean:198:0: 'A324017.fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:199:0: 'A324017.quotient_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:200:0: 'A324017.third_claim_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:201:0: 'A324017.corrected_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.

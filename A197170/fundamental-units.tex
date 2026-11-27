@@ -1,0 +1,95 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={A prescribed gcd in fundamental units},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small A prescribed gcd in fundamental units}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Prescribing a gcd in real quadratic\\[0.12em] fundamental units\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Given any $n\ge1$, we construct infinitely many distinct real quadratic fields with a radicand $k$ for which the coefficient of $\sqrt{k}$ in the fundamental unit is exactly $n$ and $n\mid k$. This proves the existence conjecture for OEIS \oeis{197170} and the infinitude conjecture for \oeis{197171}. If $s^2$ is the largest square dividing $n$, the construction attains the least possible square multiplier $s$ in $\sqrt{k}=s\sqrt d$, $d$ squarefree. It gives a witness $k<10^6 n^{14}$.
+\end{abstract}
+
+\section{The question and construction}
+Artur Jasinski's \oeis{197170} asks for the least nonsquare $k$ for which $\gcd(k,y)=n$, with the fundamental unit written as $x+y\sqrt{k}$ or $(x+y\sqrt{k})/2$ in the entry's convention. Radicands may contain square factors, as illustrated by its entry $248$ for $n=4$. The fundamental unit here is the smallest unit greater than $1$ at the positive real embedding. Changing its sign or taking its inverse preserves the absolute coefficient. Our units have integral coefficients in $\sqrt{k}$.
+
+Write $n=s^2h$ with $h$ squarefree, let $H$ be the odd part of $h$, and put $Y=ns$. For each integer $j\ge1$ set
+\begin{equation}\label{eq:family}
+ t=H(1+2Hj),\quad d=t(Y^2t+2),\quad x=1+Y^2t,\quad k=s^2d .
+\end{equation}
+The relation $d=(Yt)^2+2t$ is a near-square Pell construction, related to the classical Richaud--Degert families \cite{yokoi}. We give the least-unit and squarefreeness arguments for these parameters.
+
+\begin{lemma}\label{lem:unit}
+If $d$ in \eqref{eq:family} is squarefree, the fundamental unit of $\mathbb Q(\sqrt d)$ is $x+Y\sqrt d$.
+\end{lemma}
+\begin{proof}
+Here $t$ is odd and $t\ge3$. If $Y$ is even, $d\equiv2\pmod4$; otherwise $d\equiv3\pmod4$. The ring of integers is therefore $\mathbb Z[\sqrt d]$. Expansion gives $x^2-dY^2=1$.
+
+If $\eta=u+v\sqrt d>1$ is any unit, its conjugate is $\sigma/\eta$ with $\sigma=\pm1$. Consequently $u,v$ are positive integers. For $v\le Y$ the two norm equations give
+\[
+                  (Yu-vx)(Yu+vx)=\sigma Y^2-v^2 .
+\]
+The right side has absolute value at most $2Y^2$ while $Yu+vx\ge x>2Y^2$. The first factor is an integer, so it vanishes. Then $\sigma=1$, $v=Y$ and $u=x$. For $v\ge Y+1$,
+\[
+ \eta=2v\sqrt d+\sigma/\eta
+      >2(Y+1)\sqrt d-1>2Y\sqrt d+1>x+Y\sqrt d,
+\]
+where the last inequality follows from $x-Y\sqrt d=1/(x+Y\sqrt d)<1$. This proves minimality among units of both norms.
+\end{proof}
+
+\begin{lemma}\label{lem:sq}
+Among $1\le j\le X$ at least $X/2-6YH\sqrt X$ parameters give squarefree $d$, for every positive integer $X$.
+\end{lemma}
+\begin{proof}
+The positive factors $t$ and $Y^2t+2$ are coprime because $t$ is odd. The residue of $d$ modulo four rules out $4\mid d$. Each odd prime dividing $H$ occurs exactly once in $t$ and does not divide $Y^2t+2$.
+
+For an odd prime $p\nmid H$, the map $j\mapsto t=H+2H^2j$ is invertible modulo $p^2$. Thus $p^2\mid t$ excludes one residue class there. If $p\nmid Y$, $p^2\mid Y^2t+2$ excludes one more; if $p\mid Y$ it excludes none. Each residue class has at most $X/p^2+1$ representatives. The inequalities $t\le3H^2X$ and $Y^2t+2\le5Y^2H^2X$ show that only $p\le3YH\sqrt X$ can occur. The number excluded is at most
+\[
+ 2X\sum_{p\text{ odd prime}}p^{-2}+6YH\sqrt X
+ < X/2+6YH\sqrt X.
+\]
+Indeed $\sum_{i\ge1}(2i+1)^{-2}<\sum_{i\ge1}(4i(i+1))^{-1}=1/4$.
+\end{proof}
+
+\begin{theorem}
+Every $n\ge1$ is attained as $\gcd(k,y)$ in infinitely many distinct real quadratic fields. There is a witness $k<10^6n^{14}$. Among all witnesses, the square multiplier $s$ in \eqref{eq:family} is minimal.
+\end{theorem}
+\begin{proof}
+Every odd prime dividing $h$ divides $t$. If $2\mid h$, then $Y$ is even and $2\mid d$. Hence $h\mid d$ and $n=s^2h\mid k$. For squarefree $d$, Lemma~\ref{lem:unit} gives the fundamental unit
+\[
+                    x+Y\sqrt d=x+n\sqrt k ,
+\]
+so $\gcd(k,n)=n$. By Lemma~\ref{lem:sq} such $j$ have lower density at least $1/2$. Their squarefree $d$ are strictly increasing, giving distinct fields. In particular the minimum requested in \oeis{197170} exists by well-ordering, and the gcd-two and gcd-three lists \oeis{197171} and \oeis{197172} are infinite.
+
+Take $X=(16YH)^2$. Lemma~\ref{lem:sq} guarantees a squarefree value by $X$. The factor bounds in its proof give
+\[
+ k\le15s^2Y^2H^4X^2
+   =983040\,s^2Y^6H^8
+   \le983040\,n^{14}/s^8<10^6 n^{14},
+\]
+using $H\le n/s^2$. Lastly, any witness $k=v^2D$ with $D$ squarefree must satisfy $n\mid k$. At every prime $p$ this forces $v_p(v)\ge\lfloor v_p(n)/2\rfloor$, so $s\mid v$. Equation~\eqref{eq:family} attains $v=s$. In particular a squarefree radicand is possible exactly for squarefree $n$.
+\end{proof}
+
+For example, $(n,k)=(2,42),(3,4011),(4,2328)$ yield units
+$13+2\sqrt{42}$, $190+3\sqrt{4011}$ and $193+4\sqrt{2328}$, respectively. These are witnesses to existence; the OEIS records smaller minimizing radicands.
+
+\begin{thebibliography}{9}
+\bibitem{jasinski} A. Jasinski, OEIS entries \oeis{197170}, \oeis{197171} and \oeis{197172}, 2011.
+\bibitem{yokoi} H. Yokoi, \emph{On real quadratic fields containing units with norm $-1$}, Nagoya Math. J. \textbf{33} (1968), 139--152. \href{https://doi.org/10.1017/S0027763000012939}{doi:10.1017/S0027763000012939}.
+\end{thebibliography}
+\end{document}

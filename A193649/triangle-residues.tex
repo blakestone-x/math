@@ -1,0 +1,117 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Ten formulas for triangular-array residues},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Ten formulas for triangular-array residues}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Ten formulas for Kimberling's\\[0.12em] triangular-array residues\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+We derive ten generating-function and recurrence predictions made by R. J. Mathar for Clark Kimberling's triangular-array residues. The all-ones array reduces a row to one polynomial evaluation and one endpoint. Two growing arrays give a common four-step recurrence for a full affine family. Several sequence titles use different arrays or coefficient orders from the published programs and data; we give the conventions explicitly.
+\end{abstract}
+
+\section{Residues and the all-ones array}
+In Kimberling's downstep a monomial of degree $m>0$ is replaced by row $m-1$ of a triangular array $q$, in decreasing powers, and a constant is retained. Linearity gives the residue $r_m$ of the monomial and the residue $v_n$ of an input row:
+\[
+ r_0=1,\quad r_m=\sum_{j=0}^{m-1}q(m-1,j)r_{m-1-j},
+ \qquad v_n=\sum_{k=0}^n p(n,k)r_{n-k}.
+\]
+Here the $k$th row entry multiplies the monomial of degree $n-k$. For encoding the listed entries set $P_n(y)=\sum_{k=0}^n p(n,k)y^k$. When $q=1$ identically, $r_m=\sum_{j<m}r_j=2^{m-1}$ for $m\ge1$, whereas $r_0=1$. Hence
+\begin{equation}\label{eq:ones}
+                v_n=\bigl(2^n P_n(1/2)+p(n,n)\bigr)/2 .
+\end{equation}
+Let $V(x)=\sum v_nx^n$ and $C=1-x-4x^2$. Four specializations give:
+\[
+\begin{array}{c|c|c}
+ \text{OEIS}&P_n(y)&V(x)\\ \hline
+ \oeis{193649}&F_{n+1}(y)&(1-x-2x^2)/((1-x)C)\\
+ \oeis{193656}&\sum_{k=0}^n 2^{n-k}5^k y^k&(1-2x)/((1-4x)(1-5x))\\
+ \oeis{193661}&((y+3)^n+(y+1)^n)/2&(1-8x+13x^2)/((1-x)(1-3x)(1-7x))\\
+ \oeis{193662}&L_n(y)&(2-3x-3x^2+2x^3)/((1-x)C)
+\end{array}
+\]
+Indeed $F_0=0,F_1=1$ and $L_0=2,L_1=y$, and both polynomial families satisfy $U_{j+2}=yU_{j+1}+U_j$. The scaled evaluations for the first and last rows have generating functions $1/C$ and $(2-x)/C$. Their diagonal entries are one, with the exception $L_0=2$. For the middle two rows \eqref{eq:ones} gives $3\cdot5^n-2\cdot4^n$ and $(7^n+3^n+2)/4$. These calculations prove the listed rational functions and the three-step recurrence in \oeis{193662} for $n\ge4$.
+
+The coefficient convention matters. For example the program for \oeis{193649} uses $[y^k]F_{n+1}(y)$ as row entry $k$, thereby applying downsteps to the coefficient-reversed row polynomial. Applying downsteps directly to $F_{n+1}(y)$ gives $(F_{n+1}(2)+F_{n+1}(0))/2$ instead, whose fourth term is $6$; the listed fourth term is $5$.
+
+\section{The two rounded triangles}
+The programs for \oeis{193654} and \oeis{193655} round $(n+1)(n+k+2)/2$ down and up, respectively. The quotient written in both titles instead gives identically zero even after the half-unit addition in the second title. The product in the programs gives the tabulated data.
+
+Let $m=n-k$. Before rounding, the entry is $(n+1)^2-(n+1)m/2$, a half-integer with odd numerator precisely when $n$ is even and $m$ is odd. Since $\sum_{m=0}^n r_m=2^n$ and $\sum_{m=0}^n mr_m=1+(n-1)2^n$, we obtain, with the upper sign for rounding up,
+\[
+ v_n^\pm=\frac{(n+1)(n+3)2^n-(n+1)}2
+          \ \pm\ {\bf1}_{2\mid n}\frac{2^n-1}{6}.
+\]
+The correction follows by summing $r_m/2$ over odd $m\le n$ for even $n$. Summing geometric series and their first two derivatives gives the two proposed numerators
+\begin{align*}
+ N_-&=1+2x-4x^2-4x^3+8x^5,\\
+ N_+&=1+2x-3x^2-9x^3+8x^4+4x^5,
+\end{align*}
+over their common denominator $(1+x)(1+2x)(1-x)^2(1-2x)^3$.
+
+\section{An affine array and the binomial transform}
+For any constant $c$, put $q(i,j)=i+j+c$ and $p(n,k)=\binom nk$. This is how the programs generate \oeis{193658} ($c=0$) and \oeis{193659} ($c=1$). The resulting $v$ is the binomial transform of $r$. Write $R(u)=\sum r_ju^j$. Direct substitution in the monomial recurrence gives
+\[
+ r_n=\sum_{j=0}^{n-1}(2n-2-j+c)r_j .
+\]
+Subtracting successive sums gives $r_n=(n+c)r_{n-1}+2\sum_{j=0}^{n-2}r_j$ for $n\ge2$, and then
+$r_n=(n+1+c)r_{n-1}-(n-3+c)r_{n-2}$ for $n\ge3$.
+The initial terms are $1,c,c^2+2c+2$. Equivalently,
+\[
+ (1-(2+c)u+(c-1)u^2)R-u^2(1-u)R'=(1-u)^2.
+\]
+The binomial transform gives $V(x)=(1-x)^{-1}R(x/(1-x))$. Substitution into the differential equation gives
+\[
+ (1-x)\bigl(1-(4+c)x+(3+2c)x^2-2x^3\bigr)V
+       -x^2(1-2x)(1-x)^2 V'=(1-2x)^2 .
+\]
+Thus for $n\ge4$,
+\[
+\begin{split}
+0={}&v_n-(n+4+c)v_{n-1}+(4n-1+3c)v_{n-2}\\
+   &+(10-5n-2c)v_{n-3}+2(n-3)v_{n-4}.
+\end{split}
+\]
+Both of Mathar's recurrences follow. The titles assign different roles to the arrays. Reading \oeis{193658} literally with $q=1$, $p(n,k)=n+k$ gives $(n+1)2^n-1$, starting with zero. For the title of \oeis{193659}, Pascal downsteps generate the Bell numbers $r_j$ by their defining binomial recurrence; the affine input $p(n,k)=n+k+1$ then gives $v_1=5$. The two tabulated sequences start $1,1$ and $1,2$.
+
+\section{Two further kernels}
+For \oeis{193663}, $q(i,j)=j+1$ gives
+\[
+ R(x)=1+\frac{x}{(1-x)^2}R(x)=\frac{(1-x)^2}{1-3x+x^2}.
+\]
+Consequently $r_1,r_3,\ldots$ have generating function $(1+z)/(1-7z+z^2)$, by taking the odd part of $R$. For $P_n(y)=F_n(y)$ the nonzero entries occur at $k=n-1-2h$, with value $\binom{n-1-h}{h}$, by the Fibonacci recurrence. Summing first over $n\ge2h+1$, the binomial series gives
+\[
+ V(x)=\frac{x}{1-x}\sum_{h\ge0}r_{2h+1}
+                  \left(\frac{x^2}{1-x}\right)^h
+     =\frac{x(1-x+x^2)}{1-2x-6x^2+7x^3+x^4}.
+\]
+
+Finally, the program for \oeis{193665} takes $p(n,k)=q(n,k)=(n+1)(k+1)$, the triangle \oeis{075362}. Its title links to \oeis{075392}, an unrelated entry. With the programmed array, $v_n=r_{n+1}$ and
+\[
+  R=1+xV,\qquad V=\left(\frac{xR}{(1-x)^2}\right)' ,
+\]
+the latter identity multiplying the $n$th convolution coefficient by $n+1$. Elimination gives
+\[
+ ((1-x)^3-2x)V-x^2(1-x)V'=1+x.
+\]
+Coefficients at $n\ge3$ yield the last proposed recurrence,
+$v_n-(n+4)v_{n-1}+(n+1)v_{n-2}-v_{n-3}=0$.
+
+\paragraph{Sources.}
+The ten linked entries were contributed by C. Kimberling. Their generating-function and recurrence conjectures are dated February 19, 2015 and attributed to R. J. Mathar. The conventions and discrepancies above follow their respective programs, original downstep definition, and data. All series operations can be read in formal power series over the rationals.
+\end{document}

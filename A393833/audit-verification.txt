@@ -1,0 +1,18 @@
+Independent A393833 audit compilation
+Date: November 26, 2026 (America/Chicago)
+Reviewer: scout_sequences, separate from proof-authoring agent
+Input: exact copy of output/batch6/A393833/Proof.lean
+Command: /workspace/scratch/5f072ff518ad/lean-runtime/lean-4.19.0-linux/bin/lean -o Proof.olean Proof.lean
+Isolated directory: scout_sequences/batch6/audit-A393833
+LEAN_PATH: existing pinned mathlib and transitive package compiled libraries
+Proof.lean SHA-256 before: 0a2b108259cfe2f5fb95aa986c45f580d2c0fdbb1322411eb47ed240fdaeac76
+Proof.lean SHA-256 after: 0a2b108259cfe2f5fb95aa986c45f580d2c0fdbb1322411eb47ed240fdaeac76
+source.seq SHA-256: b7bdfce372b42c539af3cf69ed9099891a260237d6400b2fde1ae14ad391ea39
+
+'A393833.prime_power_residue_list' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A393833.arbitrarily_large_constant_lists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A393833.arbitrarily_large_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A393833.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A393833.exists_least' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0

@@ -1,0 +1,63 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.87in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Zeros of iterated divisor sums},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Zeros of iterated divisor sums}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\small
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Zeros of iterated divisor sums\\[0.12em] of Ramanujan's tau function\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Gary W. Adamson asked whether the $24$th iterate of the divisor-sum operator on Ramanujan's $\tau$ is the only positive iterate with a zero, and whether this iterate has infinitely many zeros. The second answer is yes: it vanishes at every integer congruent to $2$ modulo $4$. The first answer is no: the $16744$th iterate vanishes at $7$. The Sato--Tate theorem supplies infinitely many distinct exceptional iteration counts, each with a positive-density set of zero indices.
+\end{abstract}
+
+Let $\tau(n)$ be the coefficient of $q^n$ in $\Delta(q)=q\prod_{j\ge1}(1-q^j)^{24}$. Set $f_0=\tau$ and
+\[
+                      f_{k+1}(n)=\sum_{d\mid n}f_k(d).
+\]
+Entry \oeis{128382} is $f_{24}$. The inverse M\"obius transform here is the divisor-sum operation. Andrew Howroyd previously recorded the multiplicativity of this sequence, and Jianing Song gave its Dirichlet series in the entry.
+
+\begin{theorem}
+For every prime $p$ and $k\ge0$,
+\[
+             f_k(p)=\tau(p)+k .
+\]
+If $\tau(p)<0$, the positive iterate $k=-\tau(p)$ vanishes for every $n$ divisible by $p$ exactly once. The set of such $n$ has natural density $(p-1)/p^2$.
+\end{theorem}
+\begin{proof}
+Since $f_k(1)=1$, the divisors $1,p$ give $f_{k+1}(p)=1+f_k(p)$, proving the formula by induction. The normalized Hecke eigenform $\Delta$ has multiplicative coefficients. Divisor summation preserves multiplicativity: for coprime $a,b$, each divisor of $ab$ splits uniquely as a divisor of $a$ times a divisor of $b$. Thus when $p\nmid m$, one has $f_k(pm)=f_k(p)f_k(m)$. Multiples of $p$ excluding multiples of $p^2$ have density $1/p-1/p^2$.
+\end{proof}
+
+The defining product of $\Delta$ begins
+\[
+ q-24q^2+252q^3-1472q^4+4830q^5-6048q^6-16744q^7+O(q^8).
+\]
+Taking $p=2$ gives $f_{24}(4r+2)=0$ for every $r\ge0$. Taking $p=7$ gives $f_{16744}(7)=0$, as well as zeros at all indices with $7$-adic valuation one. These two deductions settle the two assertions in \oeis{128382} using only the displayed coefficients and multiplicativity.
+
+\begin{corollary}
+Infinitely many distinct positive iteration counts give zero sets of positive lower density.
+\end{corollary}
+\begin{proof}
+The Sato--Tate theorem for the non-CM eigenform $\Delta$ asserts equidistribution of $\tau(p)/(2p^{11/2})$ with density $(2/\pi)\sqrt{1-x^2}$ on $[-1,1]$. The interval $[-1,-1/2]$ has positive measure, so for infinitely many unbounded primes $p$ one has $-\tau(p)\ge p^{11/2}$. These positive integers are unbounded. Apply the theorem above to each corresponding iteration count.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{oeis} G. W. Adamson, OEIS \oeis{128382}, 2007. See also \oeis{000594} and the 2018 comments by A. Howroyd and J. Song.
+\bibitem{st} T. Barnet-Lamb, D. Geraghty, M. Harris and R. Taylor, \emph{A family of Calabi--Yau varieties and potential automorphy II}, Publ. Res. Inst. Math. Sci. \textbf{47} (2011), 29--98. \href{https://doi.org/10.2977/PRIMS/31}{doi:10.2977/PRIMS/31}.
+\end{thebibliography}
+\end{document}

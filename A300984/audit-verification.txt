@@ -1,0 +1,13 @@
+Independent fresh compilation of the exact packaged A300984 source.
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+Fresh isolated audit directory precedes all dependencies on LEAN_PATH.
+
+$ lean -o Proof.olean Proof.lean
+'A300984.member_ge_676' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A300984.squarefreeSum_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A300984.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A300984.two_squared_prime_divisors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A300984.strengthened_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Proof.lean: 70737066f7bb1896c29184752cf3cb9f5741e5930646e8d2c037021b352490c3

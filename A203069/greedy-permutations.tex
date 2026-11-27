@@ -1,0 +1,114 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\hypersetup{pdftitle={Greedy composite power-sum permutations},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Greedy composite power-sum permutations}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Bounded displacement for greedy\\[0.12em] composite power-sum permutations\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Starting from $1$, take at each step the least unused positive integer of opposite parity whose $d$th power added to the previous $d$th power is composite. For every fixed positive integer $d$ this gives a permutation of bounded displacement. Every positive integer $m$ occurs in OEIS \oeis{203069} by position $m+2000$, answering a question recorded by N.~J.~A.~Sloane. For the square-sum rule \oeis{203077}, the first displacement exceeding six in absolute value occurs at position $11917$ and equals eight.
+\end{abstract}
+
+\section{A greedy path with two ordered vertex classes}
+Give each of two disjoint classes ranks $1,2,\ldots$. Fix a bipartite graph of allowed pairs. Begin at rank $1$ of the first class. After each step, choose the unused neighbor of least rank in the opposite class. For $L\ge1$, let $B(L)$ be the largest possible number of nonneighbors of one fixed vertex in an interval of at most $L$ consecutive ranks of the opposite class. Take the maximum over both classes and all vertices.
+
+\begin{theorem}\label{thm:path}
+Suppose positive integers $U,V$ satisfy $B(U+V+1)\le U$ and $B(2(U+V)+1)\le V$. The process visits every vertex, and at the $s$th visit to either class the selected rank satisfies $s-V\le r_s\le s+U$.
+\end{theorem}
+\begin{proof}
+Induct in chronological order on the visits, maintaining two statements for each class: at its $s$th visit the chosen rank is at most $s+U$, and afterwards all positive ranks through $s-V$ have been used. The seed satisfies both statements. At visit zero coverage is vacuous.
+
+Suppose the next visit to one class is its $s$th. Among its first $s+U$ ranks at least $U+1$ remain unused. Previous coverage places all these unused ranks in $[\max(1,s-V),s+U]$. At most $U$ are forbidden by the current vertex, so the visit exists and the chosen rank is at most $s+U$. Previous coverage also gives the lower bound $r_s\ge s-V$.
+
+It remains to cover $m=s-V$ if $m\ge1$. Suppose $m$ is still unused. At least $V+1$ of this class's first $s$ selections have rank greater than $m$, since at most $m-1$ can be smaller. Each such selection, say at its $h$th visit, had an unused smaller alternative $m$. Its predecessor must therefore be a nonneighbor of $m$. The seed cannot be one of these selections. The predecessors are distinct.
+
+A selection greater than $m$ also has rank at most $h+U$, so $h\ge m-U+1$. Its predecessor was visit $g=h$ or $g=h-1$ to the other class. That predecessor has rank at least $g-V$ by coverage immediately before its own selection, and at most $g+U$ by the previously established bound. Hence all these predecessor ranks lie in
+\[
+ [m-U-V,s+U]=[m-U-V,m+U+V].
+\]
+There are at most $V$ nonneighbors of $m$ there. This contradicts the existence of $V+1$ distinct predecessors and finishes the induction. Each rank $m$ is covered by visit $m+V$ of its class.
+\end{proof}
+
+\section{The power-sum rule}
+For fixed $d\ge1$, put $a_d(1)=1$. The classes are the odd and even positive integers, of ranks $r$ at $2r-1$ and $2r$, respectively. Allow an edge between $u,v$ exactly when $u^d+v^d$ is composite. Such a sum is odd and at least three.
+
+\begin{lemma}\label{lem:sieve}
+For these classes, $B(L)/L\to0$ as $L\to\infty$, uniformly in the fixed vertex.
+\end{lemma}
+\begin{proof}
+Take any finite set $\mathcal P$ of primes $p\equiv1\pmod{2d}$ and put $Q=\prod_{p\in\mathcal P}p$. For each $p$, the cyclic group of nonzero residues contains an element $\lambda_p$ of order $2d$, so $\lambda_p^d=-1$. For fixed $u$, all $v\equiv\lambda_pu\pmod p$ give $p\mid u^d+v^d$, including when $p\mid u$. Since $p$ is odd, this excludes one residue class of the rank of $v$ modulo $p$ from yielding a prime sum, apart from the possibility $u^d+v^d=p$. For each $p$ equality occurs for at most one $v$, by strict monotonicity.
+
+The Chinese remainder theorem leaves $\varphi(Q)=\prod_{p\in\mathcal P}(p-1)$ rank classes modulo $Q$ avoiding all the specified divisibilities. On an interval of length $L$, consequently,
+\[
+ B(L)\le (L/Q+1)\varphi(Q)+|\mathcal P|.
+\]
+For fixed $\mathcal P$, the limiting upper proportion is at most $\prod_{p\in\mathcal P}(1-1/p)$. The reciprocal primes in the reduced residue class $1\bmod 2d$ have divergent sum by Dirichlet's theorem in its reciprocal-sum form \cite{davenport}. The product can therefore be made arbitrarily small.
+\end{proof}
+
+\begin{theorem}
+For every positive integer $d$, $a_d$ permutes the positive integers and
+\[
+                      a_d(n)=n+O_d(1).
+\]
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:sieve} gives $B(4D+1)\le D$ for all sufficiently large $D$. Apply Theorem~\ref{thm:path} with $U=V=D$. Position $2s-1$ selects an odd number and position $2s$ an even number, so rank displacement at most $D$ gives integer displacement at most $2D$.
+\end{proof}
+
+In degree one this resolves Sloane's permutation question for Zak Seidov's \oeis{203069}, inspired by an idea of \'Eric Angelini. In degree two it gives $a_2(n)/n\to1$ and a bounded additive error, making precise the asymptotic issue raised in Seidov's \oeis{203077}. The suggested six-place bound fails. Exact greedy enumeration gives
+\[
+(a_2(11914),\ldots,a_2(11920))
+   =(11914,11915,11920,11925,11916,11917,11922).
+\]
+The accompanying verifier tests every unused candidate in increasing order and decides primality by exact trial division. All positions through $11916$ have displacement at most six. The sharp uniform constants in degrees one and two are undetermined here.
+
+For context, if $d$ has an odd divisor $b>1$, write $d=bc$. The factor $u^c+v^c$ divides $u^d+v^d$ and is strictly between $1$ and that sum. Every edge is then allowed and the permutation is the identity.
+
+\section{An explicit bound in degree one}
+\begin{corollary}
+For the sum rule, $n-2000\le a_1(n)\le n+1000$ at every index. The occurrence of $m$ consequently lies between positions $m-1000$ and $m+2000$.
+\end{corollary}
+\begin{proof}
+We show $B(1501)\le500$. Splitting an interval of length $3001$ into two intervals of lengths $1501$ and $1500$ then gives $B(3001)\le1000$. Theorem~\ref{thm:path} applies with $U=500$, $V=1000$.
+
+For fixed previous number, the possible sums on $L=1501$ consecutive ranks are $L$ consecutive odd numbers. Shorter intervals can be extended to this length. If any of these sums is at most $37$, all are at most $3037$, which has only $435$ primes at or below it. Otherwise each prime sum avoids divisibility by every odd prime through $37$. Put $W=3\cdot5\cdot7\cdot11\cdot13=15015$ and $\mathcal P=\{17,19,23,29,31,37\}$. In rank coordinates the classes forbidden by this divisibility test are all translates of multiples of the respective primes: for a progression $2j+b$, solve $2s\equiv b$ modulo the product of the odd primes and shift to $j+s$.
+
+Write $M(h),m(h)$ for the maximum and minimum counts of integers coprime to $W$ in $h$ consecutive positions. In any rank interval of length $L$, the multiples of $p\in\mathcal P$ eliminate at least $m(\lfloor L/p\rfloor)$ of the coprime positions. Indeed dividing the multiples by $p$ gives consecutive integers and preserves coprimality to $W$. An intersection for distinct $p,q$ accounts for at most $M(\lceil L/(pq)\rceil)$. The first two inclusion--exclusion corrections therefore give the upper bound
+\[
+ M(L)-\sum_{p\in\mathcal P}m(\lfloor L/p\rfloor)
+       +\sum_{p<q\in\mathcal P}M(\lceil L/(pq)\rceil)=580-116+35=499.
+\]
+Here are all the finite extrema used:
+\[
+\begin{array}{c|rrrrrr}
+ h&88&79&65&51&48&40\\\hline m(h)&28&26&20&15&15&12
+\end{array}
+\qquad
+\begin{array}{c|rrrrr}
+ h&1501&5&4&3&2\\\hline M(h)&580&4&3&2&2 .
+\end{array}
+\]
+To reproduce the table form $C_0=0$, $C_{j+1}=C_j+{\bf1}_{\gcd(j,W)=1}$ up to $j=2W-1$ and take the extrema of $C_{s+h}-C_s$ for $0\le s<W$. Periodicity proves this covers every starting position. The accompanying verifier evaluates these finite counts and the prime count by integer arithmetic.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{davenport} A. V. Sutherland, \emph{Dirichlet $L$-functions and primes in arithmetic progressions}, MIT 18.785, \href{https://ocw.mit.edu/courses/18-785-number-theory-i-fall-2021/mit18_785f21_lec18.pdf}{lecture 18}, 2021. The positive Dirichlet density gives divergence of the reciprocal sum by comparison as the Dirichlet variable decreases to one.
+\bibitem{oeis} OEIS Foundation Inc., entries \oeis{203069} and \oeis{203077}. Z. Seidov, 2011; N. J. A. Sloane's permutation question, 2021.
+\end{thebibliography}
+\end{document}

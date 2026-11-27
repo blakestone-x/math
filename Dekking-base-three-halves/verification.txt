@@ -1,0 +1,59 @@
+November 26, 2026
+Lean 4.19.0 (6caaee842e94), mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+
+Two builds compiled every project module from source in separate project directories using the pinned mathlib dependency cache.
+
+The hypothesis GlobalLetterTheorem is the full-prefix statement of Cassaigne, Espinoza, Rigo and Stipulanti, Theorem 18. The Lean theorem factor_frequencies takes it as an explicit argument. Repetitions.lean has no external mathematical hypothesis.
+
+First lake build
+✔ [2793/2800] Built Estimates
+ℹ [2794/2800] Built Repetitions
+info: ././././Repetitions.lean:293:0: 'ThreeHalves.t_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:294:0: 'ThreeHalves.t_attains' depends on axioms: [propext, Quot.sound]
+info: ././././Repetitions.lean:295:0: 'ThreeHalves.x_fifth_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:296:0: 'ThreeHalves.x_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:297:0: 'ThreeHalves.x_attains' depends on axioms: [propext, Quot.sound]
+✔ [2795/2800] Built Decoding
+ℹ [2796/2800] Built Frequencies
+info: ././././Frequencies.lean:127:0: 'ThreeHalves.Frequency.t_word_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2797/2800] Built Sibling
+info: ././././Sibling.lean:92:0: 'ThreeHalves.Frequency.both_word_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2798/2800] Built Symmetry
+info: ././././Symmetry.lean:281:0: 'ThreeHalves.Frequency.normalized_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Symmetry.lean:282:0: 'ThreeHalves.Frequency.sibling_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2800] Built Dekking
+info: ././././Dekking.lean:100:0: 'ThreeHalves.Frequency.factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Dekking.lean:101:0: 'ThreeHalves.Frequency.conjectured_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Dekking.lean:102:0: 'ThreeHalves.Frequency.fifth_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Second lake build
+✔ [2793/2800] Built Estimates
+ℹ [2794/2800] Built Repetitions
+info: ././././Repetitions.lean:293:0: 'ThreeHalves.t_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:294:0: 'ThreeHalves.t_attains' depends on axioms: [propext, Quot.sound]
+info: ././././Repetitions.lean:295:0: 'ThreeHalves.x_fifth_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:296:0: 'ThreeHalves.x_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Repetitions.lean:297:0: 'ThreeHalves.x_attains' depends on axioms: [propext, Quot.sound]
+✔ [2795/2800] Built Decoding
+ℹ [2796/2800] Built Frequencies
+info: ././././Frequencies.lean:127:0: 'ThreeHalves.Frequency.t_word_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2797/2800] Built Sibling
+info: ././././Sibling.lean:92:0: 'ThreeHalves.Frequency.both_word_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2798/2800] Built Symmetry
+info: ././././Symmetry.lean:281:0: 'ThreeHalves.Frequency.normalized_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Symmetry.lean:282:0: 'ThreeHalves.Frequency.sibling_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2800] Built Dekking
+info: ././././Dekking.lean:100:0: 'ThreeHalves.Frequency.factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Dekking.lean:101:0: 'ThreeHalves.Frequency.conjectured_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Dekking.lean:102:0: 'ThreeHalves.Frequency.fifth_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Independent finite checks, Python 3.12.14
+Literal inverse-image checks: 12276 cylinder/phase/word combinations.
+Exact mass, symmetry, marginal and transfer checks through length 13: 32766 word/sequence cases.
+t: 1000000 literal bits, pair counts [299886, 200000, 199999, 300114].
+x: 1000000 literal bits, pair counts [99907, 400000, 399999, 100093].
+Both runs of verify.py completed successfully. The run compares every start with an available fivefold window for periods 1 through 64 in each prefix. Pair count order is 00, 01, 10, 11.
+
+Manuscript compiled with latexmk. The PDF has four letter-size pages, with resolved cross-references and no overfull boxes.

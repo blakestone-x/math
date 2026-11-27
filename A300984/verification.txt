@@ -1,0 +1,22 @@
+A300984 packaged verification
+Toolchain and dependencies are pinned in lean-toolchain, lakefile.lean and lake-manifest.json.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+exit status: 0
+
+$ lake --version
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+exit status: 0
+
+$ lake build
+ℹ [1014/1015] Built Proof
+info: ././././Proof.lean:237:0: 'A300984.member_ge_676' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:238:0: 'A300984.squarefreeSum_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:239:0: 'A300984.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:240:0: 'A300984.two_squared_prime_divisors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:241:0: 'A300984.strengthened_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+exit status: 0
+
+SHA256 Proof.lean: 70737066f7bb1896c29184752cf3cb9f5741e5930646e8d2c037021b352490c3
