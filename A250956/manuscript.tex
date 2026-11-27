@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Rise sets and a sharp gluing bound for binary arrays avoiding one checkerboard}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+A binary array avoids an oriented checkerboard if no contiguous two-by-two block equals $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$. We count fixed-width arrays with a matrix indexed by nonconsecutive sets of row rises, then quotient by reflection. Exact reduced generating functions prove all seven empirical column recurrences in OEIS A250956 and establish their minimal orders. We also find the minimal orders at widths nine through twelve. A one-column gluing theorem gives a worst-case sharp extension count and certified bounds for the exponential growth per cell of square arrays.
+\end{abstract}
+
+\section{A transfer matrix indexed by row rises}
+Let $Z(h,w)$ be the number of valid $h\times w$ arrays with labeled positions and open boundaries. There is one empty array at $h=0$. For binary entries, the maximum on the main diagonal is strictly smaller than the minimum on the other diagonal exactly when the block is $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$. Thus Hardin's A250956 is $T(n,k)=Z(n+1,k+1)$ for $n,k\geq1$ \cite{hardin}. The transpose preserves the forbidden block.
+
+Let $\mathcal S_w$ be the subsets of $\{1,\ldots,w-1\}$ with no consecutive elements. The rises of a row $b$ are the positions where $b_jb_{j+1}=01$. Its drops are the positions with $b_jb_{j+1}=10$. Both sets belong to $\mathcal S_w$. If the previous row has rise set $I$, the next row is legal precisely when its drops avoid $I$.
+
+For $0\leq a<b\leq w$ write $E_I(a,b)=\#\{j:a<j<b,\ j\notin I\}$. If $J=\{j_1<\cdots<j_k\}$ is nonempty, put
+\begin{equation}
+ M_{I,J}=(1+E_I(0,j_1))(1+E_I(j_k,w))
+           \prod_{s=1}^{k-1} E_I(j_s,j_{s+1}).
+ \label{eq:transfer}
+\end{equation}
+Set $M_{I,\varnothing}=w+1-|I|$. The vector $e_{\varnothing}$ is the coordinate vector for the empty set, and $\mathbf1$ is the all-ones vector.
+
+\begin{theorem}
+For every $w\ge1$ and $h\ge0$,
+\[
+ Z(h,w)=e_{\varnothing}^{\mathsf T}M^h\mathbf1.
+\]
+After reflection the same formula holds for a matrix of size $r_w=(F_{w+1}+s_{w-1})/2$, where $F_0=0,F_1=1$, $s_{2m}=F_{m+1}$ and $s_{2m+1}=F_{m+3}$. Hence $\sum_{h\ge0}Z(h,w)x^h$ is rational, with reduced denominator degree at most $r_w$.
+\end{theorem}
+\begin{proof}
+A row with given rises is nonincreasing between successive rises. Between $j_s$ and $j_{s+1}$ it starts at one and ends at zero, giving a single drop at an eligible edge strictly between them. The initial part ends at zero and may start at zero, or else has one eligible drop. The terminal part starts at one and may stay one, or has one eligible drop. The choices are independent, which proves \eqref{eq:transfer}. With no rise, one has the two constant words or one eligible drop. Multiplication by $M$ counts legal next rows, and an artificial previous row with no rises imposes no restriction.
+
+The reflection $j\mapsto w-j$ preserves \eqref{eq:transfer} if applied to both sets. Group the target sets in each reflection orbit, summing the corresponding entries of $M$ in a representative source row. This yields a quotient $K$ acting on vectors constant on the orbits. It gives the same counts because $\mathbf1$ is constant and the empty-set orbit is a singleton. The number of independent subsets of a path of $w-1$ vertices is $F_{w+1}$, by splitting on the final vertex. For a path of $2m$ vertices with $m\ge1$, a reflection-invariant independent subset excludes both central vertices and is determined by the first $m-1$ vertices. For $2m+1$ vertices it is determined by an independent subset of the first $m+1$ vertices. The empty path has one subset. This gives the stated counts of fixed points and orbits. Finally the generating function is $e_{\varnothing}^{\mathsf T}(I-xK)^{-1}\mathbf1$.
+\end{proof}
+
+\section{Minimal column recurrences}
+Put $G_w(x)=\sum_{n\ge1}Z(n+1,w)x^n$ and write it in lowest terms, with denominator $Q_w(0)=1$. The row widths $2,3$ correspond to the shifted sequences A001353 and A003950 already indicated in A250956. For widths $4,\ldots,8$, Hardin lists the coefficients in A250951--A250955. Barker also gives empirical generating functions for widths $4,5$ \cite{columns}.
+
+\begin{theorem}
+The seven empirical column recurrences of A250956 hold with the minimal constant-coefficient orders shown below. At widths $9$ through $12$ the orders are $23,39,58,97$, respectively.
+\[
+\begin{array}{c|rrrrrrrrrrr}
+w&2&3&4&5&6&7&8&9&10&11&12\\ \hline
+r_w&2&2&4&5&9&12&21&30&51&76&127\\
+\deg Q_w&2&1&3&4&7&9&16&23&39&58&97
+\end{array}
+\]
+\end{theorem}
+\begin{proof}
+Here is a finite exact calculation, specified by its integer matrices and polynomial operations. Write $r=r_w$, and compute $q(x)=x^r\det(x^{-1}I-K)=\det(I-xK)$. Successive matrix products give $b_i=e_{\varnothing}^{\mathsf T}K^i\mathbf1$ for $0\leq i<r$. Form the polynomial $p$ of degree less than $r$ with $[x^k]p=\sum_{i=0}^k [x^i]q\, b_{k-i}$. The adjugate formula proves $p/q=\sum_{h\ge0}Z(h,w)x^h$: the unreduced numerator has degree at most $r-1$, so the displayed coefficients determine it entirely. Next form
+\[
+ G_w(x)=\frac{p(x)-(1+2^w x)q(x)}{xq(x)}.
+\]
+Cancel $x$ from the numerator and divide the resulting numerator and $q$ by their polynomial gcd. A constant-coefficient recurrence holding eventually is equivalent to a polynomial multiplier making $G_w$ polynomial. Every such multiplier is divisible by $Q_w$, which proves minimality.
+
+For reproducibility the resulting coefficients of $Q_w$, in ascending order, are
+\[
+\begin{array}{c|l}
+2&(1,-4,1)\\
+3&(1,-7)\\
+4&(1,-15,24,8)\\
+5&(1,-27,57,46,-30)\\
+6&(1,-57,516,-637,-2799,3639,100,-429)\\
+7&(1,-103,1452,-1999,-25412,90159,-84285,-261,20412,-4212).
+\end{array}
+\]
+For $w=8$ the list is
+\[
+\begin{split}
+(&1,-217,9657,-124578,-170544,10015311,-58649394,123233697,\\
+ &48475236,-586861054,648215662,98069529,-412774803,157024008,\\
+ &1439235,-9306900,1445850).
+\end{split}
+\]
+In each case the reduced numerator has degree at most $\deg Q_w$, so the source recurrence applies for $n>\deg Q_w$. For instance, when $w=4$ the ordered orbit representatives are $\varnothing,\{1\},\{1,3\},\{2\}$. The quotient and its generating function are
+\[
+ K=\begin{pmatrix}5&6&1&4\\4&5&1&2\\3&4&1&1\\4&4&0&4\end{pmatrix},
+ \qquad G_4=\frac{x(209-391x-128x^2)}{1-15x+24x^2+8x^3}.
+\]
+At width five the numerator is $x(780-1852x-1444x^2+960x^3)$. These match the two empirical numerators in the entries. The companion program \texttt{verify.py} performs the specified rational-polynomial calculation, checks the seven printed recurrences and both numerators by exact equality, and outputs the wider-width polynomials on request.
+\end{proof}
+
+\section{A sharp one-column gluing estimate}
+\begin{lemma}
+For any two prescribed binary columns of height $h\ge1$, there are at least $2^{\lceil h/2\rceil}$ ways to insert a single column between them so that the two resulting pairs of columns avoid the forbidden block. This bound is attained for every $h$.
+\end{lemma}
+\begin{proof}
+Let $A$ be the rises of the left boundary, read downwards, and $B$ the drops of the right boundary. At edge $i$ the spacer cannot drop if $i\in A$ and cannot rise if $i\in B$. A constant bit transition is always possible. The zero-one transition matrices, with the current bit indexing rows, are the all-ones $J$, the identity $I$, the upper unitriangular $U$ with upper-right entry one, and the lower unitriangular $L$ with lower-left entry one.
+
+Each of $A,B$ is nonconsecutive. Thus any two consecutive edge matrices either include $J$, or are $UL$ or $LU$ in that order of multiplication. Indeed, $I$ forces the adjacent matrix to be $J$, and $U$ or $L$ can only be followed by the opposite triangular matrix or $J$. In every permitted case the product has both row sums at least two. Starting from either first bit and pairing the $h-1$ edges gives at least $2\cdot 2^{\lfloor(h-1)/2\rfloor}=2^{\lceil h/2\rceil}$ spacer columns. An unpaired edge permits the current bit to stay. For sharpness take the alternating boundaries $0101\ldots$ and $1010\ldots$, which force equality of each pair of spacer bits at positions $2i-1,2i$ and leave all other transitions free.
+\end{proof}
+
+\begin{corollary}
+Let $\rho_w$ be the spectral radius of the width-$w$ quotient. The square-array growth constant $\Lambda=\lim_{N\to\infty}Z(N,N)^{1/N^2}$ exists and satisfies, for every $w\ge1$,
+\[
+ (\sqrt{2}\,\rho_w)^{1/(w+1)}\leq \Lambda\leq \rho_w^{1/w}.
+\]
+\end{corollary}
+\begin{proof}
+The entry from any state to the empty set is positive, and every state is reachable from the empty set in one step. Thus $K^2$ is positive. By the Perron--Frobenius theorem, $Z(h,w)^{1/h}$ tends to $\rho_w$ as $h$ increases. For an upper bound split an $N$-wide square into $\lfloor N/w\rfloor$ strips of width $w$. Each remaining cell has at most two choices. For a lower bound take $k=\lfloor N/(w+1)\rfloor$ independently chosen strips of width $w$ and insert a spacer between each consecutive pair. Each gap admits at least $2^{\lceil N/2\rceil}$ choices independently. Fill remaining boundary columns with zeros, which create no forbidden block. Taking $N^2$-th roots bounds the liminf and limsup by the two displayed expressions. Since $\rho_w\leq2^w$, the difference between the logarithms of the upper and lower expressions is at most $(\log2)/(2(w+1))$. Sending $w$ to infinity proves existence.
+\end{proof}
+
+\paragraph{Numerical certificate.}
+In the full width-twenty matrix, take $v=M^6\mathbf1$. Integer arithmetic gives the strict componentwise bounds
+\[
+             306386v<Mv<306388v .
+\]
+Iterating these inequalities, or using the positive Perron eigenvector for the transpose, places $\rho_{20}$ strictly between the two integers. The corollary then gives
+\[
+                       1.855317<\Lambda<1.880675 .
+\]
+The companion file \texttt{entropy.py} verifies the two vector comparisons and both decimal endpoints with integer powers. For efficient multiplication it groups words $b$ by their drop set $D_b$, adding $v_{R_b}$ for each word with rise set $R_b$. It sums these weights over all $D_b$ disjoint from the source rise set. This is exactly the definition of $Mv$.
+
+\paragraph{Scope.}
+The column recurrence coefficients and the two small-width numerators originate in the cited OEIS entries. Fixed-width transfer enumeration is a standard technique. The rise-set product, reflection reduction, gcd calculation and separator estimate provide the arguments here.
+
+\begin{thebibliography}{9}
+\bibitem{hardin} R. H. Hardin, A250956, OEIS Foundation Inc., November 28, 2014. \url{https://oeis.org/A250956}
+\bibitem{columns} R. H. Hardin, entries A250951--A250955, OEIS Foundation Inc., November 28, 2014. Width-four and width-five empirical generating functions by Colin Barker, November 24, 2018.
+\url{https://oeis.org/A250951}, \url{https://oeis.org/A250952}, \url{https://oeis.org/A250953}, \url{https://oeis.org/A250954}, \url{https://oeis.org/A250955}.
+\end{thebibliography}
+\end{document}
