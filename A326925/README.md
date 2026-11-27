@@ -1,5 +1,7 @@
 # A326925: irreducibility of every odd-degree derivative numerator
 
+**Companion update, November 27, 2026:** The [even-degree clause and Fibonacci/Lucas factor constants are now proved](../A326925Even/README.md), including the exact reduced-numerator bridge. Together the two packages establish the source's full odd/even factorization pattern. The present package retains its original odd-degree scope.
+
 **The odd-degree clause is proved.** Let
 
 $$
@@ -158,7 +160,7 @@ lake build
 lake env lean Proof.lean
 ```
 
-The classical binomial result is mathlib's `Polynomial.X_pow_sub_C_irreducible_of_odd`, in [KummerPolynomial.lean at the pinned revision](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/FieldTheory/KummerPolynomial.lean). No new general binomial criterion is claimed. The package contains no admissions, added axioms, unsafe declarations, or native-evaluation proof shortcuts. Main theorem dependencies are only `propext`, `Classical.choice`, and `Quot.sound`.
+The classical binomial result is mathlib's `Polynomial.X_pow_sub_C_irreducible_of_odd`, in [KummerExtension.lean at the pinned revision](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/FieldTheory/KummerExtension.lean). No new general binomial criterion is claimed. The package contains no admissions, added axioms, unsafe declarations, or native-evaluation proof shortcuts. Main theorem dependencies are only `propext`, `Classical.choice`, and `Quot.sound`.
 
 Some auxiliary golden-ratio nonpower lemmas are included, but they are not counted as additional conjecture resolutions and do not establish the even-degree clause.
 

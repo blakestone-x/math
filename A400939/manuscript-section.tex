@@ -1,0 +1,119 @@
+\section{An infinite prime family for the generalized halving Recam\'an walk}
+\label{sec:prime-division-recaman}
+
+OEIS A400939, introduced by Zlatko Damijanic on October 10, 2026,
+defines a walk that divides its preceding value by two when that produces
+an unvisited integer, and otherwise adds the current index. Its
+generalized-divisor conjecture replaces two by an integer that is not a
+power of two and predicts eventual permanent addition. We prove an
+infinite family of that conjecture, with the stronger conclusion that
+exactly one division occurs. The full conjecture and the original
+divisor-two occurrence conjecture are not settled here.
+
+For a positive integer $k$, the source rule is
+\[
+ a_k(1)=1,\qquad
+ a_k(n+1)=
+ \begin{cases}
+  a_k(n)/k,& k\mid a_k(n)\text{ and }
+       a_k(n)/k\notin\{a_k(1),\ldots,a_k(n)\},\\
+  a_k(n)+n+1,&\text{otherwise},
+ \end{cases}
+ \qquad n\ge1.
+\]
+Only the division branch requires an unvisited value. Write
+$T_n=n(n+1)/2$.
+
+\paragraph{Theorem.}
+Let $p$ be an odd prime with $p\equiv2$ or $3\pmod5$, and put
+$q=(p-1)/2$. If $q$ is not a positive triangular number, the unique
+division occurs at index $d=p$, and
+\[
+ a_p(n)=T_n\quad(1\le n<p),\qquad
+ a_p(n)=\frac{n(n+1)-p^2-1}{2}\quad(n\ge p).
+\]
+If $q$ is a positive triangular number, the unique division occurs at
+$d=p+1$, and
+\[
+ a_p(n)=T_n\quad(1\le n\le p),\qquad
+ a_p(n)=\frac{n(n+1)-(p+1)^2}{2}\quad(n\ge p+1).
+\]
+In each case, $p\nmid a_p(n)$ for every $n\ge d$. There are arbitrarily
+large primes to which this theorem applies.
+
+\paragraph{Proof.}
+If $1\le n$ and $n+1<p$, then $p\nmid T_n$: a contrary divisibility
+would imply $p\mid n(n+1)$ although neither positive factor is as large
+as $p$. Induction in the literal walk therefore gives
+$a_p(n)=T_n$ for $1\le n<p$.
+
+At the next step, the preceding value is
+$T_{p-1}=p(p-1)/2=pq$. If $q$ is unvisited, division gives
+$a_p(p)=q$, and hence
+\[
+ 2a_p(p)+p^2+1=p(p+1).
+\]
+If $q$ has appeared, the rule instead gives $a_p(p)=T_p$. The next
+proposed quotient is $q+1$. Two positive triangular numbers cannot be
+consecutive: for $i>j\ge1$,
+\[
+ T_i-T_j\ge T_{j+1}-T_j=j+1\ge2.
+\]
+Thus $q+1$ has not appeared in the triangular prefix, and
+$a_p(p+1)=(p+1)/2$. In this case,
+\[
+ 2a_p(p+1)+(p+1)^2=(p+1)(p+2).
+\]
+This initial-division argument holds for every odd prime.
+
+In the first case let $D=p^2+1$, and in the second let $D=(p+1)^2$.
+At the first division index $d$ we have
+\[
+ 2a_p(d)+D=d(d+1),\qquad D\equiv1\pmod p.
+\]
+Suppose that $2a_p(n)+D=n(n+1)$ for some $n\ge d$. If
+$p\mid a_p(n)$, reduction modulo $p$ would give $n(n+1)\equiv1$,
+and consequently
+\[
+ (2n+1)^2=4n(n+1)+1\equiv5\pmod p.
+\]
+Quadratic reciprocity, since $5\equiv1\pmod4$, identifies the quadratic
+character of $5$ modulo $p$ with that of $p$ modulo $5$. The only square
+residues modulo $5$ are $0,1,4$, so the residue classes in the theorem
+make this impossible. Hence the walk must add $n+1$. The invariant is
+preserved because
+\[
+ 2a_p(n+1)+D=n(n+1)+2(n+1)=(n+1)(n+2).
+\]
+Induction proves the stated tail and its nondivisibility. Together with
+the initial dynamics, this proves uniqueness of the division.
+
+Finally, Dirichlet's theorem gives arbitrarily large primes
+$p\equiv3\pmod5$. These primes form an infinite subfamily of the
+classification. This last step and quadratic reciprocity are credited
+classical dependencies.\hfill$\square$
+
+\paragraph{Formalization and source scope.}
+The accompanying Lean module \texttt{A400939/Proof.lean} defines the
+literal visited-value walk, explicitly excluding its auxiliary zero
+index from the visited set. The declaration
+\texttt{walk\_followsRule} proves the exact source-rule bridge;
+\texttt{first\_prime\_division} checks the first division for all odd
+primes; and \texttt{division\_at\_prime\_iff} checks the triangular test
+selecting the index. The main theorem
+\texttt{walk\_prime\_residue\_classes} proves the full prefix, unique
+division, permanent exact tail, and tail nondivisibility.
+\texttt{arbitrarily\_large\_single\_division} proves infinitude using
+mathlib's existing Dirichlet theorem. Both end theorems depend only on
+the standard Lean axioms \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}.
+
+The primary statement is pinned to OEIS A400939 revision 58,
+November 5, 2026, in OEIS data-export commit
+\texttt{df38d77b83a78d8ab5aaa501dec6e3a3db977f01}.
+Bounded exact-identifier and semantic searches of both available web
+engines, the current trureturing catalog, and its GitHub issues found
+no prior proof of this particular prime-family classification. This
+documents a bounded check rather than establishing worldwide priority.
+The package is an infinite-family partial result, not a claim that
+the entire A400939 generalized conjecture has been resolved.

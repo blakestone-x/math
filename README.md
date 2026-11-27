@@ -1,6 +1,11 @@
 # math
 math proofs
 
+- [A326925 — the even-degree factorization, completing the odd/even conjecture; Fibonacci/Lucas factor constants](A326925Even/README.md) · [Exact reduced-numerator Lean proof](A326925Even/EvenDerivative.lean)
+- [A288520/A288523 — the literal replacement-length conjecture and a stronger affine recurrence](A288523/README.md) · [Lean proof](A288523/Proof.lean)
+- [A400939 — exactly one division and an explicit permanent tail for infinitely many prime divisors (partial result)](A400939/README.md) · [Lean proof](A400939/Proof.lean)
+- [Two conjecture proofs and an infinite prime family — combined manuscript](notes/Math_Proofs_Batch9.pdf)
+
 - [A326925 — every odd-degree derivative numerator is irreducible](A326925/README.md) · [Complete Lean proof](A326925/Proof.lean)
 - [A288665/A288668 — an exact word identity and the replacement-length recurrence](A288668/README.md) · [Lean proof](A288668/Proof.lean)
 - [A134559 — a prime counterexample to the antidiagonal-product characterization](A134559/README.md) · [Lean refutation](A134559/Proof.lean)

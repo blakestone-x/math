@@ -1,0 +1,20 @@
+Independent isolated rebuild of frozen A288523 source
+Build directory: /workspace/scratch/5f072ff518ad/research/batch9/audits/A288523_independent_q4w1e8ac
+No package-local proof objects copied. Dependency cache reuse only.
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Every dependency Git HEAD matched its pinned manifest revision.
+
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:164:0: 'Kimberling288523.rewrite_tail' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:165:0: 'Kimberling288523.word_coding' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:166:0: 'Kimberling288523.length_affine' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:167:0: 'Kimberling288523.length_recurrence' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:168:0: 'Kimberling288523.original_conjecture' depends on axioms: [propext, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Proof.lean: de2cc1889b658ac2b0ca496e2186686238190c0772221d47529000101c4e8b33
+SHA256 lakefile.lean: e2adfb8d3792a9924e8b524f72f06299bdf6ade62e555fa9fe961fd173034489
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 807aa693cc9f14d9fbfbc08dbdd4ecb2ba5d6203a0c71386870944e20dcb2e86

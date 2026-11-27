@@ -1,0 +1,28 @@
+Author verification — 2026-11-27 UTC
+
+Toolchain: Lean 4.19.0, commit 6caaee842e94, x86_64-unknown-linux-gnu, Release.
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b (verified git HEAD).
+
+Procedure: copy only Proof.lean into a fresh source directory and compile
+with the pinned Lean executable against the pinned mathlib dependency cache.
+The destination contained no local Proof.olean before this compilation.
+No pre-existing compiled proof module was used.
+
+Local command:
+  python research/batch9/run_lean.py research/batch9/number_theory/final-build/Proof.lean
+
+This was a direct Lean compilation, not a claim that a clean networked lake
+checkout was built. The package includes its pinned Lake configuration and
+manifest for ordinary reproduction.
+
+Proof.lean SHA256: eada9af1cbabf1dd50de12c4a34d3a655130582e201abcdd3585c9090a76e57c
+Fresh copied source: byte-identical.
+Forbidden declaration/tactic token scan: no sorry, admit, axiom, unsafe, or native_decide tokens.
+Source snapshot Git blob: c9db5ad44bbf95b2a7d4c0f054c51901cbdaf231
+Source snapshot SHA256: 25e3cb196e3d3aee06a79fa5c8eeb8e6833b5386b3c5ac013f469f7683cfab42
+
+Compiler and axiom report:
+'PrimeDivisionRecaman.walk_prime_residue_classes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PrimeDivisionRecaman.arbitrarily_large_single_division' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0

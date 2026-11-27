@@ -1,0 +1,728 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Two conjecture proofs and an infinite prime family},pdfauthor={Blake Stone},pdfsubject={Exact source correspondence, complete proofs, and Lean verification}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Two conjecture proofs\\[3pt]and an infinite prime family}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove the even-degree factorization clause in OEIS A326925:
+every normalized degree-$2k$ numerator from the derivatives of
+$(1-x)/(1-x-x^2)$ has exactly two distinct irreducible rational factors,
+each of degree $k$. Their explicitly normalized constant terms are
+$F_{k-1}$ and $L_{k-1}$. Together with the preceding project's
+odd-degree theorem, this completes the source's odd/even factorization
+pattern. The proof uses two quadratic extensions, norm obstructions,
+and descent of conjugate factors. We also prove the A288520/A288523
+replacement-length conjecture through an exact coding of its literal
+binary scanner, obtaining a stronger affine recurrence. Finally, for
+every odd prime $p\equiv2$ or $3\pmod5$, we classify the generalized
+A400939 walk with division by $p$: it divides exactly once, at index
+$p$ or $p+1$, and then follows an explicit quadratic formula forever.
+Dirichlet's theorem certifies that this last family is infinite.
+This package leaves the generalized stopping conjecture unresolved
+outside the proved family. Three Lean packages contain complete source-definition
+bridges and independently checked proof terms. Bounded prior-work
+checks found no earlier proof of these exact assertions; no exhaustive
+historical-priority claim is made.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.65in}@{}}
+\toprule
+Source & Precisely established contribution\\
+\midrule
+A326925 & One new even-degree factorization clause, with the companion
+Fibonacci/Lucas constants; previous odd-degree work is reused and credited.\\
+A288520/A288523 & One shared conjecture on the lengths of literal replacement iterates.\\
+A400939 & An infinite prime family of the generalized stopping conjecture,
+including the unique division and the exact permanent tail.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+
+\section{A326925: the even-degree factors and their irreducibility}
+\label{sec:even}
+
+Kimberling's A326925~\cite{A326925} conjectures that every odd-degree
+polynomial in its derivative family is irreducible, and that every
+degree-$2k$ member has exactly two irreducible factors of degree $k$.
+The odd-degree assertion was proved in the preceding project
+package~\cite{previous}. Here we prove the even-degree clause and identify
+the two constant terms. This is one new factorization assertion with a
+companion constant-term result; the earlier odd-degree theorem is not
+counted again.
+
+Let
+\[
+ D=1-x-x^2,\qquad A=2x+1,\qquad B=x^2+x-1,
+\]
+and define degree-indexed polynomials by
+\[
+ P_0=-1,\quad P_1=1-x,\quad P_{N+2}=AP_{N+1}-BP_N.
+\]
+The exact source correspondence is
+\begin{equation}\label{eq:source-derivative9}
+ \left(\frac{1-x}{1-x-x^2}\right)^{(n)}
+ =\frac{n!P_{n+1}(x)}{D^{n+1}}.
+\end{equation}
+Indeed, the recurrence implies
+$DP_N'+NA P_N=N P_{N+1}$ by induction; the quotient rule then proves
+\eqref{eq:source-derivative9}. The previous formal package proves both
+identities and the representation-independent quotient rule. Thus
+degree $2k$ corresponds to derivative order $2k-1$. This indexing
+agrees with the source's displayed polynomials and executable program.
+
+Define
+\begin{equation}\label{eq:two-factors9}
+\begin{array}{lll}
+ U_0=1,&U_1=x,&U_{k+2}=AU_{k+1}-BU_k,\\
+ V_0=-1,&V_1=2-x,&V_{k+2}=AV_{k+1}-BV_k.
+\end{array}
+\end{equation}
+
+\begin{theorem}\label{thm:even9}
+For every integer $k\ge1$,
+\[
+ P_{2k}=U_kV_k,
+ \qquad \deg U_k=\deg V_k=k.
+\]
+The two factors are irreducible and coprime over $\Q$. The polynomial
+$U_k$ is irreducible even over $\Q(\sqrt5)$.
+Their constant terms are
+\[
+ U_k(0)=F_{k-1},\qquad V_k(0)=L_{k-1},
+\]
+where $F_0=0,F_1=1$ and $L_0=2,L_1=1$ are the usual Fibonacci and Lucas
+initial values. The canonical reduced numerator of the source
+derivative of order $2k-1$ is exactly $(2k-1)!\,U_kV_k$.
+\end{theorem}
+
+The first examples are
+\[
+\begin{aligned}
+ P_2&=x(2-x),\\
+ P_4&=(1+x^2)(1+4x-x^2),\\
+ P_6&=(1+3x+x^3)(3+3x+6x^2-x^3).
+\end{aligned}
+\]
+The main source records these products. The companion arrays
+A328610/A328611 exchange and change the signs of the two degree-one
+factors. Our specified normalization removes that ambiguity; we do not
+identify an unspecified factor-list position or claim their separate
+row-sum observations.
+
+\subsection{Closed forms}
+
+Put
+\[
+ u=\frac{1+\sqrt5}{2},\qquad v=1-u,\qquad K=\Q(u).
+\]
+Thus $u+v=1$, $uv=-1$, and $u\ne v$. Checking initial values and the
+common recurrence gives
+\begin{align}
+ (u-v)P_N&=v^2(x+u)^N-u^2(x+v)^N,\label{eq:p-closed9}\\
+ (u-v)U_k&=u(x+v)^k-v(x+u)^k,\label{eq:u-closed9}\\
+ V_k&=-v(x+u)^k-u(x+v)^k.\label{eq:v-closed9}
+\end{align}
+Multiplying the last two equations yields the first at $N=2k$.
+Cancellation of $u-v$ proves $P_{2k}=U_kV_k$. Using $vu^2=-u$ rewrites
+the factor formulas as
+\begin{align}
+ (u-v)U_k&=-v\big((x+u)^k+u^2(x+v)^k\big),\label{eq:u-transform9}\\
+ V_k&=-v\big((x+u)^k-u^2(x+v)^k\big).\label{eq:v-transform9}
+\end{align}
+The two leading coefficients are nonzero because $u^2\ne1$ and
+$-u^2\ne1$. Consequently both degrees are $k$.
+
+\subsection{Two irreducibility tools}
+
+\begin{lemma}[A sufficient signed binomial criterion]\label{lem:signed9}
+Let $E$ be a field, $n>0$, and $a\in E$. If neither $a$ nor $-a$ is a
+$p$th power in $E$ for any prime $p\mid n$, then $Y^n-a$ is irreducible
+over $E$.
+\end{lemma}
+
+\begin{proof}
+Express the hypothesis as $(b^p)^2\ne a^2$ for every such $p$ and $b$.
+We induct through the prime factors of $n$. The exponent one is
+immediate. Write $n=pm$ with $p$ prime. The prime-degree binomial
+criterion makes $Y^p-a$ irreducible. For $\alpha^p=a$ its root field
+has degree $p$ and
+\[
+ N_{E(\alpha)/E}(\alpha)=(-1)^p(-a),\qquad
+ N_{E(\alpha)/E}(\alpha)^2=a^2.
+\]
+If $(b^q)^2=\alpha^2$ in this field for a prime $q\mid m$, taking norms
+would give
+\[
+ \big(N_{E(\alpha)/E}(b)^q\big)^2=a^2,
+\]
+contradicting the base hypothesis. The induction hypothesis therefore
+makes $Y^m-\alpha$ irreducible. The binomial composition criterion
+then proves irreducibility of $Y^{pm}-a$.
+All these steps, including the norm and root-field dimension, are
+formalized in \path{SignedKummer.lean}. The prime and composition
+ingredients are existing mathlib theorems~\cite{kummer}. We use this
+sufficient criterion without claiming a new general classification.
+\end{proof}
+
+\begin{lemma}[Descent of exchanged factors]\label{lem:descent9}
+Suppose $F\subseteq E$, $H\in F[X]$, and $H=qr$ in $E[X]$, with
+$q,r$ coprime irreducibles. If an $F$-automorphism of $E$ sends $q$
+to $r$, then $H$ is irreducible over $F$.
+\end{lemma}
+
+\begin{proof}
+In a factorization $H=ab$ over $F$, primality makes $q$ divide one
+factor, say $a$. Applying the automorphism makes $r$ divide that same
+factor. Coprimality gives $qr\mid a$, so the other factor $b$ is a unit.
+The Lean lemma only needs a coefficient homomorphism fixing $F$ and
+sending $q$ to $r$; its two applications below are automorphisms.
+\end{proof}
+
+We also reuse the proved fractional-linear lemma: if $a\ne b$, $c\ne1$,
+and $Y^n-c$ is irreducible over a field, then
+\[
+ (X-a)^n-c(X-b)^n
+\]
+is irreducible. To see this, a root $x$ of any irreducible factor cannot
+equal $b$, and $y=(x-a)/(x-b)$ satisfies $y^n=c$. The root field thus
+has degree at least $n$. Since the displayed polynomial has degree
+$n$, its chosen irreducible factor has full degree. This is the exact
+degree argument already formalized in the previous package.
+
+\subsection{Nonpower obstructions in the two quadratic fields}
+
+\begin{lemma}\label{lem:gold9}
+In $K=\Q(u)$ neither $u$ nor $-u$ is a $p$th power for any prime $p$.
+Also $u^2$ is not a $p$th power for any odd prime $p$.
+\end{lemma}
+
+\begin{proof}
+The norm of each of $u,-u$ is $-1$. A square root in $K$ would have
+rational norm with square $-1$, which is impossible. If $b^p=u$ for an
+odd prime, then $b$ is an algebraic integer, is irrational, and has norm
+$-1$. In the positive real embedding, $1<b<u$; hence its integral trace
+$b-1/b$ lies strictly between $0$ and $1$. This is impossible.
+Replacing $b$ by $-b$ deals with $-u$.
+
+If $b^p=u^2$ for an odd prime, $b$ is an irrational algebraic integer
+of norm $1$, with $1<b<2$. Its integral trace is $b+1/b$, strictly
+between $2$ and $3$, another contradiction. In these arguments
+integrality follows because a positive power is integral, and
+irrationality follows because the specified power is irrational.
+The included unchanged \path{GoldenUnit.lean} establishes the
+quadratic degree, integrality, norms, and trace facts.
+\end{proof}
+
+By Lemma~\ref{lem:signed9}, $Y^n-u$ and $Y^n+u$ are therefore
+irreducible over $K$ for every $n>0$. The odd-exponent binomial
+criterion~\cite{kummer} and Lemma~\ref{lem:gold9} also give irreducibility
+of $Y^n-u^2$ and $Y^n+u^2$ for odd $n$.
+
+To cover even exponents in the latter plus-sign family, set $J=K(i)$,
+where $i^2=-1$. This has degree two over $K$, since $K$ is a real field.
+
+\begin{lemma}\label{lem:imaginary9}
+Neither $iu$ nor $-iu$ is a $p$th power in $J$ for any prime $p$.
+\end{lemma}
+
+\begin{proof}
+For odd $p$, the equation $b^p=\pm iu$ gives, on taking the norm $J/K$,
+\[
+ N_{J/K}(b)^p=u^2,
+\]
+contradicting Lemma~\ref{lem:gold9}.
+
+For $p=2$, write $b=a+ci$ with $a,c\in K$. The equation $b^2=\pm iu$
+gives $a^2=c^2$ and $2ac=\pm u$. Thus $a=\pm c$ and $u=\pm2c^2$.
+The norm $K/\Q$ then gives
+\[
+ -1=4N_{K/\Q}(c)^2,
+\]
+which is impossible. Unique coordinates and all the needed norm
+identities are checked in the quadratic-extension module.
+\end{proof}
+
+\begin{corollary}\label{cor:plus9}
+For every $k>0$, $Y^k+u^2$ is irreducible over $K$.
+\end{corollary}
+
+\begin{proof}
+The odd exponents were already handled. For $k=2m$,
+\[
+ Y^{2m}+u^2=(Y^m-iu)(Y^m+iu).
+\]
+Lemma~\ref{lem:imaginary9} and the signed criterion make both factors
+irreducible over $J$. They are coprime, since their constants differ.
+Complex conjugation exchanges them and fixes $K$.
+Lemma~\ref{lem:descent9} proves the conclusion.
+\end{proof}
+
+\subsection{Completion of the factorization theorem}
+
+Corollary~\ref{cor:plus9}, the fractional-linear lemma, and
+\eqref{eq:u-transform9} show that $U_k$ is irreducible over $K$ and
+hence over $\Q$ for every $k>0$.
+
+For odd $k$, irreducibility of $Y^k-u^2$ and
+\eqref{eq:v-transform9} show the same for $V_k$. For $k=2m$, set
+\[
+ q=(x+u)^m-u(x+v)^m,\qquad
+ r=-v\big((x+u)^m+u(x+v)^m\big).
+\]
+Then $V_{2m}=qr$. The irreducibility of $Y^m-u$ and $Y^m+u$,
+followed by the fractional-linear lemma, proves that $q,r$ are
+irreducible over $K$. Their base polynomials $X+u,X+v$ are coprime,
+and their two constants $u,-u$ differ, so $q,r$ are coprime.
+The nontrivial automorphism $\sigma$ of $K/\Q$ interchanges $u,v$, and
+\[
+ \sigma(q)=(x+v)^m-v(x+u)^m=r
+\]
+because $uv=-1$. Lemma~\ref{lem:descent9} proves that $V_{2m}$ is
+irreducible over $\Q$.
+
+The two expressions in \eqref{eq:u-transform9} and
+\eqref{eq:v-transform9} are coprime: their constants $u^2,-u^2$ differ,
+and $(X+u)^k,(X+v)^k$ are coprime. Nonzero scalar multiplication
+preserves this fact, and coprimality descends to $\Q$.
+Thus the two irreducible factors are distinct.
+
+It remains to justify reduction of the source rational function.
+Since $D=-(X+u)(X+v)$, equation~\eqref{eq:p-closed9} gives, for $N>0$,
+\[
+ (u-v)P_N(-u)=-u^2(v-u)^N\ne0,\qquad
+ (u-v)P_N(-v)=v^2(u-v)^N\ne0.
+\]
+Hence $P_N$ is coprime to $D$. No polynomial factor cancels in
+\eqref{eq:source-derivative9}. For derivative order $2k-1$, the
+denominator $D^{2k}$ is monic, so the canonical numerator is precisely
+$(2k-1)!\,U_kV_k$.
+
+Finally, at $x=0$ the two recurrences
+\eqref{eq:two-factors9} become additive recurrences. Their first two
+relevant values are
+\[
+ U_1(0)=0,\quad U_2(0)=1,\qquad
+ V_1(0)=2,\quad V_2(0)=1.
+\]
+They are therefore $F_{k-1}$ and $L_{k-1}$, respectively. This
+completes Theorem~\ref{thm:even9}. \hfill$\square$
+
+\paragraph{Formal endpoint and historical scope.}
+The main endpoint is
+\begin{quote}\small
+\path{A326925Even.odd_derivative_numerator_factorization}.
+\end{quote}
+It states the exact canonical numerator, irreducibility and coprimality
+of its two factors, and both degrees. The factor constants are the
+all-index theorems \path{EvenFactors.fib_constant} and
+\path{EvenFactors.lucas_constant}. The package includes all thirteen
+Lean modules and the unchanged previous dependencies.
+The exact official source exports and targeted literal and semantic
+prior-work checks are preserved. No earlier proof of the exact
+even-degree assertion was located. This bounded search does not
+certify historical priority or editorial acceptance.
+
+
+
+\section{A288523: a replacement-length conjecture}
+\label{sec:a288523}
+
+Start from the binary word $w_0=00$. At each step, scan the current word
+from left to right and make the nonoverlapping replacements
+\[
+  00\longmapsto0101,\qquad 10\longmapsto010,
+\]
+copying every unmatched letter. This is the literal operation defining
+OEIS A288520~\cite{A288520,A288523}. Kimberling conjectured that the lengths of these words
+agree with A288523. The same assertion occurs in both entries and is
+counted once here.
+
+\begin{theorem}
+Writing $L_n=|w_n|$, one has
+\[
+  (L_0,L_1,L_2,L_3,L_4)=(2,4,5,8,11)
+\]
+and
+\[
+  L_N=L_{N-1}+L_{N-2}+L_{N-3}-2L_{N-4}\qquad(N\ge5).
+\]
+In fact the shorter affine relation
+\[
+  L_{n+3}+2=L_{n+1}+2L_n\qquad(n\ge1)
+\]
+holds.
+\end{theorem}
+
+\begin{proof}
+Introduce tokens $A,B,C$ with decoded binary words
+\[
+ d(A)=01,\qquad d(B)=001,\qquad d(C)=0001
+\]
+and extend $d$ by concatenation. Define a token substitution
+\[
+ h(A)=B,\qquad h(B)=C,\qquad h(C)=BAA.
+\]
+For a token word $v$, set
+\[
+ E_0(v)=01\,d(v)\,01,\qquad E_1(v)=001\,d(v)\,01.
+\]
+Let $R$ denote one literal replacement pass. The exact boundary identity
+\begin{equation}\label{eq:a288523-boundary}
+ R(1\,d(v)\,01)=01\,d(h(v))\,01
+\end{equation}
+holds for every finite token word $v$.
+
+For the empty word, it says $R(101)=0101$. To prove the induction step,
+suppose that the leading token is $A$, $B$, or $C$. The scan emits,
+respectively, $010$, $0100$, or $0100101$ before reaching the residual
+input $1\,d(v')\,01$. Applying the induction hypothesis to that residual
+input gives the three finite equalities
+\[
+ 010\,01=01\,001,\qquad
+ 0100\,01=01\,0001,\qquad
+ 0100101\,01=01\,0010101.
+\]
+These are precisely the required codes of $h(A),h(B),h(C)$, so
+\eqref{eq:a288523-boundary} follows. In particular, this argument proves
+the boundary behavior of the nonoverlapping scanner rather than
+assuming that rewriting respects arbitrary binary concatenations.
+
+Applying the boundary identity after the two initial prefixes gives
+\begin{equation}\label{eq:a288523-states}
+ R(E_0(v))=E_1(h(v)),\qquad
+ R(E_1(v))=E_0(AA\,h(v)).
+\end{equation}
+Since $w_1=0101=E_0(\varnothing)$, induction shows that every actual
+iterate after the initial word has one of these encoded forms.
+
+Write $\ell_j(v)=|d(h^j(v))|$. Decoded length is additive under
+concatenation, and direct evaluation on the three tokens gives
+\[
+\begin{array}{c|ccc}
+ &\ell_0&\ell_1&\ell_3\\\hline
+ A&2&3&7\\
+ B&3&4&10\\
+ C&4&7&15
+\end{array}
+\]
+Consequently, for every token word,
+\begin{equation}\label{eq:a288523-cubic}
+ \ell_3(v)=\ell_1(v)+2\ell_0(v).
+\end{equation}
+The lengths after zero, one, two, and three further scans, computed from
+\eqref{eq:a288523-states}, are
+\[
+\begin{array}{c|cccc}
+ &0&1&2&3\\\hline
+ E_0(v)&\ell_0+4&\ell_1+5&\ell_2+8&\ell_3+11\\
+ E_1(v)&\ell_0+5&\ell_1+8&\ell_2+11&\ell_3+16
+\end{array}
+\]
+In both rows, \eqref{eq:a288523-cubic} makes the last entry plus $2$
+equal to the second entry plus twice the first. This proves
+$L_{n+3}+2=L_{n+1}+2L_n$ for every $n\ge1$. Subtracting neighboring
+instances yields
+\[
+ L_{n+4}+2L_n=L_{n+3}+L_{n+2}+L_{n+1}\qquad(n\ge1),
+\]
+which is the source recurrence with $N=n+4$. The first five literal
+iterates supply the stated initial lengths. Recurrence uniqueness then
+gives equality with A288523 at every index.
+\end{proof}
+
+The source generating function, an algebraic consequence of the proved
+recurrence and initial values, is
+\[
+ \sum_{n\ge0}L_nx^n=
+ \frac{2+2x-x^2-3x^3-2x^4}{1-x-x^2-x^3+2x^4}.
+\]
+This display is not counted as an additional conjecture resolution or
+an additional formal theorem.
+
+\paragraph{Formal correspondence.}
+The Lean package defines the scanner directly on lists of Boolean
+values, consumes nonoverlapping input matches, and constructs the
+literal iterates from $00$. Theorems
+\path{Kimberling288523.rewrite_tail} and
+\path{Kimberling288523.word_coding} establish the exact connection to
+the token coding. The endpoint
+\path{Kimberling288523.original_conjecture} identifies every literal
+word length with a separately defined integer recurrence, so truncated
+natural-number subtraction is not involved. The source recurrence
+starts at $N=5$; it is false at $N=4$ and is not asserted there.
+
+\paragraph{Sources and prior work.}
+The package preserves exact official OEIS exports for A288523,
+revision 11 of April 7, 2020, and A288520, revision 14 of April 6, 2020.
+The source review records searches using both engines, the trureturing
+index, and the current project index. No earlier proof of this exact
+assertion was located; the review does not certify historical priority.
+The nearby paper by Dvo\v{r}\'akov\'a, Pelantov\'a, and Shallit,
+\emph{On a sequence of Kimberling and its relationship to the
+Tribonacci word}, arXiv:2510.11318v5 (2026), concerns A288462 and the
+different rule $00\to0101,1\to10$. The trureturing proof of A288476
+concerns $00\to0101,1\to011$. Those works illustrate the standard
+token-substitution method; no new general method is claimed. The
+adjacent position and frequency assertions in A288521 and A288522,
+and existence of infinite limiting words, are outside this result's
+formal scope.
+
+\section{An infinite prime family for the generalized halving Recam\'an walk}
+\label{sec:prime-division-recaman}
+
+OEIS A400939~\cite{A400939}, introduced by Zlatko Damijanic on October 10, 2026,
+defines a walk that divides its preceding value by two when that produces
+an unvisited integer, and otherwise adds the current index. Its
+generalized-divisor conjecture replaces two by an integer that is not a
+power of two and predicts eventual permanent addition. We prove an
+infinite family of that conjecture, with the stronger conclusion that
+exactly one division occurs. The full conjecture and the original
+divisor-two occurrence conjecture are not settled here.
+
+For a positive integer $k$, the source rule is
+\[
+ a_k(1)=1,\qquad
+ a_k(n+1)=
+ \begin{cases}
+  a_k(n)/k,& k\mid a_k(n)\text{ and }
+       a_k(n)/k\notin\{a_k(1),\ldots,a_k(n)\},\\
+  a_k(n)+n+1,&\text{otherwise},
+ \end{cases}
+ \qquad n\ge1.
+\]
+Only the division branch requires an unvisited value. Write
+$T_n=n(n+1)/2$.
+
+\paragraph{Theorem.}
+Let $p$ be an odd prime with $p\equiv2$ or $3\pmod5$, and put
+$q=(p-1)/2$. If $q$ is not a positive triangular number, the unique
+division occurs at index $d=p$, and
+\[
+ a_p(n)=T_n\quad(1\le n<p),\qquad
+ a_p(n)=\frac{n(n+1)-p^2-1}{2}\quad(n\ge p).
+\]
+If $q$ is a positive triangular number, the unique division occurs at
+$d=p+1$, and
+\[
+ a_p(n)=T_n\quad(1\le n\le p),\qquad
+ a_p(n)=\frac{n(n+1)-(p+1)^2}{2}\quad(n\ge p+1).
+\]
+In each case, $p\nmid a_p(n)$ for every $n\ge d$. There are arbitrarily
+large primes to which this theorem applies.
+
+\paragraph{Proof.}
+If $1\le n$ and $n+1<p$, then $p\nmid T_n$: a contrary divisibility
+would imply $p\mid n(n+1)$ although neither positive factor is as large
+as $p$. Induction in the literal walk therefore gives
+$a_p(n)=T_n$ for $1\le n<p$.
+
+At the next step, the preceding value is
+$T_{p-1}=p(p-1)/2=pq$. If $q$ is unvisited, division gives
+$a_p(p)=q$, and hence
+\[
+ 2a_p(p)+p^2+1=p(p+1).
+\]
+If $q$ has appeared, the rule instead gives $a_p(p)=T_p$. The next
+proposed quotient is $q+1$. Two positive triangular numbers cannot be
+consecutive: for $i>j\ge1$,
+\[
+ T_i-T_j\ge T_{j+1}-T_j=j+1\ge2.
+\]
+Thus $q+1$ has not appeared in the triangular prefix, and
+$a_p(p+1)=(p+1)/2$. In this case,
+\[
+ 2a_p(p+1)+(p+1)^2=(p+1)(p+2).
+\]
+This initial-division argument holds for every odd prime.
+
+In the first case let $D=p^2+1$, and in the second let $D=(p+1)^2$.
+At the first division index $d$ we have
+\[
+ 2a_p(d)+D=d(d+1),\qquad D\equiv1\pmod p.
+\]
+Suppose that $2a_p(n)+D=n(n+1)$ for some $n\ge d$. If
+$p\mid a_p(n)$, reduction modulo $p$ would give $n(n+1)\equiv1$,
+and consequently
+\[
+ (2n+1)^2=4n(n+1)+1\equiv5\pmod p.
+\]
+Quadratic reciprocity, since $5\equiv1\pmod4$, identifies the quadratic
+character of $5$ modulo $p$ with that of $p$ modulo $5$. The only square
+residues modulo $5$ are $0,1,4$, so the residue classes in the theorem
+make this impossible. Hence the walk must add $n+1$. The invariant is
+preserved because
+\[
+ 2a_p(n+1)+D=n(n+1)+2(n+1)=(n+1)(n+2).
+\]
+Induction proves the stated tail and its nondivisibility. Together with
+the initial dynamics, this proves uniqueness of the division.
+
+Finally, Dirichlet's theorem gives arbitrarily large primes
+$p\equiv3\pmod5$. These primes form an infinite subfamily of the
+classification. This last step and quadratic reciprocity are credited
+classical dependencies.\hfill$\square$
+
+\paragraph{Formalization and source scope.}
+The accompanying Lean module \path{A400939/Proof.lean} defines the
+literal visited-value walk, explicitly excluding its auxiliary zero
+index from the visited set. The declaration
+\path{walk_followsRule} proves the exact source-rule bridge;
+\path{first_prime_division} checks the first division for all odd
+primes; and \path{division_at_prime_iff} checks the triangular test
+selecting the index. The main theorem
+\path{walk_prime_residue_classes} proves the full prefix, unique
+division, permanent exact tail, and tail nondivisibility.
+\path{arbitrarily_large_single_division} proves infinitude using
+mathlib's existing Dirichlet theorem. Both end theorems depend only on
+the standard Lean axioms \path{propext}, \path{Classical.choice},
+and \path{Quot.sound}.
+
+The primary statement is pinned to OEIS A400939 revision 58,
+November 5, 2026, in OEIS data-export commit
+\path{df38d77b83a78d8ab5aaa501dec6e3a3db977f01}.
+Bounded exact-identifier and semantic searches of both available web
+engines, the current trureturing catalog, and its GitHub issues found
+no prior proof of this particular prime-family classification. This
+documents a bounded check rather than establishing worldwide priority.
+The package is an infinite-family partial result, not a claim that
+the entire A400939 generalized conjecture has been resolved.
+
+
+\section{Verification, source fidelity, and reproducibility}
+
+Each mathematical endpoint is proved from the corresponding literal
+source definition or an explicitly proved source bridge. Polynomial
+irreducibility refers to the actual canonical reduced numerator, not
+merely an uncancelled expression. The replacement theorem starts from
+the specified nonoverlapping scanner. The walk theorem retains the
+visited-value test on divisions and permits repeats after addition.
+
+The three independent projects use Lean 4.19.0 and mathlib revision
+\[
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\]
+From the relevant package directory, the reproducible commands are
+\begin{verbatim}
+lake exe cache get
+lake build
+\end{verbatim}
+The projects are \path{A326925Even}, \path{A288523}, and
+\path{A400939}. The first includes thirteen local Lean modules; its
+Lake configuration lists all module roots. The other two have a
+single proof module. The prior five-module A326925 development is
+included unchanged in the new algebra project, with its old
+\path{Proof.lean} renamed to \path{OddProof.lean}; it is a credited
+dependency rather than a new result.
+
+Author and independent builds used fresh project directories without
+copied local proof objects. The repository includes their logs, exact
+source hashes, source-definition reviews, and pinned primary exports.
+The binary-word endpoints use only \path{propext} and
+\path{Quot.sound}; the algebra and walk endpoints use those plus
+\path{Classical.choice}. No admission, added axiom, unsafe declaration,
+or native-evaluation proof shortcut is used.
+
+The formal dependencies include existing proofs of the prime/odd
+binomial criteria, quadratic reciprocity, and Dirichlet's theorem.
+The arbitrary-exponent signed helper is a sufficient criterion
+proved here for the application, without a claim to new general
+binomial theory. Its norm induction is stronger than the imported
+odd-exponent argument and handles the required even exponents.
+
+The current OEIS exports, literal-ID searches, semantic searches,
+and comparisons with nearby public solutions are documented in each
+package's source review. Several unrelated candidates were discarded
+after prior proofs were found. The result count here concerns two
+recorded conjectural assertions, the stated constant-term companion,
+and one infinite-family partial result. The two entries sharing the
+word assertion are counted once; generic supporting lemmas and the
+previous odd-degree theorem are not counted as new problems solved.
+No claim is made of OEIS editorial acceptance, peer review by human
+mathematicians, or exhaustive historical novelty.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{A326925}
+C. Kimberling, \emph{OEIS A326925}, October 22, 2019.
+\url{https://oeis.org/A326925}.
+Official export revision 13, October 31, 2019.
+
+\bibitem{companions}
+C. Kimberling, \emph{OEIS A328610 and A328611}.
+\url{https://oeis.org/A328610};
+\url{https://oeis.org/A328611}.
+Official export revisions 12 and 11, October 31, 2019.
+
+\bibitem{previous}
+B. Stone, \emph{A326925: irreducibility of every odd-degree derivative
+numerator}, previous project package, November 27, 2026.
+\url{https://github.com/blakestone-x/math/tree/main/A326925}.
+Proof developed with ChatGPT; the package includes its full Lean
+development and independent audit.
+
+\bibitem{kummer}
+The mathlib contributors, \emph{KummerPolynomial.lean} and
+\emph{KummerExtension.lean}, pinned mathlib revision above.
+\url{https://github.com/leanprover-community/mathlib4/tree/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/FieldTheory}.
+The odd-exponent theorem
+\path{Polynomial.X_pow_sub_C_irreducible_of_odd}
+is in \path{KummerExtension.lean}; this corrects the earlier
+package's filename citation without altering its mathematics.
+
+\bibitem{A288520}
+C. Kimberling, \emph{OEIS A288520}, June 13, 2017.
+\url{https://oeis.org/A288520}.
+Official export revision 14, April 6, 2020.
+
+\bibitem{A288523}
+C. Kimberling, \emph{OEIS A288523}, June 13, 2017.
+\url{https://oeis.org/A288523}.
+Official export revision 11, April 7, 2020.
+
+\bibitem{nearbyword}
+L. Dvo\v{r}\'akov\'a, E. Pelantov\'a, and J. Shallit,
+\emph{On a sequence of Kimberling and its relationship to the
+Tribonacci word}, arXiv:2510.11318v5, 2026.
+\url{https://arxiv.org/abs/2510.11318}.
+This concerns A288462 and a different replacement rule.
+
+\bibitem{A400939}
+Z. Damijanic, \emph{OEIS A400939}, October 10, 2026.
+\url{https://oeis.org/A400939}.
+Official export revision 58, November 5, 2026.
+
+\bibitem{quadratic}
+The mathlib contributors, \emph{QuadraticReciprocity.lean},
+pinned revision above, theorem
+\path{ZMod.exists_sq_eq_prime_iff_of_mod_four_eq_one}.
+\url{https://github.com/leanprover-community/mathlib4/tree/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/LegendreSymbol}.
+
+\bibitem{dirichlet}
+The mathlib contributors, \emph{PrimesInAP.lean},
+pinned revision above, theorem
+\path{Nat.forall_exists_prime_gt_and_eq_mod}.
+\url{https://github.com/leanprover-community/mathlib4/tree/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/LSeries}.
+\end{thebibliography}
+\end{document}
+
