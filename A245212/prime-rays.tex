@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,booktabs,xcolor,hyperref}
+\geometry{margin=.9in}\hypersetup{colorlinks=true,allcolors=blue!60!black}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\title{Prime-power rays and two finiteness theorems for Krizek's second divisor moment}
+\author{Blake Stone\\\small Proof developed with OpenAI Codex}\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+Let $H(n)=\sum_{d\mid n}d\tau(d)$ and $U(n)=n\tau(n)$. Krizek conjectured that $H(n)+\sigma(n)=2U(n)$ exactly at the powers of two. Every other prime-power progression $mp^e$, with $p\nmid m$, contains at most one solution. There are only finitely many possible counterexamples on any fixed finite set of primes. There are also only finitely many, effectively computable, for each fixed multiset of exponents on the odd primes, even as all bases and the exponent of two vary. We apply this second reduction to odd parts with two distinct primes and at most 100 divisors. Every integer in that class satisfies the conjecture.
+\end{abstract}
+
+\section{One free exponent and finite prime support}
+The identity $2U(n)-H(n)=\sigma(n)$ is Krizek's 2014 conjecture for OEIS A245212 \cite{oeis}. The powers of two satisfy it, since $H(2^a)=a2^{a+1}+1$ and $\sigma(2^a)=2^{a+1}-1$. Call any other solution a counterexample. The earlier paper \cite{previous} proved the conjecture on a set of density one and for every integer with odd part at most $10^8$. It also gave a one-candidate test for the exponent of two and ruled out nontrivial prime-power odd parts. The former becomes a general prime-ray phenomenon.
+
+For each prime $p$ and exponent $e\ge0$, put
+\[
+ s_p(e)=\frac{\sigma(p^e)}{U(p^e)}=\frac{1+p^{-1}+\cdots+p^{-e}}{e+1},
+ \qquad h_p(e)=\frac{H(p^e)}{U(p^e)}=\frac p{p-1}-\frac{s_p(e)}{p-1}.
+\]
+The second identity follows by summing geometric series, or from $H(p^e)-U(p^e)=(U(p^e)-\sigma(p^e))/(p-1)$. The means $s_p(e)$ decrease strictly with $e$ and tend to zero. All three functions $U,H,\sigma$ are multiplicative.
+
+\begin{theorem}\label{ray}
+Let $p\nmid m$. At most one nonnegative exponent $e$ gives $H(mp^e)+\sigma(mp^e)=2U(mp^e)$, except when $m=1,p=2$, when every exponent works.
+\end{theorem}
+\begin{proof}
+After division by $U(p^e)$ the equation is affine in $s_p(e)$, with slope $\sigma(m)-H(m)/(p-1)$. If two distinct exponents work, the affine function is constant. Its slope and constant yield
+\[
+ H(m)=(p-1)\sigma(m),\qquad p\sigma(m)=2m\tau(m).
+\]
+For $m=1$ this forces $p=2$. If $m>1$, then $H(m)>\sigma(m)$, so $p$ is odd. For $q^b\Vert m$ the ratio $H(q^b)/\sigma(q^b)$ is strictly greater than $b$. Indeed it is $b+1$ minus the mean of $j=0,\ldots,b$ under weights $q^{-j}$. That mean is strictly below the infinite geometric mean $1/(q-1)\le1$. Other local ratios are at least one. Hence $p=1+H(m)/\sigma(m)>b+1$ for every exponent of $m$. On the other hand the prime $p\nmid2m$ must divide $\tau(m)=\prod(b+1)$, a contradiction.
+\end{proof}
+
+A direct sign criterion covers arbitrarily many odd factors. If $m>1$ is odd and every prime divisor of $m$ is at most $a+1$, then $H(2^a m)+\sigma(2^a m)>2U(2^a m)$. Indeed, write $u_p=1-s_p(e_p)>0$. Subtract the equality for $2^a$ after normalizing all odd factors by $U(m)$. The resulting difference is
+\[
+ H(2^a)\left[\prod_{p\mid m}(1+u_p/(p-1))-1\right]
+ -\sigma(2^a)\left[1-\prod_{p\mid m}(1-u_p)\right].
+\]
+The bracketed quantities are respectively at least $\sum u_p/(p-1)$ and at most $\sum u_p$. Every $p-1\le a<H(2^a)/\sigma(2^a)$, giving strict positivity. Thus a counterexample $2^am$ must have an odd prime factor at least $a+2$.
+
+\begin{theorem}\label{support}
+Only finitely many counterexamples have all their prime factors in a prescribed finite set.
+\end{theorem}
+\begin{proof}
+Suppose there are infinitely many. Pass to a subsequence in which each exponent is constant or tends to infinity. Write $J$ for the nonempty set of unbounded coordinates. If $|J|=1$, Theorem~\ref{ray} gives a contradiction, as powers of two were excluded. Otherwise write fixed products as positive constants $A,B$. The normalized equation is
+\[
+ A\prod_{p\in J}h_p(e_p)+B\prod_{p\in J}s_p(e_p)=2.
+\]
+In the limit $A\prod_{p\in J} p/(p-1)=2$. The difference between this limiting product and its actual first summand is at least a fixed positive constant times $\max_{p\in J}s_p(e_p)$: keep one factor at its actual value and replace the others by their larger limits, then minimize the resulting coefficient over the finite set of factors. The second summand is $o(\max s_p(e_p))$, since at least two factors tend to zero. The equality is therefore impossible along the subsequence.
+\end{proof}
+
+\section{Fixed odd exponents and varying prime bases}
+\begin{theorem}\label{pattern}
+Fix positive exponents $e_1,\ldots,e_r$ with $r\ge1$. Only finitely many solutions can have the form $2^a\prod_{i=1}^r p_i^{e_i}$ with distinct odd primes $p_i$, and all of them can be listed by a finite algorithm. Writing $D=\prod(e_i+1)$ and $K=rD2^r$, every solution satisfies
+\begin{equation}
+ 2^{a+1}\le (2K)^D(a+1)^{D-1}.\label{dyadbound}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Order the odd bases increasingly, permuting the exponents accordingly. Write $F_i=H(p_i^{e_i})/p_i^{e_i}$, $G_i=\sigma(p_i^{e_i})/p_i^{e_i}$. Dividing the equation by the odd part and grouping the powers of two gives
+\[
+ V=(a+1)D-a\prod F_i-\prod G_i=\frac{\prod F_i-\prod G_i}{2^{a+1}}>0.
+\]
+We have $e_i+1<F_i\le(e_i+1)/(1-1/p_i)$ and $1<G_i\le1/(1-1/p_i)$. Thus $V\le K/2^{a+1}$. For $s=0,\ldots,r$ define $V_s$ by replacing the unexposed $F_i,G_i$ in the left expression by $e_i+1,1$ for $i>s$. With $M_s=\prod_{i\le s}p_i^{e_i}$ one has $V_s\ge1/M_s$, because it is positive with denominator dividing $M_s$. For $s<r$ a telescoping estimate gives
+\begin{equation}
+ V_s\le\frac K{2^{a+1}}+\frac{K(a+1)}{p_{s+1}}.\label{partial}
+\end{equation}
+In detail, the relative changes in the respective products are at most $\sum_{i>s}p_i^{-1}\le r/p_{s+1}$, by $1-\prod(1-u_i)\le\sum u_i$. The full products are at most $D(3/2)^r$ and $(3/2)^r$, so the chosen $K$ suffices.
+
+Put $L=2K(a+1)$ and suppose $2^{a+1}>2K L^{D-1}$. Inductively $M_s\le L^{\prod_{i\le s}(e_i+1)-1}$, starting with $M_0=1$. Indeed $K/2^{a+1}<1/(2M_s)$, so \eqref{partial} gives $p_{s+1}\le L M_s$. Multiplying by $p_{s+1}^{e_{s+1}}$ gives the next bound. At $s=r$ this contradicts $1/M_r\le V\le K/2^{a+1}$. This proves \eqref{dyadbound}, which bounds $a$ effectively since an exponential eventually dominates a fixed polynomial. For example $2^t/t^{D-1}$ increases for $t\ge2D$, and direct integer comparisons eventually exclude all larger $t$.
+
+At each fixed $a$ use the exact equation $(a2^{a+1}+1)\prod F_i+(2^{a+1}-1)\prod G_i=2^{a+1}(a+1)D$. If one or more odd bases remain, their uniform substitution by $e_i+1,1$ leaves a strictly positive deficit of denominator dividing $M_s$. The same telescoping estimate bounds that deficit above by $K(2^{a+1}(a+1)+2)/p_{s+1}$. Consequently the next prime has a finite computable upper bound, and induction enumerates every solution.
+\end{proof}
+
+\section{Two odd primes without bounds on their sizes}
+\begin{theorem}\label{two}
+For arbitrary distinct odd primes $p,q$ and positive $b,c$ with $(b+1)(c+1)\le100$, none of the integers $2^ap^bq^c$, $a\ge0$, solves the equality.
+\end{theorem}
+\begin{proof}
+Put $m=p^bq^c$, taking $p<q$, and let $D=(b+1)(c+1)$. For $t=a+1\ge32D$, the right side of \eqref{dyadbound} is below $2^t$. Indeed, at $t=32D$ use $(16D)(32D)=512D^2<2^{32}$ even for $D\le2048$. Beyond this point $2^t/t^{D-1}$ increases as above. Thus $t<32D$.
+
+Let $T=H(m)-U(m)$ and $B=U(m)-\sigma(m)$. The dyadic equation is equivalently $2^{a+1}(B-aT)=B+T$; in particular $a<B/T\le a+1$. One has $T/U(m)\ge1/(2p)$ from the first local tail and $B/U(m)<1$, so $p>a/2$. In the opposite direction $B/U(m)\ge 1-(2/3)^2=5/9$, since each local $s_p(e)\le s_p(1)\le2/3$. Also $T/U(m)\le(1-1/p)^{-2}-1\le5/[2(p-1)]$, hence $p\le5(a+1)+1$.
+
+For each ordered assignment of $b,c$ enumerate the indicated $a,p$. The dyadic equation first requires $H(m)$ and $\sigma(m)$ to have the same parity. At an odd prime $\ell<p$ the residue of $q$ must be a unit. Test all such residues at $\ell=3,5,7,11,13,17,19$ when admissible. In normalized coordinates the two dyadic coefficients are $2a+2^{-a}$ and $2-2^{-a}$ modulo $\ell$; they depend only on $a$ modulo $\ell\operatorname{ord}_{\ell}(2)$.
+
+For each remaining case write $A=(a2^{a+1}+1) H(p^b)$, $C=(2^{a+1}-1)\sigma(p^b)$, and $M=2^{a+1}(a+1)Dp^b$. Let $g=M-(c+1)A-C$. Equality requires $g>0$ and
+\[
+ (cA+C)/q\le g <(cA+C)/(q-1),
+\]
+since the leading tail coefficient of $A F_c(q)+C G_c(q)$ is $cA+C$, and all subsequent coefficients are no larger. Thus the only candidate is $q=\lceil(cA+C)/g\rceil$. Test odd $q>p$ exactly. The implementation can first discard a candidate when $2^{a+1}>H(m)$, since $2^{a+1}\mid H(m)-\sigma(m)>0$. It bounds $H(m)$ using $H(q^c)<2^{c+1}q^c$. All remaining candidates are tested by integral multiplication. The accompanying enumeration examined 283 ordered exponent pairs, 117 excluded by parity. No equality occurred among 1,449,267 ordered odd last-base candidates after the local tests. This proves the theorem.\end{proof}
+\small\begin{thebibliography}{9}
+\bibitem{oeis} J. Krizek, \href{https://oeis.org/A245212}{OEIS A245212}, July 23, 2014.
+\bibitem{previous} B. Stone with OpenAI Codex, \href{https://github.com/blakestone-x/math/blob/5a9d2730dd28ae3031c488960ae2f6cd08a36803/A245212/manuscript.pdf}{A density-one theorem for Krizek's second divisor moment} (2026).
+\end{thebibliography}\end{document}

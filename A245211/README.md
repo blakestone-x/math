@@ -1,6 +1,6 @@
 # Partial results on fixed points of OEIS A245211
 
-**21 is the only positive fixed point with at most three distinct prime factors.** The new manuscript covers all prime bases and exponents, gives a radical bound for any number of prime divisors, and shows that a four-prime solution must have an exponent at most 24. An independent integer computation with different interval bounds reproduces the exclusion. [Three-prime proof and reproduction commands](three-primes.md) · [Independent verification](three_prime_independent.py)
+**21 is the only positive fixed point with at most three distinct prime factors.** The new manuscript covers all prime bases and exponents, gives a radical bound for any number of prime divisors, and shows that a four-prime solution must have an exponent at most 24. Four equal exponents are excluded for every choice of the four primes. An independent integer computation with different interval bounds reproduces the exclusion. [Three-prime proof and reproduction commands](three-primes.md) · [Independent verification](three_prime_independent.py)
 
 The [three-prime continuation](simple-prime.md) proves that any three-prime fixed point has ordered exponents $a\ge b\ge c$ with $4\le c\le25$, $b\le10c+7$, and $a\le(3c+4)b+3c$. It also gives a congruence obstruction for any number of prime factors.
 

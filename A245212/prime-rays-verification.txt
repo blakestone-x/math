@@ -1,0 +1,7 @@
+Odd divisor-count bound: 100
+Ordered odd exponent pairs: 283
+Excluded by parity: 117
+Dyadic exponent and smallest-prime choices: 196500246
+After unit-residue tests: 15843898
+Ordered odd last-base candidates: 1449267
+Equalities: 0

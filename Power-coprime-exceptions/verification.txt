@@ -1,0 +1,10 @@
+Exact quadratic counts at n=2,...,16: 0 1 1 0 6 3 42 68 2794 0 5311604 478 57009 2716452 10778632
+390 exact power/modulus counts; 87 predicted obstructions reconfirmed.
+k=2, primes=[2, 3], theorem certifies 3 exceptional sizes.
+k=4, primes=[2, 3, 5], theorem certifies 9 exceptional sizes.
+k=6, primes=[2, 3, 7], theorem certifies 9 exceptional sizes.
+k=12, primes=[2, 3, 5, 7, 13], theorem certifies 45 exceptional sizes.
+k=60, primes=[2, 3, 5, 7, 11, 13, 31, 61], theorem certifies 381 exceptional sizes.
+k=120, primes=[2, 3, 5, 7, 11, 13, 31, 41, 61], theorem certifies 765 exceptional sizes.
+Saturated first-step criterion matched the two families for every 2 <= n <= 50000 (35462 forced failures).
+Exponent periodicity independently checked at every size from 2 through 100.

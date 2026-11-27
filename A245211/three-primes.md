@@ -2,7 +2,7 @@
 
 **Among positive integers with at most three distinct prime factors, 21 is the only fixed point of Krizek’s weighted proper-divisor sum.** Its proper divisors contribute $1+6+14=21$. The proof excludes all triples of distinct prime bases with arbitrary positive exponents. The original conjecture remains open for four or more distinct primes. [Manuscript](three-primes.pdf) · [Editable LaTeX](three-primes.tex) · [Krizek’s statement](https://oeis.org/A245211)
 
-For any four-prime fixed point at least one exponent would have to be at most 24. For an arbitrary number $r$ of distinct prime factors the paper bounds the integer by a power of its radical, the product of those primes.
+For any four-prime fixed point at least one exponent would have to be at most 24. No four-prime fixed point has all four exponents equal. For an arbitrary number $r$ of distinct prime factors the paper bounds the integer by a power of its radical, the product of those primes.
 
 The previous paper bounded the three exponents. The new argument truncates each possible subset of the local divisor moments. An integer lower bound for the resulting error forces inequalities among the three base sizes. If every exponent is at least ten, the inequalities give a contradiction by hand. The four remaining minimum exponents are 4, 6, 8 and 9. Exact interval bounds reduce these to 6,053 least-prime cases. [Preceding exponent bounds](simple-prime.md)
 
@@ -18,3 +18,5 @@ python3 -B three_prime_crosscheck.py /tmp/krizek-intervals.txt
 ```
 
 The verifier writes 181 surviving intervals for the smallest base. Their SHA-256 digest is `da031fdc4b89d183d6ede477ced9bce2eb1d234b7f874d1f7e2c420ba3e0d6bf`. The largest middle-prime sieve endpoint is 48,554,105. No integer equality survived either completion.
+
+An [independent full audit](three-prime-independent.md) also reconstructs the exponent sieve and the logarithmic exclusion using different interval partitions, precision and arithmetic, then completes its remaining cases separately.

@@ -72,6 +72,9 @@ At $s=1$ the same inequality and $Ew\le L_1$ imply $(E+1)L_1<2S_r$. Iterating to
 \end{equation}
 For $r=4,E=25$ the right side is $248633/255879<1$. Every hypothetical four-prime fixed point therefore has an exponent at most $24$.
 
+In particular, there is no fixed point $(pqst)^e$ on four distinct primes with a common positive exponent. We have $e\le24$. If $e$ is even, $D+1=(e+1)^4+1\equiv2\pmod4$, whereas the four local moments are either all odd or all even by $H_e(p)\equiv(e+1)(e+2)/2\pmod2$. Odd exponents $3\pmod4$ also fail by parity. For $e\equiv1\pmod6$ the values of $F_e$ on units modulo three are $0,1$ while $D+1\equiv2\pmod3$; exponents $5\pmod6$ are already excluded. This leaves $e=9,21$. At $e=9$ the local values modulo seven are $0,5,6$, whose fourfold products omit $5\equiv10^4+1\pmod7$. At $e=21$, all $72$ units modulo $73$ give nonzero $H_{21}$, but $22^4+1\equiv0\pmod{73}$. The attached exponent sieve also checks these two finite local tables by direct summation.
+
+
 \section{Finite intervals for the three bases}
 The only possible minima in \eqref{box} are now $c=4,6,8,9$. Assign an admissible exponent triple to bases $x<y<z$ in any order, calling their respective exponents $i,j,k$. At a putative solution let $R_s$ be $D+1$ minus the product with only its first $s$ factors exact and each remaining $F_e$ replaced by $e+1$. For $s<3$ this is positive and
 \begin{equation}

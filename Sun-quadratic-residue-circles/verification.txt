@@ -1,0 +1,21 @@
+188 odd finite fields, 752 target/sign cases.
+739 certified by geometric cycles; 13 by exact enumeration.
+Cases without a generator witness (q : sum/difference, target, based cycle count):
+3 - T 0
+3 - S 0
+3 + S 0
+5 - S 0
+5 + T 0
+5 + S 0
+7 + S 0
+9 - S 0
+9 + S 0
+13 - T 0
+13 + S 0
+25 - S 0
+25 + S 0
+Complete failure lists:
++ S [3, 5, 7, 9, 13, 25]
++ T [5]
+- S [3, 5, 9, 25]
+- T [3, 13]

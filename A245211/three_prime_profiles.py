@@ -40,7 +40,19 @@ def exponent_profiles(c):
     return triples
 
 
+def check_four_equal():
+    def moments(e, m):
+        return {sum((t+1)*pow(x,t,m) for t in range(e+1)) % m
+                for x in range(1,m) if gcd(x,m)==1}
+    # H and F differ by an e-th power of the base. Compute normalized
+    # residues in the case where the actual nonzero values matter.
+    mod7 = {sum((10-t)*pow(x,t,7) for t in range(10)) % 7 for x in range(1,7)}
+    if mod7 != {0,5,6} or 0 in moments(21,73) or (22**4+1) % 73 != 0:
+        raise ArithmeticError('The four-equal local tables do not agree.')
+
+
 if __name__ == '__main__':
+    check_four_equal()
     for least, count in [(4, 502), (6, 324), (8, 5849), (9, 13779)]:
         profiles = exponent_profiles(least)
         if len(profiles) != count:

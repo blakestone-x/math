@@ -1,5 +1,7 @@
 # The signature of line graphs at small cyclomatic number
 
+For all $c\ge2$ the maximum satisfies $f(c)\le\lfloor2c/3\rfloor$. The acyclic-matching theorem and exact search give further sharp values above nine independent cycles. The manuscript treats arbitrary graph order, subdivisions and attached trees. [New exact values, general bounds and complete verification](forest-bounds.md)
+
 Let $f(c)$ be the largest possible number of positive minus negative adjacency eigenvalues of the line graph $L(G)$, where $G$ ranges over all finite connected simple graphs with $|E(G)|-|V(G)|+1=c$.
 
 | Cyclomatic number $c$ | Exact $f(c)$ | Order of an attaining example |
