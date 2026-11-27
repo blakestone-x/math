@@ -5,11 +5,16 @@ math proofs
 
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
-- [Modular Ducci sequences — the sharp maximum time before cycling at every even width](Ducci-preperiod/README.md)
+- [Throwback queues — a perfect-mixing criterion for every increasing input](Throwback-mixing/README.md) · [Manuscript](Throwback-mixing/throwback.pdf)
+- [Layman's sieve — triangular stabilization and the residue-class sieve conjectures](Layman-sieve/README.md) · [Manuscript](Layman-sieve/sieve.pdf)
+- [Binary substitutions — sharp position errors for six OEIS sequences](Morphic-discrepancy/README.md) · [Manuscript](Morphic-discrepancy/discrepancy.pdf)
+
+- [Hardin’s rectangular arrays — the threshold for a common recurrence and 25 table predictions](Hardin-constant-stress/README.md) · [Manuscript (PDF)](Hardin-constant-stress/rectangular-recurrences.pdf)
+- [Modular Ducci sequences — the sharp maximum and the number of tuples entering a cycle at each step](Ducci-preperiod/README.md) · [Manuscript (PDF)](Ducci-preperiod/Ducci-preperiods.pdf)
 - [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
-- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md)
+- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md)
 - [Elementary symmetric Boolean functions — a uniform AND-gate upper bound](SymmetricBooleanCircuits/README.md)
-- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md)
+- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf)
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
@@ -75,4 +80,3 @@ math proofs
 [Collected proof notes for A068133, A334765, and A394659 (PDF)](notes/OEIS_Proof_Notes.pdf)
 
 [Collected formal proofs for A063956, A073642, A129453, A143132, and the A294532–A294565 family (PDF)](notes/Math_Proofs_Batch4.pdf) · [Collection guide](notes/Math_Proofs_Batch4_README.md)
-

@@ -1,0 +1,21 @@
+Two fresh project builds completed with identical packaged Lean sources.
+The second build transcript follows. Both used the same pinned toolchain.
+Dependencies: Lean standard library.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+$ lake build
+ℹ [2/4] Built Residues
+info: ././././Residues.lean:35:0: 'Layman.residue_select' depends on axioms: [propext, Quot.sound]
+info: ././././Residues.lean:36:0: 'Layman.maximum_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3/4] Built Proof
+info: ././././Proof.lean:171:0: 'Layman.triangular_stabilization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:172:0: 'Layman.thresholds3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:173:0: 'Layman.jumps3' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+$ python3 verify.py
+PASS: literal sieve vs rank rule on all 2,048 masks in [1,11]
+PASS: stabilization bounds, every residue for moduli 2..25, and stopping maxima
+PASS: first 10,000 positive indices of the A214972 jump identity

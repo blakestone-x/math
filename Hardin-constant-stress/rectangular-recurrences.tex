@@ -1,0 +1,261 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=0.88in,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!50!black]{hyperref}
+\hypersetup{pdftitle={When do rectangle counts obey a common recurrence?},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Common recurrences for rectangles}\rhead{\small Constant stress and parity constraints}\cfoot{\thepage}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\seqid}[1]{\href{https://oeis.org/A#1}{A#1}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\ran}{\operatorname{range}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries When do rectangle counts obey\\[2pt] a common recurrence?\par}
+\vspace{0.45em}
+{\large Hardin's constant-stress and parity-constrained arrays\par}
+\vspace{0.65em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+R. H. Hardin observed that certain rectangular array counts appear to satisfy the same recurrence at every width. We determine exactly when a common linear recurrence exists for the constant-stress rule, with or without the requirement that adjacent entries differ. The positive direction represents a boundary word by a finite bipartite graph. The negative direction places independent binary choices at a positive fraction of the sites. We compute the least common recurrence in 25 tables, verifying the 22 all-width predictions in those tables and identifying five previously proved cases. We also prove three all-width predictions for two different local rules involving four order statistics or six absolute differences.
+\end{abstract}
+
+\section{The threshold}
+
+Let $n,k\ge1$. A grid has $(n+1)$ rows, $(k+1)$ columns and entries in
+$\{0,\ldots,q-1\}$. It has \emph{stress $d$} when every adjacent square
+$\left(\begin{smallmatrix}a&b\\c&e\end{smallmatrix}\right)$ satisfies $|a+e-b-c|=d$.
+Write $T(n,k)$ for its count. In Hardin's \emph{tilted} version, horizontally and vertically adjacent entries must also differ. We take $q,d\ge1$.
+
+For $P(X)=\sum_{j=0}^s p_jX^j$, a \emph{common recurrence} means
+$\sum_j p_j T(n+j,k)=0$ for every $n,k\ge1$. Transposition gives the identical recurrence in $k$. Its order is $s$. We take monic polynomials over $\mathbb Q$ and give the zero table polynomial $1$. The problem concerns one polynomial for arbitrarily large fixed sides. A fixed-width transfer matrix alone gives a separate polynomial for each side.
+
+\begin{theorem}\label{th:threshold}
+Without the adjacency restriction a common recurrence exists exactly when $q\le 2d$.
+For tilted grids the same criterion holds with two extra cases. At $(q,d)=(3,1)$ every count vanishes, and at $(4,1)$ every count is eight.
+\end{theorem}
+
+For example, with eight colors and the tilted rule, stress three admits no common recurrence, stress four admits one, and the least orders at stresses five, six and seven are $82,61,58$, respectively. Hardin explicitly proposed the last two orders. The positive answer at stress four follows directly from the theorem.
+
+\clearpage
+\section{Encoding an arbitrary width by a finite graph}\label{sec:graph}
+
+Put $L=2d$ and write $[u]_L$ for the least nonnegative residue of $u$. Let $\epsilon_i=i\bmod2$. Both possible signed differences are $d$ modulo $L$. Summing the mixed differences over the $i\times j$ prefix gives
+\[
+ a_{ij}\equiv a_{i0}+a_{0j}-a_{00}+d\epsilon_i\epsilon_j\pmod L.
+\]
+Indeed the mixed differences telescope to $a_{ij}-a_{i0}-a_{0j}+a_{00}$ and $ijd\equiv d\epsilon_i\epsilon_j\pmod L$. If $q\le L$, the residue determines the cell uniquely. Write $x_i=a_{i0}$ and $b_j=[a_{0j}-a_{00}]_L$. Thus $b_0=0$, and the whole grid is recovered from
+\begin{equation}\label{eq:phase}
+ a_{ij}=[x_i+b_j+d\epsilon_i\epsilon_j]_L .
+\end{equation}
+Conversely, for any word $w=(b_0,\ldots,b_k)$ with $b_0=0$, formula \eqref{eq:phase} has exactly that word as soon as its cells are legal. In particular the representation counts each grid once.
+
+Fix $w$. Make a graph $H_w$ with two copies of $\{0,\ldots,q-1\}$, labelled even and odd. Include an edge from $x$ on the even side to $z$ on the odd side when their two rows from \eqref{eq:phase} lie in the alphabet and all their squares satisfy the original rule. For the tilted model check the horizontal and vertical inequalities as well. Reading the two rows in the opposite order preserves every condition. Thus a legal grid with word $w$ is exactly an $n$-step walk starting on the even side. This works for $n\ge1$ even if there are isolated vertices.
+
+We use $H_w$ also for the symmetric adjacency matrix of this graph, and $\one_E$ for the indicator of its even side. The involution $b_j\mapsto[b_j+d\epsilon_j]_L$ exchanges the row profiles of the two sides and preserves $b_0=0$. Averaging paired words gives
+\begin{equation}\label{eq:moment}
+ T(n,k)=\sum_w \one_E^t H_w^n\one
+       =\tfrac12\sum_w \one^t H_w^n\one .
+\end{equation}
+There are at most $2^{q^2}$ possible bipartite adjacency matrices of this size. The product of their characteristic polynomials gives a common integral recurrence by Cayley--Hamilton. This proves the positive part of Theorem~\ref{th:threshold}. If $2(q-1)\ge3d$, retaining the original square check in the definition of an edge handles any signed difference congruent to $d$ whose absolute value exceeds $d$.
+
+\begin{lemma}\label{lem:least}
+The least common polynomial for positive side lengths is the least common multiple, over all reachable $H_w$ with $k\ge1$, of the least monic polynomials $P$ for which $P(H_w)H_w\one=0$. At a single width use only its words.
+\end{lemma}
+\begin{proof}
+Sufficiency follows from \eqref{eq:moment}. If $P$ gives a recurrence at a fixed width, sum that recurrence at $n=2+i$ with coefficients $p_i$. The result is $\tfrac12\sum_w\|P(H_w)H_w\one\|^2=0$. Every summand vanishes. Polynomial division gives the stated least common multiple.
+\end{proof}
+
+\clearpage
+\section{When a common recurrence is impossible}
+
+Let $R$ be the largest modulus of a root of a fixed recurrence polynomial of positive degree. The Jordan form of its companion matrix gives
+\[
+ \limsup_{n\to\infty}|T(n,k)|^{1/n}\le R
+\]
+at every fixed $k$, regardless of how the initial values depend on the width. A zero sequence has rate zero.
+
+Assume $q\ge2d+1$. Repeat the following parity pattern across a rectangle. Each star can be filled independently.
+\[
+\begin{array}{c|c|c}
+ &\text{tile of parity classes}&\text{values at each star}\\\hline
+\text{unrestricted}&
+  \left(\begin{smallmatrix} *&d\\d&d\end{smallmatrix}\right)&0,2d\\[4pt]
+\text{tilted},\ d\ge2&
+  \left(\begin{smallmatrix} *&d-1\\d-1&d-2\end{smallmatrix}\right)&0,2d\\[4pt]
+\text{tilted},\ d=1,\ q\ge5&
+  \left(\begin{smallmatrix} *&0\\4&2\end{smallmatrix}\right)&1,3
+\end{array}
+\]
+Each adjacent square contains one star and its signed difference has absolute value $d$ for either choice. In the last two rows all orthogonal neighbors differ. The number of stars is $(\lfloor n/2\rfloor+1)(\lfloor k/2\rfloor+1)$. The rate at fixed $k$ is therefore at least $2^{(\lfloor k/2\rfloor+1)/2}$. Letting $k$ grow rules out every common polynomial.
+
+It remains to handle the tilted rule at $d=1$, $q=3,4$. In a proper square an equal pair can only occupy opposite corners. Two equal pairs yield an even mixed difference. Four distinct entries in the four-color alphabet also yield an even difference because their sum is six. In the remaining case the repeated entry is $a$ and the others are distinct values $b,c$. The condition becomes $|3a-(a+b+c)|=1$. Among the four triples from $\{0,1,2,3\}$ the possibilities are precisely
+\[
+ \{0,1,3\} \text{ with } a=1,\qquad
+ \{0,2,3\} \text{ with } a=2.
+\]
+The alphabet $\{0,1,2\}$ admits neither. For four colors, extremes $\{0,3\}$ and middle values $\{1,2\}$ alternate on the checkerboard. The middle values on each square's diagonal coincide, and the two extremes on its other diagonal differ. Each checkerboard color is connected by these diagonal edges because adjacent squares share one vertex of each color along their common side. The middle value is therefore constant. On the extreme vertices the two assignments are determined by the parity of the row, since every diagonal step changes that parity. There are two choices for the middle checkerboard, two for its value and two for the placement of the extremes. This proves Theorem~\ref{th:threshold}.
+
+\section*{The starting index}
+All recurrences here hold from the first full window $n=1$ to $n=1+s$ at positive fixed $k$. Lemma~\ref{lem:least} also gives the least eventual order. For a recurrence that begins farther out, use $2h+i$ in its proof for sufficiently large $h$. Symmetry of $H_w$ implies $H_w^h\one$ has the same nonzero spectral support as $H_w\one$.
+
+\clearpage
+\section{Computing and certifying the least polynomial}\label{sec:compute}
+
+All 25 cases in Table~\ref{tab:cases} satisfy $2(q-1)<3d$ and $q\le2d$. In that range a mixed difference congruent to $d$ modulo $2d$ must be $\pm d$ if its four entries lie in the alphabet. This removes the square-by-square edge test and makes exhaustive calculation small.
+
+For $s\in\Z/L\Z$ set $M_s=\{x:0\le x<q,\ [x+s]_L<q\}$. After reading a word, keep the allowed phase sets $E,O$ for the even and odd rows. Initially both are the whole alphabet. Appending $b$ at column $j$ changes them to
+\[
+ E\cap M_b,\qquad O\cap M_{b+d\epsilon_j}.
+\]
+In a tilted grid, horizontal equality in some row occurs precisely when $b$ agrees with the previous letter modulo $d$: its two row parities forbid differences $0$ and $d$ modulo $2d$. Both parities occur because $n\ge1$. The analogous vertical check uses the two column parities, which both occur because $k\ge1$. Thus the graph on $E$ and $O$ has all edges for the unrestricted model, and has the edges $xz$ with $x\not\equiv z\pmod d$ for the tilted model.
+
+Start with $b_0=0$. Explore successive intersections, remembering the last column parity and, for tilted grids, the last letter modulo $d$. Discard empty sides and stop expanding a state when it has already been processed. Every state at positive depth comes from a word and every feasible word follows these transitions. This proves exhaustiveness for unbounded widths. For a particular width take exactly $k$ transitions, also retaining word multiplicities if counts are wanted.
+
+An unrestricted graph is $K_{|E|,|O|}$. For a tilted graph, group vertices by residue modulo $d$. The sorted list of the pairs $(|E_r|,|O_r|)$, omitting $(0,0)$, determines its isomorphism type. For each retained graph form
+\[
+ H\one,\ H^2\one,\ H^3\one,\ldots .
+\]
+The first linear dependence, normalized on its last vector, gives the least polynomial on $H\one$. Exact rational row reduction finds it by dimension $2q$. The polynomial is integral since it divides the monic integral characteristic polynomial. Take the least common multiple as in Lemma~\ref{lem:least}. Our verifier evaluates the resulting polynomial on every graph a second time by integer matrix-vector multiplication.
+
+For example, the tilted rule with $(q,d)=(5,3)$ has 16 retained graph signatures. The least polynomial is
+\[
+ (X-2)(X-1)(X^2-3)(X^2-2)(X^2-X-4)(X^2-X-1).
+\]
+For $(8,6)$ the program exhausts $5{,}155$ states and reduces them to 58 signatures. The least common polynomial has degree 61. Its full coefficient list equals Hardin's independent attachments for columns three and four of \seqid{235248}.
+
+\clearpage
+\section{An explicit polynomial at high stress}\label{sec:high}
+
+\begin{theorem}
+Assume $q\le d\le 2q-2$ and put $K=2q-d$. The unrestricted and tilted counts coincide. Their least common polynomial is
+\[
+ \lcm_{a,b\ge1,\ a+b\le K}
+ \begin{cases}X-a,&a=b,\\ X^2-ab,&a\ne b.\end{cases}
+\]
+The column at $k=2$ already requires this polynomial.
+\end{theorem}
+
+\begin{proof}
+On a square of positive signed difference $d$, each entry on the main diagonal strictly exceeds each entry on the other diagonal, since $d>q-1$. On a negative square the inequalities reverse. Across a shared edge these strict inequalities force neighboring squares to have opposite signs. Every grid thus has one of two orientations, and all neighbors are unequal.
+
+Take the orientation in which the square at the origin has positive difference. Telescoping the alternating signed differences over a prefix, now over the integers, gives
+\[
+ a_{ij}=x_i+y_j+d\epsilon_i\epsilon_j,\qquad
+ x_i=a_{i0},\quad y_j=a_{0j}-a_{00},\quad y_0=0.
+\]
+For a fixed $y$ the choices for even and odd row phases are independent integer intervals. Their sizes are $a=q-\ran(y)$ and $b=q-\ran(y+d\epsilon)$, where range denotes maximum minus minimum. Retain only $a,b\ge1$. For any even position $e$ and odd position $o$, the two range bounds give $d-(q-1)\le y_e-y_o\le q-1$. Thus the even entries of $y$ exceed the odd entries, while all shifted odd entries $y_o+d$ exceed all even entries. Consequently
+\[
+ a+b=2q-d-\ran(y_{\rm even})-\ran(y_{\rm odd})\le K .
+\]
+In the opposite orientation the word $y'_j=y_j+d\epsilon_j$ exchanges the two intervals. Summing these paired words gives a symmetric walk count on the complete bipartite graph $K_{a,b}$, as in \eqref{eq:moment}. On the vectors constant on each side its two eigenvalues are $\pm\sqrt{ab}$. The all-ones vector has a nonzero projection on both when $a\ne b$. When $a=b$ it is an eigenvector of eigenvalue $a$. Lemma~\ref{lem:least}'s sum-of-squares argument gives the indicated factors.
+
+Finally every positive pair $a+b\le K$ occurs at $k=2$. Put $R=K-a-b$ and take $y=(0,q-d-b,R)$. The two ranges are $q-a$ and $q-b$. This realizes every required factor at this single width.
+\end{proof}
+
+At $(q,d)=(8,8)$ the products $ab$ are $1,2,3,4,5,6,7,8,9,10,12,15,16$. The values $1,9,16$ come only from equal pairs. The other ten products require both square roots, giving order $3+2\cdot10=23$ as proposed for \seqid{234738}. Earlier formalizations give the fixed-deficit alphabet bijection and exact recurrences for several small high-stress instances. We credit those results in Section~\ref{sec:sources}.
+
+\clearpage
+\section{The OEIS tables}
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lrrlr@{\qquad}lrrlr@{}}
+\toprule
+Table&$q$&$d$&Rule&Order&Table&$q$&$d$&Rule&Order\\\midrule
+\seqid{234227}&5&3&free&16&\seqid{235017}&5&3&tilted&10\\
+\seqid{234266}&3&2&free&6&\seqid{235087}&5&4&tilted&16\\
+\seqid{234564}&5&4&free&14&\seqid{235098}&6&4&tilted&23\\
+\seqid{234681}&6&5&free&18&\seqid{235186}&6&5&tilted&27\\
+\seqid{234690}&7&5&free&29&\seqid{235198}&7&5&tilted&39\\
+\seqid{234712}&8&6&free&36&\seqid{235239}&7&6&tilted&41\\
+\seqid{234728}&8&7&free&30&\seqid{235248}&8&6&tilted&61\\
+\seqid{234738}&8&8&free&23&\seqid{235258}&8&7&tilted&58\\
+\seqid{234823}&7&6&free&23&&&&&\\\midrule
+\seqid{235280}&5&5&free&9&\seqid{234658}&6&4&free&23\\
+\seqid{235289}&4&4&free&6&\seqid{234702}&8&5&free&39\\
+\seqid{235301}&4&3&free&10&\seqid{235212}&8&5&tilted&82\\
+\seqid{235310}&6&6&free&14&&&&&\\
+\seqid{235319}&7&7&free&18&&&&&\\
+\bottomrule
+\end{tabular}
+\caption{Least common recurrence orders at all positive heights and widths.
+The upper block contains 17 all-width predictions. The lower left contains
+five predictions with prior proofs. The lower right gives three further
+least orders for tables that list empirical fixed-width recurrences.}
+\label{tab:cases}
+\end{table}
+
+For each of the 22 all-width predictions, \texttt{catalog.json} identifies a published fixed-width polynomial which the table proposes for all widths. Each coefficient, including the sign, agrees with the computed least polynomial. We compared 152 fixed-column recurrence statements under the same proof, including the width-one formula in \seqid{235017}. A rational generating function follows by multiplying by the reciprocal characteristic polynomial and using the first terms. All 46 such expressions checked in these stress columns agree algebraically.
+
+The 82 in the last column is a least order at \emph{all} widths, although the entry \seqid{235212} gives individual column data. A fixed-width recurrence can have a smaller degree. In this example exhaustively exploring $16{,}412$ states gives 81 graph signatures. The polynomials, word-state counts, signatures and source entries for all rows are in the supplement.
+
+\section*{What the finite certificates cover}
+The search terminates because it explores subsets of a fixed finite alphabet. It proves the recurrence for every width, including widths beyond those tabulated. Separate direct enumeration of the original squares checks small rectangles for each parameter set. The companion Lean file verifies the uniqueness of the last corner when the other three are given and the resulting boundary uniqueness theorem for rectangles of arbitrary size.
+
+\clearpage
+\section{Two rules based on parity of color multiplicities}\label{sec:parity}
+
+\begin{theorem}\label{th:median}
+For $q$ ordered colors the number of $(n+1)\times(k+1)$ arrays in which the minimum plus the upper median equals the lower median plus the maximum on every square is
+\[
+ M_q(n,k)=q^{n+1}+q^{k+1}-q+q(q-1)(2^n-1)(2^k-1).
+\]
+\end{theorem}
+\begin{proof}
+For sorted values $u\le v\le w\le z$, $u+w=v+z$ forces $u=v$ and $w=z$. Thus every square contains an even number of each color. Encode a color $a$ by the distinct unit vector $e_a$ in $\F_2^q$. Every square has vector sum zero. Summing over a prefix gives
+$e_{a_{ij}}=e_{a_{i0}}+e_{a_{0j}}+e_{a_{00}}$.
+If the first row or column is constant, all rows or all columns are constant in the corresponding direction, giving $q^{n+1}+q^{k+1}-q$ choices. Otherwise choose a departure from $a_{00}$ on each axis. Distinct departure colors would produce three nonzero coordinates at their intersection, impossible for a unit vector. Every departure on either axis therefore uses the same second color. Choose the origin color, the second color and nonempty subsets of the remaining positions of both axes. Every choice extends uniquely by the displayed identity.
+\end{proof}
+
+For $q=3,4$ this proves the row, column and square-diagonal formulas in \seqid{235884} and \seqid{235893}. For fixed $k$ the characteristic roots are among $1,2,q$. At $k=1$ the constant term cancels. Along the diagonal the roots are among $1,2,4,q$. Summing the geometric series gives the 14 generating functions conjectured by Colin Barker in the associated column entries, together with their closed forms.
+
+\begin{theorem}\label{th:six}
+For alphabet $0,1,2,3$ impose that the sum of the six pairwise absolute differences on each square equals nine. All positive rows and columns of \seqid{234140} satisfy the polynomial
+$(X-1)(X-2)(X^2-2)(X^2-8)$.
+\end{theorem}
+\begin{proof}
+The six differences sum to $3(z-u)+(w-v)$ on sorted entries. A span at most two gives at most eight. Thus the span is three and $w=v$. The multiset is $\{0,3,t,t\}$. Its unit vectors sum to $c=e_0+e_3$ in $\F_2^4$. Summing over a prefix again yields a phase word: the cell vector is $x_i+y_j+c\epsilon_i\epsilon_j$, with $y_0=0$ and $x_i$ a unit vector.
+
+Let $a,b$ count the allowable even and odd row phases of a word. All row choices are independent. After the first column transition the possible positive size pairs are $(4,2),(2,4),(2,2)$. Indeed $y_1=0,c$ gives the first two, and the other possible $y_1$ consists of one extreme and one middle coordinate. A nonzero translation preserves at most two unit vectors, and side sizes can only shrink. If the even side still has four, every $y_j=0$ and the odd side has exactly two. The reversed statement follows by exchanging row parities. The other positive pairs are therefore among $(1,1),(1,2),(2,1),(2,2)$. Each word contributes $a^{\lfloor n/2\rfloor+1}b^{\lceil n/2\rceil}$. Equal sides give eigenvalue $a$ and unequal sides give the pair $\pm\sqrt{ab}$. The stated polynomial covers all cases.
+\end{proof}
+
+\clearpage
+\section{Sources and verification}\label{sec:sources}
+
+R. H. Hardin contributed the OEIS array definitions and the empirical recurrence predictions. Colin Barker contributed many of the column generating functions and closed forms. Our coefficient audit uses the OEIS Foundation's
+\href{https://github.com/oeis/oeisdata/tree/976b0c73e00453b1c1e6f16d83108cb9bb744c3b}{pinned data export}.
+The underlying sequence data are available under
+\href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}.
+The supplement identifies the individual sources by A-number.
+
+\paragraph{Earlier proofs.}
+The Omega Institute's \emph{trureturing} project has proofs of the common recurrences for
+\seqid{235280}, \seqid{235289}, \seqid{235301}, \seqid{235310} and \seqid{235319}.
+Its treatment of \seqid{235301} uses a boundary-word representation modulo six.
+Its general fixed-deficit equivalence shows that, for alphabet $0,\ldots,M$ and stress $2M-r$ with $r<M$, the count is twice the number of grids whose four entries on every square sum to $r$. We use the five cases as checks and make no priority claim for them.
+See the
+\href{https://github.com/the-omega-institute/trureturing/tree/9ccf7e999d9d317777dacc48da28169af2c994e6/Problems}{problem statements}
+and the
+\href{https://github.com/the-omega-institute/trureturing/blob/9ccf7e999d9d317777dacc48da28169af2c994e6/D5/S3/Combinatorics/TraceAvoidingArrays/Recurrence/HardinA235280A235310Alphabet.lean}{formal fixed-deficit theorem}.
+
+\paragraph{Reproduction.}
+\texttt{verify.py} uses Python and SymPy for the breadth-first exploration, rational elimination and polynomial arithmetic. It checks the unbounded-width certificate for each table, the fixed-width identities and direct counts from literal grids. \texttt{parity.py} independently counts small grids for both parity rules. \texttt{check\_sources.py} compares the coefficients with the cited OEIS records, including six longer recurrence files authenticated by the SHA-256 digests in the export. It also compares the rational generating functions exactly after clearing denominators.
+
+For the width-one column of \seqid{234140} there are four words with sizes $(2,2)$ and one of each orientation $(4,2),(2,4)$. The counts at indices $2h,2h+1$ are respectively $6\,8^h+8\,4^h$ and $2\,8^{h+1}+4\,4^{h+1}$. These evaluate Barker's closed form in \seqid{234133}. At $k=2$ the multiplicities of the pairs $(1,1),(1,2),(2,1),(2,2),(2,4),(4,2)$ are respectively $8,8,8,6,1,1$, by one more intersection. Pairing the two orientations as in Lemma~\ref{lem:least} shows all six characteristic roots are required already there. Across the three parity tables and their component entries the source check matches 23 column or diagonal recurrences, 21 rational generating functions and 15 closed forms. Column, diagonal and generating-function restatements are reported as consequences of their table theorems.
+
+\paragraph{Status.}
+This is a research manuscript. The general arguments are given here. Exact finite computations support the explicitly identified coefficient results. The Lean verification in \texttt{Boundary.lean} covers boundary uniqueness. The manuscript awaits independent mathematical review.
+\end{document}

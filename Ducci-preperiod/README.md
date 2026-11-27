@@ -2,6 +2,8 @@
 
 **Blake Stone · Proof developed with OpenAI Codex.**
 
+The full manuscript gives the number of starting tuples entering a cycle at each step, for every width and modulus. It includes a finite-ring proof and recovers the conjectured maximum. [Manuscript (PDF)](Ducci-preperiods.pdf) · [LaTeX source](Ducci-preperiods.tex) · [Counting formula and second proof](distribution.md) · [Elementary recursion](elementary-distribution.md) · [Independent computational checks](verify-distribution.py)
+
 Mark L. Lewis and Shannon M. Tefft conjectured that their upper bound in Theorem 1(3) of *The maximum length for Ducci sequences on $\mathbb Z_m^n$ when $n$ is even* is always attained. Their paper appeared in *Integers* 26 (2026), A17. The equality follows by projecting the Ducci operator onto a cyclic group ring whose augmentation ideal has known nilpotency index. We give the short deduction and a direct proof of the group-ring calculation. [Lewis and Tefft, p. 2](https://math.colgate.edu/~integers/aa17/aa17.pdf) · [Clark and Schauz, §4.3, Lemma 4.6 and Theorem 4.7](https://arxiv.org/pdf/2201.02763)
 
 ## Statement and proof of the conjecture

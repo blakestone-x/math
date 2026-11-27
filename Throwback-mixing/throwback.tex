@@ -1,0 +1,207 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=1in,right=1in,top=.84in,bottom=.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\DeclareMathOperator{\pos}{pos}
+\title{Perfect mixing in increasing throwback queues}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+A throwback queue moves its first entry $x$ to position $x$, counting from zero.
+For every strictly increasing sequence of positive integers we give the exact
+return time of each finite configuration. The first $n+1$ labels visit every
+admissible configuration precisely when $\gcd(x_j-j+1,x_i-i)=1$ for all
+$0\le i<j\le n$. This answers the increasing-sequence perfect-mixing question
+posed by Darnell and Dribus. For consecutive labels we determine all occurrence
+times, the least period of the successive gaps, their reflection symmetry, and
+the exact connection between first visits and Layman's sieve.
+\end{abstract}
+
+\section{Which queues mix perfectly?}
+Let $x_0<x_1<\cdots$ be positive integers. Start with these labels in order.
+At each integer time record the head $x$ and move it past the next $x$ entries.
+A configuration of $x_0,\ldots,x_n$ records their absolute positions and
+treats all other labels as indistinguishable. Each $x_i$ always has position at
+most $x_i$: it starts at $i$, goes to $x_i$ on its own move, and otherwise
+stays put or moves left. An admissible configuration assigns distinct positions
+from $0$ to $x_i$ to these labels. Darnell and Dribus proved perfect mixing
+for consecutive starting values in their Theorem 9, and asked which other
+increasing sequences visit all their admissible configurations
+\cite[pp.\ 15--16]{dd}.
+
+Write $r_i=x_i-i+1$, so $r_i\ge2$. The empty prefix has return time
+$P_{-1}=1$. Set $H_{-1}=1$. For $i\ge0$ put
+\begin{equation}
+ g_i=\gcd(r_i,H_{i-1}),\qquad
+ P_i=P_{i-1}\frac{r_i}{g_i},\qquad
+ H_i=\frac{H_{i-1}}{g_i}(r_i-1).
+ \label{eq:period}
+\end{equation}
+\begin{theorem}\label{thm:main}
+The first return of the configuration of $x_0,\ldots,x_n$ occurs at time
+$P_n$. The orbit contains exactly $P_n$ configurations. It contains all
+$\prod_{i=0}^{n}r_i$ admissible configurations if and only if
+\begin{equation}
+ \gcd(r_j,r_i-1)=1\qquad(0\le i<j\le n).
+ \label{eq:mix}
+\end{equation}
+An infinite increasing queue mixes perfectly at every finite level exactly when
+\eqref{eq:mix} holds for every pair $i<j$.
+\end{theorem}
+
+\begin{proof}
+Erase the labels smaller than $x_i$ and let $z_i$ be the position of $x_i$
+in the remaining queue. To reconstruct a configuration, place the labels in
+increasing order. While placing $x_i$, exactly $i$ of the first $x_i+1$ slots
+are occupied, because every earlier label has a smaller position bound. Thus
+$z_i$ selects one of $r_i$ available slots, in order from left to right. This
+gives a bijection with $\prod_{i=0}^{n}\{0,\ldots,r_i-1\}$. Initially all
+coordinates are zero.
+
+Consider erasing just the smallest label $s$. When $s$ leads, the relative
+order of all remaining labels is unchanged. When a larger label $y$ leads,
+it passes $s$: the old position of $s$ is between $1$ and $s<y$.
+Erasing $s$ therefore reduces the jump of $y$ by exactly one. Subtracting
+one from each remaining label gives a throwback queue again. The same
+argument applies successively after erasing each smaller label.
+
+Call a step active at level $i$ when no smaller label leads. At such a step
+the coordinate $z_i$ decreases by one modulo $r_i$. Indeed, if $z_i=0$,
+the reduced head is reinserted at $x_i-i=r_i-1$. If $z_i>0$, the reduced
+leader passes it, moving it one slot left. At other steps $z_i$ stays fixed.
+A step is active at level $i+1$ when it is active at $i$ and $z_i\ne0$.
+
+Inductively, suppose the smaller coordinates form a cycle of length $P_{i-1}$
+with $H_{i-1}$ steps active at $i$ per cycle. The assertion for the empty
+prefix holds by convention. A return of the extended configuration must
+first return the smaller coordinates. After $k$ of their cycles,
+$z_i\equiv-kH_{i-1}\pmod{r_i}$. The least positive $k$ giving zero is
+$r_i/g_i$. In those $k$ cycles there are $r_i H_{i-1}/g_i$ active steps.
+Exactly one in each $r_i$ of them has $z_i=0$, so $H_i$ steps pass to the
+next level. This proves both recurrences and the first return from time zero.
+The update is deterministic, hence all states before this return are distinct.
+
+At level $i$ a period can increase by at most $r_i$. A loss at any level
+therefore precludes full capacity at every later level. If every earlier
+level is full, its divisors $g_j$ are all one, and
+$H_{i-1}=\prod_{j<i}(r_j-1)$. Full capacity extends one level precisely
+when $r_i$ is coprime to this product. This is equivalent to
+\eqref{eq:mix}.
+\end{proof}
+
+For $(1,3,4)$ the radices are $(2,3,3)$ and \eqref{eq:period} gives period
+$18$, achieving the upper bound discussed in \cite[p.\ 16]{dd}. The prime
+prefix $(2,3,5)$ has radices $(3,3,4)$. After the first two labels there
+are four active steps in a period of nine. The third coordinate already
+returns after this period, so exactly nine of the 36 configurations occur.
+For a nonconsecutive infinite example, take $x_i=2^{i+1}+i-1$. All radices
+are powers of two and every earlier $r_i-1$ is odd.
+
+\begin{corollary}\label{cor:mean}
+In a perfectly mixing prefix, the limiting mean absolute positions $M_i$
+are determined successively by
+\[
+  M_i=\frac{x_i(x_i+1)/2-\sum_{j<i}M_j}{r_i}.
+\]
+\end{corollary}
+\begin{proof}
+A full period visits each admissible coordinate vector once. Conditional on
+the placements of the smaller labels, $x_i$ is uniform on the $r_i$ remaining
+slots in $\{0,\ldots,x_i\}$. Their sum is the sum of the whole interval
+less the positions of the smaller labels. Take expectations.
+\end{proof}
+
+\section{Exact occurrence times for consecutive labels}
+Suppose $x_j=m+j$ with $m\ge1$. Set $h=m+1$ and
+\[
+ Q(t)=t+1+\lfloor t/m\rfloor\qquad(t\in\mathbb Z).
+\]
+On nonnegative integers, $Q$ lists in increasing order the times not
+divisible by $h$, with $Q(0)=1$. In fact $Q(ma+b)=ha+b+1$ for
+$0\le b<m$. The smallest label $m$ leads exactly at times $hk$.
+After erasing this label and subtracting one, the initial queue is again
+$m,m+1,\ldots$. The erasure argument in Theorem~\ref{thm:main}
+therefore identifies the leader at time $Q(t)$ as one more than the leader
+at time $t$. This is also the consecutive-label instance of the placement
+construction of Darnell and Dribus \cite[Sec.\ 4]{dd}.
+
+\begin{theorem}\label{thm:gaps}
+Let $E_j(k)$ be the time of occurrence number $k+1$ of label $m+j$, and put
+$G_j(k)=E_j(k+1)-E_j(k)$, with $k\ge0$. Then
+\[
+ E_j(k)=Q^{\circ j}(hk).
+\]
+The gap sequence has least positive period $D=m^j$. Its first $D-1$ gaps
+form a palindrome. Its last gap in the first period is $h+2E_j(0)$.
+\end{theorem}
+\begin{proof}
+The occurrence formula follows by induction from the description of $Q$.
+Extend the formula to integer $k$. Euclidean division gives
+\[
+ Q(t+mz)=Q(t)+hz,\qquad Q(-h-t)=-h-Q(t).
+\]
+For the reflection, write $t=ma+b$ with $0\le b<m$. The remainder of
+$-h-t$ is $m-1-b$. Iterating the translation gives
+$Q^{\circ j}(t+m^jz)=Q^{\circ j}(t)+h^jz$, and the reflection commutes
+with every iterate. Consequently
+\[
+ E_j(k+D)=E_j(k)+h^{j+1},\qquad E_j(-1-k)=-h-E_j(k).
+\]
+The first identity yields a gap period $D$ of total weight $h^{j+1}$.
+For any positive period $p$, summing the gaps over $pD$ terms in periods
+of both lengths gives $D\mid p h^{j+1}$. Since $\gcd(D,h)=1$, $D\mid p$.
+The two identities also give $G_j(D-2-k)=G_j(k)$ and
+$G_j(D-1)=G_j(-1)=h+2E_j(0)$. These verify the assertions including $D=1$.
+\end{proof}
+
+Darnell and Dribus identified reflection about $-2$ for $m=3$ in their two-sided placement construction \cite[Sec.\ 4]{dd}. The formula above gives its exact action on the gap indices for every $m$.
+For $m=3$ this proves Kozar's period and palindrome observations for
+\href{https://oeis.org/A357081}{A357081} \cite{kozar}. For example, the
+gaps between appearances of $5$ repeat as
+$7,6,8,7,7,8,6,7,8$. If $L(t)$ is the leader, then $L(4a)=3$ and
+$L(t)=1+L(t-\lceil t/4\rceil)$ for $4\nmid t$. After shifting the
+index by one this is precisely the defining recurrence for
+\href{https://oeis.org/A087165}{A087165}; hence $L(t)=2+\mathrm{A087165}(t+1)$.
+Removing all threes raises the remaining sequence by one relative to the
+original, and applying the same deletion rule twice to A087165 shows that
+removing its ones and twos gives A357081. For $m=1$ the formula recovers
+the ruler sequence: $E_j(k)=2^{j+1}k+2^j-1$.
+
+\section{First visits and the sieve identification}
+The first visit to $m+j$ is at $F_j=Q^{\circ j}(0)$. These times increase
+strictly, so they are exactly the record times. In particular
+\[
+ F_0=0,\qquad F_{j+1}=1+\left\lfloor\frac{(m+1)F_j}{m}\right\rfloor.
+\]
+To compare with Layman's $L$-sieve, remove the first item of the current
+list, then delete positions $h-1,2h-1,\ldots$ in the remaining list,
+reindexing from one after removing its head. The $j$-th survivor among
+the tail positions has index $b(j)=\lfloor hj/(h-1)\rfloor$ for $j\ge1$:
+in each block of $h$ one drops position $h-1$ and retains the final
+position. Thus the next list, as a subsequence of the previous list,
+has index map $j\mapsto1+b(j)=Q(j)$. Repeating that same deletion
+gives successive first elements $1,Q(1),Q^{\circ2}(1),\ldots$.
+Since $Q(0)=1$, these are $F_1,F_2,\ldots$.
+For $m=3$ this proves the first-visit identification with
+\href{https://oeis.org/A155167}{A155167} noted by Sloane and recorded in
+Darnell and Dribus's Table 3. The initial record at time zero is separate.
+Infinite recurrence of the labels was proved for general distinct positive
+inputs in \cite[Thm.\ 2]{dd}.
+
+\begin{thebibliography}{9}
+\bibitem{dd} J. Darnell and B. F. Dribus, \emph{Throwback Sequences of
+Positive Integers}, Journal of Integer Sequences 28 (2025), Article 25.5.1.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL28/Dribus/dribus4.pdf}{Published paper}.
+\bibitem{kozar} A. M. Kozar Jr., OEIS \href{https://oeis.org/A357081}{A357081}
+(2022). See also \href{https://oeis.org/A087165}{A087165} for the
+earlier recurrence and \href{https://oeis.org/A155167}{A155167} for the sieve.
+\end{thebibliography}
+\end{document}
