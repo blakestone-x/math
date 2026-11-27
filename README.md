@@ -10,9 +10,9 @@ math proofs
 - [Hardin’s rectangular arrays — the threshold for a common recurrence and 25 table predictions](Hardin-constant-stress/README.md) · [Manuscript (PDF)](Hardin-constant-stress/rectangular-recurrences.pdf)
 - [Modular Ducci sequences — the sharp maximum and the number of tuples entering a cycle at each step](Ducci-preperiod/README.md) · [Manuscript (PDF)](Ducci-preperiod/Ducci-preperiods.pdf)
 - [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
-- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md)
+- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md) · [The least offset for almost every Tier 3 prime (PDF)](Erdos-Straus-offset/frequency.pdf)
 - [Elementary symmetric Boolean functions — a uniform AND-gate upper bound](SymmetricBooleanCircuits/README.md)
-- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf)
+- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf) · [Arbitrary subsets of affine grids (PDF)](Erdos-132-convex-lattice/rare-distances-beyond-grids.pdf)
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
