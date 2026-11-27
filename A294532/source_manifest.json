@@ -1,0 +1,425 @@
+{
+  "checked_date": "2026-11-26",
+  "official_export_timestamp": "2026-11-26T03:00:21-05:00",
+  "equation": "a(n+2)=a(n+1)+a(n)+p*b(n+1)+q*b(n)+r*n+s",
+  "entries": [
+    {
+      "id": "A294532",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294532.seq",
+      "sha256": "07088f81f2b5084403278cbad12f8c8cde7daddac6a0a4a434811623c889682f",
+      "revision": "%I A294532 #6 Nov 03 2017 09:53:33",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294533",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294533.seq",
+      "sha256": "cae5ff07d394e1adafce99f3401d2a291a1e8ff1912181bccc1db7b4c79ffc10",
+      "revision": "%I A294533 #4 Nov 03 2017 09:53:42",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 0,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294534",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294534.seq",
+      "sha256": "a9bffb47283292d03f13c5c323b090cec61a3f285cdede7d9a2cdcf0f2d988c1",
+      "revision": "%I A294534 #4 Nov 03 2017 09:53:51",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 0,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294535",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294535.seq",
+      "sha256": "a4dd51ca1fb4d725dc416b126a8c23893449e692f9d06513f5b89262ba375952",
+      "revision": "%I A294535 #4 Nov 03 2017 09:53:59",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 0,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294536",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294536.seq",
+      "sha256": "8d2d2de91e65c3b38be8d1f1cd387c28993e80a49c44fb6d774742181d62ef84",
+      "revision": "%I A294536 #4 Nov 03 2017 09:54:07",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 0,
+        "s": -1
+      }
+    },
+    {
+      "id": "A294537",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294537.seq",
+      "sha256": "8b96467e21e1aa943f4f0b363b6f87cbe54a4596f95a4803dff5446df2bab910",
+      "revision": "%I A294537 #4 Nov 03 2017 09:54:13",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 1,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294538",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294538.seq",
+      "sha256": "5eb0013d1ea33644b327a8e76cf446453cc9e14b3589c8777500ba098e3366a5",
+      "revision": "%I A294538 #4 Nov 03 2017 09:54:20",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 2,
+        "s": 4
+      }
+    },
+    {
+      "id": "A294539",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294539.seq",
+      "sha256": "b4671d007ac6497cdbf4153aac14db6d98f38c62485723fda85749f1dd770c61",
+      "revision": "%I A294539 #4 Nov 03 2017 09:54:26",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 1,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294540",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294540.seq",
+      "sha256": "446750be76e5fdf7403d2a310263e95d57aa27a93e74434cdc528a98a3b5319a",
+      "revision": "%I A294540 #4 Nov 03 2017 09:54:33",
+      "shifted_coefficients": {
+        "p": 0,
+        "q": 1,
+        "r": 2,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294541",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294541.seq",
+      "sha256": "a9d68561e990e1a743816c52f223197b351ef7b4ecfa8ab3f65b5a6247ee50ef",
+      "revision": "%I A294541 #10 Nov 14 2017 22:16:56",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294542",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294542.seq",
+      "sha256": "6646abdb3356223a758a9f7833b1e3b43ceb54e580cc36dff2d58765c9795507",
+      "revision": "%I A294542 #8 Nov 14 2017 22:19:00",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 0,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294543",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294543.seq",
+      "sha256": "6dce6991267b6cc86f2addaed070f4b501e9377515f4c18c537fae54f1016c47",
+      "revision": "%I A294543 #8 Nov 14 2017 22:19:09",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 0,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294544",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294544.seq",
+      "sha256": "9d383a85af70e5be23957ed1947102a88f5cb2dc7bed31e410c06a944be4e392",
+      "revision": "%I A294544 #8 Nov 14 2017 22:19:14",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 0,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294545",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294545.seq",
+      "sha256": "00de5fa5cf6080c3f102166a215eda377f59d523b60f3c5d7c00596fa377d0af",
+      "revision": "%I A294545 #8 Nov 14 2017 22:19:20",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 0,
+        "s": -1
+      }
+    },
+    {
+      "id": "A294546",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294546.seq",
+      "sha256": "a6215d4e58446d6612839e2668f498aa28cbfa9e3bec6080849cbd0ddc58882e",
+      "revision": "%I A294546 #8 Nov 14 2017 22:19:28",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 1,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294547",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294547.seq",
+      "sha256": "9bc03ba42a050da9c9202a70daccf9c66f5db49d3f74c5ff71bb7b0a742a6c17",
+      "revision": "%I A294547 #8 Nov 14 2017 22:19:33",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 2,
+        "s": 4
+      }
+    },
+    {
+      "id": "A294548",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294548.seq",
+      "sha256": "6eaad5991b940019230760a07030ffe434589acf86a4d866a3bf6b291fe24b4c",
+      "revision": "%I A294548 #8 Nov 14 2017 22:19:40",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 1,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294549",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294549.seq",
+      "sha256": "ca58513f41243f60722000165af09eb09eb9f6ef947c6758535bac73ee40dc6c",
+      "revision": "%I A294549 #8 Nov 14 2017 22:19:47",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 0,
+        "r": 1,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294550",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294550.seq",
+      "sha256": "6568239dcaf5abf3049c459e995cba88f3ba9aea8871ba1576535b01b015bafb",
+      "revision": "%I A294550 #8 Nov 14 2017 22:19:58",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294551",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294551.seq",
+      "sha256": "1a80b6965d2b0d09bafb863d9cc9d47e465e52013750fe1d1cb5f2b1b0809806",
+      "revision": "%I A294551 #8 Nov 14 2017 22:20:07",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 0,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294552",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294552.seq",
+      "sha256": "fda0975188b525c184f9b2f438a376f0b1a3721b1c2f73f7ce03b94e3ff06ceb",
+      "revision": "%I A294552 #14 Dec 31 2017 01:18:53",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 1,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294553",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294553.seq",
+      "sha256": "c5c3f6f824f562885d3852f7e19849ff99096db77d5aebcd72e0cb3d73d4c679",
+      "revision": "%I A294553 #7 Dec 31 2017 01:19:04",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": -1,
+        "s": -2
+      }
+    },
+    {
+      "id": "A294554",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294554.seq",
+      "sha256": "8ee0b51aed9f28b60c7cf652c443d386633b56a2774b0a026f59d4a73f3a4cf7",
+      "revision": "%I A294554 #8 Sep 27 2020 18:39:42",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 0,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294555",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294555.seq",
+      "sha256": "77f05bf7b1e84d13139e004b0b667cad4cc82f6d53f1e9d19dd19cdc4b81896c",
+      "revision": "%I A294555 #7 Sep 27 2020 18:39:17",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 0,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294556",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294556.seq",
+      "sha256": "a2a250fb791775c97ed9fefdc19976c8efba1d7eb22238e7429ba2d6485ae478",
+      "revision": "%I A294556 #16 Sep 27 2020 18:35:09",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 1,
+        "s": 3
+      }
+    },
+    {
+      "id": "A294557",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294557.seq",
+      "sha256": "8b727ac6dc1317f7b0d1bdc6679adf711bd1bf6e51e4480b56e16428934c5abd",
+      "revision": "%I A294557 #7 Sep 27 2020 18:35:40",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 1,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294558",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294558.seq",
+      "sha256": "66c983af88ee0e2808bc32b3206eb3d5d75698ce0c03ae028acdfd48e14d2144",
+      "revision": "%I A294558 #7 Sep 27 2020 18:36:47",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 1,
+        "r": 2,
+        "s": 4
+      }
+    },
+    {
+      "id": "A294559",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294559.seq",
+      "sha256": "4909685cdbb9fea27e50c7606c7e8242f877b53cb4a1455df98799fdc83f5a25",
+      "revision": "%I A294559 #4 Nov 15 2017 17:38:28",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": 2,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294560",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294560.seq",
+      "sha256": "98cedbf1c5abdd6bdfb31cc21a55743e30fd7e10058a35ed9ad852257e13818a",
+      "revision": "%I A294560 #4 Nov 15 2017 17:38:35",
+      "shifted_coefficients": {
+        "p": 2,
+        "q": 2,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294561",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294561.seq",
+      "sha256": "b09253c3c74911a8a50f50d8e3a843b09673ddeb6ee634cf6a4ba751ea04d8f6",
+      "revision": "%I A294561 #4 Nov 15 2017 17:38:41",
+      "shifted_coefficients": {
+        "p": 2,
+        "q": 1,
+        "r": 0,
+        "s": 0
+      }
+    },
+    {
+      "id": "A294562",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294562.seq",
+      "sha256": "a4eecd52d76cfbe23e485c617f39f450982bc5141338c78185f994fb5b808f41",
+      "revision": "%I A294562 #4 Nov 15 2017 17:38:48",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": -1,
+        "r": 0,
+        "s": 1
+      }
+    },
+    {
+      "id": "A294563",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294563.seq",
+      "sha256": "9cae70634d3ac8d72e2ec5bb4da3042ff73767a3299947d9f2ad7450426cd93e",
+      "revision": "%I A294563 #4 Nov 15 2017 17:38:55",
+      "shifted_coefficients": {
+        "p": 1,
+        "q": -1,
+        "r": 1,
+        "s": 2
+      }
+    },
+    {
+      "id": "A294564",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294564.seq",
+      "sha256": "9a68aa89c104c6a74b7adeb306b64574eff5e5e4e727cf91e85a89aa24217319",
+      "revision": "%I A294564 #4 Nov 15 2017 17:39:02",
+      "shifted_coefficients": {
+        "p": 2,
+        "q": -1,
+        "r": 0,
+        "s": -1
+      }
+    },
+    {
+      "id": "A294565",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A294/A294565.seq",
+      "sha256": "633849bf92c6eba289cebb397f71a9e737988b20246ba4d6c886c5d66cf12e17",
+      "revision": "%I A294565 #4 Nov 15 2017 17:39:10",
+      "shifted_coefficients": {
+        "p": 2,
+        "q": -1,
+        "r": 0,
+        "s": -2
+      }
+    }
+  ],
+  "guide_variant": {
+    "entry": "A294565",
+    "parameters": {
+      "p": 2,
+      "q": -1,
+      "r": 0,
+      "s": -3
+    },
+    "note": "A294532 guide variant; the individual A294565 title has s=-2."
+  }
+}

@@ -1,0 +1,24 @@
+Verification of the exact packaged Lean sources.
+Commands are run from the package root with Lean 4.19.0 on PATH.
+The package build directory was absent at the start of this verification.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Exit code: 0
+
+$ lake build
+ℹ [1617/1619] Built Analytic
+info: ././././Analytic.lean:201:0: 'ComplementaryFibonacci.ratio_limit_of_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Analytic.lean:202:0: 'ComplementaryFibonacci.ratio_limit_of_nat_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1618/1619] Built Proof
+info: ././././Proof.lean:438:0: 'ComplementaryFibonacci.solution_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:439:0: 'ComplementaryFibonacci.solution_ratio_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:440:0: 'ComplementaryFibonacci.A294532_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:441:0: 'ComplementaryFibonacci.A294565_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:442:0: 'ComplementaryFibonacci.A294565Guide_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0
+
+SHA-256 of checked sources:
+35ee9e50e139b60137e69f0269513a85a65b8c538be46fa77dabed0739b0e3ad  Analytic.lean
+75ddb62216eca3e1cb192eaa32327f0789aaafea980368e8cea2e5ac93415600  Proof.lean

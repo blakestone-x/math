@@ -1,0 +1,10 @@
+Verification of the packaged sources
+November 26, 2026 (America/Chicago)
+
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+Command: lake build
+ℹ [388/389] Built Proof
+info: ././././Proof.lean:44:0: 'A143132.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0

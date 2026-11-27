@@ -1,0 +1,19 @@
+Independent fresh compilation of byte-identical packaged sources, November 26, 2026
+Lean 4.19.0; Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Fresh local modules precede the dependency cache on LEAN_PATH.
+
+SHA256 Analytic.lean: 35ee9e50e139b60137e69f0269513a85a65b8c538be46fa77dabed0739b0e3ad
+$ lean -o Analytic.olean Analytic.lean
+'ComplementaryFibonacci.ratio_limit_of_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.ratio_limit_of_nat_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit status: 0
+
+SHA256 Proof.lean: 75ddb62216eca3e1cb192eaa32327f0789aaafea980368e8cea2e5ac93415600
+$ lean -o Proof.olean Proof.lean
+'ComplementaryFibonacci.solution_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.solution_ratio_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.A294532_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.A294565_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.A294565Guide_ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit status: 0
+

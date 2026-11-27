@@ -1,0 +1,8 @@
+Independent recompilation, November 26, 2026
+Lean 4.19.0; Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+$ lake env lean Proof.lean
+
+'A143132.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit status: 0
+SHA256 Proof.lean: d35e62b98a6f1a3d8685b87f29d7b958c669f465dbf118d826631cb33749e995

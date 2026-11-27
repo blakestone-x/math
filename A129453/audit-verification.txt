@@ -1,0 +1,14 @@
+Independent verification of final packaged A129453/Proof.lean
+November 26, 2026 (America/Chicago)
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+Working directory: output/batch4/A129453
+Command: lake env lean Proof.lean
+Executable: /workspace/scratch/5f072ff518ad/lean-runtime/lean-4.19.0-linux/bin/lake
+
+'A129453.square_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A129453.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A129453.quotient_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0
+SHA256 Proof.lean: 7ebdcf093cf3fdd6bc85455b24629e6797b50a4b61f2543f3fdd9421b46301a3

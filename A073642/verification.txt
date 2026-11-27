@@ -1,0 +1,26 @@
+Verification of the packaged sources
+November 26, 2026 (America/Chicago)
+
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+Command: lake build
+ℹ [931/932] Built Proof
+info: ././././Proof.lean:184:0: 'A073642.oeis_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0
+
+Additional module: fresh elaboration of Asymptotic.lean
+Command: lake env lean Asymptotic.lean
+'A073642.power_two_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A073642.no_limit_below_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+
+Complete two-module package build
+Command: lake build
+ℹ [930/1223] Replayed Proof
+info: ././././Proof.lean:184:0: 'A073642.oeis_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1741/1742] Replayed Asymptotic
+info: ././././Asymptotic.lean:142:0: 'A073642.power_two_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Asymptotic.lean:143:0: 'A073642.no_limit_below_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0

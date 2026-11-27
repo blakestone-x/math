@@ -1,0 +1,14 @@
+Lean 4.19.0; Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Command: lake env lean Proof.lean (using the pinned Mathlib environment)
+
+'A063956.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit status: 0
+SHA256 Proof.lean: d140d29293f8ace81398521de25cfb007489664ed9336c21f48628e9073c0cfd
+
+Fresh standalone package build (pinned dependencies supplied by a local cache):
+$ lake build
+ℹ [933/934] Built Proof
+info: Proof.lean:65:0: A063956.conjecture depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit status: 0

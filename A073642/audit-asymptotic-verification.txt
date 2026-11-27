@@ -1,0 +1,14 @@
+Independent final-source audit: A073642 arithmetic and natural-log subsequence asymptotic.
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+A fresh isolated Proof.olean was compiled first and its directory was placed first on LEAN_PATH.
+
+$ lean -o Proof.olean Proof.lean
+'A073642.oeis_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Proof.lean: 8e5fa449da9546f77dd3fa946b69876eb833f6c840028eec06653dd42ae34b17
+
+$ lean -o Asymptotic.olean Asymptotic.lean
+'A073642.power_two_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A073642.no_limit_below_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Asymptotic.lean: 9aedb624a7fce0a5fbc29e82a3af3ccfa9da6b87f3619a50ec57b6e5b028c756

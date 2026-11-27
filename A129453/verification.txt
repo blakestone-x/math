@@ -1,0 +1,12 @@
+Lean 4.19.0; Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Fresh standalone package build, using a local dependency cache.
+$ lake build
+
+ℹ [959/960] Built Proof
+info: ././././Proof.lean:236:0: 'A129453.square_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:237:0: 'A129453.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:238:0: 'A129453.quotient_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit status: 0
+SHA256 Proof.lean: 7ebdcf093cf3fdd6bc85455b24629e6797b50a4b61f2543f3fdd9421b46301a3

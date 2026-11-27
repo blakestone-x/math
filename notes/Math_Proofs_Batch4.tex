@@ -1,0 +1,523 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,longtable}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Arithmetic identities, decimal periods, and complementary Fibonacci limits},pdfauthor={Blake Stone},pdfsubject={Collected OEIS proofs with Lean verification}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Arithmetic identities, decimal periods,\\[3pt]
+and complementary Fibonacci limits}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with OpenAI Astra 6.2\par
+November 26, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove a unitary-prime-divisor identity, a squared-valuation formula for a
+weighted binary digit sum, a conjectured decimal period, and an
+integer-square property for generalized binomial coefficients. For the binary
+digit sum we also refute a proposed range for its asymptotic constant under
+natural logarithms. A further uniform argument proves golden-ratio
+convergence for the 34 complementary-sequence equations A294532--A294565,
+with an explicit error bound. The accompanying Lean 4.19.0 packages check
+the stated identities, limits, and disproof. The family theorem quantifies
+over sequences satisfying the exact defining complementary equations.
+
+\section{A143132: a four-term decimal period}
+
+OEIS A143132 is the binomial transform of $1,5,15,35,70$, followed by zeros,
+with its first term indexed by $1$~\cite{A143132}. Its comment conjectures
+the repeating last-digit pattern $1,6,6,6$.
+
+\begin{theorem}
+For every integer $n\ge1$,
+\[
+ a(n)\bmod10=
+ \begin{cases}1,&n\equiv1\pmod4,\\6,&\text{otherwise}.\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+Write $b(m)=a(m+1)$. The defining binomial transform is
+\[
+ b(m)=1+5m+15\binom m2+35\binom m3+70\binom m4.
+\]
+Pascal's identity, applied four times, gives the exact integer identity
+\begin{equation}
+ b(m+4)=b(m)+10\left(32+55m+56\binom m2+28\binom m3\right).
+ \label{eq:decimal}
+\end{equation}
+For example, the coefficients of $1,m,\binom m2,\binom m3$ in the
+difference are $320,550,560,280$, respectively; the $\binom m4$ terms
+cancel. The identity includes $m<4$, with the convention $\binom mk=0$
+when $k>m$.
+
+Thus $b(m+4)\equiv b(m)\pmod{10}$. The initial values are
+$b(0),b(1),b(2),b(3)=1,6,26,96$, whose residues are $1,6,6,6$.
+Induction and the shift $m=n-1$ prove the theorem.
+\end{proof}
+
+The entry already contains generating-function and polynomial descriptions
+by R. J. Mathar and T. D. Noe from 2008. Those formulas are prior work.
+The result here is the explicit proof and formal verification of the
+listed congruence assertion, not a claim that the polynomial is new.
+
+\section{A063956: the unitary-prime product identity}
+
+Let $u(n)$ be the sum of the primes whose exponent in the factorization of
+$n$ is exactly one. These are precisely its unitary prime divisors.
+Velin Yanev's February 17, 2019 conjecture in A063956~\cite{A063956} is
+the following identity.
+
+\begin{theorem}
+For all positive integers $n,m$,
+\begin{equation}
+ u(nm)=u(n)+u(m)-u(\gcd(n^2,m))-u(\gcd(n,m^2)).
+ \label{eq:unitary}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Fix a prime $p$, and put $x=\nu_p(n)$, $y=\nu_p(m)$. The respective
+exponents in $nm$, $\gcd(n^2,m)$, and $\gcd(n,m^2)$ are
+$x+y$, $\min(2x,y)$, and $\min(x,2y)$.
+
+With $[P]$ denoting $1$ when $P$ is true and $0$ otherwise, we have
+\begin{equation}
+ [x+y=1]+[\min(2x,y)=1]+[\min(x,2y)=1]=[x=1]+[y=1].
+ \label{eq:local}
+\end{equation}
+If one of $x,y$ is zero, the two minimum terms vanish, and the identity
+is immediate. If both are positive, the first term vanishes,
+$\min(2x,y)=1$ is equivalent to $y=1$, and $\min(x,2y)=1$ is equivalent
+to $x=1$.
+
+Multiply \eqref{eq:local} by $p$ and sum over the finitely many primes
+dividing $nm$. The result is
+\[
+ u(nm)+u(\gcd(n^2,m))+u(\gcd(n,m^2))=u(n)+u(m),
+\]
+which rearranges to \eqref{eq:unitary}. It also proves that the two
+subtractions on its right are legitimate over the natural numbers.
+\end{proof}
+
+The Lean proof uses the standard prime-factorization function, proves the
+local exponent identity, sums it over the union of the finite supports,
+and substitutes the standard multiplication, squaring, and gcd rules.
+
+\section{A073642: binary carries and squared valuations}
+
+For $n=\sum_{j\ge0}\varepsilon_j2^j$, with $\varepsilon_j\in\{0,1\}$,
+write
+\[
+ s_2(n)=\sum_j\varepsilon_j,\qquad w(n)=\sum_jj\varepsilon_j.
+\]
+The function $w$ is A073642. Yanev's September 9, 2017 conjecture in that
+entry~\cite{A073642} relates it to the squares of the binary valuations.
+
+\begin{theorem}
+For every integer $n\ge0$,
+\begin{equation}
+ \boxed{2w(n)+\sum_{k=1}^n\nu_2(k)^2+3s_2(n)=3n.}
+ \label{eq:binary}
+\end{equation}
+Equivalently,
+\[
+ w(n)=\frac{3(n-s_2(n))-\sum_{k=1}^n\nu_2(k)^2}{2}.
+\]
+\end{theorem}
+\begin{proof}
+Fix $k\ge1$, and set $t=\nu_2(k)$. Incrementing $k-1$ to $k$ changes
+the $t$ trailing one-bits in positions $0,\ldots,t-1$ into zeros, and
+changes the bit in position $t$ into one. The higher bits are unchanged.
+Consequently,
+\begin{align}
+ s_2(k)-s_2(k-1)&=1-t,\label{eq:ones-increment}\\
+ w(k)-w(k-1)&=t-\sum_{j=0}^{t-1}j
+             =\frac{3t-t^2}{2}.\label{eq:weight-increment}
+\end{align}
+Summing \eqref{eq:ones-increment} from $1$ through $n$ yields
+$\sum_{k=1}^n\nu_2(k)=n-s_2(n)$.
+Summing twice \eqref{eq:weight-increment} and substituting this identity
+gives \eqref{eq:binary}. In particular, the numerator of the divided
+formula is nonnegative and even.
+\end{proof}
+
+The formalization proves the binary recursions and the two increment
+identities, then telescopes. It also proves that its recursive descriptions
+agree with the standard \texttt{Nat.digits 2 n} and
+\texttt{padicValNat 2 n}. Thus the final theorem concerns the specified
+binary digit sum and the ordinary exponent of $2$, rather than auxiliary
+functions with an unproved correspondence.
+
+\subsection{A separate asymptotic claim is false}
+
+The same entry suggests that
+\[
+ S(N):=\sum_{n=1}^Nw(n)\sim C N(\log N)^2,
+ \qquad 0.47<C<0.5.
+\]
+Here and below, $\log$ means the natural logarithm. We refute the proposed
+range by proving a subsequence limit; we do not need to assume or prove
+existence of the full normalized limit.
+
+Among the $2^m$ binary strings of length $m$, every position is one in
+exactly $2^{m-1}$ strings. Hence, for $m\ge1$,
+\[
+ \sum_{n=0}^{2^m-1} w(n)
+ =2^{m-1}\sum_{j=0}^{m-1}j
+ =2^{m-2}m(m-1).
+\]
+Also $w(2^m)=m$, so
+\begin{equation}
+ S(2^m)=2^{m-2}m(m-1)+m.
+ \label{eq:block}
+\end{equation}
+Since $\log(2^m)=m\log2$, division gives
+\[
+ \frac{S(2^m)}{2^m(\log(2^m))^2}
+ =\frac{1-1/m}{4(\log2)^2}
+   +\frac{2^{-m}}{m(\log2)^2}
+ \longrightarrow\frac{1}{4(\log2)^2}.
+\]
+This constant exceeds $1/2$. For an exact bound, the positive-term
+exponential series gives
+\[
+ e^{7/10}\ge 1+\frac7{10}+\frac{(7/10)^2}{2}
+              +\frac{(7/10)^3}{6}>2,
+\]
+so $0<\log2<7/10$ and $1/(4(\log2)^2)>25/49>1/2$.
+Any full normalized limit would have to equal this subsequence limit.
+Therefore no $C<1/2$ can satisfy the proposed asymptotic.
+
+Lean checks \eqref{eq:block} through exact doubled-range sums, the
+subsequence limit, the strict lower bound on its constant, and the
+exclusion of every proposed global limit below $1/2$. The scope of this
+additional result is precisely a subsequence limit and a disproof of the
+stated range, not a full all-$N$ asymptotic theorem.
+
+\section{A294532--A294565: a family of golden-ratio limits}
+
+Let $(a_n)$ and $(b_n)$ be strictly increasing sequences of nonnegative
+integers whose ranges are disjoint and together comprise all positive
+integers. Their initial values are
+\[
+ a_0=1,\qquad a_1=2,\qquad b_0=3.
+\]
+Consider the equations
+\begin{equation}
+ a_{n+2}=a_{n+1}+a_n+e_n,\qquad
+ e_n=p b_{n+1}+q b_n+r n+s\quad(n\ge0),
+ \label{eq:family}
+\end{equation}
+with the coefficients in Table~\ref{tab:family}. These are the 34
+individual title equations in OEIS A294532--A294565, rewritten with the
+index shifted by two~\cite{A294532}. Each entry conjectures that the ratio
+of consecutive $a$ terms tends to the golden ratio.
+
+\begin{theorem}\label{thm:family}
+For every pair of sequences satisfying these defining conditions and any
+coefficient row in Table~\ref{tab:family}, let $\phi=(1+\sqrt5)/2$. Then
+\begin{equation}
+ \boxed{\displaystyle \frac{a_{n+1}}{a_n}\longrightarrow\phi.}
+ \label{eq:ratio}
+\end{equation}
+More precisely, for every $n\ge0$,
+\begin{equation}
+ \left|\frac{a_{n+1}}{a_n}-\phi\right|
+ \le97(n+1)\left(\frac23\right)^n.
+ \label{eq:error}
+\end{equation}
+\end{theorem}
+
+\begin{center}
+\small
+\begin{longtable}{lrrrr@{\qquad}lrrrr}
+\caption{Coefficients in the shifted equation \eqref{eq:family}.}\label{tab:family}\\
+\toprule
+Entry&$p$&$q$&$r$&$s$&Entry&$p$&$q$&$r$&$s$\\
+\midrule
+\endfirsthead
+\toprule
+Entry&$p$&$q$&$r$&$s$&Entry&$p$&$q$&$r$&$s$\\
+\midrule
+\endhead
+A294532&0&1&0&0&A294549&1&0&1&3\\
+A294533&0&1&0&1&A294550&1&1&0&0\\
+A294534&0&1&0&2&A294551&1&1&0&1\\
+A294535&0&1&0&3&A294552&1&1&1&2\\
+A294536&0&1&0&-1&A294553&1&1&-1&-2\\
+A294537&0&1&1&2&A294554&1&1&0&2\\
+A294538&0&1&2&4&A294555&1&1&0&3\\
+A294539&0&1&1&1&A294556&1&1&1&3\\
+A294540&0&1&2&3&A294557&1&1&1&1\\
+A294541&1&0&0&0&A294558&1&1&2&4\\
+A294542&1&0&0&1&A294559&1&2&0&0\\
+A294543&1&0&0&2&A294560&2&2&0&0\\
+A294544&1&0&0&3&A294561&2&1&0&0\\
+A294545&1&0&0&-1&A294562&1&-1&0&1\\
+A294546&1&0&1&2&A294563&1&-1&1&2\\
+A294547&1&0&2&4&A294564&2&-1&0&-1\\
+A294548&1&0&1&1&A294565&2&-1&0&-2\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+The guide in A294532 lists the final A294565 equation with constant
+$-3$, whereas A294565's own title uses $-2$. The proof covers both:
+the additional guide variant has $(p,q,r,s)=(2,-1,0,-3)$.
+It is recorded as an alternative specification, not counted as another
+OEIS sequence.
+
+\subsection{The complement has a linear upper bound}
+
+Strict increase and $b_0=3$ imply $b_n\ge n+3$ and
+$b_{n+1}\ge b_n+1$. Substitution into each coefficient row shows
+\begin{equation}
+ e_n\ge2.\label{eq:force-positive}
+\end{equation}
+For the rows involving subtraction, use these two inequalities before
+simplifying. For example,
+$b_{n+1}-b_n+1\ge2$, and
+$2b_{n+1}-b_n-3\ge b_n-1\ge n+2$.
+Thus \eqref{eq:family} implies $a_{n+2}\ge a_{n+1}+2$.
+Apart from the initial pair $1,2$, no two consecutive integers can both
+belong to the $a$ sequence.
+
+If $b_{n+1}>b_n+2$, neither $b_n+1$ nor $b_n+2$ is a $b$ term, since
+they lie strictly between consecutive $b$ terms. Complementarity places
+both in the $a$ sequence. They are at least $4$, contradicting the
+preceding gap property. Hence $b_{n+1}\le b_n+2$, and induction gives
+\begin{equation}
+ n+3\le b_n\le2n+3.\label{eq:b-bounds}
+\end{equation}
+Substitute these bounds into the finitely many signed expressions in
+Table~\ref{tab:family}. They give the uniform bound
+\begin{equation}
+ 0\le e_n\le32(n+1).\label{eq:linear-force}
+\end{equation}
+Both coefficient bounds are proved for every row in Lean.
+
+\subsection{A contracting error proves convergence}
+
+We give the general analytic argument, which applies to any recurrence
+$a_{n+2}=a_{n+1}+a_n+e_n$ with $a_0\ge1$, $a_1\ge3/2$, and
+$0\le e_n\le C(n+1)$, where $C\ge0$.
+
+First, a two-step induction gives
+\begin{equation}
+ a_n\ge(3/2)^n.\label{eq:exponential}
+\end{equation}
+The induction works because $(3/2)^2\le3/2+1$ and $e_n\ge0$.
+In particular, every denominator used below is positive.
+
+Set $d_n=a_{n+1}-\phi a_n$. Since $\phi^2=\phi+1$, we have
+\[
+ d_{n+1}=(1-\phi)d_n+e_n.
+\]
+The elementary bounds $3/2<\phi<5/3$ imply $|1-\phi|\le2/3$.
+Put $K=3C+|d_0|$. Induction gives
+\begin{equation}
+ |d_n|\le K(n+1),\label{eq:step-error}
+\end{equation}
+because the induction step is bounded by
+\[
+ \frac23 K(n+1)+C(n+1)\le K(n+1)\le K(n+2).
+\]
+Combining \eqref{eq:exponential} and \eqref{eq:step-error},
+\[
+ \left|\frac{a_{n+1}}{a_n}-\phi\right|
+ \le\frac{K(n+1)}{(3/2)^n}\longrightarrow0.
+\]
+This proves convergence itself; existence of the ratio limit is never an
+assumption. In our family, $C=32$, $d_0=2-\phi$, and
+$K=96+2-\phi<97$. Therefore \eqref{eq:error} follows, proving
+Theorem~\ref{thm:family}.
+
+\subsection{Relation to the 2019 theorem and formal scope}
+
+Kimberling and Moses~\cite{KimberlingMoses} study this broader subject and
+list A294532 among their guides. Their Theorem 2.1 identifies a dominant-root
+limit under several hypotheses; hypothesis (ii) explicitly assumes that
+the ratio limit exists. The argument above supplies a direct proof of
+existence for the present family, together with a uniform quantitative
+bound. We do not present their conditional identification as a new result.
+
+The Lean family theorem quantifies over arbitrary sequences satisfying the
+OEIS defining conditions: the seed values, strict increase, disjoint
+positive cover, and the selected equation. No convergence or growth
+condition is added to that specification. The formalization proves the
+limit for every such solution; it does not separately construct the
+sequences by a mex algorithm or prove their existence and uniqueness.
+There is one named limit theorem for each of the 34 entries, plus the
+guide's alternative final equation.
+
+\newpage
+\section{A129453: a generalized binomial quotient is an integer square}
+
+Define the positive integer
+\[
+ G(n)=\prod_{i=1}^n\prod_{j=1}^n\gcd(i,j),\qquad G(0)=1,
+\]
+and, for $0\le k\le n$, the rational number
+\[
+ T(n,k)=\frac{G(n)}{G(k)G(n-k)}.
+\]
+OEIS A129453 conjectures that $T(n,k)$ is divisible by the ordinary
+binomial coefficient and that the quotient is a perfect
+square~\cite{A129453}.
+
+\begin{theorem}
+For all integers $0\le k\le n$, there is a positive integer $t$ such that
+\begin{equation}
+ G(n)=\binom nk G(k)G(n-k)t^2.
+ \label{eq:square}
+\end{equation}
+Consequently $T(n,k)=\binom nk t^2$, and in particular
+$T(n,k)/\binom nk$ is an integer square.
+\end{theorem}
+\begin{proof}
+Fix a prime $p$. Counting ordered pairs of multiples of $p^e$ gives
+\begin{equation}
+ \nu_p(G(n))=\sum_{e\ge1}\left\lfloor\frac{n}{p^e}\right\rfloor^2.
+ \label{eq:gcd-valuation}
+\end{equation}
+Indeed, each pair $(i,j)$ contributes once for every $e\ge1$ for which
+$p^e$ divides both $i$ and $j$; there are exactly
+$\lfloor n/p^e\rfloor^2$ such pairs. All sums below have finite support.
+Legendre's factorial formula also gives
+\[
+ \nu_p\binom nk=\sum_{e\ge1}
+ \left(\left\lfloor\frac n{p^e}\right\rfloor
+ -\left\lfloor\frac k{p^e}\right\rfloor
+ -\left\lfloor\frac{n-k}{p^e}\right\rfloor\right).
+\]
+
+For each $e$, write
+\[
+ A_e=\left\lfloor\frac k{p^e}\right\rfloor,\quad
+ B_e=\left\lfloor\frac{n-k}{p^e}\right\rfloor,\quad
+ c_e=\left\lfloor\frac n{p^e}\right\rfloor-A_e-B_e.
+\]
+Since $n=k+(n-k)$, the floor addition rule gives $c_e\in\{0,1\}$.
+The contribution to the difference between the exponent in $G(n)$ and
+that in $\binom nk G(k)G(n-k)$ is
+\[
+ (A_e+B_e+c_e)^2-A_e^2-B_e^2-c_e
+ =2\bigl(A_eB_e+c_e(A_e+B_e)\bigr),
+\]
+which is a nonnegative even integer. Put
+\[
+ E_p=\sum_{e\ge1}\bigl(A_eB_e+c_e(A_e+B_e)\bigr),\qquad
+ t=\prod_{\substack{p\le n\\p\text{ prime}}}p^{E_p}.
+\]
+Every prime therefore has the same exponent on the two sides of
+\eqref{eq:square}. All factors are positive, and equality follows from
+unique factorization. The boundary cases $n=0$, $k=0$, and $k=n$ have
+$t=1$ and are included.
+\end{proof}
+
+The exact division follows from \eqref{eq:square} and the positivity of
+$G(k)$, $G(n-k)$, and $\binom nk$. The formal proof starts with the
+original double gcd product; it does not assume a conjectured
+factorization formula as a hypothesis.
+
+\subsection{Attribution and the stronger target}
+
+Ordinary integrality of $T(n,k)$ already follows from Wanli Ma's
+2025 preprint, Theorem 2.5 and its square-exponent gcd-product
+example~\cite{Ma}. Formula \eqref{eq:gcd-valuation} also appears there,
+with credit to the earlier OEIS verification by Charles R. Greathouse IV.
+The related identity $G(n)=n!H(n)^2$, where
+$H(n)=\prod_{1\le i<j\le n}\gcd(i,j)$, is recorded in A224479 with
+Daniel Forgues's 2013 explanation~\cite{A224479}.
+These identities and the ordinary-integrality result are prior work.
+Our target here is the stronger stated integer-square quotient, together
+with a formal proof from the original product definition. Targeted
+searches did not locate a prior proof of that precise stronger assertion;
+this is not an exhaustive priority claim.
+
+\section{Verification, sources, and reproduction}
+
+The accompanying packages use Lean 4.19.0 and the following Mathlib commit:
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+Each includes a pinned toolchain and dependency manifest, successful fresh
+build output, and a separate mathematical and formal review. The final
+theorems have only the standard logical dependencies
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+There are no unfinished proofs, added axioms, unsafe replacements, or
+\texttt{native\_decide} calls.
+
+The principal checked results are:
+\begin{itemize}
+\item \texttt{A143132.conjecture}: the last-digit pattern with the correct
+positive-index offset.
+\item \texttt{A063956.conjecture}: the product identity for all positive
+arguments.
+\item \texttt{A073642.oeis\_conjecture}: the squared-valuation formula,
+expressed with standard binary digits and binary valuation.
+\item \texttt{A073642.power\_two\_limit} and
+\texttt{A073642.no\_limit\_below\_half}: the subsequence limit and the
+natural-log asymptotic disproof.
+\item \texttt{ComplementaryFibonacci.solution\_ratio\_limit} and
+\texttt{solution\_ratio\_error\_bound}: the complete family argument
+and its quantitative estimate.
+\item \texttt{A129453.square\_quotient} and \texttt{A129453.quotient\_square}: the original
+double gcd product equals the binomial coefficient times the two
+smaller products times an integer square.
+\end{itemize}
+
+The README in each package gives its Mathlib cache command and
+the command \texttt{lake build}. The audit records distinguish the exact
+formal statements from their explanatory corollaries. The independent
+reviews also check sequence definitions, offsets, hypotheses, and prior
+work, beyond successful compilation.
+
+The individual family equations were checked against the official
+\texttt{oeis/oeisdata} export dated November 26, 2026, including the
+A294565 discrepancy. The retrieved entries still label the relevant
+assertions as conjectural or tentative. Searches for identifiers and
+equivalent formulations did not locate earlier proofs of the targeted
+assertions beyond the related results credited above. These are bounded
+source checks, not an exhaustive priority claim or a claim of OEIS
+review or acceptance.
+
+\newpage
+\begin{thebibliography}{9}
+\bibitem{A143132} G. W. Adamson, OEIS A143132, July 27, 2008;
+formulas by R. J. Mathar and T. D. Noe, 2008.
+\url{https://oeis.org/A143132}.
+\bibitem{A063956} E. Labos, OEIS A063956, September 4, 2001;
+conjecture by V. Yanev, February 17, 2019.
+\url{https://oeis.org/A063956}.
+\bibitem{A073642} B. Cloitre, OEIS A073642, August 29, 2002;
+valuation identity conjectured by V. Yanev, September 9, 2017.
+\url{https://oeis.org/A073642}.
+\bibitem{A294532} C. Kimberling, OEIS A294532--A294565, November 2017.
+Family guide: \url{https://oeis.org/A294532}; final individual equation:
+\url{https://oeis.org/A294565}.
+\bibitem{KimberlingMoses} C. Kimberling and P. J. C. Moses,
+``Linear Complementary Equations and Systems,''
+\emph{The Fibonacci Quarterly} 57(5) (2019), 96--110.
+\url{https://www.fq.math.ca/Papers1/57-5/kimberling-moses.pdf}.
+\bibitem{OEISData} The OEIS Foundation, official Git-formatted export,
+snapshot time November 26, 2026.
+\url{https://github.com/oeis/oeisdata}.
+\bibitem{A129453} P. Bala, OEIS A129453, April 16, 2007.
+\url{https://oeis.org/A129453}.
+\bibitem{A224479} P. Luschny, OEIS A224479, April 7, 2013;
+matrix factorization explanation by D. Forgues, April 14, 2013.
+\url{https://oeis.org/A224479}.
+\bibitem{Ma} W. Ma, \emph{Generalized factorials characterized by
+Dirichlet convolution}, arXiv:2509.13354v1, September 14, 2025.
+\url{https://arxiv.org/abs/2509.13354}.
+\end{thebibliography}
+\end{document}

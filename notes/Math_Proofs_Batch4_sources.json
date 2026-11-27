@@ -1,0 +1,48 @@
+{
+  "checked_date": "2026-11-26",
+  "official_export_timestamp": "2026-11-26T03:00:21-05:00",
+  "entries": [
+    {
+      "id": "A063956",
+      "role": "selected assertion",
+      "revision": "%I A063956 #32 Oct 18 2026 04:18:36",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A063/A063956.seq",
+      "sha256": "b70cc4cbfea9b19312c3c6332aafdea0e3729e208aa73482c765c43d2c4bcc48"
+    },
+    {
+      "id": "A073642",
+      "role": "selected assertion",
+      "revision": "%I A073642 #121 Jul 05 2026 01:43:58",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A073/A073642.seq",
+      "sha256": "b41146a4500071537ab1d08ee0ec166266f4a56d249fe49c0a91cc3241ebf1ff"
+    },
+    {
+      "id": "A129453",
+      "role": "selected assertion",
+      "revision": "%I A129453 #9 Feb 07 2024 02:56:48",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A129/A129453.seq",
+      "sha256": "b193c8fd7e9e4e0f15206198367432d71cc177dc3c12d6ac180dab80d2794800"
+    },
+    {
+      "id": "A143132",
+      "role": "selected assertion",
+      "revision": "%I A143132 #7 Feb 08 2022 22:26:08",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A143/A143132.seq",
+      "sha256": "9300da4a6fe0d1a75db5413fb5b498df439eb1f48541ab99b67c8b10018ac981"
+    },
+    {
+      "id": "A092287",
+      "role": "prior work",
+      "revision": "%I A092287 #71 Sep 22 2025 16:00:44",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A092/A092287.seq",
+      "sha256": "171ccea5b456a84ec8bd092f314fc0ccf28488dda119ad925c8222907b61cc44"
+    },
+    {
+      "id": "A224479",
+      "role": "prior work",
+      "revision": "%I A224479 #31 Sep 22 2025 16:01:11",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A224/A224479.seq",
+      "sha256": "d00bd21568d74dc82283dfdab202117d6688167a8d92e9f7240093874af849e2"
+    }
+  ]
+}

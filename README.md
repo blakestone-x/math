@@ -11,7 +11,9 @@ math proofs
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
+- [A063956 — the unitary-prime-divisor product identity](A063956/README.md) · [Lean proof](A063956/Proof.lean)
 - [A068133 — prescribed triangular digit sums](A068133/README.md)
+- [A073642 — a squared-valuation identity and an asymptotic constant correction](A073642/README.md) · [Lean identity](A073642/Proof.lean) · [Lean disproof](A073642/Asymptotic.lean)
 - [A077754 — digit sums of zero-free Harshad numbers](A077754/README.md) · [Finite-case verifier](A077754/verify.py)
 - [A081732 — the ternary one-edit recurrence](A081732/README.md) · [Lean proof](A081732/Proof.lean) · [PDF](A081732/A081732_proof.pdf)
 - [A083788 — a sharp bound for the next integer with the same prime signature](A083788/README.md)
@@ -32,6 +34,8 @@ math proofs
 - [A115047 — prime-index divisibility and the optimal universal multiplier](A115047/README.md)
 - [A115770 — an infinite family of carryless product identities](A115770/README.md)
 - [A115772 — two strict containments for carryless binary products](A115772/README.md)
+- [A129453 — a generalized binomial quotient is an integer square](A129453/README.md) · [Lean proof](A129453/Proof.lean)
+- [A143132 — the repeating last decimal digits 1,6,6,6](A143132/README.md) · [Lean proof](A143132/Proof.lean)
 - [A178811 — consecutive powerful integers with matching prime signatures](A178811/README.md)
 - [A185333 and A185376 — necklaces that admit a palindromic cut, including prescribed color counts](A185376/README.md)
 - [A208354 — a bijection for compositions with a single run of ones](A208354/README.md)
@@ -45,6 +49,7 @@ math proofs
 - [A268135 — an explicit fixed digit-sum family and Saunders’s earlier theorem](A268135/README.md)
 - [A269631 — a greedy digit-length sequence is a permutation](A269631/README.md)
 - [A293929 — minimum plus signs to collapse a number](A293929/README.md)
+- [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
 - [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
 - [A323111 — asymptotics of compositions with range equal to half the total](A323111/README.md)
@@ -65,3 +70,6 @@ math proofs
 - [A394659 — independent sets in triangular grids](A394659/README.md) · [Exact verifier](A394659/verify.py)
 
 [Collected proof notes for A068133, A334765, and A394659 (PDF)](notes/OEIS_Proof_Notes.pdf)
+
+[Collected formal proofs for A063956, A073642, A129453, A143132, and the A294532–A294565 family (PDF)](notes/Math_Proofs_Batch4.pdf) · [Collection guide](notes/Math_Proofs_Batch4_README.md)
+
