@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype,xcolor}
+\usepackage[margin=1in,top=.86in,bottom=.9in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdftitle={Prefix dominance and row entry in Lucas representations}]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ph}{\varphi}
+\newcommand{\E}{\mathbb E}
+\newcommand{\fr}[1]{\{#1\}}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Prefix dominance and row entry\\[2pt] in Lucas representations}\\[7pt]
+Blake Stone\\[-1pt]{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+For every $N$, the Fibonacci representations of $1,\ldots,N$ use at least as many summands as their greedy Lucas representations. We prove Kimberling's prefix conjecture and classify every equality index. We determine the first adjacent Wythoff pair and the beginning of the permanent Wythoff tail in each row of both Lucas--Wythoff arrays. For the mixed Fibonacci--Lucas basis we give a joint generating function, a nondegenerate bivariate central limit theorem, and an alternate proof of the known limiting ratio $(5-\sqrt5)/2$.
+\end{abstract}
+
+\section{The prefix conjecture and its equality cases}
+Use $F_0=0$, $F_1=1$, $L_0=2$ and $L_1=1$, with both sequences following the Fibonacci recurrence. Let $z(x),u(x),w(x)$ count summands obtained by repeatedly subtracting the largest available denomination in, respectively, the positive Fibonacci numbers, the Lucas numbers, and their union. All weights are zero at $x=0$. The Fibonacci rule gives the Zeckendorf representation. The Lucas and mixed rules include $2$. For cumulative counts on $1,\ldots,N$ use Kimberling's notation $V(N),U(N),W(N)$ \cite{kim}. On half-open intervals put
+\[
+ D(x)=\sum_{m<x}(z(m)-u(m)),\qquad V(N)-U(N)=D(N+1),
+\]
+where sums over $m<x$ start at zero. For example $z(5)=1<u(5)=2$, so a proof must account for compensation between different integers.
+
+\begin{theorem}\label{main}
+For every $N\ge1$, $V(N)\ge U(N)$. The first ten equality indices are\[1,\ 2,\ 3,\ 5,\ 6,\ 8,\ 9,\ 10,\ 16,\ 17.\] The remaining equality indices are exactly
+\[
+\begin{array}{ll}
+ L_h-1,\ L_h-2 & h\ge8 \text{ even},\\
+ L_h-1,\ L_h-2,\ L_h-3,\ L_h-5 & h\ge7 \text{ odd}.
+\end{array}
+\]
+This proves both assertions of the first conjecture of Section~6 of \cite{kim} and determines OEIS A214980 \cite{sequences}.
+\end{theorem}
+
+\subsection*{Carries across a Fibonacci interval}
+For $k\ge2$ and $0\le i<F_{k+2}$ put $\delta_k(i)=z(F_k+i)-z(i)$. Write $1^a,0^a$ for constant words of length $a$, and $\delta_k[0,b)$ for the first $b$ entries.
+\begin{lemma}\label{carry}
+The word $\delta_k$ takes values in $\{0,1\}$. It has $F_k$ ones, all in the first $F_{k+1}$ positions. Its last one has zero-based position $F_{k+1}-2$ for even $k$ and $F_{k+1}-1$ for odd $k$.
+\end{lemma}
+\begin{proof}
+For $k=2,3$ the words are $100$ and $10100$. At step $k+2$ the four consecutive pieces are
+\[
+ 1^{F_{k+1}},\quad 0^{F_k},\quad \delta_k[0,F_{k+1}),\quad 0^{F_{k+2}}.
+\]
+Start the respective pieces at $0,F_{k+1},F_{k+2},F_{k+3}$. The first adds the leading $F_{k+2}$ with no carry. In the second, the leading $F_{k+1}$ becomes $F_{k+3}$ with the same suffix. In the third, $2F_{k+2}=F_{k+3}+F_k$ reduces the difference at $F_{k+2}+i$ to $\delta_k(i)$. In the last, the leading $F_{k+3}$ becomes $F_{k+4}$. Each assertion follows from $z(F_j+i)=1+z(i)$ for $j\ge2$ and $i<F_{j-1}$. The first three pieces together have length $F_{k+3}$ and contain $F_{k+1}+F_k=F_{k+2}$ ones. The last one moves right by $F_{k+2}$ from its position in $\delta_k$. Induction gives all the claims.
+\end{proof}
+
+\subsection*{A complete Lucas interval}
+Write $j=k+2\ge4$ and $0\le r\le L_{j-1}$. Greedy Lucas subtraction gives $u(L_j+i)=1+u(i)$ for $0\le i<L_{j-1}$. Hence
+\begin{equation}\label{Drec}
+ D(L_j+r)=D(L_j)+D(r)+E_j(r),\qquad
+ E_j(r)=\sum_{i<r}\bigl(z(L_j+i)-1-z(i)\bigr).
+\end{equation}
+Since $L_j=F_{k+3}+F_{k+1}$, the Fibonacci representation adds two leading terms for $i<F_k$. For the remaining indices use $L_j+F_k=F_{k+4}$ and $L_{j-1}=F_k+F_{k+2}$. Thus
+\begin{align}
+ E_j(r)&=r &&(0\le r\le F_k),\nonumber\\
+ E_j(F_k+s)&=F_k-\sum_{i<s}\delta_k(i) &&(0\le s\le F_{k+2}).\label{E}
+\end{align}
+It follows that $E_j\ge0$ and $E_j(L_{j-1})=0$. At the right endpoint, \eqref{Drec} gives $D(L_{j+1})=D(L_j)+D(L_{j-1})$. Direct evaluation gives zero at $L_0,\ldots,L_4$, and thus at every Lucas endpoint. For $x\ge7$ choose $L_j\le x<L_{j+1}$. Equation \eqref{Drec} reduces nonnegativity to $D(x-L_j)\ge0$; the cases $0\le x<7$ are immediate.
+
+For $r>0$, Lemma~\ref{carry} and \eqref{E} give $E_j(r)=0$ exactly when $r\ge F_j-1$ for even $j$, and when $r\ge F_j$ for odd $j$. We claim that on $(L_j,L_{j+1}]$, $j\ge5$, the zeros of $D(x)$ have offsets $L_{j+1}-x$ in $\{0,1\}$ for even $j+1$, and in $\{0,1,2,4\}$ for odd $j+1$. Direct evaluation on $(11,18]$ gives $17,18$, and on $(18,29]$ gives $25,27,28,29$. For $j\ge7$, $F_j-1>L_{j-2}$ because $F_j-L_{j-2}=F_{j-4}\ge2$. Any zero with $x=L_j+r$ in the claimed interval therefore has $L_{j-2}<r\le L_{j-1}$. Conversely every zero in this shorter interval lies within four of $L_{j-1}$ by induction. Such $r$ satisfies $r\ge L_{j-1}-4\ge F_j$ since $L_{j-1}-F_j=F_{j-2}\ge5$. Equation \eqref{Drec} copies exactly these zeros and preserves their offsets since $L_{j+1}-x=L_{j-1}-r$. The endpoint indices have the same parity. This proves the claim; shift back by $N=x-1$ to obtain Theorem~\ref{main}.
+
+\clearpage
+\section{Where a Lucas--Wythoff row enters the Wythoff array}
+Put $\ph=(1+\sqrt5)/2$ and $\psi=1-\ph=-1/\ph$. By a Wythoff pair we mean two consecutive entries in an ordinary Wythoff row, in their given order. A pair starting in column $k$ occupies columns $k$ and $k+1$. The \emph{permanent tail} starts at the first column from which the row agrees with a Wythoff row forever.
+\begin{theorem}\label{entry}
+In row $n\ge1$ write $t=\fr{n\ph}$. The first pair in Kimberling's second Lucas--Wythoff array starts in column $3$ if $t>1/\sqrt5$, and in column $5$ otherwise. It starts the permanent tail.
+
+In the first array the permanent tail starts in column $4$ if $t>1/\sqrt5$ and in column $6$ otherwise. Its first adjacent Wythoff pair starts in column $1$ for $n=1$. For $n\ge2$ it starts in column $2$ if $t<(\ph+2)/5$, and in column $4$ otherwise.
+\end{theorem}
+\begin{proof}
+An integer pair $(x,y)$ with $x\ge1$ is a Wythoff pair precisely when
+\begin{equation}\label{strip}
+ -\ph^{-2}<y-\ph x<\ph^{-1}.
+\end{equation}
+An ordinary row has entries $aF_{k+1}+bF_k$, with $a=\lfloor n\ph\rfloor$, $b=n-1$ and $k\ge1$, by Theorem~4 of \cite{kim}. The error of a successive pair is $\psi^k(a\psi+b)$, since $F_{k+1}-\ph F_k=\psi^k$. Here $a\psi+b=-1+\fr{n\ph}/\ph$. At $k=1$ the error lies strictly between $0$ and $\ph^{-1}$, and multiplying by $\psi$ preserves the strip. The interval in \eqref{strip} has length one and its endpoints are irrational. Thus the successor of every ordinary entry $x$ is $S(x)=\lfloor \ph(x+1)\rfloor-1$.
+
+For completeness, the ordinary first-column entries are $a+b=\lfloor n\ph^2\rfloor-1$. The positive Beatty sequences of $\ph$ and $\ph^2$ partition the positive integers because $\ph^{-1}+\ph^{-2}=1$. Hence every $x\ge1$ is a first-column entry or has the form $S(y)$ with $1\le y<x$. Indeed $x+1=\lfloor m\ph\rfloor$ in the latter case, with $m\ge2$, $y=m-1$ and $\lfloor m\ph\rfloor\ge m+1$. Induction gives coverage by ordinary rows. This also proves the sufficiency of \eqref{strip} without assuming the Wythoff partition property.
+
+By Theorem~5 of \cite{kim}, a second-array row has $x_k=aL_k+bL_{k-1}$. The first entries are $a+2b,3a+b$ and the row follows the Fibonacci recurrence. Thus
+\[
+ x_{k+1}-\ph x_k=A\psi^{k-1},\qquad
+ A=\sqrt5(1-t/\ph),\qquad \sqrt5/\ph^2<A<\sqrt5 .
+\]
+The first error exceeds $\ph^{-1}$, and the second lies below $-\ph^{-2}$. The third and fourth are in the strip exactly when $A<\ph$, or $t>1/\sqrt5$. The fifth is always in the strip since $0<A/\ph^4<\ph^{-1}$. Stability and the common row recurrence prove the assertion for the second array.
+
+The first array inserts $x_1+1$ between $x_1$ and $x_2$ \cite{kim}. From column $3$ onward its pairs are the corresponding second-array pairs shifted by one. Its first pair has error $1-(\ph-1)x_1$, which is in the strip for $x_1=1$; all later first-column entries are at least $5$. Its second pair has error $A-\ph$, which is in the strip exactly when $A>2\ph-2$, or $t<(\ph+2)/5$. Since $(\ph+2)/5>1/\sqrt5$, failure of this test implies that the second array enters at column $3$. Since $1/\sqrt5=(2\ph-1)/5$, attaining either threshold would make a nonzero integer multiple of $\ph$ an integer.
+\end{proof}
+In the first array, row two begins $5,6,10,15,25,40,65,\ldots$. The pair $(6,10)$ is ordinary, $(10,15)$ fails, and the permanent tail starts with $(40,65)$. This distinction accounts for the two readings of the question at the end of Section~2 of \cite{kim}.
+
+\clearpage
+\section{Joint summand counts for the mixed basis}
+For $i\ge0$ let $P_i(u,v)=\sum_{0\le x<F_i}u^{z(x)}v^{w(x)}$, with $u,v$ here denoting indeterminates. With $k=i-4\ge0$, cut $[0,F_{k+4})$ into consecutive blocks of lengths $F_{k+3},F_{k+1},F_k$. The last two start at $F_{k+3}$ and $L_{k+2}$. In the middle block both representations add one leading term. In the last the mixed representation takes $L_{k+2}$ while Fibonacci takes $F_{k+3}+F_{k+1}$. Indeed,
+\[
+ F_{k+3}\le L_{k+2}=F_{k+3}+F_{k+1}\le F_{k+4},
+\]
+with no mixed denomination in either gap interior, by monotonicity and $L_{k+1}=F_{k+2}+F_k\le F_{k+3}$, $L_{k+3}=F_{k+4}+F_{k+2}$. The duplications for small $k$ do not affect the half-open blocks. Combining two Zeckendorf terms with indices two apart also occurs in Sawin's proof of a related composition identity \cite{sawin}.
+
+\begin{theorem}\label{gf}
+One has $P_0=0$, $P_1=P_2=1$, $P_3=1+uv$, and
+\[
+ P_i=P_{i-1}+uvP_{i-3}+u^2vP_{i-4}\quad(i\ge4),\qquad
+ \sum_{i\ge0}P_i(u,v)x^i=\frac{x+uvx^3}{1-x-uvx^3-u^2vx^4}.
+\]
+\end{theorem}
+The recurrence follows by adding the contributions of the three blocks. Summing it gives the generating function.
+
+For instance, the first integer with mixed weight $d\ge1$ is
+\[
+ R_d=\sum_{j=0}^{d-1}F_{3j+2}=(F_{3d+1}-1)/2 .
+\]
+Indeed the maximum mixed weight on $[0,F_i)$ is $\lfloor i/3\rfloor$ for $i\ge1$, by the recurrence (check $i\le4$ directly). For $d\ge2$ the first block in $[0,F_{3d})$ has no weight $d$. The middle block already contains $F_{3d-1}+R_{d-1}$ as its first such entry. The sum telescopes by $F_{h+3}-F_h=2F_{h+1}$. This recovers the first-occurrence assertion of A214973 proved in \cite{bb}.
+
+\subsection*{A joint central limit theorem}
+Let $X_j$ be uniform on $\{0,\ldots,F_j-1\}$ for $j\ge1$. Put $\rho=\ph^{-1}$. Define a random index $J$ taking the values $1,3,4$ with probabilities $\rho,\rho^3,\rho^4$, respectively, and set
+\[
+ a_1=(0,0),\quad a_3=(1,1),\quad a_4=(2,1),\qquad
+ \mu=\frac{\E a_J}{\E J},\quad
+ \Sigma=\frac{\E[(a_J-J\mu)(a_J-J\mu)^{\mathsf T}]}{\E J}.
+\]
+\begin{theorem}\label{clt}
+The vector $\bigl((z(X_j),w(X_j))-j\mu\bigr)/\sqrt{j}$ converges in distribution to the centered bivariate normal with covariance matrix $\Sigma$, which is positive definite.
+\end{theorem}
+\begin{proof}
+For complex $h=(h_1,h_2)$ near zero substitute $(u,v)=(e^{h_1},e^{h_2})$ in Theorem~\ref{gf}. At $h=0$ the denominator has the simple root $\rho$, and no other root of modulus at most $\rho$. Indeed $\rho+\rho^3+\rho^4=1$ and equality in the triangle inequality forces all three summands onto the positive ray. The degree-one term forces the root itself to be positive. The numerator is nonzero there. The analytic implicit function theorem continues this pole to $r(h)$, and the other poles remain outside a fixed larger circle. Subtracting the simple pole and using Cauchy's coefficient estimate on that circle gives, uniformly near zero,
+\[
+ \frac{P_j(e^{h_1},e^{h_2})}{P_j(1,1)}
+   =B(h)e^{j\kappa(h)}\bigl(1+O(\eta^j)\bigr),\qquad
+ \kappa(h)=\log\!\frac{\rho}{r(h)},\quad B(0)=1,\quad 0<\eta<1,
+\]
+with $B$ analytic. The pole equation is $\E\exp(h\cdot a_J-J\kappa(h))=1$.
+Differentiating at zero gives $\nabla\kappa(0)=\mu$ and $\nabla^2\kappa(0)=\Sigma$. At $h=\mathrm{i}\theta/\sqrt{j}$ centering cancels the linear term. The characteristic function tends to $\exp(-\theta^{\mathsf T}\Sigma\theta/2)$, proving convergence by the continuity theorem. A vector in the nullspace of $\Sigma$ must annihilate every $a_d-d\mu$. The term $d=1$ forces orthogonality to $\mu$, and $d=3,4$ then force orthogonality to two independent vectors.
+\end{proof}
+
+\clearpage
+\section{The limiting ratio at arbitrary endpoints}
+Bhattacharjee and Bhattacharya \cite{bb} proved Kimberling's second conjecture and determined its constant. We give a direct cancellation argument and a uniform error bound. Put $Z(x)=\sum_{m<x}z(m)$, $T(x)=\sum_{m<x}w(m)$ and $C=3-\ph=(5-\sqrt5)/2$. This is the ratio $\mu_1/\mu_2$ of the means in Theorem~\ref{clt}.
+\begin{theorem}\label{ratio}
+For all $x\ge0$, $|Z(x)-CT(x)|\le4x$. For $F_j\le x<F_{j+1}$ with $j>2$ one has $32T(x)\ge(j-2)x$. Consequently $V(N)/W(N)\to C$.
+\end{theorem}
+\begin{proof}
+Write $Y=Z-CT$ and $A=F_{k+3},B=F_{k+1},H=F_k$. At $F_{k+4}=A+B+H$, adding the shifts from the three blocks gives
+\[
+ Y(F_{k+4})=Y(A)+Y(B)+Y(H)+(1-C)B+(2-C)H.
+\]
+The last two terms total $(\ph-2)(F_{k+1}-\ph F_k)=(\ph-2)\psi^k$, of absolute value at most one. By induction $|Y(F_i)|\le3F_i-1$ for $i\ge1$. The four initial cases follow by evaluation, and for $i\ge5$ the three children are positive, giving a combined margin of three.
+
+For $x\ge2$, choose $A\le x<A+B+H$. If $x=A+s$ with $0\le s\le B$, then $Y(x)=Y(A)+Y(s)+(1-C)s$. Since $|1-C|<1$ and $s\le A$, strong induction gives $|Y(x)|\le3A+4s+A=4x$. If $x=A+B+s$ with $0\le s\le H$, the same argument bounds the absolute value by $3(A+B)+4s+B+s\le4x$, since $|2-C|<1$ and $s\le A$. The cases $x=0,1$ are immediate.
+
+The mixed total satisfies $T(F_i)=T(F_{i-1})+T(F_{i-3})+T(F_{i-4})+F_{i-2}$ for $i\ge4$. We claim $16T(F_i)+2F_i\ge iF_i$. The initial cases are direct. On summing the induction bounds for the children, the index drops cost $F_{i-1}+3F_{i-3}+4F_{i-4}\le4F_i$, covered by $16F_{i-2}$ since $F_i\le4F_{i-2}$. Now $F_j\le x<F_{j+1}\le2F_j$, and monotonicity of $T$ implies $32T(x)\ge(j-2)x$. Thus $|Z(x)/T(x)-C|\le128/(j-2)$ for $j>2$. Take $x=N+1$.
+\end{proof}
+
+\paragraph{Verification.}
+The Lean 4 package defines all three weights by the greedy algorithm and proves prefix dominance, the classification of equality indices on all Lucas intervals from $(11,18]$ onward, the all-prefix error bound, and the ratio limit. It proves coverage by the ordinary Wythoff rows, the equivalence between ordinary adjacency and the arithmetic successor, and the pair tests for both Lucas--Wythoff arrays. The two arrays are defined from the first two entries and recurrence of Kimberling's Theorems~4 and~5. The joint generating function and the central limit theorem have written proofs above. An independent program computes the three weights through $350{,}000$ and tests both arrays against successors generated from Morrison's defining formulas.
+
+\begin{thebibliography}{9}
+\bibitem{kim} C. Kimberling, \emph{Lucas representations of positive integers}, J. Integer Seq. \textbf{23} (2020), Article 20.9.5. \href{https://cs.uwaterloo.ca/journals/JIS/VOL23/Kimberling/kimber12.html}{Journal article}.
+\bibitem{sequences} OEIS Foundation, \href{https://oeis.org/A214979}{A214979}, \href{https://oeis.org/A214980}{A214980}, \href{https://oeis.org/A214981}{A214981} and \href{https://oeis.org/A214973}{A214973}, entries on greedy summand counts and equality positions.
+\bibitem{morrison} D.~R. Morrison, \emph{A Stolarsky array of Wythoff pairs}, in \emph{A Collection of Manuscripts Related to the Fibonacci Sequence}, Fibonacci Association, 1980.
+\bibitem{sawin} W. Sawin, answer to \emph{One conjecture by sequencedb.net}, MathOverflow, 14 November 2021. \url{https://mathoverflow.net/questions/408512}.
+\bibitem{bb} D. Bhattacharjee and U. Bhattacharya, \emph{The Number of Terms in Greedy Fibonacci--Lucas Representations}, Hexagon preprint 2610.00478v1, 22 October 2026. \url{https://hexagonmath.org/2610.00478v1}.
+\end{thebibliography}
+\end{document}

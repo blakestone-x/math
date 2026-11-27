@@ -1,6 +1,9 @@
 # math
 math proofs
 
+- [Kimberling’s prefix inequality, all equality indices, and both Lucas–Wythoff row-entry formulas](Kimberling-Lucas/README.md) · [Manuscript](Kimberling-Lucas/lucas-representations.pdf) · [Inclusive inequality and equality cases in Lean](Kimberling-Lucas/Equality.lean)
+- [Puszkarz’s amicably refactorable pairs — all partners classified by degree, least-partner formulas, and a counting asymptotic](Refactorable-partners/README.md) · [Manuscript](Refactorable-partners/refactorable-partners.pdf) · [Existence theorem in Lean](Refactorable-partners/Partners.lean)
+
 - [A326926/A326933 — the complete prime-index irreducibility classification](A326926/README.md) · [Exact source theorem in Lean](A326926/Proof.lean)
 - [A211417 — the full positive-shift integrality family with an explicit uniform constant](A211417/README.md) · [Complete Lean proof](A211417/Proof.lean)
 - [A289128–A289131 — the replacement-length conjecture proved and both position limits refuted](A289128/README.md) · [Complete Lean proofs](A289128/Proof.lean)

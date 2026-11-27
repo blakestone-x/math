@@ -1,0 +1,20 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'Refactorable.prescribed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.composite_partners' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.prime_partner_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.no_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.isolated_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.isolated_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.least_for_prime_power_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Refactorable.odd_semiprime' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+54 published A269781 terms checked
+698 least values tested against a divisor sieve through 12000 (indices 3..700)
+factorized infinite-family witnesses checked at all composite indices 3..1200
