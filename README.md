@@ -1,6 +1,10 @@
 # math
 math proofs
 
+- [Regular polygons from consecutive rods — classification and infinitely many chains with three equilateral foldings](A382632/README.md) · [Manuscript](A382632/regular-foldings.pdf)
+- [Bala’s two triangular-number product identities (A174114 and A266883)](Bala-product-identities/README.md) · [Manuscript](Bala-product-identities/products.pdf)
+- [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf)
+
 - [Mondot’s linked-rod conjecture — every triangular rectangle count occurs infinitely often](A380868/README.md) · [Manuscript](A380868/rod-counts.pdf)
 - [Kimberling’s partition rows — the exact prefix length and its indexing](A308355/README.md) · [Manuscript](A308355/partition-prefix.pdf)
 
