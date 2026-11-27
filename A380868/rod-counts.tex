@@ -1,0 +1,70 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!47!black,pdfauthor={Blake Stone},pdftitle={Prescribing the exact number of folds of a rod chain}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\bin}[2]{\binom{#1}{#2}}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Prescribing the exact number of folds\\[2pt] of a rod chain}\par\vspace{8pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+Join rods of lengths $1,2,\ldots,n$ in their cyclic order. For each $k\ge1$ we construct infinitely many $n$ for which the chain folds in half at exactly $k$ distinct pairs of joints. Such $n$ occur in each of the classes $0$ and $3$ modulo $4$. Consequently every triangular number occurs infinitely often among the rectangle counts of OEIS A380868. This proves Conjecture 2 of Daniel Mondot. The construction uses a factorization of the perimeter and Dirichlet's theorem on primes in arithmetic progressions.
+\end{abstract}
+
+\section*{Counting folds by factor pairs}
+Write $T_j=j(j+1)/2$ and $M=T_n$. Place the joints at $T_0,T_1,\ldots,T_{n-1}$ on a circle of circumference $M$. The final position $T_n$ is the initial joint. A fold in half is an unordered pair of opposite joints. Let $F(n)$ be the number of such pairs and $R(n)$ the number of unordered sets of four joints at which the chain forms a rectangle. These are \href{https://oeis.org/A382605}{A382605} and \href{https://oeis.org/A380868}{A380868}, respectively.
+
+The previously established identity is $R(n)=\bin{F(n)}2$. Indeed, any two distinct pairs of opposite joints alternate around the circle. The four intervening arcs have equal opposite lengths, and so give a rectangle. Conversely the opposite corners of each folded rectangle define two pairs of opposite joints. Mondot credits the argument to PentaPig with a correction by frogkabobs in the \href{https://www.reddit.com/r/math/comments/1mfcodo/}{original discussion}. His second conjecture asks which of the triangular values actually occur.
+
+\begin{lemma}\label{factor}
+$F(n)$ equals the number of unordered positive factor pairs $\{a,b\}$ of $M$ with $a,b$ of opposite parity and $a+b\le 2n-1$.
+\end{lemma}
+\begin{proof}
+For $0\le i<j<n$, the two joints are opposite exactly when
+\[
+ M=2(T_j-T_i)=(j-i)(j+i+1).
+\]
+The factors $a=j-i<b=j+i+1$ have odd sum $2j+1\le2n-1$. Conversely such a pair gives $i=(b-a-1)/2\ge0$ and $j=(a+b-1)/2\le n-1$. These operations are inverse.
+\end{proof}
+
+For instance, $M=210$ at $n=20$. The three qualifying pairs are $\{7,30\}$, $\{10,21\}$ and $\{14,15\}$. Thus $F(20)=3$ and $R(20)=3$.
+
+For completeness $F(n)>0$ exactly when $M$ is even. If $n=4t$ ($t\ge1$), take joints $i=t$, $j=3t$. If $n=4t+3$ ($t\ge0$), take $i=t$, $j=3t+2$. The factors in the lemma then multiply to $M$ in either case. An odd $M$ forbids a half-perimeter between two integer marks. The existence question appeared in \href{https://cs.nyu.edu/~gottlieb/tr/back-issues/2000s/2003/5-dec.pdf}{MIT Technology Review's Puzzle Corner} in 2003.
+
+\section*{Forcing exactly the desired number}
+\begin{theorem}
+For every $k\ge1$, infinitely many $n\equiv0\pmod4$ have $F(n)=k$, and infinitely many $n\equiv3\pmod4$ have $F(n)=k$. Hence every triangular number, including zero, occurs infinitely often as $R(n)$ in both residue classes.
+\end{theorem}
+\begin{proof}
+Choose $k$ distinct primes $S=\{c,q_2,\ldots,q_k\}$, with $c\ge5$ the smallest and every $q\in S$ at most $5c/4$. Such clusters exist for every fixed $k$. Otherwise the intervals $[(5/4)^r,(5/4)^{r+1})$ would eventually contain fewer than $k$ primes each, and their contributions to $\sum_{p\ \mathrm{prime}}1/p$ would be bounded by a convergent geometric series, contradicting Euler's theorem.
+
+Fix $\varepsilon\in\{-1,+1\}$. We shall take a large prime $p$, let $m=cp$, and use the chain with $n=\min(m,m+\varepsilon)$. Its perimeter is
+\[
+ M=pcE,\qquad E=(m+\varepsilon)/2 .
+\]
+Choose $L$ with $2^{L-1}>2c$. Prescribe the following congruences on $m=cp$:
+\[
+\begin{array}{ll}
+ m\equiv-\varepsilon\pmod{2^L},&\\
+ m\equiv-\varepsilon\pmod q, & q\in S\setminus\{c\},\\
+ m\equiv-2\varepsilon\pmod q,
+   &q<2c\text{ an odd prime outside }S .
+\end{array}
+\]
+All moduli are pairwise coprime and coprime to $c$. Dividing the residues by $c$ modulo each modulus prescribes a single reduced residue class for $p$ by the Chinese remainder theorem. \href{https://math.mit.edu/classes/18.785/2021fa/LectureNotes18.pdf}{Dirichlet's theorem} supplies infinitely many such primes $p>2c$. Now $2^{L-1}\mid E$. Among odd primes below $2c$, the divisors of $cE$ are precisely the members of $S$. Primes outside $S$ cannot divide $E$ since $2E\equiv-\varepsilon$ modulo each of them.
+
+Consider a factor pair allowed by Lemma~\ref{factor}. Exactly one factor contains $p$, since $p\nmid cE$. Write it as $pd$; its partner is $cE/d$. The sum constraint gives $pd\le2n-1<2cp$, hence $d<2c$. If $d$ were even, its odd partner would force $2^{L-1}\mid d$, which is impossible. Therefore $d$ is an odd divisor of $cE$. Every prime factor of $d$ belongs to $S$, and the product of any two such primes, even with repetition, is at least $c^2>2c$. Thus $d$ is $1$ or a single member of $S$. The choice $d=1$ fails: $cE\ge5n/2>2n-1$.
+
+Conversely take any $d\in S$. The factors $pd$ and $cE/d$ are respectively odd and even. Since $m\le n+1$, $d/c\le5/4$, $c/d\le1$ and $E\le(n+1)/2$, their sum is at most
+\[
+ \frac54(n+1)+\frac12(n+1)=\frac74(n+1)\le2n-1\qquad(n\ge11).
+\]
+All these $k$ factorizations qualify, and their $p$-divisible factors distinguish them. Thus $F(n)=k$. For $\varepsilon=-1$ the even integer $m-1$ is $n\equiv0\pmod4$; for $\varepsilon=+1$ it is $m+1$ that is divisible by four, so $n=m\equiv3\pmod4$. Finally take $k=t+1$ to realize $R(n)=t(t+1)/2$.
+\end{proof}
+In particular, the least index of every positive fold count exists, as required by the definition of \href{https://oeis.org/A390056}{OEIS A390056}.
+\end{document}

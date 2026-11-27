@@ -1,0 +1,34 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.94in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdfauthor={Blake Stone},pdftitle={Two product-tail identities from Gauss's triangular-number series}]{hyperref}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Two product-tail identities from Gauss's\\[2pt] triangular-number series}\par\vspace{7pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+On May 10, 2025, Peter Bala proposed exponent formulas for two series in \href{https://oeis.org/A174114}{OEIS A174114} and \href{https://oeis.org/A266883}{A266883}. The two formulas are identities of formal power series:
+\[
+\begin{aligned}
+ \sum_{n\ge1}q^n\prod_{k\ge2n}(1-q^k)
+ &=\sum_{m\in\mathbb Z}q^{4m^2+3m+1},\\
+ \sum_{n\ge1}q^n\prod_{k\ge2n-1}(1-q^k)
+ &=\sum_{m\in\mathbb Z}q^{4m^2+m+1}.
+\end{aligned}
+\]
+In both series every nonzero coefficient is $1$.
+
+\paragraph{Proof.} Write $(z;q)_j=\prod_{r=0}^{j-1}(1-zq^r)$ and use the analogous notation for the infinite product. Set $q=t^2$ and consider
+\[
+ H(t)=(t^2;t^2)_\infty\sum_{j\ge0}\frac{t^j}{(t^2;t^2)_j}
+      =\frac{(t^2;t^2)_\infty}{(t;t^2)_\infty}
+      =\sum_{k\ge0}t^{T_k},\qquad T_k=k(k+1)/2.
+\]
+The first equality uses the reciprocal-product form of the \href{https://dlmf.nist.gov/17.5}{Euler $q$-binomial identity}. The second is \href{https://uva.theopenscholar.com/files/ken-ono/files/003.pdf}{Gauss's triangular-number product}. These substitutions also hold formally, since each coefficient involves only finitely many summands.
+
+The summands indexed by odd $j$ in $H(t)$ contain only odd powers of $t$, and those indexed by even $j$ contain only even powers. For the first product tail take $j=2n-1$. Its product is $(q;q)_\infty/(q;q)_j$, and $q^n=t^{j+1}$. Thus the first series equals $t$ times the odd part of $H(t)$, with exponents $(T_k+1)/2$ in $q$ for $T_k$ odd. Likewise $j=2n-2$ gives $q^n=t^{j+2}$, so the second series equals $t^2$ times the even part of $H(t)$, with exponents $1+T_k/2$ for $T_k$ even.
+
+The odd triangular numbers occur at $k=4r+1,4r+2$, $r\ge0$. Their exponents are $4r^2+3r+1$ and $4r^2+5r+2$, obtained from $4m^2+3m+1$ at $m=r,-r-1$. The even triangular numbers occur at $k=4r,4r+3$. Their exponents are $4r^2+r+1$ and $4r^2+7r+4$, obtained from $4m^2+m+1$ at the same two values of $m$. Strict increase of $T_k$ prevents repetitions within either series.\hfill$\square$
+\end{document}

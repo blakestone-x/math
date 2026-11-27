@@ -1,0 +1,83 @@
+November 26, 2026
+Lean 4.19.0 (6caaee842e94), mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+
+Two separate project directories compiled the new proof and the adjacent Dekking sources independently, sharing a pinned mathlib dependency cache. The two public digit-sum theorems quantify over the complete parameter ranges. The binary factor theorem takes the word and progression parameters as its only arguments.
+
+First lake build
+✔ [2794/2807] Built Digits
+✔ [2795/2807] Built Estimates
+✔ [2796/2807] Built Cancellation
+ℹ [2797/2807] Built Repetitions
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:293:0: 'ThreeHalves.t_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:294:0: 'ThreeHalves.t_attains' depends on axioms: [propext, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:295:0: 'ThreeHalves.x_fifth_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:296:0: 'ThreeHalves.x_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:297:0: 'ThreeHalves.x_attains' depends on axioms: [propext, Quot.sound]
+✔ [2798/2807] Built Averages
+✔ [2799/2807] Built Progressions
+✔ [2800/2807] Built Decoding
+ℹ [2801/2807] Built Distribution
+info: ././././Distribution.lean:130:0: 'RationalDigits.Base.uniform_residue_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distribution.lean:131:0: 'RationalDigits.Base.three_halves_all_moduli' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2802/2807] Built Frequencies
+info: ./././../Dekking-base-three-halves/././Frequencies.lean:127:0: 'ThreeHalves.Frequency.t_word_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2803/2807] Built Sibling
+info: ./././../Dekking-base-three-halves/././Sibling.lean:92:0: 'ThreeHalves.Frequency.both_word_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2807] Built Symmetry
+info: ./././../Dekking-base-three-halves/././Symmetry.lean:281:0: 'ThreeHalves.Frequency.normalized_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Symmetry.lean:282:0: 'ThreeHalves.Frequency.sibling_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2807] Built Dekking
+info: ./././../Dekking-base-three-halves/././Dekking.lean:100:0: 'ThreeHalves.Frequency.factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Dekking.lean:101:0: 'ThreeHalves.Frequency.conjectured_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Dekking.lean:102:0: 'ThreeHalves.Frequency.fifth_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2806/2807] Built DekkingBridge
+info: ././././DekkingBridge.lean:55:0: 'ThreeHalves.Frequency.proved_letter_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././DekkingBridge.lean:56:0: 'ThreeHalves.Frequency.unconditional_factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Second lake build
+✔ [2794/2807] Built Digits
+✔ [2795/2807] Built Estimates
+✔ [2796/2807] Built Cancellation
+ℹ [2797/2807] Built Repetitions
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:293:0: 'ThreeHalves.t_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:294:0: 'ThreeHalves.t_attains' depends on axioms: [propext, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:295:0: 'ThreeHalves.x_fifth_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:296:0: 'ThreeHalves.x_exponent_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Repetitions.lean:297:0: 'ThreeHalves.x_attains' depends on axioms: [propext, Quot.sound]
+✔ [2798/2807] Built Averages
+✔ [2799/2807] Built Progressions
+✔ [2800/2807] Built Decoding
+ℹ [2801/2807] Built Distribution
+info: ././././Distribution.lean:130:0: 'RationalDigits.Base.uniform_residue_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distribution.lean:131:0: 'RationalDigits.Base.three_halves_all_moduli' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2802/2807] Built Frequencies
+info: ./././../Dekking-base-three-halves/././Frequencies.lean:127:0: 'ThreeHalves.Frequency.t_word_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2803/2807] Built Sibling
+info: ./././../Dekking-base-three-halves/././Sibling.lean:92:0: 'ThreeHalves.Frequency.both_word_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2807] Built Symmetry
+info: ./././../Dekking-base-three-halves/././Symmetry.lean:281:0: 'ThreeHalves.Frequency.normalized_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Symmetry.lean:282:0: 'ThreeHalves.Frequency.sibling_symmetries' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2807] Built Dekking
+info: ./././../Dekking-base-three-halves/././Dekking.lean:100:0: 'ThreeHalves.Frequency.factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Dekking.lean:101:0: 'ThreeHalves.Frequency.conjectured_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ./././../Dekking-base-three-halves/././Dekking.lean:102:0: 'ThreeHalves.Frequency.fifth_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2806/2807] Built DekkingBridge
+info: ././././DekkingBridge.lean:55:0: 'ThreeHalves.Frequency.proved_letter_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././DekkingBridge.lean:56:0: 'ThreeHalves.Frequency.unconditional_factor_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Independent finite checks, Python 3.12.14
+Digit-sum and congruence checks: 36000.
+Two-digit carry witnesses: 10032.
+Exact phase-count inequalities: 630, including 231 tests at a depth satisfying the contraction threshold.
+3/2, m=7, n=1j+0: counts [17031, 17147, 17186, 17125, 17066, 17219, 17226]; predicted ['1/7', '1/7', '1/7', '1/7', '1/7', '1/7', '1/7'].
+3/2, m=5, n=6j+7: counts [23867, 23883, 24097, 24174, 23979]; predicted ['1/5', '1/5', '1/5', '1/5', '1/5'].
+5/2, m=6, n=6j+1: counts [0, 0, 59980, 0, 0, 60020]; predicted ['0', '0', '1/2', '0', '0', '1/2'].
+7/3, m=8, n=6j+0: counts [29882, 0, 30091, 0, 30118, 0, 29909, 0]; predicted ['1/4', '0', '1/4', '0', '1/4', '0', '1/4', '0'].
+7/3, m=8, n=6j+1: counts [0, 29990, 0, 29822, 0, 30010, 0, 30178]; predicted ['0', '1/4', '0', '1/4', '0', '1/4', '0', '1/4'].
+10/1, m=9, n=9j+7: counts [0, 0, 0, 0, 0, 0, 0, 120000, 0]; predicted ['0', '0', '0', '0', '0', '0', '0', '1', '0'].
+
+Each distribution sample used 120000 progression terms. The finite checks are supplementary. The uniform limit is proved in Distribution.lean.
+
+Manuscript compiled with latexmk. It has three letter-size pages, with resolved references and no overfull boxes.

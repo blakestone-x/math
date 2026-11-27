@@ -2,6 +2,14 @@
 
 [Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
 
+- [Regular polygons from consecutive rods — classification and infinitely many chains with three equilateral foldings](A382632/README.md) · [Manuscript](A382632/regular-foldings.pdf)
+- [Bala’s two triangular-number product identities (A174114 and A266883)](Bala-product-identities/README.md) · [Manuscript](Bala-product-identities/products.pdf)
+- [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf)
+
+- [Mondot’s linked-rod conjecture — every triangular rectangle count occurs infinitely often](A380868/README.md) · [Manuscript](A380868/rod-counts.pdf)
+- [Kimberling’s partition rows — the exact prefix length and its indexing](A308355/README.md) · [Manuscript](A308355/partition-prefix.pdf)
+
+- [Digit sums in every rational base — exact residue frequencies on all arithmetic progressions](Rational-base-digit-sums/README.md) · [Manuscript](Rational-base-digit-sums/digit-sums.pdf)
 - [Dekking’s base-3/2 Thue–Morse word — four conjectures on factor frequencies, symmetries and the critical exponent](Dekking-base-three-halves/README.md) · [Manuscript](Dekking-base-three-halves/base-three-halves.pdf)
 - [Yane’s consecutive-bar tilings — four extensions, the boundary exception, and the full counting recurrence](A394981/README.md) · [Manuscript](A394981/tilings.pdf)
 - [Mathar’s recurrence for A141344 and its exact sign rule](A141344/README.md) · [Manuscript](A141344/recurrence.pdf)

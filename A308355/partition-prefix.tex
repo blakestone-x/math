@@ -1,0 +1,27 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.97in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!47!black,pdfauthor={Blake Stone},pdftitle={The exact stable prefix of the partition-length rows}]{hyperref}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The exact stable prefix of the partition-length rows}\par\vspace{8pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+For $N\ge1$, write the partitions of $N$ with weakly decreasing parts, in decreasing lexicographic order. Let $W_N$ be the row of their numbers of parts, as in the program and examples of \href{https://oeis.org/A128628}{OEIS A128628}. Let $W$ be the limiting row, \href{https://oeis.org/A308355}{A308355}. Clark Kimberling conjectured a formula for the length of their longest common prefix in 2019.
+
+\paragraph{Theorem.} For the row consisting of partitions of the integer $N$, the exact common prefix has length
+\[
+ L(N)=\sum_{r=0}^{\lfloor N/2\rfloor}p(r)=\text{A025065}(N),
+\]
+where $p(r)$ is the partition number and $p(0)=1$. For $N\ge3$ the next entry is $2$ in $W$ and at least $3$ in $W_N$. For $N=1,2$, the finite row ends at the prefix.
+
+\paragraph{Proof.} Group the partitions in $W_N$ by their first (largest) part $N-r$, with $r$ increasing. The tail is a partition of $r$ with largest part at most $N-r$, and tails appear in decreasing lexicographic order. If $r\le\lfloor N/2\rfloor$, every partition of $r$ is admissible. Its contribution to the row is one plus its number of parts. Thus the first blocks of $W_N$ have sizes $p(0),p(1),\ldots,p(\lfloor N/2\rfloor)$. Each fixed list of these complete blocks occurs in every sufficiently large row, so their infinite concatenation is $W$.
+
+Put $h=\lfloor N/2\rfloor$. The next block in $W$ starts with the one-part tail $(h+1)$ and therefore with the value $2$. All remaining partitions of $N$ have largest part strictly less than $N/2$, so each has at least three parts. Such a partition exists for $N\ge3$ (take all ones). This proves both the lower bound and the first mismatch.
+
+Finally \href{https://oeis.org/A025065}{A025065} counts partitions whose parts can be arranged in a palindrome. Pair equal parts and keep the single middle part, if present. If one copy of every pair has total $r$, the middle part is forced to be $N-2r$, absent when that is zero. Conversely every partition of $r$ gives exactly one such multiset of total $N$. Summing over $0\le r\le h$ proves the identity.\hfill$\square$
+
+\paragraph{Index convention.} A308355 prints $\text{A025065}(n+1)$. This is the theorem if row $n$ means the partitions of $n+1$; for rows labeled by the integer being partitioned the argument is $n$. For example the row for $3$ is $(1,2,3)$ and the limit starts $(1,2,2)$. The prefix length is $2=\text{A025065}(3)$, whereas $\text{A025065}(4)=4$.
+\end{document}

@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.8in,bottom=.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\norm}[1]{\left|#1\right|}
+\title{Digit-sum residues on arithmetic progressions\\in every rational base}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Cassaigne, Espinoza, Rigo and Stipulanti asked whether the sum of the digits in
+base $3/2$ is equally distributed modulo every $m$. We prove this for every
+arithmetic progression and classify the corresponding distribution for every reduced
+rational base $p/q>1$. For starts $Aj+b$, put $g=\gcd(m,A,p-q)$. The limiting
+frequency of a residue $c$ is $g/m$ if $c\equiv qb\pmod g$ and zero otherwise.
+Convergence is uniform in the starting point for each fixed step. The proof pairs
+progression terms whose higher digits agree and whose lower digit sums give
+different roots of unity.
+\end{abstract}
+
+\section{The distribution}
+Fix coprime integers $p>q\ge1$. We use the rational-base digits of Akiyama,
+Frougny and Sakarovitch \cite{afs}, with the division algorithm and normalization
+used in \cite{mst}. Set
+\[
+ T(n)=\lfloor qn/p\rfloor,\qquad d(n)=qn-pT(n),\qquad
+ S(0)=0,\qquad S(n)=d(n)+S(T(n)).
+\]
+Here $0\le d(n)<p$ and $T(n)<n$ for positive $n$. At $p/q=3/2$, reducing
+$S$ modulo $m$ sends each parent pair $ab$ to $a,(a+2),(b+1)$ modulo $m$.
+This is precisely the word in the concluding question of \cite{cers}.
+Their Theorem~18 treats the two individual symbols modulo two along dyadic
+residue classes. Morgenbesser, Steiner and Thuswaldner studied digit patterns
+within the representations and the summatory digit sum \cite{mst}.
+
+\begin{theorem}\label{main}
+For $m\ge2$, $A\ge1$, $b\ge0$, and $0\le c<m$, let $g=\gcd(m,A,p-q)$.
+Then
+\[
+\lim_{N\to\infty}\frac1N\#\{0\le j<N:S(Aj+b)\equiv c\pmod m\}
+=\begin{cases} g/m,&c\equiv qb\pmod g,\\ 0,&\text{otherwise}.\end{cases}
+\]
+For fixed $p,q,m,A$ the error tends to zero uniformly over $b\ge0$.
+\end{theorem}
+For example, base $3/2$ gives frequency $1/m$ for every residue on every
+progression. In base $5/2$, the sums at $6j+1$ modulo $6$ occupy just
+residues $2$ and $5$, each with frequency $1/2$. The restriction follows
+already from
+\begin{equation}
+ S(n)\equiv qn\pmod{p-q}.\label{congruence}
+\end{equation}
+Indeed $d(n)\equiv q(n-T(n))\pmod{p-q}$, and successive terms telescope.
+
+\section{One carry and a positive proportion of cancellations}
+Write $F_k=T^k$, $P=p^k$, $Q=q^k$ and
+$L_k(n)=\sum_{i=0}^{k-1}d(T^i(n))$. Then
+\begin{align}
+ S(n)&=L_k(n)+S(F_k(n)),\nonumber\\
+ F_k(Pj+n)&=Qj+F_k(n),\qquad L_k(Pj+n)=L_k(n).\label{shift}
+\end{align}
+The identities follow by induction from $T(pj+n)=qj+T(n)$ and $d(pj+n)=d(n)$.
+The map $F_k$ is nondecreasing. Put $e=p-q$ and $\Delta(n)=S(n+1)-S(n)$.
+When $d(n)+q<p$ the parent stays fixed and $\Delta(n)=q$. Otherwise it
+advances one place and $\Delta(n)=q-p+\Delta(T(n))$.
+
+\begin{lemma}\label{witness}
+If $\gcd(A,p)=1$, there is a class $c_0$ modulo $p^2$ such that
+$\Delta(n)=q$ and $\Delta(n+A)=q-e$ for every $n\equiv c_0\pmod{p^2}$.
+\end{lemma}
+\begin{proof}
+Let $v$ be the least residue of $qA$ modulo $p$, so $1\le v<p$.
+Set $l=\max(0,p-q-v)$ and $z=l+v$. Then $l<p-q\le z<p$.
+Choose $c_0$ with $q(c_0+A)\equiv z\pmod{p^2}$ using $\gcd(q,p^2)=1$.
+At $n$ in this class, $d(n)=l$ and $d(n+A)=z$. The parent $T(n+A)$
+is divisible by $p$, so its digit is zero. These give respectively zero
+carries at $n$ and exactly one at $n+A$, proving the identities.
+\end{proof}
+
+Fix an integer $h\ge2$ with $h\nmid e$. Call a residue $n$ modulo $P$
+\emph{marked} if $F_k(n+A)=F_k(n)$ and
+$L_k(n+A)\not\equiv L_k(n)\pmod h$. Both conditions are periodic by
+\eqref{shift}. Write $I(n)$ for the marking indicator and
+$D(n)=F_k(n+A)-F_k(n)\ge0$ for the parent displacement.
+\begin{lemma}\label{mass}
+For every $A$ coprime to $p$, some $k\ge2$ satisfies
+$\sum_{r=0}^{P-1}I(Ar+b)\ge P/(4p^2)$ for every $b$.
+\end{lemma}
+\begin{proof}
+The sum of $D$ over a period is $AQ$. To see this, expand each difference
+as the sum of $A$ successive increments of $F_k$. For each shift the
+increments over a whole period telescope to $Q$. If $D(n)+I(n)=0$,
+then $V(n)=S(n+A)-S(n)$ is zero modulo $h$. But at the indices of
+Lemma~\ref{witness} one has $V(n+1)-V(n)=-e$, which is nonzero modulo $h$.
+At least one of $D(n),I(n),D(n+1),I(n+1)$ is positive there. Sum this
+inequality over a period. For $k\ge2$ it gives
+\[
+ P/p^2\le 2AQ+2\sum_{n=0}^{P-1} I(n).
+\]
+Choose $k$ large enough that $4AQ\le P/p^2$, using $q/p<1$.
+Multiplication by $A$ followed by addition of $b$ permutes the classes modulo $P$.
+\end{proof}
+
+\section{Cancellation for all progression steps}
+Let $\zeta$ be a root of unity of order $h\nmid e$ and put $u(n)=\zeta^{S(n)}$.
+Since two distinct $h$th roots of unity have a sum of modulus strictly
+less than two, there is $\eta\in(0,1]$ such that the modulus of every such
+sum is at most $2-\eta$. For $N\ge1$ set
+\[
+ M_A(N)=\sup_{b\ge0}\left|\frac1N\sum_{j=0}^{N-1}u(Aj+b)\right|,\qquad
+ B=\sup_{\gcd(A,p)=1,\ A\ge1}\limsup_{N\to\infty}M_A(N).
+\]
+The order of the supremum over steps and the upper limit is important.
+Every $M_A(N)$ is at most one.
+
+Fix an admissible $A$ and take $k$ from Lemma~\ref{mass}. In a block of
+$PH$ indices write $j=Pt+r$ and $n_r=Ar+b$. By \eqref{shift},
+\begin{equation}
+ u(A(Pt+r)+b)=\zeta^{L_k(n_r)}u(AQt+F_k(n_r)).\label{branch}
+\end{equation}
+Use the sum of two copies of the block, the second shifted one progression
+index to the right. Their difference comprises two endpoints of modulus one.
+For each $r$, pair its branch \eqref{branch} with the branch at $n_r+A$.
+When $n_r$ is marked the two parent offsets coincide, so the sum over $t<H$
+has modulus at most $(2-\eta)H M_{AQ}(H)$. At every other $r$ the triangle
+inequality bounds it by $2H M_{AQ}(H)$. This also applies at $r=P-1$,
+since \eqref{branch} accepts any offset. Adding the bounds gives
+\begin{equation}
+ M_A(PH)\le \left(1-\frac{\eta}{8p^2}\right) M_{AQ}(H)+\frac1{PH}.
+ \label{contraction}
+\end{equation}
+For arbitrary $N=PH+R$ with $0\le R<P$, deleting the last $R$ terms changes
+the normalized sum by at most $2P/N$ when $H>0$. Since $AQ$ is coprime to
+$p$, taking upper limits for each fixed $A$, then the supremum over $A$,
+gives $B\le(1-\eta/(8p^2))B$. Thus $B=0$.
+
+For a general $A$, write $A=UV$ where the prime factors of $U$ divide $p$
+and $\gcd(V,p)=1$. Choose $s$ with $U\mid p^s$. Splitting $j$ into its
+$p^s/U$ residue classes puts each branch of $Aj+b$ in the form
+$p^s Vt+n_r$. Equation~\eqref{shift} gives a fixed unit coefficient
+and parent step $q^s V$, which is coprime to $p$. Each branch mean tends
+to zero uniformly in its offset. The finitely many branches and their
+at most one-term length differences give $M_A(N)\to0$.
+
+\section{Recovering the residue frequencies}
+Set $\omega=\exp(2\pi i/m)$. The indicator of $S(n)\equiv c\pmod m$
+is $m^{-1}\sum_{t=0}^{m-1}\omega^{t(S(n)-c)}$. Terms for which the
+order of $\omega^t$ does not divide $e$ have uniformly vanishing
+progression means by Section~3. For each remaining character,
+\eqref{congruence} replaces $S(Aj+b)$ by $q(Aj+b)$.
+This geometric progression has mean zero unless the order divides
+$qA$, in which case its value is constantly $\omega^{t(qb-c)}$.
+The geometric-sum bound for each nonconstant progression is independent
+of $b$. Since $\gcd(e,q)=1$, the surviving characters are precisely
+the $g=\gcd(m,A,e)$ characters with order dividing $g$.
+Orthogonality on $\Z/g\Z$ now gives Theorem~\ref{main}.
+
+\paragraph{Connection with binary factor frequencies.}
+At $p/q=3/2$ and $m=2$, Theorem~\ref{main} supplies the digit-sum parity
+limit on every dyadic progression. Feeding this result into the finite-word
+recursion of \cite{factor} proves the exact binary factor frequencies and
+their complement and reversal symmetries directly from the sequence definitions.
+The accompanying Lean development checks Theorem~\ref{main} for arbitrary
+parameters and this specialization.
+
+\begin{thebibliography}{9}
+\bibitem{afs} S. Akiyama, C. Frougny and J. Sakarovitch, \emph{Powers of rationals
+modulo 1 and rational base number systems}, Israel J. Math. \textbf{168} (2008),
+53--91.
+\bibitem{cers} J. Cassaigne, B. Espinoza, M. Rigo, and M. Stipulanti,
+\emph{Symbols frequencies in the Thue--Morse word in base $3/2$ and related conjectures},
+arXiv:2602.21895 (2026), Theorem~18 and Section~4.
+\url{https://arxiv.org/abs/2602.21895}.
+\bibitem{mst} J. F. Morgenbesser, W. Steiner, and J. M. Thuswaldner,
+\emph{Patterns in rational base number systems}, J. Fourier Anal. Appl.
+\textbf{19} (2013), 225--250. \url{https://doi.org/10.1007/s00041-012-9246-1}.
+\bibitem{factor} Blake Stone mathematics repository,
+\emph{Factor frequencies and fifth powers in the base-$3/2$ Thue--Morse words}
+(2026). \href{https://github.com/blakestone-x/math/tree/9abc19936fb4297de972941c1aad6b4659da5610/Dekking-base-three-halves}{Repository manuscript and Lean development}.
+\end{thebibliography}
+\end{document}

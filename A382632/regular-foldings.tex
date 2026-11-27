@@ -1,0 +1,68 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdfauthor={Blake Stone},pdftitle={Regular polygons and simultaneous equilateral foldings of rod chains}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Regular polygons and simultaneous equilateral\\[2pt] foldings of rod chains}\par\vspace{8pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+A cyclic chain uses rods of lengths $1,2,\ldots,n$ in that order, with bends permitted at their joints. We prove the regular-polygon conjecture in OEIS A382632 by reducing it to the classical four-squares theorem. We then give an explicit infinite family in which each chain admits at least three different sets of corners for an equilateral triangle.
+\end{abstract}
+
+\section*{The regular-polygon obstruction}
+Write $T_j=j(j+1)/2$. The chain has perimeter $T_n$ and its distinct joints have arc coordinates $T_0,T_1,\ldots,T_{n-1}$; $T_n$ coincides with the initial joint. We count a folding by its set of corner joints, as in \href{https://oeis.org/A382632}{OEIS A382632}. Three corners form an equilateral folding precisely when the three intervening arcs all have length $T_n/3$.
+
+\begin{theorem}
+A chain cannot form a regular polygon with four or more sides. Both a two-way fold and an equilateral triangle occur.
+\end{theorem}
+\begin{proof}
+Order the corner joints of a regular polygon by their arc coordinates, starting with the smallest. If there are at least four corners, the first four coordinates form a strictly increasing arithmetic progression: the three nonwrapping arcs between successive corners are sides of equal length. Since $8T_j+1=(2j+1)^2$, the four corresponding odd squares also form a strictly increasing arithmetic progression. The classical theorem of Fermat and Euler forbids four distinct integer squares in arithmetic progression; see \href{https://arxiv.org/abs/0712.3850}{A. van der Poorten, \emph{Fermat's Four Squares Theorem}}. For two sides, $n=3$ gives lengths $1+2=3$. For three sides, $n=9$ gives corners $3,6,8$, with successive arc lengths $15,15,15$.
+\end{proof}
+
+\section*{Three equilateral foldings of the same chain}
+The OEIS entry lists examples with two equilateral foldings. The multiplicity question also appears in the \href{https://www.tbp.org/static/docs/brain-ticklers/Sp20.pdf}{Spring 2020 \emph{Brain Ticklers}}. An explicit family gives the following stronger existence result.
+
+\begin{theorem}
+Infinitely many $n$ admit at least three distinct equilateral foldings. In particular, set
+\[
+ X_j+Y_j\sqrt{397215}=(2521+4\sqrt{397215})^j .
+\]
+Every $n=(X_j-1)/2$ with $j$ a positive odd multiple of $45$ has this property. At $j=45$, $n$ has 167 decimal digits.
+\end{theorem}
+
+\begin{proof}
+Put $d=132405$, so $3d=397215$. The following table gives three rational triples $(a/h,b/h,c/h)$ whose squares have common difference $d$. In each row $0<a<b<c$, the three numerators are odd, and $c^2<3dh^2$.
+\[
+\begin{array}{r|rrr}
+h & a & b & c\\\hline
+396  & 29767  & 147137  & 205943\\
+748  & 7471   & 272281  & 384991\\
+4756 & 354481 & 1766521 & 2472961
+\end{array}
+\]
+All these claims are verified by squaring the entries, in particular $b^2-a^2=c^2-b^2=dh^2$. The three values of $a/h$ differ. One way to find the table is to take the Pythagorean legs $u=r^2-s^2$, $v=2rs$ and form $(|u-v|,r^2+s^2,u+v)$. Their squares have step $2uv$. The parameter pairs $(r,s)=(364,121),(484,195),(1261,420)$ give the three rows, with $2uv=dh^2$ in each.
+
+We need to clear all three denominators with an odd quotient in each row. The base has norm $2521^2-397215\cdot4^2=1$, so $X_j^2-3dY_j^2=1$. The $X_j$ are odd and the $Y_j$ even. Put $H=\operatorname{lcm}(396,748,4756)=8004348$. The finite congruence $Y_{45}\equiv H\pmod{2H}$ can be verified using
+\[
+ Y_0=0,\quad Y_1=4,\quad Y_{j+2}=5042Y_{j+1}-Y_j .
+\]
+For a short modular check, the remainders of $Y_{15}$ and $Y_{45}$ modulo $792,1496,9512$ are $(132,1100,4756)$ and $(396,748,4756)$, respectively. Thus $Y_{45}/h$ is an odd integer for all three rows. For any odd $t\ge1$, expansion of $(X_{45}+Y_{45}\sqrt{3d})^t$ gives
+\[
+ Y_{45t}/Y_{45}\equiv t X_{45}^{t-1}\equiv1\pmod2 ,
+\]
+since all higher terms contain $Y_{45}^2$. All three quotients $Y_{45t}/h$ are therefore odd.
+
+Fix such an exponent $j$. Multiply each rational triple by $Y_j$ to obtain odd positive integers $A,B,C$. Their squares have successive difference $dY_j^2$ and $C^2<3dY_j^2<X_j^2$. With $n=(X_j-1)/2$, the integers $(A-1)/2,(B-1)/2,(C-1)/2$ are distinct joints below $n$. The first two arcs have length $dY_j^2/8$ because $8T_s+1=(2s+1)^2$. The perimeter is
+\[
+ T_n=(X_j^2-1)/8=3dY_j^2/8,
+\]
+so the wrapping arc has the same length. Different rows give different first joints. Finally the $X_j$ increase strictly with $j$, giving infinitely many chain lengths.
+\end{proof}
+
+\noindent The companion script checks the certificate at exponents $45,135,225$ by evaluating all three original arc lengths in each folding. The proof gives a lower bound on multiplicity; the exact number for an individual chain can be larger.
+\end{document}
