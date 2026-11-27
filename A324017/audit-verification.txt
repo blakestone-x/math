@@ -1,0 +1,17 @@
+Independent A324017 audit compilation
+Date: November 26, 2026 (America/Chicago)
+Reviewer: scout_sequences, separate from proof-authoring agent
+Input: exact copy of output/batch6/A324017/Proof.lean
+Command: /workspace/scratch/5f072ff518ad/lean-runtime/lean-4.19.0-linux/bin/lean -o Proof.olean Proof.lean
+Isolated directory: scout_sequences/batch6/audit-A324017
+LEAN_PATH: existing pinned mathlib and transitive package compiled libraries
+Proof.lean SHA-256 before: a3716c9e0da21b2a3604ed97c8021b20ffafa0cac079745c2afa42d8dcdaa240
+Proof.lean SHA-256 after: a3716c9e0da21b2a3604ed97c8021b20ffafa0cac079745c2afa42d8dcdaa240
+source.seq SHA-256: ad3d97f7f70cc9e8d7e7253aeaebba52ed26af960f3d942ac6cbc367aa0b14ef
+
+'A324017.fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A324017.quotient_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A324017.third_claim_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A324017.corrected_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0

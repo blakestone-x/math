@@ -1,0 +1,17 @@
+A016789 exact packaged source verification
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: 7873db8e0f11d9f59e6315e9848d274a1d4f798bb24f8f899a89586ee6dbab86
+Directory: output/batch6/A016789
+Command: lake build
+Dependencies and compiled caches supplied locally at pinned revisions.
+
+ℹ [2795/2796] Built Proof
+info: ././././Proof.lean:195:0: 'A016789.value_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:196:0: 'A016789.codes_exist' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:197:0: 'A016789.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:198:0: 'A016789.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0

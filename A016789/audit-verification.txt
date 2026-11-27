@@ -1,0 +1,12 @@
+Independent reviewer: root (separate from proof author agent)
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: 7873db8e0f11d9f59e6315e9848d274a1d4f798bb24f8f899a89586ee6dbab86
+Fresh isolated directory: /workspace/scratch/5f072ff518ad/tmp/batch6_A016789_independent_du752p2z
+Exit code: 0
+
+'A016789.value_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A016789.codes_exist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A016789.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A016789.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]

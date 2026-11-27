@@ -1,0 +1,605 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Eight sequence assertions: negabinary, divisor sums, and tetration},pdfauthor={Blake Stone},pdfsubject={Seven proofs and one disproof with complete Lean verification}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Eight sequence assertions:\\[3pt]
+negabinary, divisor sums, and tetration}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with OpenAI Astra 6.2\par
+November 26, 2026
+\end{center}
+
+\textbf{Abstract.}
+We resolve eight assertions recorded as conjectures in five OEIS entries.
+Seven are proved and one is refuted. The results comprise a negabinary
+exclusive-OR identity, a restriction on integers with two squarefree
+divisor sums, two tetration congruences and a counterexample to a third,
+two divisor-count identities for a recursive triangle, and existence of
+palindromic proper-divisor residue lists at every positive index.
+All eight assertions are checked in Lean from their original definitions;
+the six accompanying proof modules have fresh package builds and
+independent compilations. The arguments use classical ingredients,
+including Kehowski's squarefree-divisor obstruction, modular exponential
+lifting, Uchimura's divisor identity, and primes congruent to one.
+Those ingredients are credited. The contribution is the explicit
+resolution and formal verification of the selected statements, with
+bounded prior-work checks and no claim of exhaustive historical priority.
+
+\begin{center}
+\begin{tabular}{@{}llp{3.7in}@{}}
+\toprule
+Entry & Assertions & Result\\
+\midrule
+A016789 & 1 proved & The exact three-way negabinary XOR identity.\\
+A300984 & 1 proved & The prime-power shape, stronger necessary conditions, and a lower bound.\\
+A324017 & 2 proved, 1 false & Fixed points and quotient residues; a canonical counterexample to the next-digit claim.\\
+A389524 & 2 proved & Row sums $d(n)$ and diagonal $n-d(n)$.\\
+A393833 & 1 proved & Existence, with arbitrarily large prime-power witnesses.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{A016789: a negabinary exclusive-OR identity}
+
+For $m\ge0$, let $P(m)$ be the integer obtained by writing $m$ in base
+$-2$ and reading the same digits in base $2$. Define $N(m)$ similarly
+for $-m$. These are A005351 and A005352, with the latter extended by
+$N(0)=0$. The standard representation and conversion algorithms are
+described by Arndt~\cite{Arndt}. Gilian Breysens's July 21, 2017
+conjecture in A016789~\cite{A016789} is the following assertion, where
+$\oplus$ denotes bitwise exclusive OR.
+
+\begin{theorem}\label{thm:xor}
+For every $n\ge0$,
+\[
+ n\oplus P(n+1)\oplus N(n+1)=3n+2.
+\]
+\end{theorem}
+
+\begin{proof}
+For a binary code $c=\sum_i b_i2^i$, with $b_i\in\{0,1\}$, put
+$V(c)=\sum_i b_i(-2)^i$. Appending a low bit gives
+\begin{equation}\label{eq:value}
+ V(2c+b)=b-2V(c),\qquad b\in\{0,1\}.
+\end{equation}
+This map is injective. Equal values force equal low bits by reduction
+modulo two. Removing those bits gives equal values for the two truncated
+codes. Repeated division by two terminates, so the original codes agree.
+
+Existence of codes for $m$ and $-m$ follows simultaneously by strong
+induction. For $m=0,1$ use the codes $0,1,3$. For $m\ge2$, set
+$b=m\bmod2$, $u=\lfloor m/2\rfloor$, and $v=\lceil m/2\rceil$.
+Both $u,v<m$. A code $c$ for $-u$ gives the code $2c+b$ for $m$, and
+a code $d$ for $v$ gives the code $2d+b$ for $-m$, by~\eqref{eq:value}.
+Thus $P$ and $N$ are the unique codes of their stated signed values.
+
+Evaluation and uniqueness now give all four recurrences
+\begin{equation}\label{eq:code-recurrences}
+\begin{aligned}
+P(2t)&=2N(t), &N(2t)&=2P(t),\\
+P(2t+1)&=2N(t)+1, &N(2t+1)&=2P(t+1)+1.
+\end{aligned}
+\end{equation}
+Define three expressions
+\[
+\begin{aligned}
+S_0(t)&=t\oplus P(t)\oplus N(t),\\
+S_1(t)&=t\oplus N(t)\oplus P(t+1),\\
+S_2(t)&=t\oplus P(t+1)\oplus N(t+1).
+\end{aligned}
+\]
+For low bits $b,c\in\{0,1\}$,
+\[
+(2x+b)\oplus(2y+c)=2(x\oplus y)+(b\oplus c).
+\]
+Combining this with~\eqref{eq:code-recurrences} gives
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & At $2t$ & At $2t+1$\\
+\midrule
+$S_0$ & $2S_0(t)$ & $2S_1(t)+1$\\
+$S_1$ & $2S_0(t)+1$ & $2S_2(t)$\\
+$S_2$ & $2S_1(t)$ & $2S_2(t)+1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For example,
+\[
+S_2(2t)=(2t)\oplus(2N(t)+1)\oplus(2P(t+1)+1)=2S_1(t).
+\]
+The initial values $P(0)=N(0)=0$, $P(1)=1$, $N(1)=3$ give
+$S_0(0)=0$, $S_1(0)=1$, $S_2(0)=2$. The table proves
+$S_i(t)=3t+i$ for $i=0,1,2$ simultaneously by strong induction:
+at a positive index, every branch uses only its strictly smaller half.
+The $i=2$ case is the required identity.
+\end{proof}
+
+The two companion identities are parts of this proof, not additional
+recorded conjectures. In Lean, $V$ is literally
+\texttt{Nat.ofDigits (-2 : $\Z$) (Nat.digits 2 code)}. Existence and
+uniqueness are proved before the code functions are defined.
+\texttt{original\_conjecture} states the result directly for any two
+codes whose base-$-2$ values are $n+1$ and $-(n+1)$.
+
+\section{A300984: two squarefree divisor sums}
+
+For a positive integer $n$, define
+\[
+ S(n)=\sum_{\substack{d\mid n\\d\text{ squarefree}}}d,
+ \qquad
+ T(n)=\sum_{\substack{d\mid n\\d\text{ not squarefree}}}d.
+\]
+Michel Lagneau's March 17, 2018 conjecture in A300984~\cite{A300984}
+asserts that if both sums are squarefree, then $n=2^i p^j$ for a prime
+$p$. We obtain the following stronger necessary conditions.
+
+\begin{theorem}\label{thm:squarefree}
+If $S(n)$ and $T(n)$ are squarefree, then
+\[
+n=2^i p^j,\qquad i,j\ge2,\qquad p\text{ prime},\qquad
+p\equiv1\pmod{12},
+\]
+and $3(p+1)$ is squarefree. In particular, $n\ge676$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal P(n)$ denote the set of distinct prime divisors of $n$.
+The classical subset expansion of the squarefree divisors gives
+\begin{equation}\label{eq:squarefree-product}
+S(n)=\prod_{q\in\mathcal P(n)}(1+q)
+     =\sigma(\operatorname{rad}(n)).
+\end{equation}
+If two distinct odd primes $p,q$ divide $n$, their two factors in this
+product are even. Therefore $4\mid S(n)$, contradicting squarefreeness.
+There is at most one odd prime divisor of $n$.
+
+Next, squarefreeness of $T(n)$ forces at least two distinct prime squares
+to divide $n$. If no prime square divides $n$, all its divisors are
+squarefree and $T(n)=0$, which is not squarefree. If exactly one prime
+square $r^2$ divides $n$, every nonsquarefree divisor $d$ is divisible by
+some prime square $s^2$. Since $s^2\mid d\mid n$, uniqueness forces
+$s=r$. Hence $r^2$ divides every summand of $T(n)$ and therefore its
+sum, again contradicting squarefreeness.
+
+There must consequently be exactly two distinct prime divisors, namely
+$2$ and one odd prime $p$, and both $4$ and $p^2$ divide $n$. Unique
+factorization gives $n=2^i p^j$ with $i,j\ge2$.
+Equation~\eqref{eq:squarefree-product} now reads $S(n)=3(p+1)$.
+Squarefreeness excludes $4\mid p+1$. Since $p$ is odd, this forces
+$p\equiv1\pmod4$. It also excludes $3\mid p+1$; otherwise
+$9\mid3(p+1)$. The prime $p$ is not $3$, because $p+1$ would then
+equal $4$. Thus $p\equiv1\pmod3$ as well. Combining the congruences
+gives $p\equiv1\pmod{12}$, whence $p\ge13$ and
+$n\ge2^2 13^2=676$.
+\end{proof}
+
+These conditions are not asserted to be sufficient: $T(n)$ still has
+to be squarefree. The separate conjecture about the frequency of certain
+associated primes is outside the result. At $676$, direct calculation
+gives $S(676)=42=2\cdot3\cdot7$ and
+$T(676)=1239=3\cdot7\cdot59$, consistent with the lower bound.
+The formal theorem proves the universal lower bound; the displayed
+calculation is a transparent numerical illustration.
+
+\textbf{Prior argument.}
+The product formula is recorded by Vladeta Jovovic in A048250 in
+2001~\cite{A048250}. Walter Kehowski's 2007 comment on
+A065302~\cite{A065302} already proves the corresponding $2p$ shape
+and $p\equiv1\pmod{12}$ restriction for squarefree nonprime integers
+with squarefree ordinary divisor sum. His two-odd-prime obstruction
+applies here to $\operatorname{rad}(n)$ and is explicitly credited.
+The second sum supplies the additional exponent restrictions.
+Lean begins with the two actual filtered sums over \texttt{Nat.divisors},
+proves~\eqref{eq:squarefree-product}, and then proves all the stated
+necessary conditions. No factorization characterization is assumed.
+
+\section{A324017: tetration congruences and a false strengthening}
+
+Write $T_0(a)=1$ and $T_{m+1}(a)=a^{T_m(a)}$. This section uses $T$ for
+a power tower, independently of the divisor sum in the preceding section.
+Davis Smith's A324017~\cite{A324017}, introduced March 28, 2019, is
+\[
+A(m,n)=T_m(2n-1)\bmod(2n)^m.
+\]
+Its three conjectural comments concern a fixed-point property, the next
+base-$2n$ digit, and a stronger compatibility property.
+
+\begin{theorem}\label{thm:tetration}
+Let $b=2n\ge2$ and $a=b-1$.
+\begin{enumerate}
+\item For $m\ge1$ and $k\ge0$, if $T_m(a)\equiv k\pmod{b^m}$,
+then $a^k\equiv k\pmod{b^m}$.
+\item For $m\ge2$,
+\[
+T_m(a)\bmod b^2=b^2-b-1.
+\]
+Consequently, for the source's domain $n>1,m\ge2$,
+\[
+\left\lfloor\frac{T_m(2n-1)}{2n}\right\rfloor
+\equiv2(n-1)\pmod{2n}.
+\]
+\item The claim that $T_m(2n-1)\equiv j\pmod{(2n)^{m+1}}$
+implies $A(m+1,n)=j$ is false, even with $j$ the least nonnegative
+residue. A valid replacement is
+\[
+A(m+1,n)\bmod(2n)^m=A(m,n),\qquad m,n\ge1.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We first establish a period that gains one power of the modulus.
+For $r\ge1$, if $x\equiv1\pmod{b^r}$, then
+\[
+x^b-1=(x-1)(1+x+\cdots+x^{b-1})
+\]
+is divisible by $b^{r+1}$: the first factor is divisible by $b^r$,
+and the second is congruent to $b$ modulo $b$.
+Since $b$ is even, the binomial theorem gives
+\[
+(b-1)^b=(-1+b)^b\equiv1-b^2\equiv1\pmod{b^2}.
+\]
+Repeated application of the preceding lifting argument yields
+\begin{equation}\label{eq:period}
+a^{b^r}\equiv1\pmod{b^{r+1}}\qquad(r\ge1).
+\end{equation}
+It follows that
+\begin{equation}\label{eq:exp-lift}
+u\equiv v\pmod{b^r}\quad\Longrightarrow\quad
+a^u\equiv a^v\pmod{b^{r+1}}
+\end{equation}
+for nonnegative $u,v$: express both as their common remainder plus
+a multiple of $b^r$ and use~\eqref{eq:period}.
+
+Every tower $T_m(a)$ is odd. Since $a\equiv-1\pmod b$, every
+positive-height tower is congruent to $-1$ modulo $b$.
+In particular $T_2(a)\equiv T_1(a)\pmod b$.
+Induction using~\eqref{eq:exp-lift} now proves
+\begin{equation}\label{eq:stable}
+T_{m+1}(a)\equiv T_m(a)\pmod{b^m}\qquad(m\ge1).
+\end{equation}
+Indeed, exponentiating the statement at height $m$ proves the statement
+at height $m+1$. If $T_m(a)\equiv k\pmod{b^m}$, then
+\[
+a^k\equiv a^{T_m(a)}=T_{m+1}(a)\equiv T_m(a)\equiv k\pmod{b^m},
+\]
+using~\eqref{eq:exp-lift} followed by~\eqref{eq:stable}. This proves
+part 1, including the original ranges $m,n,k>1$.
+
+For part 2, if $E$ is odd, a first-order binomial expansion gives
+\[
+(b-1)^E\equiv-1+bE\pmod{b^2}.
+\]
+When $m\ge2$, the exponent $E=T_{m-1}(a)$ is odd and is $-1$ modulo
+$b$. Therefore $T_m(a)\equiv-b-1\pmod{b^2}$. Its least nonnegative
+residue is
+\[
+b^2-b-1=b(b-2)+(b-1),
+\]
+which lies between zero and $b^2-1$, including $b=2$.
+For nonnegative $t$,
+\[
+\left\lfloor t/b\right\rfloor\bmod b
+=\left\lfloor (t\bmod b^2)/b\right\rfloor.
+\]
+Substitution gives $b-2=2(n-1)$ as the quotient residue.
+
+For part 3, choose $n=m=2$ and $j=27$. Then
+\[
+T_2(3)=3^3=27\equiv27\pmod{64},\qquad
+A(3,2)=3^{27}\bmod64=59\ne27.
+\]
+The residue $27$ is canonical, so the counterexample persists even
+after restricting $j$ to $0\le j<64$.
+Finally, since $b^m\mid b^{m+1}$, reducing $T_{m+1}(a)$ first modulo
+$b^{m+1}$ and then modulo $b^m$ is equivalent to direct reduction
+modulo $b^m$. Equation~\eqref{eq:stable} proves the replacement relation.
+\end{proof}
+
+The source's examples in the third comment also transpose the array
+indices: the displayed table places $563$ at $A(3,6)$ and $16115$ at
+$A(4,6)$. The disproof addresses the quantified claim as written and
+does not infer a different intended conjecture from those examples.
+
+\textbf{Prior theory and exact formal scope.}
+Modular tetration and exponential fixed points are established topics.
+The OEIS reference to Trigg's Problem 559 in 1981 leads to a decimal
+lifting problem; Shapiro's 1987 solution proves the relevant decimal
+lifting and uniqueness~\cite{Crux1981,Crux1987}. General stabilization
+and fixed points are treated by Shapiro and Shapiro~\cite{Shapiro},
+and a broader lifting framework appears in Jim\'enez Urroz and
+Yebra~\cite{Yebra}. The lifting method is credited as classical.
+Here it is specialized to every even $b$ and $a=b-1$, with the precise
+height bound and the exact statements above fully checked.
+The Lean definitions are literal integer tetration and modular reduction;
+the proofs do not substitute a remainder-iteration algorithm for the
+original towers. The counterexample uses kernel-checked arithmetic.
+
+\section{A389524: row sums and a divisor-count diagonal}
+
+Mats Granvik's A389524~\cite{A389524}, introduced October 7, 2025,
+defines an integer triangle. Its source program specifies
+\[
+T(n,1)=\begin{cases}1,&n=1,\\0,&n\ne1,\end{cases}
+\]
+and, for $k\ge2$, sets $T(n,k)=0$ when $n<k$, while for $n\ge k$
+\begin{equation}\label{eq:triangle}
+T(n,k)=1+\sum_{i=1}^{k-1}T(n-i,k-1)
+          -\sum_{i=1}^{n-1}T(n-i,k).
+\end{equation}
+The notation $T$ in this section refers to this triangle. Let $d(n)$
+be the number of positive divisors of $n$.
+
+\begin{theorem}\label{thm:triangle}
+For every positive integer $n$,
+\[
+\sum_{k=1}^{n}T(n,k)=d(n),\qquad
+T(2n,n)=n-d(n).
+\]
+\end{theorem}
+
+These are Conjectures 1 and 3 in the source. The separately recorded
+weighted orphan-count conjecture, numbered 2, is not part of this result.
+
+\begin{proof}
+We derive the column polynomials from the defining recurrence.
+Let $C_k(x)=\sum_{n\ge0}T(n,k)x^n$, with the triangle extended by zero
+outside its natural support. The first column gives $C_1=x$.
+Moving the last sum in~\eqref{eq:triangle} to the left and taking formal
+generating series gives, for $k\ge2$,
+\[
+\frac{C_k(x)}{1-x}
+=\frac{x^k}{1-x}+(x+\cdots+x^{k-1})C_{k-1}(x).
+\]
+Therefore $C_k=x^k+x(1-x^{k-1})C_{k-1}$.
+Define polynomials $R_0=0$ and
+\begin{equation}\label{eq:R}
+R_{k+1}=1+(1-x^k)R_k.
+\end{equation}
+Then $R_1=1$ and $C_k=x^kR_k$. The Lean proof establishes this bridge
+by strong induction on the original row index, using finite coefficient
+sums; the generating-series computation is not an assumption.
+
+Put
+\[
+S_N(x)=\sum_{k=1}^{N}x^kR_k(x),\qquad
+W_N(x)=\sum_{k=1}^{N}k x^k\prod_{j=k+1}^{N}(1-x^j).
+\]
+Equation~\eqref{eq:R} gives $R_{k+1}-R_k=1-x^kR_k$, hence
+$R_{N+1}=N+1-S_N$ by telescoping. It follows that
+\[
+S_{N+1}=(1-x^{N+1})S_N+(N+1)x^{N+1}.
+\]
+The product expression $W_N$ satisfies the same recurrence and the same
+zero initial value. Thus $S_N=W_N$.
+
+We next prove the needed finite coefficient version of Uchimura's
+classical divisor identity~\cite{Uchimura,Bressoud}:
+\begin{equation}\label{eq:finite-uchimura}
+W_N(x)\equiv\sum_{i=1}^{N}\sum_{j=1}^{N}x^{ij}\pmod{x^{N+1}}.
+\end{equation}
+For a finite algebraic proof, work in
+$A=\Z[x]/(x^{N+1})$ and write $q$ for the class of $x$.
+In the second polynomial variable $z$, define
+\[
+H(z)=\sum_{k=0}^{N}z^kq^k\prod_{j=k+1}^{N}(1-q^j),
+\quad
+G(z)=\prod_{j=1}^{N}(1-zq^j),
+\quad
+P=\prod_{j=1}^{N}(1-q^j).
+\]
+Finite coefficient comparison and cancellation of the product endpoints
+give
+\[
+H(qz)=(1-qz)H(z),\qquad (1-qz)G(qz)=G(z).
+\]
+The boundary terms vanish because $q^{N+1}=0$.
+As $1-qz$ is a unit in $A[z]$, their product $K(z)=H(z)G(z)$ satisfies
+$K(qz)=K(z)$. For every $r>0$, comparison of the coefficient of $z^r$
+gives $(1-q^r)[z^r]K=0$. The factor $1-q^r$ is a unit, since $q^r$
+is nilpotent. Thus $K$ is constant, and its constant coefficient is $P$:
+\begin{equation}\label{eq:HG}
+H(z)G(z)=P.
+\end{equation}
+At $z=1$, $G(1)=P$ is a unit, so $H(1)=1$. Differentiate
+\eqref{eq:HG} with respect to $z$ and evaluate at one. The product rule
+gives
+\[
+G'(1)=-P\sum_{i=1}^{N}\frac{q^i}{1-q^i},
+\]
+and hence
+\[
+W_N(q)=H'(1)=\sum_{i=1}^{N}\frac{q^i}{1-q^i}
+             =\sum_{i=1}^{N}\sum_{j=1}^{N}q^{ij}.
+\]
+The fractions mean multiplication by units' inverses. Their geometric
+expansions are finite because all terms of degree at least $N+1$ vanish.
+This proves~\eqref{eq:finite-uchimura} without an analytic limit.
+
+Take $N=n\ge1$. The coefficient of $x^n$ on the right counts the pairs
+$1\le i,j\le n$ with $ij=n$. Every divisor $i$ of $n$ gives exactly
+one such pair $(i,n/i)$, so the coefficient is $d(n)$. Since $S_n=W_n$
+and $C_k=x^kR_k$,
+\[
+\sum_{k=1}^{n}T(n,k)=[x^n]S_n=d(n).
+\]
+All positive columns beyond $n$ are zero, so this is also the source's
+sum over all positive columns.
+
+Finally, $R_n(0)=n$ follows from~\eqref{eq:R}. The identities
+\[
+R_n=n-S_{n-1},\qquad S_n=S_{n-1}+x^nR_n
+\]
+imply $d(n)=[x^n]S_{n-1}+n$. Therefore
+\[
+T(2n,n)=[x^n]R_n=-[x^n]S_{n-1}=n-d(n),
+\]
+including $n=1$, where both sides are zero.
+\end{proof}
+
+The Lean module \texttt{Uchimura.lean} proves the nilpotent-ring algebra
+in general, then applies it to the quotient by $X^{N+1}$.
+The companion \texttt{Proof.lean} supplies the original recurrence bridge
+and the factor-pair bijection with \texttt{Nat.divisors}.
+Uchimura's identity and finite-product methods are established prior
+mathematics; the result here is their checked connection to the two
+specific triangle conjectures.
+
+\section{A393833: palindromic proper-divisor residues}
+
+Michel Lagneau's March 1, 2026 entry A393833~\cite{A393833} asks for the
+least positive integer $k$ with exactly $2n+2$ divisors such that its
+$2n+1$ proper divisors, listed in increasing order and reduced modulo
+$n$, form a palindrome. The recorded conjecture is existence for every
+positive $n$.
+
+\begin{theorem}\label{thm:palindrome}
+For all $m,r\ge1$ and every bound $B$, there exists $k>B$ with exactly
+$r+1$ divisors whose proper-divisor residue list modulo $m$ consists of
+$r$ copies of $1\bmod m$.
+In particular, the minimum defining A393833 exists at every positive
+index, and the eligible integers are arbitrarily large.
+\end{theorem}
+
+\begin{proof}
+The classical theorem on primes congruent to one supplies a prime
+$p>B$ with $p\equiv1\pmod m$. Set $k=p^r$. Its divisors, in increasing
+order, are exactly $1,p,p^2,\ldots,p^r$. Thus it has $r+1$ divisors,
+of which $r$ are proper. Each proper divisor is $1$ modulo $m$, and
+$p^r\ge p>B$.
+
+For the original problem take $m=n$ and $r=2n+1$. The residue list is
+constant and hence a palindrome, with exactly the prescribed length and
+divisor count. At $n=1$ the common residue is zero, so this boundary case
+is included. Well-ordering gives a least eligible integer, while the
+arbitrary bound gives infinitely many eligible integers.
+\end{proof}
+
+The source's definition and executable predicates permit constant
+palindromes. The construction need not be minimal: at $n=1$ it can
+produce $8$, whereas the displayed minimum is $6$. No new minimum values
+are claimed. A stale example for $n=9$ in the source differs from its
+corrected data; neither value is used in the proof.
+
+Lean defines the list by sorting \texttt{Nat.properDivisors k} and
+mapping reduction modulo $n$. The exact list equality, total divisor
+count, proper-list length, palindrome, arbitrary-bound result, and
+existence of the least witness are all proved. The prime theorem is
+mathlib's existing \texttt{Nat.exists\_prime\_gt\_modEq\_one}, whose
+cyclotomic proof is credited to its authors~\cite{PrimesOne}.
+
+\section{Verification, source status, and contribution boundaries}
+
+Each of the five packages contains a complete written proof, exact source
+snapshots, a prior-work record, pinned build configuration, a build log,
+and an independent audit. The six proof modules were independently
+compiled in fresh directories. In the two-module package, the second
+module used the freshly compiled first module.
+
+All packages use Lean 4.19.0 and mathlib commit
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+The public theorem audits contain only the standard axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+There are no placeholders, additional axioms, external proof oracles,
+or \texttt{native\_decide} calls. The theorem statements have their full
+specified domains; finite numerical checks are not proof premises.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.7in}@{}}
+\toprule
+Package & Main checked declarations\\
+\midrule
+A016789 & \texttt{conjecture}, \texttt{original\_conjecture}; signed-base existence and uniqueness.\\
+A300984 & \texttt{conjecture}, \texttt{strengthened\_conjecture}, \texttt{member\_ge\_676}.\\
+A324017 & \texttt{fixed\_point}, \texttt{quotient\_conjecture}, \texttt{third\_claim\_false}, \texttt{corrected\_compatibility}.\\
+A389524 & \texttt{row\_sum}, \texttt{diagonal}; \texttt{finite\_uchimura\_coeff} and original recurrence bridge.\\
+A393833 & \texttt{conjecture}, \texttt{arbitrarily\_large\_witnesses}, \texttt{exists\_least}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The preserved primary snapshots still label the selected assertions
+conjectural: A016789 revision 305; A300984 revision 15; A324017 revision
+91; A389524 revision 19; and A393833 revision 30. Source checks were made
+on November 26, 2026, America/Chicago. An unchanged label alone is not
+evidence of novelty. Exact-statement and semantic searches, inspection
+of linked literature, and checks of public proof collections were used
+to distinguish related established results from the targets. Another
+candidate, A049803, was excluded after an earlier published proof was
+located.
+
+The count is eight resolved assertions in five entries: seven true and
+one false. The companion XOR identities, strengthened squarefree
+conditions, minimum lower bound, corrected tetration relation, and
+arbitrary-bound construction are not counted again. A300984's separate
+frequency conjecture and A389524's weighted orphan-count conjecture
+remain outside this manuscript. The work does not assert OEIS editorial
+acceptance or exhaustive publication priority.
+
+To reproduce a package with the pinned toolchain selected, run
+\texttt{lake exe cache get} followed by \texttt{lake build} in its
+directory. Per-package \texttt{SHA256SUMS.txt} files identify the exact
+delivered artifacts. The source, audits, and this manuscript accompany
+the repository publication.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{A016789} OEIS Foundation, A016789, including G. Breysens's
+July 21, 2017 conjecture; and A005351, A005352.
+\url{https://oeis.org/A016789};
+\url{https://oeis.org/A005351}; \url{https://oeis.org/A005352}.
+\bibitem{Arndt} J. Arndt, \emph{Matters Computational}, section 1.22,
+pp. 58--60. \url{https://www.jjj.de/fxt/fxtbook.pdf}.
+\bibitem{A300984} M. Lagneau, OEIS A300984, March 17, 2018.
+\url{https://oeis.org/A300984}.
+\bibitem{A048250} OEIS A048250, including V. Jovovic's April 19, 2001
+product formula. \url{https://oeis.org/A048250}.
+\bibitem{A065302} OEIS A065302, including W. Kehowski's March 21, 2007
+squarefree-divisor-sum argument. \url{https://oeis.org/A065302}.
+\bibitem{A324017} D. Smith, OEIS A324017, March 28, 2019.
+\url{https://oeis.org/A324017}.
+\bibitem{Crux1981} C. W. Trigg, Problem 559 and its discussion,
+\emph{Crux Mathematicorum} \textbf{7} (1981), p. 192.
+\url{https://cms.math.ca/wp-content/uploads/crux-pdfs/Crux_v7n06_Jun.pdf}.
+\bibitem{Crux1987} D. B. Shapiro, solution to Problem 559,
+\emph{Crux Mathematicorum} \textbf{13} (1987), 291--294.
+\url{https://cms.math.ca/wp-content/uploads/crux-pdfs/Crux_v13n09_Nov.pdf}.
+\bibitem{Shapiro} D. B. Shapiro and S. David Shapiro,
+Iterated Exponents in Number Theory, \emph{Integers} \textbf{7} (2007), A23.
+Author-hosted version:
+\url{https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/c/5162/files/2018/02/IE-24ed9ge.pdf}.
+\bibitem{Yebra} J. Jim\'enez Urroz and J. Luis A. Yebra,
+On the Equation $a^x\equiv x\pmod{b^n}$,
+\emph{Journal of Integer Sequences} \textbf{12} (2009), Article 09.8.8.
+\url{https://cs.uwaterloo.ca/journals/JIS/VOL12/Yebra/yebra4.pdf}.
+\bibitem{A389524} M. Granvik, OEIS A389524, October 7, 2025;
+target sequences A000005 and A049820.
+\url{https://oeis.org/A389524}; \url{https://oeis.org/A049820}.
+\bibitem{Uchimura} K. Uchimura, An identity for the divisor generating
+function arising from sorting theory,
+\emph{Journal of Combinatorial Theory, Series A} \textbf{31} (1981), 131--135.
+\url{https://doi.org/10.1016/0097-3165(81)90009-1}.
+\bibitem{Bressoud} D. M. Bressoud and M. V. Subbarao,
+On Uchimura's connection between partitions and the number of divisors,
+\emph{Canadian Mathematical Bulletin} \textbf{27} (1984), 143--145.
+\url{https://doi.org/10.4153/CMB-1984-022-5}.
+\bibitem{A393833} M. Lagneau, OEIS A393833, March 1, 2026.
+\url{https://oeis.org/A393833}.
+\bibitem{PrimesOne} R. Brasca and mathlib contributors,
+\emph{Primes congruent to one}, pinned mathlib source.
+\url{https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/PrimesCongruentOne.lean}.
+\end{thebibliography}
+\end{document}

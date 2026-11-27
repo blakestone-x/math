@@ -22,6 +22,7 @@ math proofs
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
 - [A000556 and A000557 — exact modular periods and both period conjectures of Kinlaw, Morris and Thiagarajan](A000556/README.md) · [Manuscript](A000556/periods.pdf) · [Lean finite cases](A000556/SmallCases.lean)
+- [A016789 — the negabinary three-way XOR identity](A016789/README.md) · [Lean proof](A016789/Proof.lean)
 - [A063956 — the unitary-prime-divisor product identity](A063956/README.md) · [Lean proof](A063956/Proof.lean)
 - [A068133 — prescribed triangular digit sums](A068133/README.md)
 - [A073642 — a squared-valuation identity and an asymptotic constant correction](A073642/README.md) · [Lean identity](A073642/Proof.lean) · [Lean disproof](A073642/Asymptotic.lean)
@@ -67,9 +68,11 @@ math proofs
 - [A293929 — minimum plus signs to collapse a number](A293929/README.md)
 - [A294413 — golden-ratio convergence with a negative complementary correction](A294413/README.md) · [Lean proof](A294413/Proof.lean)
 - [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
+- [A300984 — necessary prime-power conditions for two squarefree divisor sums](A300984/README.md) · [Lean proof](A300984/Proof.lean)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
 - [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
 - [A323111 — asymptotics of compositions with range equal to half the total](A323111/README.md)
+- [A324017 — two tetration proofs, a canonical counterexample, and corrected compatibility](A324017/README.md) · [Lean proof](A324017/Proof.lean)
 - [A330904 — the longest consecutive run](A330904/README.md) · [Lean proof](A330904/Proof.lean) · [PDF](A330904/A330904_proof.pdf)
 - [A332520 — fixed points by binary length](A332520/README.md) · [Verifier](A332520/verify.py)
 - [A334501, A334509, A334511, A334513 and A334514 — exact ring periods for five cellular automata](A334501/README.md) · [Lean checks for small rings](A334501/SmallRings.lean)
@@ -85,6 +88,8 @@ math proofs
 - [A366253, A367183, A367190 — regions, vertices and edges for marked polygons](A366253/README.md)
 - [A380385 — Euler-product column formulas and row sums](A380385/README.md) · [Lean proof](A380385/Proof.lean)
 - [A384700 — circles determined by two rows of grid points](A384700/README.md)
+- [A389524 — divisor-count row sums and the exact diagonal of a recursive triangle](A389524/README.md) · [Lean proof](A389524/Proof.lean) · [Lean Uchimura identity](A389524/Uchimura.lean)
+- [A393833 — palindromic proper-divisor residues exist at every positive index](A393833/README.md) · [Lean proof](A393833/Proof.lean)
 - [A394659 — independent sets in triangular grids](A394659/README.md) · [Exact verifier](A394659/verify.py)
 
 [Collected proof notes for A068133, A334765, and A394659 (PDF)](notes/OEIS_Proof_Notes.pdf)
@@ -92,3 +97,5 @@ math proofs
 [Collected formal proofs for A063956, A073642, A129453, A143132, and the A294532–A294565 family (PDF)](notes/Math_Proofs_Batch4.pdf) · [Collection guide](notes/Math_Proofs_Batch4_README.md)
 
 [Collected formal proofs for A087412, A217280, A294413, and A380385 (PDF)](notes/Math_Proofs_Batch5.pdf) · [Collection guide](notes/Math_Proofs_Batch5_README.md)
+
+[Eight resolved assertions across A016789, A300984, A324017, A389524, and A393833 (PDF)](notes/Math_Proofs_Batch6.pdf) · [Collection guide](notes/Math_Proofs_Batch6_README.md)

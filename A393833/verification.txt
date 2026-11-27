@@ -1,0 +1,16 @@
+Fresh pinned package build
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: 0a2b108259cfe2f5fb95aa986c45f580d2c0fdbb1322411eb47ed240fdaeac76
+Build directory: /workspace/scratch/5f072ff518ad/tmp/batch6_A393833_build_muv8pp_y
+Command: lake build
+Exit code: 0
+
+ℹ [2794/2795] Built Proof
+info: ././././Proof.lean:86:0: 'A393833.prime_power_residue_list' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:87:0: 'A393833.arbitrarily_large_constant_lists' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:88:0: 'A393833.arbitrarily_large_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:89:0: 'A393833.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:90:0: 'A393833.exists_least' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.

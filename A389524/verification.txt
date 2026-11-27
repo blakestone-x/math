@@ -1,0 +1,21 @@
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Fresh package build of the exact delivered source files.
+
+$ lake build
+ℹ [2793/2795] Built Uchimura
+info: ././././Uchimura.lean:290:0: 'Uchimura.finite_uchimura_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2794/2795] Built Proof
+info: ././././Proof.lean:223:0: 'A389524.triangle_eq_column' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:224:0: 'A389524.row_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:225:0: 'A389524.diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0
+
+SHA256 Uchimura.lean: 878257266d1ebc4e4f1791dc18a3a2d9b7c6e0d323d4ecaecc8ecfe74423305a
+SHA256 Proof.lean: 54ebf0871d58e0f529d110dd2b641dab5f3f9d6370cb0455a3323616385d70ab
+SHA256 lakefile.lean: 3335c4e7da475175c6455163a0664900591d7e790b7d9278c74bedf722ec59e4
+SHA256 lake-manifest.json: c961bc8a82161302b5263bd8789c5586a9a9b36ceeccf850f0142dc61ba7812c
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
