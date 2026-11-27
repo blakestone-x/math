@@ -1,6 +1,9 @@
 # math
 math proofs
 
+- [Mondot’s linked-rod conjecture — every triangular rectangle count occurs infinitely often](A380868/README.md) · [Manuscript](A380868/rod-counts.pdf)
+- [Kimberling’s partition rows — the exact prefix length and its indexing](A308355/README.md) · [Manuscript](A308355/partition-prefix.pdf)
+
 - [Dekking’s base-3/2 Thue–Morse word — four conjectures on factor frequencies, symmetries and the critical exponent](Dekking-base-three-halves/README.md) · [Manuscript](Dekking-base-three-halves/base-three-halves.pdf)
 - [Yane’s consecutive-bar tilings — four extensions, the boundary exception, and the full counting recurrence](A394981/README.md) · [Manuscript](A394981/tilings.pdf)
 - [Mathar’s recurrence for A141344 and its exact sign rule](A141344/README.md) · [Manuscript](A141344/recurrence.pdf)
