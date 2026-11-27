@@ -51,6 +51,7 @@ math proofs
 - [A217280 — a complete base-five digit test for the weighted binomial sum](A217280/README.md) · [Lean proof](A217280/Proof.lean)
 - [A224341 and A224342 — the unique composition two-cycle and five corrected terms](A224341/README.md)
 - [A232622 and Mathar’s tiling formulas — symmetry and four-tile intersections](A232622/README.md) · [Bar tilings](A232622/bar-crossings.md) · [Three-row crossings](A232622/three-row-crossings.md) · [Algebra checks](A232622/verify.py)
+- [A233329–A233333 — least recurrences for rhombus coronas and an exact symmetry count](A233332/README.md) · [Manuscript (PDF)](A233332/rhombus-coronas.pdf) · [Geometric enumeration](A233332/geometry_n4.py)
 - [A238342 — the asymptotic count of compositions with a fixed number of smallest parts](A238342/README.md)
 - [A245211 — partial results on fixed points of the weighted proper-divisor sum](A245211/README.md) · [PDF](A245211/A245211-research.pdf) · [Computations](A245211/verification/README.md)
 - [A261781 — minimal recurrences and spacing of growth constants for marked compositions](A261781/README.md)
