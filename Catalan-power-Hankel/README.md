@@ -11,4 +11,3 @@ Chern and Shi previously evaluated low-shift determinants and selected size clas
 Section 4 proves the three even and three odd explicit low-shift families displayed after the conjectures. The final odd formula printed on page 11 is the numerator for the smaller exponent. Under equation (30), it has the additional factor $(1+(-1)^kz^{2k-1})^2$. The comparison at power one after (30) uses $(1-z)^{m+1}$. The main degree exception and these two normalization details are distinguished in the manuscript.
 
 Run the independent integer-matrix checker with Python 3. It computes the input coefficients from the binomial formula and uses fraction-free elimination on the original Hankel matrices. The infinite assertions follow from the manuscript. [Checker](verify.py) · [Reference output](verification.txt)
-

@@ -3,6 +3,7 @@
 11 cycles, 50 root vertices, line inertia (+,0,-) = (33,0,27), signature 6.
 12 cycles, 54 root vertices, line inertia (+,0,-) = (35,1,29), signature 6.
 13 cycles, 59 root vertices, line inertia (+,0,-) = (39,0,32), signature 7.
+Neutral-square gluing inertias agree in 361 rooted pairs.
 Spanning-tree construction verified on 27505 connected subcubic graphs.
 Canonical cubic types at order 18 with matching size at most 3: 1040
 c=10 inputs=1040 cubic inflations=1040
@@ -41,6 +42,20 @@ Cubic inflations requiring tighter pass 52.
   tight rank/cost 3; retained domains 3370; signed forms 62651
 Independent characteristic-polynomial checks 596.
 Canonical cubic types at order 22 with matching size at most 4: 27117
+c=12 inputs=27117 cubic inflations=27117
+  rank loss 0; retained partitions 27117; signed forms 998692; violations 0
+  rank loss 1; retained partitions 163750; signed forms 5534554; violations 0
+  rank loss 2; retained partitions 561207; signed forms 17005494; violations 0
+  rank loss 3; retained partitions 873500; signed forms 22179634; violations 0
+  rank loss 4; retained partitions 488510; signed forms 9413298; violations 0
+Cubic inflations requiring tighter pass 11634.
+  tight rank/cost 0; retained domains 11634; signed forms 438448
+  tight rank/cost 1; retained domains 168951; signed forms 5703541
+  tight rank/cost 2; retained domains 1214596; signed forms 34702760
+  tight rank/cost 3; retained domains 4410988; signed forms 107149529
+  tight rank/cost 4; retained domains 6465870; signed forms 134580333
+Independent characteristic-polynomial checks 33775.
+Inverse reconstruction at order 22
 c=12 inputs=27117 cubic inflations=27117
   rank loss 0; retained partitions 27117; signed forms 998692; violations 0
   rank loss 1; retained partitions 316397; signed forms 10531296; violations 0

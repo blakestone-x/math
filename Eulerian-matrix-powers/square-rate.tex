@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor,hyperref}
+\usepackage[margin=.91in]{geometry}
+\hypersetup{colorlinks=true,allcolors=blue!60!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ii}{\mathrm{i}}
+\title{A sharper Cauchy root count for the ordinary Eulerian matrix square}
+\author{Blake Stone's mathematics project\\ \small AI-assisted research manuscript}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the ordinary Eulerian matrix square, we bound the number of zeros outside the simple negative ones by $O(n\sqrt{\log\log n/\log n})$. The same error holds uniformly for the Cauchy distribution of their logarithmic magnitudes. The factorial-weighted Eulerian polynomial has only real zeros, and this gives a nonvanishing two-pole amplitude and a strictly increasing phase on the entire real axis. These estimates strengthen the corresponding bound for arbitrary fixed matrix powers.
+\end{abstract}
+
+Let $A(n,k)$ count permutations of $n$ letters with $k-1$ descents, $1\le k\le n$. Set $E_n(x)=\sum_k A(n,k)x^k$. The polynomial $P_n(x)=\sum_{k=1}^n A(n,k)E_k(x)$ is row $n$ of the ordinary matrix square. Mao and Wang conjectured that every $P_n$ is real-rooted~\cite{MW}. For a real interval $J$, let $N_n(J)$ count its simple negative roots $x$ for which $-\log(-x)\in J$. A companion theorem for every fixed matrix power gave an error $O_r(n(\log\log n/\log n)^{1/3})$~\cite{bulk}.
+
+\begin{theorem}\label{main}
+Uniformly in all real intervals $J$, bounded or unbounded,
+\[
+ N_n(J)=n\int_J\frac{du}{u^2+\pi^2}
+          +O\!\left(n\sqrt{\frac{\log\log n}{\log n}}\right).
+\]
+In particular the number of zeros outside the simple negative ones, counted with multiplicity, satisfies this same error bound.
+\end{theorem}
+
+\section{Real zeros and a concentration bound}
+
+Write $B_n(z)=\sum_k k!A(n,k)z^k$. Its reciprocal
+\[
+ H_n(w)=w^n B_n(1/w)=\sum_{j=0}^{n-1}b_j w^j,\qquad b_j=(n-j)!A(n,j+1),
+\]
+uses Eulerian symmetry $A(n,n-j)=A(n,j+1)$.
+
+\begin{lemma}\label{rr}
+Every zero of $H_n$ is strictly negative and real.
+\end{lemma}
+\begin{proof}
+The Eulerian recurrence gives $B_1(z)=z$ and $B_{n+1}(z)=zS_n B_n(z)$, where
+\[
+ S_nf=(n+1)f+[1+(n-1)z]f'-z^2 f''.
+\]
+The finite-degree symbol criterion of Borcea and Br\"and\'en~\cite[Theorem~4]{BB} says that this real operator preserves real-rootedness on degree at most $n$ if $S_n[(z+v)^n]$ is nonzero when $z,v$ are in the open upper half-plane. The symbol is
+\[
+ (z+v)^{n-1}
+ \left((n+1)(z+v)+n+n(n-1)\frac{zv}{z+v}\right).
+\]
+Here $(z^{-1}+v^{-1})^{-1}$ has positive imaginary part. The symbol is consequently nonzero, and induction proves real-rootedness. The coefficients of $H_n$ are positive, including its constant term.
+\end{proof}
+
+\begin{lemma}\label{tilt}
+There are absolute $K,c>0$ such that uniformly for $0<t\le n^{1/4}$ and large $n$,
+\[
+ \sum_{j\ge K n/\log n} b_jt^j\le e^{-cn}H_n(t),
+ \qquad \frac{tH_n'(t)}{H_n(t)}=O(n/\log n).
+\]
+\end{lemma}
+\begin{proof}
+Set $l=\lfloor n/(3\log n)\rfloor$. The Eulerian formula
+$A(n,j+1)=\sum_{h=0}^{j+1}(-1)^h\binom{n+1}{h}(j+1-h)^n$
+shows that $A(n,l+1)\ge(l+1)^n/2$ for large $n$. The absolute sum after the first term is at most $(l+1)^n((1+\exp(-n/(l+1)))^{n+1}-1)=o((l+1)^n)$. Also $A(n,j+1)\le(j+1)^n$: color each letter of a permutation by its increasing run, recovering the permutation by concatenating the sorted color classes.
+
+For $l\le j\le n/2$ this yields
+\[
+ \frac{b_jt^j}{b_l t^l}\le
+ 2\left(\frac{j+1}{l+1}\right)^n(2t/n)^{j-l}.
+\]
+Let $u=(j+1)\log n/n$. Since $2t/n\le n^{-2/3}$ for large $n$, the logarithm of the right side is at most $n(\log(3u)-2u/3+1)$ for all such $j$. This is below $-n$ when $u$ exceeds a fixed sufficiently large $K$. For $j>n/2$, the ratio is at most
+\[
+ 2(3\log n)^n(2/n)^{\lfloor n/2\rfloor-l}n^{n/4}=\exp\bigl(-(\tfrac14+o(1))n\log n\bigr).
+\]
+Both estimates compare to a single term of $H_n(t)$. Summing over fewer than $n$ indices gives the first assertion. The second follows by bounding $j$ by $Kn/\log n$ in the initial part and by $n$ in the tail.
+\end{proof}
+
+\section{The two-pole amplitude and phase}
+
+Set $x=-e^{-u}$, $s=1+e^{-u}$, $p=u+\ii\pi$, $w=p/s$, $t=|w|$, and $\phi=\arg p\in(0,\pi)$. For $k\ge1$ the Eulerian partial fraction formula is
+\[
+ E_k(-e^{-u})=k!s^{k+1}\sum_{\nu\in\mathbb Z}
+                      (u+(2\nu+1)\ii\pi)^{-k-1}.
+\]
+It follows by differentiating the partial fractions of $(1+e^{-u})^{-1}$, or directly from the product for $\cosh(u/2)$~\cite{bulk}.
+For $1\le U\le n^{1/4}-\pi$ and $|u|\le U$, grouping the closest two poles gives
+\begin{equation}\label{twopole}
+ \frac{P_n(-e^{-u})}{(s/|p|)^{n+1}H_n(t)}
+ = 2\operatorname{Re}\left(e^{-\ii(n+1)\phi}\frac{H_n(w)}{H_n(t)}\right)
+   +O\big((1+U^2)e^{-c_1n/(1+U^2)}\big).
+\end{equation}
+Indeed, for the other poles put $q_\nu=|p/(u+(2\nu+1)\ii\pi)|$. Their maximum is at most $\exp(-c_2/(1+u^2))$ and their sum of squares is at most $C(1+u^2)$. A term with index $k$ in the normalized error has magnitude at most
+\[
+ \frac{b_{n-k}t^{n-k}}{H_n(t)}\sum_{\nu\ne0,-1}q_\nu^{k+1}.
+\]
+For $k\ge n-Kn/\log n$ use the bound on the maximum. The other indices have total weight $O(e^{-cn})$ by Lemma~\ref{tilt}, since $t\le U+\pi$. This proves~\eqref{twopole}.
+
+Write the zeros of $H_n$ as $-\alpha$ with multiplicities. Lemma~\ref{rr} gives $\alpha>0$. With $\rho_\alpha=t/(t+\alpha)$,
+\[
+ \frac{H_n(w)}{H_n(t)}
+   =\prod_\alpha(1-\rho_\alpha+\rho_\alpha e^{\ii\phi}),\qquad
+ \sum_\alpha\rho_\alpha=\frac{tH_n'(t)}{H_n(t)}.
+\]
+Each factor lies above the real axis and has modulus at least $\cos(\phi/2)\ge c_3/(1+U)$. For $\rho_\alpha\le1/4$ its modulus is at least $1-2\rho_\alpha$ and its argument is $O(\rho_\alpha)$. For $\rho_\alpha>1/4$ the argument is at most $\pi$ and the negative logarithm of its modulus is $O(\log(U+2))$. Summing these bounds and taking the sum of principal arguments continuously gives
+\begin{equation}\label{amp}
+ \log\frac{|H_n(w)|}{H_n(t)}
+ \ge -C\frac{n}{\log n}\log(U+2),\qquad
+ 0\le\arg H_n(w)\le C\frac{n}{\log n}.
+\end{equation}
+
+The main phase $\Theta(u)=-(n+1)\phi+\arg H_n(w)$ is strictly increasing on $\mathbb R$. Its derivative divided by $\pi$ is
+\[
+ \frac{n+1}{u^2+\pi^2}-
+ \sum_\alpha\frac{1-\alpha e^{-u}}{(u+s\alpha)^2+\pi^2}.
+\]
+Every summand is at most $1/(u^2+\pi^2)$. Clearing denominators, it suffices that $2u(1+e^u)+u^2+\pi^2\ge0$. For $u\ge0$ this is immediate, and for $u<0$ it is at least $(u+2)^2+\pi^2-4>0$. Since $H_n$ has degree $n-1$, $\Theta'(u)\ge2\pi/(u^2+\pi^2)$.
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Take $U=\eta\sqrt{\log n/\log\log n}$ with sufficiently small fixed $\eta>0$. The error in~\eqref{twopole} is then smaller than $|H_n(w)|/H_n(t)$ throughout $[-U,U]$ by~\eqref{amp}. In any subinterval $[a,b]$ of this window, the successive points where $\Theta$ is an integral multiple of $\pi$ have alternating signs for $P_n(-e^{-u})$. Thus the number of distinct sign-changing negative roots in that interval is at least
+\[
+ \frac{\Theta(b)-\Theta(a)}{\pi}-2
+ \ge n\int_a^b\frac{du}{u^2+\pi^2}-O(n/\log n),
+\]
+using $-\phi'(u)=\pi/(u^2+\pi^2)$. The two omitted tails of the Cauchy law have combined mass $O(1/U)$, so the lower estimate for sign-changing roots holds on every interval with error $O(n/U)$. On the whole line it gives $n-O(n/U)$ distinct such roots. The degree is $n$, so at most $O(n/U)$ of these can have multiplicity greater than one. The lower bound therefore also holds for simple roots. Applying it to the at most two complementary intervals gives the matching upper bound, proving the theorem.
+\end{proof}
+
+\small
+\begin{thebibliography}{9}
+\bibitem{MW} J.~Mao and L.~Wang, \emph{The Narayana transformation}, Conjecture 4.1 (2026). \href{https://arxiv.org/abs/2607.01572v1}{arXiv:2607.01572v1}.
+\bibitem{BB} J.~Borcea and P.~Br\"and\'en, \emph{P\'olya--Schur master theorems for circular domains and their boundaries}, Ann. of Math. (2) \textbf{170} (2009), 465--492. \href{https://annals.math.princeton.edu/2009/170-1/p14}{Journal article}.
+\bibitem{bulk} Blake Stone's mathematics project, \emph{Almost all zeros of every fixed power of the Eulerian triangle are simple and negative}, companion manuscript, November 2026. \href{https://github.com/blakestone-x/math/blob/c431a4464010f469f9c7a647da7c783c164977c4/Eulerian-matrix-powers/bulk.pdf}{Companion PDF}.
+\end{thebibliography}
+\end{document}

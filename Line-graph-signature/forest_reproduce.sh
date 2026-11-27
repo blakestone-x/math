@@ -48,12 +48,8 @@ for ((d=3; d<=level; ++d)); do
         count=$(wc -l < "$work/direct$n")
         test "$count" -eq "${amounts[$i]}"
         echo "Canonical cubic types at order $n with matching size at most $d: $count"
-        if ((d==4 && n==22)); then
-            "$work/check" "$n" --budget="$d" --direct --reconstruct --audit="$stride" < "$work/direct$n"
-        else
-            "$work/check" "$n" --budget="$d" --direct --audit="$stride" < "$work/direct$n"
-        fi
-        if [[ ${FOREST_RECONSTRUCT:-0} == 1 ]] && ((d==4 && n==24)); then
+        "$work/check" "$n" --budget="$d" --direct --audit="$stride" < "$work/direct$n"
+        if [[ ${FOREST_RECONSTRUCT:-0} == 1 ]] && ((d==4 && (n==22 || n==24))); then
             echo "Inverse reconstruction at order $n"
             "$work/check" "$n" --budget="$d" --direct --reconstruct --audit="$stride" < "$work/direct$n"
         fi
