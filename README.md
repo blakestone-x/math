@@ -1,6 +1,9 @@
 # math
 math proofs
 
+- [Yane’s consecutive-bar tilings — four extensions, the boundary exception, and the full counting recurrence](A394981/README.md) · [Manuscript](A394981/tilings.pdf)
+- [Mathar’s recurrence for A141344 and its exact sign rule](A141344/README.md) · [Manuscript](A141344/recurrence.pdf)
+
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
 - [Arbitrarily ordered throwback queues — recurrence, unique prefixes and position distributions](Throwback-arbitrary/README.md) · [Manuscript](Throwback-arbitrary/arbitrary-queues.pdf)
