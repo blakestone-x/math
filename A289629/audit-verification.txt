@@ -1,0 +1,13 @@
+Independent compilation by root
+Lean: 4.19.0
+mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Fresh directory: /workspace/scratch/5f072ff518ad/tmp/batch7_A289629_independent_2owshn5v
+SHA256 Proof.lean: e4eebf49e447b7fe49b11f28a6cd28db46070104ed8023c7e1edf522ef3e616a
+
+'A289629.odd_multiple_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A289629.eight_true_patterns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A289629.counterexample_squarefree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A289629.pattern_5_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A289629.pattern_5_corrected' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0

@@ -1,0 +1,21 @@
+Fresh package build
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:535:0: 'A377824.mem_compositions' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:536:0: 'A377824.compositions_nodup' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:537:0: 'A377824.weights_positions' depends on axioms: [propext]
+info: ././././Proof.lean:538:0: 'A377824.a_positions' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:539:0: 'A377824.explicit_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:540:0: 'A377824.closed_form_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:541:0: 'A377824.normalized_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:542:0: 'A377824.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:543:0: 'A377824.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+SHA256 Proof.lean: 49a3695e54eb9acab9bcc6f50a4927c9b64168883fc6ccf8ea7032d1a2748571
+SHA256 lakefile.lean: 974e978c9a50534c27ad827777f71e294b356b69a527c0666ea0ce89de324547
+SHA256 lake-manifest.json: ec33de2aefe6ea66e91b4d99a0e4eb06238e4648f03cc57215262377f1de616b
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea

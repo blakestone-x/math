@@ -3,7 +3,7 @@ math proofs
 
 - [Regular polygons from consecutive rods — classification and infinitely many chains with three equilateral foldings](A382632/README.md) · [Manuscript](A382632/regular-foldings.pdf)
 - [Bala’s two triangular-number product identities (A174114 and A266883)](Bala-product-identities/README.md) · [Manuscript](Bala-product-identities/products.pdf)
-- [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf)
+- [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf) · [Complete Lean formalization](A377824Formal/README.md)
 
 - [Mondot’s linked-rod conjecture — every triangular rectangle count occurs infinitely often](A380868/README.md) · [Manuscript](A380868/rod-counts.pdf)
 - [Kimberling’s partition rows — the exact prefix length and its indexing](A308355/README.md) · [Manuscript](A308355/partition-prefix.pdf)
@@ -89,6 +89,7 @@ math proofs
 - [A265386 — Gray-code growth and persistent alternating ratios](A265386/README.md) · [Lean invariant](A265386/Proof.lean) · [Lean limit](A265386/Limit.lean) · [PDF](A265386/A265386_proof.pdf)
 - [A268135 — an explicit fixed digit-sum family and Saunders’s earlier theorem](A268135/README.md)
 - [A269631 — a greedy digit-length sequence is a permutation](A269631/README.md)
+- [A289629 — eight power-sum families proved and one refuted, with four prior branches credited](A289629/README.md) · [Lean proof](A289629/Proof.lean)
 - [A293929 — minimum plus signs to collapse a number](A293929/README.md)
 - [A294413 — golden-ratio convergence with a negative complementary correction](A294413/README.md) · [Lean proof](A294413/Proof.lean)
 - [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
@@ -112,7 +113,7 @@ math proofs
 - [A366253, A367183, A367190 — regions, vertices and edges for marked polygons](A366253/README.md)
 - [A380385 — Euler-product column formulas and row sums](A380385/README.md) · [Lean proof](A380385/Proof.lean)
 - [A384700 — circles determined by two rows of grid points](A384700/README.md)
-- [A389524 — divisor-count row sums and the exact diagonal of a recursive triangle](A389524/README.md) · [Lean proof](A389524/Proof.lean) · [Lean Uchimura identity](A389524/Uchimura.lean)
+- [A389524 — divisor-count row sums and the exact diagonal of a recursive triangle](A389524/README.md) · [Lean proof](A389524/Proof.lean) · [Lean Uchimura identity](A389524/Uchimura.lean) · [Weighted orphan identity: Conjecture 2](A389524Weighted/README.md) · [Lean weighted proof](A389524Weighted/Weighted.lean)
 - [A393833 — palindromic proper-divisor residues exist at every positive index](A393833/README.md) · [Lean proof](A393833/Proof.lean)
 - [A394659 — independent sets in triangular grids](A394659/README.md) · [Exact verifier](A394659/verify.py)
 
@@ -123,3 +124,6 @@ math proofs
 [Collected formal proofs for A087412, A217280, A294413, and A380385 (PDF)](notes/Math_Proofs_Batch5.pdf) · [Collection guide](notes/Math_Proofs_Batch5_README.md)
 
 [Eight resolved assertions across A016789, A300984, A324017, A389524, and A393833 (PDF)](notes/Math_Proofs_Batch6.pdf) · [Collection guide](notes/Math_Proofs_Batch6_README.md)
+
+[Weighted orphan identity, nine power-sum branches, and a formal composition asymptotic (PDF)](notes/Math_Proofs_Batch7.pdf) · [Collection guide](notes/Math_Proofs_Batch7_README.md)
+
