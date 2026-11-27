@@ -1,0 +1,5 @@
+Exact cell-by-cell and section heights agree on 1960 column traversals.
+Independent full boundary partitions confirm 41 predicted least periods.
+Figure 9 and seven further common-period examples are periodic everywhere.
+Figure 10 has exactly four fixed points of the two-chord map's fourth iterate.
+Exact renormalization identities checked for Figure 11 and 19 irrational-drift families.

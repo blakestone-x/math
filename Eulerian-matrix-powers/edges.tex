@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\usepackage[margin=0.92in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\title{Extreme zeros of powers of the Eulerian triangle}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Every fixed number of the largest-modulus zeros of a row of an ordinary Eulerian matrix power $A^r$ are simple and negative for all sufficiently large row indices. They occur in groups of $r$ at separated exponential scales. We give the limiting polynomial for each group and prove that its zeros are multiplicatively separated. For the ordinary square we also locate every fixed number of the smallest-modulus nonzero roots. In particular its smallest nonzero root in magnitude is asymptotic to $-(\log 2)^{n+1}$, and its two largest roots in magnitude are asymptotic to $-(1\pm1/\sqrt2)2^n$.
+\end{abstract}
+
+Let $A(0,0)=1$. For $n\ge1$, $A(n,k)$ counts permutations of $n$ with $k-1$ descents. Write $E_n(x)=\sum_k A(n,k)x^k$ and $P_{n,r}(x)=\sum_k(A^r)(n,k)x^k$, using ordinary matrix multiplication. Mao and Wang~\cite[Conj.~4.1]{MW} conjecture that every row $P_{n,2}$ has only real nonpositive roots. The fixed-rank asymptotics of the ordinary Eulerian roots ($r=1$) are classical in this setting; see Dur\'an~\cite{Duran}. A companion paper~\cite{bulk} proves a limiting Cauchy distribution and a density-one theorem on simple negative zeros for all fixed $r$. It does not locate roots of fixed extreme rank. Here the proofs use explicit coefficients and locally uniform limits. The statements count ranks among all complex roots by modulus, with multiplicity.
+
+\section{The largest zeros at every matrix power}
+Fix integers $r\ge1$ and $s\ge0$, and set $a=s+1$, $b=s+2$, $\lambda=a/b$, $q=a\lambda^s$. Let $e_h$ denote the elementary symmetric polynomial of degree $h$, with $e_0=1$. Define
+\begin{equation}\label{L}
+ L_{r,s}(w)=\sum_{h=0}^r \lambda^{\binom h2} e_h(1,q,\ldots,q^{r-1})\left(\frac{w}{a^{r-1}}\right)^h .
+\end{equation}
+\begin{theorem}\label{largest}
+The zeros of $L_{r,s}$ are $-t_1,\ldots,-t_r$ with $0<t_1<\cdots<t_r$ and $t_{j+1}>t_j/\lambda$. For all sufficiently large $n$, the zeros of $P_{n,r}$ of descending modulus ranks $rs+1,\ldots,rs+r$ are simple and negative. In that order they are asymptotic to
+\[
+ -t_j^{-1}(b/a)^n,\qquad 1\le j\le r .
+\]
+\end{theorem}
+
+Let $c_{n,d}=(A^r)(n,n-d)$ and take $c_{n,d}=0$ outside $0\le d\le n$. Its matrix expansion has nonnegative summands indexed by deficit compositions $l_1+\cdots+l_r=d$, $l_i\ge0$. Put $m_i=n-\sum_{p<i}l_p$. Each transition contributes $A(m_i,m_i-l_i)=A(m_i,l_i+1)$ by descent symmetry, when $m_i>0$. A chain reaching zero has zero weight since $A(m,0)=0$ for $m>0$.
+
+For positive $m$ we have $A(m,k)\le k^m$: split each permutation with $k-1$ descents into its $k$ ascending runs and record the run index of each letter. The word over $[k]$ recovers the permutation by sorting the letters within each run. For fixed $l$, the explicit Eulerian formula
+\begin{equation}\label{explicit}
+ A(m,l+1)=\sum_{v=0}^{l+1}(-1)^v\binom{m+1}{v}(l+1-v)^m
+\end{equation}
+gives $A(m,l+1)\sim(l+1)^m$ as $m\to\infty$. The largest product $M_d=\prod_i(l_i+1)$ over the deficit compositions is achieved exactly when the $l_i$ differ by at most one. Indeed, moving one unit from a larger part to a smaller part increases the product whenever the difference exceeds one. Thus
+\[
+ M_{rs+h}=a^{r-h}b^h,\quad 0\le h\le r,\qquad
+ c_{n,d}\le(d+1)^{r-1}M_d^n .
+\]
+For each fixed $d$, the coefficient $c_{n,d}/M_d^n$ tends to the sum of the constants $\prod_i(l_i+1)^{-\sum_{p<i}l_p}$ over these maximizing compositions. The remaining finitely many compositions contribute exponentially less by the same injection bound.
+
+Consider $d=rs+h$. Index positions from $0$ to $r-1$ for this calculation and let $S$ be the $h$ positions carrying the part $s+1$. Relative to $C_0=a^{-s\binom r2}$, the constant for this composition is
+\[
+ \lambda^{s\sum_{i\in S} i}\, a^{-\sum_{j\in S}(r-1-j)}\,\lambda^{\binom h2}
+ =a^{-(r-1)h}\lambda^{\binom h2}q^{\sum_{i\in S}i} .
+\]
+The first factor on the left comes from changing a base $a$ to $b$ at positions in $S$. Each increased part also contributes to the preceding-deficit exponent at each later position, giving the other two factors. Summation over $S$ gives the coefficient of $w^h$ in $C_0 L_{r,s}(w)$.
+
+For the reversed polynomial $Q_{n,r}(z)=z^nP_{n,r}(1/z)=\sum_d c_{n,d}z^d$, it follows that
+\begin{equation}\label{limit}
+ \frac{Q_{n,r}(\lambda^n w)}{(M_{rs}\lambda^{rs})^n}
+ \longrightarrow C_0 w^{rs}L_{r,s}(w)
+\end{equation}
+locally uniformly in the complex plane. Indeed $M_d\lambda^d$ reaches its maximum on the entire integer interval $rs\le d\le rs+r$. Before that interval it increases strictly. After it, the successive ratios are at most $a(b+1)/b^2<1$, since the ratios $M_{d+1}/M_d$ decrease blockwise. The coefficient estimate above bounds the upper tail on $|w|\le K$ by a polynomially weighted geometric series with ratio $K(a(b+1)/b^2)^n$, up to a constant depending on $s,r,K$. The finitely many lower terms tend to zero after normalization. This proves~\eqref{limit}.
+
+\begin{lemma}\label{sep}
+For $0<\lambda<1$, the diagonal operator $T_\lambda(w^h)=\lambda^{\binom h2}w^h$ maps every product of factors $1+cw$ with $c>0$ to a polynomial whose zeros are simple, negative, and separated in magnitude by ratios greater than $1/\lambda$.
+\end{lemma}
+\begin{proof}
+Write $F=T_\lambda f$. On adjoining a factor the new polynomial is $G(w)=F(w)+cwF(\lambda w)$. Assume the old root magnitudes satisfy $t_i/\lambda<t_{i+1}$. Then $G(0)=1$, $G(-t_i)=-ct_iF(-\lambda t_i)$ has sign $(-1)^i$, and $G(-t_i/\lambda)=F(-t_i/\lambda)$ has that same sign. The sign at large negative arguments is $(-1)^{\deg F+1}$. Therefore the new root magnitudes lie one each in $(0,t_1)$, $(t_i/\lambda,t_{i+1})$ and $(t_{\deg F}/\lambda,\infty)$. These intervals give strict separation for the new roots and account for their full degree. Starting with the single factor proves the lemma.
+\end{proof}
+
+Apply Lemma~\ref{sep} to $f(w)=\prod_{i=0}^{r-1}(1+q^i w/a^{r-1})$. Rouch\'e's theorem on disjoint small circles about the roots of $L_{r,s}$ in~\eqref{limit} gives exactly one zero near each. Conjugation invariance makes each real, and its multiplicity is one. A circle about zero of radius smaller than $t_1$ contains exactly $rs$ zeros, while one of radius greater than $t_r$ contains exactly $rs+r$. Using successive circles between the limiting roots also fixes every intermediate rank. Reversal now gives Theorem~\ref{largest}. For $r=2,s=0$, the limiting polynomial is $1+2w+w^2/2$ and its root magnitudes are $2\mp\sqrt2$.
+
+\section{The smallest nonzero zeros of the square}
+Define the logarithmic mean $m(y)=(y-1)/\log y$ for $y>1$ and $m(1)=1$.
+\begin{theorem}\label{smallest}
+Fix $j\ge1$. For all sufficiently large $n$, the $j$th smallest-modulus nonzero zero of $P_{n,2}$ is simple and negative and is asymptotic to
+\[
+ -\left(\frac{m(j)}{m(j+1)}\right)^{n+1} .
+\]
+\end{theorem}
+\begin{proof}
+Let $b_{n,k}=(A^2)(n,k)$. The ascending-run injection gives $b_{n,k}\le E_n(k)$ for integer $1\le k\le n$. For fixed $k\ge2$, insertion of~\eqref{explicit} in the second Eulerian factor yields
+\[
+ b_{n,k}=E_n(k)+O_k\big((n+1)^k E_n(k-1)\big).
+\]
+Indeed every term after the first is bounded by $(n+1)^k(k-1)^i$ times a constant depending only on $k$ when estimating $A(i,k)-k^i$. At $k=1$ there is equality $b_{n,1}=E_n(1)=n!$.
+
+For real $y>1$ Eulerian symmetry and the power-sum identity at $1/y$ give
+\[
+ E_n(y)=(y-1)^{n+1}\sum_{v\ge1}v^n e^{-v\log y} .
+\]
+The corresponding integral from zero to infinity is $n!/(\log y)^{n+1}$. The difference between the sum and integral is at most twice the maximum of the nonnegative unimodal integrand. By Stirling's estimate, the ratio of this maximum to the integral is $O(\log y/\sqrt n)$. Hence uniformly for $1\le k\le n$,
+\[
+  b_{n,k}\le C n!\,m(k)^{n+1},
+ \qquad b_{n,k}\sim n!\,m(k)^{n+1}\quad\text{for each fixed }k .
+\]
+For the last assertion use $m(k-1)<m(k)$ to absorb the preceding error. The identity $m(y)=\int_0^1 y^t\,dt$ shows that $m$ is strictly increasing and strictly concave on $[1,\infty)$, so $\log m$ is strictly concave as well.
+
+Fix $j$ and put $\rho=m(j)/m(j+1)$. Then $m(k)\rho^k$ attains its maximum over positive integers exactly at $j,j+1$. The successive ratios beyond those terms are bounded by $\rho m(j+2)/m(j+1)<1$. By the same geometric tail argument as in~\eqref{limit},
+\[
+ \frac{P_{n,2}(\rho^{n+1}w)}{n!\,(m(j)\rho^j)^{n+1}}
+ \longrightarrow w^j(1+w)
+\]
+locally uniformly. Rouch\'e's theorem gives one simple negative root near $w=-1$, exactly $j$ roots of strictly smaller modulus, including the simple root at zero, and no further roots of comparable modulus outside these small neighborhoods. This proves the stated rank and asymptotic.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{MW} J. Mao and L. Wang, \emph{The Narayana transformation}, 2026, Conjecture 4.1. \href{https://arxiv.org/abs/2607.01572v1}{arXiv:2607.01572v1}.
+\bibitem{Duran} A. J. Dur\'an, \emph{Asymptotic for the rightmost zeros of Bell and Eulerian polynomials}, Indag. Math. 36 (2025), 1005--1025. \href{https://doi.org/10.1016/j.indag.2024.11.007}{doi:10.1016/j.indag.2024.11.007}.
+\bibitem{bulk} Blake Stone's mathematics project, \emph{Almost all zeros of every fixed power of the Eulerian triangle are simple and negative}, companion manuscript, 2026.
+\end{thebibliography}
+\end{document}

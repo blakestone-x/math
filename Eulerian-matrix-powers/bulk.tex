@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=0.92in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\neglog}{\log^{-}}
+\title{Almost all zeros of every fixed power of the Eulerian triangle are simple and negative}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For each fixed positive integer $r$, the degree-$n$ row polynomial of the ordinary matrix power $A^r$ of the Eulerian triangle has $n-O_r(n(\log\log n/\log n)^{1/3})$ simple negative zeros. Their negative logarithmic magnitudes follow a centered Cauchy law of scale $\pi$, with the same error in interval counts. For the ordinary square this proves a density-one form of Mao and Wang's real-rootedness conjecture. The argument combines a two-pole expansion with control of the phase of a polynomial of sublinear degree. Exact sign brackets also prove the full conjectured property for the square through row 256.
+\end{abstract}
+
+Write $A(0,0)=1$. For $n\ge1$, let $A(n,k)$ count permutations of $n$ letters with $k-1$ descents, with $A(n,0)=0$. Write
+\[
+ P_{n,r}(x)=\sum_{j=0}^n (A^r)(n,j)x^j,\qquad E_n(x)=P_{n,1}(x).
+\]
+These polynomials are monic. At positive row indices they have a simple zero at zero. Mao and Wang~\cite[Conj.~4.1]{MW} ask whether all the zeros of $P_{n,2}$ are real. Their original work tested thirty rows and separate formal certificates~\cite{TT} treat specific further rows. For $r=1$ the reality of all roots is classical, and the limiting law is known~\cite{Melotti}. Our result concerns every fixed ordinary matrix power, including $r\ge2$.
+
+\begin{theorem}\label{main}
+Fix $r\ge1$. For a real interval $J$, bounded or unbounded, let $N_{n,r}(J)$ count the simple negative zeros $x$ of $P_{n,r}$ for which $-\log(-x)\in J$. Uniformly over intervals $J$, as $n\to\infty$,
+\[
+ N_{n,r}(J)=n\int_J\frac{du}{u^2+\pi^2}
+       +O_r\!\left(n\left(\frac{\log\log n}{\log n}\right)^{1/3}\right).
+\]
+In particular, the number of zeros outside the simple negative ones, counted with multiplicity, is bounded by the same error term.
+\end{theorem}
+
+\section{Concentration at large factorial-weighted indices}
+Put $a_k=(A^{r-1})(n,k)$, with $A^0$ the identity. Thus $P_{n,r}=\sum_{k=1}^n a_k E_k$. All logarithms below are natural. Set $d=\lceil K_r n\log\log n/\log n\rceil$ for a sufficiently large constant $K_r$, and write
+\[
+ W=\sum_{n-d\le k\le n}a_k k!,\qquad H(w)=W^{-1}\sum_{n-d\le k\le n}a_k k!\,w^{n-k} .
+\]
+We always take $n$ sufficiently large that $d<n/2$. The polynomial $H$ has degree at most $d$, nonnegative coefficients and $H(1)=1$.
+
+\begin{lemma}\label{conc}
+With a suitable $K_r$, we have $\sum_{k<n-d}a_k k!\le W\exp(-3n\log\log n)$.
+\end{lemma}
+\begin{proof}
+For $r=1$ the sum is empty. Suppose $r\ge2$. A term in $(A^{r-1})(n,k)$ is indexed by a nonincreasing chain of indices. Every transition is at most $n!$ and there are at most $(n+1)^{r-2}$ chains. For $k=n-j$ we have $k!\le n^{n-j}$. The logarithm of the sum on the left is thus at most $rn\log n-d\log n+O_r(\log n)$, whenever the sum is positive.
+
+For a lower bound on $W$ choose one chain with each of its $r-1$ steps decreasing by $l=\lfloor n/(8\log n)\rfloor$. Each starting index $m$ of these steps is $n-O_r(n/\log n)$. By Eulerian symmetry and the classical explicit formula,
+\[
+ A(m,m-l)=A(m,l+1)=\sum_{h=0}^{l+1}(-1)^h\binom{m+1}{h}(l+1-h)^m .
+\]
+The sum of the absolute values after the first term, divided by $(l+1)^m$, is at most $(1+e^{-m/(l+1)})^{m+1}-1=o(1)$. Each transition is consequently at least $(l+1)^m/2$. The last index $k=n-(r-1)l$ is included in $W$. The product of these transitions times $k!$ gives $\log W\ge rn\log n-C_r n\log\log n$, by $\log k!=k\log k-O(k)$ and $\log(l+1)\ge\log n-\log\log n-O(1)$. Taking $K_r>C_r+4$ proves the lemma.
+\end{proof}
+
+\section{The two nearest Eulerian poles}
+Write $x=-e^{-u}$ for real $u$ and set $s=1+e^{-u}$, $p=u+\ii\pi$, $w=p/s$, and $\phi=\arg p\in(0,\pi)$. Put $U=(n/d)^{1/3}$. In particular $U\to\infty$ and $dU^3=n$.
+
+\begin{lemma}\label{poles}
+There is an absolute $c>0$ such that, uniformly for $|u|\le U$ and all sufficiently large $n$ (depending on $r$),
+\[
+ \frac{P_{n,r}(-e^{-u})}{W(s/|p|)^{n+1}}
+ =2\operatorname{Re}\big(e^{-\ii(n+1)\phi}H(w)\big)
+    +O\!\left(\exp\left\{-\frac{cn}{1+u^2}\right\}\right).
+\]
+\end{lemma}
+\begin{proof}
+For $k\ge1$ the exact pole expansion is
+\begin{equation}\label{expansion}
+ E_k(-e^{-u})=k!s^{k+1}\sum_{j\in\mathbb Z}\big(u+(2j+1)\pi\ii\big)^{-k-1} .
+\end{equation}
+Indeed $E_k(x)/(1-x)^{k+1}=\sum_{h\ge1}h^kx^h$ for $|x|<1$. At $u>0$ this is $(-1)^k$ times the $k$th derivative of $(1+e^{-u})^{-1}$. The latter function is $1/2+(\log\cosh(u/2))'$. The product $\cosh(u/2)=\prod_{j\ge0}(1+u^2/((2j+1)\pi)^2)$ yields the paired partial fractions. Differentiation and real analytic continuation give~\eqref{expansion} on the real line.
+
+For $k\ge n-d$, the two poles $u\pm\ii\pi$ give exactly the displayed main term after summation and normalization. For every other pole $p_j$ the ratio $q_j=|p/p_j|$ is at most $\sqrt{(u^2+\pi^2)/(u^2+9\pi^2)}\le \exp(-c_0/(1+u^2))$ with some $c_0>0$. Also $\sum_{j\ne0,-1}q_j^2\le C(1+u^2)$ by comparison with $\sum_{j\ge1}j^{-2}$. Thus $\sum q_j^{k+1}\le C(1+u^2)\exp(-c_0(k-1)/(1+u^2))$. Each normalized term carries the additional weight $(a_k k!/W)|w|^{n-k}$, with $|w|\le U+\pi$. Since $d\log(U+\pi)=o(n/(1+U^2))$, all remaining high-index poles have the stated bound after a decrease of $c_0$.
+
+For omitted low indices, positivity gives $|E_k(-e^{-u})|\le k!\max(1,e^{-u})^k\le k!s^k$. Their total normalized contribution is bounded by $(U+\pi)^{n+1}\exp(-3n\log\log n)$ using Lemma~\ref{conc} and $s\ge1$. This is exponentially smaller throughout the window.\end{proof}
+
+\section{Where the main phase can be counted}
+The curve $w(u)=X+\ii y$ satisfies
+\[
+ y=\frac{\pi}{1+e^{-u}},\quad X=\frac y\pi\log\frac{y}{\pi-y},
+ \quad |\phi'(u)|=\frac{\pi}{u^2+\pi^2} .
+\]
+In particular $y$ increases and $X$ is a strictly convex function of $y\in(0,\pi)$. For each complex $z$ the variation of $\arg(w-z)$ on any union of disjoint subarcs avoiding $z$ is at most $4\pi$. To see this, the derivative of the argument with respect to $y$ has the sign of $X-\operatorname{Re} z-(y-\operatorname{Im}z)X'$. The derivative of the latter expression is $-(y-\operatorname{Im}z)X''$. Split at $y=\operatorname{Im} z$ and at its at most two sign changes. On each piece the angle is monotone and stays within a half-plane of angular width $\pi$. Splitting further or deleting subarcs cannot increase the integral of the absolute derivative. As a consequence the total variation of the phase contributed by $H(w)$ away from its zeros is at most $4\pi d$.
+
+Partition $[-U,U]$ into $[-1,1]$ and positive and negative intervals $h\le |u|\le2h$ with dyadic $h\ge1$, truncating the outermost intervals. Use $h=1$ for the central interval. Let $z$ run through the roots of $H$, counted with multiplicity. Since $H(1)=1$,
+\[
+ |H(w)|=\prod_z\frac{|w-z|}{|1-z|} .
+\]
+For $|z|>2(U+\pi+1)$ each ratio is at least $1/3$. For the remaining roots use $|1-z|\le 2(U+\pi+1)+1$ and $|w-z|\ge|y-\operatorname{Im}z|$. Put $B(y)=\prod_{|z|\le2(U+\pi+1)}(y-\operatorname{Im}z)$, with empty product one. We have
+\begin{equation}\label{prod}
+ \log|H(w)|\ge -C d\log(U+2)+\log|B(y)| .
+\end{equation}
+Remove from each interval of scale $h$ the set where $|B(y(u))|\le e^{-t_h}$, with $t_h=cn/(4(1+4h^2))$ and $c$ as in Lemma~\ref{poles}. The boundary in each interval has at most $2d+2$ points since $B$ is real and $y$ strictly increasing. If $B=1$, the removed set is empty. We have $d\log(U+2)=o(n/(1+U^2))$. Thus outside the removed sets the main amplitude $|H(w)|$ exceeds the absolute error in Lemma~\ref{poles} for all sufficiently large $n$.
+
+Write $\neglog v=\max(0,-\log v)$. On $[-2h,2h]$, $y'(u)\ge c_1 e^{-2h}$ for an absolute $c_1>0$. For any real $b$, choose $u_b\in[-2h,2h]$ such that $y(u_b)$ is closest to $b$. Then $|y(u)-b|\ge c_1e^{-2h}|u-u_b|$. Consequently
+\[
+ \int_{-2h}^{2h}\neglog|y(u)-b|\,du\le C h^2,
+\]
+since the logarithmic singularity integrates to a finite constant on a unit interval. On the removed set the sum of these negative logarithms over the roots of $B$ is at least $t_h$. Its ordinary length is therefore $O(d h^4/n)$. On each of the dyadic pieces the angular density $|\phi'|$ is $O(1/h^2)$, also valid in the central interval with $h=1$. Summing the geometric series gives total removed angular length $O(d U^2/n)$. The total number of remaining intervals is $O((d+1)\log(U+2))$.
+
+\section{Counting signs}
+Fix an interval $J$ and restrict to its intersection with the remaining pieces. On each resulting open interval take a continuous phase $\Psi=-(n+1)\phi+\arg H(w)$. At points where $\Psi$ passes successive integer multiples of $\pi$, the signs of $P_{n,r}(-e^{-u})$ alternate by Lemma~\ref{poles}. The intermediate value theorem gives at least the net increase of $\Psi$ divided by $\pi$, minus two, distinct sign-changing zeros on the interval: if the net increase is positive, take first successive hits of the intermediate multiples in order. The assertion is automatic for a negative net increase. One may shrink open endpoints before counting and then take limits. The bound on the variation of $\arg H$ applies across all those intervals together.
+
+The total angular length outside $[-U,U]$ is $O(1/U)$. Hence the number of distinct negative zeros with $-\log(-x)\in J$ is at least
+\[
+ n\int_J\frac{du}{u^2+\pi^2}
+ -O\big(n/U+dU^2+(d+1)\log(U+2)\big)
+ =n\int_J\frac{du}{u^2+\pi^2}-O_r(n/U).
+\]
+Taking $J=\mathbb R$ shows that the total multiplicity surplus beyond the distinct negative zeros is $O_r(n/U)$. Discarding nonsimple negative zeros therefore changes the lower bound by at most this amount. Apply the same lower bound to the at most two intervals complementary to $J$ and use the degree $n$ to obtain the corresponding upper bound. This proves Theorem~\ref{main}.
+
+\paragraph{Exact finite check.} The accompanying standard-library Python verifier uses the Eulerian recurrence, exact matrix multiplication and rational sign brackets. It removes the factor $x$ and tests at points $-m2^e$ with integer $m,e$. All cleared denominators are positive. At row $n$, obtaining $n-1$ sign changes proves the remaining $n-1$ zeros are simple and negative. This finite certificate is independent of the asymptotic argument. The full conjecture for unrestricted row indices remains open here.
+
+\begin{thebibliography}{9}
+\bibitem{MW} J. Mao and L. Wang, \emph{The Narayana transformation}, 2026, Conjecture 4.1. \href{https://arxiv.org/abs/2607.01572v1}{arXiv:2607.01572v1}.
+\bibitem{Melotti} P. Melotti, \emph{Distribution of the roots of Eulerian polynomials}, 2025. \href{https://arxiv.org/abs/2507.15908}{arXiv:2507.15908}.
+\bibitem{TT} The Omega Institute, \emph{Eulerian Matrix Square, Row 33}, 2026, with links to the earlier row certificates. \href{https://www.trureturing.org/knowledge/node/4c8d23f92b2193daa1cb796b24022eb3b71548e0ee51ea5323ac87c69dad6058/}{Formal proof record}.
+\end{thebibliography}
+\end{document}

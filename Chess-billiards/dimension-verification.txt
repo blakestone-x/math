@@ -1,0 +1,2 @@
+Compared 7770 signed Hecke matrix words with chess inverse itineraries.
+All 29550 recovered nearest digits and unsigned remainders agree exactly.

@@ -1,0 +1,23 @@
+power 2, rows through 25: 300 distinct negative zeros
+power 2, rows through 50: 1225 distinct negative zeros
+power 2, rows through 75: 2775 distinct negative zeros
+power 2, rows through 100: 4950 distinct negative zeros
+power 2, rows through 125: 7750 distinct negative zeros
+power 2, rows through 150: 11175 distinct negative zeros
+power 2, rows through 175: 15225 distinct negative zeros
+power 2, rows through 200: 19900 distinct negative zeros
+power 2, rows through 225: 25200 distinct negative zeros
+power 2, rows through 250: 31125 distinct negative zeros
+All 256 rows have simple real zeros, one zero at the origin in each row.
+32640 negative zeros certified by rational sign changes.
+power 3, rows through 25: 300 distinct negative zeros
+power 3, rows through 50: 1225 distinct negative zeros
+power 3, rows through 75: 2775 distinct negative zeros
+power 3, rows through 100: 4950 distinct negative zeros
+All 100 rows have simple real zeros, one zero at the origin in each row.
+4950 negative zeros certified by rational sign changes.
+power 4, rows through 25: 300 distinct negative zeros
+power 4, rows through 50: 1225 distinct negative zeros
+power 4, rows through 75: 2775 distinct negative zeros
+All 80 rows have simple real zeros, one zero at the origin in each row.
+3160 negative zeros certified by rational sign changes.
