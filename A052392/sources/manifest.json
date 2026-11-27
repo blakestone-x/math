@@ -1,0 +1,16 @@
+[
+  {
+    "id": "A052392",
+    "source_revision_date": "2025-04-24",
+    "retrieved": "2026-11-27",
+    "immutable_url": "https://github.com/oeis/oeisdata/blob/d82525dfc9110d2641b2ce564c673318a3c3007b/seq/A052/A052392.seq",
+    "sha256": "47e200d202cd25430452ffa476a75990d35b1ecca10462613e31742954122044"
+  },
+  {
+    "id": "A054120",
+    "source_revision_date": "2022-01-26",
+    "retrieved": "2026-11-27",
+    "immutable_url": "https://github.com/oeis/oeisdata/blob/72c53dd50967ac7166f7d31bf79be95174ec5bc6/seq/A054/A054120.seq",
+    "sha256": "7cc83df715c2db12b5fe4d88e13886a71af3824f1f9d19fb01f9489101c8038c"
+  }
+]

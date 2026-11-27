@@ -1,0 +1,38 @@
+[
+  {
+    "id": "A220018",
+    "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A220/A220018.seq",
+    "sha256": "839117d3d36b6172d2051c5be7aa6ae18ffd4507a37ee37c6cd195c498ad9a9a",
+    "raw_sha256": "839117d3d36b6172d2051c5be7aa6ae18ffd4507a37ee37c6cd195c498ad9a9a",
+    "byte_identical": true,
+    "only_possible_normalization": "one final newline",
+    "retrieved_date_utc": "2026-11-27"
+  },
+  {
+    "id": "A220019",
+    "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A220/A220019.seq",
+    "sha256": "da34da8da8135d089d323cd232647a5ac803d0fb44ee665b7b5c3153a4d2ba7d",
+    "raw_sha256": "da34da8da8135d089d323cd232647a5ac803d0fb44ee665b7b5c3153a4d2ba7d",
+    "byte_identical": true,
+    "only_possible_normalization": "one final newline",
+    "retrieved_date_utc": "2026-11-27"
+  },
+  {
+    "id": "A220020",
+    "url": "https://github.com/oeis/oeisdata/blob/ddbc991a4786eda1e3a5a955a36db749a63fc673/seq/A220/A220020.seq",
+    "sha256": "c338116702ffea6c52a7ce37f7dc359c3274ba0dc39f4bb0b82afef487c99f9b",
+    "raw_sha256": "c338116702ffea6c52a7ce37f7dc359c3274ba0dc39f4bb0b82afef487c99f9b",
+    "byte_identical": true,
+    "only_possible_normalization": "one final newline",
+    "retrieved_date_utc": "2026-11-27"
+  },
+  {
+    "id": "A221855",
+    "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A221/A221855.seq",
+    "sha256": "687753e2dd9a7bd235d7f57ca00d4faee904ddd852753d21cac40d9c5dca36b7",
+    "raw_sha256": "687753e2dd9a7bd235d7f57ca00d4faee904ddd852753d21cac40d9c5dca36b7",
+    "byte_identical": true,
+    "only_possible_normalization": "one final newline",
+    "retrieved_date_utc": "2026-11-27"
+  }
+]

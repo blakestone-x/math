@@ -1,0 +1,661 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Cyclotomic cosets, a triangle, and reciprocal cube roots},pdfauthor={Blake Stone},pdfsubject={Six recorded source assertions in three families, with complete Lean proofs}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Cyclotomic cosets, a triangle,\\[3pt]
+and reciprocal cube roots}\par
+\vspace{0.5em}
+{\large Six source assertions in three families: complete Lean proofs}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proofs developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove six specific conjectural or empirical assertions recorded in the
+On-Line Encyclopedia of Integer Sequences, organized into three mathematical
+families. First, exact prime power orders and a proved orbit-count formula
+establish Barker's four quadratic counts of cyclotomic cosets modulo $10^n$,
+for multipliers $3,7,9,13$. Second, a weighted Delannoy representation proves
+Israel's generating function and recurrence for the subdiagonal A052392 of
+Kimberling's triangle, preserving its exceptional initial entry. Third, exact
+cubic inequalities prove the empirical generating function of A184534 from
+its literal reciprocal fractional-root definition, and identify a displaced
+index in the printed closed form. All conclusions are verified in Lean from
+source definitions. Each package includes pinned sources, two separate clean
+builds, and a review by an agent outside that package's authoring team.
+Classical methods and known related results retain their attribution.
+The bounded prior-work screen does not establish global priority.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.2in}@{}}
+\toprule
+Family & Exact scope\\
+\midrule
+A220018/A220019 & Quadratic orbit counts for multipliers $3$ and $7$.\\
+A220020/A221855 & Quadratic orbit counts for multipliers $9$ and $13$.\\
+A052392 & One subdiagonal family: empirical algebraic generating function and recurrence.\\
+A184534 & One reciprocal-root family: empirical generating function, with corrected closed-form indexing.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The four coset formulas are closely related specializations, counted as four
+recorded assertions within one family. Equivalent recurrences, supporting
+lemmas, and indexing corrections are not counted separately. General
+cyclotomic-coset theory, weighted Delannoy methods, and root comparisons are
+established tools, not claims of new general theories.
+
+\section{Cyclotomic cosets modulo powers of ten}\label{sec:cosets-ten}
+
+For $q$ coprime to $10$, let $C_q(n)$ be the number of distinct
+orbits of the permutation $x\mapsto qx$ on $\mathbb Z/10^n\mathbb Z$.
+Thus the orbit containing $x$ is the finite set of all $q^kx$ with
+$k\ge0$. The zero orbit is included. V.~Raman's sequences
+A220018, A220019, A220020, and A221855 correspond respectively to
+$q=3,7,9,13$. Colin Barker recorded the following conjectures on
+13--14 April 2013 \cite{oeis220018,oeis220019,oeis220020,oeis221855}.
+
+\begin{theorem}\label{thm:cosets-ten}
+For every $n\ge3$,
+\[
+ C_3(n)=8n^2-14n-1,\qquad
+ C_9(n)=4(4n^2-7n-1),\qquad
+ C_{13}(n)=2n(4n-7).
+\]
+For every $n\ge4$,
+\[
+ C_7(n)=5(16n^2-60n+37).
+\]
+\end{theorem}
+
+The ingredients are standard orbit counting, the Chinese remainder
+theorem, and lifting the exponent. A much more general classification
+of cyclotomic cosets and their sizes appears in Zhu--Liu--Wu
+\cite{zhu-liu-wu-cosets}. The present argument gives the explicit
+specialization required by these four recorded formulas, with a
+complete Lean proof from the literal orbit definition.
+
+\begin{lemma}[Divisor formula]\label{lem:cosets-divisors}
+For positive $m$ coprime to $q$, the number of orbits of multiplication
+by $q$ on $\mathbb Z/m\mathbb Z$ is
+\[
+ \sum_{d\mid m}\frac{\varphi(d)}{\operatorname{ord}_d(q)}.
+\]
+Here $\varphi(1)=\operatorname{ord}_1(q)=1$.
+\end{lemma}
+\begin{proof}
+The additive cyclic group $\mathbb Z/m\mathbb Z$ has exactly
+$\varphi(d)$ elements of additive order $d$ for each divisor $d$ of
+$m$. Multiplication by a unit preserves additive order. If $x$ has
+additive order $d$, then
+\[
+ q^kx=x\quad\Longleftrightarrow\quad(q^k-1)x=0
+ \quad\Longleftrightarrow\quad d\mid q^k-1.
+\]
+The least positive such $k$ is $\operatorname{ord}_d(q)$.
+The $\varphi(d)$ elements in the stratum therefore partition into
+orbits of that common size, giving the displayed quotient.
+Summing over all divisors counts every orbit exactly once.
+The stratum $d=1$ consists only of zero.
+\end{proof}
+
+Write $t_+=\max(t,0)$. The exact orders needed in the proof are
+\begin{equation}\label{eq:cosets-orders-two}
+\begin{array}{c|c|c}
+q& i=0,1&i\ge2\\\hline
+3&1&2\cdot2^{(i-3)_+}\\
+7&1&2\cdot2^{(i-4)_+}\\
+9&1&2^{(i-3)_+}\\
+13&1&2^{(i-2)_+}
+\end{array}
+\end{equation}
+and, for $j\ge1$,
+\begin{equation}\label{eq:cosets-orders-five}
+\begin{array}{c|c}
+q&\operatorname{ord}_{5^j}(q)\\\hline
+3&4\cdot5^{j-1}\\
+7&4\cdot5^{(j-2)_+}\\
+9&2\cdot5^{j-1}\\
+13&4\cdot5^{j-1}.
+\end{array}
+\end{equation}
+The orders at $j=0$ are $1$.
+
+\begin{proof}[Proof of the order formulas]
+The orders of $3,7$ modulo $4$ are $2$, and their exact valuations are
+$v_2(3^2-1)=3$ and $v_2(7^2-1)=4$. Lifting the exponent gives
+\[
+ v_2(3^{2k}-1)=3+v_2(k),\qquad
+ v_2(7^{2k}-1)=4+v_2(k).
+\]
+For $i\ge2$, an exponent producing $1$ modulo $2^i$ must be even.
+The displayed laws therefore show that the least possible exponent is
+$2\cdot2^{(i-3)_+}$ or $2\cdot2^{(i-4)_+}$, respectively.
+For $9$ and $13$, which are $1$ modulo $4$, the analogous laws are
+\[
+ v_2(9^k-1)=3+v_2(k),\qquad
+ v_2(13^k-1)=2+v_2(k).
+\]
+They give the other two rows, with the small moduli verified directly.
+
+Modulo $5$, the orders of $3,7,9,13$ are $4,4,2,4$, respectively.
+The exact valuations of $q^e-1$ at these exponents are $1,2,1,1$.
+In particular $7^4-1=2400=5^2\cdot96$ is divisible by $25$ but
+not $125$. For each of the four pairs $(q,e)$, lifting the exponent
+gives
+\[
+ v_5(q^{ek}-1)=v_5(q^e-1)+v_5(k).
+\]
+Any exponent producing $1$ modulo $5^j$ is a multiple of $e$;
+the smallest possible multiplier is the power of $5$ displayed in
+\eqref{eq:cosets-orders-five}. These statements apply to every
+positive exponent, not only a finite list of moduli.
+\end{proof}
+
+Every divisor of $10^n$ has a unique representation $2^i5^j$ with
+$0\le i,j\le n$. By the Chinese remainder theorem,
+\[
+ \operatorname{ord}_{2^i5^j}(q)
+ =\operatorname{lcm}\bigl(\operatorname{ord}_{2^i}(q),
+                         \operatorname{ord}_{5^j}(q)\bigr).
+\]
+Put
+\[
+ T_q(i,j)=\frac{\varphi(2^i5^j)}{\operatorname{ord}_{2^i5^j}(q)}.
+\]
+Then Lemma~\ref{lem:cosets-divisors} becomes
+\begin{equation}\label{eq:cosets-grid}
+ C_q(n)=\sum_{i=0}^n\sum_{j=0}^n T_q(i,j).
+\end{equation}
+Multiplicativity of $\varphi$, together with
+$\varphi(2^{i+1})=2^i$ and $\varphi(5^{j+1})=4\cdot5^j$,
+gives the following complete table:
+\[
+\begin{array}{c|rrrrrr}
+ &i=0&i=1&i=2&i=3&i=4&i\ge5\\\hline
+T_3(i,0)&1&1&1&2&2&2\\
+T_3(i,j),\ j\ge1&1&1&2&4&8&8\\
+T_7(i,0)&1&1&1&2&4&4\\
+T_7(i,1)&1&1&2&4&8&16\\
+T_7(i,j),\ j\ge2&5&5&10&20&40&80\\
+T_9(i,0)&1&1&2&4&4&4\\
+T_9(i,j),\ j\ge1&2&2&4&8&16&16\\
+T_{13}(i,0)&1&1&2&2&2&2\\
+T_{13}(i,j),\ j\ge1&1&1&2&4&8&8
+\end{array}
+\]
+For example, if $i=r+4$ and $j=s+1$, the orders for base $3$ are
+$4\cdot2^r$ and $4\cdot5^s$. Since $2^r$ and $5^s$ are coprime,
+their least common multiple is $4\cdot2^r5^s$. Dividing
+$2^{r+3}\cdot4\cdot5^s$ by it gives $8$. The other infinite
+tails follow by the same exact cancellations.
+
+\begin{proof}[Proof of Theorem~\ref{thm:cosets-ten}]
+The sum through index $n$ of $1,1,2,4,8,8,\ldots$ is
+$8n-16$ for $n\ge3$. The sum through index $n$ of
+$1,1,2,4,8,16,16,\ldots$ is $16n-48$ for $n\ge4$.
+The four $j=0$ rows sum respectively to $2n-1$, $4n-7$,
+$4n-4$, and $2n$, in the ranges required by the theorem.
+Consequently \eqref{eq:cosets-grid} gives
+\begin{align*}
+ C_3(n)&=(2n-1)+n(8n-16)=8n^2-14n-1,\\
+ C_7(n)&=(4n-7)+(1+5(n-1))(16n-48)
+        =80n^2-300n+185,\\
+ C_9(n)&=(4n-4)+2n(8n-16)=16n^2-28n-4,\\
+ C_{13}(n)&=2n+n(8n-16)=8n^2-14n.
+\end{align*}
+These are exactly the four conjectured polynomials.
+\end{proof}
+
+\paragraph{Formal scope and attribution.}
+The Lean definition counts the quotient of $\mathbb Z/10^n\mathbb Z$
+by the action of the subgroup generated by the unit $q$.
+The theorem \path{mem_coset_iff} proves that membership in these
+orbits is equivalent to $y=q^kx$ for some natural $k$.
+The divisor formula is then proved using orbit sizes and additive
+orders. Subsequent modules prove the divisor-to-exponent bijection,
+all prime power orders by exact valuations, every entry and tail of
+the table, and all four sums. Thus the polynomial is the conclusion,
+not the definition of any formal source sequence.
+
+The four endpoint theorems in \path{Proof.lean} use exactly the
+source ranges $n>2$ or $n>3$ and have only the standard Lean logical
+axioms as dependencies. All six modules are explicit build roots.
+The source entries and earlier generators already contain the
+divisor algorithm or polynomial patterns; the general methods are
+classical and are not counted as new results. This package contains
+four related source-assertion proofs in one family. The separately
+recorded bounded prior-work search found no earlier explicit
+settlement of these four formulas and does not establish worldwide
+priority.
+
+
+\section{A052392: a subdiagonal of Kimberling's triangle}
+\label{sec:a052392}
+
+\subsection{Source statement and indexing}
+
+OEIS A052392 \cite{oeis052392} defines $a_n=T(2n+1,n)$, starting with $a_0=1$.
+Robert Israel's November 26, 2018 contribution records an empirical
+generating function and an empirical order-four recurrence. We prove both
+as one source family. The algorithm attached to that entry defines
+$T(r,0)=T(r,r)=1$, $T(r,k)=0$ for $k>r$, and $T(2,1)=3$; its remaining
+entries satisfy
+\begin{equation}\label{eq:a052392-triangle}
+ T(r,k)=T(r-1,k-1)+2T(r-2,k-1)+T(r-1,k)
+ \qquad(r\ge3,\ 0<k<r).
+\end{equation}
+The exceptional value $T(2,1)=3$ is essential. Applying the interior rule
+there would instead produce $4$ and a different sequence.
+
+The associated entry A054120 originally presents this triangle through
+strip sums. Russell Jay Hendel's June 2, 2015 comment in that entry already
+proves \eqref{eq:a052392-triangle} from the strip-sum definition and
+explains its exceptional initial entry. That equivalence is credited
+prior work. Our formal definition follows the literal algorithm attached
+to A052392, rather than defining the sequence by the formula to be proved.
+
+\begin{theorem}\label{thm:a052392-main}
+Let $a_n=T(2n+1,n)$ with the preceding boundary conditions and recurrence.
+In the formal power-series ring $\mathbb Q[[x]]$,
+\begin{equation}\label{eq:a052392-gf}
+ A(x):=\sum_{n\ge0}a_nx^n
+ =\frac{2x^2-3x+1}{2x\sqrt{1-8x+4x^2}}+\frac{x-1}{2x},
+\end{equation}
+where the square root has constant coefficient $1$. The numerator of
+the combined expression vanishes at zero, so the displayed expression
+is a power series. Furthermore, for every $n\ge0$,
+\begin{equation}\label{eq:a052392-rec}
+\begin{split}
+ 8na_n-(32+28n)a_{n+1}+(78+30n)a_{n+2}\\
+ {}-(45+11n)a_{n+3}+(5+n)a_{n+4}=0.
+\end{split}
+\end{equation}
+\end{theorem}
+
+\subsection{An independent array representation}
+
+Define the weighted Delannoy array by
+\[
+ D(0,n)=D(m,0)=1,\qquad
+ D(m+1,n+1)=D(m,n+1)+D(m+1,n)+2D(m,n).
+\]
+This definition determines every entry by induction on $m+n$ and gives
+$D(m,n)=D(n,m)$. Write $S(m,n)=T(m+n,n)$. Thus $S$ has the same boundary
+values and the same interior recurrence, except that $S(1,1)=3$.
+
+\begin{lemma}\label{lem:a052392-difference}
+For all $m,n\ge0$,
+\[
+ S(m+1,n+1)=D(m+1,n+1)-D(m,n).
+\]
+\end{lemma}
+\begin{proof}
+At $(m,n)=(0,0)$ the right side is $4-1=3$. Along the first interior
+row, $D(1,n)=3n+1$, whereas $S(1,n)=3n$ for $n\ge1$; these identities
+follow immediately by induction from the boundary rule. Symmetry gives
+the first interior column. At all remaining positions, subtracting the
+recurrences for $D(m+1,n+1)$ and $D(m,n)$ gives exactly the recurrence
+for $S(m+1,n+1)$. Induction on $m+n$ now proves the result.
+\end{proof}
+
+Let
+\[
+ d_n=D(n,n),\qquad b_n=D(n+1,n).
+\]
+Then $d_0=b_0=a_0=1$, $d_1=4$, and Lemma
+\ref{lem:a052392-difference} gives
+\begin{equation}\label{eq:a052392-a-b}
+ a_{n+1}=b_{n+1}-b_n\qquad(n\ge0).
+\end{equation}
+By symmetry and the array recurrence,
+\begin{equation}\label{eq:a052392-d-b}
+ d_{n+1}=2b_n+2d_n\qquad(n\ge0).
+\end{equation}
+
+\subsection{The diagonal recurrence}
+
+\begin{lemma}\label{lem:a052392-balance}
+For every $m,n\ge0$,
+\begin{equation}\label{eq:a052392-balance}
+ (m+1)D(m+1,n)-(n+1)D(m,n+1)=2(n-m)D(m,n).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $E(m,n)$ be the left side minus the right side of
+\eqref{eq:a052392-balance}. On the axes, the formula
+$D(1,n)=3n+1$ and symmetry give $E(0,n)=E(m,0)=0$.
+Expanding three instances of the defining recurrence for $D$ gives
+\[
+ E(m+1,n+1)=E(m,n+1)+E(m+1,n)+2E(m,n).
+\]
+For an explicit check, subtract the right side from the left; the
+remaining expression is
+\[
+ 2(m-n)\bigl(D(m+1,n+1)-D(m,n+1)-D(m+1,n)-2D(m,n)\bigr)=0.
+\]
+Induction on $m+n$ therefore gives $E(m,n)=0$ everywhere.
+\end{proof}
+
+Apply \eqref{eq:a052392-balance} at $(m,n)=(n+1,n)$, and use
+\[
+ b_{n+1}=D(n+1,n+1)+D(n+2,n)+2D(n+1,n).
+\]
+The result is
+\begin{equation}\label{eq:a052392-brec}
+ (n+2)b_{n+1}=(2n+3)d_{n+1}+2(n+1)b_n.
+\end{equation}
+Eliminating $b_n,b_{n+1}$ with \eqref{eq:a052392-d-b} yields
+\begin{equation}\label{eq:a052392-drec}
+ (n+2)d_{n+2}=4(2n+3)d_{n+1}-4(n+1)d_n\qquad(n\ge0).
+\end{equation}
+Likewise, \eqref{eq:a052392-a-b} and \eqref{eq:a052392-d-b} give
+\begin{equation}\label{eq:a052392-source-central}
+ 2a_{n+1}=d_{n+2}-3d_{n+1}+2d_n\qquad(n\ge0).
+\end{equation}
+Every relation so far is an identity for the independently defined arrays.
+
+\subsection{The generating function}
+
+Put $D(x)=\sum_{n\ge0}d_nx^n$ and $Q(x)=1-8x+4x^2$.
+Equation \eqref{eq:a052392-drec}, together with $d_0=1$ and $d_1=4$,
+is equivalent coefficient by coefficient to
+\begin{equation}\label{eq:a052392-ode}
+ QD'=(4-4x)D.
+\end{equation}
+Indeed, the coefficient of $x^j$ is
+$(j+1)d_{j+1}=(8j+4)d_j-4jd_{j-1}$ for $j\ge1$,
+and the constant coefficient says $d_1=4d_0$.
+Formal differentiation now gives
+\[
+ (QD^2)'=(-8+8x)D^2+2D\,QD'=0.
+\]
+Over $\mathbb Q[[x]]$, a series with zero derivative is constant, and the
+constant coefficient here is $1$. Thus
+\begin{equation}\label{eq:a052392-square}
+ QD^2=1,\qquad D(0)=1.
+\end{equation}
+These conditions characterize $D$ uniquely: if $QE^2=1$ and $E(0)=1$,
+then $Q\ne0$ gives $(E-D)(E+D)=0$. The ring is a domain and $E+D$ has
+constant coefficient $2$, so $E=D$. Consequently $D=1/\sqrt Q$ with
+the normalized branch. This argument proves existence and uniqueness;
+it does not assume a square-root coefficient expansion.
+
+Multiply \eqref{eq:a052392-source-central} by $x^{n+2}$ and sum over
+$n\ge0$, using $a_0=d_0=1$ and $d_1=4$. One obtains
+\begin{equation}\label{eq:a052392-cleared}
+ 2xA(x)=(1-3x+2x^2)D(x)-1+x
+       =(1-x)\bigl((1-2x)D(x)-1\bigr).
+\end{equation}
+Substitution of $D=1/\sqrt Q$ gives exactly
+\eqref{eq:a052392-gf}. In particular the right side of
+\eqref{eq:a052392-cleared} has zero constant coefficient. Multiplication
+by $2x$ is injective in $\mathbb Q[[x]]$, so the cleared identity loses
+no information about $A$.
+
+\subsection{The exact source recurrence}
+
+For clarity, an explicit algebraic certificate gives the recurrence
+without relying on a guessed differential equation for $A$. Define
+\[
+ R_j=(j+2)d_{j+2}-4(2j+3)d_{j+1}+4(j+1)d_j.
+\]
+By \eqref{eq:a052392-drec}, every $R_j=0$.
+Let $L_n$ denote the left side of \eqref{eq:a052392-rec}.
+Substitute \eqref{eq:a052392-source-central} into the five terms of
+$2L_{j+1}$. Collecting coefficients of $d_j,\ldots,d_{j+6}$ gives the
+polynomial identity
+\[
+ 2L_{j+1}=4R_j-12R_{j+1}+13R_{j+2}-6R_{j+3}+R_{j+4}=0
+ \qquad(j\ge0).
+\]
+Hence $L_n=0$ for every $n\ge1$. Finally the source array gives
+$(a_0,a_1,a_2,a_3,a_4)=(1,6,39,261,1779)$, and
+\[
+ L_0=-32\cdot6+78\cdot39-45\cdot261+5\cdot1779=0.
+\]
+This proves \eqref{eq:a052392-rec} at every source index and completes
+the theorem.
+
+\subsection{Formal coverage and provenance}
+
+The Lean development defines the source array and the weighted Delannoy
+array independently. It proves their relation, the balance identity,
+the diagonal recurrence, the normalized formal reciprocal-square-root
+identity and uniqueness, the cleared generating function, and the exact
+order-four recurrence for every natural index. The single audited
+endpoint is \texttt{A052392.full\_resolution}. Its dependencies are only
+the standard Lean axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. All four local modules are explicit default build
+roots; the compiler and mathlib revision are pinned.
+
+The frozen sources are OEIS A052392 revision 12 (April 24, 2025) and
+A054120 revision 27 (January 26, 2022), retrieved from immutable
+OEIS-data commits. Weighted Delannoy methods and generalized Pascal
+triangles are classical; see Paul Barry, \emph{On Integer-Sequence-Based
+Constructions of Generalized Pascal Triangles}, Journal of Integer
+Sequences \textbf{9} (2006), Article 06.2.4. The exact and semantic
+prior-work check is documented separately, including known source
+implementations and the current ProveIt and trureturing repositories.
+No proof of the precise A052392 empirical assertions was found within
+that bounded search. We assert resolution of this recorded source
+family, without asserting worldwide priority for its underlying methods.
+
+
+\section{A reciprocal fractional cube root and its generating function}
+
+Kimberling's sequence A184534 is defined, for $n\ge1$, by
+\[
+ a(n)=\left\lfloor\frac1{\{(n^3+4)^{1/3}\}}\right\rfloor,
+\]
+where braces denote fractional part. Barker recorded an empirical rational
+generating function and a separate empirical closed form in 2012
+\cite{oeis184534}. We prove the generating function and identify the
+one-index displacement in the printed closed form.
+
+\begin{theorem}
+The source sequence satisfies
+\[
+ a(1)=1,\qquad a(2)=3,\qquad a(3)=7,\qquad
+ a(n)=\left\lfloor\frac{3n^2}{4}\right\rfloor\quad(n\ge4).
+\]
+Its ordinary generating function is exactly
+\begin{equation}\label{a184534:gf}
+ \sum_{n\ge1}a(n)x^n=
+ \frac{x(x^6-2x^5+x^4-x^2-x-1)}{(x-1)^3(x+1)}.
+\end{equation}
+For every $n\ge8$,
+\[
+ a(n)=2a(n-1)-2a(n-3)+a(n-4).
+\]
+\end{theorem}
+
+\begin{lemma}\label{a184534:general}
+For positive integers $h\le n$,
+\[
+ \left\lfloor\frac1{\{(n^3+h)^{1/3}\}}\right\rfloor
+ =\left\lfloor\frac{3n^2}{h}\right\rfloor.
+\]
+\end{lemma}
+\begin{proof}
+Put $q=\lfloor3n^2/h\rfloor$. Then $q\ge3n>0$,
+$hq\le3n^2$, and, by integrality, $h(q+1)\ge3n^2+1$.
+First,
+\[
+ (nq+1)^3-(n^3+h)q^3
+ =q^2(3n^2-hq)+3nq+1>0.
+\]
+Second,
+\begin{align*}
+ &(n^3+h)(q+1)^3-(n(q+1)+1)^3\\
+ &\quad=(q+1)^2\bigl(h(q+1)-3n^2\bigr)-3n(q+1)-1\\
+ &\quad\ge(q-3n)(q+1)+q>0.
+\end{align*}
+Strict monotonicity of cubing therefore gives
+\[
+ n+\frac1{q+1}<(n^3+h)^{1/3}<n+\frac1q.
+\]
+In particular the root has integer part $n$. Its positive fractional
+part lies strictly between $1/(q+1)$ and $1/q$, so its reciprocal lies
+strictly between $q$ and $q+1$. The floor is $q$.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Apply Lemma~\ref{a184534:general} with $h=4$ for every $n\ge4$.
+The three earlier values follow from the same two cubic comparisons,
+using the following exact integer certificates:
+\[
+\begin{array}{c|c|c|c}
+n&q&(n^3+4)q^3<(nq+1)^3&
+(n(q+1)+1)^3<(n^3+4)(q+1)^3\\\hline
+1&1&5<8&27<40\\
+2&3&324<343&729<768\\
+3&7&10633<10648&15625<15872
+\end{array}
+\]
+These comparisons also show the root has integer part $n$ in each
+case; no numerical approximation to a root is required.
+
+For every natural $n$, the identity
+$\lfloor3n^2/4\rfloor=3\lfloor n^2/4\rfloor$ follows from
+$n^2\equiv0$ or $1\pmod4$. The only positive-index corrections to this
+formula are one additional unit at $n=1$ and at $n=3$. Splitting into
+even and odd indices gives
+\[
+ \sum_{n\ge0}\left\lfloor\frac{n^2}4\right\rfloor x^n
+ =\frac{x^2}{(1-x)^3(1+x)}.
+\]
+Consequently
+\[
+ \sum_{n\ge1}a(n)x^n
+ =x+x^3+\frac{3x^2}{(1-x)^3(1+x)}.
+\]
+Combining the terms gives~\eqref{a184534:gf}. The normalized denominator
+is $1-2x+2x^3-x^4$ and its numerator has degree seven. Coefficient
+comparison proves the recurrence from newest index eight onward.
+\end{proof}
+
+\paragraph{The source's closed-form indexing.}
+The expression printed as an empirical value of $a(n)$ is
+\[
+ \frac{3(1-(-1)^n+4n+2n^2)}8\qquad(n>2).
+\]
+It equals $12$ at $n=3$, while $a(3)=7$. The expression is instead
+$a(n+1)$ for every $n\ge3$. The corrected same-index expression is
+\[
+ a(n)=\frac{3(2n^2-1+(-1)^n)}8\qquad(n\ge4).
+\]
+The recurrence cutoff also matters: at newest index seven its right
+side is $37$, whereas $a(7)=36$.
+
+\paragraph{Formal conclusion and attribution.}
+Four Lean modules prove the literal real-root and fractional-part
+statement, the initial cubic certificates, the all-index sequence
+formula, the recurrence, and the exact formal generating function in
+$\mathbb Z[[X]]$. The final theorem \texttt{A184534.full\_resolution}
+also identifies every positive source coefficient and the zero
+constant coefficient. The source's denominator has constant term
+$-1$, so the formal quotient is unambiguous. A separate Lean theorem
+certifies the printed closed-form discrepancy at $n=3$.
+
+The eventual expression already occurs in sequence generators, and
+the root-comparison method is elementary. Those expressions and
+methods are not claimed as new discoveries. The contribution counted
+here is one complete proof of the recorded empirical generating-function
+assertion, with the indexing issue documented. The general array lemma
+and the recurrence are parts of the same package. The separate bounded
+prior-work record found no earlier proof connecting the literal source
+to this identity and does not establish worldwide priority.
+
+\section{Verification, review, and source scope}
+
+The three independently buildable projects contain fourteen local proof
+modules. Every module is an explicit default Lake root. All projects pin
+Lean 4.19.0 and mathlib commit
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}lcp{3.8in}@{}}
+\toprule
+Package & Modules & Formal endpoint\\
+\midrule
+A220018 & 6 & Four polynomial counts of literal multiplication-orbit quotients, at every stated index.\\
+A052392 & 4 & The complete normalized algebraic generating function and order-four recurrence of the source triangle's subdiagonal.\\
+A184534 & 4 & The literal real-root floor formula, exact source generating function, and unbounded recurrence.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every project has an author build and a separate reviewer build in a fresh
+isolated directory containing only its proof sources and pinned configuration.
+No local compiled proof objects are copied; only pinned external dependency
+caches are shared. The logs record exact source hashes and printed axiom
+audits. The principal endpoints depend only on \path{propext},
+\path{Classical.choice}, and \path{Quot.sound}. No proof uses an admitted
+lemma, a custom axiom, or \path{native_decide}.
+
+A separate reviewer checks each package's mathematical argument, source
+interpretation, exceptional indices, and formal theorem scope. These are
+independent reviews within this collaboration, not external journal peer
+review. Supplemental finite computations test transcription and implementation;
+the unbounded conclusions are established by the proofs above and the Lean
+kernel, not by extrapolation from sampled values.
+
+\paragraph{Attribution and novelty scope.}
+The coset count is an explicit specialization of classical order and orbit
+methods; Zhu--Liu--Wu provide a much more general classification. Hendel's
+source comment already establishes the triangle recurrence, and weighted
+Delannoy theory is classical. The empirical formulas in the source entries
+and numerical generators also predate these proofs. The contribution claimed
+here is the full proof and formal verification of these exact recorded
+assertions, with source indexing issues made explicit.
+
+The source dossiers preserve immutable OEIS exports, exact and semantic
+searches across both web search systems, global GitHub searches, and current
+checks of the ProveIt and trureturing proof collections. Related papers and
+programs were inspected for their actual theorem scope. These bounded checks
+found no earlier explicit settlement of the six assertions addressed here;
+search coverage and publication indexing remain incomplete. No claim of
+exhaustive historical priority or external acceptance follows from this
+publication. The repository publication does not edit OEIS.
+
+\begin{thebibliography}{12}
+\raggedright
+\bibitem{oeis220018} V.~Raman and C.~Barker, OEIS A220018, \url{https://oeis.org/A220018}, source revision 36, 3 July 2023.
+\bibitem{oeis220019} V.~Raman and C.~Barker, OEIS A220019, \url{https://oeis.org/A220019}, source revision 27, 3 July 2023.
+\bibitem{oeis220020} V.~Raman and C.~Barker, OEIS A220020, \url{https://oeis.org/A220020}, source revision 26, 12 July 2025.
+\bibitem{oeis221855} V.~Raman and C.~Barker, OEIS A221855, \url{https://oeis.org/A221855}, source revision 23, 3 July 2023.
+\bibitem{zhu-liu-wu-cosets} L.~Zhu, J.~Liu and H.~Wu, Explicit representatives and sizes of cyclotomic cosets and their application to cyclic codes over finite fields, \emph{Finite Fields and Their Applications} \textbf{111} (2026), 102761. \url{https://arxiv.org/abs/2410.12122}; \url{https://doi.org/10.1016/j.ffa.2025.102761}.
+\bibitem{oeis052392} C.~Kimberling; empirical formulas by R.~Israel, November 26, 2018.
+OEIS A052392, revision 12, April 24, 2025. \url{https://oeis.org/A052392}.
+\bibitem{oeis054120} C.~Kimberling; recurrence proof by R.~J.~Hendel, June 2, 2015.
+OEIS A054120, revision 27, January 26, 2022. \url{https://oeis.org/A054120}.
+\bibitem{barry2006} P.~Barry. \emph{On Integer-Sequence-Based Constructions of Generalized Pascal Triangles}.
+Journal of Integer Sequences \textbf{9} (2006), Article 06.2.4.
+\url{https://www.maths.tcd.ie/EMIS/journals/JIS/VOL9/Barry/barry91.pdf}.
+\bibitem{oeis184534}
+C. Kimberling; empirical formulas by C. Barker.
+OEIS A184534, revision 15, May 15, 2017.
+\url{https://oeis.org/A184534}.
+
+\end{thebibliography}
+\end{document}

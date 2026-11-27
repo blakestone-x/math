@@ -1,0 +1,114 @@
+{
+  "scope": "Final exact/semantic web search receipts; earlier discovery searches are summarized in source_checks.md.",
+  "records": [
+    {
+      "engine": "system1",
+      "queries": [
+        "\"cyclotomic cosets\" \"10^n\" proof",
+        "\"A220018\" \"proof\"",
+        "\"A221855\" \"proof\""
+      ],
+      "date_utc": "2026-11-27",
+      "isError": false,
+      "urls": [
+        "https://oeis.org/A220018/internal",
+        "https://oeis.org/A221855",
+        "https://oeis.org/A220018",
+        "https://www.aimspress.com/article/id/6aaa8c54ba35de44198339a3",
+        "https://oeis.org/A220019",
+        "https://sequencedb.net/index.html?p=3541&s=oeis",
+        "https://www.academia.edu/7260585/Fundamentals_of_Error_Correcting_Codes_W_Cary_Huffman"
+      ],
+      "summary": "Returned primary OEIS statements, sequence-fitting pages, general background, and unrelated lexical matches; no earlier explicit proof of the four target polynomials was located."
+    },
+    {
+      "engine": "system2",
+      "queries": [
+        "\"A220018\" \"A220019\" proof",
+        "\"A220020\" \"A221855\" proof",
+        "\"cyclotomic cosets\" \"powers of ten\"",
+        "\"cyclotomic\" \"8n\" \"14n\""
+      ],
+      "date_utc": "2026-11-27",
+      "isError": false,
+      "urls": [
+        "https://oeis.org/A220018",
+        "https://oeis.org/A220019",
+        "https://sequencedb.net/index.html?p=2698&s=rexp",
+        "https://sequencedb.net/index.html?p=3541&s=oeis",
+        "https://sequencedb.net/index.html?p=459&s=record",
+        "https://www.zeelandia.es/descarga-catalogos/catalogo-general.pdf",
+        "https://sequencedb.net/index.html?p=457&s=record",
+        "https://sequencedb.net/index.html?p=1511&s=min-terms%3A40",
+        "https://oeis.org/A220016",
+        "https://www.elv.or.jp/media/20/20251023-zirisimeibo20251023.pdf",
+        "https://www.distribucionesnabe.es/wp-content/uploads/ZEELANDIA.pdf",
+        "https://www.scribd.com/document/774806753/Ponsse-Service-Catalog-2020",
+        "https://bundesblatt.weblaw.ch/?bbl_id=127515&format=pdf&method=dump",
+        "https://www.zeelandia.es/descarga-catalogos/catalogo-general-3.pdf",
+        "https://oeis.org/A220021",
+        "https://cistri.saude.mg.gov.br/wp-content/uploads/2024/02/Lista-Definitiva-de-Inscricoes-Edital-001-2020-CISTRI-1.pdf",
+        "https://manuzoid.com/manuals/YE88a-Carrier%2038MGR-HB%20Installation%20guide",
+        "https://www.scribd.com/document/374640584/Lecture-Notes-in-Computer-Science-2227-James-L-Massey-Auth-Serdar-Bozta%C5%9F-Igor-E-Shparlinski-Eds-Applied-Algebra-Algebraic-Algorithms-and",
+        "https://device.report/m/53c58578f70100c84610fd9bae68b076856464146393ed1ffe91734b94fb1897",
+        "https://device.report/m/6658de17050d97de4220b4663a79b4e87e05fc05d47122e62b1dff8367aa1ae4",
+        "https://manuals.plus/m/8f29b115d9985590008edd9fb17b2b3cf043eaa34d7d6a44f426ff303053ce14",
+        "https://www.globalspec.com/local/2360/C_US/MN",
+        "https://ipinfo.io/ips/62.163.220.0/24",
+        "https://datasheets.globalspec.com/ds/2419/OmneticsConnector",
+        "https://www.scribd.com/document/210944922/Discrete-Mathematics-Balakrishnan-and-Viswanathan",
+        "https://www.sequencedb.net/index.html?p=262&s=ceil",
+        "https://manualzz.com/doc/30575073/mathworks-communication-system-family-user-manual",
+        "https://www.scribd.com/document/86348200/MATLAB-Communication-Toolbox-Primer",
+        "https://ru.djvu.online/file/kWViDjtCEbY8i",
+        "https://dokumen.pub/class-groups-of-number-fields-and-related-topics-1nbsped-9811515131-9789811515132.html",
+        "https://www.scribd.com/document/419743767/Modern-Birkhauser-Classics-Hans-Riesel-Auth-Prime-Numbers-and-Computer-Methods-for-Factorization-2012-Birkhauser-Basel-1",
+        "https://oeis.org/wiki/Index_to_OEIS%3A_Section_Rec",
+        "https://www.theoremoftheday.org/Resources/TheoremNotes.htm",
+        "https://theoremoftheday.org/Resources/TheoremNotes.htm",
+        "https://zksecurity.github.io/sagemath-ts/course.html",
+        "https://mathoverflow.net/questions/438701/a-similar-relationship-between-the-generic-cubic-and-the-lehmer-quintic",
+        "https://math.stackexchange.com/questions/tagged/number-theory?tab=Frequent",
+        "https://www.academia.edu/82750046/A_Note_on_Certain_Real_Quadratic_Fields_with_Class_Number_Up_to_Three?force_claim_to_highlight=true",
+        "https://www.scribd.com/document/415438682/kotesovec-non-attacking-chess-pieces-2013-6ed-pdf",
+        "https://www.academia.edu/8181771/Mathematics_Concrete_Mathematics_%EC%98%81%EC%96%B4_",
+        "https://rstation.ai/problems/hodge_conjecture/papers/93",
+        "https://kokunoyumeto.github.io/open-math-courses-public/courses/TR-BAKER/TR-BAKER-10.html",
+        "https://www.benjamin-kramer.com/compendium/mathematics/",
+        "https://math.stackexchange.com/questions/tagged/number-theory?sort=frequent",
+        "https://starks.provably.fast/threads/bt1_564c00dfef850321a5d7fb1b?reply=bp1_9ce6a7950ac0b1077aa94248"
+      ],
+      "summary": "Returned primary OEIS statements, sequence-fitting pages, general background, and unrelated lexical matches; no earlier explicit proof of the four target polynomials was located."
+    },
+    {
+      "engine": "system2",
+      "queries": [
+        "\"Explicit Representatives and Sizes of Cyclotomic Cosets\""
+      ],
+      "date_utc": "2026-11-27",
+      "isError": false,
+      "urls": [
+        "https://www.sciencedirect.com/science/article/pii/S1071579725001911",
+        "https://arxiv.org/abs/2410.12122",
+        "https://www.sciencedirect.com/science/article/abs/pii/S1071579725001911",
+        "https://dblp.dagstuhl.de/rec/journals/ffa/ZhuLW26.html",
+        "https://dblp.org/rec/journals/ffa/ZhuLW26",
+        "https://academ.us/article/2412.12455/",
+        "https://www.thejournal.club/c/paper/703408/",
+        "https://dblp.dagstuhl.de/rec/journals/corr/abs-2410-12122.html",
+        "https://www.alphaxiv.org/ko/abs/2410.12122",
+        "https://www.researchgate.net/publication/401123925_Explicit_representatives_and_sizes_of_cyclotomic_cosets_and_their_application_to_cyclic_codes_over_finite_fields",
+        "https://www.mdpi.com/2227-7390/13/3/473",
+        "https://arxiver.lazybrains.com/author/1811008",
+        "https://www.alphaxiv.org/de/abs/2412.12455",
+        "https://www.amss.ac.cn/mzxsbg/202501/t20250106_7513870.html",
+        "https://earthlinepublishers.com/index.php/ejms/article/download/1042/608/",
+        "https://payshopp.net/?_=%2Fpdf%2F2602.11788%23oiIsiUa7YGXxkxUiKzZPY60%3D",
+        "https://arxiv.cnoctave.top/pdf/2611.00647",
+        "https://files.sdiarticle5.com/wp-content/uploads/2026/04/Revised-ms_JAMCS_156112_v2.pdf",
+        "https://arxiv.cnoctave.top/pdf/2611.00637"
+      ],
+      "summary": "Located the general classification of Zhu, Liu, and Wu, inspected via arXiv HTML. It is credited as prior general theory."
+    }
+  ]
+}

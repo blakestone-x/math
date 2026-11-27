@@ -1,0 +1,34 @@
+Fresh isolated independent build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A052392_independent_th8vjee4
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2821/2825] Built Array
+info: ././././Array.lean:173:0: 'A052392.sourceArray_delannoy' depends on axioms: [propext, Quot.sound]
+info: ././././Array.lean:174:0: 'A052392.central_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2822/2825] Built Recurrence
+info: ././././Recurrence.lean:36:0: 'A052392.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2823/2825] Built GeneratingFunction
+info: ././././GeneratingFunction.lean:99:0: 'A052392.central_square_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GeneratingFunction.lean:100:0: 'A052392.normalized_root_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GeneratingFunction.lean:101:0: 'A052392.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2824/2825] Built Proof
+info: ././././Proof.lean:22:0: 'A052392.triangle_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:23:0: 'A052392.sourceArray_delannoy' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:24:0: 'A052392.delannoy_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:25:0: 'A052392.central_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:26:0: 'A052392.normalized_root_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:27:0: 'A052392.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:28:0: 'A052392.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:29:0: 'A052392.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Array.lean: d898fba6b2e960aaef6f0cde7754105e2da1fd3eaf692aa7acb39a2f9753040f
+SHA256 GeneratingFunction.lean: 0dd8e79c3977f35ad47161121a0b6c5a94d39d69b54e56d396e9ec219a3bca7b
+SHA256 Proof.lean: 4fa927378cc8fdb9bc871a2bb3d3f7187a33662ad7f04c0b0cf930ea7d6630a6
+SHA256 Recurrence.lean: a55d9333e02dfcd6fbc8c53eb6cb38ddab52701d6f58455ccba10f3a13e7cdd5
+SHA256 lakefile.lean: 034d29ed0a9a54ca01c592df37c072da7af998aa0d08da0cef273ec9bdd61bdf
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 076488624397ca3ba706402b2650d21b7ab5168099af5097e197d986ea510264

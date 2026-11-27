@@ -1,0 +1,1301 @@
+{
+  "purpose": "Bounded prior-work search receipts; not a completeness or priority certificate.",
+  "records": [
+    {
+      "query": "A220018",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 0,
+      "results": []
+    },
+    {
+      "query": "A220019",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 0,
+      "results": []
+    },
+    {
+      "query": "A220020",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 0,
+      "results": []
+    },
+    {
+      "query": "A221855",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 0,
+      "results": []
+    },
+    {
+      "query": "\"cyclotomic cosets\"",
+      "scope": "VladimirReshetnikov/ProveIt + the-omega-institute/trureturing",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 20,
+      "results": [
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Library/ArithUnits/mazhang2026quartic.md",
+          "path": "Library/ArithUnits/mazhang2026quartic.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Library/Arith/lettlsun2008cosets.md",
+          "path": "Library/Arith/lettlsun2008cosets.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Library/GraphInvariants/asgarli2021pseudopaley.md",
+          "path": "Library/GraphInvariants/asgarli2021pseudopaley.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/Combinatorics/PseudoPaley/TwoDimensionalCliques.md",
+          "path": "Blueprint/D5/S3/Combinatorics/PseudoPaley/TwoDimensionalCliques.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/Arith/FibonacciAtomic/AffineValuationQueryLowerBound.md",
+          "path": "Blueprint/D5/S3/Arith/FibonacciAtomic/AffineValuationQueryLowerBound.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/ArithUnits/MercaClassNumberCriterion.scribe.cs",
+          "path": "Blueprint/D5/S3/ArithUnits/MercaClassNumberCriterion.scribe.cs"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/ArithUnits/MercaClassNumberCriterion.md",
+          "path": "Blueprint/D5/S3/ArithUnits/MercaClassNumberCriterion.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/Arith/FibonacciAtomic/AffineValuationQueryLowerBound.scribe.cs",
+          "path": "Blueprint/D5/S3/Arith/FibonacciAtomic/AffineValuationQueryLowerBound.scribe.cs"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Blueprint/D5/S3/Combinatorics/PseudoPaley/TwoDimensionalCliques.scribe.cs",
+          "path": "Blueprint/D5/S3/Combinatorics/PseudoPaley/TwoDimensionalCliques.scribe.cs"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Library/notes/tanaka2026maass.md",
+          "path": "Library/notes/tanaka2026maass.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/SetTheory/Cardinals/docs/reports/README.md",
+          "path": "SetTheory/Cardinals/docs/reports/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Algebra/PolynomialFormulas/Coq/Audit.v",
+          "path": "Algebra/PolynomialFormulas/Coq/Audit.v"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/GeneralizedRiemannHypothesis/Research/odd_prime_euler_packets/odd_prime_euler_packets.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Research/odd_prime_euler_packets/odd_prime_euler_packets.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Algebra/PolynomialFormulas/LazardPaperClaimCrosswalk.md",
+          "path": "Algebra/PolynomialFormulas/LazardPaperClaimCrosswalk.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/GeneralizedRiemannHypothesis/Research/odd_euler_agreement/paper.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Research/odd_euler_agreement/paper.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/GeneralizedRiemannHypothesis/Research/odd_prime_euler_agreement_2/paper.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Research/odd_prime_euler_agreement_2/paper.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/GeneralizedRiemannHypothesis/Article/sections/grp.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/grp.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/Polylogarithms/docs/reports/formal-reductions-continuation/article/sections/herglotz_rank.tex",
+          "path": "Analysis/Polylogarithms/docs/reports/formal-reductions-continuation/article/sections/herglotz_rank.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Algebra/PolynomialFormulas/LazardQuinticFormalization.tex",
+          "path": "Algebra/PolynomialFormulas/LazardQuinticFormalization.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/6b034b74a8224c893e7e83127f33cd1a6958785d/Analysis/GeneralizedRiemannHypothesis/Article/sections/nab.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/nab.tex"
+        }
+      ]
+    },
+    {
+      "query": "A220018",
+      "scope": "global GitHub code (first 30)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 30,
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220018.java",
+          "path": "src/irvine/oeis/a220/A220018.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220018.asm",
+          "path": "oeis/220/A220018.asm"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220018.txt",
+          "path": "prepare/data/data/A220018.txt"
+        },
+        {
+          "url": "https://github.com/Gibberlings3/EET/blob/6f0755b2a3a38bd3e2754c9445c9914cd62ac151/EET/lib/prep_PVRZ.tph",
+          "path": "EET/lib/prep_PVRZ.tph"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220019.java",
+          "path": "src/irvine/oeis/a220/A220019.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220020.java",
+          "path": "src/irvine/oeis/a220/A220020.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a221/A221855.java",
+          "path": "src/irvine/oeis/a221/A221855.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220021.java",
+          "path": "src/irvine/oeis/a220/A220021.java"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A221855.txt",
+          "path": "prepare/data/data/A221855.txt"
+        },
+        {
+          "url": "https://github.com/canboat/canboat/blob/eeb080f5b90ac6aa33ff394823cf482b2249c2fb/samples/candumpSample3.txt",
+          "path": "samples/candumpSample3.txt"
+        },
+        {
+          "url": "https://github.com/aarch64-laptops/build/blob/2e58842f5fa2f87771c2df017ae4d8c65225ef10/misc/lenovo-thinkpad-x13s/bgrt.dsl",
+          "path": "misc/lenovo-thinkpad-x13s/bgrt.dsl"
+        },
+        {
+          "url": "https://github.com/openmovementproject/openmovement/blob/bd451a4cd608d67a7ba5bbb3bb9389ec27d14c08/Downloads/AX3/CWA17_46.hex",
+          "path": "Downloads/AX3/CWA17_46.hex"
+        },
+        {
+          "url": "https://github.com/rism-digital/muscat/blob/3fda0409422980307ca73dd915e1d37d43afe095/doc/5-MARC_CONFIG.md",
+          "path": "doc/5-MARC_CONFIG.md"
+        },
+        {
+          "url": "https://github.com/library-data-platform/ldlite/blob/c2fb94268e062bbafe806344faaeb2f844094245/srs.md",
+          "path": "srs.md"
+        },
+        {
+          "url": "https://github.com/lexifina/switzerland-zurich-caselaw/blob/577aa9bfb70d7b3035fa4c94b640cf8c3f6904f6/decisions/zh_obergericht/2022/PA220018.md",
+          "path": "decisions/zh_obergericht/2022/PA220018.md"
+        },
+        {
+          "url": "https://github.com/harveyai/harvey-labs/blob/7f9b1ee19f9224576a5a5143c4e6f75842ac7020/tasks/diligence/sports-media-consolidation/documents/8.0 Intellectual Property and Technology/8.3 Software Open Source and Product Delivery/thunderstage-volumetric-capture-repository-history-and-commit-statisti.txt",
+          "path": "tasks/diligence/sports-media-consolidation/documents/8.0 Intellectual Property and Technology/8.3 Software Open Source and Product Delivery/thunderstage-volumetric-capture-repository-history-and-commit-statisti.txt"
+        },
+        {
+          "url": "https://github.com/center-for-threat-informed-defense/adversary_emulation_library/blob/4467a6eed6e67d25009704130e1d27d1a8007f57/fin7/hashes/SHA512SUM.txt",
+          "path": "fin7/hashes/SHA512SUM.txt"
+        },
+        {
+          "url": "https://github.com/center-for-threat-informed-defense/adversary_emulation_library/blob/4467a6eed6e67d25009704130e1d27d1a8007f57/carbanak/hashes/SHA512SUMS.txt",
+          "path": "carbanak/hashes/SHA512SUMS.txt"
+        },
+        {
+          "url": "https://github.com/micb25/dka/blob/f5caf8aa0d93e9d00bd5cf951ab8e3b426ec011f/data_CWA_hourly/2021-02-23/2021-02-23_18.dat",
+          "path": "data_CWA_hourly/2021-02-23/2021-02-23_18.dat"
+        },
+        {
+          "url": "https://github.com/micb25/dka/blob/f5caf8aa0d93e9d00bd5cf951ab8e3b426ec011f/data_EUR_CWA_hourly/2021-02-23/2021-02-23_18.dat",
+          "path": "data_EUR_CWA_hourly/2021-02-23/2021-02-23_18.dat"
+        },
+        {
+          "url": "https://github.com/sintefneodroid/droid/blob/3326e79e5c698cf61ef99b0c2d6d38e46461a33d/docs/cvs/_points_8cs_source.html",
+          "path": "docs/cvs/_points_8cs_source.html"
+        },
+        {
+          "url": "https://github.com/sintefneodroid/droid/blob/3326e79e5c698cf61ef99b0c2d6d38e46461a33d/docs/cvs/functions_func_v.html",
+          "path": "docs/cvs/functions_func_v.html"
+        },
+        {
+          "url": "https://github.com/petuomin/marc-record-js/blob/40ec9b043a9844632e2521621d3e9723e6e081d5/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/lcnetdev/marc2bibframe2/blob/b099392b1bbe5caf34eacf522c4244a114216e4d/dataset/oclc.xml",
+          "path": "dataset/oclc.xml"
+        },
+        {
+          "url": "https://github.com/OpenDig/opendig-web/blob/d273f70a4695acadde14baeb4f76135d41042791/data/artifacts.csv",
+          "path": "data/artifacts.csv"
+        },
+        {
+          "url": "https://github.com/sintefneodroid/droid/blob/3326e79e5c698cf61ef99b0c2d6d38e46461a33d/docs/cvs/functions_v.html",
+          "path": "docs/cvs/functions_v.html"
+        },
+        {
+          "url": "https://github.com/OpenDig/opendig-web/blob/d273f70a4695acadde14baeb4f76135d41042791/data/old_artifacts.csv",
+          "path": "data/old_artifacts.csv"
+        },
+        {
+          "url": "https://github.com/NatLibFi/Koha-tmp/blob/a80a536c30be86b6d7e053b74676a0201035d987/t/db_dependent/Matcher/testRecords.pm",
+          "path": "t/db_dependent/Matcher/testRecords.pm"
+        },
+        {
+          "url": "https://github.com/gentoo/gentoo-gitmig-20150809-draft/blob/2ebda5cd08db6bdf193adaa6de33239a83a73af0/app-text/cuneiform/Manifest",
+          "path": "app-text/cuneiform/Manifest"
+        },
+        {
+          "url": "https://github.com/IISH/oai4solr/blob/77c85908948775b101d04591dfaa31fe4970f46f/demo/solr/docs/1930.xml",
+          "path": "demo/solr/docs/1930.xml"
+        }
+      ]
+    },
+    {
+      "query": "A220019",
+      "scope": "global GitHub code (first 35)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 35,
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220019.java",
+          "path": "src/irvine/oeis/a220/A220019.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220019.asm",
+          "path": "oeis/220/A220019.asm"
+        },
+        {
+          "url": "https://github.com/Gibberlings3/EET/blob/6f0755b2a3a38bd3e2754c9445c9914cd62ac151/EET/lib/prep_PVRZ.tph",
+          "path": "EET/lib/prep_PVRZ.tph"
+        },
+        {
+          "url": "https://github.com/lexifina/switzerland-zurich-caselaw/blob/577aa9bfb70d7b3035fa4c94b640cf8c3f6904f6/decisions/zh_obergericht/2022/PA220019.md",
+          "path": "decisions/zh_obergericht/2022/PA220019.md"
+        },
+        {
+          "url": "https://github.com/evergreen-library-system/Evergreen/blob/ba921014803b227c2b17dd0fe89131ccd2037f48/Open-ILS/src/sql/Pg/version-upgrade/2.2.4-2.2.5-upgrade-db.sql",
+          "path": "Open-ILS/src/sql/Pg/version-upgrade/2.2.4-2.2.5-upgrade-db.sql"
+        },
+        {
+          "url": "https://github.com/sul-dlss/searchworks_traject_indexer/blob/3017cbdcebe281450d364e1edee556ffe9d3c3cd/spec/lib/traject/config/access_spec.rb",
+          "path": "spec/lib/traject/config/access_spec.rb"
+        },
+        {
+          "url": "https://github.com/BookOps-CAT/pydantic-marc/blob/b6d0d5e64fcc9cee64d1a38cc073da4d1c68fb51/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/folio-org/mod-source-record-manager/blob/f0bdd6d102a78ed5eaa8565cc6b15fb9ab0d479c/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/telmopanacas/ontrack_backoffice/blob/3b295917e52db7c48d2adf6014a89308964f5171/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/nla/nla-blacklight/blob/daa2e6b98f8f7925e06d4cb52b6967af839c73ab/spec/files/marc/3079596.marcxml",
+          "path": "spec/files/marc/3079596.marcxml"
+        },
+        {
+          "url": "https://github.com/lcnetdev/marc2bibframe2/blob/b099392b1bbe5caf34eacf522c4244a114216e4d/dataset/oclc.xml",
+          "path": "dataset/oclc.xml"
+        },
+        {
+          "url": "https://github.com/OpenDig/opendig-web/blob/d273f70a4695acadde14baeb4f76135d41042791/data/artifacts.csv",
+          "path": "data/artifacts.csv"
+        },
+        {
+          "url": "https://github.com/OpenDig/opendig-web/blob/d273f70a4695acadde14baeb4f76135d41042791/data/old_artifacts.csv",
+          "path": "data/old_artifacts.csv"
+        },
+        {
+          "url": "https://github.com/EquinoxOpenLibraryInitiative/fulfillment/blob/4c5fed11893417bfbd16b1993d78798c49104f70/Open-ILS/src/sql/Pg/live_t/0847.auth_overlay_generator.pg",
+          "path": "Open-ILS/src/sql/Pg/live_t/0847.auth_overlay_generator.pg"
+        },
+        {
+          "url": "https://github.com/iNCIPit/iNCIPit/blob/236a8b72b91bb11bae30650977dcb3b03ac3edef/iNCIPit.cgi",
+          "path": "iNCIPit.cgi"
+        },
+        {
+          "url": "https://github.com/Infineon/wifi-host-driver/blob/bd99da7b005c97500d7c697f544b36fabdaa3f5e/docs/html/search/all_4.js",
+          "path": "docs/html/search/all_4.js"
+        },
+        {
+          "url": "https://github.com/lexifina/switzerland-zurich-caselaw/blob/577aa9bfb70d7b3035fa4c94b640cf8c3f6904f6/decisions/zh_obergericht/2023/LA220019.md",
+          "path": "decisions/zh_obergericht/2023/LA220019.md"
+        },
+        {
+          "url": "https://github.com/droid-f/fedlex-assets/blob/1840cf3e66af53a56357c74e1de18d47a7baf62a/eli/fga/2022/1262/de/html/fedlex-data-admin-ch-eli-fga-2022-1262-de-html.html",
+          "path": "eli/fga/2022/1262/de/html/fedlex-data-admin-ch-eli-fga-2022-1262-de-html.html"
+        },
+        {
+          "url": "https://github.com/droid-f/fedlex-assets/blob/1840cf3e66af53a56357c74e1de18d47a7baf62a/eli/fga/2022/1262/fr/html/fedlex-data-admin-ch-eli-fga-2022-1262-fr-html.html",
+          "path": "eli/fga/2022/1262/fr/html/fedlex-data-admin-ch-eli-fga-2022-1262-fr-html.html"
+        },
+        {
+          "url": "https://github.com/droid-f/fedlex-assets/blob/1840cf3e66af53a56357c74e1de18d47a7baf62a/eli/fga/2022/1262/it/html/fedlex-data-admin-ch-eli-fga-2022-1262-it-html.html",
+          "path": "eli/fga/2022/1262/it/html/fedlex-data-admin-ch-eli-fga-2022-1262-it-html.html"
+        },
+        {
+          "url": "https://github.com/sul-dlss/searchworks_traject_indexer/blob/3017cbdcebe281450d364e1edee556ffe9d3c3cd/spec/lib/traject/config/author_spec.rb",
+          "path": "spec/lib/traject/config/author_spec.rb"
+        },
+        {
+          "url": "https://github.com/nxp-mcuxpresso/sbl/blob/9291aa8f806211c2286217f56a2be1515cfff84b/target/evkmimxrt1170/secure/flashloader.srec",
+          "path": "target/evkmimxrt1170/secure/flashloader.srec"
+        },
+        {
+          "url": "https://github.com/Infineon/wifi-host-driver/blob/bd99da7b005c97500d7c697f544b36fabdaa3f5e/docs/html/search/variables_3.js",
+          "path": "docs/html/search/variables_3.js"
+        },
+        {
+          "url": "https://github.com/sul-dlss/searchworks_traject_indexer/blob/3017cbdcebe281450d364e1edee556ffe9d3c3cd/spec/lib/traject/config/title_spec.rb",
+          "path": "spec/lib/traject/config/title_spec.rb"
+        },
+        {
+          "url": "https://github.com/intranda/goobi-plugin-import-soton/blob/c34f31bcc3ea19736ae3ec5374a193d073653037/samples/marc21-cam/maps.txt",
+          "path": "samples/marc21-cam/maps.txt"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_647482_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_647482_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_648979_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_648979_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_649725_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_649725_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_982462_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_982462_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_646506_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_646506_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_648784_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_648784_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_643415_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_643415_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_644711_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_644711_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_649921_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_649921_marcxml.xml"
+        },
+        {
+          "url": "https://github.com/NYULibraries/aco-karms/blob/ceaeac2e172f3e11041ac3d990217bc125b53646/marcxml/columbia/normalized/NNC_649227_marcxml.xml",
+          "path": "marcxml/columbia/normalized/NNC_649227_marcxml.xml"
+        }
+      ]
+    },
+    {
+      "query": "A220020",
+      "scope": "global GitHub code (first 35)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 35,
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220020.java",
+          "path": "src/irvine/oeis/a220/A220020.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220020.asm",
+          "path": "oeis/220/A220020.asm"
+        },
+        {
+          "url": "https://github.com/Gibberlings3/EET/blob/6f0755b2a3a38bd3e2754c9445c9914cd62ac151/EET/lib/prep_PVRZ.tph",
+          "path": "EET/lib/prep_PVRZ.tph"
+        },
+        {
+          "url": "https://github.com/Yiruma96/MLARandom-repo/blob/6befcf514038cb2ffbe12743bfcf1d606c2fb306/src/gas/testsuite/gas/aarch64/alias.d",
+          "path": "src/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/Yiruma96/MLARandom-repo/blob/6befcf514038cb2ffbe12743bfcf1d606c2fb306/src/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "src/gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/hygsolve0.cmd",
+          "path": "internal/fischer/hygsolve0.cmd"
+        },
+        {
+          "url": "https://github.com/dinfuehr/dora/blob/5dd7d4dc79e26f9d9e039681d6bb42f385378c7b/dora-asm/src/arm64.rs",
+          "path": "dora-asm/src/arm64.rs"
+        },
+        {
+          "url": "https://github.com/parallaxinc/propgcc/blob/b280e7a77103d479e82cc687711de6a45579ad70/binutils/gas/testsuite/gas/aarch64/alias.d",
+          "path": "binutils/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/marc4j/marc4j/blob/1096f502a262d382df5e847d82a8522234fbf4a6/www/doc/tutorial.html",
+          "path": "www/doc/tutorial.html"
+        },
+        {
+          "url": "https://github.com/marc4j/marc4j/blob/1096f502a262d382df5e847d82a8522234fbf4a6/src/org/marc4j/marc/impl/LeaderImpl.java",
+          "path": "src/org/marc4j/marc/impl/LeaderImpl.java"
+        },
+        {
+          "url": "https://github.com/parallaxinc/propgcc/blob/b280e7a77103d479e82cc687711de6a45579ad70/binutils/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "binutils/gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/marc4j/marc4j/blob/1096f502a262d382df5e847d82a8522234fbf4a6/src/org/marc4j/marc/impl/RecordImpl.java",
+          "path": "src/org/marc4j/marc/impl/RecordImpl.java"
+        },
+        {
+          "url": "https://github.com/mm120/binutils-vc4/blob/24ec282b269116fbb910b9df301a4f4e865524d9/gas/testsuite/gas/aarch64/alias.d",
+          "path": "gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/junxzm1990/x86-sok/blob/23679a5e4fa16e623e105985b4f12a7d8450e94e/gt/binutils/gas-2.30/testsuite/gas/aarch64/alias.d",
+          "path": "gt/binutils/gas-2.30/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/foss-for-mips-arc-processors/binutils/blob/87ad6f3c94ac919db03ae64365face054e22a73a/gas/testsuite/gas/aarch64/alias.d",
+          "path": "gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/open64-compiler/open64/blob/8aeb892ebfb8eb735c45f0fe260403aabe3527b4/binutils/gas/testsuite/gas/aarch64/alias.d",
+          "path": "binutils/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/marc4j/marc4j/blob/1096f502a262d382df5e847d82a8522234fbf4a6/src/org/marc4j/samples/PermissiveReaderExample.java",
+          "path": "src/org/marc4j/samples/PermissiveReaderExample.java"
+        },
+        {
+          "url": "https://github.com/atgreen/moxiedev/blob/4701d7c641bc4ac3be1ce3f12f336c41ccf1435f/src/gas/testsuite/gas/aarch64/alias.d",
+          "path": "src/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/sslab-gatech/aslr-guard/blob/1bc3dd70fcd86e995c8982ee1b9d7830176e3947/binutils-2.24/gas/testsuite/gas/aarch64/alias.d",
+          "path": "binutils-2.24/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/mm120/binutils-vc4/blob/24ec282b269116fbb910b9df301a4f4e865524d9/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/junxzm1990/x86-sok/blob/23679a5e4fa16e623e105985b4f12a7d8450e94e/gt/binutils/gas-2.30/testsuite/gas/aarch64/no-aliases.d",
+          "path": "gt/binutils/gas-2.30/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/foss-for-mips-arc-processors/binutils/blob/87ad6f3c94ac919db03ae64365face054e22a73a/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/open64-compiler/open64/blob/8aeb892ebfb8eb735c45f0fe260403aabe3527b4/binutils/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "binutils/gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/folio-org/stripes-testing/blob/91d46751ebb51e9fce454cbf1b7d38be1260f089/cypress/fixtures/marcBibC375259.mrc",
+          "path": "cypress/fixtures/marcBibC375259.mrc"
+        },
+        {
+          "url": "https://github.com/sslab-gatech/aslr-guard/blob/1bc3dd70fcd86e995c8982ee1b9d7830176e3947/binutils-2.24/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "binutils-2.24/gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/EquinoxOpenLibraryInitiative/migration-tools/blob/fe69c74d03e579ccd986beeb7122a0a3cf696a46/csv_to_marc/make_marc_from_csv.pl",
+          "path": "csv_to_marc/make_marc_from_csv.pl"
+        },
+        {
+          "url": "https://github.com/atgreen/moxiedev/blob/4701d7c641bc4ac3be1ce3f12f336c41ccf1435f/src/gas/testsuite/gas/aarch64/no-aliases.d",
+          "path": "src/gas/testsuite/gas/aarch64/no-aliases.d"
+        },
+        {
+          "url": "https://github.com/NatLibFi/Koha-tmp/blob/a80a536c30be86b6d7e053b74676a0201035d987/t/Koha/Filter/ISBNTrim.t",
+          "path": "t/Koha/Filter/ISBNTrim.t"
+        },
+        {
+          "url": "https://github.com/mcfi/MCFI/blob/c5eb60ec89987e3d777898bc496bd37e8080c3d1/compiler/binutils-2.24/gas/testsuite/gas/aarch64/alias.d",
+          "path": "compiler/binutils-2.24/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/txtcn/data/blob/01779c64c4bc5e7aac827b0a24de0f37345c5276/mt.sohu.com/新氧美容微整形APP/18578",
+          "path": "mt.sohu.com/新氧美容微整形APP/18578"
+        },
+        {
+          "url": "https://github.com/MPSLab-ASU/ccf/blob/866785044bd915e4c1d5dce3d601fbe3886bd4e8/llvm-project/binutils/gas/testsuite/gas/aarch64/alias.d",
+          "path": "llvm-project/binutils/gas/testsuite/gas/aarch64/alias.d"
+        },
+        {
+          "url": "https://github.com/lcnetdev/marc2bibframe2/blob/b099392b1bbe5caf34eacf522c4244a114216e4d/dataset/oclc.xml",
+          "path": "dataset/oclc.xml"
+        },
+        {
+          "url": "https://github.com/yalelibrary/yul-marc/blob/735403fe19a7d81f9baf648e6744612ab1c383fe/4552209.mrk",
+          "path": "4552209.mrk"
+        },
+        {
+          "url": "https://github.com/astrocatalogs/sne-2000-2004/blob/2c1fd645ec1c0e6cbeb75bea5efa22b567ec2089/SN2002ez.json",
+          "path": "SN2002ez.json"
+        },
+        {
+          "url": "https://github.com/OpenDig/opendig-web/blob/d273f70a4695acadde14baeb4f76135d41042791/data/artifacts.csv",
+          "path": "data/artifacts.csv"
+        }
+      ]
+    },
+    {
+      "query": "A221855",
+      "scope": "global GitHub code (first 35)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 35,
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a221/A221855.java",
+          "path": "src/irvine/oeis/a221/A221855.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/221/A221855.asm",
+          "path": "oeis/221/A221855.asm"
+        },
+        {
+          "url": "https://github.com/provables/sequencelib/blob/dfb06c18bba196b5aa5bcb3725fe9d201fb9a61a/Sequencelib/Synthetic/A221/A221855.lean",
+          "path": "Sequencelib/Synthetic/A221/A221855.lean"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/pb/A221855.smt2",
+          "path": "pb/A221855.smt2"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220018.txt",
+          "path": "prepare/data/data/A220018.txt"
+        },
+        {
+          "url": "https://github.com/scripting/markdownWeb/blob/7bc64ea14a1f8d57d368bbb805d5d14fb422d264/examples/scriptingInMarkdown/archive/2019/09/28/a171724.md",
+          "path": "examples/scriptingInMarkdown/archive/2019/09/28/a171724.md"
+        },
+        {
+          "url": "https://github.com/scripting/markdownWeb/blob/7bc64ea14a1f8d57d368bbb805d5d14fb422d264/examples/scriptingInMarkdown/archive/2019/09/28/a155508.md",
+          "path": "examples/scriptingInMarkdown/archive/2019/09/28/a155508.md"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp13-chk/names.md",
+          "path": "run0/exp13-chk/names.md"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/aind_syn",
+          "path": "aind_syn"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/all_verified100",
+          "path": "all_verified100"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-24-010153",
+          "path": "archives/magnet_output-2016-02-24-010153"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-24-000003",
+          "path": "archives/magnet_output-2016-02-24-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-25-000003",
+          "path": "archives/magnet_output-2016-02-25-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-26-000003",
+          "path": "archives/magnet_output-2016-02-26-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-27-000003",
+          "path": "archives/magnet_output-2016-02-27-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-28-000005",
+          "path": "archives/magnet_output-2016-02-28-000005"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-28-040401",
+          "path": "archives/magnet_output-2016-02-28-040401"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-02-29-000003",
+          "path": "archives/magnet_output-2016-02-29-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-01-000003",
+          "path": "archives/magnet_output-2016-03-01-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-02-000004",
+          "path": "archives/magnet_output-2016-03-02-000004"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-03-000002",
+          "path": "archives/magnet_output-2016-03-03-000002"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-04-000007",
+          "path": "archives/magnet_output-2016-03-04-000007"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-05-000003",
+          "path": "archives/magnet_output-2016-03-05-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-06-000005",
+          "path": "archives/magnet_output-2016-03-06-000005"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-07-000004",
+          "path": "archives/magnet_output-2016-03-07-000004"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-08-000004",
+          "path": "archives/magnet_output-2016-03-08-000004"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-09-000024",
+          "path": "archives/magnet_output-2016-03-09-000024"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-10-000007",
+          "path": "archives/magnet_output-2016-03-10-000007"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-11-000004",
+          "path": "archives/magnet_output-2016-03-11-000004"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-12-000002",
+          "path": "archives/magnet_output-2016-03-12-000002"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-13-000003",
+          "path": "archives/magnet_output-2016-03-13-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-14-000002",
+          "path": "archives/magnet_output-2016-03-14-000002"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-15-000003",
+          "path": "archives/magnet_output-2016-03-15-000003"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-16-000004",
+          "path": "archives/magnet_output-2016-03-16-000004"
+        },
+        {
+          "url": "https://github.com/Chion82/hello-old-driver/blob/c146e9ea56d1ad219246f7615a166b353ff9b01c/archives/magnet_output-2016-03-17-000005",
+          "path": "archives/magnet_output-2016-03-17-000005"
+        }
+      ]
+    },
+    {
+      "query": "\"cyclotomic cosets\" \"10\"",
+      "scope": "global GitHub code (first 60)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 60,
+      "results": [
+        {
+          "url": "https://github.com/EliasOenal/multimon-ng/blob/10c0aeb68bc78a58b7019a45ab4e1bfee4fc9592/bch.c",
+          "path": "bch.c"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/682-102-88.md",
+          "path": "notes/682-102-88.md"
+        },
+        {
+          "url": "https://github.com/elder-plinius/V3R1T4S/blob/4798bb448561d3f174b911f556d8092ee5c8ac17/known-knowns/codetables-binary-linear/2026-10-14-anonymous-c6d1e0ab-a17d0037/panel/criterion.md",
+          "path": "known-knowns/codetables-binary-linear/2026-10-14-anonymous-c6d1e0ab-a17d0037/panel/criterion.md"
+        },
+        {
+          "url": "https://github.com/veeresht/CommPy/blob/9aecd7c598e1b3b868fd9d8a1d04e207b39487ad/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/sagemath/sage/blob/82c3b42bdf65b8a3a00dff3d978aa1d8e44ecc51/src/sage/coding/code_constructions.py",
+          "path": "src/sage/coding/code_constructions.py"
+        },
+        {
+          "url": "https://github.com/rockchip-linux/rkdeveloptool/blob/304f073752fd25c854e1bcf05d8e7f925b1f4e14/crc.cpp",
+          "path": "crc.cpp"
+        },
+        {
+          "url": "https://github.com/veeresht/CommPy/blob/9aecd7c598e1b3b868fd9d8a1d04e207b39487ad/commpy/channelcoding/gfields.py",
+          "path": "commpy/channelcoding/gfields.py"
+        },
+        {
+          "url": "https://github.com/spartacus242/frontier-knowledge/blob/00f057d4e3a56790b7c18c99563117fa62e704e1/ledger/batches/2026-10-28-2208/JUDGE-COMPUTE.md",
+          "path": "ledger/batches/2026-10-28-2208/JUDGE-COMPUTE.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/docs/codes/682-102-88.html",
+          "path": "docs/codes/682-102-88.html"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220019.java",
+          "path": "src/irvine/oeis/a220/A220019.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220020.java",
+          "path": "src/irvine/oeis/a220/A220020.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220468.java",
+          "path": "src/irvine/oeis/a220/A220468.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220018.java",
+          "path": "src/irvine/oeis/a220/A220018.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a221/A221855.java",
+          "path": "src/irvine/oeis/a221/A221855.java"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a220/A220021.java",
+          "path": "src/irvine/oeis/a220/A220021.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220468.asm",
+          "path": "oeis/220/A220468.asm"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220019.asm",
+          "path": "oeis/220/A220019.asm"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220018.asm",
+          "path": "oeis/220/A220018.asm"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220020.asm",
+          "path": "oeis/220/A220020.asm"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/221/A221855.asm",
+          "path": "oeis/221/A221855.asm"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/220/A220021.asm",
+          "path": "oeis/220/A220021.asm"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/682-62-92.md",
+          "path": "notes/682-62-92.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/682-40-56.md",
+          "path": "notes/682-40-56.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/682-172-48.md",
+          "path": "notes/682-172-48.md"
+        },
+        {
+          "url": "https://github.com/cxy0714/research-news/blob/c6fe7d8197826f78940a840ff5d57a3fdd25f224/docs/journals/2026-10-13-tit-v72-i10.md",
+          "path": "docs/journals/2026-10-13-tit-v72-i10.md"
+        },
+        {
+          "url": "https://github.com/jhshi/openofdm/blob/ea638eb2d3abd6c6d9c0c87a430f393fc3ffc859/scripts/commpy/channelcoding/gfields.py",
+          "path": "scripts/commpy/channelcoding/gfields.py"
+        },
+        {
+          "url": "https://github.com/elder-plinius/V3R1T4S/blob/4798bb448561d3f174b911f556d8092ee5c8ac17/known-unknowns/record-tables/butson-hadamard-bh-n-6-undecided-orders.md",
+          "path": "known-unknowns/record-tables/butson-hadamard-bh-n-6-undecided-orders.md"
+        },
+        {
+          "url": "https://github.com/spartacus242/frontier-knowledge/blob/00f057d4e3a56790b7c18c99563117fa62e704e1/ledger/batches/2026-10-28-2208/VERIFY-05-a.md",
+          "path": "ledger/batches/2026-10-28-2208/VERIFY-05-a.md"
+        },
+        {
+          "url": "https://github.com/gap-packages/guava/blob/188cd16fcf89afd284dbd1ad5e40144481498b83/CHANGES.md",
+          "path": "CHANGES.md"
+        },
+        {
+          "url": "https://github.com/esabo/CodingTheory/blob/cb56c055ded0ecf199d7a5953011c7627a37952d/docs/src/Tutorials/Cyclic Codes.md",
+          "path": "docs/src/Tutorials/Cyclic Codes.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/330-50-30.md",
+          "path": "notes/330-50-30.md"
+        },
+        {
+          "url": "https://github.com/wilcompute/W33-Theory/blob/62402e1f666fd1e07e218c7ae19789453056f679/scripts/pass10185_10192_c13_generator_matrix_3suz.py",
+          "path": "scripts/pass10185_10192_c13_generator_matrix_3suz.py"
+        },
+        {
+          "url": "https://github.com/sagemath/sage/blob/82c3b42bdf65b8a3a00dff3d978aa1d8e44ecc51/src/sage/categories/commutative_rings.py",
+          "path": "src/sage/categories/commutative_rings.py"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/006/A006694.asm",
+          "path": "oeis/006/A006694.asm"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/514-66-57.md",
+          "path": "notes/514-66-57.md"
+        },
+        {
+          "url": "https://github.com/lukexodus/md-materials/blob/45f21e3135cc86f479feeae0d63a79b175b8a16c/Learn/01_foundations/mathematics/information_theory/chapters/10_errorcorrecting_codes/05_bch_codes.md",
+          "path": "Learn/01_foundations/mathematics/information_theory/chapters/10_errorcorrecting_codes/05_bch_codes.md"
+        },
+        {
+          "url": "https://github.com/spartacus242/frontier-knowledge/blob/00f057d4e3a56790b7c18c99563117fa62e704e1/ledger/batches/2026-10-28-2208/UQ-20261028-05-adversary-1.md",
+          "path": "ledger/batches/2026-10-28-2208/UQ-20261028-05-adversary-1.md"
+        },
+        {
+          "url": "https://github.com/cyber-murmel/esp-sdr-zephyr/blob/c7f92ca4005f54e4afd87270c22dda1369e339d3/apps/link/src/bch.c",
+          "path": "apps/link/src/bch.c"
+        },
+        {
+          "url": "https://github.com/sagemath/sage/blob/82c3b42bdf65b8a3a00dff3d978aa1d8e44ecc51/src/sage/combinat/designs/difference_family.py",
+          "path": "src/sage/combinat/designs/difference_family.py"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220018.txt",
+          "path": "prepare/data/data/A220018.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220020.txt",
+          "path": "prepare/data/data/A220020.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220019.txt",
+          "path": "prepare/data/data/A220019.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220021.txt",
+          "path": "prepare/data/data/A220021.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A221855.txt",
+          "path": "prepare/data/data/A221855.txt"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/674-86-87.md",
+          "path": "notes/674-86-87.md"
+        },
+        {
+          "url": "https://github.com/spartacus242/frontier-knowledge/blob/00f057d4e3a56790b7c18c99563117fa62e704e1/ledger/batches/2026-10-28-2208/UQ-20261028-05-adversary-2.md",
+          "path": "ledger/batches/2026-10-28-2208/UQ-20261028-05-adversary-2.md"
+        },
+        {
+          "url": "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/cs.IT/2026-10-28_cs.IT.xml",
+          "path": "rss_data/cs.IT/2026-10-28_cs.IT.xml"
+        },
+        {
+          "url": "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.NT/2024-10-16_math.NT.xml",
+          "path": "rss_data/math.NT/2024-10-16_math.NT.xml"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A053006.txt",
+          "path": "prepare/data/data/A053006.txt"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/028/A028312.asm",
+          "path": "oeis/028/A028312.asm"
+        },
+        {
+          "url": "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/cs.IT/2026-03-10_cs.IT.xml",
+          "path": "rss_data/cs.IT/2026-03-10_cs.IT.xml"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/466-60-49.md",
+          "path": "notes/466-60-49.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/662-62-88.md",
+          "path": "notes/662-62-88.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/482-50-56.md",
+          "path": "notes/482-50-56.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/662-62-89.md",
+          "path": "notes/662-62-89.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/514-96-56.md",
+          "path": "notes/514-96-56.md"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/446-76-44.md",
+          "path": "notes/446-76-44.md"
+        },
+        {
+          "url": "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.IT/2026-10-28_math.IT.xml",
+          "path": "rss_data/math.IT/2026-10-28_math.IT.xml"
+        },
+        {
+          "url": "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.NT/2026-10-28_math.NT.xml",
+          "path": "rss_data/math.NT/2026-10-28_math.NT.xml"
+        },
+        {
+          "url": "https://github.com/unitaryfoundation/qldpc-challenge/blob/fdccaecfcc3101bc587dae19bdf970e2d918935a/notes/430-58-42.md",
+          "path": "notes/430-58-42.md"
+        }
+      ]
+    },
+    {
+      "query": "\"cyclotomic\" \"Barker\"",
+      "scope": "global GitHub code (first 40)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 40,
+      "results": [
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/04-computation/experiments/oai2_20261006_littlewood_tower.py",
+          "path": "04-computation/experiments/oai2_20261006_littlewood_tower.py"
+        },
+        {
+          "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/overview.tex",
+          "path": "overview.tex"
+        },
+        {
+          "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/The-circulant-Hadamard-conjecture-September-23-2026/build/sections/introduction.tex",
+          "path": "preprints/The-circulant-Hadamard-conjecture-September-23-2026/build/sections/introduction.tex"
+        },
+        {
+          "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/The-circulant-Hadamard-conjecture-September-23-2026/build/references.bib",
+          "path": "preprints/The-circulant-Hadamard-conjecture-September-23-2026/build/references.bib"
+        },
+        {
+          "url": "https://github.com/ThyFriendlyFox/dataset-curation-test/blob/401a20ab4df17189492e2ada0eb96e443195772e/sources/wiki_sections/wiki_Barker_code.json",
+          "path": "sources/wiki_sections/wiki_Barker_code.json"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A245481.txt",
+          "path": "prepare/data/data/A245481.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A245478.txt",
+          "path": "prepare/data/data/A245478.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008495.txt",
+          "path": "prepare/data/data/A008495.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A020518.txt",
+          "path": "prepare/data/data/A020518.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A020517.txt",
+          "path": "prepare/data/data/A020517.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A020520.txt",
+          "path": "prepare/data/data/A020520.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220020.txt",
+          "path": "prepare/data/data/A220020.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220021.txt",
+          "path": "prepare/data/data/A220021.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A221855.txt",
+          "path": "prepare/data/data/A221855.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220018.txt",
+          "path": "prepare/data/data/A220018.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220019.txt",
+          "path": "prepare/data/data/A220019.txt"
+        },
+        {
+          "url": "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+          "path": "js/htm/wiki/dictionary/glossary.js"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060890.txt",
+          "path": "prepare/data/data/A060890.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A053699.txt",
+          "path": "prepare/data/data/A053699.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060895.txt",
+          "path": "prepare/data/data/A060895.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060894.txt",
+          "path": "prepare/data/data/A060894.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060892.txt",
+          "path": "prepare/data/data/A060892.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060889.txt",
+          "path": "prepare/data/data/A060889.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A120096.txt",
+          "path": "prepare/data/data/A120096.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A020519.txt",
+          "path": "prepare/data/data/A020519.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008487.txt",
+          "path": "prepare/data/data/A008487.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008489.txt",
+          "path": "prepare/data/data/A008489.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008493.txt",
+          "path": "prepare/data/data/A008493.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A053716.txt",
+          "path": "prepare/data/data/A053716.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060887.txt",
+          "path": "prepare/data/data/A060887.txt"
+        },
+        {
+          "url": "https://github.com/CharlesHoskinson/sevenlayer/blob/2789e5a63972276e20bc6144733ef9824ced9e49/graphify-out/GRAPH_REPORT.md",
+          "path": "graphify-out/GRAPH_REPORT.md"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060891.txt",
+          "path": "prepare/data/data/A060891.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060883.txt",
+          "path": "prepare/data/data/A060883.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A245479.txt",
+          "path": "prepare/data/data/A245479.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060886.txt",
+          "path": "prepare/data/data/A060886.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008530.txt",
+          "path": "prepare/data/data/A008530.txt"
+        },
+        {
+          "url": "https://github.com/ajb2969/MLInformationRetrieval/blob/e7682cc2537f31fabfbc0175c61f9b5cdef1fc9a/documents/13-800.txt",
+          "path": "documents/13-800.txt"
+        },
+        {
+          "url": "https://github.com/marautbar/molecular-symmetry-graduate-project/blob/acb49962c15a19581df3f062324bb8cf678b48fe/README.md",
+          "path": "README.md"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A060893.txt",
+          "path": "prepare/data/data/A060893.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A008531.txt",
+          "path": "prepare/data/data/A008531.txt"
+        }
+      ]
+    },
+    {
+      "query": "\"16*n^2\" \"60*n\" \"37\"",
+      "scope": "global GitHub code (first 40)",
+      "retrieved_date_utc": "2026-11-27",
+      "available": true,
+      "isError": false,
+      "returned": 40,
+      "results": [
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A220019.txt",
+          "path": "prepare/data/data/A220019.txt"
+        },
+        {
+          "url": "https://github.com/manman4/OEIS_03/blob/e25ac47bad69a6a9a1227a09c4bb53ba0d4f42d9/370/370686/370686_01.rb",
+          "path": "370/370686/370686_01.rb"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a121/A121908.java",
+          "path": "src/irvine/oeis/a121/A121908.java"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A212730.txt",
+          "path": "prepare/data/data/A212730.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A219537.txt",
+          "path": "prepare/data/data/A219537.txt"
+        },
+        {
+          "url": "https://github.com/geographiclib/geographiclib/blob/48959dfc4a581ad29f76b526726a801473767c98/doc/geodseries30.html",
+          "path": "doc/geodseries30.html"
+        },
+        {
+          "url": "https://github.com/mkauers/ore_algebra/blob/a9bce94221c11ae142a0e95e26baa8987783d246/src/ore_algebra/dfinite_function.py",
+          "path": "src/ore_algebra/dfinite_function.py"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A056090.txt",
+          "path": "prepare/data/data/A056090.txt"
+        },
+        {
+          "url": "https://github.com/maxima-project-on-github/maxima-packages/blob/e401968f002800630af29c5b8ed53558cdbe1b43/bertrand-teguia/Hypergeometric-Term-Holonomic-REs/testREs.mac",
+          "path": "bertrand-teguia/Hypergeometric-Term-Holonomic-REs/testREs.mac"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/hologfm.man",
+          "path": "holrec/hologfm.man"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a216/A216616.java",
+          "path": "src/irvine/oeis/a216/A216616.java"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A121908.txt",
+          "path": "prepare/data/data/A121908.txt"
+        },
+        {
+          "url": "https://github.com/GorrieXIV/Magma/blob/a7a7bf4a361c09c9da20e697335d30a5ed95a1a1/doc/html/text453.htm",
+          "path": "doc/html/text453.htm"
+        },
+        {
+          "url": "https://github.com/AxiomMath/CFSG/blob/965a0775e82217494217503621b843e1b0e1e337/CFSG/CGT/Stroth77/Extension214.lean",
+          "path": "CFSG/CGT/Stroth77/Extension214.lean"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/holos.man",
+          "path": "internal/fischer/holos.man"
+        },
+        {
+          "url": "https://github.com/AxiomMath/CFSG/blob/965a0775e82217494217503621b843e1b0e1e337/CFSG/CGT/Stroth77/Types32x.lean",
+          "path": "CFSG/CGT/Stroth77/Types32x.lean"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a203/A203577.java",
+          "path": "src/irvine/oeis/a203/A203577.java"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/findre.man",
+          "path": "internal/fischer/aman/findre.man"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A239571.txt",
+          "path": "prepare/data/data/A239571.txt"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2026-07-25.ack.man",
+          "path": "internal/fischer/aman/2026-07-25.ack.man"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-02-26.man",
+          "path": "internal/fischer/aman/2024-02-26.man"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/contrib/rm/dfinite.grep.txt",
+          "path": "contrib/rm/dfinite.grep.txt"
+        },
+        {
+          "url": "https://github.com/Sciumo/GeographicLib/blob/87dba026d6d275dd4d8c02d618d936e997bb31e7/doc/geodseries30.html",
+          "path": "doc/geodseries30.html"
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a218/A218693.java",
+          "path": "src/irvine/oeis/a218/A218693.java"
+        },
+        {
+          "url": "https://github.com/kahowang/sensor-fusion-for-localization-and-mapping/blob/0995f5d7c74c8420957753575f79ce1bf2a76fce/第一章 概述/lidar_localization/third_part/GeographicLib-1.52/doc/geodseries30.html",
+          "path": "第一章 概述/lidar_localization/third_part/GeographicLib-1.52/doc/geodseries30.html"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/holom.man",
+          "path": "holrec/holom.man"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A216616.txt",
+          "path": "prepare/data/data/A216616.txt"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/mathar-pap3.man",
+          "path": "holrec/mathar-pap3.man"
+        },
+        {
+          "url": "https://github.com/Macaulay2/M2/blob/79ddd0bd62629a2357a9d6184a33ff5b87dfc2ca/M2/Macaulay2/packages/undistributed-packages/ExampleFreeResolutions/ExamplesAndTimings/cnc-16.m2",
+          "path": "M2/Macaulay2/packages/undistributed-packages/ExampleFreeResolutions/ExamplesAndTimings/cnc-16.m2"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/rectopost.man",
+          "path": "holrec/rectopost.man"
+        },
+        {
+          "url": "https://github.com/Vectornaut/airy-resurgence/blob/8e79d31573265fda7a8b5ca43e72a6f7adac17d0/notes/higher-airy.ipynb",
+          "path": "notes/higher-airy.ipynb"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-02-09.man",
+          "path": "internal/fischer/aman/2024-02-09.man"
+        },
+        {
+          "url": "https://github.com/Antonio-JP/pseries_basis/blob/92c46c11e93862379cc8888473a470ff14b60f92/notebooks/paper_examples_appB.ipynb",
+          "path": "notebooks/paper_examples_appB.ipynb"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A182795.txt",
+          "path": "prepare/data/data/A182795.txt"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/recan.man",
+          "path": "internal/fischer/aman/recan.man"
+        },
+        {
+          "url": "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/rectoproc.man",
+          "path": "holrec/rectoproc.man"
+        },
+        {
+          "url": "https://github.com/TheMrX1/gl-weight-systems/blob/5a0b7d260ea3da0b6e02b3250f36bbbc8deb1e56/results/K11/K11.txt",
+          "path": "results/K11/K11.txt"
+        },
+        {
+          "url": "https://github.com/Antonio-JP/pseries_basis/blob/92c46c11e93862379cc8888473a470ff14b60f92/notebooks/example60/Ltilde.txt",
+          "path": "notebooks/example60/Ltilde.txt"
+        },
+        {
+          "url": "https://github.com/jhparkerb/polyplets/blob/9d79abc45dd3af4bcec7780a64ecceb2b9a21fd4/results/dir4_perim_find_prec.log",
+          "path": "results/dir4_perim_find_prec.log"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-06-09.ack.man",
+          "path": "internal/fischer/aman/2024-06-09.ack.man"
+        }
+      ]
+    }
+  ]
+}

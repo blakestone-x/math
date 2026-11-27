@@ -1,6 +1,11 @@
 # math
 math proofs
 
+- [Cyclotomic cosets — four quadratic formulas for multipliers 3, 7, 9, 13](A220018/README.md) · [Complete Lean proofs](A220018/Proof.lean)
+- [A052392 — the subdiagonal generating function and exact recurrence](A052392/README.md) · [Complete Lean proof](A052392/Proof.lean)
+- [A184534 — the reciprocal cube-root floor and generating function](A184534/README.md) · [Complete Lean proof](A184534/Proof.lean)
+- [Cyclotomic cosets, a triangle, and reciprocal cube roots — Batch 13 manuscript](notes/Math_Proofs_Batch13.pdf) · [Collection guide](notes/Math_Proofs_Batch13_README.md)
+
 - [A081097 — all positive nested-floor solutions and the exact generating function](A081097/README.md) · [Complete Lean proof](A081097/Proof.lean)
 - [A288511 — the full thirteen-term recurrence for literal replacement-word lengths](A288511/README.md) · [Complete Lean proof](A288511/Proof.lean)
 - [A118207 — the complete Liouville–cyclotomic product identity](A118207/README.md) · [Complete Lean proof](A118207/Proof.lean)

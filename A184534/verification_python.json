@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "method": "exact integer cubic comparisons with doubling and binary search; no floating-point roots",
+  "source_definition_values": {
+    "n_min": 1,
+    "n_max": 10000,
+    "count": 10000
+  },
+  "source_prefix_count": 88,
+  "recurrence": {
+    "newest_index_min": 8,
+    "newest_index_max": 10000
+  },
+  "recurrence_failure_at_7": true,
+  "generating_function_coefficients": {
+    "min": 0,
+    "max": 10000
+  },
+  "general_estimate": {
+    "h_min": 1,
+    "h_max": 40,
+    "n_range": "h through h+100 inclusive",
+    "count": 4040
+  },
+  "scope": "Finite independent replay only; unbounded conclusions are kernel-checked in the Lean files.",
+  "source_sha256": "aa7000bc8f5800ce327cd2b5c00ce8138b16d5cf471d49f03bb2b01f205e996e",
+  "verifier_sha256": "8b5315bd6733048620a9d68ad59a18cd2a2ab7fd82d0f3a634818a6cda6ac4ac"
+}

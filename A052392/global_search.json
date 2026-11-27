@@ -1,0 +1,89 @@
+{
+  "checked": "2026-11-27",
+  "queries": [
+    {
+      "query": "\"A052392\"",
+      "status": "fulfilled",
+      "limit": 20,
+      "result_count": 20,
+      "urls": [
+        "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a052/A052392.java",
+        "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/052/A052392.asm",
+        "https://github.com/rjchow/ethers-aws-kms-signer/blob/8e3a4812b542e86ac9d3b6da02b794eb1b5be86d/CHANGELOG.md",
+        "https://github.com/rjchow/make-numbers/blob/46e28c6c1d4d0468ff5c7134f137fe109a3c09ee/CHANGELOG.md",
+        "https://github.com/lighttransport/LightUSD/blob/85d216e7fe0a4ed7d16472fd3d367a994bcc3386/examples/common/roboto_mono_embed.inc.h",
+        "https://github.com/LOKisGithub/LokisAsicTester/blob/b2d1bbf8fff034300fabf5d7bb3fe8da903dbb0d/minertest64-BM1393/btc-asic-45/btc-core-146.txt",
+        "https://github.com/openchargemap/ocm-export/blob/8e3bedca48ca94807d96b2f5e7ee02cffe63ae54/data/ES/OCM-312427.json",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/_matrix3_8h.js",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/_matrix3_8cpp.js",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/_matrix3_8h.html",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/_matrix3_8cpp.html",
+        "https://github.com/syoyo/tinyvdb/blob/bc9454845ea68892f2a06d189c7115daa1ec76f5/examples/common/imgui/roboto_mono_embed.inc.h",
+        "https://github.com/microsoft/AEC-Challenge/blob/8f861f0f8ffca26a3d1d16f17f2594ea89abe7ac/datasets/synthetic/nearend_speech/nearend_speech_fileid_9297.wav",
+        "https://github.com/rust-lang/crates.io-index/blob/78293498004da5ae10bd4efbd017556558307dbd/in/te/interoptopus_proc",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/_matrix3_8cpp_source.html",
+        "https://github.com/CBIIT/Bsoft/blob/cf42c27a7b701d5862f79772e4827435ca0ea1ab/docs/html/navtreeindex1.js",
+        "https://github.com/shamedgh/glibc-callgraph/blob/296c9128d4b4fc0ef13ce7ccca7f32289aab5fdb/glibc-2.24/latex/mach__traps_8h.tex",
+        "https://github.com/shamedgh/glibc-callgraph/blob/296c9128d4b4fc0ef13ce7ccca7f32289aab5fdb/glibc-2.24/html/mach__traps_8h.html",
+        "https://github.com/fynv/usd2glb/blob/ee2bc87166a48038c825108bbeb7faf9b38452d2/tinyusdz/examples/common/roboto_mono_embed.inc.h",
+        "https://github.com/kamalmstp/spjtransport-id/blob/8acd7a0a910514ae3e46435fd8a0b145f7927dff/404.html"
+      ]
+    },
+    {
+      "query": "\"8*n\" \"28*n\" \"a(n+4)\" \"a(n+3)\"",
+      "status": "fulfilled",
+      "limit": 20,
+      "result_count": 20,
+      "urls": [
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190255.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190254.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A014314.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A052753.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A191586.txt",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/holom.man",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A102403.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A052725.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A052710.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A126190.txt",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A110122.txt",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/findrec.1227.man",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/findrec.1224.man",
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-02-09.man",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/contrib/rm/dfinite.grep.txt",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/holrec/A302914.man",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A216696.txt",
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/findre.man",
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-02-26.man",
+        "https://github.com/gfis/OEIS-mat/blob/3a2ac86e6f436bb0c3f373d1b292a50caebad100/linrec/dexml.pl"
+      ]
+    },
+    {
+      "query": "\"McGarvey\" \"Delannoy\"",
+      "status": "fulfilled",
+      "limit": 20,
+      "result_count": 20,
+      "urls": [
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2023-10-07.man",
+        "https://github.com/trapd00r/Documentation/blob/5e6c5706af531b0ac61d654321d482a7f2f91e0c/wordlists/cis-surname",
+        "https://github.com/sigmakriper1488/Wifi-bruteforce/blob/1531683ea9fdf06690c757dbc704d054b12addbe/Versions/2.0/Linux/passwords/cis-surname.txt",
+        "https://github.com/sigmakriper1488/Wifi-bruteforce/blob/1531683ea9fdf06690c757dbc704d054b12addbe/Versions/2.0/Windows/passwords/cis-surname.txt",
+        "https://github.com/odolezal/wordlists/blob/291ddda582a5884ab7b6fb98ffbd5512b36f87ed/cis-surname.txt",
+        "https://github.com/razvan-eduard/borderkeys/blob/0c0c2ec9856b0202e1d49547a485a6c42b5307b0/dictionaries/de_DE.case",
+        "https://github.com/razvan-eduard/borderkeys/blob/0c0c2ec9856b0202e1d49547a485a6c42b5307b0/dictionaries/es_ES.case",
+        "https://github.com/razvan-eduard/borderkeys/blob/0c0c2ec9856b0202e1d49547a485a6c42b5307b0/dictionaries/ro_RO.case",
+        "https://github.com/razvan-eduard/borderkeys/blob/0c0c2ec9856b0202e1d49547a485a6c42b5307b0/dictionaries/fr_FR.case",
+        "https://github.com/razvan-eduard/borderkeys/blob/0c0c2ec9856b0202e1d49547a485a6c42b5307b0/dictionaries/it_IT.case",
+        "https://github.com/davidparkercodes/outworld/blob/2638bf017aa125517e4fe2c3878ee280141f3042/internal/namedata/surnames.txt",
+        "https://github.com/hunterhogan/oeisTypeset/blob/871b4a791adbd9fbb12115e325ff8e00c564adc8/corpus/A007318.html",
+        "https://github.com/knobs-dials/wordlists/blob/99b9e5ddebacebb37d50df99bdd8ce7a82f1a982/names.people.surnames.statisticians",
+        "https://github.com/SternerLab/Authority/blob/2101ccdcb9022b2bb9940f375c36374bffad4ff1/clustering/results/cluster_authors175458_200000.txt",
+        "https://github.com/nkh/bin-bash/blob/6e83f8ee10ab522a33e051d70c0185ad1cbc868c/data/cis-surname",
+        "https://github.com/mandiberg/Names-Surnames-and-Countries-for-Stopwords/blob/f61ab9d6268e007e7fb7fa62f9e113f9e5d2e954/surnames-from-wikidata-atleast9items.csv",
+        "https://github.com/ehijano/rss_fetch/blob/ab5ddb9652733b13a6c66c90f9f2a53af218263b/rss_data/math.CO/2026-11-23_math.CO.xml",
+        "https://github.com/believer/movies-go/blob/ff34d48d7e26876f85b6696e7f36b0ca8ed508cf/services/awards/baftas.csv",
+        "https://github.com/omnide/oeis-sandbox/blob/da43e3d07c584a21062deecd51934b8a3219c322/pkg/sequence/sequence_testdata/A007318.seq",
+        "https://github.com/RAY2L/coursechat/blob/062eb1a6024ff8963631257b1d7c1959adef083f/instructors.py"
+      ]
+    }
+  ]
+}
