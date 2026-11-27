@@ -15,7 +15,7 @@
 \setlength{\emergencystretch}{1.6em}
 \begin{document}\maketitle
 \begin{abstract}
-For every positive Catalan power and every shift in the range of Cigler's generating-function conjectures, we prove a signed quasipolynomial formula for the Hankel determinants and determine the degree and reciprocity sign of the numerator. This proves Conjecture~15 of his 2023 preprint and gives Conjecture~16 with its single previously identified degree exception. For odd powers the resulting denominator bound improves the proposed exponent by the multiplicity of a zero of the moment polynomial. The proofs use a confluent determinant of Chebyshev polynomials, finite differences, and reflection in the determinant size.
+For every positive Catalan power and every shift in the range of Cigler's generating-function conjectures, we prove a signed quasipolynomial formula for the Hankel determinants and determine the degree and reciprocity sign of the numerator. Using the backward-shift identity we also prove this signed polynomiality for every integer shift, as requested in Conjecture~4. This proves Conjecture~15 of his 2023 preprint and gives Conjecture~16 with its single previously identified degree exception. For odd powers the resulting denominator bound improves the proposed exponent by the multiplicity of a zero of the moment polynomial. The proofs use a confluent determinant of Chebyshev polynomials, finite differences, and reflection in the determinant size.
 \end{abstract}
 
 \section{The generating functions}
@@ -167,9 +167,23 @@ For $k-1\le j<r$, the nonzero $b_j$ are therefore
 For even $r$, the degree is $3k-2$, so reciprocity only needs coefficients through $N=\lfloor(3k-2)/2\rfloor$. For odd $r$ use $e_0$ first; its degree is $3k-3$ so $N\le\lfloor(3k-3)/2\rfloor$ suffices. Throughout these ranges the largest $b$-index in \eqref{comp} is $\ell+2q-1=2N-\ell-1<r$. The right-hand determinant vanishes for $q\ge3$ in the even case and $q\ge2$ in the odd case, by its last row. At $q=0$ it is one. At $q=1$ it is $b_{k-1}$, and at $q=2$ in the even case it is $-b_k^2=-4$.
 
 In both cases the lower half of the numerator thus consists of coefficient one at zero, $s_{k-2}$ at $k-2$, and $s_{k-1}k^2$ (even) or $s_{k-1}(2k-1)$ (odd) at $k-1$. In the even case the intermediate $D(k)=-4s_{k-2}$ cancels the contribution $-4s_kD(0)$ from the multiplier since $s_k=-s_{k-2}$. In the odd case the multiplier starts beyond the lower half. Theorem~\ref{thm} reflects these three coefficients with sign $s_k$ for the even case and $s_{k-1}$ for the smaller odd numerator. This proves the two remaining expressions.
+\section{All integer shifts}
+\begin{theorem}[Cigler's Conjecture 4]
+For every $r\ge1$ and every integer $m$, in each residue class $0\le j<h$ the values $\ee^nD_{r,m}(hn+j)$ for $n\ge0$ are a polynomial in $n$. Here $(h,\ee)$ depend only on $r$ as in the first section.
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm} handles $m\ge1-k$ in both parity conventions of the table. Suppose $m<1-k$ and let $\ell=1-m$ and $m'=\ell+1-r$. Then $m'\ge1-k$. We recall the backward-shift identity of Fulmek and Cigler~\cite{fulmek,revisit}; the complementary minor proof used for \eqref{comp} gives it immediately here. For $N=\ell+q$, $q\ge0$, that computation gives $D_{r,m}(N)=(-1)^{\binom\ell2+q}\det(b_{\ell+1+i+j})_{i,j<q}$, where $B(z)=\sum b_jz^j=C(z)^{-r}$. The polynomial $B(z)+z^rC(z)^r$ has degree $\lfloor r/2\rfloor<\ell+1$. Consequently $b_{\ell+1+i+j}=-C_{r,m'+i+j}$, including any negative subscripts. Thus
+\[
+ D_{r,m}(N)=(-1)^{\binom\ell2}D_{r,m'}(N-\ell)\qquad(N\ge\ell).
+\]
+In the admissible problem on the right, $d=r+m'-1=\ell$. Its bilateral extension has value $(-1)^{\binom\ell2}$ at $-\ell$ by reflection, and vanishes at $1-\ell,\ldots,-1$. The original left side is one at $N=0$ and zero at $1\le N<\ell$ by its first row. The same identity therefore holds for every $N\ge0$ when the right side uses that extension. Translating an integer argument preserves polynomial dependence on each signed residue progression, as required.
+\end{proof}
+
 \begin{thebibliography}{9}
 \bibitem{cigler} J. Cigler, \emph{Some experimental observations about Hankel determinants of convolution powers of Catalan numbers}, v2, 2023, \S3, Conjectures 15 and 16. \href{https://arxiv.org/abs/2308.07642v2}{arXiv:2308.07642v2}.
 \bibitem{cs} S. Chern and W. Shi, \emph{Hankel determinants of Catalan-like sequences} (2026). \href{https://arxiv.org/abs/2608.27208}{arXiv:2608.27208}.
+\bibitem{fulmek} M. Fulmek, \emph{Hankel determinants of convoluted Catalan numbers and nonintersecting lattice paths: A bijective proof of Cigler's conjecture} (2024). \href{https://arxiv.org/abs/2402.19127}{arXiv:2402.19127}.
+\bibitem{revisit} J. Cigler, \emph{Hankel determinants of convolution powers of Catalan numbers revisited} (2024). \href{https://arxiv.org/abs/2403.11244}{arXiv:2403.11244}.
 \bibitem{kratt} C. Krattenthaler, \emph{Hankel determinants of linear combinations of moments of orthogonal polynomials, II}, Ramanujan J. \href{https://doi.org/10.1007/s11139-021-00514-8}{doi:10.1007/s11139-021-00514-8}.
 \bibitem{omega} TrureTuring, \emph{The literal numerator degree in Cigler's Conjecture 16}, research record for $(k,m)=(1,0)$. \href{https://www.trureturing.org/research/cigler-sixteen-literal-numerator-degree/}{Public record}.
 \bibitem{wang} Y. Wang and G. Xin, \emph{Hankel determinants for convolution powers of Catalan numbers}, Discrete Math. 342 (2019), 2694--2716. \href{https://doi.org/10.1016/j.disc.2019.05.025}{doi:10.1016/j.disc.2019.05.025}.

@@ -77,7 +77,6 @@ def verify():
     print(f"power and shift pairs {counts[0]}")
     print(f"original integer Hankel determinants computed {counts[1]}")
     print(f"numerators checked for degree, reciprocity and zero tail {counts[2]}")
-    print("all exact checks passed")
 
 
 
@@ -139,6 +138,42 @@ def check_low_shifts():
     print(f"explicit low-shift numerator formulas checked {families}")
 
 
+def check_backward():
+    count = 0
+    for power in range(1, 8):
+        k = (power + 1) // 2
+        for shift in (-k, -k - 1, -k - 2):
+            ell = 1 - shift
+            other = ell + 1 - power
+            degree_parameter = k + other - (power % 2)
+            polynomial_degree = comb(degree_parameter, 2)
+            h = power if power % 2 else k
+            epsilon = (-1) ** (k - 1 if power % 2 else comb(k, 2))
+            for offset in range(h):
+                if offset + (polynomial_degree + 1) * h > 55:
+                    continue
+                values = []
+                for n in range(polynomial_degree + 2):
+                    size = h * n + offset
+                    value = determinant([[moment(power, i + j + shift) for j in range(size)]
+                                         for i in range(size)])
+                    values.append(epsilon ** n * value)
+                    if size >= ell:
+                        smaller = size - ell
+                        ref = determinant([[moment(power, i + j + other) for j in range(smaller)]
+                                           for i in range(smaller)])
+                        assert value == (-1) ** comb(ell, 2) * ref
+                    else:
+                        assert value == (1 if size == 0 else 0)
+                for _ in range(polynomial_degree + 1):
+                    values = [b - a for a, b in zip(values, values[1:])]
+                assert values == [0]
+                count += 1
+    print(f"backward-shift signed polynomial residue checks {count}")
+
+
 if __name__ == "__main__":
     verify()
     check_low_shifts()
+    check_backward()
+    print("all exact checks passed")
