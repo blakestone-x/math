@@ -1,0 +1,2 @@
+Closed formulas agree with direct evaluation through exponent 44 at primes <= 101.
+Direct proper-divisor sums through exponents 8 and primes 101 give [(3, 1, 7, 1)]

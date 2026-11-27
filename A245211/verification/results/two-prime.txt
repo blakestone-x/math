@@ -1,0 +1,5 @@
+b <= 20: 420 exponent pairs; 10549 prime candidates; 11 full equalities tested; matches [(3, 1, 7, 1)]
+b <= 40: 1640 exponent pairs; 129699 prime candidates; 31 full equalities tested; matches [(3, 1, 7, 1)]
+b <= 60: 3660 exponent pairs; 581947 prime candidates; 57 full equalities tested; matches [(3, 1, 7, 1)]
+b <= 80: 6480 exponent pairs; 1705202 prime candidates; 105 full equalities tested; matches [(3, 1, 7, 1)]
+b <= 100: 10100 exponent pairs; 3944017 prime candidates; 157 full equalities tested; matches [(3, 1, 7, 1)]

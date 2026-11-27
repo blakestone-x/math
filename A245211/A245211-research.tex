@@ -1,0 +1,232 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,geometry,xcolor,hyperref,fancyhdr}
+\geometry{left=.91in,right=.91in,top=.83in,bottom=.78in,headheight=15pt,headsep=15pt}
+\definecolor{ink}{HTML}{192F3D}
+\definecolor{teal}{HTML}{176F68}
+\hypersetup{colorlinks=true,urlcolor=teal,linkcolor=teal,pdftitle={Fixed points of the weighted proper-divisor sum, OEIS A245211},pdfauthor={Blake Stone with OpenAI Astra 6.2}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small\sffamily\color{teal} OEIS A245211}\rhead{\small\sffamily\color{ink} Fixed points of a weighted divisor sum}
+\cfoot{\small\sffamily\thepage}\renewcommand{\headrulewidth}{.25pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\abovedisplayskip}{6pt}\setlength{\belowdisplayskip}{6pt}
+\newcommand{\hd}[1]{\par\vspace{3pt}{\large\sffamily\bfseries\color{teal} #1}\par}
+\newcommand{\thm}[1]{\textbf{\color{ink}#1.}\enspace}
+\newcommand{\qedx}{\hfill\(\square\)}
+\newcommand{\Refe}[2]{\href{#1}{#2}}
+\begin{document}
+\thispagestyle{empty}
+{\small\sffamily\color{teal} NUMBER THEORY\hfill REVISED RESEARCH NOTE\enspace / \enspace NOVEMBER 26, 2026}\par\vspace{4pt}
+{\fontsize{24}{27}\selectfont\sffamily\bfseries\color{ink} Fixed points of the weighted\\proper-divisor sum in OEIS A245211}\par
+{\small\sffamily Blake Stone\quad$\cdot$\quad Developed with OpenAI Astra 6.2}\par
+Let $\tau(d)$ count the positive divisors of $d$, and let $S(n)=\sum_{d\mid n,\,d<n}d\,\tau(d)$. Jaroslav Krizek asked whether $21$ is the only positive fixed point. Indeed, its proper divisors $1,3,7$ contribute $1+6+14=21$. The general question remains open.
+
+\thm{Results} The only fixed point with at most two distinct prime factors is $21$. None has the form $p^a q s$ for three distinct primes. For any prescribed number of distinct primes, a finite algorithm decides all exponent and prime choices. In the squarefree case, a cycle argument excludes every odd prime-power count. The computation and the size bound are given in Sections 2 and 7.
+
+\hd{1\quad The squarefree cycle}
+Write $n=\prod_{i=0}^{r-1}p_i$ with distinct primes. Adding $n\tau(n)$ to both sides and factoring the full divisor sum gives
+\begin{equation}
+\prod_{i=0}^{r-1}(2p_i+1)=C\prod_{i=0}^{r-1}p_i,\qquad C=2^r+1. \tag{1}
+\end{equation}
+The proper divisors $1$ and $n/p_i>1$ contribute distinct terms. Hence $(n/p_i)2^{r-1}<n$, giving $p_i>2^{r-1}$ and $2p_i+1>C$ for each $i$.
+
+\thm{Cycle theorem} There is a cyclic ordering of the primes and positive integers $c_0,\ldots,c_{r-1}$ with product $C$ for which $2p_i+1=c_i p_{i+1}$, with indices modulo $r$. Conversely, the ordered factorization determines all entries by
+\begin{equation}
+p_i=\sum_{j=0}^{r-1}2^{r-1-j}\prod_{t=0}^{j-1}c_{i+t},\qquad 2^r-1\le p_i\le 2^{2r-1}-1. \tag{2}
+\end{equation}
+If these entries are distinct primes, their product is a fixed point.
+
+\emph{Proof.} In the prime factorization of the left side of (1), mark one occurrence of each $p_i$. The unmarked factors have product $C$. A factor $2p_i+1$ receiving no mark would divide $C$, although it exceeds $C$. With $r$ marks and $r$ factors, each receives one mark. Thus $2p_i+1=c_i p_{\sigma(i)}$ for a permutation $\sigma$. On a cycle of length $L$, multiplying and canceling its primes gives $\prod c_i=\prod(2+1/p_i)>2^L$. Two or more cycles would force $\prod c_i>2^r+1$, since $(2^u+1)(2^v+1)>2^{u+v}+1$ for $u,v\ge1$.
+
+Iterate $c_i p_{i+1}=2p_i+1$ around the cycle. The coefficient of $p_i$ after subtraction is $C-2^r=1$, giving (2), with empty product $1$. Conversely, subtracting twice the sum for $p_i$ from $c_i$ times the sum for $p_{i+1}$ telescopes to $C-2^r=1$. The first term of (2) is $2^{r-1}$, and its other partial products lie in $[1,C]$. Summing gives the bounds. Multiplying the recurrences recovers (1).\qedx
+
+\newpage
+\hd{2\quad Excluding all odd prime-power counts}
+In this section $r$ is the \emph{number of distinct prime factors} of a squarefree fixed point. Write $r=\ell^k$, with $\ell$ an odd prime and $k\ge1$.
+
+\thm{Prime-power exclusion} No squarefree fixed point has $r=\ell^k$.
+
+\emph{Proof.} For every prime $t\mid C$, the multiplicative order of $2$ modulo $t$ divides $2r$ but does not divide $r$, since $2^r\equiv-1\pmod t$. Thus the order is $2\ell^j$ for $0\le j\le k$. Order $2$ gives $t=3$. Every other $t$ satisfies $t\equiv1\pmod\ell$.
+
+Suppose first that $\ell\ge5$. The binomial expansion of $(-1+3)^r+1$ gives $C\equiv3r\pmod9$, so $C$ has exactly one factor of $3$. In the cycle of (2), exactly one coefficient is therefore $3$ modulo $\ell$ and all the others are $1$. Write $x$ for the prime just after the exceptional coefficient and $y$ for the prime just before it. On the $r-1$ intervening edges the recurrence is $p_{\rm next}\equiv2p+1\pmod\ell$. Therefore
+\[
+y+1\equiv 2^{r-1}(x+1)\equiv x+1\pmod\ell.
+\]
+Here $\ell-1$ divides $\ell^k-1=r-1$. The exceptional edge gives $3x\equiv2y+1$, so $x\equiv1\pmod\ell$. After $\ell-2$ of the intervening edges, the prime at that position is congruent to
+\[
+2^{\ell-2}(x+1)-1\equiv2^{\ell-1}-1\equiv0\pmod\ell.
+\]
+Every cycle entry is at least $2^r-1>\ell$, which contradicts primality.
+
+For $\ell=3$, all primes dividing $C$ other than $3$ are $1$ modulo $3$. More generally, this property excludes any odd count $r\ge3$. A coefficient divisible by $3$ exists, and since $3^r>2^r+1$ some coefficient is $1$ modulo $3$. On such an edge both primes must be $2$ modulo $3$. At the next edge $2p+1$ is again nonzero modulo $3$, so the next coefficient is also $1$. Continuing around the cycle contradicts the presence of the factor $3$.\qedx
+
+\thm{The counts $7\cdot3^j$} The same obstruction applies to every $r=7\cdot3^j$, $j\ge0$. For $r=7$ the constant is $129=3\cdot43$. In tripling $r$, the new factor is $x^2-x+1$, where $x=2^r$. If a prime $t\ne3$ divides it, then $x^3\equiv-1\pmod t$ and $x\not\equiv-1\pmod t$, so $x$ has order $6$ modulo $t$. Hence $t\equiv1\pmod3$. Induction preserves the obstruction, including at $r=189$.
+
+\thm{Even counts} The earlier modulo-$3$ argument in [2] excludes every even $r\ge4$. All $p_i>3$. Since $C\equiv2\pmod3$, equation (1) forces all $p_i\equiv2\pmod3$. Its left side is then $1$ modulo $3$ and its right side $2$. For $r=2$ equation (1) simplifies to $(p-2)(q-2)=5$, giving $3,7$. A prime alone has $S(p)=1$.
+
+\thm{Size consequence} The verified computations and the even-count and prime-power exclusions cover every squarefree count through $202$. The first count left by these results is $203$. Consequently a squarefree fixed point other than $21$ must contain at least $203$ distinct primes, and its number of primes is divisible by at least two distinct odd primes. By (2), the fixed point itself is at least $(2^{203}-1)^{203}$, which has $12{,}406$ decimal digits.
+
+\newpage
+\hd{3\quad Comparing the exponents of two primes}
+Let $n=p^a q^b$ with primes $p<q$ and $a,b\ge1$. Set $D=(a+1)(b+1)$ and $H_e(x)=\sum_{j=0}^e(j+1)x^j$. Factoring the full divisor sum gives
+\begin{equation}
+H_a(p)H_b(q)=(D+1)p^a q^b. \tag{3}
+\end{equation}
+The divisor $n/p$ gives $p>a(b+1)$, as above. Since $H_a(p)\equiv1\pmod p$ and $H_b(q)\equiv1\pmod q$, we also have $p^a\mid H_b(q)$ and $q^b\mid H_a(p)$.
+
+\thm{Exponent bound} Every such fixed point satisfies $b\le a<3b$.
+
+\emph{Proof.} For $x>1$ put
+\[
+T_e(x)=\frac{H_e(x)}{x^e}-(e+1)
+=\sum_{j=1}^e\frac{e+1-j}{x^j}
+=\frac{e}{x-1}-\frac{1-x^{-e}}{(x-1)^2}.
+\]
+In particular $T_a(p)<a/(p-1)\le1/(b+1)$, so $A=H_a(p)<(a+2)p^a$. If $b>a$, then $p>a(b+1)\ge a+2$ and $q^b>p^{a+1}>(a+2)p^a>A$. This contradicts $q^b\mid A$ and proves the first inequality, also given in [2].
+
+Let $G=(D+1)p^a-(b+1)A$. From (3) we obtain $G/A=T_b(q)>0$. Since $p-1\ge a(b+1)$, the exact formula for $T_a(p)$ yields
+\[
+\frac{G}{p^a}=1-(b+1)T_a(p)\ge\frac{(b+1)(1-p^{-a})}{(p-1)^2}
+\ge\frac{b+1}{p(p-1)}.
+\]
+Using $T_b(q)<b/(q-1)$ and the bound on $A$, we conclude that
+\begin{equation}
+q-1<\frac{bA}{G}<\frac{b(a+2)}{b+1}\,p(p-1). \tag{4}
+\end{equation}
+
+Suppose $a\ge3b$. Then $b(a+2)\le a(b+1)\le p-1$. Equation (4) gives
+\[
+(b+1)q+1 < p(p-1)^2+b+2 < p^3,
+\]
+where the last inequality uses $b+2<2p^2-p$. For $1\le j\le b$, the coefficient of $q^j$ in $(1+(b+1)q)^b$ is at least $j+1$. Consequently
+\[
+0<H_b(q)\le(1+(b+1)q)^b<p^{3b}\le p^a,
+\]
+contradicting $p^a\mid H_b(q)$.\qedx
+
+\newpage
+\hd{4\quad The complete two-prime classification}
+\thm{Theorem} The only fixed point with exactly two distinct prime factors is $21$.
+
+\emph{Proof.} Keep the notation of Section 3, with $p<q$ and $b\le a<3b$. The identity for $T_a(p)$ gives an exact remainder after clearing denominators. Define
+\[
+U=(a+1)p^2-(a+2)p,\qquad V=(b+1)q^2-(b+2)q.
+\]
+Then $(p-1)^2H_a(p)=U p^a+1$, and $(q-1)^2H_b(q)=Vq^b+1$. By (3) the integer
+\[
+M=(D+1)(p-1)^2(q-1)^2-UV
+=\frac{U}{q^b}+\frac{V}{p^a}+\frac{1}{p^a q^b}
+\]
+is positive.
+
+Suppose $b\ge4$. The two divisibilities on page 3 give
+\[
+q^b\le H_a(p)<(a+2)p^a,\qquad p^a\le H_b(q)<(b+2)q^b.
+\]
+For the second upper bound, $q>b(a+1)$ by the divisor $n/q$. Since $a\ge b\ge4$ and $p>a(b+1)$, both $(a+1)(b+2)$ and $(a+2)(b+1)$ are smaller than $2p$. Hence
+\[
+\frac{U}{q^b}<\frac{(a+1)(b+2)}{p^{a-2}}\le\frac{2}{p},
+\qquad
+\frac{V}{p^a}<\frac{(a+2)(b+1)}{q^{b-2}}\le\frac{2}{p}.
+\]
+The last summand of $M$ is below $1/p$. Thus $0<M<5/p<1$, a contradiction.
+
+It remains to check $b=1,2,3$. Both primes are odd. For every odd $t$, we have $H_2(t)\equiv2\pmod4$, while $H_3(t)$ is even and $H_4(t)$ is odd.
+\begin{itemize}\setlength\itemsep{2pt}\setlength\parskip{1pt}
+\item For $b=3$, $D+1=4(a+1)+1$ is odd while $H_3(q)$ is even.
+\item For $b=2$, parity first forces $a$ to be even. The bound $2\le a<6$ leaves $a=2,4$. When $a=2$, the left side of (3) is $0$ modulo $4$ while $10p^2q^2$ is $2$. When $a=4$, the left side is $2$ modulo $4$ while $16p^4q^2$ is $0$.
+\item For $b=1$, $a=1$ or $2$. The latter fails by parity. For $a=b=1$, equation (3) becomes $(p-2)(q-2)=5$, giving $p=3$ and $q=7$.
+\end{itemize}
+The proper divisors $1,3,7$ of $21$ contribute $1+6+14=21$.\qedx
+
+A prime power $t^e$ also cannot be fixed, since its proper-divisor sum is $1$ modulo $t$. Together with $S(1)=0$, the theorem classifies all fixed points with at most two distinct prime factors.
+
+\newpage
+\hd{5\quad Three distinct primes with two exponents equal to one}
+\thm{Theorem} No number $n=p^a q s$ with $p,q,s$ distinct primes and $a\ge1$ is a fixed point. Here $q<s$, and $p$ may occupy any position in size order.
+
+\emph{Proof.} Put $D=4(a+1)$, $A=H_a(p)$ and $G=(D+1)p^a-4A$. The equation is
+\[
+A(2q+1)(2s+1)=(D+1)p^a q s.
+\]
+The divisors $n/p,n/q,n/s$ give $p>4a$ and $q,s>2(a+1)$. In particular $A/p^a<a+2$. As on page 3, the exact formula for $T_a(p)$ yields
+\[
+\frac{G}{p^a}=1-4T_a(p)\ge\frac{4}{p(p-1)}.
+\]
+Since $G/A=2/q+2/s+1/(qs)<5/q$, we obtain $q<5A/G<p^3$.
+
+Write $K=qG-2A$. Then $sK=(2q+1)A$, so $K>0$. With $U=(a+1)p^2-(a+2)p$ as above, we have
+\[
+(p-1)^2\frac K{p^a}=B-\frac{4q+2}{p^a},
+\qquad B=q(D+1)(p-1)^2-(4q+2)U.
+\]
+Here $B$ is a positive integer. For $a\ge4$ we have $p\ge17$ and $p^a>2(4q+2)$ because $q<p^3$. Thus $K/p^a>1/(2(p-1)^2)$ and
+\[
+s<2(2q+1)(a+2)p^2<3p^6.
+\]
+The last bound uses $2(a+2)<p$ and $2q+1<3p^3$. Also $p^a\mid(2q+1)(2s+1)$ since $p\nmid A$. If $a\ge10$ then $p>40$ and
+\[
+(2q+1)(2s+1)<21p^9<p^{10}\le p^a,
+\]
+a contradiction. Thus $a\le9$.
+
+All three primes are odd and $D+1$ is odd. Reducing $H_a(p)$ modulo $2$ gives $(a+1)(a+2)/2$, so $a\equiv0,1\pmod4$. The possibilities are $1,4,5,8,9$. The case $a=1$ is the squarefree count $r=3$ from Section 2. The exact enumeration described in Section 7 gives the following results for the other four exponents.\par
+\begin{center}\small
+\begin{tabular}{rrrrr}\toprule
+Repeated exponent $a$&4&5&8&9\\\midrule
+Odd last-prime candidates tested&144&111&229&555\\
+Exact equalities&0&0&0&0\\\bottomrule
+\end{tabular}
+\end{center}
+The search permits the repeated prime to be the smallest, middle, or largest. Two implementations reproduce the result.\qedx
+
+\newpage
+\hd{6\quad Effective finiteness for any fixed number of primes}
+\thm{Theorem} For each fixed number $r$ of distinct prime factors, a finite algorithm lists every positive fixed point with exactly $r$ distinct prime factors. Both the prime bases and their exponents may vary. The bound below is intended to establish finiteness.
+
+\emph{Proof.} The cases $r\le1$ were settled on page 4. For $r\ge2$, write $n=\prod_{i=1}^r p_i^{a_i}$ with $p_1<\cdots<p_r$. Put $\alpha_i=a_i+1$, $D=\prod_i\alpha_i$, $P=2D$, and $F_i=H_{a_i}(p_i)/p_i^{a_i}$. A fixed point satisfies $\prod F_i=D+1$. The divisor $n/p_i$ gives $p_i>a_iD/(a_i+1)\ge D/2\ge P^{1/3}$, since $D\ge4$.
+
+Fix an integer $B\ge1$ and let $E=\max(2,B)$,
+\[
+L_s=3\bigl((E+1)^s-1\bigr), \qquad T_r(B)=3(L_r+4).
+\]
+We claim it is impossible for every exponent to be either at most $B$ or at least $T_r(B)$ with at least one in the latter group. Under that hypothesis define $F'_i=F_i$ in the small group. In the large group take
+\[
+F'_i=\frac{(a_i+1)p_i^2-(a_i+2)p_i}{(p_i-1)^2}
+=F_i-\frac{1}{p_i^{a_i}(p_i-1)^2}.
+\]
+Each $F'_i$ is positive and has denominator at most $p_i^E$. Each replacement changes its factor by less than $P^{-T_r(B)/3}$.
+
+Set $R_s=D+1-\prod_{i\le s}F_i\prod_{i>s}\alpha_i$, and define $J_s$ by replacing $F_i$ with $F'_i$ in this expression. For $s<r$ the missing tails make $J_s>0$. At $s=r$ the strict replacement of at least one factor still gives $J_r>0$. In a telescoping comparison of the two products, all factors other than the one being replaced have product at most $D+1$. Thus, for every $s$,
+\[
+0\le J_s-R_s\le r(D+1)P^{-T_r(B)/3}\le P^{-L_r-2}.
+\]
+For $s<r$ we also have
+\[
+\frac{R_s}{D+1}=1-\prod_{i>s}\frac{\alpha_i}{F_i}
+\le\sum_{i>s}\frac{F_i-\alpha_i}{F_i}<\frac{r}{p_{s+1}-1}.
+\]
+Here $0<F_i-\alpha_i<a_i/(p_i-1)$.
+
+Inductively suppose $p_i\le P^{L_{i-1}+3}$ through $i=s$. The denominator of $J_s$ is at most $\prod_{i\le s}p_i^E\le P^{L_s}$, since $L_i=L_{i-1}+E(L_{i-1}+3)$. Its positivity gives $J_s\ge P^{-L_s}$ and therefore $R_s>\frac12P^{-L_s}$. For $s<r$ the preceding upper bound gives $p_{s+1}-1<2r(D+1)P^{L_s}$, hence $p_{s+1}\le P^{L_s+3}$. The induction starts with an empty product. At $s=r$ it gives $R_r>0$ although $R_r=0$. This proves the claim.
+
+Start with $B_0=1$ and put $B_{j+1}=T_r(B_j)$. If some exponent were at least $B_r$, the claim would require one exponent strictly inside each of the $r$ disjoint intervals $(B_j,B_{j+1})$, $0\le j<r$, in addition to that exponent. Thus every $a_i<B_r$. For each of the finitely many exponent lists, $R_s>0$ for $s<r$ and the upper bound for $p_{s+1}$ in terms of the exact $R_s$ gives finite prime choices successively. Evaluate the fixed-point equation for each completed list.\qedx
+\newpage
+\hd{7\quad Reproducing the finite checks}
+\thm{Three-prime enumeration} For each permuted exponent triple $(i,j,k)$ on primes $x<y<z$, let $D=(i+1)(j+1)(k+1)$. The residual bound proved in Section 6 gives $x\le1+3(D+1)$. Compute $A=H_i(x)$ and $G=(D+1)x^i-A(j+1)(k+1)$. A solution needs $G>0$. The same bound gives $y\le1+2(D+1)x^i/G$. After choosing $y$, put $W=AH_j(y)$ and $g=(D+1)x^i y^j-(k+1)W$. We must have
+\[
+0<g/W=T_k(z),\qquad k/z\le T_k(z)<k/(z-1).
+\]
+Thus $z=\lceil kW/g\rceil$. The first program evaluates the original product identity for each eligible odd $z$; it even retains integer equalities at composite $z$. A second program uses monotonicity of the rational functions $H_j(t)/t^j$ to bound $x,y$ and bisection to recover $z$. For the control $(i,j,k)=(1,1,1)$ both programs recover the same six odd composite last values. For $a=4,5,8,9$ both return no integer equalities.
+
+\thm{Squarefree enumeration} For each selected $r$ we certify the factorization of $2^r+1$ using trial division for small primes and recursive Lucas certificates for larger primes. Section 1 reduces the search to ordered factorizations $c_0\cdots c_{r-1}=2^r+1$. A run of $g$ coefficients equal to $1$ sends $y=p+1$ to $2^g y$. If $2$ generates the units modulo a prime $h$, then $g\ge h-2$ forces $y=0\pmod h$ at both ends. Otherwise one of the $g+1$ vertices of the run would have $y=1\pmod h$ and its purported prime $p>h$ would be composite.
+
+The first verifier enumerates orders of the coefficients greater than $1$ and inserts unit gaps, rooting a longest gap at the end. A backward coefficient-$c$ edge sends $y$ to $(cy+1-c)/2\bmod h$. Over all odd $r$ through $101$ and $r=2$, it examines $3{,}167{,}295$ orders. Seven gap assignments reach its final small-divisor screen. Only $(3,7)$ survives. A second enumeration checks $22{,}543$ small assignments directly, and a different forward gap search agrees through $r=63$.
+
+For the extension, let $K$ count the prime factors of $2^r+1$ with multiplicity. A longest unit gap has length $L\ge\lfloor(r-1)/K\rfloor$. Fix $L$ and traverse the cycle backwards from that gap. Assign a nonempty subset of the remaining prime occurrences to each successive nonunit coefficient, inserting at most $L$ unit edges between consecutive nonunit coefficients. Reject an assignment if a tracked prime $h$ divides a vertex. A completion must use all occurrences and exactly $r$ edges, and return to the root residue $0$ for $y$ modulo every active $h$. For speed, auxiliary tables rule out partial paths whenever even arbitrarily many additional unit edges cannot complete them. Each table tests every available subset and closes the allowed residues under unit steps. Direct enumeration agrees in all $170$ small tests, including four positive controls. The extension excludes all $26$ additional counts needed through $r=201$. The archive contains a transcript for each one.
+
+\thm{Earlier work} The linked report [2] gives the even squarefree obstruction, the ordering $b\le a$ and the single-candidate formula for the last prime. It reports uniqueness up to $n=10^9$ and for two exponents both at most $200$. Sugui [3] gives parity and small-factor results and a separate squarefree five-prime computation.
+\par\small
+[1] J. Krizek, \Refe{https://oeis.org/A245211}{OEIS A245211} (2014).\quad
+[2] \Refe{https://github.com/umaia1234/agentic-conjectures/blob/78a56edb19eadb6a23f5f791273f016e0b3e0f50/problems/oeis-a245211/DETAILS.md}{\texttt{umaia1234/agentic-conjectures}, weighted proper-divisor sum}.\par
+[3] M. A. Sugui, \Refe{https://doi.org/10.5281/zenodo.24437886}{\emph{Formal Verification of Parity Obstructions and Fixed-Point Exclusions for Proper-Divisor Moments}} (2026).
+\end{document}

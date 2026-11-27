@@ -1,0 +1,5 @@
+1 odd integer roots 6
+4 odd integer roots 0
+5 odd integer roots 0
+8 odd integer roots 0
+9 odd integer roots 0

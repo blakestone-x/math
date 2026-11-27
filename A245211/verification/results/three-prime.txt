@@ -1,0 +1,5 @@
+1 7 42 11 8 integer roots [(5, 23, 517), (5, 31, 77), (5, 37, 55), (7, 11, 115), (7, 13, 45), (7, 17, 25)] prime solutions []
+4 40 910 254 144 integer roots [] prime solutions []
+5 45 675 213 111 integer roots [] prime solutions []
+8 62 1305 418 229 integer roots [] prime solutions []
+9 63 4133 1112 555 integer roots [] prime solutions []
