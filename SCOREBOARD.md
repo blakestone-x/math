@@ -1,6 +1,6 @@
 # Proof fleet scoreboard
 
-**November 26, 2026.** The release branch indexes **95 research projects**. It includes the 79 projects on `main` at [`78ff908`](https://github.com/blakestone-x/math/tree/78ff908b9cad14c546f8ebc39d3ffc10a2e84aa1) and 16 additional project directories. The two fleet releases contributed **28 manuscripts**. The continuation below adds 16 manuscripts filed in 14 projects, six of them in new directories. [Next proof targets](RESEARCH_PLAN.md)
+**November 26, 2026.** The release branch indexes **97 research projects**. It includes the 81 projects on `main` at [`689c8e5`](https://github.com/blakestone-x/math/tree/689c8e59a624ef7802567ca3ce7bbb19cd2b4451) and 16 additional project directories. The two fleet releases contributed **28 manuscripts**. The continuation below adds 16 manuscripts filed in 14 projects, six of them in new directories. [Next proof targets](RESEARCH_PLAN.md)
 
 A project can cover several numbered conjectures or companion sequences. The last column links the proof and identifies executable or Lean checks where available. Each paper states the remaining open cases and credits earlier results where applicable.
 
@@ -45,7 +45,7 @@ All rows refer to research manuscripts posted by this project. A Lean link recor
 
 ## Further work incorporated from main
 
-Fourteen additional project directories arrived on `main` between `e5967ee` and `78ff908`. The fleet branch includes those commits and credits these separate results. [Commits in this interval](https://github.com/blakestone-x/math/compare/e5967eeb4e1543514fd4e759827d8b10dddf7332...78ff908b9cad14c546f8ebc39d3ffc10a2e84aa1)
+Sixteen additional project directories arrived on `main` between `e5967ee` and `689c8e5`. The fleet branch includes those commits and credits these separate results. [Commits in this interval](https://github.com/blakestone-x/math/compare/e5967eeb4e1543514fd4e759827d8b10dddf7332...689c8e59a624ef7802567ca3ce7bbb19cd2b4451)
 
 | Project | Scope recorded in its manuscript |
 |---|---|
@@ -63,6 +63,8 @@ Fourteen additional project directories arrived on `main` between `e5967ee` and 
 | [Rhombus coronas, A233332](A233332/README.md) | Proves order 13 is the least recurrence order for each column, with exact formulas and a symmetry-count correction. |
 | [Binary bracelet orbits](A203399/README.md) | Corrects the divisor formula for every table entry and classifies the lengths at which the original rule works on the whole row. |
 | [Periodic symmetric functions](Periodic-symmetric-functions/README.md) | Proves the ten proposed symmetric-function formulas and gives the exact recurrence order at every fixed omission count for these periods. |
+| [Consecutive-bar tilings](A394981/README.md) | Proves Yane’s factor of four at every odd length from three onward, identifies the exceptional initial pair and gives a recurrence for the full count. |
+| [A141344](A141344/README.md) | Derives Mathar’s three-step recurrence and determines the eventual alternating sign beginning at index 17. |
 
 The same commits also strengthened the existing Ducci preperiod, prime-square Erdős–Straus offset, lattice-distance, and complementary-sequence projects. [Ducci distribution](Ducci-preperiod/distribution.md) · [Erdős–Straus offsets](Erdos-Straus-offset/README.md) · [Lattice results](Erdos-132-convex-lattice/README.md) · [Complementary-sequence families](A294532/README.md)
 

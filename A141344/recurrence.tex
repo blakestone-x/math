@@ -1,0 +1,50 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!48!black,pdfauthor={Blake Stone},pdftitle={An exact recurrence and sign rule for A141344}]{hyperref}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries An exact recurrence and sign rule for A141344}\par\vspace{9pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+Paul Barry's sequence \href{https://oeis.org/A141344}{OEIS A141344} consists of the coefficients $a_n$ of the formal power series
+\[
+ F(x)=\frac{2-\sqrt{1+4x}}{2-x-\sqrt{1+4x}},\qquad \sqrt{1+4x}=1+2x+O(x^2).
+\]
+R. J. Mathar proposed the following recurrence in 2012. For all $n\ge3$,
+\[
+\begin{aligned}
+ 3(n-1)a_n+2(2n-11)a_{n-1}
+    +(79-31n)a_{n-2}+2(2n-5)a_{n-3}=0.
+\end{aligned}
+\]
+The initial values are $a_0=1$, $a_1=1$, $a_2=3$.
+
+\paragraph{Proof.} Set $d(x)=3-8x+x^2$. Rationalizing the denominator gives
+\[
+ d(x)F(x)=3-6x+x\sqrt{1+4x}.
+\]
+For $G(x)=x\sqrt{1+4x}$, differentiation gives $x(1+4x)G'=(1+6x)G$. Substitution yields the exact polynomial identity
+\[
+\begin{aligned}
+ x(3+4x-31x^2+4x^3)F' &+(-3-18x+17x^2+2x^3)F\\
+   &=-3-18x+12x^2 .
+\end{aligned}
+\]
+For $n\ge3$ the right side has zero coefficient at $x^n$. Since $[x^n]x^{j+1}F'=(n-j)a_{n-j}$ for $0\le j\le n$, taking coefficients gives the stated recurrence. The expansion at the origin supplies the three initial values.\hfill$\square$
+
+\paragraph{The last sign exception.} Every even-index term is positive. Odd-index terms are positive through $n=15$ and negative from $n=17$ onward. To see this, put $b_n=(-1)^n a_n$. Then
+\[
+ 3(n-1)b_n=(4n-22)b_{n-1}+(31n-79)b_{n-2}+(4n-10)b_{n-3}.
+\]
+All three coefficients on the right are positive for $n\ge6$. Iterating the original recurrence gives positive $a_0,\ldots,a_{16}$ and
+\[
+ (b_{16},b_{17},b_{18})=(2307339,387531,21769251).
+\]
+Induction gives $b_n>0$ for every $n\ge16$. This also locates the first negative term at index 17.
+
+\vfill
+\small The differential-equation method for algebraic generating functions is classical. For related Mathar recurrences see S. B. Ekhad, M. Yang and D. Zeilberger, \href{https://sites.math.rutgers.edu/~zeilberg/mamarim/mamarimhtml/mathar.html}{\emph{Automated Proofs of Many Conjectured Recurrences in the OEIS made by R.J. Mathar}} (2017).
+\end{document}
