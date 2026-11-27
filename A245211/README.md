@@ -1,5 +1,7 @@
 # Partial results on fixed points of OEIS A245211
 
+The [three-prime continuation](simple-prime.md) rules out every three-prime fixed point in which at least one prime occurs to the first power, and supplies an exponent restriction for any number of prime factors.
+
 **Blake Stone · Developed with OpenAI Astra 6.2**
 
 Jaroslav Krizek asked whether $21$ is the only positive integer $n$ equal to the sum of $d\,\tau(d)$ over its proper positive divisors, where $\tau(d)$ is the number of positive divisors of $d$. The proper divisors of $21$ give $1+6+14=21$. The unrestricted conjecture remains open. [OEIS A245211](https://oeis.org/A245211)

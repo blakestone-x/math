@@ -10,8 +10,10 @@ Let $f(c)$ be the largest possible number of positive minus negative adjacency e
 | 5 | 3 | 23 |
 | 6 | 3 | 27 |
 | 7 | 4 | 32 |
+| 8 | 4 | 36 |
+| 9 | 5 | 41 |
 
-The manuscript proves the upper bounds over every graph order and allows arbitrary pendant forests. The lower constructions are due to Andrea Paone and Marco Paone. Their Conjecture 5.4 predicts $f(c)=\lfloor(c+1)/2\rfloor$ for all positive $c$. Their earlier bounds already agree at $c=1$. For every $c\ge4$, the manuscript also improves their general upper bound from $c$ to $c-2$. The addendum settles the next two values. At eight independent cycles the remaining interval is $4\le f(8)\le6$. [Source preprint, Proposition 5.2, Theorem 5.3 and Conjecture 5.4](https://doi.org/10.5281/zenodo.21706797)
+The upper bounds allow every graph order and arbitrary pendant forests. The lower constructions are due to Andrea Paone and Marco Paone. Their Conjecture 5.4 predicts $f(c)=\lfloor(c+1)/2\rfloor$ for all positive $c$. Their earlier bounds already agree at $c=1$. The first two manuscripts give the cases through seven. The third proves the cases eight and nine, establishes $f(c)\le c-4$ for $c\ge8$, and proves that $\lim f(c)/c$ exists in $[1/2,5/6]$. The next case is $5\le f(10)\le6$. [New manuscript and verification](eight-nine.md) · [Original conjecture](https://doi.org/10.5281/zenodo.21706797)
 
 The core of the proof is a reduction of arbitrary trees to a choice of at most one leaf per vertex of the 2-core. Bipartite path interiors then bound the signature in terms of the core's branch vertices. A singular principal submatrix rules out equality for cubic kernels with six or more vertices. [Manuscript PDF](manuscript.pdf) · [LaTeX source](manuscript.tex)
 

@@ -1,0 +1,7 @@
+independent interval checks: 42 including 40 empty intervals
+admissible exponent pairs by smaller exponent: [(1, 4), (4, 2), (8, 10), (9, 19), (12, 13), (13, 20), (16, 3)]
+ordered smallest-prime rows after sieves: 15146
+extended prime-divisor intervals: 42 largest endpoint: 254942533
+single-candidate completions: 18675
+integer equalities at ordered odd bases: [(7, 1, 15, 1, 31, 1)]
+three-prime fixed points with a simple prime divisor: 0

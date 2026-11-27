@@ -1,0 +1,14 @@
+direct h=0 D= 4 factors=22
+direct h=1 D= 8 factors=56
+direct h=2 D=13 factors=98
+direct h=3 D=18 factors=140
+direct h=4 D=20 factors=161
+direct h=5 D=36 factors=280
+direct h=6 D=36 factors=287
+direct h=7 D=40 factors=322
+scaled h=4 D=20 factors=161
+scaled h=5 D=30 factors=238
+scaled h=6 D=32 factors=259
+scaled h=7 D=40 factors=322
+scaled h=8 D=40 factors=329
+84 horizontal and 84 vertical gcds checked by integer elimination.

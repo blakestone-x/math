@@ -1,0 +1,12 @@
+modulus 2, maximum 2, normalized nodes 3, normalized extremizers 1
+witness 11
+modulus 3, maximum 4, normalized nodes 5, normalized extremizers 1
+witness 1122
+modulus 4, maximum 24, normalized nodes 4904, normalized extremizers 7
+witness 112332211233122133121132
+modulus 5, maximum 22, normalized nodes 2504, normalized extremizers 2
+witness 1121123133434434331321
+modulus 6, maximum 42, normalized nodes 53179810, normalized extremizers 4
+witness 122143241454155212524325455443534254145145
+modulus 7, maximum 52, normalized nodes 70787726, normalized extremizers 1
+witness 1166314334235126611463641661463641166215324334136611

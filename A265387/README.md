@@ -1,5 +1,7 @@
 # Seventy ratio bands in two Gray-code Fibonacci recurrences
 
+The [arbitrary-seed continuation](universal.md) proves mean growth 2 for every positive pair of seeds, classifies the eventual five-step sign patterns, and proves at least 141 accumulation points of each original ratio sequence. [Manuscript](universal.pdf) · [Lean growth theorem](UniversalGrowth.lean) · [Lean limits](UniversalLimits.lean)
+
 Research note for Blake Stone, developed with OpenAI Codex.
 
 Stanislav Sykora asked about the mean growth and persistent consecutive-ratio fluctuations of two sequences built from the binary-reflected Gray transform $G(m)=m\mathbin{\mathrm{XOR}}\lfloor m/2\rfloor$. From initial terms $1,1$, A265385 uses $a_{n+2}=G(a_n+a_{n+1})$ and A265387 uses $b_{n+2}=G(b_n)+G(b_{n+1})$. The two sequences satisfy $a_n=G(b_n)$ at every positive index. [OEIS A265385](https://oeis.org/A265385) · [OEIS A265387](https://oeis.org/A265387)

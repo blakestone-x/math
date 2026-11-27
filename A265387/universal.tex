@@ -1,0 +1,118 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,hyperref,xcolor}
+\geometry{left=.92in,right=.92in,top=.79in,bottom=.82in}
+\definecolor{ink}{HTML}{195552}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink,pdftitle={Five-phase oscillation for Gray--Fibonacci recurrences with arbitrary seeds}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\fl}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\G}{G}
+\newcommand{\A}{\mathrm A}
+\newcommand{\B}{\mathrm B}
+\newcommand{\signs}{\operatorname{sgn}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\begin{document}
+{\small\sffamily\color{ink} INTEGER SEQUENCES \hfill RESEARCH NOTE}\par
+{\LARGE\bfseries Five-phase oscillation for Gray--Fibonacci\\[2pt] recurrences with arbitrary seeds}\par
+{\small Research note for Blake Stone, developed with OpenAI Codex}\par
+\medskip
+Write $G(m)=m\mathbin{\mathrm{XOR}}\fl{m/2}$ for the binary-reflected Gray transform. We study
+\[
+ a_{n+2}=G(a_n+a_{n+1}),\qquad b_{n+2}=G(b_n)+G(b_{n+1}).
+\]
+Sykora introduced both sequences with initial terms $(1,1)$ in 2015 and conjectured mean growth 2 with persistent fluctuations in $s_x(n)=x_n/x_{n-1}$ [1,2]. Earlier work proved the two growth limits and gave 70 disjoint ratio bands for each sequence [3]. We prove a result for every positive integer seed pair and exclude a periodic limit with 140 phases for the original seeds. $G$ preserves bit length and is invertible by cumulative XOR from the high bit down. Write $H=G^{-1}$. Discarding $k$ low bits commutes with both maps. The recurrences are conjugate: starting $a_i=G(b_i)$ for $i=1,2$ gives $a_n=G(b_n)$ at every index.
+
+\begin{theorem}[Universal growth]
+For arbitrary positive integer seeds, the bit length increases by exactly one from $x_n$ to $x_{n+1}$ for every $n\ge6$. Every $a_n$ begins in binary with two ones for $n\ge7$, and every $b_n$ begins with $10$ for $n\ge7$. Both starting-index bounds are sharp. For either recurrence, $x_n^{1/n}\to2$ and $(x_{2n}/x_n)^{1/n}\to2$.
+\end{theorem}
+\begin{proof}
+The top bit of $a_3$ is at least as high as those of $a_1,a_2$, and $a_3\ge2$. Subsequently the bit length is nondecreasing and can increase by at most one at a step. At a pair $(x,y)=(a_n,a_{n+1})$ with $n\ge3$, put $L=\ell(y)$, $d=2^{L-2}$, $u=\fl{x/d}$ and $v=\fl{y/d}$. Then $1\le u\le3$ and $2\le v\le3$. The prefix $w=\fl{(x+y)/d}$ is $u+v+c$ for $c=0,1$. Let $e=1$ if $w\ge4$, and $e=0$ otherwise. This is the increase in bit length from $y$ to $G(x+y)$. The next pair of prefixes is $(\fl{v/2^e},\fl{G(w)/2^e})$. All six rows are as follows. A superscript marks the unique transition whose increase is zero.
+\begin{center}
+\begin{tabular}{cl@{\hspace{2.5em}}cl}
+\toprule
+$(u,v)$ & possible next pairs & $(u,v)$ & possible next pairs\\\midrule
+$(1,2)$ & $(1,3),(2,2)^{0}$ & $(2,3)$ & $(1,2),(1,3)$\\
+$(1,3)$ & $(1,3)$ & $(3,2)$ & $(1,2),(1,3)$\\
+$(2,2)$ & $(1,3)$ & $(3,3)$ & $(1,2)$\\\bottomrule
+\end{tabular}
+\end{center}
+Every path reaches the absorbing pair $(1,3)$ within three steps from $(a_3,a_4)$. There $x$ has length $L-1$, $y$ has length $L$ and $y$ starts with $11$. For seeds $(16,1)$ the first seven $a$ terms are $16,1,25,23,40,32,108$. The fifth to sixth step preserves length and the sixth term begins with $10$. Conjugacy preserves all lengths and sends the initial bits $11$ to $10$ under $H$. For $n\ge7$ the normalized mantissas $x_n/2^{\ell(x_n)}$ lie in $[3/4,1)$ for $a$ and $[1/2,3/4)$ for $b$. Since $\ell(x_n)-n$ is constant, these bounds give both limits.
+\end{proof}
+\newpage
+\begin{theorem}[Universal five-phase oscillation]
+For every positive seed pair the signs of $a_{n+1}-2a_n$ eventually repeat a cyclic shift of $+-+--$. The signs of $b_{n+1}-2b_n$ eventually repeat a cyclic shift of either $+----$ or $++-+-$, and both occur. Each ratio sequence has at least five distinct accumulation points. Once the initial transient has passed, for every positive $t$ indivisible by five,
+\[
+ |s_a(n+t)-s_a(n)|>0.00086,\qquad |s_b(n+t)-s_b(n)|>0.00031.
+\]
+\end{theorem}
+\begin{proof}
+For any fixed $s\ge2$ and all sufficiently large $n$, use $u_n=\fl{a_n/2^{\ell(a_n)-s}}$. Bit lengths increase by one, so $(u,v)=(u_n,u_{n+1})$ has possible successors
+\begin{equation}
+ (v,G(h)),\qquad \fl{(u+2v)/4}\le h\le\fl{(u+2v+2)/4}.
+ \label{step}
+\end{equation}
+Indeed the two discarded remainders, expressed as fractions of their respective scales, contribute $\alpha+2\beta\in[0,3)$. Dividing the sum by its new scale and commuting truncation with $G$ gives \eqref{step}. The ratio with numerator index $n+1$ lies strictly between
+\begin{equation}
+ L(u,v)=\frac{2v}{u+1},\qquad U(u,v)=\frac{2(v+1)}u.\label{band}
+\end{equation}
+For the conjugate use $H(u),H(v)$, since truncation commutes with $H$.
+
+The following finite induction treats all seed pairs together. Start at $s=2$ with the single pair $(3,3)$ of separately normalized prefixes. Given the retained pairs at $s$, form their four possible children $(2u+i,2v+j)$, $i,j\in\{0,1\}$, at $s+1$. Join children by \eqref{step} whenever both endpoints are present. Retain the vertices on directed cycles, including loops. At each finite precision, the tail of every actual orbit lies in the retained set. In fact the preceding precision has this property by induction, while a noncyclic vertex in any finite directed graph can occur at most once along a path. Moreover the tail lies in a single strongly connected component, because the directed graph of components is acyclic.
+
+At $s=23$, the graph has 677 retained vertices in 15 strongly connected components. Choose a root in each component and let $d(u,v)$ be its directed distance from the root. In eleven components the gcd of all $d(y)+1-d(z)$ over directed edges $y\to z$ is 5. In four it is 10. Thus $d\bmod5$ increases by one per step. At each vertex form the two intervals in \eqref{band} in the respective coordinates. In each component the intervals with different labels $d\bmod5$ are disjoint. The smallest gaps over all components are
+\[
+ g_a=\frac{3253330609}{3776390012076},\qquad
+ g_b=\frac{1380043807}{4347986250720}.
+\]
+Here a phase set is the \emph{union} of its closed intervals; a convex hull can pass across another phase set. The five phase sets are compact and each is visited infinitely often. This proves the limit-point and separation assertions.
+
+Testing both endpoints against 2 yields one sign per phase. All fifteen components have the stated $a$ sign pattern. Twelve have the first $b$ pattern, three the second. To check realization, compute the $b$ orbits from $(1,1)$ and $(2,1)$ to index 101. Starting from the pair of $23$-bit prefixes at indices 100 and 101 in conjugate $a$ coordinates, closure under \eqref{step} gives respectively 45 and 67 pairs. With labels given by numerator index modulo 5, in order $0$ through $4$, the $b$ signs are $+-+-+$ and $--+--$. The standard-library program \texttt{universal\_verify.py} reproduces every integer and rational calculation above.
+\end{proof}
+
+\newpage
+\begin{theorem}[Original seeds]
+For $a_1=a_2=b_1=b_2=1$, both ratio sequences have at least 141 distinct accumulation points. Each of the 70 subsequences modulo 70 fails to converge. For both $x=a,b$,
+\[
+ \limsup_{n\to\infty}|s_x(n+140)-s_x(n)|>2^{-381}.
+\]
+\end{theorem}
+\begin{proof}
+For the remainder of the proof set $U_n=a_n/2^n$, $V_n=b_n/2^n$ and $p=140$. At precision $s$ we track $(u,v)=(\fl{2^s U_n},\fl{2^s U_{n+1}})$. Equation \eqref{step} and the ratio intervals \eqref{band} still apply. At $s=132$ obtain a seed pair at $n=24000$ by computing the integer recurrence. Label it with $n\bmod p$. Perform breadth-first closure under \eqref{step}, adding one modulo $p$ at every edge. Each revisited state has the assigned phase. There are $126281$ distinct vertices. For each label take the convex hull of its intervals \eqref{band}, rounding out to multiples of $2^{-133}$. The smallest distances between the 140 closed hulls are $1498900861973\cdot2^{-133}$ for $a$ and $2852760788761\cdot2^{-133}$ for $b$. Each class modulo 70 splits into two infinite subsequences in different hulls.
+
+The following additional certificate controls changes within a phase. At every $n\ge24000$ divisible by $p$,
+\begin{equation}
+ \max(|U_{n+p}-U_n|,\ |U_{n+p+1}-U_{n+1}|)>2^{-184}.\label{near}
+\end{equation}
+To prove it we exclude all length-$p$ paths beginning in phase zero for which the two integer coordinates at the end each differ by at most one from their respective starting coordinates. For each eligible start assign a distinct bit. Propagate the bitsets by unions along the arc layers $0,1,\ldots,p-1$, recording the last phase-zero layer separately. At each endpoint keep only source bits from integer pairs at coordinate distance at most one in both coordinates. Propagate admissible source bits backwards over the same layers. An intermediate vertex occurs on a viable path exactly when its forward and backward bitsets meet. Retain all such vertices, with the starts and ends of viable paths. At the next precision allow all four children of each retained pair and their edges \eqref{step}; repeat. This pruning is valid because truncating two integers at distance at most one leaves them at distance at most one. Every hypothetical fine path therefore projects to a viable coarse path. The endpoints may be distinct. The two occurrences of phase zero serve as distinct layers during propagation.
+\begin{center}
+\begin{tabular}{c|rrrrrr}
+precision &132&180&181&182&183&184\\\hline
+distinct retained pairs &39524&7668&3421&2114&990&0
+\end{tabular}
+\end{center}
+Emptiness at 184 bits proves \eqref{near}: if the real coordinate differences were both at most $2^{-184}$, the corresponding integer differences would both be at most one. The program \texttt{return\_verify.py} supplies the full finite certificate. Its \texttt{--cross-check} option repeats all 53 levels from the independently computed $b$ seed, using successors $(v,h)$ for $\fl{(G(u)+2G(v))/4}\le h\le\fl{(G(u)+2G(v)+2)/4}$ and comparing the endpoints in $G$ coordinates.
+
+Write $\Delta W_n=W_{n+p}-W_n$. By \eqref{near}, $\limsup|\Delta U_n|\ge2^{-184}$. The exact identity $U_{n+1}=2V_{n+2}-U_n/2$ then yields
+$\limsup|\Delta V_n|\ge\tfrac14\limsup|\Delta U_n|\ge2^{-186}$.
+
+\newpage
+For either $W=U,V$, let $z_n=\log W_n$ and $d_n=z_{n+p}-z_n$. For the original seeds the length theorem gives $1/4\le W_n<1/2$ for all $n\ge7$ (indeed $a_7=52$ and $b_7=39$). Hence $z_n$ stays in an interval of length $\log2<1$ and $D=\limsup|d_n|\ge2^{-186}$. With $H=\limsup|d_{n+p}-d_n|$, telescoping any $m$ increments gives
+\[
+ D\le \frac1m+\frac{m-1}{2} H.
+\]
+Indeed $|\sum_{j=0}^{m-1}d_{n+jp}|=|z_{n+mp}-z_n|<1$, while for a fixed $j$ the limsup of $|d_{n+jp}-d_n|$ is at most $jH$. Taking $m=2^{188}$ gives $H>6\cdot2^{-376}$. On the other hand,
+\[
+ d_{n+p}-d_n=
+ \sum_{i=1}^p\bigl(\log s_x(n+p+i)-\log s_x(n+i)\bigr).
+\]
+Both sequences of ratios are eventually above 1 by Theorem 1, so the logarithm is 1-Lipschitz on their range. Thus $p\limsup|s_x(n+p)-s_x(n)|\ge H$, which gives the stated $2^{-381}$ bound. If all 140 ratio subsequences converged, the lag-$p$ differences would tend to zero. At least one bounded subsequence therefore has two distinct accumulation points in its hull, and the other 139 hulls contribute one each. The exact cardinality of either accumulation set remains open.
+\end{proof}
+
+\section*{Sources and reproduction}
+\small
+[1] S. Sykora, \href{https://oeis.org/A265385}{OEIS A265385} (2015), \href{https://github.com/oeis/oeisdata/blob/main/seq/A265/A265385.seq}{source record}.\par
+[2] S. Sykora, \href{https://oeis.org/A265387}{OEIS A265387} (2015), \href{https://github.com/oeis/oeisdata/blob/main/seq/A265/A265387.seq}{source record}.\par
+[3] B. Stone with OpenAI Codex, \href{https://github.com/blakestone-x/math/blob/c18014b822980b0d6cb9b78fc228e5efda2718c6/A265387/manuscript.pdf}{Persistent fluctuations in two Gray-code Fibonacci recurrences} (2026). The earlier paper builds on the \href{https://github.com/blakestone-x/math/tree/c18014b822980b0d6cb9b78fc228e5efda2718c6/A265385}{initial mean-growth proof}. It proves both original limits and separates all 70 residue classes, leaving convergence modulo 70 and the cardinality of the accumulation set undecided.\par
+Run \texttt{python3 universal\_verify.py} and \texttt{python3 return\_verify.py --cross-check} with Python 3.9 or newer and ordinary assertions enabled. The six-state growth argument is independent of these programs. In Lean 4.19, \texttt{UniversalGrowth.lean} proves both universal binary-prefix statements in the standard library. \texttt{UniversalLimits.lean} proves both real-valued limits for both recurrences with arbitrary positive seeds, using the Mathlib revision pinned in the project.
+\end{document}

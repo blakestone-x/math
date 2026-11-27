@@ -1,5 +1,7 @@
 # Large irreducible factors of Sun’s Franel-number polynomials
 
+The [dyadic continuation](dyadic.pdf) proves irreducibility whenever the odd part of $n$ or $n-1$ is at most 127. For fixed offset $c$ from a certified dyadic family, the total degree outside one irreducible factor is eventually at most $\lfloor c/2\rfloor$. This also holds for each fixed odd base with no adjacent binary ones. [LaTeX source](dyadic.tex) · [Exact polygon verifier](verify_dyadic.py) · [Certificate transcript](dyadic-verification.txt)
+
 Zhi-Wei Sun conjectured in March 2013 that $f_n(X)=\sum_{j=0}^{\lfloor n/2\rfloor}\binom nj^2\binom{2n-2j}{n}X^j$ is irreducible over the rationals for every $n\ge2$. The manuscript proves the conjecture for four infinite families and for every index through 2048. The general case remains open here. [Sun’s statement in OEIS A000172](https://oeis.org/A000172/internal)
 
 [Manuscript (PDF)](manuscript.pdf) · [LaTeX source](manuscript.tex) · [Finite certificate checker](verify.cpp) · [Witness primes](primes.txt)

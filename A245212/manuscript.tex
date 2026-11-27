@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{A density-one theorem for Krizek's second divisor moment}
+\author{Blake Stone\\\small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Krizek conjectured that the difference between $n\tau(n)$ and the
+weighted proper-divisor sum equals $\sigma(n)$ exactly at powers of
+two. We prove the conjecture on a set of natural density one.
+More generally, for almost every $n$ the two divisor sums share
+arbitrarily many distinct odd prime divisors outside $n\tau(n)$,
+in the precise density sense stated below. An exact reduction along
+each progression $m,2m,4m,\ldots$ with $m$ odd yields further
+infinite classes and verifies the conjecture for all integers whose
+odd part is at most $10^8$.
+\end{abstract}
+
+\section{Divisibility at almost all integers}
+Write $U(n)=n\tau(n)$, $H(n)=\sum_{d\mid n}d\tau(d)$, and
+$\sigma(n)=\sum_{d\mid n}d$. Each is multiplicative. The sequence
+A245212 is $2U(n)-H(n)$. In 2014 Jaroslav Krizek conjectured
+$2U(n)-H(n)=\sigma(n)$ exactly at the powers of two \cite{oeis}.
+Call a positive integer $n$ exceptional if $H(n)+\sigma(n)=2U(n)$.
+We first bound the density of this entire equality set.
+
+\begin{lemma}
+For a reduced residue class $h$ modulo a fixed integer $q$, almost
+every positive integer $n$ has a prime $p\equiv h\pmod q$ with
+$v_p(n)=1$.
+\end{lemma}
+\begin{proof}
+For each finite set $P$ of such primes, the density of integers with
+$v_p(n)\ne1$ for every $p\in P$ equals
+$\prod_{p\in P}(1-1/p+1/p^2)$ by the Chinese remainder theorem
+modulo $\prod p^2$. The sum of the reciprocals of the primes in a
+reduced progression diverges by Dirichlet's theorem in its
+prime-reciprocal form \cite{dirichlet}. These finite products tend
+to zero. The integers with no such prime have upper density zero.
+\end{proof}
+
+\begin{theorem}
+For each fixed $k\ge1$, the integers $n$ for which there are at least
+$k$ distinct odd primes $\ell$ satisfying
+\[
+ \ell\mid H(n),\qquad \ell\mid\sigma(n),\qquad \ell\nmid U(n)
+\]
+have natural density one. The primes may be required to exceed any
+prescribed bound.
+\end{theorem}
+\begin{proof}
+Fix an odd prime $\ell$. For almost every $n$ the lemma supplies a
+prime $p\equiv-2^{-1}\pmod\ell$ of exponent one. Its local factor
+$H(p)=1+2p$ forces $\ell\mid H(n)$. A prime of exponent one
+congruent to $-1$ modulo $\ell$ forces $\ell\mid\sigma(n)$ in
+the same way.
+
+If $\ell\mid U(n)$, either $\ell\mid n$ or $\ell\mid\tau(n)$.
+In the second case some exponent $e$ in $n$ has $e+1$ divisible
+by $\ell$, so $p^{\ell-1}\mid n$ for some prime $p$. Counting
+multiples shows that the upper density is at most
+\[
+ c_\ell=\frac1\ell+\sum_{h=2}^{\infty}h^{1-\ell}.
+\]
+The bound for the infinite union follows directly at each cutoff $X$
+from $\lfloor X/h^{\ell-1}\rfloor\le X/h^{\ell-1}$. Also
+$c_\ell\to0$ as $\ell\to\infty$. For any $\varepsilon>0$, choose
+$k$ distinct odd primes beyond the required bound with sum of their
+$c_\ell$ less than $\varepsilon$. Outside a set of upper density
+at most $\varepsilon$ all of them satisfy the three conditions.
+Let $\varepsilon$ tend to zero.
+\end{proof}
+
+Consequently $H(n)+\sigma(n)=2U(n)$ holds on a set of natural density
+zero. On a set of density one Krizek's claimed equivalence therefore
+holds. Indeed, for any fixed integers $A\ne0,B,C$, the equality
+$AU(n)=BH(n)+C\sigma(n)$ has density zero by choosing the odd primes
+larger than $|A|$.
+
+\section{Exact tests on a fixed odd part}
+For odd $m>1$ put $T=H(m)-U(m)>0$ and $B=U(m)-\sigma(m)>0$.
+The latter inequality follows by comparing each of the $\tau(m)$
+divisors to $m$. Prime-power evaluations give
+\[
+ H(2^a)=a2^{a+1}+1,\qquad \sigma(2^a)=2^{a+1}-1.
+\]
+They show directly that every power of two, including $1$, is
+exceptional.
+
+\begin{proposition}
+For every fixed odd $m>1$, at most one of the integers $2^am$ can
+be exceptional. There is no such integer if $m$ is a prime power.
+\end{proposition}
+\begin{proof}
+Using multiplicativity in $2U(2^am)=H(2^am)+\sigma(2^am)$ gives
+\begin{equation}
+ 2^{a+1}(B-aT)=B+T,\qquad
+ \frac{B}{T}=a+\frac{a+1}{2^{a+1}-1}.\label{eq:dyadic}
+\end{equation}
+The right hand side equals $1$ at $a=0$ and lies strictly between
+$a$ and $a+1$ for each $a\ge1$. These values are distinct. For
+$m=p^b$ write $A=\sum_{j=0}^{b-1}(j+1)p^j$. The identities
+$H(m)=U(m)+A$ and $\sigma(m)=U(m)-(p-1)A$ follow by subtracting
+successive powers of $p$. Thus $B/T=p-1$, an integer at least two,
+which cannot occur in \eqref{eq:dyadic}.
+\end{proof}
+
+The parity condition gives another explicit infinite family. Equation
+\eqref{eq:dyadic} requires $H(m)-\sigma(m)=B+T$ even.
+For an odd base $p$, $H(p^e)$ is odd exactly when
+$e\equiv0,1\pmod4$, by summing $1,2,\ldots,e+1$ modulo two.
+Moreover $\sigma(m)$ is odd exactly when $m$ is a square.
+Thus if every odd prime exponent in $n$ is $0$ or $1$ modulo four
+and some is $1$ modulo four, equality is impossible for every
+exponent of two. In particular it is impossible for nontrivial
+squarefree odd parts. When the odd part is a square, equality requires
+it to be a fourth power. The first parity exclusion alone covers a
+set of density
+\[
+ \prod_{p\text{ odd}}(1+p^{-2})^{-1}
+ =\frac54\frac{\zeta(4)}{\zeta(2)}=\frac{\pi^2}{12}.
+\]
+Indeed the local factor for exponents $0,1\pmod4$ is
+$(1-p^{-1})(1+p^{-1})/(1-p^{-4})$. For the infinite product the
+tail error is bounded by $\sum_{p>Y}p^{-2}$, since a forbidden
+exponent is at least two. The excluded case $m$ a fourth power has
+density zero: up to $X$ the number of $2^a t^4$ is
+$O(\sum_{a\ge0}(X/2^a)^{1/4})=O(X^{1/4})$.
+
+\begin{proposition}
+If $n>1$ is odd and $\prod_{p\mid n}p/(p-1)\le2$, then
+$H(n)+\sigma(n)<2U(n)$. This covers every odd number with at most
+two distinct prime factors.
+\end{proposition}
+\begin{proof}
+For $p^b\Vert n$, use the local sum $A$ above and set
+$u_p=(p-1)A/U(p^b)$. Since $1-u_p=\sigma(p^b)/U(p^b)$, we have
+$0<u_p<1$. The ratio $(H(n)+\sigma(n))/U(n)$ equals
+\[
+ L(\mathbf u)=\prod_{p\mid n}\bigl(1+u_p/(p-1)\bigr)
+                       +\prod_{p\mid n}(1-u_p).
+\]
+This is affine in each coordinate separately. At the all-zero
+vertex it is $2$; at a vertex with nonempty set of ones $I$ it is
+$\prod_{p\in I}p/(p-1)\le2$. At every singleton vertex it is
+strictly less than two because $p$ is odd. Interpolation at an
+interior point takes a strictly positive weighted average of all
+vertex values. The last assertion follows from $(3/2)(5/4)<2$.
+\end{proof}
+
+\section{An unbounded verification in the dyadic exponent}
+The supplied standard-library C++ verifier enumerates each odd
+$3\le m\le10^8$ by its prime-power factorization. It computes $B,T$
+exactly. If $B=T$, exponent zero works. At positive exponents
+\eqref{eq:dyadic} shows that the sole candidate is $a=\lfloor B/T\rfloor$.
+It checks $2^{a+1}(B\bmod T)=B+T$ for that candidate. No equality
+survives among the $49{,}999{,}999$ odd parts. To see that 64-bit
+integer arithmetic suffices, $H(m)\le m\tau(m)^2\le4m^2<2^{63}$,
+and $B+T=H(m)-\sigma(m)>0$. Thus $a\ge63$ cannot satisfy the
+required divisibility. The test uses division before multiplication
+in the final equality. Together with the power-of-two evaluation
+this proves the conjecture for every $n$ with odd part at most
+$10^8$. The unrestricted conjecture is still open.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} J. Krizek, \href{https://oeis.org/A245212}{OEIS A245212},
+conjecture submitted July 23, 2014.
+\bibitem{dirichlet} A. V. Sutherland,
+\href{https://math.mit.edu/classes/18.785/2021fa/LectureNotes18.pdf}{Dirichlet
+$L$-functions, primes in arithmetic progressions}, MIT 18.785, Lecture 18.
+\end{thebibliography}
+\end{document}

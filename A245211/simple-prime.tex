@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\title{Three-prime fixed points of a divisor moment must be powerful}
+\author{Blake Stone\\\small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $S(n)$ be the sum of $d\tau(d)$ over the proper positive divisors of $n$.
+We prove that $S(n)=n$ has no solution $p^a q^b r$ with three distinct
+prime bases and $a,b\ge1$. Hence any three-prime counterexample to
+Krizek's conjecture must be powerful. The proof bounds the smaller
+repeated exponent by $16$ and the larger by $7b+3$, then finishes by a
+reproducible exact enumeration. We also give a uniform obstruction on
+individual exponents at every odd prime.
+\end{abstract}
+
+\section{The equation and local obstructions}
+Jaroslav Krizek proposed that $21$ is the unique positive fixed point of
+$S$ in OEIS A245211 \cite{source}. Earlier results include the
+prime-factor lower bound and local parity restrictions \cite{earlier,sugui}.
+The preceding note \cite{companion} classifies inputs with at most two
+prime factors and excludes $p^a q r$. We extend its rational
+approximation method to two variable exponents.
+
+Write $n=\prod p_i^{e_i}$, $D=\tau(n)=\prod(e_i+1)$, and set
+\[
+ H_e(t)=\sum_{j=0}^e(j+1)t^j,\qquad F_e(t)=t^{-e}H_e(t),\qquad
+ T_e(t)=F_e(t)-(e+1).
+\]
+Multiplicativity of the full divisor sum and the contribution of the
+proper divisor $n/p_i$, together with the separate term $1$, give
+\begin{equation}
+ \prod_i F_{e_i}(p_i)=D+1,\qquad
+ p_i>e_iD/(e_i+1)\ge D/2.\label{eq:main}
+\end{equation}
+Here and below the prime lower bound is used for inputs with at least two
+distinct prime factors. For $e\ge1$ and $t>1$, summing the finite
+geometric progression gives
+\begin{equation}
+ \frac{e}{t}\le T_e(t)=\frac{e}{t-1}-\frac{1-t^{-e}}{(t-1)^2}
+ <\frac{e}{t-1},\qquad
+ F_e(t)=\frac{(e+1)t^2-(e+2)t+t^{-e}}{(t-1)^2}.\label{eq:tail}
+\end{equation}
+
+\begin{proposition}\label{prop:local}
+For an odd prime $\ell$, $H_e$ vanishes on all units modulo $\ell$
+exactly when $\ell(\ell-1)$ divides $e+1$ or $e+2$. No exponent of a
+fixed point can satisfy the first divisibility. In the second case a
+fixed point requires $\prod_{j\ne i}(e_j+1)\equiv1\pmod\ell$ when
+$e=e_i$.
+\end{proposition}
+\begin{proof}
+At $t=1$ the value is $(e+1)(e+2)/2$. If $s$ is the member of
+$\{e+1,e+2\}$ divisible by $\ell$, then
+$(t-1)^2 H_e(t)\equiv1-t^s\pmod\ell$ by \eqref{eq:tail}.
+A generator of the cyclic group of units gives the condition
+$\ell-1\mid s$; the same condition suffices on all units.
+In either divisibility case $e\ge\ell(\ell-1)-2\ge\ell$.
+The prime base of this exponent exceeds $e$ by \eqref{eq:main}.
+A prime power alone cannot be a fixed point, as its proper moment
+is $1$ modulo its base.
+Thus the moment of the designated prime power is divisible by $\ell$.
+If some other prime base were $\ell$, its lower bound
+$p_j>e_j\prod_{h\ne j}(e_h+1)\ge e+1$ rules this out.
+Clearing the bases in \eqref{eq:main} now gives $D+1\equiv0\pmod\ell$.
+This contradicts $\ell\mid e+1$ and gives the stated congruence when
+$\ell\mid e+2$.
+\end{proof}
+
+For example, no fixed point has any exponent $5$ modulo $6$, and an
+exponent $4$ modulo $6$ requires the product of the other
+exponent increments to be $1$ modulo $3$.
+
+\section{Bounds on three variable exponents}
+For any initial list of chosen prime bases, define $R$ as $D+1$ minus
+the product in \eqref{eq:main} with each remaining factor $F_e(t)$
+replaced by $e+1$. If a factor remains then $R>0$ and
+\begin{equation}
+ \frac{R}{D+1}=1-\prod_{\mathrm{remaining}}\frac{e+1}{F_e(t)}
+ <\sum_{\mathrm{remaining}}\frac1{t-1}.\label{eq:res}
+\end{equation}
+Indeed $1-\prod(1-u_i)\le\sum u_i$ for $u_i\in[0,1]$, and
+$1-(e+1)/F_e(t)<1/(t-1)$ by \eqref{eq:tail}.
+
+\begin{lemma}\label{lem:single}
+Suppose $p^a q^b z^c$ is fixed with distinct prime bases and $q<z$.
+Then $q<p^3$ and $a<3bc+3b+4c+1$.
+\end{lemma}
+\begin{proof}
+Let $K=(b+1)(c+1)$, so $D=(a+1)K$ and $p-1\ge aK$.
+With $p$ chosen, \eqref{eq:tail} gives
+\[
+ R_1=1-KT_a(p)\ge\frac{K(1-p^{-a})}{(p-1)^2}
+ \ge\frac{K}{p(p-1)}.
+\]
+Hence $q-1<2(D+1)p(p-1)/K$ by \eqref{eq:res}. Since
+$2(D+1)/K=2a+2+2/K\le aK+1\le p$, this gives $q<p^3$.
+
+Suppose that $a\ge3bc+3b+4c+1$, so $a\ge4$ and $a\ge3b+1$.
+For the two chosen bases $p,q$, the positive residual is
+$R_2=D+1-(c+1)F_a(p)F_b(q)$. Clearing the denominator of the main
+term for $F_a(p)$ in \eqref{eq:tail} gives an integer $J$ such that
+\[
+ (p-1)^2 q^bR_2=J-\frac{(c+1)H_b(q)}{p^a}.
+\]
+Its positivity forces $J\ge1$. At any prime base of a fixed point
+$F_e(t)<e+2$ by \eqref{eq:main} and \eqref{eq:tail}.
+Since $p>aK\ge4K$, it follows that
+\[
+ 2(c+1)H_b(q)<4Kq^b<p^{3b+1}\le p^a.
+\]
+Thus $R_2>1/[2(p-1)^2q^b]$. Equation \eqref{eq:res} gives
+$z<1+2(D+1)(p-1)^2q^b<p^{3b+4}$, using $D+1<2p$ and $p>4$.
+The original integer identity and $H_a(p)\equiv1\pmod p$ now imply
+\[
+ p^a\le H_b(q)H_c(z)<(b+2)(c+2)q^b z^c
+ <p^{1+3b+(3b+4)c}.
+\]
+Here $(b+2)(c+2)\le(9/4)K<p$. This contradicts our assumption on $a$.
+\end{proof}
+
+\begin{lemma}\label{lem:both}
+If $p^a q^b r$ with distinct prime bases is fixed and $a\ge b$, then
+$b\le16$ and $a\le7b+3$.
+\end{lemma}
+\begin{proof}
+The upper bound on $a$ follows from Lemma~\ref{lem:single} in both
+orders of the other bases. For the other assertion assume $b\ge17$.
+List the three bases as $x<y<z$, in an arbitrary order of the exponents.
+Then $x>D/2=(a+1)(b+1)\ge324$ and $y<x^3$.
+For a base $t$ of exponent $e\ge b$ replace $F_e(t)$ by
+\[
+ F'_e(t)=F_e(t)-\frac1{t^e(t-1)^2}.
+\]
+Keep the simple factor $F_1(t)$ exact. For the first $s$ bases chosen in
+order, write $R_s$ for the preceding residual and $J_s$ for the residual
+with these replacements. Every $J_s$ is positive: for $s<3$ this
+follows from $R_s>0$, and at $s=3$ at least one factor strictly decreases.
+Subtracting the two products term by term, the remaining factors have
+product at most $D+1$. Hence
+\begin{equation}
+ 0\le J_s-R_s \le \frac{2(D+1)}{x^b(x-1)^2}
+ <\frac5{x^{b+1}}.\label{eq:error}
+\end{equation}
+Assign $d_t=1$ to the simple base and $d_t=2$ to both other bases.
+The denominator of $J_s$ is at most $Q_s=\prod_{t\ \mathrm{chosen}}t^{d_t}$,
+so $J_s\ge1/Q_s$. As $Q_2\le x^2 y^2<x^8$, \eqref{eq:error} gives
+$R_2>1/(2Q_2)$. Equation \eqref{eq:res} and integrality then give
+$z\le4xQ_2$.
+
+We claim $Q_3\le16 x^{17}$. If $z$ is simple then
+$Q_3=Q_2 z\le4xQ_2^2<4x^{17}$. If $y$ is simple then $Q_2=x^2y<x^5$,
+so $Q_3\le16x^2Q_2^3<16x^{17}$.
+If $x$ is simple, $2x+1>D+1$ is a divisor of $(D+1)n$. Hence some
+prime divisor of $n$ divides $2x+1$. It exceeds $x$, so must equal
+$2x+1$ itself. In particular $y\le2x+1<3x$.
+Now $Q_2=xy^2<9x^3$, whence $Q_3<16\cdot9^3x^{11}<16x^{17}$.
+But $R_3=0$ and $5/x^{b+1}<1/(16x^{17})$ since $x>80$.
+This contradicts $J_3\ge1/Q_3$ and \eqref{eq:error}.
+\end{proof}
+
+\section{Finite determination}
+\begin{theorem}
+There is no fixed point of $S$ with exactly three distinct prime
+divisors if any one of them has exponent one.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:both} it suffices to test $1\le b\le16$ and
+$b\le a<7b+4$. The following exact procedure exhausts the possibilities.
+At any modulus $m<D/2$ all prime bases are units. Enumerate the
+values of $F_e(u)$ on the units for each exponent and discard a
+pattern if their products omit $D+1$. The code lists the small
+moduli used. For each ordered assignment $(i,j,k)$ of the exponents
+to $x<y<z$, test primes $iD/(i+1)<x\le1+3(D+1)$ as allowed by
+\eqref{eq:main} and \eqref{eq:res}. Repeat the modular test with
+$x$ fixed. With $A=H_i(x)$, let $g=(D+1)x^i-(j+1)(k+1)A$.
+We need $g>0$ and
+\[
+ x<y\le Y=1+\left\lfloor2(D+1)x^i/g\right\rfloor .
+\]
+The second inequality follows from \eqref{eq:res}. As $\gcd(A,x)=1$,
+the integer $B=A/\gcd(A,D+1)$ divides $y^jz^k$. Also $B>1$ since
+$A\ge2x+1>D+1$.
+
+If a prime factor $t$ of $B$ is known, one of $y,z$ must be $t$.
+Test both assignments. When $i=1$ the proof of Lemma~\ref{lem:both}
+already forces one of $y,z$ to be $2x+1$. The argument there only
+uses $x>D/2$.
+Otherwise seek a prime factor of $B$ through $Y$, permitting a
+larger preliminary trial bound. If none is found, then $y$ cannot
+divide $B$, so $B=z^h$ for some $1\le h\le k$. Test every
+integer root from these finitely many powers. Thus each surviving
+branch supplies one of the two remaining bases.
+For the other, call the fixed base $u$ with exponent $f$, the
+unknown $v$ with exponent $e$, and put
+$W=H_i(x)H_f(u)$ and $G=(D+1)x^iu^f-(e+1)W$.
+At a solution $G/W=T_e(v)>0$. The two bounds in \eqref{eq:tail}
+give exactly one candidate $v=\lceil eW/G\rceil$. Test the integer
+moment equation, retaining $x<y<z$ with odd bases.
+
+\begin{center}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Smaller exponent $b$ & 1&4&8&9&12&13&16\\
+Admissible $a$ after the modular test &4&2&10&19&13&20&3\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every other $b$ has zero admissible exponents. There are $15{,}146$
+ordered smallest-prime rows after sieving. The largest of the 42
+extended prime-divisor intervals ends at $254{,}942{,}533$.
+Among $18{,}675$ single-candidate completions, the only ordered
+odd-base equality retained is $(x,y,z)=(7,15,31)$ with all
+exponents one. Its middle base is composite. This establishes the
+theorem.
+\end{proof}
+
+The accompanying Python and C++ programs carry out the finite proof.
+The independent checks use a second segmented prime sieve, literal
+moment divisibility and integer bisection for the missing base.
+The conjecture is still open for three-prime powerful numbers and
+for unrestricted numbers of prime factors.
+
+\begin{thebibliography}{9}
+\bibitem{source} J. Krizek, \href{https://oeis.org/A245211}{OEIS A245211}
+(2014).
+\bibitem{earlier} The agentic-conjectures contributors,
+\href{https://github.com/umaia1234/agentic-conjectures/blob/78a56edb19eadb6a23f5f791273f016e0b3e0f50/problems/oeis-a245211/DETAILS.md}{Weighted proper-divisor sum},
+especially the prime-factor lower bound, parity and the last-prime test.
+\bibitem{sugui} M. A. Sugui,
+\href{https://doi.org/10.5281/zenodo.24437886}{Formal Verification of Parity Obstructions and Fixed-Point Exclusions for Proper-Divisor Moments} (2026).
+\bibitem{companion} B. Stone with OpenAI Astra,
+\href{https://github.com/blakestone-x/math/blob/a80ee14b88981065189113eace98e1b8fba58c28/A245211/A245211-research.pdf}{Fixed points of the weighted proper-divisor sum in OEIS A245211} (2026).
+\end{thebibliography}
+\end{document}

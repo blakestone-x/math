@@ -9,4 +9,4 @@ require mathlib from git
 
 @[default_target]
 lean_lib GrayPhaseTheorems where
-  roots := #[`GrayPhases, `GrayLimits]
+  roots := #[`GrayPhases, `GrayLimits, `UniversalGrowth, `UniversalLimits]

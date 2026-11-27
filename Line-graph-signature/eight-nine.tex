@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\sig}{\operatorname{sig}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\title{Line-graph signatures at eight and nine cycles\\and a uniform upper bound}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $f(c)$ maximize the adjacency signature of a line graph over connected simple root graphs with cyclomatic number $c$. We prove $f(8)=4$ and $f(9)=5$, as conjectured by Paone and Paone. An analytic bound gives $f(c)\le c-1-\lceil(c-2)/6\rceil$ for every $c\ge4$. A second uniform bound, $f(c)\le c-4$ for $c\ge8$, follows from an exact computer-assisted proof. We reduce the latter assertion for all graph orders and all cyclomatic numbers to connected simple subcubic graphs on at most twelve vertices and integer symmetric matrices. Two independent kernel enumerations cover the two sharp cases.
+\end{abstract}
+
+\section{The extremal problem}
+The signature of a real symmetric matrix is its number of positive eigenvalues minus its number of negative eigenvalues, with multiplicity. Write $s(L(G))$ for the signature of the adjacency matrix of the line graph of $G$, and put
+\[
+ c(G)=|E(G)|-|V(G)|+1,\qquad f(c)=\max_{G:\ c(G)=c}s(L(G)).
+\]
+The maximum ranges over all finite connected simple graphs. Paone and Paone conjectured $f(c)=\lfloor(c+1)/2\rfloor$ and constructed graphs giving the lower bound for every $c\ge1$ \cite[Theorem 5.3 and Conjecture 5.4]{PP}. The companion papers \cite{small,finite} establish the upper bounds through $c=7$.
+\begin{theorem}\label{th:main}
+For $c\ge4$, $f(c)\le c-1-\ceil{(c-2)/6}$. For $c\ge8$, $f(c)\le c-4$. In particular
+\[
+ f(8)=4,\qquad f(9)=5,\qquad 5\le f(10)\le6.
+\]
+If the kernel of the $2$-core is itself simple cubic, then $s(L(G))\le\lfloor 2(c-1)/3\rfloor$.
+\end{theorem}
+The first bound and the simple cubic case have analytic proofs. The second bound is computer-assisted. The results also give an interval for the asymptotic growth rate.
+\begin{lemma}
+The limit $\alpha=\lim_{c\to\infty}f(c)/c$ exists and equals $\sup_{c\ge1}(f(c)-1)/c$. In particular $1/2\le\alpha\le5/6$. A counterexample to the conjecture at any odd cyclomatic number would force $\alpha>1/2$.
+\end{lemma}
+\begin{proof}
+Join extremal root graphs at cycle ranks $a,b$ by a new bridge. Deleting the corresponding line-graph vertex leaves the disjoint union of the two original line graphs. Interlacing bounds the signature change under this one bordering step in absolute value by one. Hence $f(a+b)-1\ge(f(a)-1)+(f(b)-1)$. Fekete's lemma and the upper bound from Theorem~\ref{th:main} give the limit and its supremum formula. The constructions of \cite{PP} give its lower bound. If $f(2k+1)\ge k+2$, the supremum includes $(k+1)/(2k+1)>1/2$.
+\end{proof}
+
+\section{A matching in a cubic expansion}
+For $c\ge2$, remove the pendant trees and suppress maximal degree-two paths of the $2$-core. This gives a connected multigraph $K$ of minimum degree three with $b$ vertices. Loops count twice toward degree. Put $J=2c-2$. Since $\sum_{u\in K}(d(u)-2)=J$, we have $b\le J$. Call a kernel edge \emph{qualifying} if it has multiplicity one and its two distinct endpoints are loopless cubic vertices. An induced matching has disjoint endpoints and no edges between the ends of different members.
+
+We use the following obstruction proved in \cite[Lemma 2.1]{finite}. If $K$ has an induced matching of $h$ qualifying edges, then
+\begin{equation}\label{eq:matching}
+ s(L(G))\le b-c+1-h .
+\end{equation}
+Briefly, the single-leaf reduction retains at most one leaf per paid site of the core. After the other marks are removed, a qualifying edge with unpaid ends gives a marked path with end diagonals one and possible unmarked path stubs. Saturating the dimension bound on that path would require a positive-definite signed path Laplacian, which is singular. Disjoint induced edges support separate restrictions. Paying for an endpoint cancels at least the one lost restriction. Formula \eqref{eq:matching} includes arbitrary pendant trees.
+
+Split a vertex of degree $d\ge4$ into two adjacent vertices with two and $d-2$ of its old incidences, respectively. Iteration gives a connected cubic multigraph $C$ on $J$ vertices. In reverse, $s_0=J-b$ nonloop edge contractions give $K$. Each contraction can destroy at most one member of a qualifying induced matching. Its endpoints cannot belong to different members and all members avoiding them survive. Thus a matching of size $h$ in $C$ gives $s(L(G))\le c-1-h$ by \eqref{eq:matching}, including when $h<s_0$.
+
+For $J\ge6$, delete each vertex of $C$ with a loop (it has a single outside edge), and contract each pair of double edges to one vertex, deleting the two edges of the pair. Triple edges form a whole component on two vertices, and the double pairs are vertex-disjoint. The result $S$ is a connected loopless subcubic multigraph. Write $U$ for its underlying simple graph, $n=|V(S)|$, and $\ell=|E(S)|-n+1$. Each removed loop vertex or double pair decreases both the order and the cyclomatic number by one. Therefore
+\begin{equation}\label{eq:order}
+ n=c-2+\ell .
+\end{equation}
+An induced matching of $U$ lifts to a qualifying induced matching of $C$. Each selected adjacency comes from at least one original single link joining distinct loopless vertices. Any adjacency between different lifted pairs would survive in $U$.
+
+Joos, Rautenbach and Sasse \cite[Theorem 2]{JRS} showed that every connected simple subcubic graph of order $n\ge2$ has an induced matching of size at least $n/6$, except possibly the graph $K_{3,3}^+$ formed by subdividing one edge of $K_{3,3}$. For $c\ge4$ we have $n\ge2$. The exception has order seven and cycle rank four, so \eqref{eq:order} implies $c\le5$ in that case, and one edge suffices. In all cases $h\ge\ceil{(c-2)/6}$. For simple cubic $K=C$ the graph $U=C$ has order $2c-2$, is cubic, and cannot be the exception. This proves the analytic assertions of Theorem~\ref{th:main}. Moreover, a violation of $s(L(G))\le c-4$ would give $h\le2$ in \emph{every} cubic expansion. It would have $n\le12$ (the exception also satisfies this) and $c\le14$.
+
+\section{A relaxation on the branch vertices}
+We recall the core form of \cite[Section 1]{finite}. To maximize at fixed core it suffices to consider at most one leaf at each site in a subset $P$. Mark the branch vertices and paid degree-two vertices. Each segment between consecutive marks of odd length contributes $2\epsilon x_u x_v$ to a real quadratic form $F$, with $\epsilon=\pm1$. An even segment contributes the relation $x_u=\epsilon x_v$ defining a subspace $W$, with zero net signature from the eliminated coordinates. The starting diagonal coefficient at a mark is its core degree minus two plus $2$ if it is paid. Coincident endpoints are allowed in these rules. With $\mu=s(L(G))+c-1$, the objective is
+\[
+ \mu=\sig(F|_W)-|P|.
+\]
+Quadratic forms are represented below by their symmetric matrices. Increasing a form in the positive-semidefinite order cannot decrease its signature, by eigenvalue monotonicity.
+
+\begin{lemma}\label{lem:relax}
+An upper bound on $\mu$ is given by the maximum of the following problem on the $b$ branch coordinates of $K$. Start with diagonal $d_K(v)-2$. Give a branch any number of charges, each adding two to its diagonal at cost one. On each kernel edge $uv$ select a signed term $2\epsilon x_u x_v$, an equation $x_u=\epsilon x_v$, or deletion at cost one. The score is the signature on the space of solutions of the equations, less all costs. It suffices to select linearly independent equations.
+\end{lemma}
+\begin{proof}
+Work along one original kernel edge, with both branch ends retained even if they are the same vertex. Identify consecutive sites linked by even segments, up to the signs in their equations. If the whole path is even, retain the endpoint equation. Move the two units of diagonal and the one unit of cost of every paid interior site to a branch end to which it is identified. This move is valid even when that end is forced to zero. Otherwise, each end block meets one branch, which receives the charges of the paid interior sites in that block. The free blocks between them consist entirely of paid sites. Let their sizes be $k_1,\ldots,k_t\ge1$. Their diagonal entries are $2k_i$, with successive off-diagonals $\pm1$, and the first and last block each has one signed link to its adjacent end. The interior matrix is positive definite since the corresponding matrix with every $k_i=1$ is a signed positive-definite path tridiagonal. An empty interior leaves a single signed link.
+
+Eliminating the $t$ free blocks gives signature $t$ against cost $\sum_i k_i$, and subtracts a positive-semidefinite correction from the two ends. If any $k_i\ge2$, deletion of this kernel edge with cost one therefore dominates. If every $k_i=1$, the costs cancel. Put $w=1/(t+1)$. The inverse of the positive tridiagonal has end diagonals $1-w$ and end-to-end entry of magnitude $w$ (solve its difference equations, or switch to off-diagonal $-1$). For some $s\in\{-1,1\}$ the resulting endpoint contribution is $-(1-w)(x_u^2+x_v^2)+2sw x_ux_v$. Replacing it by $2sx_ux_v$ adds $(1-w)(x_u+s x_v)^2$. All comparisons restrict to any relations on the ends and allow coincident ends.
+
+Apply this procedure to every edge. Choose a basis among the retained equation rows. For a redundant equation $x_u=\epsilon x_v$, an odd term with sign $\epsilon$ is nonnegative on the remaining space. Replace the equation by that term. This proves the claimed relaxation.
+\end{proof}
+If there are $r$ independent equations and $a$ paid charges or deletions, the dimension is $b-r$ and $\mu\le b-r-a$. Suppose $s(L(G))\ge c-3$. Then $\mu\ge J-2$, $s_0=J-b\in\{0,1,2\}$, and
+\[
+ q=r+a\le2-s_0,\qquad
+ \delta=(b-r)-\sig(F|_W)\le2-s_0-q.
+\]
+Here $\delta$ equals twice the negative index plus the nullity. This leaves at most two operations in all after accounting for contractions.
+
+\section{The finite certificate}
+Enumerate connected simple subcubic graphs $U$ on orders $6$ through $12$ with \texttt{geng} from nauty \cite{nauty}. These limits follow from \eqref{eq:order}, $8\le c\le14$ and the matching bound. Discard $U$ having an induced matching of three edges. Generate all possible multiplicities of its edges subject to maximum degree three to obtain $S$. Keep $|V(S)|=c-2+\ell$. Each vertex of $S$ either represents an ordinary cubic vertex of $C$ or a double pair. A double pair has at most two incident outside edges, one on each original endpoint. Enumerate both types whenever the degree permits. Assign the outside edges to the available slots and fill each remaining slot with a distinct loop vertex. Either permutation of the two endpoints of a double pair gives the same inflation up to relabeling. A multiple adjacency cannot have two ordinary ends in the compressed representation. These choices cover every possible cubic expansion, with harmless repetitions. Check induced matchings in the resulting $C$, then contract respectively zero, one or two nonloop edges to get $K$. One may stop descending from any intermediate contracted kernel with $3-s_0$ matching edges by the contraction observation after \eqref{eq:matching}.
+
+On each retained kernel enumerate every multiset of up to $2-s_0$ operations of Lemma~\ref{lem:relax}. The enumeration allows repeated charges at a branch and at most one deletion or equation per kernel edge. Both signs of an equation on distinct endpoints are included, and a nontrivial equation on a loop pins the coordinate to zero. Solving the equations identifies coordinates up to sign or sets them to zero. Use a single variable for each free class. The diagonals add under identification. The surviving odd-edge signs remain free after these switches. Taking every resulting loop positive maximizes its diagonal contribution. Between two distinct classes joined by $m$ remaining edges, sum the signs to obtain any integer in $\{-m,-m+2,\ldots,m\}$. Switching variables makes these sums nonnegative on a spanning forest without constraining chord signs.
+
+For clarity, the following arithmetic shortcuts have proofs. Call a qualifying edge untouched if its endpoints avoid charged vertices and the ends of every deleted or equation edge. On its endpoints the principal matrix is $\left(\begin{smallmatrix}1&\pm1\\\pm1&1\end{smallmatrix}\right)$. When the allowed deficit is zero, one untouched edge already contradicts positive definiteness. When it is one, the matrix must be positive semidefinite with nullity at most one. Each untouched edge contributes an isotropic vector with precisely its two endpoints as support. In a positive-semidefinite form this vector belongs to the kernel, so two distinct edges exclude this case.
+
+The only allowed deficit of two has $s_0=q=0$. If two qualifying edges form an induced matching, their isotropic vectors are independent and orthogonal for the form. A nonsingular symmetric form of negative index one cannot have such a two-dimensional totally isotropic space because projection onto its one-dimensional negative space would have to be injective there. The positive-semidefinite alternative allows at most two kernel dimensions. A third qualifying edge supplies a third independent kernel vector. Its two coordinates cannot be the support of a combination of the first two vectors, whose supports are disjoint pairs. Thus these three edges suffice. For the remaining signed matrices the verifier uses exact characteristic polynomials and Descartes' rule on a real-rooted polynomial and its reflection, omitting zero coefficients. The optional cross-check computes the inertia independently by symmetric congruence, using scalar and hyperbolic pivots. Both use arbitrary-precision integers. A separate rational Schur-complement calculation checks all 87,380 signed decorations on paths of one through eight segments against Lemma~\ref{lem:relax}.
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$c$ & Cubic kernels retained & Operation patterns & Signed matrices\\
+\midrule
+8 & 2,054 & 36,808 & 284,562\\
+9 & 2,259 & 30,448 & 327,780\\
+10 & 1,698 & 18,944 & 186,381\\
+11 & 1,000 & 11,008 & 158,193\\
+12 & 320 & 3,072 & 34,992\\
+13 & 128 & 2,048 & 34,992\\
+14 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+The cubic column counts inflations with possible repeats. The other columns include contractions. Over the 27,505 simple inputs, no signed matrix reaches $\mu\ge J-2$. The table and characterization of all candidates prove $f(c)\le c-4$ for $8\le c\le14$. For $c\ge15$ the analytic bound already implies it. The lower construction of \cite{PP} yields $f(8)=4$, $f(9)=5$ and the stated interval at ten. For explicit witnesses, take chains alternating five- and four-cycles starting with a five-cycle. Join vertex 1 of each cycle to vertex 0 of its successor, numbering locally around each cycle from 0. For eight and nine cycles the resulting root graphs have 36 and 41 vertices. Direct line-adjacency inertia, in positive, zero, negative order, is $(23,1,19)$ and $(27,0,22)$ respectively.
+
+\paragraph{Independent enumeration at the two sharp values.}
+As a check, generate every simple connected subcubic graph on $J=14$ or $16$ vertices and try to restore it to a cubic multigraph. A degree-one vertex must receive a loop. Each degree-two vertex must acquire one doubled edge to another degree-two vertex. The induced graph on degree-two vertices is a union of paths, each with at most one perfect matching, unless the entire connected input is a cycle. In an even cycle the two alternating completions are isomorphic. Thus the procedure gives exactly one representative per cubic type. From 262,044 and 4,101,318 inputs it produces 21,096 and 204,638 cubic types respectively, agreeing with OEIS A005967 \cite{OEIS}. After discarding matchings of three, canonical labeling identifies the same 1,631 and 1,710 remaining types in the two generators. This second generation gives 204,519 and 212,253 signed matrices. The two exact inertia algorithms agree on every one.
+
+\begin{thebibliography}{9}
+\bibitem{PP} A. Paone and M. Paone, \emph{Line-Graph Signature Beyond the 2-Core}, v1.3 (2026), \href{https://doi.org/10.5281/zenodo.21706797}{doi:10.5281/zenodo.21706797}.
+\bibitem{JRS} F. Joos, D. Rautenbach and T. Sasse, Induced matchings in subcubic graphs, \emph{SIAM J. Discrete Math.} \textbf{28} (2014), 468--473. \href{https://doi.org/10.1137/130944424}{doi:10.1137/130944424}.
+\bibitem{small} Blake Stone's mathematics project, \emph{The signature of line graphs at small cyclomatic number}, companion paper (2026).
+\bibitem{finite} Blake Stone's mathematics project, \emph{A finite kernel for extremal line-graph signature}, companion paper (2026).
+\bibitem{nauty} B. D. McKay and A. Piperno, Practical graph isomorphism, II, \emph{J. Symbolic Comput.} \textbf{60} (2014), 94--112. \href{https://pallini.di.uniroma1.it/}{nauty and its user guide}.
+\bibitem{OEIS} OEIS Foundation, A005967, Connected cubic multigraphs, loops allowed. \url{https://oeis.org/A005967}.
+\end{thebibliography}
+\end{document}

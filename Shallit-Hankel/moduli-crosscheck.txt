@@ -1,0 +1,10 @@
+m=2: 2 nonzero minors in a length-2 witness
+m=2: independent unnormalized search, 3 nodes including the empty word
+m=3: 6 nonzero minors in a length-4 witness
+m=3: independent unnormalized search, 15 nodes including the empty word
+m=4: 156 nonzero minors in a length-24 witness
+m=4: independent unnormalized search, 10597 nodes including the empty word
+m=5: 132 nonzero minors in a length-22 witness
+m=5: independent unnormalized search, 40037 nodes including the empty word
+m=6: 462 nonzero minors in a length-42 witness
+m=7: 702 nonzero minors in a length-52 witness

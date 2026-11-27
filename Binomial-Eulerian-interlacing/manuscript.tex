@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\HH}{\widetilde E}
+\title{Consecutive interlacing of generalized binomial Eulerian polynomials}
+\author{Blake Stone's proof fleet}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For any positive integer bounds $s_1,s_2,\ldots$, the binomial Eulerian polynomials of consecutive prefixes of the corresponding inversion sequences interlace. The interlacing is strict through prefix $m$ precisely when $s_1,\ldots,s_m$ are all at least two. A unit bound splits the polynomial into two independent factors and describes the obstruction exactly. Ordinary binomial Eulerian polynomials consequently have simple negative zeros that interlace strictly in successive degrees. The main input is Haglund and Zhang's interlacing theorem within each refined row.
+\end{abstract}
+
+For positive integers $s_1,\ldots,s_m$, sum over sequences $0\le e_i<s_i$. Append the two boundary fractions $e_0/s_0=e_{m+1}/s_{m+1}=0$. Let $\operatorname{asc}$ and $\operatorname{col}$ count, respectively, the strict increases and the equalities between successive fractions $e_i/s_i$. Define
+\[
+ E_m(t)=\sum_e t^{\operatorname{asc}(e)}(1+t)^{\operatorname{col}(e)}.
+\]
+The empty prefix has $E_0=1+t$. Each $E_m$ is monic of degree $m+1$ with constant term one. Indeed both degree $m+1$ and a nonzero constant term require that the fractions never decrease or never increase, respectively. With zero at both ends this forces the all-zero sequence.
+
+Write $f\ll g$ for oriented weak interlacing. In equal degree its roots and those of $g$ alternate from a root of $f$ on the left to a root of $g$ on the right. When $\deg g=\deg f+1$ the first and last roots belong to $g$.
+
+\begin{theorem}\label{thm}
+For every $m\ge1$ one has $E_{m-1}\ll E_m$. The roots are simple and interlacing is strict if $s_i\ge2$ for $1\le i\le m$. If any of these $s_i$ equals one, then $E_{m-1}$ and $E_m$ have a common factor of positive degree.
+\end{theorem}
+
+Haglund and Zhang~\cite{HZ} identify the ordinary binomial Eulerian polynomial
+\[
+ B_n(t)=\sum_{\pi\in S_n}(1+t)^{\operatorname{fix}(\pi)}t^{\operatorname{exc}(\pi)}
+\]
+with $E_{n-1}$ for bounds $2,3,\ldots,n$. Hence $B_n$ strictly interlaces $B_{n+1}$ for all $n\ge1$. Consecutive ordinary interlacing is posed in the Symmetric Functions Catalog~\cite{PA}. Liu and Yan~\cite[Sec.~5]{LY} study generalized Sturm sequences on diagonals of binomial transformations. Our proof uses the inversion-sequence model and treats arbitrary bounds, including decreasing sequences and exact common factors.
+
+\paragraph{Refinements and weak interlacing.}
+Let $p_{m,k}$ be the contribution of sequences ending at $e_m=k$ when the final comparison with zero is omitted. Every $p_{m,k}$ has degree $m$ and positive leading coefficient, since a nondecreasing prefix ending at $k$ exists. Haglund and Zhang~\cite[Theorem~1.1]{HZ} prove $p_{m,i}\ll p_{m,j}$ for $i<j$. The terminal-zero comparison gives
+\begin{equation}\label{eq:first}
+ p_{m,0}=E_{m-1},\qquad
+ E_m=(1+t)p_{m,0}+\sum_{i=1}^{s_m-1}p_{m,i}.
+\end{equation}
+The first identity follows because fixing $e_m=0$ reinstates exactly the omitted comparison of the preceding prefix. We have $p_{m,0}\ll t p_{m,0}$, as its zeros are real nonpositive. Oriented interlacing with a fixed lower polynomial is preserved by addition of upper polynomials with positive leading coefficients~\cite[Lemma~2.3]{HZ}. Applying this to~\eqref{eq:first} proves the weak assertion.
+
+\begin{lemma}\label{sign}
+Let $f_0,\ldots,f_{M-1}$ be an ordered interlacing list of equal-degree polynomials with positive leading coefficients. At a real $r$ the nonzero entries $f_i(r)$ change sign at most once as $i$ increases. At a zero of $f_0$, all nonzero $f_i(r)$ have the same sign.
+\end{lemma}
+\begin{proof}
+The number of zeros strictly greater than $r$ is nondecreasing in $i$, since each ordered zero moves weakly right as $i$ increases. Among entries with $f_i(r)\ne0$ this number varies by at most one, by pairwise interlacing. Its parity gives the sign. If $f_0(r)=0$, each nonvanishing $f_i$ has the same number of roots to the right of $r$, by alternation with $f_0$. A repeated zero of $f_0$ is shared by every $f_i$.
+\end{proof}
+
+\paragraph{No common zero when every bound is at least two.}
+We show inductively that no row $p_{m,0},\ldots,p_{m,s_m-1}$ has a common negative zero. At $m=1$ the row consists of $1+t$ and at least one copy of $t$. For the induction, let the old row be $(f_i)_{i=0}^{M-1}$ and the new row $(g_j)_{j=0}^{N-1}$ with $M,N\ge2$. Suppose $g_0(r)=0$ for some $r<0$. Put $a_i=f_i(r)$ and $S=\sum_i a_i$. By the comparison with the new last fraction $0$, we have $S=-r a_0$. If $a_0=0$, Lemma~\ref{sign} and the induction hypothesis imply $S\ne0$, a contradiction.
+
+Multiply all $a_i$ by a common sign so that $a_0>0$; this preserves every claimed vanishing. By Lemma~\ref{sign} their nonzero signs begin positive and change at most once. The partial sums from $a_0$ onward therefore first increase weakly and then decrease weakly. Every such partial sum is at least $\min(a_0,S)$. Set $d=-r/(1-r)$, so $0<d<1$ and
+\[
+ \min(a_0,S)>d a_0 .
+\]
+For each $j\ge1$, let $T_j$ be the sum of the $a_i$ over $i/M<j/N$, plus $d a_i$ if $i/M=j/N$. Since $j/N>0$, the first sum includes $a_0$. Thus $T_j$ is a partial sum as above or a convex combination of two consecutive such sums. We get $T_j>d a_0$. On appending $j$, a strict ascent contributes $r$, equality contributes $1+r$, and a descent contributes one. Consequently the signed value of $g_j(r)$ is
+\[
+ S+(r-1)T_j=(r-1)(T_j-d a_0)\ne0.
+\]
+This even excludes a shared negative root of $g_0$ with any $g_j$ for $j>0$, and completes the induction without a comparison between $M$ and $N$.
+
+At a zero of $p_{m,0}=E_{m-1}$ all nonzero remaining row entries have the same sign by Lemma~\ref{sign}, and some such entry exists. Formula~\eqref{eq:first} gives $E_m(r)\ne0$. Since $E_0=1+t$ has a simple negative zero, weak interlacing in these consecutive degrees and absence of common zeros imply strict interlacing and simplicity by induction. Positivity of the constant term rules out a zero at the origin.
+
+\paragraph{Unit bounds and exact common factors.}
+For a finite word of bounds $w$ write $E(w)$ for the polynomial with both terminal comparisons. At a unit bound the middle fraction must be zero, so the two sides contribute independently. Thus
+\[
+ E(u,1,v)=E(u)E(v),
+\]
+including when either side is empty. If $s_m=1$, this gives $E_m=(1+t)E_{m-1}$. If $s_m\ge2$ and the prefix has a unit, split at its last unit and write the prefix as $u,1,v$. Both rows contain the factor $E(u)$ of positive degree, and the remaining consecutive polynomials for the final run $v$ are coprime by the strict case. In fact their monic greatest common divisor is exactly $E(u)$. This completes Theorem~\ref{thm}. \hfill$\square$
+
+\begin{thebibliography}{9}
+\bibitem{HZ} J.~Haglund and P.~B.~Zhang, \emph{Real-rootedness of variations of Eulerian polynomials}, Adv. Appl. Math. 109 (2019), 38--54. \href{https://arxiv.org/abs/1902.01278}{arXiv:1902.01278}.
+\bibitem{LY} L.~L.~Liu and X.~Yan, \emph{Some interlacing properties related to the Eulerian and derangement polynomials}, Adv. Appl. Math. 162 (2025), 102776. \href{https://doi.org/10.1016/j.aam.2024.102776}{doi:10.1016/j.aam.2024.102776}.
+\bibitem{PA} P.~Alexandersson, \emph{Real-rooted polynomials: open problems}, Symmetric Functions Catalog, consulted November 26, 2026. \href{https://www.symmetricfunctions.com/realRootedOpenProblems.htm}{Section on interlacing of Eulerian-type polynomials}.
+\end{thebibliography}
+\end{document}
