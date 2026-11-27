@@ -84,7 +84,8 @@ struct Graph {
             }
         std::vector<Pair> pairs;
         for (auto [i, j] : edges)
-            if (i != j && a[i][j] == 1 && !a[i][i] && !a[j][j] && weight[i] == 1 && weight[j] == 1) {
+            if (i != j && a[i][j] == 1 && !a[i][i] && !a[j][j] && weight[i] == 1 &&
+                weight[j] == 1) {
                 Bits inside = bit(i) | bit(j);
                 pairs.push_back({inside, (neighbors[i] | neighbors[j]) & ~inside,
                                  multi[i] | multi[j] | (neighbors[i] & neighbors[j])});
@@ -367,6 +368,130 @@ void evaluate(const Graph &g, int used) {
     }
     signings(a, g.n, links, 0, used);
 }
+bool inverse_check = false;
+long long successful_partitions = 0;
+// Independently reverse only the promising relaxed pins.  An original zeroed
+// vertex set has size at most the budget. Its equation trees, genuine loop
+// pins and paid incident modifications are explicitly reconstructed.
+Graph quotient(const Graph &g, const std::array<int, limit> &ids, std::uint64_t omit,
+               std::array<int, limit> &vertex) {
+    Graph o;
+    o.weight.fill(0);
+    std::array<int, limit> map{};
+    map.fill(-1);
+    vertex.fill(-1);
+    for (int i = 0; i < g.n; ++i)
+        if (ids[i] >= 0) {
+            int &c = map[ids[i]];
+            if (c < 0)
+                c = o.n++;
+            vertex[i] = c;
+            o.weight[c] += g.weight[i];
+        }
+    for (int i = 0; i < int(g.edges.size()); ++i)
+        if (!(omit & (std::uint64_t(1) << i))) {
+            auto [u, v] = g.edges[i];
+            if (vertex[u] >= 0 && vertex[v] >= 0)
+                o.add(vertex[u], vertex[v]);
+        }
+    return o;
+}
+using Action = std::pair<int, int>; // (vertex,-1) charge, otherwise delete that edge index
+void restore_costs(const Graph &g, const std::vector<int> &required,
+                   const std::vector<std::vector<Action>> &choices,
+                   const std::vector<Action> &extra, int at, int used, std::uint64_t cut,
+                   std::array<int, limit> &charges) {
+    if (found)
+        return;
+    if (at >= int(required.size())) {
+        Graph ex(g.n);
+        ex.weight = g.weight;
+        for (int i = 0; i < g.n; ++i)
+            ex.weight[i] += 2 * charges[i];
+        for (int i = 0; i < int(g.edges.size()); ++i)
+            if (!(cut & (std::uint64_t(1) << i)))
+                ex.add(g.edges[i].first, g.edges[i].second);
+        if (ex.has_forest_matching(budget + 1 - used))
+            return;
+        ++strict_domains[used];
+        evaluate(ex, used);
+        if (used == budget || found)
+            return;
+    }
+    const auto &actions = at < int(required.size()) ? choices[at] : extra;
+    for (auto [v, idx] : actions) {
+        if (idx < 0) {
+            ++charges[v];
+            restore_costs(g, required, choices, extra, at + 1, used + 1, cut, charges);
+            --charges[v];
+        } else if (!(cut & (std::uint64_t(1) << idx)))
+            restore_costs(g, required, choices, extra, at + 1, used + 1,
+                          cut | (std::uint64_t(1) << idx), charges);
+        if (found)
+            return;
+    }
+}
+void genuine_pins(const Graph &g, Bits marked) {
+    int forest_cost = J - g.n;
+    Bits allowed = 0;
+    for (int i = 0; i < g.n; ++i)
+        if ((marked & bit(i)) && g.a[i][i])
+            allowed |= bit(i);
+    for (Bits killed = allowed;; killed = (killed - 1) & allowed) {
+        std::array<int, limit> ids{}, map{};
+        for (int i = 0; i < g.n; ++i)
+            ids[i] = (killed & bit(i)) ? -1 : i;
+        Graph rem = quotient(g, ids, 0, map);
+        std::vector<int> required;
+        for (int i = 0; i < g.n; ++i)
+            if ((marked & bit(i)) && map[i] >= 0)
+                required.push_back(map[i]);
+        std::vector<std::vector<Action>> choices;
+        std::vector<Action> extra;
+        for (int v : required) {
+            std::vector<Action> opts = {{v, -1}};
+            for (int idx = 0; idx < int(rem.edges.size()); ++idx) {
+                auto [u, w] = rem.edges[idx];
+                if (u != w && (u == v || w == v))
+                    opts.emplace_back(v, idx);
+            }
+            extra.insert(extra.end(), opts.begin(), opts.end());
+            choices.push_back(opts);
+        }
+        std::array<int, limit> charges{};
+        restore_costs(rem, required, choices, extra, 0, forest_cost + __builtin_popcount(killed), 0,
+                      charges);
+        if (!killed || found)
+            break;
+    }
+}
+void recover_trees(const Graph &c, Bits removed, const std::vector<int> &inner, int start,
+                   const std::array<int, limit> &ids, std::uint64_t omit) {
+    std::array<int, limit> vertex{};
+    Graph g = quotient(c, ids, omit, vertex);
+    Bits marked = 0;
+    for (int v = 0; v < c.n; ++v)
+        if (removed & bit(v))
+            marked |= bit(vertex[v]);
+    genuine_pins(g, marked);
+    if (found)
+        return;
+    for (int k = start; k < int(inner.size()); ++k) {
+        int i = inner[k];
+        auto [u, v] = c.edges[i];
+        int a = ids[u], b = ids[v];
+        if (a == b)
+            continue;
+        auto next = ids;
+        for (int j = 0; j < c.n; ++j)
+            if (next[j] == b)
+                next[j] = a;
+        recover_trees(c, removed, inner, k + 1, next, omit | (std::uint64_t(1) << i));
+        if (found)
+            return;
+    }
+}
+
 struct State {
     std::array<int, limit> id;
     std::uint64_t collapsed = 0;
@@ -396,6 +521,34 @@ void recurse(const Graph &c, const State &state, int next, int used) {
         return;
     ++domains[used];
     evaluate(g, used);
+    if (found && inverse_check) {
+        ++successful_partitions;
+        found = false;
+        strict = true;
+        Bits removed = 0;
+        auto ids = state.id;
+        for (int i = 0; i < J; ++i)
+            if (ids[i] < 0) {
+                removed |= bit(i);
+                ids[i] = i;
+            }
+        std::vector<int> inner;
+        for (int i = 0; i < int(c.edges.size()); ++i) {
+            auto [u, v] = c.edges[i];
+            if (u != v && (removed & bit(u)) && (removed & bit(v)) &&
+                (!i || c.edges[i] != c.edges[i - 1]))
+                inner.push_back(i);
+        }
+        recover_trees(c, removed, inner, 0, ids, state.collapsed);
+        strict = false;
+        if (found) {
+            std::cerr << "Surviving original cubic edges: ";
+            for (auto [u, v] : c.edges)
+                std::cerr << u << "," << v << " ";
+            std::cerr << "\n";
+            std::exit(2);
+        }
+    }
     if (used == budget)
         return;
     for (int ev = next; ev < J + int(c.edges.size()); ++ev) {
@@ -626,8 +779,9 @@ void complete(const std::string &s) { // independent: a cubic skeleton of order 
 } // namespace
 int main(int argc, char **argv) {
     if (argc < 2) {
-        std::cerr << "usage: forest_verify J [--budget=d] [--direct|--augment] [--emit] "
-                     "[--audit=stride] < graphs.g6\n";
+        std::cerr
+            << "usage: forest_verify J [--budget=d] [--direct|--augment] [--emit] [--reconstruct] "
+               "[--audit=stride] < graphs.g6\n";
         return 1;
     }
     J = std::stoi(argv[1]);
@@ -635,7 +789,9 @@ int main(int argc, char **argv) {
     bool direct = false;
     for (int i = 2; i < argc; ++i) {
         std::string opt = argv[i];
-        if (opt == "--direct")
+        if (opt == "--reconstruct")
+            inverse_check = true;
+        else if (opt == "--direct")
             direct = true;
         else if (opt == "--augment") {
             direct = true;
@@ -669,11 +825,13 @@ int main(int argc, char **argv) {
     }
     if (emit_only)
         return 0;
-    std::cout << "c=" << J / 2 + 1 << " inputs=" << input_count << " cubic inflations=" << cubic_count
-              << "\n";
+    std::cout << "c=" << J / 2 + 1 << " inputs=" << input_count
+              << " cubic inflations=" << cubic_count << "\n";
     for (int q = 0; q <= budget; ++q)
         std::cout << "  rank loss " << q << "; retained partitions " << domains[q]
                   << "; signed forms " << forms[q] << "; violations " << violations[q] << "\n";
+    if (inverse_check)
+        std::cout << "Relaxed partitions sent to reconstruction " << successful_partitions << ".\n";
     std::cout << "Cubic inflations requiring tighter pass " << exceptions << ".\n";
     for (int q = 0; q <= budget; ++q)
         std::cout << "  tight rank/cost " << q << "; retained domains " << strict_domains[q]

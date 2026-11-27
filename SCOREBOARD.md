@@ -1,10 +1,66 @@
 # Proof fleet scoreboard
 
-**November 26, 2026.** The release branch indexes **97 research projects**. It includes the 81 projects on `main` at [`689c8e5`](https://github.com/blakestone-x/math/tree/689c8e59a624ef7802567ca3ce7bbb19cd2b4451) and 16 additional project directories. The two fleet releases contributed **28 manuscripts**. The continuation below adds 16 manuscripts filed in 14 projects, six of them in new directories. [Next proof targets](RESEARCH_PLAN.md)
+The review branch indexes **133 research projects**. It includes 108 projects from [the upstream snapshot](https://github.com/blakestone-x/math/tree/c92ab48c98acba51cb42ceb73536a7bad251ec2d) and 25 additional projects. The three fleet releases contributed **46 proof manuscripts**. This release adds **18** manuscripts across 14 projects, including 9 new project directories. Every manuscript has an editable LaTeX source and a PDF. [Open review](https://github.com/blakestone-x/math/pull/1) · [Next proof targets](RESEARCH_PLAN.md)
 
-A project can cover several numbered conjectures or companion sequences. The last column links the proof and identifies executable or Lean checks where available. Each paper states the remaining open cases and credits earlier results where applicable.
+A project can cover several numbered conjectures. Each entry gives the scope of the proof and links its checks. The project descriptions identify prior results and the parts proved in Lean.
 
-## Continuation
+## Third release
+
+| Problem | Result in this release | Manuscripts and checks |
+|---|---|---|
+| Sun's quadratic circular permutations, A229827 | For every $n\ge2$, a circle through all residues in which the labels $a_i^2+a_{i+1}$ also exhaust all residues exists exactly when $\gcd(n,6)=1$. This proves the conjecture for every prime $p>3$. The construction also gives quantitative lower bounds for the number of circles. | [Existence and enumeration bounds](Sun-polynomial-cycles/square-circle.pdf) · [Source, exact tests and proof details](Sun-polynomial-cycles/README.md) |
+| Sun's two polynomial generalizations | Squaring gives counterexamples over the eight-element field and on a three-element subset of the rationals. The paper also classifies every eligible polynomial function on each field of order through eight. | [Manuscript](Sun-polynomial-cycles/manuscript.pdf) · [Lean certificate for the rational example](Sun-polynomial-cycles/ThreePoint.lean) |
+| Circles through a reduced residue system | Sun's conjectured ordering with all directed differences equal to the units, each once, exists for every odd $n>2$. Requiring all sums, or both sums and differences on one circle, is possible exactly when $\gcd(n,6)=1$. The source had already proved the prime-power case for differences. | [Manuscript, verifier and Lean lifting lemmas](Unit-residue-cycles/README.md) |
+| Circles through the nonzero squares of a finite field | Exact classification for both quadratic target classes and both edge operations over every odd finite field. For $q>13$ the only failures occur at $q=25$, for square-valued sums and differences. Sun's earlier results on geometric orderings and the positive square-target cases are credited. | [Four failure lists, manuscript and Lean obstruction](Sun-quadratic-residue-circles/README.md) |
+| Wiesner's generalized Franel numbers | For every odd prime $p$, $q\ge1$ and even $r\ge2$, the valuation of $\sum_k\binom{p^q-1}k^r$ is $q+v_p(r-1)$. The proposed uniform binary formula fails at $(q,m)=(5,19)$. A corrected formula holds for every $4\le q\le22$ and all $m\ge1$. | [Manuscript, complete row checks and Lean counterexample](Franel-prime-power-rows/README.md) |
+| Periodic chess billiards | Almost every direction pair admits a periodic trajectory or a fixed point on every parallelogram. This refutes Hanusa and Mahankali's Conjectures 6.14 and 6.15 and determines the measure after earlier open-density results. The exceptional set has Hausdorff dimension two, and its slices are described by Hecke groups. | [Measure proof](Chess-billiards/manuscript.pdf) · [Dimension proof](Chess-billiards/dimension.pdf) · [Examples and exact checks](Chess-billiards/README.md) |
+| Catalan-power Hankel determinants | Cigler's Conjecture 4 holds for every positive power and integer shift. Conjecture 15 holds at every stated parameter. The degree and reciprocity in Conjecture 16 hold with the known degree exception at power one and shift zero. A smaller denominator suffices in the odd case. The paper proves the six displayed low-shift families with the stated normalization corrections and credits earlier determinant evaluations. | [Manuscript, original conjectures and verifier](Catalan-power-Hankel/README.md) |
+| Shifted binomial Hankel determinants | Classifies the five identities in Cigler's Conjecture 17. At $m=-1$ one family has a different polynomial for every $k$. For Conjecture 18 it proves both degree predictions, the even leading coefficient, and the corrected odd leading coefficient for all stated parameters. Chern–Shi had already obtained the three positive odd cases of 17 on their valid ranges. | [Proof, earlier specializations and direct determinant checks](Cigler-binomial-Hankel/README.md) |
+| Krizek's weighted proper divisors, A245211 | 21 is the only positive fixed point with at most three distinct prime factors, for arbitrary bases and exponents. Every four-prime fixed point has an exponent at most 24, and four equal exponents are impossible. The manuscript also gives a bound in terms of the product of the distinct prime factors for general support size. | [Three-prime manuscript and two computations](A245211/three-primes.md) · [Independent complete verification](A245211/three-prime-independent.md) |
+| Krizek's second divisor identity, A245212 | Each progression $mp^e$ with $p\nmid m$ contains at most one solution except for pure powers of two. For a fixed finite prime support, fixed cofactor times one free prime power, or fixed exponent pattern of the odd part, every counterexample can be found by a finite algorithm. Two-prime odd parts with at most 256 divisors are completely excluded. | [Manuscript, exact scope and verifier](A245212/prime-rays.md) |
+| Paone–Paone's line-graph signature conjecture | The exact maxima for 10, 11, 12 and 13 independent cycles are 5, 6, 6 and 7 over all graph orders. For every $c\ge2$ the maximum satisfies $f(c)\le\lfloor2c/3\rfloor$, improving the asymptotic upper bound from $5/6$ to $2/3$. The conjectured upper bound holds at all ranks for simple branch kernels. | [Proof, kernel enumerations and exact graph witnesses](Line-graph-signature/forest-bounds.md) |
+| Eulerian matrix powers | For each fixed power $A^r$, the fraction of degree-$n$ roots that are simple and negative tends to one, and their log magnitudes have a Cauchy limit law. All fixed-rank largest roots have explicit asymptotics. For the square, both ends are determined and full real-rootedness is certified through degree 256. Mao and Wang's unrestricted square question remains open. | [Bulk proof](Eulerian-matrix-powers/bulk.pdf) · [Edge proof](Eulerian-matrix-powers/edges.pdf) · [Exact sign certificates](Eulerian-matrix-powers/README.md) |
+| Sun's Franel irreducibility conjecture, A000172 | For every odd prime $p$ and $t\ge1$ both indices $(p-1)p^t$ and $(p-1)p^t+1$ are irreducible. For every prime $p\le10^7$ both $2p^t$ and $2p^t+1$ are irreducible for all $t\ge1$. A second manuscript proves every root is simple and negative for every index, and determines the limiting distribution and extreme roots. | [Irreducibility proof](A000172/digits.pdf) · [Zero distribution](A000172/zeros.pdf) · [Checks and prior proofs](A000172/README.md) |
+| Shallit's finite integer alphabet, Problem 43 | An explicit word on $\{1,4,7\}$ has a nonzero Hankel determinant at every shift and every odd order, and for every order at a prescribed shift. For any cutoff $R$, three positive symbols at most $48R$ suffice for all orders through $R$ at every shift. The simultaneous all-order, all-shift problem remains open. | [Manuscript, exact valuations and checks](Shallit-Hankel/integer-lifts.md) |
+| Sun's coprime-power cycles, A229130 | For exponent $k$ let $r$ count primes $p$ for which $p-1$ divides $k$. At least $3\cdot2^{r-1}-3$ sizes are exceptional. The number of exceptions is unbounded as $k$ varies. The construction gives the three predicted quadratic exceptions. Finiteness for each fixed exponent and the full quadratic classification remain open. | [Manuscript, exact counts and Lean obstructions](Power-coprime-exceptions/README.md) |
+
+## Concurrent work on main
+
+27 project directories arrived between the previous and current upstream snapshots. They enter the project total through the upstream commits. The manuscript counts above cover the fleet's own three releases. [Compare the two upstream snapshots](https://github.com/blakestone-x/math/compare/689c8e59a624ef7802567ca3ce7bbb19cd2b4451...c92ab48c98acba51cb42ceb73536a7bad251ec2d)
+
+| Project | Subject of its manuscript |
+|---|---|
+| [A016789](A016789/README.md) | Breysens's negabinary XOR identity |
+| [A128382](A128382/README.md) | Zeros of iterated divisor sums of Ramanujan's tau function |
+| [A128424](A128424/README.md) | A rounded triangle recurrence and the Pisot sequence E(5,7) |
+| [A193020](A193020/README.md) | Distinct self-shuffles |
+| [A193649](A193649/README.md) | Ten formulas for triangular-array residues |
+| [A194469](A194469/README.md) | Which square roots are curbed? |
+| [A195825](A195825/README.md) | The positions, lengths and levels of all partition plateaus |
+| [A195916](A195916/README.md) | Exact periods in the XOR Pascal triangle |
+| [A197170](A197170/README.md) | Every gcd occurs in infinitely many real quadratic fields |
+| [A200982](A200982/README.md) | Power sums at prime-power divisors of the Carmichael exponent |
+| [A200984](A200984/README.md) | Balanced two-column arrays |
+| [A203069](A203069/README.md) | Bounded displacement for greedy composite power-sum permutations |
+| [A205573](A205573/README.md) | Three questions on Jeffery's matrix array |
+| [A207409](A207409/README.md) | The unique largest remainder on division by smaller primes |
+| [A221078](A221078/README.md) | Prime-power congruences for trigonometric power sums |
+| [A249303](A249303/README.md) | Factorization of Kimberling's iterated rational functions |
+| [A300984](A300984/README.md) | Squarefree sums of squarefree and nonsquarefree divisors |
+| [A308355](A308355/README.md) | The exact stable prefix of the partition-length rows |
+| [A324017](A324017/README.md) | Two tetration proofs and a counterexample |
+| [A377824](A377824/README.md) | The positions of minimum parts in compositions |
+| [A380868](A380868/README.md) | Every triangular rectangle count occurs infinitely often |
+| [A382632](A382632/README.md) | Which regular polygons can a consecutive rod chain form? |
+| [A389524](A389524/README.md) | Divisor row sums and a divisor-count diagonal |
+| [A393833](A393833/README.md) | Existence of palindromic proper-divisor residue lists |
+| [Bala-product-identities](Bala-product-identities/README.md) | Two exponent conjectures of Peter Bala |
+| [Dekking-base-three-halves](Dekking-base-three-halves/README.md) | Factor frequencies and fifth powers in the base-3/2 Thue–Morse words |
+| [Rational-base-digit-sums](Rational-base-digit-sums/README.md) | Digit-sum residues on arithmetic progressions in every rational base |
+
+## Second release
+
+The second release added 16 manuscripts to 14 projects. The entries below record the bounds and open cases at that release. [Second release snapshot](https://github.com/blakestone-x/math/tree/5a9d2730dd28ae3031c488960ae2f6cd08a36803)
 
 | Problem | Result | Manuscript and checks |
 |---|---|---|

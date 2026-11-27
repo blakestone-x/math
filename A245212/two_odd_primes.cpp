@@ -48,7 +48,7 @@ std::vector<Residues> filters(unsigned b,unsigned c,unsigned D) {
     return result;
 }
 int main(int argc,char**argv) {
-    unsigned cap=argc>1?std::stoul(argv[1]):100;
+    unsigned cap=argc>1?std::stoul(argv[1]):256;
     if (cap<4 || cap>2048) throw std::runtime_error("Use a divisor-count cap from 4 through 2048.");
     std::vector<unsigned> primes;
     unsigned limit=160*cap+1;

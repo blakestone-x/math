@@ -23,8 +23,8 @@ for ((d=3; d<=level; ++d)); do
         amounts=(1040 324 52)
         stride=${FOREST_AUDIT_STRIDE:-211}
     else
-        orders=(24 26 28 30)
-        amounts=(10308 2401 284 0)
+        orders=(22 24 26 28 30)
+        amounts=(27117 10308 2401 284 0)
         stride=${FOREST_AUDIT_STRIDE:-10000}
     fi
     for ((n=4; n<=orders[-1]; n+=2)); do
@@ -48,6 +48,14 @@ for ((d=3; d<=level; ++d)); do
         count=$(wc -l < "$work/direct$n")
         test "$count" -eq "${amounts[$i]}"
         echo "Canonical cubic types at order $n with matching size at most $d: $count"
-        "$work/check" "$n" --budget="$d" --direct --audit="$stride" < "$work/direct$n"
+        if ((d==4 && n==22)); then
+            "$work/check" "$n" --budget="$d" --direct --reconstruct --audit="$stride" < "$work/direct$n"
+        else
+            "$work/check" "$n" --budget="$d" --direct --audit="$stride" < "$work/direct$n"
+        fi
+        if [[ ${FOREST_RECONSTRUCT:-0} == 1 ]] && ((d==4 && n==24)); then
+            echo "Inverse reconstruction at order $n"
+            "$work/check" "$n" --budget="$d" --direct --reconstruct --audit="$stride" < "$work/direct$n"
+        fi
     done
 done

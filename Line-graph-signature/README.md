@@ -1,8 +1,8 @@
 # The signature of line graphs at small cyclomatic number
 
-For all $c\ge2$ the maximum satisfies $f(c)\le\lfloor2c/3\rfloor$. The acyclic-matching theorem and exact search give further sharp values above nine independent cycles. The manuscript treats arbitrary graph order, subdivisions and attached trees. [New exact values, general bounds and complete verification](forest-bounds.md)
-
 Let $f(c)$ be the largest possible number of positive minus negative adjacency eigenvalues of the line graph $L(G)$, where $G$ ranges over all finite connected simple graphs with $|E(G)|-|V(G)|+1=c$.
+
+For all $c\ge2$ the maximum satisfies $f(c)\le\lfloor2c/3\rfloor$. The acyclic-matching theorem and exact search give further sharp values above nine independent cycles. The manuscript treats arbitrary graph order, subdivisions and attached trees. [New exact values, general bounds and complete verification](forest-bounds.md)
 
 | Cyclomatic number $c$ | Exact $f(c)$ | Order of an attaining example |
 | --- | ---: | ---: |
@@ -14,8 +14,12 @@ Let $f(c)$ be the largest possible number of positive minus negative adjacency e
 | 7 | 4 | 32 |
 | 8 | 4 | 36 |
 | 9 | 5 | 41 |
+| 10 | 5 | 45 |
+| 11 | 6 | 50 |
+| 12 | 6 | 54 |
+| 13 | 7 | 59 |
 
-The upper bounds allow every graph order and arbitrary pendant forests. The lower constructions are due to Andrea Paone and Marco Paone. Their Conjecture 5.4 predicts $f(c)=\lfloor(c+1)/2\rfloor$ for all positive $c$. Their earlier bounds already agree at $c=1$. The first two manuscripts give the cases through seven. The third proves the cases eight and nine, establishes $f(c)\le c-4$ for $c\ge8$, and proves that $\lim f(c)/c$ exists in $[1/2,5/6]$. The next case is $5\le f(10)\le6$. [New manuscript and verification](eight-nine.md) · [Original conjecture](https://doi.org/10.5281/zenodo.21706797)
+The upper bounds allow every graph order and arbitrary pendant forests. The lower constructions are due to Andrea Paone and Marco Paone. Their Conjecture 5.4 predicts $f(c)=\lfloor(c+1)/2\rfloor$ for all positive $c$. Their earlier bounds already agree at $c=1$. The first two manuscripts settle the cases through seven. The third finds the exact values at eight and nine and proves existence of $\lim f(c)/c$. The fourth bounds this limit between $1/2$ and $2/3$ and gives all exact values through thirteen. The next case is $7\le f(14)\le8$. [Eight and nine cycles](eight-nine.md) · [Ten through thirteen cycles](forest-bounds.md) · [Original conjecture](https://doi.org/10.5281/zenodo.21706797)
 
 The core of the proof is a reduction of arbitrary trees to a choice of at most one leaf per vertex of the 2-core. Bipartite path interiors then bound the signature in terms of the core's branch vertices. A singular principal submatrix rules out equality for cubic kernels with six or more vertices. [Manuscript PDF](manuscript.pdf) · [LaTeX source](manuscript.tex)
 

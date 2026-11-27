@@ -1,6 +1,6 @@
 # A density-one theorem for Krizek’s second divisor moment
 
-Along each prime-power progression $mp^e$ with $p\nmid m$, at most one exponent works, except for the pure powers of two. Finitely many counterexamples can have their factors in a prescribed finite set. Fixing the exponents of the odd part also gives an effective finite classification while the primes and dyadic exponent vary. The manuscript applies this to odd parts with exactly two prime factors and bounded divisor count. [Prime-power progressions and finite classifications](prime-rays.md)
+Along each prime-power progression $mp^e$ with $p\nmid m$, at most one exponent works, except for the pure powers of two. Finite algorithms list every counterexample with prime factors in a prescribed finite set, with a prescribed odd exponent pattern, or of the form $mp^e$ at fixed cofactor $m$. The conjecture holds for every odd part with exactly two distinct prime factors and at most 256 divisors, for arbitrary primes and dyadic exponent. [Prime-power progressions and finite classifications](prime-rays.md)
 
 Jaroslav Krizek conjectured that A245212 equals the usual sum of divisors exactly at powers of two. The manuscript proves this equivalence on a set of natural density one and for every integer whose odd part is at most $10^8$. The general conjecture remains open. [Original statement](https://oeis.org/A245212) · [Proof manuscript](manuscript.pdf) · [LaTeX](manuscript.tex)
 

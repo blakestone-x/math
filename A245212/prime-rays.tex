@@ -1,12 +1,12 @@
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,booktabs,xcolor,hyperref}
-\geometry{margin=.9in}\hypersetup{colorlinks=true,allcolors=blue!60!black}
+\geometry{hmargin=.80in,vmargin=.72in}\hypersetup{colorlinks=true,allcolors=blue!60!black}
 \newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
 \title{Prime-power rays and two finiteness theorems for Krizek's second divisor moment}
 \author{Blake Stone\\\small Proof developed with OpenAI Codex}\date{November 26, 2026}
 \begin{document}\maketitle
 \begin{abstract}
-Let $H(n)=\sum_{d\mid n}d\tau(d)$ and $U(n)=n\tau(n)$. Krizek conjectured that $H(n)+\sigma(n)=2U(n)$ exactly at the powers of two. Every other prime-power progression $mp^e$, with $p\nmid m$, contains at most one solution. There are only finitely many possible counterexamples on any fixed finite set of primes. There are also only finitely many, effectively computable, for each fixed multiset of exponents on the odd primes, even as all bases and the exponent of two vary. We apply this second reduction to odd parts with two distinct primes and at most 100 divisors. Every integer in that class satisfies the conjecture.
+Let $H(n)=\sum_{d\mid n}d\tau(d)$ and $U(n)=n\tau(n)$. Krizek conjectured that $H(n)+\sigma(n)=2U(n)$ exactly at the powers of two. Every other prime-power progression $mp^e$, with $p\nmid m$, contains at most one solution. All possible counterexamples are effectively enumerable in a finite search when their prime factors belong to any fixed finite set, or when the multiset of exponents on their odd primes is fixed and all prime bases and the exponent of two vary. We apply the latter reduction to odd parts with two distinct primes and at most 256 divisors. Every integer in that class satisfies the conjecture.
 \end{abstract}
 
 \section{One free exponent and finite prime support}
@@ -38,15 +38,23 @@ A direct sign criterion covers arbitrarily many odd factors. If $m>1$ is odd and
 The bracketed quantities are respectively at least $\sum u_p/(p-1)$ and at most $\sum u_p$. Every $p-1\le a<H(2^a)/\sigma(2^a)$, giving strict positivity. Thus a counterexample $2^am$ must have an odd prime factor at least $a+2$.
 
 \begin{theorem}\label{support}
-Only finitely many counterexamples have all their prime factors in a prescribed finite set.
+All counterexamples with prime factors in a prescribed finite set can be listed by a finite algorithm.
 \end{theorem}
 \begin{proof}
-Suppose there are infinitely many. Pass to a subsequence in which each exponent is constant or tends to infinity. Write $J$ for the nonempty set of unbounded coordinates. If $|J|=1$, Theorem~\ref{ray} gives a contradiction, as powers of two were excluded. Otherwise write fixed products as positive constants $A,B$. The normalized equation is
+Allow zero exponents. Write $m$ for the product of prime powers already fixed. If the remaining prime set $J$ is empty, test $m$. Otherwise put $k=|J|$, $P=\max J$ and $B=\sigma(m)/U(m)$. Set $C=(H(m)/U(m))\prod_{p\in J}p/(p-1)$. Write $s_p=s_p(e_p)$, $E=\min_{p\in J}e_p$ and $S=\max_{p\in J}s_p$. Then $0<S\le\min(1,2/(E+1))$. The equation becomes
 \[
- A\prod_{p\in J}h_p(e_p)+B\prod_{p\in J}s_p(e_p)=2.
+ C\prod_{p\in J}(1-s_p/p)+B\prod_{p\in J}s_p=2.
 \]
-In the limit $A\prod_{p\in J} p/(p-1)=2$. The difference between this limiting product and its actual first summand is at least a fixed positive constant times $\max_{p\in J}s_p(e_p)$: keep one factor at its actual value and replace the others by their larger limits, then minimize the resulting coefficient over the finite set of factors. The second summand is $o(\max s_p(e_p))$, since at least two factors tend to zero. The equality is therefore impossible along the subsequence.
+The drop $L=C[1-\prod(1-s_p/p)]$ satisfies $CS/P\le L\le CkS$. If $C\ne2$, then $|C-2|=|L-B\prod s_p|\le(Ck+B)S$, bounding $E+1\le 2(Ck+B)/|C-2|$. If $C=2$ and $k\ge2$, then $CS/P\le L=B\prod s_p\le BS^k$, so $(E+1)^{k-1}\le 2^{k-1}BP/C$. Finally if $C=2$, $k=1$ and $J=\{p\}$, the equation is $(B-C/p)s_p=0$. It has no solutions unless every exponent works, when Theorem~\ref{ray} identifies the powers of two. In every other branch enumerate the bounded exponent $E$ and the prime attaining it, and recurse with that prime fixed. This finite tree covers every counterexample.
 \end{proof}
+
+The two parameters of a single new prime power may also vary together.
+For fixed $m$, all counterexamples $mp^e$ with $p\nmid m$ and $e\ge1$ can be listed effectively. In fact a solution requires
+\[
+ 0<\delta=2U(m)-H(m)=\frac{H(m)}{p-1}(1-s_p(e))+\sigma(m)s_p(e)
+ \le\frac{H(m)}{p-1}+\frac{2\sigma(m)}{e+1}.
+\]
+Hence $p-1\le2H(m)/\delta$ or $e+1\le4\sigma(m)/\delta$. For the bounded primes apply Theorem~\ref{support}. At each bounded positive exponent, $H(m)h_p(e)+\sigma(m)s_p(e)$ is a polynomial in $1/p$ with positive coefficients. It decreases strictly to $H(m)+\sigma(m)/(e+1)$ as $p$ increases. Comparing the target to this rational limit, then increasing $p$ until the target is crossed if necessary, determines its only possible prime base.
 
 \section{Fixed odd exponents and varying prime bases}
 \begin{theorem}\label{pattern}
@@ -73,7 +81,7 @@ At each fixed $a$ use the exact equation $(a2^{a+1}+1)\prod F_i+(2^{a+1}-1)\prod
 
 \section{Two odd primes without bounds on their sizes}
 \begin{theorem}\label{two}
-For arbitrary distinct odd primes $p,q$ and positive $b,c$ with $(b+1)(c+1)\le100$, none of the integers $2^ap^bq^c$, $a\ge0$, solves the equality.
+For arbitrary distinct odd primes $p,q$ and positive $b,c$ with $(b+1)(c+1)\le256$, none of the integers $2^ap^bq^c$, $a\ge0$, solves the equality.
 \end{theorem}
 \begin{proof}
 Put $m=p^bq^c$, taking $p<q$, and let $D=(b+1)(c+1)$. For $t=a+1\ge32D$, the right side of \eqref{dyadbound} is below $2^t$. Indeed, at $t=32D$ use $(16D)(32D)=512D^2<2^{32}$ even for $D\le2048$. Beyond this point $2^t/t^{D-1}$ increases as above. Thus $t<32D$.
@@ -86,7 +94,7 @@ For each remaining case write $A=(a2^{a+1}+1) H(p^b)$, $C=(2^{a+1}-1)\sigma(p^b)
 \[
  (cA+C)/q\le g <(cA+C)/(q-1),
 \]
-since the leading tail coefficient of $A F_c(q)+C G_c(q)$ is $cA+C$, and all subsequent coefficients are no larger. Thus the only candidate is $q=\lceil(cA+C)/g\rceil$. Test odd $q>p$ exactly. The implementation can first discard a candidate when $2^{a+1}>H(m)$, since $2^{a+1}\mid H(m)-\sigma(m)>0$. It bounds $H(m)$ using $H(q^c)<2^{c+1}q^c$. All remaining candidates are tested by integral multiplication. The accompanying enumeration examined 283 ordered exponent pairs, 117 excluded by parity. No equality occurred among 1,449,267 ordered odd last-base candidates after the local tests. This proves the theorem.\end{proof}
+since the leading tail coefficient of $A F_c(q)+C G_c(q)$ is $cA+C$, and all subsequent coefficients are no larger. Thus the only candidate is $q=\lceil(cA+C)/g\rceil$. Test odd $q>p$ exactly. The implementation can first discard a candidate when $2^{a+1}>H(m)$, since $2^{a+1}\mid H(m)-\sigma(m)>0$. It bounds $H(m)$ using $H(q^c)<2^{c+1}q^c$. All remaining candidates are tested by integral multiplication. The accompanying enumeration examined 955 ordered exponent pairs, 386 excluded by parity. No equality occurred among 29,847,240 ordered odd last-base candidates after the local tests. This proves the theorem.\end{proof}
 \small\begin{thebibliography}{9}
 \bibitem{oeis} J. Krizek, \href{https://oeis.org/A245212}{OEIS A245212}, July 23, 2014.
 \bibitem{previous} B. Stone with OpenAI Codex, \href{https://github.com/blakestone-x/math/blob/5a9d2730dd28ae3031c488960ae2f6cd08a36803/A245212/manuscript.pdf}{A density-one theorem for Krizek's second divisor moment} (2026).
