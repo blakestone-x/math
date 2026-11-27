@@ -1,0 +1,202 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+
+\title{Three cyclic chord classes force odd regularity\\
+\large A joint-realizability obstruction for Erd\H{o}s Problem 132}
+\author{Blake Stone}
+\date{27 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove an elementary rigidity lemma for an odd cyclic labeling of distinct
+planar points.  If the label differences one, two, and three each determine
+a single Euclidean length, then the points form a regular star polygon in
+label order.  Consequently, a natural family of complete-graph colorings
+with exactly one ``rare'' color cannot be realized as the equality classes
+of planar distances.  At order fifteen this eliminates the exact cyclic
+coloring with class sizes $(16,16,16,16,16,16,9)$ that survives all
+one-point deletion tests.  This is a joint-realizability obstruction, not a
+resolution of either unrestricted question in Erd\H{o}s Problem 132.
+\end{abstract}
+
+\section{The cyclic rigidity lemma}
+
+Indices below are taken modulo $m$.  A regular star polygon means the orbit
+of one point under a rotation through $2\pi k/m$, where $\gcd(k,m)=1$;
+the label order need not be the convex circular order.
+
+\begin{theorem}[Three-step rigidity]\label{thm:rigidity}
+Let $m\ge5$ be odd, and let $p_0,\ldots,p_{m-1}$ be distinct points of
+$\R^2$.  Suppose that, for each $h\in\{1,2,3\}$, the quantity
+\[
+  |p_{i+h}-p_i|
+\]
+is independent of $i$.  Then the points are the vertices of a regular star
+$m$-gon in label order.  More precisely, after identifying $\R^2$ with
+$\mathbb C$, there are $a\ne0$, $b\in\mathbb C$, and a primitive $m$th
+root of unity $z$ such that
+\[
+  p_i=b+a\frac{1-z^i}{1-z}\qquad(0\le i<m).
+\]
+\end{theorem}
+
+\begin{proof}
+Put $e_i=p_{i+1}-p_i$.  The step-one hypothesis gives $|e_i|=s>0$ for
+all $i$.  The step-two hypothesis gives
+\[
+ |e_i+e_{i+1}|^2=2s^2+2e_i\mathbin{\cdot}e_{i+1},
+\]
+so $e_i\cdot e_{i+1}=c$ is independent of $i$.
+
+The two equality cases of Cauchy--Schwarz are impossible.  If $c=s^2$,
+then all $e_i$ are equal, contradicting $\sum_i e_i=0$.  If $c=-s^2$,
+then $e_{i+1}=-e_i$ around an odd cycle, again a contradiction.  Hence
+there is a unique $\theta\in(0,\pi)$ such that
+\[
+ c=s^2\cos\theta.
+\]
+For each $i$, let $\sigma_i\in\{1,-1\}$ record whether the oriented angle
+from $e_i$ to $e_{i+1}$ is $\theta$ or $-\theta$.
+
+The step-three hypothesis and
+\[
+ |e_i+e_{i+1}+e_{i+2}|^2
+ =3s^2+4c+2e_i\mathbin{\cdot}e_{i+2}
+\]
+show that $e_i\cdot e_{i+2}$ is independent of $i$.  On the other hand,
+\[
+ e_i\mathbin{\cdot}e_{i+2}
+ =s^2\cos\bigl((\sigma_i+\sigma_{i+1})\theta\bigr).
+\]
+This is $s^2\cos(2\theta)$ when consecutive signs agree and $s^2$ when
+they disagree.  Since $0<\theta<\pi$, these two values are different.
+Thus either every consecutive sign pair agrees or every consecutive sign
+pair disagrees.  The second alternative would alternate the signs around an
+odd cycle and is impossible.  Therefore all $\sigma_i$ have one common
+value.
+
+Identify the plane with $\mathbb C$ and set $z=e^{\mathrm i\sigma_0\theta}$.
+Then $e_i=e_0z^i$.  Closure gives
+\[
+ 0=\sum_{i=0}^{m-1}e_i=e_0\frac{1-z^m}{1-z}.
+\]
+Here $z\ne1$, so $z^m=1$.  If the order of $z$ were a proper divisor
+$d<m$, then
+\[
+ p_d-p_0=e_0\frac{1-z^d}{1-z}=0,
+\]
+contrary to distinctness.  Hence $z$ is primitive, and summing the edge
+vectors gives the displayed formula.
+\end{proof}
+
+\begin{corollary}[Distinct cyclic chord classes]\label{cor:chords}
+Under the hypotheses of Theorem~\ref{thm:rigidity}, the lengths belonging
+to circular label differences $1,\ldots,(m-1)/2$ are pairwise distinct.
+\end{corollary}
+
+\begin{proof}
+Write $z=e^{2\pi\mathrm i k/m}$ with $\gcd(k,m)=1$.  The squared length
+at difference $h$ is a common positive factor times
+\[
+ |1-z^h|^2=2-2\cos(2\pi kh/m).
+\]
+Equality for differences $h$ and $j$ is equivalent to
+$kh\equiv\pm kj\pmod m$, hence to $h\equiv\pm j\pmod m$.  In the stated
+half-range this forces $h=j$.
+\end{proof}
+
+\section{The abstract one-rare-color family}
+
+Let $n=2t+1$ be odd.  Label the vertices of $K_n$ by $\Z/n\Z$, and give
+the edge $\{a,b\}$ its circular-difference color
+\[
+  j=\min\{|a-b|,n-|a-b|\}\in\{1,\ldots,t\}.
+\]
+Every color initially has $n$ edges.  Move $t-1$ distinct edges of color
+$t$, one into each color $1,\ldots,t-1$.  The resulting color-class sizes
+are
+\[
+  \underbrace{n+1,\ldots,n+1}_{t-1\text{ classes}},\quad t+2.
+  \tag{1}
+\]
+They sum to $\binom n2$.  Thus, as abstract multiplicity data, (1) has
+exactly one class of size at most $n$.
+
+This family also defeats the immediate deletion induction.  Each lower
+color retains its original 2-regular circular-difference graph and gains one
+edge.  Deleting a vertex leaves either $n-2$ or $n-1$ edges of that color,
+at most the new threshold $n-1$.  The top color is a subgraph of a
+2-regular graph.  Hence every one-point deletion has many rare colors even
+though the full abstract coloring has only one.
+
+\begin{theorem}[Nonrealizability of the cyclic obstruction]
+For every odd $n=2t+1\ge9$, the coloring above is not the partition of
+$\binom n2$ pairs into Euclidean distance-equality classes of $n$ distinct
+planar points.
+\end{theorem}
+
+\begin{proof}
+Assume a realization $p_0,\ldots,p_{n-1}$ exists.  None of the original
+edges in circular-difference colors $1,2,3$ was removed, so the step-one,
+step-two, and step-three lengths are respectively constant.  (Extra moved
+edges in those colors impose additional equalities but remove none of these
+base equalities.)  Theorem~\ref{thm:rigidity} and
+Corollary~\ref{cor:chords} show that circular differences
+$1,\ldots,t$ have pairwise distinct lengths.  But every moved edge has
+circular difference $t$ and was placed in one of the lower colors, requiring
+its length to equal a lower-difference length.  This is a contradiction.
+\end{proof}
+
+\section{Order fifteen and scope}
+
+At $n=15$ we have $t=7$, and (1) is precisely
+\[
+ (16,16,16,16,16,16,9).
+\]
+The last color can be chosen as a 15-cycle with six edges removed, hence a
+linear forest; individually, such a graph can occur as a planar diameter
+graph.  The theorem proves that the full seven-color system nevertheless
+has no simultaneous Euclidean realization.  The obstruction therefore uses
+joint metric compatibility rather than pair counting, deletion criticality,
+or a property of the proposed diameter graph in isolation.
+
+For Erd\H{o}s Problem 132 this removes one natural extremal family, including
+the exact cyclic candidate isolated in the preceding continuation.  It does
+not classify all seven-distance colorings on fifteen vertices, prove
+$R\ge2$ at order fifteen, or imply that the unrestricted minimum of $R$
+tends to infinity.  The remaining finite problem requires a reduction from
+arbitrary candidate colorings to rigid joint patterns, while the asymptotic
+problem still requires control of distances between differently oriented
+triangular components and the large outer convex layers.
+
+\section*{Reproducibility note}
+
+The companion script \texttt{verify-cyclic-rigidity.py} checks the finite
+edge counts, all one-vertex deletion counts, the order-fifteen profile, and
+the modular distinct-chord implication for primitive roots.  The analytic
+turning-angle argument in Theorem~\ref{thm:rigidity} is the load-bearing
+general proof; the script is an exact consistency check, not a substitute for
+that proof.
+
+\begin{thebibliography}{9}
+\bibitem{problem132}
+T.~F. Bloom, \emph{Erd\H{o}s Problem 132},
+\url{https://www.erdosproblems.com/132}.
+
+\bibitem{additive}
+B. Stone, \emph{Arithmetic-progression covers and rare planar distances},
+repository manuscript,
+\url{https://github.com/blakestone-x/math/tree/main/Erdos-132-convex-lattice}.
+\end{thebibliography}
+
+\end{document}
