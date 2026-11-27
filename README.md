@@ -104,6 +104,7 @@ math proofs
 - [A334765 — the longest consecutive run for the negative balanced-ternary sum](A334765/README.md)
 - [A335858 — ordering binary words by run lengths](A335858/README.md) · [Verifier](A335858/verify.py)
 - [A339387 — a squarefree condition for equality of residue sums](A339387/README.md)
+- [A341261 and A341262 — gaps, exact frequencies and Fibonacci counts in the Wythoff ceiling array](Wythoff-ceiling/README.md) · [Manuscript](Wythoff-ceiling/ceiling-array.pdf) · [Lean proof](Wythoff-ceiling/ArrayStatistics.lean)
 - [A344177 — a polynomial irreducibility criterion covering five OEIS entries](A344177/README.md)
 - [A349802 — Euler transforms of Lyndon words with prescribed initial zeros](A349802/README.md)
 - [A354242 and A354253 — two continued fractions and sharp universal modular periods](A354242/README.md) · [Least periods at every modulus](A000556/periods.pdf)
