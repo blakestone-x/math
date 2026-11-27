@@ -1,0 +1,19 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'Sigrist.permutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sigrist.exact_cuts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sigrist.bounded_displacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sigrist.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sigrist.rare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sigrist.fixed_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+Greedy prefixes: 7,000 terms for each k from 1 through 6.
+Matched 53 published A285655 terms, 60 A285487 terms, and all eight reported fixed positions through 7,000.
+Classified 11 inadmissible consecutive pairs for k=3 on 2 <= n < 79,999.
+Verified every predicted cut in 3,392 periodic graph trials.

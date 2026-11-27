@@ -1,0 +1,20 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'TotientFibers.criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.ray' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.inverse_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.fiber_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.four_unpaired' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.prime_power_level_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TotientFibers.five_level_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+Complete inverse sieve through target 100,000, with proven argument bound 633,122.
+Verified all 9,692 paired values, the fiber-count identity, and every doubling ray in range.
+Matched all 56 terms listed through 372 in A376927; verified the full fiber at 4.
+Verified the prime odd-part and prime-power-level criteria throughout the same range.

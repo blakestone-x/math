@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdftitle={Bounded displacement in Sigrist's prime-factor permutations}]{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\card}{\#}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Bounded displacement in Sigrist's\\[2pt] prime-factor permutations}\\[7pt]
+Blake Stone\\[-1pt]{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+Starting at $1$, take the least unused positive integer whose product with the previous term has at least $k$ distinct prime factors. For every fixed $k$, we prove that this permutation has bounded displacement and fixes a set of natural density one. This settles Sigrist's conjecture that $d_k(n)\sim n$. The proof finds an arithmetic progression of positions at which the walk has used exactly the initial interval. For $k=3$, eventual equality with the identity is equivalent to finiteness of the combined set of Mersenne and Fermat primes. For $k\ge5$ there are infinitely many moved positions.
+\end{abstract}
+
+\section{A walk with few early fixed points}
+Write $\omega(v)$ for the number of distinct prime factors of $v$, with $\omega(1)=0$. Fix $k\ge1$. The first term is $d_k(1)=1$. After $x$, the next term is the least unused $y$ with $\omega(xy)\ge k$. An unused multiple of the product of the first $k$ primes always exists. Sigrist recorded the case $k=5$ in A285487 and the case $k=6$ in A285655, where he conjectured $d_k(n)\sim n$ for every fixed $k$ \cite{sigrist}. For $k=6$ the first terms are $1,30030,2,15015$. The entry records a gap from fixed position $6974$ to fixed position $15668585$.
+\begin{theorem}\label{main}
+For each $k$ there are positive integers $P$ and $a\le P$ such that, for every $m\ge0$ and $r=a+mP$,
+\[
+ d_k(r)=r,\qquad \{d_k(1),\ldots,d_k(r-1)\}=\{1,\ldots,r-1\}.
+\]
+The map $d_k$ is a permutation, $|d_k(n)-n|\le P$ for all $n$, and
+\[
+ \lim_{n\to\infty}\frac{d_k(n)}n=1,\qquad
+ \lim_{N\to\infty}\frac{\card\{1\le n\le N:d_k(n)=n\}}{N}=1.
+\]
+Its inverse has the same displacement bound and the same fixed points.
+\end{theorem}
+The constants in the construction depend on $k$. The size of the first jump already forces any displacement bound to be at least $2\cdot3\cdots p_k-2$ for $k\ge2$.
+
+\clearpage
+\section{Arithmetic progressions of exact cuts}
+Use labels and positions $0,1,\ldots$ in this section. A graph prescribes which steps are allowed. At each step choose the least unused admissible label. The initial choice is unrestricted. A label $u$ is \emph{universal} if both directed edges between $u$ and every label are allowed. Say that $u$ is an \emph{exact cut} if the first $u$ outputs are precisely $[0,u)$ and the next output, at position $u$, is $u$.
+\begin{lemma}\label{period}
+Suppose a periodic set of universal labels has period $P$ and contains $H>P/2$ labels per period. Some $c<P$ has the property that every $c+mP$, $m\ge0$, is an exact cut.
+\end{lemma}
+\begin{proof}
+List the periodic labels as $u_0<u_1<\cdots$ and let $t_j$ be the position where $u_j$ is taken. While $u_j$ is unused, the least admissible label is at most $u_j$. No larger label can precede it, so $t_j\le u_j$, all $t_j$ exist, and they are strictly increasing. If $t_j=u_j$, all $u_j$ smaller labels have already appeared and this is an exact cut. If $t_j<u_j$, some $v<u_j$ is missing. Immediately after $u_j$ the walk can use $v$ and therefore picks a label at most $v$. Consequently $t_{j+1}\ge t_j+2$ in this case.
+
+Put $s_j=2j-u_j$. Suppose $s_j\ge0$ and $s_j>s_i$ for all $i<j$. If there was no earlier equality $t_i=u_i$, the two-step gaps give $t_j\ge2j\ge u_j$. Otherwise take the last such $i<j$. The first gap is at least one, all subsequent gaps are at least two, and hence
+\[
+ t_j\ge u_i+1+2(j-i-1)=2j-s_i-1\ge2j-s_j=u_j.
+\]
+Together with $t_j\le u_j$ this proves that every such record gives an exact cut.
+
+Periodicity gives $u_{j+H}=u_j+P$, so $s_{j+H}=s_j+\Delta$ with $\Delta=2H-P>0$. Let $j_0$ be the first maximizer of $s_j$ on $0\le j<H$. Since $u_{H-1}\le P-1$, its score satisfies $s_{j_0}\ge2H-P-1\ge0$. Every $j_0+mH$ is a strict record. Scores in earlier whole periods are at most $s_{j_0}+(m-1)\Delta$, and earlier scores in the same period are strictly smaller by choice of $j_0$. Set $c=u_{j_0}<P$.
+\end{proof}
+The initial interval $[0,c)$ and each subsequent interval $[c+mP,c+(m+1)P)$ are permuted internally. The difference between two prefix sets at their endpoints proves this assertion, which gives both surjectivity and bounded displacement.
+
+\clearpage
+\section{A periodic sieve and the fixed-point density}
+\begin{lemma}\label{sieve}
+For any $k\ge1$ and $\eta>0$, a periodic subset of the positive integers of density greater than $1-\eta$ consists entirely of integers with at least $k$ distinct prime factors.
+\end{lemma}
+\begin{proof}
+Euler's divergence of $\sum_p1/p$ gives $k$ disjoint finite sets of primes $S_1,\ldots,S_k$ such that, for $Q_j=\prod_{p\in S_j}p$,
+\[
+ \frac{\varphi(Q_j)}{Q_j}=\prod_{p\in S_j}(1-1/p)<\eta/k.
+\]
+Indeed the reciprocal product is at least $1+\sum_{p\in S_j}1/p$, and discarding finitely many primes leaves a divergent sum. Keep the integers divisible by at least one prime from every $S_j$. This set is periodic modulo $\prod_jQ_j$. The fraction missing the $j$th group is $\varphi(Q_j)/Q_j$. The union bound proves the assertion, and disjointness gives $k$ different divisors.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{main}]
+Any positive integer with $\omega(v)\ge k$ is universal for our graph. Apply Lemma~\ref{sieve} with $\eta=1/2$, shift positive labels down by one, then apply Lemma~\ref{period}. Shifting back gives $a=c+1$. The block decomposition gives the claimed bound in both directions and hence the ratio limit.
+
+For density, write $E_k(X)=\card\{n\le X:d_k(n)\ne n\}$ and
+\[
+ B_k(X)=\card\{1\le v\le X:\omega(v(v+1))<k\}.
+\]
+If a natural consecutive pair is inadmissible, at least one endpoint must move. Conversely, consider a block $[r,r+P)$ starting at an exact cut. If every consecutive edge within the block is admissible, induction gives $d_k(n)=n$ throughout the block, since after each correct prefix the next natural label is the least unused one. Each block containing a moved label thus contains an inadmissible edge. Distinct blocks have disjoint internal edges. Including an initial interval and a possible final partial block gives
+\begin{equation}\label{sand}
+ B_k(X-1)\le2E_k(X),\qquad E_k(X)\le P+P B_k(X+P).
+\end{equation}
+For every $\eta>0$ the periodic set in Lemma~\ref{sieve} excludes all first endpoints counted by $B_k$. Thus $\limsup B_k(X)/X\le\eta$, whence $B_k(X)=o(X)$. Apply \eqref{sand}. A permutation and its inverse fix exactly the same positions.
+\end{proof}
+The formal density proof counts translates of exceptional residue classes in a window of length $P+1$. This gives a second way to see where the natural density enters the argument.
+
+\clearpage
+\section{Which consecutive pairs can make a position move?}
+\begin{corollary}
+The sequence $d_2$ starts $1,6,2,3,4,5$ and agrees with the identity from position $7$ onward. For $k=3$,
+\[
+ E_3(X)=O(\log X).
+\]
+Moreover, $d_3(n)=n$ for all sufficiently large $n$ if and only if there are finitely many Mersenne primes and finitely many Fermat primes.
+\end{corollary}
+\begin{proof}
+For $k=2$ the displayed prefix follows directly from the greedy rule. The next unused label $7$ is admissible after $5$, and consecutive integers greater than one have at least two distinct prime factors between them.
+
+For $k=3$ a bad consecutive pair with both endpoints at least two consists of two prime powers, since the endpoints are coprime. The even endpoint is $2^e$, so there are at most $O(\log X)$ possibilities in the indicated range. Equation~\eqref{sand} gives the upper bound.
+
+For $e\ge2$, suppose $2^e-1=q^b$ with $q$ an odd prime. An even $b$ is ruled out modulo four. For odd $b>1$, division of $q^b+1$ by $q+1$ gives an odd factor greater than one of $2^e$. Hence $2^e-1$ is prime. For $2^e+1=q^b$, an odd $b>1$ similarly gives an odd factor greater than one of $q^b-1=2^e$. If $b$ is even, the two powers of two $q^{b/2}-1$ and $q^{b/2}+1$ differ by two and must be $2,4$. This gives the sole exception $2^3+1=9$. The cases $e=1$ are finite. A prime of the form $2^e-1$ is a Mersenne prime. If $2^e+1$ is prime, $e$ is a power of two, by factoring $z^t+1$ for odd $t>1$. Thus infinitely many bad edges are equivalent to infinitely many primes in the indicated union. Both inequalities in \eqref{sand} transfer finiteness in the two directions.
+\end{proof}
+\begin{corollary}
+For every $k\ge5$, $E_k(X)\gg X/(\log X)^2$ for all sufficiently large $X$.
+\end{corollary}
+\begin{proof}
+A form of Chen's sieve recorded by Granville \cite[Sec.~5]{granville} gives $\gg Y/(\log Y)^2$ integers $u\le Y$ with at most two prime factors, counted with multiplicity, for which $2u+1$ is prime. Then $\omega((2u)(2u+1))\le4$. The pairs $(2u,2u+1)$ are disjoint, so each forces a distinct moved position. Take $Y=(X-1)/2$.
+\end{proof}
+\begin{thebibliography}{9}\small
+\bibitem{sigrist} R. Sigrist, OEIS entries \href{https://oeis.org/A285655}{A285655} and \href{https://oeis.org/A285487}{A285487}, 2017.
+\bibitem{granville} A. Granville, \href{https://dms.umontreal.ca/~andrew/PDF/Kummer.pdf}{On the size of the first factor of the class number of a cyclotomic field}, Sec.~5.
+\end{thebibliography}
+\end{document}

@@ -1,6 +1,10 @@
 # math
 math proofs
 
+- [Sigrist’s prime-factor permutations — bounded displacement and fixed-point density one for every threshold](Sigrist-prime-permutations/README.md) · [Manuscript](Sigrist-prime-permutations/prime-permutations.pdf) · [Fixed-point density in Lean](Sigrist-prime-permutations/Density.lean)
+- [Hadjicostas’s low Josephus survivors — the partial-sum recurrence, exact labels, and the distribution of normalized survivors](Josephus-low-survivors/README.md) · [Manuscript](Josephus-low-survivors/low-survivors.pdf) · [Recurrence and labels in Lean](Josephus-low-survivors/Josephus.lean)
+- [Rush’s totient pairs — a rank counterexample, exact doubling criterion, and prime-power families](Totient-doubling/README.md) · [Manuscript](Totient-doubling/totient-fibers.pdf) · [Pairing criterion in Lean](Totient-doubling/Fibers.lean)
+
 - [A327315 — irreducibility exactly in degrees of the form 2^a 3^b](A327315/README.md) · [Complete source theorem in Lean](A327315/Proof.lean)
 - [A289001, A289035, and A289239 — three length conjectures refuted and every eventual monic integer recurrence excluded](A289004/README.md) · [Complete Lean proofs](A289004/Proof.lean)
 - [A complete irreducibility classification and three recurrence refutations — Batch 11 manuscript](notes/Math_Proofs_Batch11.pdf) · [Collection guide](notes/Math_Proofs_Batch11_README.md)

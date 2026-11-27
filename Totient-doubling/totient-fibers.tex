@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdftitle={Doubling pairs in inverse totient fibers}]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\ph}{\varphi}
+\newcommand{\V}{\mathcal V}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Doubling pairs in inverse totient fibers}\\[7pt]
+Blake Stone\\[-1pt]{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+We characterize positive totients whose full inverse image splits into pairs $(x,2x)$. They are exactly the totients outside twice the set of totients. A criterion proposed by Rush using the relative ranks of the odd inverses has a counterexample at $4$. We also classify the first attainable doubling level for a prime odd part and give an explicit primality test for every positive power of five.
+\end{abstract}
+
+\section{What prevents a complete pairing?}
+Let $\V=\{\ph(n):n\ge1\}$ and $F(v)=\{x\ge1:\ph(x)=v\}$. Call $v$ \emph{paired} if $F(v)$ is nonempty and splits into disjoint pairs $(x,2x)$. Rush's sequence A376927 consists of these $v$. Its comment proposes even cardinality together with confinement of the odd inverses to the lower half of the sorted list \cite{rush}.
+
+\begin{theorem}\label{criterion}
+For $v\ge1$ the paired values form the set $\V\setminus 2\V$. Equivalently, $F(v)$ is nonempty and has equally many odd and even elements. At $v=4$ the rank condition in the comment holds and the pairing fails.
+\end{theorem}
+\begin{proof}
+For every positive $x$ the prime factorization formula gives
+\[
+ \ph(2x)=\begin{cases}\ph(x),&x\text{ odd},\\2\ph(x),&x\text{ even}.\end{cases}
+\]
+Every odd inverse is matched uniquely to its double, and every even inverse congruent to $2$ modulo $4$ is matched to its odd half. The remaining inverses are divisible by four. None can be an endpoint of a pair in that same fiber. In particular the difference between the number of even and odd inverses counts the obstruction exactly.
+
+If $\ph(4u)=v$, then $v=2\ph(2u)\in2\V$. Conversely, if $v=2w$ and $w$ is a totient, choose an even inverse $e$ of $w$, doubling an odd inverse if necessary. Then $2e$ is divisible by four and has totient $v$. This also proves $2\V\subseteq\V$.
+
+The full sorted fiber of $4$ is $(5,8,10,12)$. To check completeness, if an odd prime $p$ divides the argument then $p-1\mid4$, hence $p=3$ or $5$. A factor $5$ accounts for the entire totient and gives $5,10$. With a factor $3$ and no $5$, the exponent of $3$ must be one and the power of two must be $4$, giving $12$. A pure power of two gives $8$. The sole odd inverse $5$ lies in the lower half. The unmatched inverses are $8$ and $12$.
+\end{proof}
+
+\clearpage
+\section{Counting and doubling}
+Write $V(v)=\#F(v)$, $O(v)=\#\{x\in F(v):x\text{ odd}\}$. All fibers are finite. To see the bound $x\le2\ph(x)^2$, observe that for each odd prime power $p^a$ one has $p^a\le\ph(p^a)^2$ since $(p-1)^2\ge p$. For $2^a$, $a\ge1$, one has $2^a\le2\ph(2^a)^2$. Multiplicativity gives the claim. The factor two is attained by $x=2$.
+
+For even $v$, the map $e\mapsto2e$ is a bijection from the even inverses of $v/2$ onto the inverses of $v$ divisible by four. Thus
+\[
+ V(v)=\begin{cases}
+ 2O(v)+V(v/2)-O(v/2),&2\mid v,\\
+ 2O(v),&2\nmid v .
+ \end{cases}
+\]
+This identity applies also when a fiber is empty. It explains the parity-count test implemented in the sequence entry.
+\begin{corollary}\label{ray}
+Fix an odd $s\ge1$. If any $2^as$ is a totient, there is a least such exponent $a_0$, all the exponents $a\ge a_0$ occur, and exactly $2^{a_0}s$ is paired. Consequently the totients are the disjoint union of the sets $\{2^jv:j\ge0\}$ indexed by paired $v$.
+\end{corollary}
+\begin{proof}
+Closure under doubling gives every exponent after the first. At a later exponent the half value is a totient. At the first exponent there is no half value in $\V$, including the case of odd $s$ at $a_0=0$. Now apply Theorem~\ref{criterion}.
+\end{proof}
+
+\begin{theorem}\label{primecore}
+For an odd prime $r$ form the set of positive exponents
+\[
+ \mathcal J(r)=\{j\ge1:2^j r+1\text{ is prime}\}
+ \ \cup\ \{j\ge1:r-1=2^j\}.
+\]
+There exists a totient of odd part $r$ exactly when $\mathcal J(r)$ is nonempty. In that case the paired value of odd part $r$ is $2^{\min\mathcal J(r)}r$.
+\end{theorem}
+\begin{proof}
+In $\ph(n)=\prod_{p^e\parallel n}p^{e-1}(p-1)=2^a r$, some factor contributes the unique copy of $r$. If it occurs in $p-1$, then $p-1=2^j r$ for $1\le j\le a$. Otherwise $p=r$, $e=2$, and $r-1$ is a power $2^j$ dividing $2^a$. Conversely every candidate is attained at its indicated level, by the prime $2^j r+1$ in the first case and by $r^2$ in the second. Corollary~\ref{ray} now applies.
+\end{proof}
+
+\clearpage
+\section{Prime powers at the first even level}
+\begin{theorem}\label{level}
+For each prime $r>3$ and each $m\ge1$,
+\[
+ 2r^m\in\V \quad\Longleftrightarrow\quad 2r^m+1\text{ is prime}.
+\]
+For $r=3$, $2\cdot3^m$ is attained for every $m\ge1$.
+\end{theorem}
+\begin{proof}
+A totient of the form $2r^m$ has exactly one factor of two. Its argument has at most one odd prime divisor $p$, since each distinct odd prime contributes an even factor $p-1$. It must have at least one, since pure powers of two have power-of-two totients. The argument is $p^e$ or $2p^e$ because a factor $4$ would introduce a second factor of two. Therefore
+\[
+ p^{e-1}(p-1)=2r^m.
+\]
+If $e>1$, the odd prime $p$ divides the right side and must equal $r$. Since $p-1$ is coprime to $p$, it divides $2$, forcing $p=3$. For $r>3$ we must have $e=1$, giving the primality condition. Conversely a prime $2r^m+1$ has totient $2r^m$. At $r=3$, use $\ph(3^{m+1})=2\cdot3^m$.
+\end{proof}
+
+\begin{corollary}
+For each $m\ge1$ the paired value of odd part $5^m$ equals
+\[
+ \begin{cases}
+ 2\cdot5^m,&2\cdot5^m+1\text{ is prime},\\
+ 4\cdot5^m,&2\cdot5^m+1\text{ is composite}.
+ \end{cases}
+\]
+In particular all $4\cdot5^{2j}$, $j\ge1$, are paired.
+\end{corollary}
+\begin{proof}
+The odd integer $5^m>1$ cannot be a totient, since $\ph(x)$ is even for $x>2$. The second even level is always attained by $\ph(5^{m+1})=4\cdot5^m$, and Theorem~\ref{level} handles the intervening level. For even $m\ge2$, $2\cdot5^m+1$ is divisible by three and exceeds three.
+\end{proof}
+The first four powers $5,25,125,625$ therefore have paired values $10,100,250,2500$. The next power $3125$ gives $12500$, since $6251=7\cdot893$.
+
+\subsection*{Formal and computational verification}
+The Lean files prove the pairing criterion, the doubling-ray classification, the inverse bound, the complete fiber at $4$, Theorem~\ref{level} for $r>3$, and the level-two criterion for $5^m$. The companion sieve checks complete fibers and both counting and pairing tests. The odd-part criterion of Theorem~\ref{primecore} has the factorization proof above.
+\begin{thebibliography}{9}\small
+\bibitem{rush} T. Rush, \href{https://oeis.org/A376927}{OEIS A376927}, October 2024. The stated rank condition appears in the comments. The PARI program tests equality of the odd and even counts.
+\end{thebibliography}
+\end{document}

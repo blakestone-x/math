@@ -1,0 +1,21 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'Josephus.term_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.position' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.unique_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.term_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.low_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.all_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.size_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Josephus.predicted_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+Matched the orbit formula and every low survivor for 6,300,000 step/population pairs.
+Cross-checked 4,725 of these by literal circular deletion.
+Reproduced the k=5 opening populations and labels in OEIS A120160.
+Compared both exact frequency endpoints in 33 threshold tests at orbit index 800.
