@@ -1,0 +1,88 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=0.94in,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Elementary symmetric functions of periodic prefixes},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Elementary symmetric functions of periodic prefixes}\rhead{\small Blake Stone}\cfoot{\thepage}
+\newtheorem{theorem}{Theorem}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.23em}
+\raggedbottom
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Elementary symmetric functions\\[0.15em] of periodic prefixes\par}
+\vspace{0.6em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+\begin{abstract}
+For a periodic list of positive integers, sum the products obtained by omitting a fixed number $r$ of positions from each prefix. We give the generating function and an exact recurrence order when the period product defines an irreducible binomial. Specialization to one omitted position establishes ten generating functions and recurrences proposed by R. J. Mathar for sequences of Clark Kimberling. One of the ten cases was verified by Robert Israel in 2017. For each of the ten periods the least order at any omission count $r$ is $d(r+1)$, where $d$ is the period length.
+\end{abstract}
+
+\section{The generating function}
+Let $a_1,\ldots,a_d$ be a period of positive integers, with $d\ge1$, continued indefinitely by repetition. For $n,r\ge0$ let $u_r(n)$ be the sum of the products over all ways to omit exactly $r$ indexed positions from the first $n$ terms. It is zero for $r>n$ and equals the elementary symmetric function $e_{n-r}(a_1,\ldots,a_n)$ otherwise. The empty product is one. Define
+\[
+ B_j(t)=\prod_{i=1}^j(a_i+t),\quad B(t)=B_d(t),\quad P=B(0),\qquad
+ L(x,t)=\sum_{j=0}^{d-1}x^j B_j(t).
+\]
+In particular $B_0(t)=1$. Write $E$ for the shift in $n$.
+
+\begin{theorem}\label{th:main}
+For every $r\ge0$,
+\[
+ F_r(x)=\sum_{n\ge0}u_r(n)x^n
+       =[t^r]\frac{L(x,t)}{1-x^dB(t)},\qquad
+       (E^d-P)^{r+1}u_r=0 .
+\]
+If $z^d-P$ is irreducible over $\mathbb Q$, this annihilator is the least one over $\mathbb Q$. In particular the least order is exactly $d(r+1)$.
+\end{theorem}
+\begin{proof}
+For $n=md+j$, $0\le j<d$, the polynomial encoding products with omitted positions is $B(t)^m B_j(t)$. The coefficient of $t^r$ selects the omissions. Summing the geometric series in $m$ proves the generating-function identity.
+
+Put $H=1-Px^d$. Modulo $t^{r+1}$ the inverse denominator expands as
+\[
+   \frac{1}{1-x^dB(t)}
+      \equiv\sum_{s=0}^r\frac{x^{ds}(B(t)-P)^s}{H^{s+1}} .
+\]
+Thus $H^{r+1}F_r(x)$ is a polynomial of degree at most $d(r+1)-1$. The degree bound gives the stated recurrence beginning at $n=0$.
+
+\newpage
+\noindent\emph{Minimality.}
+At the positive root $\rho=P^{-1/d}$ of $H$, all the terms in $H^{r+1}F_r$ vanish except the one indexed by $s=r$. Its value is
+\[
+     L(\rho,0)\rho^{dr}B'(0)^r>0.
+\]
+All period entries are positive, so both factors $L(\rho,0)$ and $B'(0)$ are positive. The rational function has a pole of order $r+1$ there. If $z^d-P$ is irreducible, its reciprocal $H$ is irreducible up to a nonzero scalar. The numerator is coprime to $H$, so the reduced denominator is $H^{r+1}$. Every constant-coefficient recurrence would give a denominator dividing its reciprocal characteristic polynomial. This proves minimality.
+\end{proof}
+
+\section{Ten periodic sequences}
+For $r=1$, extracting the coefficient from Theorem~\ref{th:main} gives
+\[
+ F_1(x)=\frac{L_t(x,0)(1-Px^d)+x^d L(x,0)B'(0)}{(1-Px^d)^2}.
+\]
+All ten proposals have this form. In the table the last column lists the coefficients of the numerator divided by $x$, in increasing degree. In particular the recurrence in each row is $u_1(n+2d)=2P\,u_1(n+d)-P^2u_1(n)$.
+\begin{center}\small
+\begin{tabular}{@{}llrl@{}}\toprule
+OEIS & Period & $P$ & Coefficients of numerator divided by $x$\\\midrule
+\oeis{203164} & $4,1,2,3$ & 24 & $1,5,14,50,176,80,64$\\
+\oeis{203165} & $3,4,1,2$ & 24 & $1,7,19,50,126,432,144$\\
+\oeis{203166} & $1,2,3,4,5$ & 120 & $1,3,11,50,274,154,188,324,576$\\
+\oeis{203167} & $2,2,1$ & 4 & $1,4,8,12,16$\\
+\oeis{203230} & $1,3$ & 3 & $1,4,1$\\
+\oeis{203231} & $3,1$ & 3 & $1,4,9$\\
+\oeis{203232} & $2,3$ & 6 & $1,5,4$\\
+\oeis{203233} & $3,2$ & 6 & $1,5,9$\\
+\oeis{203234} & $1,1,1,2$ & 2 & $1,2,3,7,5,3,1$\\
+\oeis{203235} & $1,1,1,3$ & 3 & $1,2,3,10,7,4,1$\\\bottomrule
+\end{tabular}\end{center}
+The cubic $z^3-4$ has no rational root. Each other binomial in the table is Eisenstein at a prime dividing $P$ exactly once. Hence Theorem~\ref{th:main} gives the least order for every $r$ in all ten rows.
+
+\paragraph{An elementary proof for one omission.}
+Write $D(S)$ for the one-omission sum of a list $S$ and $p(S)$ for its product. An omitted position lies in one of the two lists, giving $D(ST)=D(S)p(T)+p(S)D(T)$. Apply this identity twice with $T$ a full period beginning just after $S$. The two copies of $T$ each have product $P$, and $D(STT)+P^2D(S)=2P D(ST)$. This is the recurrence used in the table.
+
+\paragraph{Sources and checks.}
+The OEIS entries in the table give Kimberling's definitions and Mathar's 2013 predictions. \oeis{203233} credits Robert Israel with an earlier verification. Related individual cases are recorded in \oeis{203160}--\oeis{203163}. The accompanying \texttt{Periodic.lean} checks the two-block identity for arbitrary natural-number lists and the ten numerator lists. The independent \texttt{verify.py} checks the definitions by subset enumeration and compares the predictions with 317 source terms. \href{https://github.com/oeis/oeisdata/tree/976b0c73e00453b1c1e6f16d83108cb9bb744c3b}{OEIS data revision}.
+\end{document}

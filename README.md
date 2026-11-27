@@ -49,6 +49,8 @@ math proofs
 - [A143132 — the repeating last decimal digits 1,6,6,6](A143132/README.md) · [Lean proof](A143132/Proof.lean)
 - [A178811 — consecutive powerful integers with matching prime signatures](A178811/README.md)
 - [A185333 and A185376 — necklaces that admit a palindromic cut, including prescribed color counts](A185376/README.md)
+- [Periodic elementary symmetric functions — ten formulas and the least recurrence for any fixed number of omissions](Periodic-symmetric-functions/README.md) · [Manuscript (PDF)](Periodic-symmetric-functions/periodic-symmetric.pdf) · [Lean proof](Periodic-symmetric-functions/Periodic.lean)
+- [A203399 — orbit sizes of binary bracelets and the exact rows obeying the divisor rule](A203399/README.md) · [Manuscript (PDF)](A203399/bracelet-orbits.pdf)
 - [A208354 — a bijection for compositions with a single run of ones](A208354/README.md)
 - [A217280 — a complete base-five digit test for the weighted binomial sum](A217280/README.md) · [Lean proof](A217280/Proof.lean)
 - [A224341 and A224342 — the unique composition two-cycle and five corrected terms](A224341/README.md)
