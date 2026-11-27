@@ -1,0 +1,63 @@
+# All shifts of Shallit's Hankel problem through order 4096
+
+**Blake Stone · Computation and proof developed with OpenAI Codex.**
+
+Let $w=w_0w_1\ldots$ be the infinite word beginning with $1$ and fixed by the substitution
+
+$$
+\varphi(1)=12,\qquad \varphi(2)=23,\qquad
+\varphi(3)=14,\qquad \varphi(4)=32.
+$$
+
+**Finite-order theorem.** For every starting position $s\ge0$ and every integer $1\le r\le4096$,
+
+$$
+H_r(s)=\det\big(w_{s+i+j}\big)_{0\le i,j<r}\ne0.
+$$
+
+Jeffrey Shallit asks whether this holds for every order in Problem 9 of his 2014 BCTCS lecture. The slides offer £50 for the problem and report checking a prefix of length 800. The result here covers every position of the infinite word for the stated finite range of orders. Orders beyond 4096 remain outside this proof. Shallit's separate three-real-number alphabet problem has since been solved by Claudemir de Souza Cavalcante. [Shallit, 2014 lecture, slides 33–35](https://cs.uwaterloo.ca/~shallit/Talks/bc4.pdf) · [Shallit's updates](https://cs.uwaterloo.ca/~shallit/talks.html)
+
+## Why checking nine finite words covers every shift
+
+The pairs of adjacent symbols in $w$ form the set
+
+$$
+\mathcal P=\{12,14,21,22,23,31,32,41,42\}.
+$$
+
+All nine occur in $\varphi^5(1)$. Each adjacent pair in an image word either lies inside a single letter's image or consists of the last letter of $\varphi(a)$ and the first of $\varphi(b)$ for an adjacent pair $ab$ in the preimage. The four individual images belong to $\mathcal P$, and the boundary operation sends every pair in $\mathcal P$ back into $\mathcal P$. This gives the asserted equality by induction on iterates of $\varphi$. The verifier checks occurrence and closure directly.
+
+Now decompose $w=\varphi^{13}(w)$ into blocks of length $2^{13}=8192$. The entries of an order-$r$ Hankel matrix are determined by $2r-1$ consecutive symbols. For $r\le4096$, at most 8191 symbols are needed, so the determining factor lies in the union of two neighboring blocks. Every such union is $\varphi^{13}(ab)$ for one of the nine pairs $ab\in\mathcal P$. Each of the nine test words has length 16384. This proves that the finite computation below suffices for the theorem.
+
+## Certificate computation
+
+The [C++ verifier](verify.cpp) computes consecutive Hankel determinants modulo $P=2^{61}-1$. It initializes $H_0(s)=1$ and $H_1(s)=w_s$. The Desnanot–Jacobi identity gives, for $r\ge2$,
+
+$$
+H_r(s)H_{r-2}(s+2)
+=H_{r-1}(s)H_{r-1}(s+2)-H_{r-1}(s+1)^2.
+$$
+
+The minor on the left removes the first and last rows and columns, which shifts the starting index by two. The program verifies each required row-product inverse before division. Induction on $r$ therefore gives the actual determinant residues. A nonzero residue certifies a nonzero integer determinant.
+
+The verifier tests every legal offset at each order in each test word, for
+
+$$
+9\sum_{r=1}^{4096}(16384-2r+2)=453021696
+$$
+
+nonzero residues. This total counts window occurrences, including repeated factors. As an independent check of the recurrence and indexing, the program also evaluates the signed permutation formula in ordinary integer arithmetic for every order from 1 through 8 at all offsets of the nine words $\varphi^4(ab)$. All 1800 direct values agree with the modular computation.
+
+Compile with a C++17 compiler supporting 128-bit unsigned multiplication (GCC or Clang on a 64-bit target).
+
+~~~sh
+g++ -O3 -std=c++17 verify.cpp -o verify
+./verify
+~~~
+
+The reference run took about 4.3 seconds after compilation. Its final two lines were:
+
+~~~
+Independent direct checks: 1800
+Nonzero modular determinants: 453021696
+~~~

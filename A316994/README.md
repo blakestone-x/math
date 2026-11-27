@@ -8,4 +8,4 @@ Rémy Sigrist's sequence starts with $a_1=2$. Write $S_n=a_1+\cdots+a_n$. The ne
 
 **Proof.** The second term is $1$, since the binary expansion of $2+1$ is $11$. Suppose $n\ge2$ terms have been chosen. Their sum $S_n$ strictly exceeds each one, so $S_n$ is unused. Choose $x=S_n$ as a candidate. The new sum would be $2S_n$, whose binary expansion is the expansion of $S_n$ followed by one zero. Thus the required substring occurs as a prefix. The greedy rule can choose its least legal candidate, which is at most $S_n$. Induction gives infinitely many terms. $\square$
 
-Whether every positive integer eventually occurs remains a separate question.
+Whether every positive integer eventually occurs remains open. The [density theorem](omitted-values.md) proves that omitting even one value would force the range of the sequence to have density zero.

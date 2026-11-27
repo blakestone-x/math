@@ -3,6 +3,14 @@ math proofs
 
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
+- [Modular Ducci sequences — the sharp maximum time before cycling at every even width](Ducci-preperiod/README.md)
+- [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
+- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md)
+- [Elementary symmetric Boolean functions — a uniform AND-gate upper bound](SymmetricBooleanCircuits/README.md)
+- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md)
+- [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
+- [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
+
 - [A068133 — prescribed triangular digit sums](A068133/README.md)
 - [A077754 — digit sums of zero-free Harshad numbers](A077754/README.md) · [Finite-case verifier](A077754/verify.py)
 - [A081732 — the ternary one-edit recurrence](A081732/README.md) · [Lean proof](A081732/Proof.lean) · [PDF](A081732/A081732_proof.pdf)
@@ -38,7 +46,7 @@ math proofs
 - [A269631 — a greedy digit-length sequence is a permutation](A269631/README.md)
 - [A293929 — minimum plus signs to collapse a number](A293929/README.md)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
-- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md)
+- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
 - [A323111 — asymptotics of compositions with range equal to half the total](A323111/README.md)
 - [A330904 — the longest consecutive run](A330904/README.md) · [Lean proof](A330904/Proof.lean) · [PDF](A330904/A330904_proof.pdf)
 - [A332520 — fixed points by binary length](A332520/README.md) · [Verifier](A332520/verify.py)
