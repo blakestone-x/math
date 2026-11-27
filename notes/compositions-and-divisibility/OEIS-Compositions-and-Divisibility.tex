@@ -1,0 +1,232 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,geometry,xcolor,hyperref,fancyhdr,booktabs}
+\geometry{left=.92in,right=.92in,top=.9in,bottom=.85in,headheight=15pt,headsep=16pt}
+\definecolor{ink}{HTML}{1B3340}
+\definecolor{accent}{HTML}{17665E}
+\definecolor{muted}{HTML}{4A6068}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,
+ pdftitle={Compositions and a divisibility theorem for OEIS A115047},
+ pdfauthor={Research notes for Blake Stone, developed with OpenAI Codex},
+ pdfsubject={Proofs concerning OEIS A115047, A208354, and A323111}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small\sffamily\color{muted}Compositions and divisibility}
+\rhead{\small\sffamily\color{accent}OEIS research notes}
+\cfoot{\small\sffamily\color{muted}\thepage}
+\renewcommand{\headrulewidth}{.25pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\setlength{\abovedisplayskip}{7pt}\setlength{\belowdisplayskip}{7pt}
+\setlength{\abovedisplayshortskip}{4pt}\setlength{\belowdisplayshortskip}{5pt}
+\linespread{1.07}
+\newcommand{\tagline}[1]{{\small\sffamily\bfseries\color{accent}#1}\par}
+\newcommand{\titleline}[1]{{\fontsize{23}{27}\selectfont\sffamily\bfseries\color{ink}#1}\par}
+\newcommand{\subhead}[1]{\vspace{1pt}{\large\sffamily\bfseries\color{ink}#1}\par}
+\newcommand{\lead}[1]{\textbf{\color{ink}#1.}\enspace}
+\newcommand{\qedx}{\hfill\(\square\)}
+\newcommand{\source}[1]{\vfill{\small\color{muted}#1\par}}
+\newcommand{\oeis}[1]{\href{https://oeis.org/#1}{OEIS #1}}
+\newcommand{\ph}{\varphi}
+\begin{document}
+\thispagestyle{plain}
+\tagline{A115047 \enspace / \enspace A208354 \enspace / \enspace A323111}
+\titleline{Compositions and a divisibility theorem\\for OEIS A115047}
+{\small\sffamily Research notes for Blake Stone \enspace$\cdot$\enspace Developed with OpenAI Codex
+ \hfill November 26, 2026}\par
+\vspace{6pt}
+\subhead{1\quad The smallest universal multiplier}
+Let $v_n$ be A115047, indexed from $n=3$. Michael Somos proposed in 2014 that
+every prime index divides its term. The first term is $v_3=1$. The following
+statement identifies the sole prime exception and extends to composite indices.
+
+\lead{Theorem 1} For every $n\ge3$,
+\[
+                         n\mid 12v_n .
+\]
+Equivalently, $n/\gcd(n,12)$ divides $v_n$. The positive integers $C$ satisfying
+$n\mid Cv_n$ for every $n\ge3$ are exactly the multiples of $12$. In particular,
+$p\mid v_p$ for every prime $p\ge5$.
+
+\lead{Proof} Zograf's recurrence, with $j=i+1$, is
+\[
+ 2(n-1)v_n=\sum_{j=2}^{n-2}\binom{n-4}{j-2}\binom{n}{j}
+ (j-1)(n-j-1)v_{j+1}v_{n-j+1}\qquad(n\ge4).
+\]
+The $v_n$ are integers by the border-strip enumeration of Alexandersson and
+Jordan. Put $D_n=(n-1)(n-2)(n-3)$. Cancellation of factorials gives
+\[
+ D_n\binom{n-4}{j-2}\binom{n}{j}
+ =n(j-1)(n-j-1)\binom{n-1}{j-1}\binom{n-1}{j}.
+\]
+After multiplying the recurrence by $D_n$, every summand on the right is
+divisible by $n$. On the left, the multiplier of $v_n$ satisfies
+\[
+ 2(n-1)D_n=2(n-1)^2(n-2)(n-3)\equiv 2(-1)^2(-2)(-3)=12\pmod n .
+\]
+Hence $n\mid 12v_n$ for $n\ge4$, and the statement holds at $n=3$ as well.
+The initial value and the recurrence give $v_3=v_4=1$. Thus any universal $C$
+must be divisible by both $3$ and $4$, which proves optimality. For every
+prime $p\ge5$, $\gcd(p,12)=1$ gives the asserted prime divisibility.\qedx
+
+\source{\oeis{A115047}. Michael Somos's conjecture is dated September 20, 2014.
+For the recurrence and integrality, see P.~Alexandersson and L.~Jordan,
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL22/Alexandersson/alex4.pdf}
+{\textit{Enumeration of Border-Strip Decompositions and Weil-Petersson Volumes}},
+J.\ Integer Sequences 22 (2019), Article 19.4.5, Theorems 32 and 34.}
+
+\newpage
+\tagline{A208354 \enspace / \enspace COMPOSITIONS}
+\titleline{2\quad One even part or one run of ones}
+A composition of $n$ is an ordered list of positive integers summing to $n$.
+There is one empty composition of zero.
+
+\lead{Theorem 2} For each $n\ge0$, as many compositions of $n$ have at most one
+even part as have all their ones in a single consecutive run. The latter
+class includes compositions with no ones.
+
+\lead{Proof} Both classes have a weight-preserving bijection to words in
+$1,2,3$ of total weight $n$ with at most one $3$. This common class is
+Jerrold Grossman's interpretation of A208354. The same construction works in
+both directions after exchanging the roles of $1$ and $2$.
+
+Take $(a,b)=(1,2)$ or $(2,1)$. An object is a list of ordinary blocks of weight
+$a+kb$ ($k\ge0$), with at most one distinguished block of weight $tb$ ($t\ge1$).
+For $(1,2)$ the distinguished block is the even part. For $(2,1)$ it is
+the whole run of $t$ ones, while the ordinary blocks are the parts at least two.
+Let $U,V,*$ be letters with respective weights $a,b,a+b$.
+
+\lead{Encoding} If the distinguished block is absent or last, write $V^kU$
+for each ordinary block and append $V^t$ if the distinguished block is present.
+Otherwise, encode all ordinary blocks before the distinguished block as $V^kU$.
+Encode the distinguished block and the ordinary block immediately after it by
+\[
+             (tb,\ a+kb)\ \longmapsto\ V^{t-1}\,*\,V^k .
+\]
+Encode each later ordinary block of weight $a+hb$ as $UV^h$. The displayed
+replacement preserves weight since $*$ contributes $a+b$.
+
+\lead{Decoding} In a word without $*$, each $U$ ends an ordinary block.
+Trailing $V$'s, if present, give the terminal distinguished block. In a word
+with $*$, parse the left side up through its last $U$, treating each $U$ as a
+block end. Its remaining $V$'s give $t-1$. The initial $V$'s on the right
+give $k$. Each remaining $U$ starts a later ordinary block. This decoding
+also works when either side is empty. It recovers exactly one object, so the two
+encodings give the claimed bijection.\qedx
+
+For example, the composition $(3,4,1,3)$ in the first class and $(2,3,1,3,2)$
+in the second both encode as $(2,1,2,3,1,2)$. Each has total weight $11$.
+The common generating function follows by splitting a word at its optional $3$.
+With $D=(1-x-x^2)^{-1}$ it is
+\[
+ D+x^3D^2=\frac{(1-x)(1-x^2)}{(1-x-x^2)^2}.
+\]
+\source{\oeis{A208354}. Gregory L.~Simay proposed the single-run interpretation
+on September 29, 2018. Jerrold Grossman recorded the interpretation using a
+single optional $3$ on April 3, 2024.}
+
+\newpage
+\tagline{A323111 \enspace / \enspace ASYMPTOTIC ENUMERATION}
+\titleline{3\quad Compositions with range $n$}
+Let $a_n$ count compositions of $2n$ whose largest part exceeds their smallest
+part by $n$. Write $\ph=(1+\sqrt5)/2$.
+
+\lead{Theorem 3} As $n\to\infty$,
+\[
+ a_n=(n+2)2^{n-3}-\frac{n\ph^n}{5\ph^5}+O(\ph^n).
+\]
+In particular $a_n\sim n2^{n-3}$, as conjectured by V\'{a}clav Kot\v{e}\v{s}ovec in 2019.
+
+\subhead{Removing the unique largest part}
+If the smallest part is $m$, the largest part $n+m$ exceeds half the total
+weight. It occurs exactly once. Removing it leaves two possibly empty lists,
+one on each side, with combined weight $n-m$. Every remaining part is at
+least $m$, and at least one must equal $m$. Conversely, any such pair gives a
+valid composition upon reinsertion of $n+m$ between its lists. No remaining
+part can exceed the total remaining weight $n-m<n+m$.
+
+Let $b_m(s)$ count pairs of ordered lists of combined weight $s$ with parts at
+least $m$. Set $b_m(0)=1$ and $b_m(s)=0$ for $s<0$. The bijection gives
+\[
+ a_n=\sum_{m\ge1}\bigl(b_m(n-m)-b_{m+1}(n-m)\bigr).                 \tag{1}
+\]
+For one list the allowed part weights have series $x^m/(1-x)$. Summing over
+list lengths and then taking an ordered pair gives
+\[
+ B_m(x)=\sum_{s\ge0}b_m(s)x^s=\left(1-\frac{x^m}{1-x}\right)^{-2}.    \tag{2}
+\]
+In particular $xB_1(x)=x(1-x)^2/(1-2x)^2$, whose $x^n$ coefficient equals
+$(n+2)2^{n-3}$ for $n\ge2$.
+
+\subhead{Why this gives the leading term}
+If $m\ge2$, the number $c_m(s)$ of single lists of weight $s$ is at most
+$\ph^s$. Indeed $c_m(0)=1$ and induction on the first part gives
+$c_m(s)=\sum_{j=m}^{s}c_m(s-j)\le\ph^s\sum_{j\ge2}\ph^{-j}=\ph^s$
+for $s>0$. Splitting the weight between two lists gives
+$b_m(s)\le(s+1)\ph^s$ for $s\ge0$. In (1) the absolute error from keeping
+only $b_1(n-1)$ is at most
+\[
+ b_2(n-1)+\sum_{m=2}^{n} b_m(n-m)=O(n\ph^n),
+\]
+by geometric summation. Since $\ph<2$, this proves the proposed asymptotic.
+The next page determines the first exponentially smaller correction.
+
+\source{\oeis{A323111}. Alois P.~Heinz defined the sequence on January 4, 2019.
+V\'{a}clav Kot\v{e}\v{s}ovec proposed the leading asymptotic on January 7, 2019.}
+
+\newpage
+\tagline{A323111 \enspace / \enspace REFINEMENT}
+\titleline{The coefficient of the correction term}
+Summing (1) over $n\ge1$ and shifting the index in the second sum gives an
+identity of formal power series,
+\[
+ \sum_{n\ge1}a_nx^n
+ =x B_1(x)-x(1-x)B_2(x)-(1-x)\sum_{m\ge3}x^{m-1}B_m(x).             \tag{3}
+\]
+Each coefficient uses finitely many summands.
+
+\lead{Bounding the tail} Let $\lambda>1$ be the real root of
+$\lambda^3=\lambda^2+1$. Then $\sum_{j\ge3}\lambda^{-j}=1$ and
+$\lambda<\ph$. The induction on page 3 gives $b_m(s)\le (s+1)\lambda^s$
+uniformly for $m\ge3$ and $s\ge0$. The absolute value of the $x^n$
+coefficient of the last term of (3) is at most
+\[
+ \sum_{m=3}^{n+1} \bigl(b_m(n-m+1)+b_m(n-m)\bigr)=O(n\lambda^n).
+\]
+This estimate is $o(\ph^n)$.
+
+\lead{The second term} The rational function subtracted in the middle of (3)
+has a double pole at $\rho=1/\ph$,
+\[
+ R(x)=x(1-x)B_2(x)
+ =\frac{x(1-x)^3}{(1-\ph x)^2(1+x/\ph)^2}.
+\]
+The coefficient of $(1-\ph x)^{-2}$ in its partial fractions is
+\[
+ K=\left.(1-\ph x)^2R(x)\right|_{x=\rho}
+  =\frac{\rho(1-\rho)^3}{(1+\rho^2)^2}
+  =\frac{\rho^5}{5},
+\]
+using $1-\rho=\rho^2$ and $1+\rho^2=\sqrt5\,\rho$. The simple-pole term at
+$\rho$ contributes $O(\ph^n)$ to the $n$th coefficient. The other pole at
+$-\ph$ contributes $O(n\ph^{-n})$. Since
+$[x^n](1-\ph x)^{-2}=(n+1)\ph^n$, we obtain
+$[x^n]R=Kn\ph^n+O(\ph^n)$. Inserting this in (3) proves Theorem 3.\qedx
+
+\subhead{Numerical check}
+The exact integer counts in (1) give the following values of
+$((n+2)2^{n-3}-a_n)/(n\ph^n)$. The theorem predicts their limit
+$K=1/(5\ph^5)$.
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$n=100$ & $n=500$ & $n=1000$ & $K$\\
+\midrule
+0.019009366 & 0.018229004 & 0.018131497 & 0.018033989\\
+\bottomrule
+\end{tabular}
+\end{center}
+\source{The companion archive includes the typesetting source and a standard-library
+Python verifier. It checks the volume recurrence against the multinomial formula,
+both composition bijections against word enumeration, and (1) against direct
+enumeration of compositions of $2n$.}
+\end{document}

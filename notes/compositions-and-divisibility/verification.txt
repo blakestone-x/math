@@ -1,0 +1,8 @@
+A115047: recurrence, binomial identity and divisibility through n=120.
+         Independent multinomial formula at n=4..15; 1..11 excluded by n=3,4.
+A208354: both bijections hit each target exactly once for weights 0..16.
+A323111: all compositions of 2n enumerated at n=1..10; OEIS terms 1..32 agree.
+         Predicted limit K = 0.018033988750
+         n= 100  ((n+2)2^(n-3)-a(n))/(n*phi^n) = 0.019009366237
+         n= 500  ((n+2)2^(n-3)-a(n))/(n*phi^n) = 0.018229004278
+         n=1000  ((n+2)2^(n-3)-a(n))/(n*phi^n) = 0.018131496514
