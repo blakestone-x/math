@@ -31,3 +31,7 @@ The review included exact identifiers, semantic searches for complementary Fibon
 ## Formal boundary
 
 The theorem applies to every pair satisfying the stated seed values, increasing disjoint positive cover, and selected equation. It assumes no growth or convergence theorem. Existence and uniqueness of the defining complementary pairs are not separately formalized. The package is a proof of the ratio-limit property of all such solutions.
+
+## Follow-up source update
+
+Subsequent searches located related public notes. The [prior-work addendum](PRIOR_WORK_ADDENDUM.md) records the new references and their precise relevance. It supplements the bounded initial search above without changing the formal proof or its scope.

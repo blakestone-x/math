@@ -1,0 +1,15 @@
+Independent A294413 recompilation.
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+A fresh isolated Analytic.olean was compiled first and its directory was placed first on LEAN_PATH.
+
+$ lean -o Analytic.olean Analytic.lean
+'ComplementaryFibonacci.ratio_limit_of_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ComplementaryFibonacci.ratio_limit_of_nat_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Analytic.lean: 35ee9e50e139b60137e69f0269513a85a65b8c538be46fa77dabed0739b0e3ad
+
+$ lean -o Proof.olean Proof.lean
+'A294413.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A294413.ratio_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Proof.lean: 1cb2fe23435602b2433a7feb440cf04d70875fa419b1c14ab8644bb7521a18d6

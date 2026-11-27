@@ -155,6 +155,8 @@ This proves existence of the ratio limit as well as its value. For the 34 equati
 
 ## Prior work and source status
 
+**Follow-up source update (November 26, 2026):** A later search located related public recurrence notes. See the [prior-work addendum](PRIOR_WORK_ADDENDUM.md) for attribution, its scope, and the distinction between positive and signed disturbances. The Lean sources and proved bounds are unchanged.
+
 The [family guide A294532](https://oeis.org/A294532) and its individual entries conjecture the golden-ratio limit. Clark Kimberling and Peter J. C. Moses discuss this subject in [*Linear Complementary Equations and Systems*, Fibonacci Quarterly 57(5) (2019), 96–110](https://www.fq.math.ca/Papers1/57-5/kimberling-moses.pdf). Their Theorem 2.1 identifies a dominant-root limit under hypotheses that explicitly include existence of the ratio limit, in condition (ii). The present argument proves convergence from the defining complementary equations for this family and supplies a uniform error bound. The prior conditional identification is not claimed as new.
 
 Targeted searches checked the family identifiers, the complementary Fibonacci formulation, the 2019 paper, and public OEIS proof collections. No earlier proof of convergence for these exact assertions was located in those checks. This is a bounded source-status finding, not an exhaustive historical priority claim or a claim of OEIS acceptance. See [source_checks.md](source_checks.md).

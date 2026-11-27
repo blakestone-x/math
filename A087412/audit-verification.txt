@@ -1,0 +1,14 @@
+Independent A087412 source audit and kernel check
+Date: November 26, 2026 (America/Chicago)
+Reviewer: independent scout_sequences agent
+Directory: output/batch5/A087412
+Command: /workspace/scratch/5f072ff518ad/lean-runtime/lean-4.19.0-linux/bin/lake env lean -o /workspace/scratch/5f072ff518ad/scout_sequences/batch5/A087412Audit.olean Proof.lean
+Proof.lean SHA-256 before: 6cb09cbc47175fad13ef5416a55ad9e72fdf9cd0e19db52f30b5cdfe0bc883ca
+Proof.lean SHA-256 after: 6cb09cbc47175fad13ef5416a55ad9e72fdf9cd0e19db52f30b5cdfe0bc883ca
+
+'A087412.F_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A087412.original_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A087412.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A087412.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0
