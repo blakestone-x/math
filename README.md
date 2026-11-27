@@ -13,6 +13,7 @@ math proofs
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
+- [A000556 and A000557 — exact modular periods and both period conjectures of Kinlaw, Morris and Thiagarajan](A000556/README.md) · [Manuscript](A000556/periods.pdf) · [Lean finite cases](A000556/SmallCases.lean)
 - [A063956 — the unitary-prime-divisor product identity](A063956/README.md) · [Lean proof](A063956/Proof.lean)
 - [A068133 — prescribed triangular digit sums](A068133/README.md)
 - [A073642 — a squared-valuation identity and an asymptotic constant correction](A073642/README.md) · [Lean identity](A073642/Proof.lean) · [Lean disproof](A073642/Asymptotic.lean)
@@ -63,7 +64,7 @@ math proofs
 - [A339387 — a squarefree condition for equality of residue sums](A339387/README.md)
 - [A344177 — a polynomial irreducibility criterion covering five OEIS entries](A344177/README.md)
 - [A349802 — Euler transforms of Lyndon words with prescribed initial zeros](A349802/README.md)
-- [A354242 and A354253 — two continued fractions and sharp universal modular periods](A354242/README.md)
+- [A354242 and A354253 — two continued fractions and sharp universal modular periods](A354242/README.md) · [Least periods at every modulus](A000556/periods.pdf)
 - [A355255 — cyclic differences, the first counterexample, and an infinite family](A355255/README.md) · [Exact verifier](A355255/verify.py) · [Lean residue certificate](A355255/Certificate.lean)
 - [A357235, A357216, A357254 — intersections and counts for regular polygons](A357235/README.md)
 - [A364847 — matrix similarity classes with a prescribed unit determinant](A364847/README.md)

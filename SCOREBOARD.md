@@ -1,6 +1,6 @@
 # Proof fleet scoreboard
 
-**November 26, 2026.** This release adds **10 research packages** to a **64-project** starting point, for **74 indexed projects** on the release branch. One package can answer several related source statements. The historical tiling paper’s 44 numbered conjectures and the 34 companion sequences in one convergence theorem each form a single project. [Research plan and next targets](RESEARCH_PLAN.md)
+**November 26, 2026.** This release adds **10 research packages** to the **65 projects** on `main` at `e5967ee`, for **75 indexed projects** on the release branch. One package can answer several related source statements. The historical tiling paper’s 44 numbered conjectures and the 34 companion sequences in one convergence theorem each form a single project. [Research plan and next targets](RESEARCH_PLAN.md)
 
 Six packages prove their full source statements. One refutes a conjecture, two establish partial results on general conjectures, and one extends a result already implied by the literature. These categories describe the main target of each package. Two packages each include a second manuscript.
 
@@ -23,7 +23,7 @@ All rows refer to research manuscripts posted by this project. A Lean link recor
 
 ## Concurrent additions to `main`
 
-Two commits from parallel work landed after the baseline snapshot. They added **12 project directories** and strengthened one existing project, bringing the count to **64 projects at `c662a3a`**. Seven directories arrived in [`4059c10`](https://github.com/blakestone-x/math/commit/4059c10514da03fac9a666b0be177fef77570594). The five arriving in [`c662a3a`](https://github.com/blakestone-x/math/commit/c662a3ae7284ba5a20ee6ef1c04297638b3f694f) include Lean proof packages and a [collected manuscript](notes/Math_Proofs_Batch4.pdf). Their 38 OEIS entries comprise four individual entries and one family of 34. The table records the results and scope given in those commits.
+Three commits from parallel work added **13 projects** after the 52-project audit. Seven arrived in [`4059c10`](https://github.com/blakestone-x/math/commit/4059c10514da03fac9a666b0be177fef77570594). Five more in [`c662a3a`](https://github.com/blakestone-x/math/commit/c662a3ae7284ba5a20ee6ef1c04297638b3f694f) cover 38 OEIS entries, four individual entries and one family of 34, with Lean sources and a [collected manuscript](notes/Math_Proofs_Batch4.pdf). The Fibonacci-weighted periods paper in [`e5967ee`](https://github.com/blakestone-x/math/commit/e5967eeb4e1543514fd4e759827d8b10dddf7332) brought `main` to 65 projects. The table records the scope of those results.
 
 | Project | Result and scope |
 |---|---|
@@ -34,13 +34,14 @@ Two commits from parallel work landed after the baseline snapshot. They added **
 | [Symmetric Boolean circuits](SymmetricBooleanCircuits/README.md) | Constructs circuits meeting the proposed AND-gate upper bound for every arity and elementary symmetric function. Optimality would require matching lower bounds. |
 | [Two-tap cellular automata](Two-tap-automata/README.md) | Characterizes when the period divides the width for arbitrary nonzero weights over a finite field, with coprime stride difference relative to the prime-to-characteristic part $m>2$. The note gives exact periods in the stated cases and credits earlier binary results. |
 | [Edit codes](edit-codes/README.md) | Proves $E_4(7r-s,6r-s)=8$ for $r\ge1$ and $0\le s<r$, in particular closing the two listed fixed-length gaps at $(13,11)$ and $(14,12)$. The length-seven base code and repetition identity had prior sources. |
+| [A000556 and A000557](A000556/README.md) | Settles both modular-period conjectures of Kinlaw, Morris and Thiagarajan. The first sequence has the full Carmichael period at every modulus. The second has either the full period or half of it, with the exceptional moduli classified. The paper also determines the least periods of A354242 and A354253. |
 | [A063956](A063956/README.md) | Proves Yanev’s product identity for the sum of the unitary prime divisors, for every positive pair of integers. |
 | [A073642](A073642/README.md) | Proves the squared-valuation identity for weighted binary digits at every index. The power-of-two subsequence rules out the separately proposed natural-log asymptotic constant below $1/2$. |
 | [A129453](A129453/README.md) | Dividing the generalized binomial coefficient from the double gcd product by the ordinary binomial coefficient gives an integer square for every $0\le k\le n$. Ma had already established ordinary integrality. |
 | [A143132](A143132/README.md) | Proves the final decimal digit repeats $1,6,6,6$ at all positive indices in the binomial transform. |
 | [A294532–A294565](A294532/README.md) | One uniform theorem proves convergence of the successive-term ratio to the golden ratio for every complementary pair satisfying the specified equations, across 34 entries. The package gives an explicit error bound. Existence and uniqueness of the pairs are outside its formal scope. |
 
-The same update strengthened [A316994](A316994/omitted-values.md). If any integer is omitted, the range has counting function $O_k(X^{\alpha_k})$ for an explicit $\alpha_k<1$. Thus positive upper density of the range or a partial-sum upper bound $S_n\le n^{2+o(1)}$ would settle the remaining permutation conjecture. Its project count stays at one.
+The update at `c662a3a` also strengthened [A316994](A316994/omitted-values.md). If any integer is omitted, the range has counting function $O_k(X^{\alpha_k})$ for an explicit $\alpha_k<1$. Thus positive upper density of the range or a partial-sum upper bound $S_n\le n^{2+o(1)}$ would settle the remaining permutation conjecture. Its project count stays at one.
 
 The [Palomar branch](https://github.com/blakestone-x/math/tree/5cff8af6bab395d9169ad0907cccb89b85381677) packages [A081732](A081732/README.md) and [A330904](A330904/README.md) in challenge-and-solution format. Both projects are already present in the baseline.
 
