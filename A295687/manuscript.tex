@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,geometry,xcolor,hyperref}
+\geometry{left=0.96in,right=0.96in,top=0.8in,bottom=0.82in}
+\ifdefined\pdfmapfile\pdfmapfile{+lm.map}\fi
+\definecolor{accent}{HTML}{215F61}
+\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent,pdftitle={A Fibonacci series for the odd terms of A295687}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\newcommand{\hd}[1]{\vspace{4pt}{\large\bfseries\color{accent}#1}\par}
+\begin{document}
+{\small\sffamily\color{accent} INTEGER SEQUENCES \hfill RESEARCH NOTE}\par
+{\LARGE\bfseries A Fibonacci series for the odd terms of A295687}\par
+{\small Research note for Blake Stone, developed with OpenAI Codex}\par
+\medskip
+Clark Kimberling's sequence has $a_0=1$, $a_1=2$, $a_2=2$, $a_3=1$ and
+$a_j=a_{j-1}+a_{j-3}+a_{j-4}$ for $j\ge4$. Write $F_0=0$, $F_1=1$ and $F_{j+2}=F_{j+1}+F_j$. In 2021 Peter Bala proposed an infinite-series formula for the odd terms. [1]
+
+\textbf{Theorem 1 (Bala's formula).} For every $n\ge1$, the series converges absolutely and
+\[
+ \boxed{\displaystyle
+ F_n^3\sum_{k\ge1}\frac{k^2F_{nk}}{F_{n+2}^{\,k+1}}
+   = F_{n+2}F_{n+6}+F_{2n+6} = a_{2n+7}.}
+\]
+
+\hd{1. Evaluation of the series}
+Let $\alpha=(1+\sqrt5)/2$ and $\beta=(1-\sqrt5)/2$. We use Binet's formula $F_j=(\alpha^j-\beta^j)/\sqrt5$ and $\alpha\beta=-1$.
+For either $\lambda\in\{\alpha,\beta\}$ let $\bar\lambda$ denote the other root. Direct substitution in Binet's formula gives the classical addition identity of Carlitz [2,3],
+\begin{equation}
+ F_{n+h}-F_h\lambda^n=F_n\bar\lambda^h.\label{eq:shift}
+\end{equation}
+In particular, $t=F_{n+2}$ satisfies $t-\lambda^n=F_n/\lambda^2$. Since $t>\alpha^n>|\beta|^n$, the two geometric series and their polynomially weighted derivatives converge absolutely. Substituting $z=\lambda^n/t$ into $\sum_{k\ge1}k^2z^k=z(1+z)/(1-z)^3$ gives
+\[
+ \frac{F_n^3}{t}\sum_{k\ge1}k^2(\lambda^n/t)^k
+   =\frac{F_n^3\lambda^n(t+\lambda^n)}{(t-\lambda^n)^3}
+   =\lambda^{n+6}(t+\lambda^n).
+\]
+Subtract the $\beta$ evaluation from the $\alpha$ evaluation and divide by $\sqrt5$. This proves the first equality.
+
+\hd{2. Identification with the recurrence}
+The characteristic polynomial for $a_j$ is
+$(X^2-X-1)(X^2+1)$. Its roots $\alpha,\beta,i,-i$ are distinct. Therefore $a_{2n+7}$ is a linear combination of $(\alpha^2)^n,(\beta^2)^n,(-1)^n$. Binet's formula shows that $F_{n+2}F_{n+6}+F_{2n+6}$ is also such a combination, since $\alpha\beta=-1$. Both sequences satisfy the recurrence with characteristic polynomial $(X+1)(X^2-3X+1)$. For $n=0,1,2$ the two expressions each give $16,47,118$, respectively, by their defining recurrences. The three initial matches prove the second equality for all $n\ge0$.
+
+\newpage
+\hd{3. All positive moments at an even shift}
+The same calculation gives a finite sum for every positive moment. For $d\ge1$ define the Eulerian numbers $E(d,j)$ by
+\[
+ \sum_{k\ge1}k^dz^k=\frac{z}{(1-z)^{d+1}}
+                 \sum_{j=0}^{d-1}E(d,j)z^j,\qquad |z|<1.
+\]
+Starting with $E(1,0)=1$, applying $z\,d/dz$ gives each succeeding row. In particular $E(2,0)=E(2,1)=1$.
+
+\textbf{Theorem 2.} For $n,d\ge1$ and positive even $h$, let $t=F_{n+h}$. Then
+\[
+ F_n^{d+1}\sum_{k\ge1}\frac{k^d F_h^k F_{nk}}{t^{k+1}}
+ =\sum_{j=0}^{d-1} E(d,j)\,F_h^{j+1}t^{d-1-j}
+                  F_{(j+1)n+h(d+1)}.
+\]
+
+\textit{Proof.} Put $z=F_h\lambda^n/t$ for each root. Identity~\eqref{eq:shift} and even $h$ give $t>F_h\alpha^n\ge |F_h\lambda^n|$. For a term with index $j$ in the Eulerian polynomial,
+\[
+ \frac{F_n^{d+1}}{t}\frac{z^{j+1}}{(1-z)^{d+1}}
+ =\frac{F_n^{d+1}(F_h\lambda^n)^{j+1}t^{d-1-j}}{(t-F_h\lambda^n)^{d+1}}
+ =F_h^{j+1}t^{d-1-j}\lambda^{(j+1)n+h(d+1)}.
+\]
+The last equality uses $\bar\lambda^{-h}=\lambda^h$ for even $h$. Taking the Binet difference of the two evaluations and summing proves the theorem. For $h=d=2$ this recovers the first equality of Theorem~1.
+
+\hd{Verification and sources}
+The accompanying \texttt{verify.py} performs an independent exact rational evaluation. For $L_n=\alpha^n+\beta^n$ it expands the classical generating function
+\[
+ \sum_{k\ge1}F_{nk}x^k=\frac{F_n x}{1-L_n x+(-1)^n x^2}
+\]
+at $x=F_h/F_{n+h}$ and applies $(x\,d/dx)^d$ to the Taylor coefficients. It compares Theorem~2 on a parameter grid and checks the original recurrence independently. The proof in Sections 1 and 2 covers every index in Bala's conjecture.
+
+{\small
+[1] C. Kimberling and P. Bala, \href{https://oeis.org/A295687}{OEIS A295687}, sequence added in 2017, series conjecture added November 27, 2021. \href{https://github.com/oeis/oeisdata/blob/main/seq/A295/A295687.seq}{OEIS source record}, revision 13.\par
+[2] L. Carlitz, \emph{A note on Fibonacci numbers}, Fibonacci Quarterly 2 (1964), 15--28.\par
+[3] K. Adegoke, \emph{Fibonacci and Lucas identities derived via the golden ratio}, Electronic Journal of Mathematics 4 (2022), 20--31. The text preceding (7) gives the Carlitz identity, and (32) gives the rational generating function used in the verifier. \href{https://doi.org/10.47443/ejm.2022.018}{doi:10.47443/ejm.2022.018}.}
+\end{document}

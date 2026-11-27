@@ -14,3 +14,11 @@ The manuscript proves the upper bounds over every graph order and allows arbitra
 The core of the proof is a reduction of arbitrary trees to a choice of at most one leaf per vertex of the 2-core. Bipartite path interiors then bound the signature in terms of the core's branch vertices. A singular principal submatrix rules out equality for cubic kernels with six or more vertices. [Manuscript PDF](manuscript.pdf) · [LaTeX source](manuscript.tex)
 
 The accompanying Python program uses integer congruence elimination to check the four attaining examples and selected graphs directly on their line graphs. It checks the rooted-tree lemma on all 1,205 rooted tree types through order ten and checks the cubic multigraph obstruction with loops and parallel edges. Run `python3 verify.py` from this directory. The manuscript gives a mathematical proof, and the program provides independent finite checks. [Verifier](verify.py) · [Recorded output](verification.txt)
+
+## Exact maxima at six and seven independent cycles
+
+The addendum proves $f(6)=3$ and $f(7)=4$. It also shows that for every $c\ge2$ an extremal graph exists on at most $17c-17+14\lfloor(c-2)/2\rfloor$ vertices. The finite reduction turns each fixed-$c$ problem into an exhaustive search. For the two new cases the proof uses a smaller enumeration of kernel multigraphs and exact integer matrices. The general conjecture remains open. [Addendum (PDF)](addendum.pdf) · [LaTeX](addendum.tex) · [Exact verifier](addendum_verify.py) · [Recorded output](addendum_verification.txt)
+
+```sh
+python3 -B addendum_verify.py --cross-check
+```
