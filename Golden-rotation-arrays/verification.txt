@@ -1,0 +1,88 @@
+Golden rotation, Wythoff columns and primitive rows
+Lean 4.19.0 and mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+
+Both builds started with separate, empty project output directories. They shared the pinned dependency cache. All 14 project proof modules compiled in each build. There were no project warnings. The 17 audited theorem declarations reported only propext, Classical.choice and Quot.sound.
+
+prime_column_density and primes_in_every_column have the explicit prime-equidistribution hypothesis stated in Distributions.lean. The restricted family density is proved in Corollary 5 of the arithmetic manuscript.
+
+Project build 1
+✔ [2983/2997] Built GoldenLattice
+ℹ [2984/2997] Built OrbitDistribution
+info: ././././OrbitDistribution.lean:181:0: 'GoldenArrays.integer_phases' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2985/2997] Built RowDifference
+✔ [2986/2997] Built ReturnMap
+✔ [2987/2997] Built ColumnPhases
+ℹ [2988/2997] Built PrimitiveRows
+info: ././././PrimitiveRows.lean:126:0: 'GoldenArrays.no_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PrimitiveRows.lean:127:0: 'GoldenArrays.five_at_36' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PrimitiveRows.lean:128:0: 'GoldenArrays.prime_offset' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2989/2997] Built CompositeRow
+info: ././././CompositeRow.lean:82:0: 'GoldenArrays.prime_free_primitive_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././CompositeRow.lean:83:0: 'GoldenArrays.covered_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2990/2997] Built RowGaps
+info: ././././RowGaps.lean:155:0: 'GoldenArrays.zero_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././RowGaps.lean:156:0: 'GoldenArrays.plus_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././RowGaps.lean:157:0: 'GoldenArrays.minus_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2991/2997] Built Distributions
+info: ././././Distributions.lean:47:0: 'GoldenArrays.integer_column_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distributions.lean:48:0: 'GoldenArrays.prime_column_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distributions.lean:49:0: 'GoldenArrays.primes_in_every_column' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2992/2997] Built DivisorCounts
+✔ [2993/2997] Built GcdSpacing
+ℹ [2994/2997] Built GapStatistics
+info: ././././GapStatistics.lean:119:0: 'GoldenArrays.relative_gap_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2995/2997] Built GcdDensity
+info: ././././GcdDensity.lean:117:0: 'GoldenArrays.primitive_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GcdDensity.lean:118:0: 'GoldenArrays.row_gcd_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2996/2997] Built PairedGaps
+info: ././././PairedGaps.lean:66:0: 'GoldenArrays.minus_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PairedGaps.lean:67:0: 'GoldenArrays.paired_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Project build 2
+✔ [2983/2997] Built GoldenLattice
+ℹ [2984/2997] Built OrbitDistribution
+info: ././././OrbitDistribution.lean:181:0: 'GoldenArrays.integer_phases' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2985/2997] Built RowDifference
+✔ [2986/2997] Built ReturnMap
+✔ [2987/2997] Built ColumnPhases
+ℹ [2988/2997] Built PrimitiveRows
+info: ././././PrimitiveRows.lean:126:0: 'GoldenArrays.no_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PrimitiveRows.lean:127:0: 'GoldenArrays.five_at_36' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PrimitiveRows.lean:128:0: 'GoldenArrays.prime_offset' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2989/2997] Built RowGaps
+info: ././././RowGaps.lean:155:0: 'GoldenArrays.zero_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././RowGaps.lean:156:0: 'GoldenArrays.plus_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././RowGaps.lean:157:0: 'GoldenArrays.minus_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2990/2997] Built Distributions
+info: ././././Distributions.lean:47:0: 'GoldenArrays.integer_column_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distributions.lean:48:0: 'GoldenArrays.prime_column_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Distributions.lean:49:0: 'GoldenArrays.primes_in_every_column' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2991/2997] Built CompositeRow
+info: ././././CompositeRow.lean:82:0: 'GoldenArrays.prime_free_primitive_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././CompositeRow.lean:83:0: 'GoldenArrays.covered_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2992/2997] Built DivisorCounts
+✔ [2993/2997] Built GcdSpacing
+ℹ [2994/2997] Built GapStatistics
+info: ././././GapStatistics.lean:119:0: 'GoldenArrays.relative_gap_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2995/2997] Built GcdDensity
+info: ././././GcdDensity.lean:117:0: 'GoldenArrays.primitive_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GcdDensity.lean:118:0: 'GoldenArrays.row_gcd_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2996/2997] Built PairedGaps
+info: ././././PairedGaps.lean:66:0: 'GoldenArrays.minus_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PairedGaps.lean:67:0: 'GoldenArrays.paired_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Independent exact-integer check
+sign +0, 125,001 rows; successive gaps {1: 29509, 2: 65983, 3: 29508}
+sign +1, 77,253 rows; successive gaps {2: 18236, 3: 40778, 5: 18238}
+sign -1, 47,746 rows; successive gaps {3: 11271, 5: 25203, 8: 11271}
+paired lists agree through row 250,000 (47,746 pairs)
+exact column intervals agree with array enumeration for all 1,000,000 integers
+78,498 primes; counts in columns 1 to 6: [30102, 18531, 11397, 7086, 4394, 2655]
+gcd counts in rows 1 to 1,000,000, g=1 to 6: [607928, 151984, 67547, 37993, 24310, 16888]
+first longest primitive run: 36 to 40
+divisor offset, spacing and counting bounds checked for d=1 to 1,000
+row 5,381,684,723,742,272,612,570: coprime seeds, exact Wythoff embedding and all 720 covering residues verified
+
+Both PDF manuscripts were built with latexmk and pdfLaTeX. The final passes report no undefined citations, undefined references or overfull boxes. The gap manuscript has 3 pages and the arithmetic manuscript has 4.
