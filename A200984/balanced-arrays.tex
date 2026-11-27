@@ -1,0 +1,106 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Balanced two-column arrays},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Balanced two-column arrays}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Balanced two-column arrays on any alphabet\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+For weakly increasing two-column arrays on \(q\) letters whose multiplicities differ by at most one, we give an exact counting formula. On each residue class of the height modulo \(q\) the count is a polynomial of degree \(q-1\), valid even at the first height. We determine its leading coefficient, give the least generating-function denominator for every odd \(q\), and verify all 33 constituent polynomials in six entries of R. H. Hardin.
+\end{abstract}
+
+Let \(A_q(n)\) count arrays with \(n\) rows and two columns over \(q\ge2\) ordered letters, weakly increasing both downwards and rightwards, with all letter counts differing by at most one. Include \(A_q(0)=1\). Write
+\[
+ n=qm+s,\quad 0\le s<q,\qquad 2s=qe+t,\quad 0\le t<q,\qquad u=2m+e .
+\]
+Thus \(e\in\{0,1\}\) and exactly \(t\) letters occur \(u+1\) times, the others \(u\) times.
+
+\begin{theorem}\label{th:poly}
+For every \(s\), \(A_q(qm+s)\) is a polynomial in \(m\) for all integers \(m\ge0\). Its degree is \(q-1\), with leading coefficient
+\[
+ \frac{\binom qt}{q(q-1)!}
+ \sum_{0\le h<q/2}(-1)^h\binom qh(q-2h)^{q-1}.
+\]
+\end{theorem}
+
+\section{From the arrays to walks}
+For a letter of multiplicity \(c\) put \(a\) copies in the left column and \(c-a\) in the right. These counts uniquely specify the sorted columns. They are compatible row by row exactly when at every letter cutoff the cumulative left count is at least the cumulative right count. Indeed, a row with right entry smaller than left violates the cutoff at its right entry, and a failed cutoff produces such a row. Thus our arrays are precisely walks whose steps \(2a-c\), in order of the letters, sum to zero and have nonnegative partial sums. A step has color low or high according as \(c=u\) or \(u+1\).
+
+Write \(B_{j,k}\) for the number of unrestricted bridges (walks returning to zero) of \(j\) steps with \(k\) high steps. For the same step choices, write \(E_{j,k}\) for nonnegative bridges. The following identity, with \(z\) marking length and \(v\) marking high steps, is the classical bridge--excursion identity with colors:
+\[
+ \sum_{j,k\ge0} E_{j,k}z^jv^k
+ =\exp\left(\sum_{j\ge1}\frac{z^j}{j}\sum_{k=0}^j B_{j,k}v^k\right). \tag{1}
+\]
+Here \(E_{0,0}=1\) and the desired answer is \(E_{q,t}\).
+
+For completeness, rotate a nonempty bridge to start at an occurrence of its minimum accumulated height. The result is a sequence of nonempty excursions, each ending at its first return to zero. Marking another minimum cyclically rotates this list. Thus cyclic classes of bridges correspond to cyclic lists of these first-return excursions. A bridge of length \(j\) with repetition number \(d\) has \(j/d\) distinct rotations. If the list has length \(h\), it has \(h/d\) rotations, since a period of the colored bridge sends a minimum to a minimum and a period of the list gives a period of the bridge. If \(I\) counts first-return excursions, the two orbit counts with weights \(1/j\) and \(1/h\) prove that the exponent in (1) equals \(\sum_{h\ge1}I^h/h=-\log(1-I)\). Any nonnegative bridge is a sequence of first-return excursions, proving (1).
+
+\section{The constituent polynomials}
+Fix \(j,k\). When \(je+k\) is odd the requisite total left count is not integral, so \(B_{j,k}=0\). Otherwise choose the high letters in \(\binom jk\) ways and take the coefficient of \(y^{(ju+k)/2}\) in
+\((1+y+\cdots+y^u)^{j-k}(1+y+\cdots+y^{u+1})^k\).
+Inclusion--exclusion gives
+\[
+ B_{j,k}=\binom jk \!
+ \sum_{\substack{0\le a\le j-k,\ 0\le b\le k\\ h=a+b<j/2}}
+ (-1)^h\binom{j-k}{a}\binom{k}{b}\binom{R+j-1}{j-1}, \tag{2}
+\]
+where \(R=(j-2h)m+e(j/2-h)+k/2-h-b\). Here \(a,b\) count the low and high upper bounds violated. To justify the polynomial interpretation at every \(m\ge0\), if \(h\ge j/2\) then \(k-b\le j-h\), so \(R\le(j-h)/2-h<0\), and the coefficient is zero. If \(h<j/2\), then \(k\ge b,\ b\le h\) give \(R\ge-3h/2\), hence \(R+j-1\ge0\). The ordinary polynomial binomial coefficient therefore also gives the correct zero when \(R<0\). Each remaining term has degree at most \(j-1\) in \(m\).
+
+In (1) a product of \(d\) bridge factors of total length \(q\) has degree at most \(q-d\). Only the single factor \(B_{q,t}/q\) can contribute to degree \(q-1\). The coefficient of that degree in (2) gives Theorem~\ref{th:poly} by Vandermonde's convolution. To see positivity, for one fixed content pattern choose each of the first \(q-1\) left multiplicities within \(m/(4q)\) of \(m\). For large \(m\) the last multiplicity forced by their sum lies between zero and \(2m\). This yields \(\gg_q m^{q-1}\) unrestricted bridges. The other terms cannot cancel the leading term.
+
+\section{Recurrences and the least denominator}
+Let \(F_q(x)=\sum_{n\ge0}A_q(n)x^n\), and \(L=q/\gcd(2,q)\). Its reduced denominator divides \((1-x^L)(1-x^q)^{q-1}\). Indeed the \((q-1)\)-st backward difference at spacing \(q\) is eventually constant on each residue class and is proportional to \(\binom q{2s\bmod q}\), which has period \(L\).
+
+\begin{theorem}
+For every odd \(q\ge3\), the reduced denominator of \(F_q\), normalized to have constant term one, is exactly \((1-x^q)^q\).
+\end{theorem}
+\begin{proof}
+For \(\zeta^q=1\), evaluation of \((1-x^q)^q F_q(x)\) at \(\zeta\) gives \((q-1)!\) times the sum, weighted by \(\zeta^s\), of the leading coefficients in Theorem~\ref{th:poly}. This follows from \(\sum_{m\ge0}\binom{m}{i}y^m=y^i/(1-y)^{i+1}\). Since 2 is invertible modulo \(q\), choose \(\omega=\zeta^{\,2^{-1}\bmod q}\). Up to a positive factor the sum is
+\(\sum_{t=0}^{q-1}\binom qt\omega^t=(1+\omega)^q-1\).
+A zero would require \(|1+\omega|=1\), so \(\omega\) is a primitive cube root and \(3\mid q\). For odd \(q\) divisible by three, \((1+\omega)^q=-1\). No \(q\)-th root cancels.
+\end{proof}
+
+\begin{corollary}
+For every \(q\ge2\), the least quasiperiod of \(A_q(n)\) is exactly \(q\). Here a quasiperiod is a modulus on whose residue classes the sequence is polynomial in \(n\).
+\end{corollary}
+\begin{proof}
+For odd \(q\) the denominator theorem gives a pole at a primitive \(q\)-th root. For even \(q=2Q\), the sequence of leading coefficients has least period \(Q\), since among \(0\le s<Q\), \(\binom q{2s}\) takes its minimum value one only at \(s=0\) (the case \(Q=1\) is immediate). Any quasiperiod must preserve these leading coefficients, hence be a multiple of \(Q\).
+
+It remains to exclude a period that is an odd multiple of \(Q\). Compare \(n=Qu\) for even and odd \(u\), so all \(q\) contents are exactly \(u\). For a bridge of even length \(j\), the count in (2) with \(k=0\) is the same polynomial in \(u\) at either parity, with binomial upper argument is \((j/2-h)u-h+j-1\). For odd \(j\) the count is zero for odd \(u\). For even \(u\) it is a polynomial of degree \(j-1\) with positive leading coefficient, by the same choice of the first \(j-1\) left counts near \(u/2\) as before.
+
+In (1), the single bridge of length \(q\) is common to both parities. In products of two bridges with lengths adding to \(q\), the two lengths are either both even, giving common terms, or both odd. All odd pairs contribute positively in degree \(q-2\) at even \(u\) only, and at least the pair \(1,q-1\) occurs. Products of three or more bridges have degree at most \(q-3\). Thus the two polynomials in \(u\) differ. A single residue class modulo any odd multiple of \(Q\), namely its zero class, contains infinitely many points of both parities of \(u\) and cannot have a single polynomial. Since \(q\) itself works, the claim follows.
+\end{proof}
+
+\section{Hardin's six entries}
+For \(q=3,\ldots,8\), all \(3+4+5+6+7+8=33\) residue polynomials in the following entries agree exactly with (1)--(2). For the even cases in the table the reduced denominator is exactly \((1-x^{q/2})(1-x^q)^{q-1}\).
+\begin{center}\begin{tabular}{c|cccccc}
+\(q\)&3&4&5&6&7&8\\ \hline
+OEIS&\oeis{201271}&\oeis{201445}&\oeis{200984}&\oeis{201136}&\oeis{201066}&\oeis{201095}
+\end{tabular}\end{center}
+For example, for \(q=5\), \(A_5(5m)=1+20\binom m1+79\binom m2+106\binom m3+46\binom m4\) after expressing the polynomial in finite differences as in the accompanying table.
+The file \texttt{coefficients.csv} gives all 33 polynomials as \(\sum_i d_i\binom mi\). They are the finite differences at \(m=0\) of the formulas listed by Hardin. To reproduce the verification, compute (2), and then use the logarithmic derivative of (1):
+\[
+ jE_{j,k}=\sum_{i=1}^j\sum_{l=0}^{\min(i,k)} B_{i,l}E_{j-i,k-l}.
+\]
+Use \(E_{0,k}={\bf1}_{k=0}\), taking impossible indices as zero. For each \((q,s)\), agreement at \(m=0,\ldots,q-1\) proves equality for every \(m\) by Theorem~\ref{th:poly}. The verifier also computes the arrays by direct assignment of columns. The least denominators follow by reducing the exact rational function obtained from the binomial-basis table.
+
+\paragraph{Sources.}
+R. H. Hardin's OEIS entries are linked in the table. For the general bridge--excursion identity see C. Banderier and P. Flajolet, \href{https://doi.org/10.1016/S0304-3975(02)00007-5}{Basic analytic combinatorics of directed lattice paths}, \emph{Theoret. Comput. Sci.} 281 (2002), 37--80.
+\end{document}
