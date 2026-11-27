@@ -1,15 +1,17 @@
-# Batch 10: five assertions resolved in three families
+# Batch 10: four resolutions and one independent formalization
 
 **Blake Stone · Proof developed with ChatGPT · November 27, 2026**
 
-[Read the nine-page manuscript](Math_Proofs_Batch10.pdf) · [Complete LaTeX source](Math_Proofs_Batch10.tex) · [Mathematical review](Math_Proofs_Batch10_math_review.md) · [Rendering and verification record](Math_Proofs_Batch10_review.md)
+[Read the corrected manuscript](Math_Proofs_Batch10.pdf) · [Complete LaTeX source](Math_Proofs_Batch10.tex) · [Dated attribution and rendering correction](Math_Proofs_Batch10_correction_2026-11-27.md) · [Original mathematical review](Math_Proofs_Batch10_math_review.md) · [Original rendering record](Math_Proofs_Batch10_review.md)
 
-This batch contains **three proved assertions and two refutations**, organized into three complete Lean projects. Repeated comments in companion OEIS entries are counted once.
+This batch contains **four newly resolved assertions: two proofs and two refutations**, together with **one independent Lean formalization of a previously proved assertion**, organized into three complete Lean projects. Repeated comments in companion OEIS entries are counted once.
+
+**Attribution correction, November 27, 2026.** The initial release counted the A211417 positive-shift family as a new resolution. A broader GitHub semantic search located an explicit September 19, 2026 paper proving that family and a stronger classification. A211417 is now credited as an independent formalization of prior mathematics. The [primary-citation report](../A211417/PRIOR_PROOF.md) identifies the exact prior proposition and original dated commit. The [correction record](Math_Proofs_Batch10_correction_2026-11-27.md) preserves the original review hashes and records the revised manuscript hashes.
 
 | Package | Exact result | Count |
 |---|---|---:|
 | [A326926](../A326926/README.md) | The nonconstant normalized derivative numerator of degree $n$ is irreducible over $\mathbb Q$ exactly when $n+1$ is prime and unequal to $3$. The repeated assertion in A326933 is the same classification. | 1 proof |
-| [A211417](../A211417/README.md) | For every $k\in\{2,3,5\}$ and every shift range $r$, the explicit positive constant $((30r)!)^r$ clears the entire prescribed product of positive shifts, uniformly in every $n\ge0$. | 1 proof |
+| [A211417](../A211417/README.md) | For every $k\in\{2,3,5\}$ and every shift range $r$, the explicit positive constant $((30r)!)^r$ clears the entire prescribed product of positive shifts, uniformly in every $n\ge0$. This mathematical assertion has an explicit prior proof. | 1 independent formalization |
 | [A289128](../A289128/README.md) | The literal replacement iterates have the A289131 length recurrence, including all initial values and the exact start at index six. | 1 proof |
 | [A289129](../A289128/README.md) | The zero-position ratio has no real limit; two subsequences tend to $5/2$ and $7/3$. | 1 refutation |
 | [A289130](../A289128/README.md) | The one-position ratio has no real limit; two subsequences tend to $5/3$ and $7/4$. | 1 refutation |
@@ -40,7 +42,7 @@ $$
 
 The prime proof uses $P_{p-1}'=-pP_{p-2}$ to make every positive-degree coefficient divisible by $p$. The leading coefficient is $\pm p$ and the constant coefficient is $\pm1$, so the reciprocal is Eisenstein. Classical Lucas divisibility rules out composite indices. The exception is $P_2=3X(X-1)$.
 
-### A211417: the full positive-shift family
+### A211417: independent formalization of the positive-shift family
 
 For the original factorial ratio
 
@@ -48,7 +50,7 @@ $$
 A(n)=\frac{(30n)!\,n!}{(15n)!\,(10n)!\,(6n)!},
 $$
 
-we prove, for every $k\in\{2,3,5\}$ and $r,n\ge0$,
+we independently formalize, for every $k\in\{2,3,5\}$ and $r,n\ge0$,
 
 $$
 \prod_{\substack{1\le i\le r\\\gcd(i,k)=1}}(kn+i)
@@ -57,7 +59,7 @@ $$
 
 The proof counts prime-power divisibility across the whole product. Large prime powers can divide at most one selected shift, and force a matching unit contribution to the factorial-ratio valuation. Small prime powers are covered by $r\,v_p((30r)!)$. The formalization proves natural division exact and separately establishes the literal rational integrality statement.
 
-The original factorial-ratio integrality, four previously proved fixed-factor assertions, and the separate negative-shift family are credited as prior work. The displayed multiplier is sufficient; its optimality is not claimed.
+The entire displayed positive-shift assertion is prior work: Proposition `prop:positive` of *Polynomial divisibility of height-one factorial ratios*, Part I, September 19, 2026, in [VladimirReshetnikov/ProveIt](https://github.com/VladimirReshetnikov/ProveIt/blob/a3fe9660ee6c3ab92752594c2099c3cd214012c9/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex), gives a smaller lcm multiplier. Its polynomial classification is stronger still. The report has no Lean or Rocq formalization. The present contribution is the independent kernel-checked proof and exact source bridge. Classical original integrality, fixed-factor proofs, the negative-shift family, and the [Landau criterion specialization](../A211417/landau_provenance.md) are also credited. The displayed multiplier is sufficient; optimality is not claimed.
 
 ### A289128–A289131: lengths and two nonconvergence results
 
@@ -105,7 +107,7 @@ The projects contain **15 checked local proof modules**: eight, one, and six res
 | Project | Main endpoints | Review |
 |---|---|---|
 | A326926 | `SixthDerivative.source_irreducible_iff`; `source_numerator_irreducible_iff` | [Independent review](../A326926/independent_review.md), [build](../A326926/independent_build.log) |
-| A211417 | `ChebyshevShifts.bala_positive_shift_conjecture`; `positive_shift_rational_integrality` | [Independent audit](../A211417/AUDIT.md), [build](../A211417/audit-verification.txt) |
+| A211417 | `ChebyshevShifts.bala_positive_shift_conjecture`; `positive_shift_rational_integrality` | [Original independent audit](../A211417/AUDIT.md), [build](../A211417/audit-verification.txt), [attribution correction](Math_Proofs_Batch10_correction_2026-11-27.md) |
 | A289128 | `Kimberling289128.original_length_conjecture`; `position_ratios_do_not_converge` | [Independent review](../A289128/independent_review.md), [build](../A289128/independent_build.log) |
 
 All reported endpoint axioms are among `propext`, `Classical.choice`, and `Quot.sound`. There are no admitted statements, added axioms, unsafe declarations, or native-decision proof shortcuts. The independent reviews check the source definitions and mathematical interpretation as well as compilation.
@@ -114,7 +116,9 @@ All reported endpoint axioms are among `propext`, `Classical.choice`, and `Quot.
 
 Seven exact primary-source exports are preserved across the packages. Each package documents its revision checks and bounded search for earlier proofs. The mathematical ingredients are credited, including the classical Eisenstein and Lucas results, the known factorial-ratio integrality, and Barker's pre-existing scalar length formulas.
 
-No earlier proof of the exact five assertions claimed here was located in the checked sources. This bounded check does not certify historical priority, human peer review, or OEIS editorial acceptance.
+The initially missed A211417 predecessor is now explicitly cited. No earlier proof of the remaining four resolutions was located in the bounded checks, including subsequent broader GitHub and ProveIt searches documented in the [polynomial addendum](Math_Proofs_Batch10_polynomial_prior_addendum.md) and [replacement-word addendum](Math_Proofs_Batch10_word_prior_addendum.md). These checks do not certify historical priority, human peer review, or OEIS editorial acceptance.
+
+The original independent formal audits and manuscript-review records remain byte-for-byte preserved as historical records. Their mathematical and compilation checks apply to the unchanged Lean sources; their old contribution count and negative prior-proof finding for A211417 are superseded by the dated correction. All fifteen local proof modules, build configurations, source exports, and formal build logs are unchanged.
 
 The combined LaTeX source is self-contained. Compile twice in a normal TeX installation:
 
@@ -123,4 +127,4 @@ pdflatex -interaction=nonstopmode -halt-on-error Math_Proofs_Batch10.tex
 pdflatex -interaction=nonstopmode -halt-on-error Math_Proofs_Batch10.tex
 ```
 
-The final PDF contains nine letter-size pages with embedded fonts. Every page was rendered and visually inspected. The final log has no overfull or underfull boxes, unresolved references, missing glyphs, or package warnings. The accompanying notes checksum file identifies the exact manuscript, guide, and review records.
+The corrected PDF is rebuilt from the revised source and inspected page by page. The dated correction record reports its exact page count, rendering checks, and SHA-256 hashes. The accompanying notes checksum file identifies the corrected manuscript and guide, the correction record, and the preserved original review records.

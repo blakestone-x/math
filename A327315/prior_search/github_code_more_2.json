@@ -1,0 +1,333 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "results": [
+        {
+          "url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/qxl.txt",
+          "path": "data/frequency/qxl.txt",
+          "display_url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/qxl.txt",
+          "display_title": "data/frequency/qxl.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "rikuki\t43462\nrikukiga\t60846\nrikun\t34769\nrikuna\t69539\nrikunachij\t52154\nrikunachijka\t26077\nrikunachijkuna\t17384",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    40,
+                    46
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    53,
+                    59
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    70,
+                    76
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    89,
+                    95
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/qve.txt",
+          "path": "data/frequency/qve.txt",
+          "display_url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/qve.txt",
+          "display_title": "data/frequency/qve.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "qari\t263511\nqarikuna\t46114\nqarikunaman\t13175",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    14,
+                    20
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    29,
+                    35
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "rikun\t19763\nrikuna\t26351\nrikunallanpaq\t32938",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    12,
+                    18
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    25,
+                    31
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/izr.txt",
+          "path": "data/frequency/izr.txt",
+          "display_url": "https://github.com/unicode-org/unilex/blob/b3a9ae27a0c29eac217bb15a75c6f8d8efb15d17/data/frequency/izr.txt",
+          "display_title": "data/frequency/izr.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "rikparng\t18684\nrikparng'e\t9342\nriku\t565214\nrikuna\t270929\nrim\t14013\nrimaan'e\t37369\nrimen\t56054",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    43,
+                    49
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/UKPLab/linspector/blob/46a7cca6ad34dc673feb47c4d452f1248d5e635b/intrinsic/data/Tense/quechua/train.txt",
+          "path": "intrinsic/data/Tense/quechua/train.txt",
+          "display_url": "https://github.com/UKPLab/linspector/blob/46a7cca6ad34dc673feb47c4d452f1248d5e635b/intrinsic/data/Tense/quechua/train.txt",
+          "display_title": "intrinsic/data/Tense/quechua/train.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "sawasaq\tFuture\nrikuna\tFuture\naymurasqa\tPast",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    15,
+                    21
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "yayap\tNone\nrikunakusqanki\tPast\npallayylla\tNone",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    11,
+                    17
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/UKPLab/linspector/blob/46a7cca6ad34dc673feb47c4d452f1248d5e635b/intrinsic/data/Case/quechua/train.txt",
+          "path": "intrinsic/data/Case/quechua/train.txt",
+          "display_url": "https://github.com/UKPLab/linspector/blob/46a7cca6ad34dc673feb47c4d452f1248d5e635b/intrinsic/data/Case/quechua/train.txt",
+          "display_title": "intrinsic/data/Case/quechua/train.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "yarpayniykukuna\tNominative\nhuqarikuna\tNominative\nkañakunata\tAccusative",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    31,
+                    37
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "phuruykunapura\tAmong\nrikuna\tNone\npurina\tNone",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    21,
+                    27
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/cirosantilli/expired-domain-names-by-day-2015/blob/c76c12b5ef5d29bba61d9db33746e200e7de7704/10/22/32",
+          "path": "10/22/32",
+          "display_url": "https://github.com/cirosantilli/expired-domain-names-by-day-2015/blob/c76c12b5ef5d29bba61d9db33746e200e7de7704/10/22/32",
+          "display_title": "10/22/32",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "riihea.org\nrijlessen-amsterdam.com\nrikuna.com\nrikuna.net\nrilex.biz\nrileybritton.biz\nrillongroup.com",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    35,
+                    41
+                  ]
+                },
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    46,
+                    52
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/cirosantilli/expired-domain-names-by-day-2015/blob/c76c12b5ef5d29bba61d9db33746e200e7de7704/10/20/30",
+          "path": "10/20/30",
+          "display_url": "https://github.com/cirosantilli/expired-domain-names-by-day-2015/blob/c76c12b5ef5d29bba61d9db33746e200e7de7704/10/20/30",
+          "display_title": "10/20/30",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "rijway.net\nrijya.com\nrikshiva.com\nrikuna.org\nrileycreekss.com\nrileycustombuilders.com\nrilivivi.com",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    34,
+                    40
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/trickest/inventory/blob/6bf2fd954cf7c859087dd68e1bc00b216fde4470/Airbnb/servers.txt",
+          "path": "Airbnb/servers.txt",
+          "display_url": "https://github.com/trickest/inventory/blob/6bf2fd954cf7c859087dd68e1bc00b216fde4470/Airbnb/servers.txt",
+          "display_title": "Airbnb/servers.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "https://npub.next.airbnb.com:443\nhttps://nrikunabi.next.airbnb.com:443\nhttps://ns.next.airbnb.com:443",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    42,
+                    48
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "https://resources.next.airbnb.com:443\nhttps://rikunabi.next.airbnb.com:443\nhttps://rita-li-homes-host-loop-airbnb-vercel-bot.airbnb.app:443",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    46,
+                    52
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/cirosantilli/expired-domain-names-by-day-2019/blob/42d73e12ffdf6077d80494ef3b87cc5592f75563/09/19/26",
+          "path": "09/19/26",
+          "display_url": "https://github.com/cirosantilli/expired-domain-names-by-day-2019/blob/42d73e12ffdf6077d80494ef3b87cc5592f75563/09/19/26",
+          "display_title": "09/19/26",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "RIAdsYrine.com\nRIE-yoshizawa.com\nRIInvent.com\nRIKuna.com\nRIPlanet.com\nRIRise.com\nRISpacestation.com",
+              "matches": [
+                {
+                  "text": "RIKuna",
+                  "indices": [
+                    46,
+                    52
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/trickest/inventory/blob/6bf2fd954cf7c859087dd68e1bc00b216fde4470/Airbnb/hostnames.txt",
+          "path": "Airbnb/hostnames.txt",
+          "display_url": "https://github.com/trickest/inventory/blob/6bf2fd954cf7c859087dd68e1bc00b216fde4470/Airbnb/hostnames.txt",
+          "display_title": "Airbnb/hostnames.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "nresources.qa01.aws.inst.airbnb.com\nnrikunabi.next.airbnb.com\nnrrxvddvzll9uvt.aws.inst.airbnb.com",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    37,
+                    43
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "rhumatologie.spears.luxuryretreats.com\nrikunabi.next.airbnb.com\nriposte-cc.airbnb.com",
+              "matches": [
+                {
+                  "text": "rikuna",
+                  "indices": [
+                    39,
+                    45
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

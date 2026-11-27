@@ -1,0 +1,53 @@
+{
+  "checked": "2026-11-27",
+  "sources": [
+    {
+      "entry": "A289001",
+      "bytes": 1965,
+      "git_blob": "6f944cdb050a6b7d5f4177e51d930a0a7b8ab567",
+      "sha256": "209847769c396f3543c799b29e179d9dbfaafc3f85cca14258c96a8bf8c57dc6",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A289/A289001.seq"
+    },
+    {
+      "entry": "A289004",
+      "bytes": 1670,
+      "git_blob": "6f5f23da2ff5a9e1c5f1a93658ff14a4f28b81ba",
+      "sha256": "d3989ba4622f155321de0f7e9719c76fd42a1d4551413f448bc0b67af53edeea",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A289/A289004.seq"
+    },
+    {
+      "entry": "A289035",
+      "bytes": 2453,
+      "git_blob": "eb669752b0c3adaf6f2efcc02427ff5fea938a80",
+      "sha256": "3c07a07fcb94d525d313b1453776c8f627f20e66d265fe9658bcaf0edf26a341",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A289/A289035.seq"
+    },
+    {
+      "entry": "A289037",
+      "bytes": 3464,
+      "git_blob": "0ffbc6fe8245432a4da043d40052947ce7e42388",
+      "sha256": "526e4f92ce0578294b2e1b585b59d5b5f9fa0ec3c8c2da71c3359aaa0c6b491d",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A289/A289037.seq"
+    },
+    {
+      "entry": "A289239",
+      "bytes": 1331,
+      "git_blob": "e2f4db2f1a8934180c28657ea538a6bc3c02a428",
+      "sha256": "c1fe9c988b8244114574b3df27fc6b8950b656aca67360706df112c28079ac53",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A289/A289239.seq"
+    },
+    {
+      "entry": "A293077",
+      "bytes": 2995,
+      "git_blob": "8655774d9d9d19d2fbc387e90063ce9ae811bf26",
+      "sha256": "58d14f1fe42649ffe446de5fd7c659fe029eea80e3584b304910506603b128eb",
+      "current_official_bytes_match": true,
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A293/A293077.seq"
+    }
+  ]
+}

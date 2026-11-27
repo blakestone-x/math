@@ -2,6 +2,14 @@
 
 **Blake Stone · Proof developed with ChatGPT · November 27, 2026**
 
+## Prior proof identified after the initial release
+
+**Contribution status: independent Lean formalization of a previously proved assertion.** A broader paper proof was located on November 27, 2026, after this package was first published. *Polynomial divisibility of height-one factorial ratios*, Part I, dated September 19, 2026, in the [ProveIt research report](https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/SetTheory/Cardinals/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/README.md), proves Bala's entire positive-shift family and a stronger classification of polynomial divisors. Its [paper source](https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/SetTheory/Cardinals/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex), Proposition `prop:positive`, gives the smaller explicit multiplier $\operatorname{lcm}(1,\ldots,30r/k)^{|I|}$, where $I=\{1\le i\le r:\gcd(i,k)=1\}$. Corollary `cor:classificationAB` classifies all polynomials splitting over the rationals that can divide this factorial ratio after a fixed multiplier. The report explicitly states that it has no Lean or Rocq formalization.
+
+The present Lean proof remains valid and independent, but this package does **not** claim a new mathematical resolution or first proof. Its contribution is a complete kernel-checked proof with the literal factorial-ratio and rational-integrality bridges. The initial bounded search did not locate this explicit predecessor; the attribution is corrected here. The [primary-citation report](PRIOR_PROOF.md) records the original September 19 commit and exact overlapping propositions; the [dated collection correction](../notes/Math_Proofs_Batch10_correction_2026-11-27.md) records the change in result counting and the unchanged proof hash.
+
+The existence conclusion also follows from [Landau's multivariate criterion, as stated in Bober's Theorem 3.1](https://arxiv.org/pdf/0709.1977), after a two-variable factorial-ratio specialization and a finite floor-function check. That classical implication is additional background, distinct from the explicit September 2026 predecessor.
+
 ## The result
 
 Let
@@ -27,7 +35,7 @@ $$
 
 works in Peter Bala's entire positive-shift integrality conjecture in the COMMENTS of [OEIS A211417](https://oeis.org/A211417), dated August 28, 2025. The source asks for all $r\ge1$; the proof also handles $r=0$, when both the product and the constant are 1. The same constant works for all three permitted values of $k$.
 
-This is a resolution of that one generalized assertion. The original integrality of $A(n)$, the four fixed-factor assertions involving $2n+1,3n+1,5n+1$, and the separate negative-shift $D(r)$ family have prior proofs. They are credited in [source_checks.md](source_checks.md) and are not claimed as new here. The displayed constant is explicit and sufficient; optimal constants are not determined.
+This independently formalizes that one previously proved generalized assertion. The original integrality of $A(n)$, the four fixed-factor assertions involving $2n+1,3n+1,5n+1$, and the separate negative-shift $D(r)$ family have prior proofs. They are credited in [source_checks.md](source_checks.md) and are not claimed as new here. The displayed constant is explicit and sufficient; optimal constants are not determined.
 
 ## Proof
 
@@ -173,6 +181,6 @@ lake exe cache get
 lake build
 ```
 
-The author build is recorded in [verification.txt](verification.txt). The independent source and theorem review is recorded in [AUDIT.md](AUDIT.md), with a separate fresh build in [audit-verification.txt](audit-verification.txt). Local proof objects are excluded from the package; the verification builds compile the proof source afresh against the pinned external dependency cache.
+The author build is recorded in [verification.txt](verification.txt). The original independent source and theorem review is preserved in [AUDIT.md](AUDIT.md), with a separate fresh build in [audit-verification.txt](audit-verification.txt). Its mathematical and formal checks remain applicable. Its earlier contribution-status discussion is superseded by the dated attribution correction linked above. Local proof objects are excluded from the package; the verification builds compile the proof source afresh against the pinned external dependency cache.
 
 The exact OEIS export is archived in [sources/A211417.seq](sources/A211417.seq). The mathematical section for the combined manuscript is [manuscript-section.tex](manuscript-section.tex).

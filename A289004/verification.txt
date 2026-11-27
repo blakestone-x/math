@@ -1,0 +1,35 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch11/sequences/A289004_author_0k8uqfng
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2793/2800] Built NonIntegral
+✔ [2794/2800] Built Scanner
+✔ [2795/2800] Built Counts
+✔ [2796/2800] Built Counterexample
+ℹ [2797/2800] Built Growth
+info: ././././Growth.lean:120:6: Try this: ring_nf
+✔ [2798/2800] Built NoRecurrence
+ℹ [2799/2800] Built Proof
+info: ././././Proof.lean:87:0: 'A289004.word_counts' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:88:0: 'A289004.first_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:89:0: 'A289004.three_source_conjectures_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:90:0: 'A289004.literal_corrected_recurrence' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:91:0: 'A289004.discrepancy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:92:0: 'A289004.literal_length_ratio_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:93:0: 'A289004.literal_no_eventual_monic_relation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:94:0: 'A289004.original_recurrence_fails_after_every_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Counterexample.lean: e3c1d3e2dba718bbbaafc09f14e0bce49f551f13b546f51eace7adf7a238a376
+SHA256 Counts.lean: b04fa24f0e2f5701d51bd86be77306b321f751f49f72de8aea7e6dedf54612de
+SHA256 Growth.lean: 4e809b2d6d3fd2db0411b54005b623095020ab2f99876619e7abb953b929b577
+SHA256 NoRecurrence.lean: dcdd1a04329bb1af4acf662728e1ff66b0d394ea2e8a416014ad26141d563c44
+SHA256 NonIntegral.lean: b39d589f39a01a42911e65f542e15ca3c91cc5674b62f4baac36f6c5fc688fd4
+SHA256 Proof.lean: d39b2c116a0c8fd1bc49bda7e22c832e44509b63dd7f0591b836d8a5515dd499
+SHA256 Scanner.lean: 3ebbc1e0170315edef5e07c3afe668eec70017804fa9a6d1d16d6debcec371a9
+SHA256 lakefile.lean: 6b782f17050bf7558d97bcbd8a57b31a6ec229402c0feb0286052d6715adea80
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 967a728e2991b5ba01c392da7033169243c9f3ed3452d28896223f5f3e3d584d

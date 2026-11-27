@@ -1,0 +1,82 @@
+{
+  "sha": "e80c38cadbb935f549ca291ffa8fda702a3ff278",
+  "node_id": "C_kwDOI_5RytoAKGU4MGMzOGNhZGJiOTM1ZjU0OWNhMjkxZmZhOGZkYTcwMmEzZmYyNzg",
+  "commit": {
+    "author": {
+      "name": "OEIS Robot",
+      "email": "admin@oeis.org",
+      "date": "2025-05-07T07:13:08Z"
+    },
+    "committer": {
+      "name": "OEIS Robot",
+      "email": "admin@oeis.org",
+      "date": "2025-05-07T07:13:08Z"
+    },
+    "message": "oeis data export",
+    "tree": {
+      "sha": "732c023aa27e1962e52859519817cf553ed495ee",
+      "url": "https://api.github.com/repos/oeis/oeisdata/git/trees/732c023aa27e1962e52859519817cf553ed495ee"
+    },
+    "url": "https://api.github.com/repos/oeis/oeisdata/git/commits/e80c38cadbb935f549ca291ffa8fda702a3ff278",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/oeis/oeisdata/commits/e80c38cadbb935f549ca291ffa8fda702a3ff278",
+  "html_url": "https://github.com/oeis/oeisdata/commit/e80c38cadbb935f549ca291ffa8fda702a3ff278",
+  "comments_url": "https://api.github.com/repos/oeis/oeisdata/commits/e80c38cadbb935f549ca291ffa8fda702a3ff278/comments",
+  "author": {
+    "login": "oeisbot",
+    "id": 51772219,
+    "node_id": "MDQ6VXNlcjUxNzcyMjE5",
+    "avatar_url": "https://avatars.githubusercontent.com/u/51772219?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/oeisbot",
+    "html_url": "https://github.com/oeisbot",
+    "followers_url": "https://api.github.com/users/oeisbot/followers",
+    "following_url": "https://api.github.com/users/oeisbot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/oeisbot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/oeisbot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/oeisbot/subscriptions",
+    "organizations_url": "https://api.github.com/users/oeisbot/orgs",
+    "repos_url": "https://api.github.com/users/oeisbot/repos",
+    "events_url": "https://api.github.com/users/oeisbot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/oeisbot/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "oeisbot",
+    "id": 51772219,
+    "node_id": "MDQ6VXNlcjUxNzcyMjE5",
+    "avatar_url": "https://avatars.githubusercontent.com/u/51772219?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/oeisbot",
+    "html_url": "https://github.com/oeisbot",
+    "followers_url": "https://api.github.com/users/oeisbot/followers",
+    "following_url": "https://api.github.com/users/oeisbot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/oeisbot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/oeisbot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/oeisbot/subscriptions",
+    "organizations_url": "https://api.github.com/users/oeisbot/orgs",
+    "repos_url": "https://api.github.com/users/oeisbot/repos",
+    "events_url": "https://api.github.com/users/oeisbot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/oeisbot/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "25fef5aa52c75f7a721f2a33f44ce63d2c486a05",
+      "url": "https://api.github.com/repos/oeis/oeisdata/commits/25fef5aa52c75f7a721f2a33f44ce63d2c486a05",
+      "html_url": "https://github.com/oeis/oeisdata/commit/25fef5aa52c75f7a721f2a33f44ce63d2c486a05"
+    }
+  ]
+}

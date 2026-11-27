@@ -1,0 +1,391 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a069/A069353.java",
+          "path": "src/irvine/oeis/a069/A069353.java",
+          "display_url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a069/A069353.java",
+          "display_title": "src/irvine/oeis/a069/A069353.java",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": " * A069353 Numbers of form 2^i*3^j - 1 with i, j &gt;= 0.\n * @author Georg Fischer\n */\npublic class A069353 extends Sequence1 {\n\n  final Sequence mA003586 = new A003586();\n  @Override",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    3,
+                    10
+                  ]
+                },
+                {
+                  "text": "A069353",
+                  "indices": [
+                    100,
+                    107
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A069/A069353.py",
+          "path": "src/oeispy/A069/A069353.py",
+          "display_url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A069/A069353.py",
+          "display_title": "src/oeispy/A069/A069353.py",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "# OEIS sequence: A069353\n\nfrom sympy import integer_log\ndef A069353(n):\n    def bisection(f,kmin=0,kmax=1):\n        while f(kmax) > kmax: kmax <<= 1\n        kmin = kmax >> 1",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    17,
+                    24
+                  ]
+                },
+                {
+                  "text": "A069353",
+                  "indices": [
+                    60,
+                    67
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/069/A069353.asm",
+          "path": "oeis/069/A069353.asm",
+          "display_url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/069/A069353.asm",
+          "display_title": "oeis/069/A069353.asm",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "; A069353: Numbers of form 2^i*3^j - 1 with i, j >= 0.\n; Submitted by Conan\n; 0,1,2,3,5,7,8,11,15,17,23,26,31,35,47,53,63,71,80,95,107,127,143,161,191,215,242,255,287,323,383,431,485,511,575,647,728,767,863,971,1023,1151,1295,1457,1535,1727,1943,2047,2186,2303,2591,2915,3071,3455,3887\n; Formula: a(n) = A055600(n)-2\n\n#offset 1\n",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    2,
+                    9
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A005/A005105.py",
+          "path": "src/oeispy/A005/A005105.py",
+          "display_url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A005/A005105.py",
+          "display_title": "src/oeispy/A005/A005105.py",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\nfrom itertools import count, islice\nfrom sympy import integer_log, isprime\ndef A069353(n):\n    def bisection(f,kmin=0,kmax=1):\n        while f(kmax) > kmax: kmax <<= 1\n        kmin = kmax >> 1",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    80,
+                    87
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A376/A376699.py",
+          "path": "src/oeispy/A376/A376699.py",
+          "display_url": "https://github.com/Radcliffe/OEIS-Python/blob/23e194a12e9a7e8416341661e81d441c09dc0b55/src/oeispy/A376/A376699.py",
+          "display_title": "src/oeispy/A376/A376699.py",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\nfrom itertools import count, islice\nfrom sympy import isprime, integer_log\ndef A069353(n):\n    def bisection(f,kmin=0,kmax=1):\n        while f(kmax) > kmax: kmax <<= 1\n        kmin = kmax >> 1",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    80,
+                    87
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a376/A376699.java",
+          "path": "src/irvine/oeis/a376/A376699.java",
+          "display_url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a376/A376699.java",
+          "display_title": "src/irvine/oeis/a376/A376699.java",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "import irvine.oeis.FilterPositionSequence;\nimport irvine.oeis.a069.A069353;\n",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    67,
+                    74
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "/**\n * A376699 Positions of primes in the sequence of numbers of the form 2^i * 3^j - 1 (A069353).\n * @author Georg Fischer",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    89,
+                    96
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A069355.txt",
+          "path": "prepare/data/data/A069355.txt",
+          "display_url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A069355.txt",
+          "display_title": "prepare/data/data/A069355.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "        \"a(n) = A003586(n)-A069352(n).\"\n    ],\n    \"xref\": [\n        \"Cf. A069353, A069356, A069345, A022328, A022329.\"\n    ],\n    \"keyword\": \"nonn\",\n    \"offset\": \"1,2\",",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    74,
+                    81
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190812.txt",
+          "path": "prepare/data/data/A190812.txt",
+          "display_url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190812.txt",
+          "display_title": "prepare/data/data/A190812.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "        \"b = (a - 1)/2; c = (a - 2)/3; r = Range[1, 30000];\",\n        \"d = Intersection[b, r] (* A069353 *)\",\n        \"e = Intersection[c, r] (* A190812 conjectured *)\"",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    97,
+                    104
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "    \"xref\": [\n        \"Cf. A190803, A069353, A190812.\"\n    ],",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    36,
+                    43
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190803.txt",
+          "path": "prepare/data/data/A190803.txt",
+          "display_url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A190803.txt",
+          "display_title": "prepare/data/data/A190803.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "        \"A190810: (h,i,j,k)=(2,1,3,-1); d=A190855, e=A190856\",\n        \"A190811: (h,i,j,k)=(2,1,3,0); d=A002977, e=A190857\",\n        \"A002977: (h,i,j,k)=(2,1,3,1); d=A190858, e=A190859\",\n        \"A190812: (h,i,j,k)=(2,1,3,2); d=A069353, e=[A190812]\",\n        \"...\",\n        \"For h=j=3, see A191106; for h=3 and j=4, see A191113.\"\n    ],",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    228,
+                    235
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A005105.txt",
+          "path": "prepare/data/data/A005105.txt",
+          "display_url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A005105.txt",
+          "display_title": "prepare/data/data/A005105.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "        \"A005105:=Concatenation([2],List(Set(Flat(List([1..Length(C)],i->List([1..Length(C[i])],j->Positions(B,C[i][j]))))),i->A[i])); # _Muniru A Asiru_, Sep 28 2017\"\n    ],\n    \"xref\": [\n        \"Cf. A069353, A069356, A005109, A005113, A005106, A005107, A005108, A019434, A000668, A000040, A003586, A081633-A081639, A084071, A090468, A129474, A129475, A129469.\"\n    ],\n    \"keyword\": \"nonn\",\n    \"offset\": \"1,1\",",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    202,
+                    209
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-10-04.ack.man",
+          "path": "internal/fischer/aman/2024-10-04.ack.man",
+          "display_url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2024-10-04.ack.man",
+          "display_title": "internal/fischer/aman/2024-10-04.ack.man",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "A376650\tlambdan\t0\tn -> SU(0, n/4, k -> BI(k/3, n - 4*k))\nA376695\tlambdan\t0\tn -> SU(0, n/2, k -> BI(n - 2*k, k/3))\nA376696\tlambdan\t0\tn -> SU(0, n/3, k -> BI(n - 3*k, k/3))\nA376699\tfiltpos\t1\t1\tnew A069353()\tPRIME\tPositions of primes in the sequence of numbers of the form 2^i * 3^j - 1 (A069353).\nA376721\tholos\t0\t[[0],[-4,1],[7,-2],[-3,1],[0],[4,-2],[3,-2],[0],[0],[0,1]]\t1\t0\t0\t\t1/sqrt((1 - x^3 - x^4)^2 - 4*x^7).\tnonn,new\t0..45\nA376722\tholos\t0\t[[0],[-5,1],[9,-2],[-4,1],[0],[0],[5,-2],[4,-2],[0],[0],[0],[0,1]]\t1\t0\t0\t1/sqrt((1 - x^4 - x^5)^2 - 4*x^9).\tnonn,new\t0..53\tnyi\nAA168043\tlambdan\t1\tn -> (n <= 1) ? ZV(n) : F000032(n+1).-(ZV(n))\t\"1,2\"\t\tand a(n) = F000032(n+1) - n for n>1\t_\t_\t_",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    195,
+                    202
+                  ]
+                },
+                {
+                  "text": "A069353",
+                  "indices": [
+                    285,
+                    292
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/sources/A327315.seq",
+          "path": "A326925/sources/A327315.seq",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/sources/A327315.seq",
+          "display_title": "A326925/sources/A327315.seq",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "%N A327315 Irregular triangular array read by rows: row n shows the coefficients of this polynomial of degree n: (1/n!)*(numerator of n-th derivative of (x-2)/(x^2-x+1)).\n%C A327315 Conjecture: The numbers n for which the n-th polynomial is irreducible are given by A069353.\n%e A327315 First eight rows:",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    266,
+                    273
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "%t A327315 Column[%]   (* A327315 array *)\n%Y A327315 Cf. A069353, A328646.\n%K A327315 tabf,sign",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    58,
+                    65
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/moby/vpnkit/blob/42340d105737658de198210f3fac377ff56c7256/dune.lock/cmdliner.1.0.4.pkg",
+          "path": "dune.lock/cmdliner.1.0.4.pkg",
+          "display_url": "https://github.com/moby/vpnkit/blob/42340d105737658de198210f3fac377ff56c7256/dune.lock/cmdliner.1.0.4.pkg",
+          "display_title": "dune.lock/cmdliner.1.0.4.pkg",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": " (all_platforms (ocaml)))\n\n(source\n (fetch\n  (url http://erratique.ch/software/cmdliner/releases/cmdliner-1.0.4.tbz)\n  (checksum\n   sha256=5c2a93d44af8a38996a2c0f80fbd7970fe4751f104be470cafa069353fc004c0)))",
+              "matches": [
+                {
+                  "text": "a069353",
+                  "indices": [
+                    189,
+                    196
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/go-nv/goenv/blob/951fa395e28a3d536ec3a48f3acedf7691000064/plugins/go-build/share/go-build/1.21.2",
+          "path": "plugins/go-build/share/go-build/1.21.2",
+          "display_url": "https://github.com/go-nv/goenv/blob/951fa395e28a3d536ec3a48f3acedf7691000064/plugins/go-build/share/go-build/1.21.2",
+          "display_title": "plugins/go-build/share/go-build/1.21.2",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\ninstall_bsd_arm \"Go Freebsd arm 1.21.2\" \"go1.21.2.freebsd-arm.tar.gz#dedd9462afcb0d203425a5b823e68afbd51c0e9bf7c8aa8eaa47a79f428a3384\"\n\ninstall_linux_32bit \"Go Linux 32bit 1.21.2\" \"go1.21.2.linux-386.tar.gz#e2ccb4121a328c3fa297c6d653cc0a625a06935313c2367f8e026c3af56869c5\"\n\ninstall_linux_64bit \"Go Linux 64bit 1.21.2\" \"go1.21.2.linux-amd64.tar.gz#f5414a770e5e11c6e9674d4cd4dd1f4f630e176d1828d3427ea8ca4211eee90d\"\n",
+              "matches": [
+                {
+                  "text": "a069353",
+                  "indices": [
+                    241,
+                    248
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/gitpan/Math-NumSeq/blob/0a00932745ad521facac675f792e587fd248dedf/devel/lib/Math/NumSeq/PierpontPrimes.pm",
+          "path": "devel/lib/Math/NumSeq/PierpontPrimes.pm",
+          "display_url": "https://github.com/gitpan/Math-NumSeq/blob/0a00932745ad521facac675f792e587fd248dedf/devel/lib/Math/NumSeq/PierpontPrimes.pm",
+          "display_title": "devel/lib/Math/NumSeq/PierpontPrimes.pm",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "#    A122257 - 0/1 according to n pierpont prime or not\n#    A122260 - products of pierpont primes, multiplicative closure\n#    A005105 - primes 2^x*3^y - 1\n#    A069353 - all    2^i*3^j - 1\n\nuse constant oeis_anum => 'A005109';\n",
+              "matches": [
+                {
+                  "text": "A069353",
+                  "indices": [
+                    162,
+                    169
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

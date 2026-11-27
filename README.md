@@ -1,13 +1,17 @@
 # math
 math proofs
 
+- [A327315 — irreducibility exactly in degrees of the form 2^a 3^b](A327315/README.md) · [Complete source theorem in Lean](A327315/Proof.lean)
+- [A289001, A289035, and A289239 — three length conjectures refuted and every eventual monic integer recurrence excluded](A289004/README.md) · [Complete Lean proofs](A289004/Proof.lean)
+- [A complete irreducibility classification and three recurrence refutations — Batch 11 manuscript](notes/Math_Proofs_Batch11.pdf) · [Collection guide](notes/Math_Proofs_Batch11_README.md)
+
 - [Kimberling’s prefix inequality, all equality indices, and both Lucas–Wythoff row-entry formulas](Kimberling-Lucas/README.md) · [Manuscript](Kimberling-Lucas/lucas-representations.pdf) · [Inclusive inequality and equality cases in Lean](Kimberling-Lucas/Equality.lean)
 - [Puszkarz’s amicably refactorable pairs — all partners classified by degree, least-partner formulas, and a counting asymptotic](Refactorable-partners/README.md) · [Manuscript](Refactorable-partners/refactorable-partners.pdf) · [Existence theorem in Lean](Refactorable-partners/Partners.lean)
 
 - [A326926/A326933 — the complete prime-index irreducibility classification](A326926/README.md) · [Exact source theorem in Lean](A326926/Proof.lean)
-- [A211417 — the full positive-shift integrality family with an explicit uniform constant](A211417/README.md) · [Complete Lean proof](A211417/Proof.lean)
+- [A211417 — independent Lean formalization of the positive-shift integrality family](A211417/README.md) · [Complete Lean proof](A211417/Proof.lean)
 - [A289128–A289131 — the replacement-length conjecture proved and both position limits refuted](A289128/README.md) · [Complete Lean proofs](A289128/Proof.lean)
-- [Five conjecture resolutions in three families — combined manuscript](notes/Math_Proofs_Batch10.pdf) · [Collection guide](notes/Math_Proofs_Batch10_README.md)
+- [Four resolutions and one independent formalization — corrected Batch 10 manuscript](notes/Math_Proofs_Batch10.pdf) · [Collection guide](notes/Math_Proofs_Batch10_README.md) · [Attribution correction](notes/Math_Proofs_Batch10_correction_2026-11-27.md)
 
 - [Largest endpoints of signed smooth gaps — exact values of A391077 and A376924, and a distribution theorem for every finite prime set](Smooth-gaps/README.md) · [Gap manuscript](Smooth-gaps/smooth-gaps.pdf) · [Three classes of smooth decimal rotations](Smooth-gaps/smooth-rotations.pdf)
 

@@ -1,4 +1,4 @@
-\section{The complete positive-shift integrality family in A211417}
+\section{An independent formalization of the positive-shift family in A211417}
 \label{sec:a211417-positive-shifts}
 
 \subsection{Statement and scope}
@@ -17,6 +17,16 @@ $C(k,r)$ such that
  \quad\hbox{is an integer for every }n\ge0.
 \]
 The checked primary source is A211417, revision 94, dated August 26, 2026.
+The entire positive-shift assertion was already proved in the September
+19, 2026 report \emph{Polynomial divisibility of height-one factorial
+ratios}, Part I, in VladimirReshetnikov/ProveIt. Proposition
+\texttt{prop:positive} supplies a smaller lcm multiplier, and Corollary
+\texttt{cor:classificationAB} proves a stronger polynomial-divisor
+classification. The original dated commit contains both statements.
+The report explicitly has no Lean or Rocq formalization. This predecessor
+was located after our initial release. The present contribution is
+therefore an independent formalization of prior mathematics, not a
+new mathematical resolution.
 
 \begin{theorem}[Uniform positive-shift divisibility]
 \label{thm:a211417-positive-shifts}
@@ -29,12 +39,14 @@ In particular, Bala's positive-shift conjecture holds with the explicit
 positive integer $C(k,r)=((30r)!)^r$.
 \end{theorem}
 
-This theorem addresses the entire positive-shift family, with arbitrarily
-many factors.  The original integrality of $A(n)$ is a known result.  The
+This theorem independently formalizes the entire previously proved
+positive-shift family, with arbitrarily many factors. The original
+integrality of $A(n)$ is also a known result.  The
 four fixed-factor assertions in the same OEIS comment have prior
 kernel-checked proofs by Kenta Kitamura, and the separate negative-shift
 $D(r)$ family has a reported paper-complete proof.  Neither is counted
-as a new result here.  The theorem does not assert that the displayed
+as a new result here. The positive-shift family is likewise excluded
+from the count of new resolutions. The theorem does not assert that the displayed
 constant is minimal.
 
 \subsection{Floor contributions and the large-divisor lemma}
@@ -157,12 +169,24 @@ axiom, or executable proof oracle.  The checked endpoints use only
 The source archive and bounded prior-resolution checks are supplied in
 \texttt{A211417/source\_checks.md}.  The official OEIS bytes were checked
 against the immutable export commit
-\texttt{dff800c40a409482c9b734eecd1958986302e385}.  The searches found
-the known fixed-factor and negative-shift work, but no proof of this
-arbitrary positive-shift family.  This is a bounded bibliographic
-statement, not an assertion of first-publication priority.
+\texttt{dff800c40a409482c9b734eecd1958986302e385}.  The initial searches missed the explicit predecessor. A broader
+GitHub semantic code search later identified the September 19 paper
+and its exact positive-family proposition. The package's
+\texttt{PRIOR\_PROOF.md} records the original commit, exact statement
+overlap, and chronology; \texttt{landau\_provenance.md} also explains
+the classical multivariate Landau implication. The corrected status
+is independent formalization of a previously proved assertion.
 
 Primary links: \url{https://oeis.org/A211417};
 \url{https://github.com/KitaKen1/oeis-a211417};
 \url{https://github.com/google-deepmind/formal-conjectures/pull/5010};
 \url{https://github.com/google-deepmind/formal-conjectures/issues/4923}.
+
+
+Prior proof: OpenAI ChatGPT, \emph{Polynomial divisibility of height-one
+factorial ratios}, Part I, September 19, 2026, unrefereed AI-assisted
+research report. \href{https://github.com/VladimirReshetnikov/ProveIt/blob/a3fe9660ee6c3ab92752594c2099c3cd214012c9/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex}{Original dated source}, commit
+\texttt{a3fe9660ee6c3ab92752594c2099c3cd214012c9}.
+Classical background: Jonathan W. Bober, \emph{Factorial ratios,
+hypergeometric series, and a family of step functions}, Theorem 3.1,
+\url{https://arxiv.org/abs/0709.1977}.

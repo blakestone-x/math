@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
-\hypersetup{pdftitle={Five conjecture resolutions in three families},pdfauthor={Blake Stone},pdfsubject={Polynomial irreducibility, factorial-ratio divisibility, replacement words, and complete Lean proofs}}
+\hypersetup{pdftitle={Four conjecture resolutions and one independent formalization},pdfauthor={Blake Stone},pdfsubject={Polynomial irreducibility, factorial-ratio divisibility, replacement words, and complete Lean proofs}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.38em}
 \newtheorem{theorem}{Theorem}[section]
@@ -14,11 +14,11 @@
 \newcommand{\R}{\mathbb R}
 \begin{document}
 \begin{center}
-{\LARGE\bfseries Five conjecture resolutions\\[3pt]in three families}\par
+{\LARGE\bfseries Four conjecture resolutions\\[3pt]and one independent formalization}\par
 \vspace{0.5em}
 {\large Blake Stone}\par
 Proof developed with ChatGPT\par
-November 27, 2026
+November 27, 2026; attribution corrected the same day
 \end{center}
 
 \textbf{Abstract.}
@@ -27,20 +27,24 @@ derivative numerators of $1/(1-x+x^2)$: the nonconstant polynomial of
 degree $n$ is irreducible over $\Q$ exactly when $n+1$ is a prime other
 than three. A reciprocal Eisenstein argument handles every allowed
 prime; classical Lucas divisibility excludes composite indices.
-We also prove the entire positive-shift integrality family in
-A211417, giving the explicit uniform multiplier $((30r)!)^r$ for
-each $k\in\{2,3,5\}$ and every shift range $r$.
+We also independently formalize the previously proved positive-shift
+integrality family in A211417, with the explicit uniform multiplier
+$((30r)!)^r$ for each $k\in\{2,3,5\}$ and every shift range $r$.
+An explicit September 19, 2026 paper proves this family and a stronger
+classification; its discovery after our initial release changes
+attribution, not the validity of the Lean proof.
 Finally, an exact description of a binary replacement word proves
 its conjectured length recurrence and refutes both proposed
 occurrence-position limits. The actual zero-position ratios have
 subsequential limits $5/2$ and $7/3$, and the one-position ratios
 have subsequential limits $5/3$ and $7/4$.
-Three Lean projects verify all five assertions from the literal
-source definitions, using fifteen local proof modules and pinned
-mathlib dependencies. Known ingredients and earlier neighboring
-results are credited. Bounded prior-publication checks found no
-earlier proof of the exact assertions claimed here; this is not a
-certification of historical priority or editorial acceptance.
+Three Lean projects verify four newly resolved assertions and one
+independently formalized prior result from the literal source
+definitions, using fifteen local proof modules and pinned mathlib
+dependencies. Known ingredients and prior results are credited.
+Bounded checks found no earlier proof of the remaining four
+resolutions; this does not certify historical priority or
+editorial acceptance.
 
 \begin{center}
 \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.55in}@{}}
@@ -48,7 +52,7 @@ certification of historical priority or editorial acceptance.
 Source & Result and count\\
 \midrule
 A326926/A326933 & One full irreducibility classification, repeated in two entries.\\
-A211417 & One general positive-shift integrality conjecture, covering all three prescribed values of $k$ and every $r$.\\
+A211417 & One independent formalization of a prior positive-shift theorem, covering all three prescribed values of $k$ and every $r$.\\
 A289128/A289131 & One shared conjecture identifying the literal iterate lengths with an independently specified recurrence.\\
 A289129 & One limit refutation, strengthened to nonexistence of any real limit.\\
 A289130 & One limit refutation, strengthened to nonexistence of any real limit.\\
@@ -228,8 +232,24 @@ $C(k,r)$ makes
 \frac{C(k,r)a(n)}{
 \displaystyle\prod_{\substack{1\le i\le r\\\gcd(i,k)=1}}(kn+i)}
 \]
-an integer for every $n\ge0$~\cite{A211417}. We prove that the
-same explicit choice works for all three values of $k$.
+an integer for every $n\ge0$~\cite{A211417}. We give a complete
+independent formalization with the same explicit choice for all
+three values of $k$.
+
+\paragraph{Attribution correction.}
+The general assertion was already proved in the September 19, 2026
+report \emph{Polynomial divisibility of height-one factorial
+ratios}~\cite{PriorFactorial}. Its Proposition \texttt{prop:positive}
+gives the multiplier $\operatorname{lcm}(1,\ldots,30r/k)^{|S|}$;
+Corollary \texttt{cor:classificationAB} proves a stronger
+classification of polynomial divisors. The original dated commit
+contains both results. The report states that it supplies no Lean
+or Rocq formalization. Our initial search missed it. Accordingly,
+this section contributes an independent formal verification of prior
+mathematics, and is excluded from the count of new resolutions.
+The existence assertion also follows from Landau's multivariate
+criterion as stated by Bober~\cite{Bober}, using the specialization
+documented in the accompanying provenance supplement.
 
 \begin{theorem}\label{thm:factorial}
 For $k\in\{2,3,5\}$ and all $r,n\ge0$, put
@@ -242,7 +262,8 @@ Then
 \boxed{B\mid ((30r)!)^r a(n).}
 \]
 In particular, $C(k,r)=((30r)!)^r>0$ proves the entire
-positive-shift existence conjecture. The case $r=0$ uses an empty
+positive-shift assertion already proved in~\cite{PriorFactorial}.
+The case $r=0$ uses an empty
 product and is also included in the formal theorem.
 \end{theorem}
 
@@ -354,13 +375,14 @@ The theorem \path{positive_shift_rational_integrality} proves the
 stated quotient is the image of an integer. The existential source
 endpoint is \path{bala_positive_shift_conjecture}.
 
-The factorial ratio's original integrality is classical and is not
-counted as a new result. Earlier proofs of four fixed-factor
-assertions and the separate negative-shift family are also excluded
-from the contribution. The explicit multiplier here is generous;
-we do not claim it is the least possible multiplier. The source and
-prior-work report in the package records the checked earlier proofs
-and the exact scope of the positive-shift claim.
+The factorial ratio's original integrality, the four fixed-factor
+assertions, the negative-shift family, and the full positive-shift
+family all have prior proofs. The present contribution is the
+complete formalization and exact source bridge, independently
+developed before the broader predecessor was located. The explicit
+multiplier here is sufficient; no optimality is claimed. The
+package's source and provenance reports identify the prior
+propositions and original September 19 commit.
 
 \section{A replacement word whose position ratios do not converge}
 \label{sec:a289128}
@@ -630,28 +652,40 @@ The seven preserved OEIS exports correspond to the exact entries
 discussed above. Their revision timestamps and official Git blob
 hashes are recorded in the source reports. The classification in
 A326926 and A326933, and the length comment in A289128 and
-A289131, are each counted once despite their repetition across entries. The three
-values of $k$ in the factorial-ratio theorem are one stated general
-family, not three separately counted resolutions.
+A289131, are each counted once despite their repetition across
+entries. Together with the two distinct limit refutations, they
+give four new resolutions. The three values of $k$ in the
+factorial-ratio theorem form one independently formalized prior
+family, excluded from that new-resolution count.
 
 The prior-work checks include both exact identifiers and semantic
 searches using the relevant definitions. The polynomial review
 credits Bala's source recurrence and Norfleet's classical
 divisibility results, and compares related generalized Fibonacci
 and tangent-polynomial irreducibility papers. The factorial-ratio
-review excludes the known original integrality, previously solved
-fixed factors, and the separately solved negative-shift family.
+review now credits the explicit prior positive-shift theorem and
+stronger polynomial classification, as well as original integrality,
+fixed factors, and the negative-shift family.
 The word review credits Barker's scalar formulas and distinguishes
 nearby replacement rules and earlier project packages.
 
-No earlier proof of the precise five assertions claimed here was
-located in the checked sources. That bounded search does not rule
-out unindexed, unpublished, or differently formulated prior work.
+The initial release described all five assertions as new resolutions.
+The broader GitHub semantic search that found~\cite{PriorFactorial}
+requires the correction stated here: four resolutions and one
+independent formalization. The original audit and manuscript-review
+files are retained as historical records; their contribution-status
+statements are superseded by the dated correction record. Every
+Lean source and formal build log remains byte-for-byte unchanged.
+
+No earlier proof of the remaining four resolutions was located in
+the checked sources. That bounded search does not rule out
+unindexed, unpublished, or differently formulated prior work.
 No OEIS editorial acceptance, journal publication, or exhaustive
 historical-priority conclusion is asserted. The mathematical
 claims are the explicit theorems and refutations proved above.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
+\raggedright
 \bibitem{A326926}
 Clark Kimberling, OEIS A326926, introduced October 24, 2019;
 Peter Bala's recurrence and divisibility addendum, November 8, 2026.
@@ -671,6 +705,21 @@ Divisibility Sequences of Polynomials}, Fibonacci Quarterly
 Peter Bala, OEIS A211417, introduced April 11, 2012;
 positive-shift conjecture, August 28, 2025.
 \url{https://oeis.org/A211417}.
+
+\bibitem{PriorFactorial}
+OpenAI ChatGPT, \emph{Polynomial divisibility of height-one
+factorial ratios}, Part I, September 19, 2026. Unrefereed AI-assisted
+research report in VladimirReshetnikov/ProveIt. Proposition
+\texttt{prop:positive} and Corollary \texttt{cor:classificationAB}.
+\href{https://github.com/VladimirReshetnikov/ProveIt/blob/a3fe9660ee6c3ab92752594c2099c3cd214012c9/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex}{Original September 19 source}, commit
+\texttt{a3fe9660ee6c3ab92752594c2099c3cd214012c9}.
+
+\bibitem{Bober}
+Jonathan W. Bober, \emph{Factorial ratios, hypergeometric series,
+and a family of step functions}, Journal of the London Mathematical
+Society (2) 79(2) (2009), 422--444. Theorem 3.1 (Landau's
+multivariate criterion).
+\url{https://arxiv.org/abs/0709.1977}.
 
 \bibitem{A289128}
 Clark Kimberling, OEIS A289128, June 28, 2017.
