@@ -67,7 +67,7 @@ math proofs
 - [A294413 — golden-ratio convergence with a negative complementary correction](A294413/README.md) · [Lean proof](A294413/Proof.lean)
 - [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
-- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
+- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md) · [Subexponential growth and range bounds](A316994/growth.md)
 - [A323111 — asymptotics of compositions with range equal to half the total](A323111/README.md)
 - [A330904 — the longest consecutive run](A330904/README.md) · [Lean proof](A330904/Proof.lean) · [PDF](A330904/A330904_proof.pdf)
 - [A332520 — fixed points by binary length](A332520/README.md) · [Verifier](A332520/verify.py)

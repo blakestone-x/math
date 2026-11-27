@@ -1,8 +1,12 @@
 """Exact check of the profiles with smallest exponent two; no external libraries."""
+import argparse
 from bisect import bisect_right
 from functools import cache
 from itertools import permutations
 from math import gcd, isqrt, prod
+
+
+MODULI = (8, 16, 32, 64, 3, 9, 27, 81, 5, 25, 7, 49, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43)
 
 
 def primes_to(limit):
@@ -37,7 +41,7 @@ def paired(a,b,m):
 
 
 def run():
-    mods=(8,16,32,64,3,9,27,81,5,25,7,49,11,13,17,19,23,29,31,37,41,43)
+    mods = MODULI
     patterns=[]
     for b in range(2,26):
         for a in range(b,10*b+7):
@@ -86,7 +90,34 @@ def run():
     assert not roots
 
 
+def sieve_fourth_powers():
+    # The theorem gives b <= 47 and a <= 16b+12 when the least exponent is 4.
+    profiles = [(a, b) for b in range(4, 48) for a in range(b, 16*b+13)]
+    print(f"Exponent profiles before the congruence sieve: {len(profiles)}")
+    for modulus in MODULI:
+        fourth_values = vals(4, modulus)
+        survivors = []
+        for a, b in profiles:
+            divisor_count = 5 * (a+1) * (b+1)
+            target = (divisor_count+1) % modulus
+            if 2*modulus >= divisor_count or any(
+                u*v % modulus == target
+                for u in paired(a, b, modulus) for v in fourth_values
+            ):
+                survivors.append((a, b))
+        profiles = survivors
+    assert len(profiles) == 502
+    print(f"Profiles remaining when the least exponent is 4: {len(profiles)}")
+    print("Surviving middle exponents:", sorted({b for _, b in profiles}))
+
+
 if __name__=='__main__':
     if not __debug__:
         raise SystemExit('Run with Python assertions enabled.')
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--fourth-power', action='store_true',
+                        help='sieve the remaining exponent-four cases for the research plan')
+    if parser.parse_args().fourth_power:
+        sieve_fourth_powers()
+    else:
+        run()

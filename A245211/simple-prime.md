@@ -21,3 +21,5 @@ python3 -B verify_low_powers.py
 The [Python verifier](verify_simple_prime.py) enumerates exponent patterns, prime bases, and exact candidate completions. The [C++ helper](prime_divisors.cpp) exhausts 42 extended prime-divisor intervals with integer modular exponentiation. The [independent checks](cross_check_simple_prime.py) validate every nonempty interval witness and exhaust the empty intervals with a different sieve and literal divisibility. They find the missing base again by monotone bisection for every completion.
 
 The [exponent-two verifier](verify_low_powers.py) directly enumerates the two smaller prime bases through their proved bounds, then checks the exact last candidate in 47,103 full integral products. [Recorded exponent-two verification](low_powers_verification.txt)
+
+For the next open case with smallest exponent four, `python3 -B verify_low_powers.py --fourth-power` applies the same 22 congruence tests to all 17,402 exponent profiles allowed by the theorem. There are 502 surviving profiles before prime-base enumeration. The existence of any three-prime fixed point is still open.

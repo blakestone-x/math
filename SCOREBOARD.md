@@ -1,10 +1,32 @@
 # Proof fleet scoreboard
 
-**November 26, 2026.** This release adds **10 research packages** to the **65 projects** on `main` at `e5967ee`, for **75 indexed projects** on the release branch. One package can answer several related source statements. The historical tiling paper’s 44 numbered conjectures and the 34 companion sequences in one convergence theorem each form a single project. [Research plan and next targets](RESEARCH_PLAN.md)
+**November 26, 2026.** The release branch indexes **95 research projects**. It includes the 79 projects on `main` at [`78ff908`](https://github.com/blakestone-x/math/tree/78ff908b9cad14c546f8ebc39d3ffc10a2e84aa1) and 16 additional project directories. The two fleet releases contributed **28 manuscripts**. The continuation below adds 16 manuscripts filed in 14 projects, six of them in new directories. [Next proof targets](RESEARCH_PLAN.md)
 
-Six packages prove their full source statements. One refutes a conjecture, two establish partial results on general conjectures, and one extends a result already implied by the literature. These categories describe the main target of each package. Two packages each include a second manuscript.
+A project can cover several numbered conjectures or companion sequences. The last column links the proof and identifies executable or Lean checks where available. Each paper states the remaining open cases and credits earlier results where applicable.
 
-## This release
+## Continuation
+
+| Problem | Result | Manuscript and checks |
+|---|---|---|
+| Chess-rider denominators | Counterexamples to Chaiken, Hanusa and Zaslavsky Conjectures 5.5, 5.8, 5.10 and 6.7. Seven tridents attain denominator 8 against the predicted 7. Ten semiqueens attain 9 against the predicted 8. | [Manuscript and certificates](Rider-denominators/README.md) |
+| Ordinary queen denominators | For $q$ queens every denominator through $\exp(q\log\varphi-O(q/\log q))$ occurs. This reaches the exponential rate predicted by Conjecture 6.2. The full Fibonacci endpoint remains open. For configurations built by successive intersections, the maximum is exactly the conjectured Fibonacci number at every size. | [Manuscript and explicit constructions](Queen-denominator-interval/README.md) |
+| Mao–Wang’s Delannoy triangle square | The degree-$n$ row has $n$ simple negative roots. The extremal roots approach the endpoints of the sharp interval $[-4-3\sqrt2,-3+2\sqrt2]$. The weighted product theorem has a sharp parameter threshold. The Eulerian-square clause of Conjecture 4.1 is a separate question. | [Manuscript, exact checks and prior partial result](Delannoy-square/README.md) |
+| Binomial Eulerian polynomials | Consecutive rows strictly interlace in the ordinary case. For arbitrary positive inversion bounds, strictness through a prefix holds precisely when all those bounds are at least two. Unit bounds give the exact common factor. The paper credits earlier refined-row interlacing and related ordinary results. | [Manuscript and verifier](Binomial-Eulerian-interlacing/README.md) |
+| Line-graph signatures | $f(8)=4$ and $f(9)=5$ over all graph orders. For $c\ge8$ one has $f(c)\le c-4$. The limit $\lim f(c)/c$ exists in $[1/2,5/6]$. The next case is $5\le f(10)\le6$. Two enumerations and independent inertia methods checked the extremal cases. | [Manuscript, exact certificate and witnesses](Line-graph-signature/eight-nine.md) |
+| Gray-code Fibonacci ratios, A265385 and A265387 | Both recurrences have mean growth 2 for every positive seed pair, and each seed gives at least five accumulation points. For the original seeds, each ratio sequence has at least 280 accumulation points. Every one of its 140 residue classes contains two distinct limits. | [All-seed manuscript and Lean growth theorems](A265387/universal.md) · [Proof for all 140 classes](A265387/phase_paths.pdf) |
+| Doubly Gray-transformed Fibonacci ratios, A265386 | Every positive pair of seeds has mean growth $\sqrt2$. Each parity of the consecutive-term ratios has at least three accumulation points, giving at least six in all. | [Manuscript and verifier](A265386/universal.md) |
+| Sun’s Franel polynomials | Full irreducibility for every $n\ge2$ at which the odd part of $n$ or $n-1$ is at most 127. For fixed offsets $c\ge0$ from each certified dyadic family, the total degree left outside one irreducible factor is eventually at most $\lfloor c/2\rfloor$. | [Manuscript](A000172/dyadic.pdf) · [Polygon certificate](A000172/dyadic-verification.txt) |
+| Franel recurrence and binomial power sums | Proves Conjectures 4.5, 5.4 and 5.6 in the 2014 MSRI-UP report on integral initial values, prime avoidance, and parity. Nonstandard integer seeds have unbounded denominator powers at every odd prime. The power-sum result gives the largest uniform power-of-two modulus at each exponent. | [Manuscript and verifier](Franel-valuation-conjectures/README.md) |
+| Binary reverse subtraction | The worst hitting time at widths $2m$ and $2m+1$ is $O(58^{m/20})$, improving the previous base 2 to less than 1.2251. The twenty-pair certificate covers 1,743,392,201 states. | [Manuscript](A338203/shells.pdf) · [Exact table](A338203/shells.txt) · [Low-memory verifier](A338203/shells_independent.cpp) |
+| Weighted proper-divisor fixed points, A245211 | Any fixed point with three distinct prime factors has ordered exponents $a\ge b\ge c$ satisfying $4\le c\le25$, $b\le10c+7$ and $a\le(3c+4)b+3c$. For any number of prime factors, no exponent is $-1$ modulo $\ell(\ell-1)$ for any odd prime $\ell$. The global uniqueness of 21 remains open. | [Manuscript and exact checks](A245211/simple-prime.md) |
+| Weighted divisor identity, A245212 | Krizek’s powers-of-two classification holds on a set of natural density one and for every positive integer whose odd part is at most $10^8$. Each fixed odd part greater than one has at most one possible dyadic exception. | [Manuscript and verifier](A245212/README.md) |
+| Shallit’s fixed-word Hankel problem | For every order $r$ the gcd of the determinants in $\lceil13r/2\rceil$ consecutive shifts is 1. At every shift the orders from $r$ through $\lfloor15r/2\rfloor$ also give gcd 1. These are all-scale results on the individual-nonvanishing conjecture. | [Manuscript](Shallit-Hankel/gcd.pdf) · [Finite context proof](Shallit-Hankel/verify_gcd.py) |
+| Shallit’s modular Hankel problem | Conjecture 45 holds for all moduli from 2 through 7. The sharp maximum lengths of words with every contiguous Hankel minor nonzero modulo the given modulus are $2,4,24,22,42,52$, respectively. | [Manuscript](Shallit-Hankel/moduli.pdf) · [Exact counts and witnesses](Shallit-Hankel/moduli-verification.txt) |
+| Sigrist’s binary-substring sequence | The partial sums have subexponential growth uniformly over all blocks of $k$ steps. For each $\varepsilon>0$, the indices where the next term exceeds $\varepsilon S_n$ have upper Banach density zero. The number of attained values in $[2^L,2^{L+1})$, divided by $L$, tends to infinity. The permutation conjecture remains open. | [Manuscript and verification](A316994/growth.md) |
+
+## First release
+
+The [first release](https://github.com/blakestone-x/math/tree/c18014b822980b0d6cb9b78fc228e5efda2718c6) added twelve manuscripts in ten new projects. Of their ten main targets, six received full proofs, one received a counterexample, two received partial results, and one had an earlier resolution that the manuscript extended. The table records the results at that release.
 
 | Problem and manuscript | Outcome | What was established | How to check it |
 |---|---|---|---|
@@ -21,7 +43,30 @@ Six packages prove their full source statements. One refutes a conjecture, two e
 
 All rows refer to research manuscripts posted by this project. A Lean link records the theorem checked by the kernel. Each package describes the role of its computations and gives the originating statement. Historical priority and external acceptance are separate from these checks.
 
-## Concurrent additions to `main`
+## Further work incorporated from main
+
+Fourteen additional project directories arrived on `main` between `e5967ee` and `78ff908`. The fleet branch includes those commits and credits these separate results. [Commits in this interval](https://github.com/blakestone-x/math/compare/e5967eeb4e1543514fd4e759827d8b10dddf7332...78ff908b9cad14c546f8ebc39d3ffc10a2e84aa1)
+
+| Project | Scope recorded in its manuscript |
+|---|---|
+| [Convex lattice distances](Erdos-132-convex-lattice/README.md) | Counts rare and typical distances in convex regions of the square lattice. Related notes treat affine grids and progression covers as restrictions of Erdős problem 132. |
+| [Throwback mixing](Throwback-mixing/README.md) | Gives a necessary and sufficient gcd condition for perfect mixing of increasing queues. |
+| [Layman’s sieve](Layman-sieve/README.md) | Proves coordinatewise stabilization at the triangular numbers with an explicit time bound and studies the residue classes. |
+| [Morphic discrepancy](Morphic-discrepancy/README.md) | Determines sharp position errors in three binary fixed points and settles the specified inequalities. |
+| [Hardin’s constant-stress arrays](Hardin-constant-stress/README.md) | Classifies when rectangles have a common recurrence and establishes 25 table predictions, crediting the five previously proved cases. |
+| [A087412](A087412/README.md) | Counts ordered solutions of $x^3+y^3\equiv1\pmod{3^e}$ exactly for $e>1$. |
+| [A217280](A217280/README.md) | Classifies the weighted binomial-cube sum modulo five by the digits of its index. |
+| [A294413](A294413/README.md) | Proves convergence of the consecutive-term ratio to the golden ratio in the specified complementary recurrence. |
+| [A380385](A380385/README.md) | Identifies the Euler-product generating functions of the columns and the exact sequence of row sums. |
+| [Arbitrary throwback queues](Throwback-arbitrary/README.md) | Classifies recurrence for arbitrary initial orders and gives limiting label-position distributions. |
+| [Kimberling pair replacements](Kimberling-pair-rules/README.md) | Determines the position limits and the valid ranges of the conjectured inequalities for two binary rules. |
+| [Rhombus coronas, A233332](A233332/README.md) | Proves order 13 is the least recurrence order for each column, with exact formulas and a symmetry-count correction. |
+| [Binary bracelet orbits](A203399/README.md) | Corrects the divisor formula for every table entry and classifies the lengths at which the original rule works on the whole row. |
+| [Periodic symmetric functions](Periodic-symmetric-functions/README.md) | Proves the ten proposed symmetric-function formulas and gives the exact recurrence order at every fixed omission count for these periods. |
+
+The same commits also strengthened the existing Ducci preperiod, prime-square Erdős–Straus offset, lattice-distance, and complementary-sequence projects. [Ducci distribution](Ducci-preperiod/distribution.md) · [Erdős–Straus offsets](Erdos-Straus-offset/README.md) · [Lattice results](Erdos-132-convex-lattice/README.md) · [Complementary-sequence families](A294532/README.md)
+
+## Earlier additions to main
 
 Three commits from parallel work added **13 projects** after the 52-project audit. Seven arrived in [`4059c10`](https://github.com/blakestone-x/math/commit/4059c10514da03fac9a666b0be177fef77570594). Five more in [`c662a3a`](https://github.com/blakestone-x/math/commit/c662a3ae7284ba5a20ee6ef1c04297638b3f694f) cover 38 OEIS entries, four individual entries and one family of 34, with Lean sources and a [collected manuscript](notes/Math_Proofs_Batch4.pdf). The Fibonacci-weighted periods paper in [`e5967ee`](https://github.com/blakestone-x/math/commit/e5967eeb4e1543514fd4e759827d8b10dddf7332) brought `main` to 65 projects. The table records the scope of those results.
 

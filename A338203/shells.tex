@@ -60,7 +60,7 @@ At one vertex, consecutive self-loops represent a fixed normalized pair $a=h$, s
 At widths $2m$ and $2m+1$, $M_m=O(58^{m/20})$. In particular $\limsup M_m^{1/m}\le58^{1/20}<1.2251$.
 \end{theorem}
 \begin{proof}
-The integer computation below gives $C_{20}=58$ and $P_{20}=181$. Lemma~\ref{lem:finite} gives $R_{j+20}\le58R_j+182$. Iterating separately for the twenty residue classes bounds $R_j$ by a constant times $47^{j/18}$, since the first twenty values are finite. The geometric sum in \eqref{eq:time} has the same order. At odd width deleting the middle bit passes its borrow unchanged and preserves the first palindrome time.\end{proof}
+The integer computation below gives $C_{20}=58$ and $P_{20}=181$. Lemma~\ref{lem:finite} gives $R_{j+20}\le58R_j+182$. Thus $R_{j+20}+182/57\le58(R_j+182/57)$. Iterating separately in the twenty residue classes gives $R_j=O(58^{j/20})$, since the first twenty values are finite. The geometric sum in \eqref{eq:time} has the same order. At odd width deleting the middle bit passes its borrow unchanged and preserves the first palindrome time.\end{proof}
 
 \section{Exact finite certificate}
 \begin{center}

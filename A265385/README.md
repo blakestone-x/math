@@ -105,4 +105,4 @@ The theorem proves the mean growth limit of 2. The separate observation in the O
 
 ## Adjacent-term fluctuations
 
-The companion manuscript now proves the persistent fluctuations from Sykora’s original comment. The ratios for A265385 have at least 70 distinct accumulation points, and every residue-class subsequence modulo 35 still fails to converge. The same analysis treats the related recurrence A265387. [Proof and exact certificates](../A265387/README.md)
+The companion manuscript now proves the persistent fluctuations from Sykora’s original comment. For each of A265385 and A265387, the original adjacent-term ratios have at least 280 distinct accumulation points and every progression modulo 140 fails to converge. Both recurrences have mean growth 2 for every positive pair of seeds. [Proof manuscripts, formal growth theorems and exact certificates](../A265387/universal.md)
