@@ -3,6 +3,8 @@ math proofs
 
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
+- [Arbitrarily ordered throwback queues — recurrence, unique prefixes and position distributions](Throwback-arbitrary/README.md) · [Manuscript](Throwback-arbitrary/arbitrary-queues.pdf)
+- [Kimberling’s binary pair rules — six OEIS entries, exact lengths and position limits](Kimberling-pair-rules/README.md) · [Manuscript](Kimberling-pair-rules/pair-rules.pdf)
 - [Throwback queues — a perfect-mixing criterion for every increasing input](Throwback-mixing/README.md) · [Manuscript](Throwback-mixing/throwback.pdf)
 - [Layman's sieve — triangular stabilization and the residue-class sieve conjectures](Layman-sieve/README.md) · [Manuscript](Layman-sieve/sieve.pdf)
 - [Binary substitutions — sharp position errors for six OEIS sequences](Morphic-discrepancy/README.md) · [Manuscript](Morphic-discrepancy/discrepancy.pdf)
