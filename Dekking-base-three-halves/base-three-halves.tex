@@ -1,0 +1,239 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.8in,bottom=.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\F}{\mathcal F}
+\newcommand{\rev}{\mathrm{rev}}
+\title{Factor frequencies and fifth powers in the base-$3/2$ Thue--Morse words}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Conjectures 7--10 in the journal version of Dekking's paper on the base-$3/2$
+Thue--Morse sequence. For both the normalized digit-sum word and Dekking's variant, every
+finite factor has a computable rational frequency, invariant under complementation and
+reversal. The frequency is the same on every arithmetic progression of power-of-two step.
+The analytic input is the dyadic single-letter theorem of Cassaigne, Espinoza, Rigo and
+Stipulanti. Separately, an elementary descent proves that the critical exponent of each
+word is exactly five. The only fifth powers in Dekking's word are $(010)^5$ and $(101)^5$,
+both of frequency $1/180$.
+\end{abstract}
+
+\section{The two words and the questions}
+Use zero-based positions. The normalized base-$3/2$ digit-sum parity word $t$ begins
+$001110111110\cdots$ and satisfies
+\begin{equation}
+ t_0=0,\qquad t_{3n}=t_{3n+1}=t_{2n},\qquad t_{3n+2}=1-t_{2n+1}.\label{eq:rule}
+\end{equation}
+Dekking's word $x$, OEIS \href{https://oeis.org/A357448}{A357448}, begins
+$010010101101\cdots$. Its rule sends a pair $ab$ to $a\bar a a$, where $\bar a=1-a$.
+Write $\varphi(a)=a\bar a a$. Then $x=\varphi(t)$ \cite[Lemma 4]{cers}. For a direct check,
+set $x_{3n}=x_{3n+2}=t_n$, $x_{3n+1}=\bar t_n$. Equation~\eqref{eq:rule} in the three
+residue classes of $n$ gives $x_{2n}=t_n$, as required by the pair rule. With first bit
+zero these equations determine the word.
+
+Dekking's journal Conjectures 7, 8 and 9 concern existence of all factor frequencies,
+invariance of those frequencies under bit-wise complement, and invariance under reversal,
+respectively. Conjecture 7 predicts $\mu_x(00)=1/10$ and $\mu_x(01)=4/10$.
+Conjecture 10, attributed to Jeffrey Shallit, asks whether the critical exponent is five
+\cite[pp.~3--4]{dek}. The earlier arXiv version numbers these four statements 6--9.
+Cassaigne, Espinoza, Rigo and Stipulanti proved uniform recurrence, symmetries of the
+factor languages and single-letter frequencies. Their concluding remarks also predict
+the two-letter frequencies for $t$ \cite[Sections 1.5 and 4]{cers}.
+
+\begin{theorem}\label{main}
+For $u=t$ or $x$, every binary word $w$ has a rational frequency $\mu_u(w)$. More precisely,
+for every $h=2^a$ with $a\ge0$ and $b\ge0$,
+\[
+ \lim_{N\to\infty}\frac1N\#\{0\le j<N:u[hj+b,hj+b+|w|)=w\}=\mu_u(w).
+\]
+This value equals $\mu_u(\bar w)$ and $\mu_u(w^{\rev})$. Both words have critical exponent
+five. Every period-$p$ factor of length at least $5p$ has exactly that length. For $t$ its
+period is $p=1$. For $x$ it has $p=3$ and begins at a multiple of three.
+\end{theorem}
+
+\section{Decoding a finite factor}
+Put $P(n)=\lfloor2n/3\rfloor$ and $e(n)={\bf1}_{n\equiv2\pmod3}$. With $\oplus$ denoting
+addition modulo two, equation~\eqref{eq:rule} says $t_n=t_{P(n)}\oplus e(n)$. Fix a
+nonempty word $w=w_0\cdots w_{m-1}$ and phase $r\in\{0,1,2\}$. Place the bit
+$w_i\oplus e(r+i)$ in slot $P(r+i)-P(r)$ for every $i$. Two inconsistent demands give
+$D_r(w)=\bot$. Otherwise the slots, read in order, form a word $D_r(w)$: $P$ advances by
+zero or one, so there are no gaps. At a start $3k+r$ the factor is $w$ precisely when
+$D_r(w)$ occurs at $2k+P(r)$. The symbol $\bot$ has zero indicator and zero frequency.
+
+For $x$, use instead $P_x(n)=\lfloor n/3\rfloor$ and $e_x(n)={\bf1}_{n\equiv1\pmod3}$.
+Call this decoder $E_r(w)$. Its parent word is read in $t$ at $k$.
+For example $D_0(01)=\bot$, $D_1(01)=00$, and $D_2(01)=11$.
+
+\begin{lemma}\label{length}
+Every compatible $D_r(w)$ has length at most $m$. If $m\ge2$, phase zero has length
+strictly less than $m$ whenever it is compatible. For $m\ge4$ all compatible phases
+strictly shorten the word.
+\end{lemma}
+\begin{proof}
+The length is $1+P(r+m-1)-P(r)$. Phase zero merges the first two positions.
+Any interval of four consecutive positions includes a pair $3j,3j+1$, with the
+same parent. This proves the assertions.
+\end{proof}
+
+We first define rational numbers $F(w)$ independently of limiting counts. Set $F(\bot)=0$,
+$F(\varepsilon)=1$, and use the following base table for lengths one through three.
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+Length & Words & $F(w)$\\
+\midrule
+1 & $0,1$ & $1/2$\\
+2 & $00,11$ & $3/10$\\
+  & $01,10$ & $1/5$\\
+3 & $010,101$ & $1/20$\\
+  & the other six words & $3/20$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For $m\ge4$ the following identity defines $F$ by induction:
+\begin{equation}
+                3F(w)=F(D_0(w))+F(D_1(w))+F(D_2(w)).\label{eq:transfer}
+\end{equation}
+The same identity holds for $m=2,3$. For clarity the table below lists the decoding for
+representatives under complement. Complement commutes with all three decoders.
+\begin{center}
+\begin{tabular}{rccc@{\qquad}rccc}
+\toprule
+$w$ & $D_0$ & $D_1$ & $D_2$ &$w$ & $D_0$ & $D_1$ & $D_2$\\
+\midrule
+$00$ & $0$ & $01$ & $10$ & $01$ & $\bot$ & $00$ & $11$\\
+$000$ & $01$ & $010$ & $10$ & $001$ & $00$ & $011$ & $\bot$\\
+$010$ & $\bot$ & $000$ & $\bot$ & $011$ & $\bot$ & $001$ & $11$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Substitution of the base values proves the identity for these lengths.
+Convexity gives $0\le F(w)\le1$ for all words.
+
+\section{Why the limiting frequencies satisfy the calculation}
+The only analytic input from \cite[Theorem 18]{cers} is that bits of $t$ on every progression
+$2^a j+b$ have frequency $1/2$ each, with the denominator measured in progression terms.
+The cited theorem uses the full prefix length as denominator and gives $2^{-a-1}$ for one
+residue; dividing by the density $2^{-a}$ gives this formulation. An offset outside the
+first residue period changes finitely many initial terms.
+
+Let $A_{a,b}(w,N)$ be the relative count in Theorem~\ref{main} for $t$. Split the
+progression index into $j=3k+d$, $0\le d<3$. Write $2^a d+b=3q_d+r_d$. The original
+start is $3(2^ak+q_d)+r_d$. Its decoded factor is read at
+$2^{a+1}k+2q_d+P(r_d)$. Since $2^a$ is coprime to three, $r_d$ runs once over $0,1,2$.
+For $N=3K$ this gives an exact average of three parent counts at $K$.
+For arbitrary $N$ the incomplete final triple changes normalized counts by $O(1/N)$.
+
+We prove convergence to $F(w)$ by strong induction on $m$. The cases $m=0,1$ are already
+known. At $m\ge2$, take
+\[
+ B_m=\sup_{a,b,\;|w|=m}\limsup_{N\to\infty}|A_{a,b}(w,N)-F(w)|.
+\]
+The supremum is taken \emph{after} the individual upper limits, and $0\le B_m\le1$.
+Subtracting \eqref{eq:transfer} from the counting identity bounds the upper limit for
+each given progression and word by the average of three upper limits. An inconsistent
+branch has zero error. A shorter parent has zero error by induction. Phase zero is one
+of these two cases. The other two errors are at most $B_m$, including when their dyadic
+step doubles. Hence $B_m\le2B_m/3$, so $B_m=0$. It follows that $\mu_t(w)=F(w)$.
+Applying the three phases of the $x$ decoder gives
+\begin{equation}
+                 \mu_x(w)=\tfrac13\sum_{r=0}^2 F(E_r(w)).\label{eq:sibling}
+\end{equation}
+For starts in a dyadic progression its parent step is $2^a$, so the same result holds
+there. This proves existence and supplies an exact algorithm.
+
+Complementing all demands preserves consistency and complements every resulting parent bit.
+For reversal in the $t$ decoder, reflect positions by $n\mapsto1-n$. This exchanges
+the two positions in each equal-parent pair and preserves the singleton positions. More
+explicitly for $n\in\mathbb Z$,
+$P(1-n)=-P(n)$ and $e(1-n)=e(n)$. Shifting a starting phase by $3j$ adds $2j$ to every
+parent index and leaves slot differences unchanged. Thus reversing a length-$m$ word
+permutes phases by $r\mapsto1-r-(m-1)\pmod3$ and reverses the decoded word, preserving
+incompatibility. For $x$ use reflection $n\mapsto2-n$: its phase-1 sign is preserved and
+$P_x(2-n)=-P_x(n)$. The base table is invariant under both operations. Induction in
+\eqref{eq:transfer} for $m\ge4$, followed by \eqref{eq:sibling}, proves the frequency
+symmetries. In particular,
+\[
+ \begin{aligned}\mu_t(00)=\mu_t(11)&=3/10, & \mu_t(01)=\mu_t(10)&=1/5,\\
+ \mu_x(00)=\mu_x(11)&=1/10, & \mu_x(01)=\mu_x(10)&=2/5.\end{aligned}
+\]
+
+\section{How long can a repetition be?}
+A factor $u[s,s+L)$ has period $p\ge1$ if its letters at distances $p$ agree wherever
+both lie in the factor. Its exponent is its length divided by its least positive period.
+The critical exponent is the supremum over all nonempty factors.
+
+\begin{lemma}\label{edges}
+In $t$ adjacent letters agree at every edge $3j$ and differ at every edge
+$9j+1$ and $9j+5$. In $x$ they differ at every edge $3j$ and agree at every
+edge $9j+2$. An edge $i$ compares positions $i,i+1$.
+\end{lemma}
+\begin{proof}
+Equation~\eqref{eq:rule} gives the equalities at $3j$. At $9j+1,9j+2$ the two bits
+are $t_{4j},\bar t_{4j}$. At $9j+5,9j+6$ they are $\bar t_{4j+2},t_{4j+2}$.
+In $x$, each image $a\bar a a$ supplies a differing first edge. Its last bit at $9j+2$
+and the first bit of the next image are $t_{3j},t_{3j+1}$, which agree.
+\end{proof}
+
+Suppose a period-$p$ factor of length $5p$ starts at $s$ and $3\nmid p$. Its edge
+indicators are periodic with period $p$ within the available $5p-1$ edges. For every
+offset $0\le i<p$, one of $s+i,s+i+p,s+i+2p$ is divisible by three, and all three
+edges lie in the factor. Hence in $t$ every edge of the factor is equal, and in $x$
+every edge is unequal. A constant run in $t$ has length at most five because every five
+consecutive edge positions include $1$ or $5$ modulo nine. An alternating run in $x$
+has length at most nine because every nine consecutive edges include $2$ modulo nine.
+It follows that in $t$ only $p=1$ is possible. In $x$ every $p\ge2$ is excluded, while
+$p=1$ contradicts the required alternation.
+
+\begin{lemma}\label{pull}
+If $t[s,s+L)$ has period $3q<L$, the contiguous parent interval
+$[P(s),P(s+L-1)]$ has period $2q$. If $x[s,s+L)$ has period $3q<L$, its contiguous
+parent interval $[P_x(s),P_x(s+L-1)]$ in $t$ has period $q$.
+\end{lemma}
+\begin{proof}
+For $t$, the signs agree at a separation of $3q$, and $P(n+3q)=P(n)+2q$.
+The indices $s,\ldots,s+L-1-3q$ visit every parent from $P(s)$ through
+$P(s+L-1)-2q$ because $P$ takes steps of size zero or one. Each required comparison
+is therefore inherited. Use $P_x(n+3q)=P_x(n)+q$ for the second assertion.
+\end{proof}
+
+A length-$15q$ factor in $t$ covers at least $10q$ parent positions. If it had period
+$3q$, Lemma~\ref{pull} would produce a fifth power of period $2q$. Strong induction
+on the period, starting with the $3\nmid p$ case, now shows that any length-$5p$
+periodic factor in $t$ must have $p=1$: in the divisible case one would need $2q=1$.
+No such length can be exceeded, since a longer factor would contain its first $5p$
+letters and a constant run cannot exceed five.
+
+A length-$15q$ factor of period $3q$ in $x$ covers at least $5q$ positions in $t$
+with period $q$. Consequently $q=1$. A length-$15$ window starting inside a triple
+covers six parent positions and is impossible, and a length-$16$ window from any
+alignment also covers at least six. The fifth powers in $x$ can therefore only be
+aligned images of five identical bits. Both occur: $t[6,11)=11111$ and
+$t[87,92)=00000$, by \eqref{eq:rule}. Their images have least period three.
+This proves the repetition assertions of Theorem~\ref{main}, including attainment of
+the critical exponent. Finally \eqref{eq:transfer} gives
+$F(00000)=F(11111)=1/60$. Each aligned image has one possible phase out of three,
+so each fifth power has frequency $1/180$ in $x$.
+
+\paragraph{Formal verification.}
+The accompanying Lean development proves the period bounds directly from the two word
+definitions. For frequencies it takes the full-prefix statement of Theorem~18 of
+\cite{cers} as an explicit hypothesis and derives the limits, symmetries and displayed
+values. The repository also includes an exact rational calculator for any finite word.
+
+\begin{thebibliography}{9}
+\bibitem{dek} F. M. Dekking, \emph{The Thue--Morse sequence in base $3/2$},
+Journal of Integer Sequences \textbf{26} (2023), Article 23.2.3.
+\url{https://cs.uwaterloo.ca/journals/JIS/VOL26/Dekking/dek25.pdf}.
+\bibitem{cers} J. Cassaigne, B. Espinoza, M. Rigo, and M. Stipulanti,
+\emph{Symbols frequencies in the Thue--Morse word in base $3/2$ and related conjectures},
+arXiv:2602.21895 (2026). \url{https://arxiv.org/abs/2602.21895}.
+\end{thebibliography}
+\end{document}

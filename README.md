@@ -1,6 +1,7 @@
 # math
 math proofs
 
+- [Dekking’s base-3/2 Thue–Morse word — four conjectures on factor frequencies, symmetries and the critical exponent](Dekking-base-three-halves/README.md) · [Manuscript](Dekking-base-three-halves/base-three-halves.pdf)
 - [Yane’s consecutive-bar tilings — four extensions, the boundary exception, and the full counting recurrence](A394981/README.md) · [Manuscript](A394981/tilings.pdf)
 - [Mathar’s recurrence for A141344 and its exact sign rule](A141344/README.md) · [Manuscript](A141344/recurrence.pdf)
 
