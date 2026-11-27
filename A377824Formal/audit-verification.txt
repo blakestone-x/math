@@ -1,0 +1,18 @@
+Independent isolated compilation of A377824
+Reviewer: separate agent scout_number_theory7
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Exact source copied to a fresh directory; no existing project .olean reused.
+
+'A377824.mem_compositions' depends on axioms: [propext, Quot.sound]
+'A377824.compositions_nodup' depends on axioms: [propext, Quot.sound]
+'A377824.weights_positions' depends on axioms: [propext]
+'A377824.a_positions' depends on axioms: [propext, Quot.sound]
+'A377824.explicit_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A377824.closed_form_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A377824.normalized_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A377824.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A377824.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Exit code: 0
+SHA256 Proof.lean: 49a3695e54eb9acab9bcc6f50a4927c9b64168883fc6ccf8ea7032d1a2748571

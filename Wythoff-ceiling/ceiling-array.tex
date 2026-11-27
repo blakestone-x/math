@@ -1,0 +1,337 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.82in,bottom=.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,array}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\D}{\mathcal D}
+\newcommand{\M}{\mathcal M}
+\newcommand{\T}{\mathcal T}
+\newcommand{\ph}{\varphi}
+\newcommand{\ind}[1]{\mathbf 1_{\{#1\}}}
+\newcommand{\nil}{\varnothing}
+\newcommand{\G}{\{3,5,10,13\}}
+\title{Gaps and their frequencies in the Wythoff ceiling array}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Clark Kimberling conjectured two lists of gaps for the integers that occur
+twice or never in the Wythoff ceiling array. We prove both lists. Their only
+difference is a gap of size $2$, which occurs exactly once. The two sets have
+the same density, and their four shared gaps have identical limiting
+frequencies. The two least summands in a Fibonacci representation determine
+the array multiplicity. A ten-state recurrence then counts consecutive
+occurrences in numerical order.
+\end{abstract}
+
+\section{Two sets of integers}
+Write $F_0=0$, $F_1=1$, $F_{i+2}=F_{i+1}+F_i$, and
+$\ph=(1+\sqrt5)/2$. The Wythoff ceiling array \cite{array} is
+\[
+ W^*(n,k)=F_{k+1}\lceil n\ph\rceil+(n-1)F_k,\qquad n,k\ge1 .
+\]
+Let $\D$ consist of integers at exactly two array positions. Let $\M$ consist
+of the positive integers at no position. A gap $g$ in a set has endpoints
+$x<y$ in the set with $y-x=g$ and no intervening member. The first few
+members are
+\[
+\begin{array}{l@{\ =\ }l}
+\D & \{10,23,26,31,44,57,60,65,68,78,\ldots\},\\
+\M & \{1,3,8,11,21,24,29,32,45,\ldots\}.
+\end{array}
+\]
+
+\begin{theorem}\label{main}
+The gaps in $\D$ are precisely $3,5,10,13$. The gaps in $\M$ are precisely
+$2,3,5,10,13$. The gap from $1$ to $3$ is the unique gap of size $2$.
+Both sets have natural density $\ph^{-4}$. Within either list of consecutive
+gaps the limiting proportions are
+\[
+\begin{array}{c|cccc}
+g&3&5&10&13\\ \hline
+\text{proportion}&\ph^{-2}&\ph^{-3}&\ph^{-4}&\ph^{-3}.
+\end{array}
+\]
+\end{theorem}
+The first two assertions answer Kimberling's questions in A341261 and
+A341262, both dated February 9, 2021 \cite{twice,missing}.
+For example, $10=F_6+F_3$ occurs at $W^*(1,4)$ and $W^*(4,1)$.
+Its next neighbor in $\D$ is $23$. Section~\ref{sec:positions} explains
+how the indices $6$ and $3$ specify these two columns.
+
+\newpage
+\section{The Fibonacci shift}
+For $x\in\N=\{0,1,\ldots\}$ put $Z(x)=\lfloor(x+1)\ph\rfloor-1$,
+$O(x)=Z^2(x)+1$, and $S_j(x)=Z^j(x)$. Powers denote iteration.
+The map $Z$ is strictly increasing and $Z(0)=0$. If
+$a=\lfloor(x+1)\ph\rfloor$ and $f=(x+1)\ph-a$, then $0<f<1$ and
+\[
+ a\ph=a+x+1-(\ph-1)f.
+\]
+Taking floors, first at $a\ph$ and then at $(a+1)\ph$, gives
+\[
+ Z^2(x)=Z(x)+x,\qquad Z(Z(x)+1)=Z(x)+x+2.                 \tag{1}
+\]
+In particular $Z(Z(x))<O(x)<Z(Z(x)+1)$, so $O(x)$ is outside the image
+of $Z$. Equation (1) implies $S_{j+2}=S_{j+1}+S_j$ pointwise. Applying this
+recurrence to the first two terms on either side gives
+\begin{align}
+ S_j(Z(x)+1)&=S_{j+1}(x)+F_{j+2},&
+ S_j(O(x))&=S_{j+2}(x)+F_{j+2}.                         \tag{2}
+\end{align}
+
+A nonempty Fibonacci code is a list $r::w$ of nonnegative integers with
+value $V(r::w)=S_r(O(V(w)))$ and $V([])=0$. The least summand has index
+$r+2$. If $w=v::t$, the second index exceeds the first by $v+2$, and so on.
+Indeed, (2) gives
+\[
+ S_j(V(r::w))=F_{j+r+2}+S_{j+r+2}(V(w)).
+\]
+Thus the list spells out a sum of distinct, nonadjacent Fibonacci numbers
+from $F_2=1$ upward. To see uniqueness, suppose
+$S_i(O(x))=S_j(O(y))$ and cancel common $Z$'s. Unequal exponents would put
+an $O$-value in the image of $Z$. Equal exponents give $x=y$ by injectivity.
+Nonempty codes are positive, so induction proves uniqueness.
+
+For numerical ordering we also record how to generate all the codes.
+Appending a low zero sends $r::w$ to $(r+1)::w$ and fixes $[]$. Call this
+operation $z$. Appending a low one sends $[]$ to $[0]$ and $r::w$ to
+$0::(r-1)::w$ when $r>0$. Call this operation $o$. A prefix is safe if it
+is empty or has $r>0$. We have $V(zw)=Z(V(w))$ and, for a safe prefix,
+$V(ow)=Z(V(w))+1$.
+
+For a safe prefix $w$, write $E_k(w)$ for its legal continuations of
+width $k$. With $\Vert$ denoting concatenation, order these lists by
+\begin{align*}
+ E_0(w)&=[w], & E_1(w)&=[zw,ow],\\
+ E_{k+2}(w)&=E_{k+1}(zw)\ \Vert\ E_k(zow).
+\end{align*}
+Their values are exactly $S_k(V(w))+j$ for $0\le j<F_{k+2}$ in increasing
+order. For the induction step the first block starts at $S_{k+2}(V(w))$.
+By (2) the second starts $F_{k+3}$ later, exactly the length of the first.
+At the empty prefix these intervals are $[0,F_{k+2})$, proving that every
+nonnegative integer has a code.
+
+\newpage
+\section{Which columns contain an integer?}\label{sec:positions}
+Call a positive number lower if it is $Z(u)+1$ for some $u\ge0$. Every
+integer $x\ge0$ is either $Z(t)$ or $O(t)$ and cannot be both, by the first
+code parameter and the disjointness proved above. Consequently every
+positive number is either lower or $O(u)+1$. By (1),
+$O(u)+1=Z(Z(u)+1)$. For $t>0$, injectivity now shows that $Z(t)$ is lower
+exactly when $t$ is not lower. Since $O(x)=Z(Z(x))+1$ is lower,
+\[
+             V(r::w)\text{ is lower}\quad\Longleftrightarrow\quad r\text{ is even}. \tag{3}
+\]
+
+Put $a=\lfloor n\ph\rfloor=Z(n-1)+1$. Then $Z(a)=a+n$, and
+$S_k(a)=F_{k+1}a+F_kn$ by the Fibonacci recurrence. For $k\ge1$ this gives
+\[
+                       W^*(n,k)=S_k(a)+F_{k-1}.             \tag{4}
+\]
+As $n$ increases, $a$ runs once through all the lower numbers. Write its
+code $r::w$ with $r$ even. Equations (2) and (4) give the column codes in the table.
+Every code in its right column occurs, and a fixed column contains each
+of its entries exactly once.
+\[
+\begin{array}{c@{\qquad}l@{\qquad}l}
+\toprule
+\text{column} & \text{entry} & \text{code}\\ \midrule
+1 & Z(a) & (r+1)::w\\
+2 & O(a) & 0::r::w\\
+h+3\ (h\ge0)& S_h(O(Z(a))) & h::(r+1)::w\\ \bottomrule
+\end{array}
+\]
+
+For an input with code $r::v::w$ its multiplicity therefore equals
+\[
+  \ind{r\text{ odd}}+\ind{v\text{ odd}}+\ind{r=0,\ v\text{ even}}.   \tag{5}
+\]
+A singleton code $[r]$ has multiplicity $\ind{r\text{ odd}}$.
+In particular no integer occurs more than twice. In the example $10$,
+the first two parameters are $r=v=1$. Columns $1$ and $r+3=4$ are
+the two possibilities.
+
+It is convenient to remove $1$ temporarily, writing $\T=\M\setminus\{1\}$.
+Equation (5) determines membership in each set.
+\begin{itemize}
+\item A code belongs to $\D$ exactly when $r$ and $v$ both exist and are odd.
+\item A code belongs to $\T$ exactly when $r$ is positive even and
+$v$ is absent or even. The singleton $[0]$, with value $1$, is the other
+member of $\M$.
+\end{itemize}
+For instance, $3=F_4$ has $r=2$ and no second summand. The table immediately
+explains why $3$ is missing.
+
+\paragraph{A direct density calculation.}
+For fixed $r,v$, all codes beginning $r::v$ form the increasing image
+$S_r O S_v O(\N)$. Its density is $\ph^{-(r+v+4)}$, since
+$Z(x)=\ph x+O(1)$ and $O(x)=\ph^2x+O(1)$. The codes with $r\ge K$ lie in
+$S_K(\N)$. For $r<K$ the codes with $v\ge K$ lie in
+$S_r O S_K(\N)$. The sum of these upper bounds on the uncounted densities
+is at most $\ph^{-K}+\ph^{-(K+2)}\sum_{r\ge0}\ph^{-r}$, which tends to zero.
+Singleton codes are Fibonacci numbers and have density zero.
+Summing over $(r,v)=(1+2i,1+2j)$ for $\D$, or $(2+2i,2j)$ for $\T$,
+gives the same series $\ph^{-6}/(1-\ph^{-2})^2=\ph^{-4}$.
+
+\newpage
+\section{A finite calculation for all gaps}\label{sec:gaps}
+A state records the empty prefix, or $(c,t)$ where $c$ is the class of $r$
+(zero, odd, positive even) and $t$ gives the parity of $v$ (absent, even,
+odd). There are ten states. The operation $z$ fixes the empty state and
+preserves $t$ otherwise, sending odd to
+positive even and the other classes to odd. The operation $o$ sends the
+empty state to (zero, absent). From a nonempty safe state it sends the
+first class to zero, and the second parameter is even if $r$ was odd,
+odd if $r$ was even. Extend this rule to all ten states for the finite
+calculation. The output bit is membership in $\D$ or $\T$ as specified
+by (5). The bits $B_k(s)$ of $E_k$ obey its same concatenation rule.
+
+Let $G=\G$. Record an empty-of-hits block by its length. Summarize a block
+with hits by $(f,t,q)$, where $f,t$ count misses before its first and after
+its last hit, and $q$ records whether every internal gap belongs to $G$.
+On joining two blocks with hits the new summary is
+\[
+ (f,t,q)\star(g,u,p)=(f,u,\ q\wedge p\wedge[t+1+g\in G]).
+\]
+An empty block adds its length to its neighboring margin, or to the other
+length when both are empty. Let $H_k(s)$ be the summary of $B_k(s)$.
+Starting with single bits and using
+$H_{k+2}(s)=H_{k+1}(zs)\star H_k(zos)$ gives
+$H_{10}=H_8$ and $H_{11}=H_9$ at every state for both sets.
+Here is the finite certificate. Each row lists the leading margins in state
+order $[]$, then $c=$ zero, odd, positive even, each with $t=$ absent,
+even, odd. The trailing margin is constant across each row, and every
+validity flag is true.
+\begin{center}\small
+\begin{tabular}{@{}lllr@{}}
+\toprule
+Set&Widths&Leading margins&Trailing\\ \midrule
+$\D$&8, 10&10, 2, 2, 2, 10, 10, 0, 2, 2, 2&10\\
+$\D$&9, 11&10, 10, 10, 0, 2, 2, 2, 10, 10, 0&2\\
+$\T$&8, 10&3, 0, 0, 3, 11, 11, 11, 0, 0, 3&9\\
+$\T$&9, 11&3, 11, 11, 11, 0, 0, 3, 11, 11, 11&1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The recurrence propagates these two equalities to every width $k\ge8$.
+Every pair of consecutive members lies inside some root block of such a
+width. Thus all gaps belong to $G$. The following consecutive pairs realize every value.
+\[
+\begin{array}{c|cccc}
+g&3&5&10&13\\ \hline
+\D&23\to26&26\to31&68\to78&10\to23\\
+\T&8\to11&3\to8&11\to21&32\to45
+\end{array}
+\]
+The endpoints and the absence of intervening members follow from $B_9([])$,
+which covers $[0,89)$. The first member of $\T$ is $3$. Restoring $1$
+creates exactly one further gap.
+
+\newpage
+\section{Counting gaps, with a uniform error bound}\label{sec:counts}
+For each block, record its hit count and its four internal gap counts. Index them by $g=0,3,5,10,13$, with $0$ indicating hits. Write
+$C_{g,k}(s)$ for a block count, separately for $\D$ and $\T$. Joining two
+blocks adds their counts and a correction $J_g$ equal to $1$ exactly when
+both blocks have hits and the crossing gap is $g$. In all other cases it is
+zero, including $g=0$. Define the exponents
+\[
+\begin{array}{c|ccccc}
+ g&0&3&5&10&13\\ \hline e_g&4&6&7&8&7
+\end{array}
+\]
+and put $R_{g,k}(s)=C_{g,k}(s)-F_{k+2-e_g}$ for $k\ge8$.
+
+\begin{lemma}\label{affine}
+For each state, statistic and set, $R_{g,k+4}+R_{g,k}=2R_{g,k+2}$ for
+every $k\ge8$. In particular $|R_{g,k}|\le k$ at these widths.
+\end{lemma}
+\begin{proof}
+The Fibonacci reference obeys the same two-term addition as the counts
+before the crossing correction. Hence
+\[
+ R_{g,k+2}(s)=R_{g,k+1}(zs)+R_{g,k}(zos)
+     +J_g\big(H_{k+1}(zs),H_k(zos)\big).
+\]
+By Section~\ref{sec:gaps} the last term has period two for $k\ge8$.
+Taking the second difference with step two therefore gives a homogeneous
+recurrence with the same two children. Its initial rows at $k=8,9$ vanish.
+The initial values can be reproduced for every state and statistic
+by the following recurrence.
+\begin{quote}\small
+Initialize width zero with the marked bit, and width one with the two
+marked child bits. Build widths $2$ through $13$ by joining the two
+children and adding $J_g$. For $k=8,9$ evaluate\
+$\displaystyle a=C_{g,k}-F_{k+2-e_g},\quad
+ b=C_{g,k+2}-F_{k+4-e_g},\quad c=C_{g,k+4}-F_{k+6-e_g}.$\
+Every row satisfies $a+c=2b$, $|a|\le6$, and $|b-a|\le1$.
+\end{quote}
+These integer equalities and bounds are also checked in the accompanying
+Lean proof. Induction gives the asserted equality and the linear bound.
+\end{proof}
+
+Let $A_g(N)$ count hits or internal gaps in $[0,N)$.
+Binet's formula gives $|F_{k+2-e_g}-\ph^{-e_g}F_{k+2}|\le2$ for $k\ge8$,
+since the conjugate of $\ph$ has absolute value less than one. A full
+width-$k$ block thus has error $O(k+1)$ uniformly in its state. A prefix
+of a root block splits into full child blocks of strictly decreasing
+widths, with at most one crossing gap per join. If $k$ is the least width
+covering $N$, then $k=O(\log(N+2))$. Consequently
+\[
+                    A_g(N)=\ph^{-e_g}N+O\!\left(\log^2(N+2)\right).
+\]
+The hit density is $\ph^{-4}$. Dividing each gap density by the hit
+density proves the proportions in Theorem~\ref{main}. Restoring $1$
+changes the hit count by one and adds only the gap of size two.
+
+\newpage
+\section{Exact counts at Fibonacci endpoints}
+The affine residual also gives finite counting formulas. Let $D(N)$ and
+$M(N)$ count members of $\D$ and $\M$ strictly below $N$. For $m\ge2$,
+\[
+\begin{array}{c|cc}
+ N&D(N)&M(N)\\ \hline
+ F_{2m+2}&F_{2m-2}-(m-1)&F_{2m-2}+1\\
+ F_{2m+3}&F_{2m-1}-1&F_{2m-1}+m
+\end{array}
+\]
+Indeed, for the hit statistic, the root residuals at widths $8,10$ are
+$-3,-4$ for $\D$ and $0,0$ for $\T$. At widths $9,11$ they are $-1,-1$
+and $3,4$, respectively. Lemma~\ref{affine} extends these two arithmetic
+progressions indefinitely. The widths $4$ through $7$ follow directly
+from the same recurrence. Adding $1$ to the tail count gives $M(N)$.
+For example, below $F_{10}=55$ there are five doubled values and nine
+omissions. The linear terms in $m$ show that the difference from the
+limiting density times $N$ is unbounded on one parity of Fibonacci
+endpoints for each set.
+
+\section*{Formal and independent checks}
+The Lean~4 package \texttt{Wythoff-ceiling} defines the array using the
+real golden ratio and a natural ceiling. The definitions of a doubled or
+missing number quantify over actual array positions. Theorems
+\texttt{doubled\_gaps}, \texttt{missing\_gaps}, and
+\texttt{unique\_gap\_two} prove the gap statements.
+\texttt{doubled\_statistics}, \texttt{omitted\_statistics} and
+\texttt{gap\_frequencies} give the limits in Theorem~\ref{main}. The four exact endpoint formulas are verified by \texttt{fibonacci\_endpoint\_counts}.
+The finite certificates in Sections~\ref{sec:gaps} and~\ref{sec:counts}
+use kernel reduction. A separate Python program evaluates the array by
+integer square roots, compares the multiplicity of each positive integer
+through $250{,}000$ with its greedy Fibonacci digits, and checks the finite
+certificates by block concatenation.
+
+\begin{thebibliography}{9}
+\bibitem{array} C. Kimberling, Wythoff ceiling array, OEIS A341260,
+February 9, 2021. \url{https://oeis.org/A341260}
+\bibitem{twice} C. Kimberling, Numbers that occur twice in the Wythoff
+ceiling array, OEIS A341261, February 9, 2021. \url{https://oeis.org/A341261}
+\bibitem{missing} C. Kimberling, Numbers not in the Wythoff ceiling array,
+OEIS A341262, February 9, 2021. \url{https://oeis.org/A341262}
+\end{thebibliography}
+\end{document}

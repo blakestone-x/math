@@ -1,0 +1,31 @@
+Fresh standalone package build
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Build directory: /workspace/scratch/5f072ff518ad/tmp/batch7_A389524Weighted_build_i7rm6tbv
+Command: lake build
+
+ℹ [2793/2797] Built Uchimura
+info: ././././Uchimura.lean:290:0: 'Uchimura.finite_uchimura_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2794/2797] Built Orphans
+info: ././././Orphans.lean:373:0: 'Nathanson.orphan_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2795/2797] Built Triangle
+info: ././././Triangle.lean:224:0: 'A389524.triangle_eq_column' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Triangle.lean:225:0: 'A389524.row_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Triangle.lean:226:0: 'A389524.diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2796/2797] Built Weighted
+info: ././././Weighted.lean:670:0: 'A389524Weighted.weighted_rows_nilpotent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Weighted.lean:671:0: 'A389524Weighted.weighted_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Weighted.lean:672:0: 'A389524Weighted.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+
+Exit status: 0
+
+SHA256 Uchimura.lean: 878257266d1ebc4e4f1791dc18a3a2d9b7c6e0d323d4ecaecc8ecfe74423305a
+SHA256 Triangle.lean: ed482386e996977341ad53209a9a9cca5c827c1f86d18da11977ab5c3b288a10
+SHA256 Orphans.lean: 1462d5dd856d0b192c5b7a1d788359133bb6ed58a25dbfb9fe94e450ab66faa2
+SHA256 Weighted.lean: d433a2310fd39ec894ec67a972e8a64c1ed3355bd17b1e8773b3ad881c9d89ca
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lakefile.lean: c5dadd565c910a51eaf5bbef73c46de946b352bef4c7d06ee4107f21aa9e6ef1
+SHA256 lake-manifest.json: 819f9ae1b04f2fa1cb784c0a7b18fd6224f95e2cdda02f73d803a0aa017afeb6

@@ -1,0 +1,42 @@
+Wythoff ceiling array
+Lean 4.19.0 and mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+
+Two separate project builds checked the final source files. The builds shared the pinned mathlib dependency cache. The finite cases reduce in Lean's kernel.
+
+Build 1
+ℹ [2802/2806] Replayed Gaps
+info: ././././Gaps.lean:111:0: 'CeilingArray.doubled_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Gaps.lean:112:0: 'CeilingArray.missing_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Gaps.lean:113:0: 'CeilingArray.unique_gap_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2806] Built Frequencies
+info: ././././Frequencies.lean:192:0: 'CeilingArray.population_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Frequencies.lean:193:0: 'CeilingArray.relative_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2806] Built ArrayStatistics
+info: ././././ArrayStatistics.lean:149:0: 'CeilingArray.fibonacci_endpoint_counts' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:151:0: 'CeilingArray.doubled_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:152:0: 'CeilingArray.omitted_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:153:0: 'CeilingArray.gap_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Build 2
+ℹ [2802/2806] Replayed Gaps
+info: ././././Gaps.lean:111:0: 'CeilingArray.doubled_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Gaps.lean:112:0: 'CeilingArray.missing_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Gaps.lean:113:0: 'CeilingArray.unique_gap_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2806] Built Frequencies
+info: ././././Frequencies.lean:192:0: 'CeilingArray.population_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Frequencies.lean:193:0: 'CeilingArray.relative_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2806] Built ArrayStatistics
+info: ././././ArrayStatistics.lean:149:0: 'CeilingArray.fibonacci_endpoint_counts' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:151:0: 'CeilingArray.doubled_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:152:0: 'CeilingArray.omitted_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ArrayStatistics.lean:153:0: 'CeilingArray.gap_frequencies' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Independent integer verification
+Exact array versus greedy Fibonacci digits: all 250,000 positive inputs agree.
+doubled: 36,468 members through 250,000; internal gaps [(3, 13926), (5, 8610), (10, 5315), (13, 8616)].
+doubled: boundary and affine-count certificates pass for every state and statistic.
+omitted tail: 36,479 members through 250,000; internal gaps [(3, 13936), (5, 8611), (10, 5325), (13, 8606)].
+omitted tail: boundary and affine-count certificates pass for every state and statistic.
+The unique exceptional gap in the direct enumeration is 1 to 3.

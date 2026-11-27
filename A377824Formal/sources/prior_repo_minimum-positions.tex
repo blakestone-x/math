@@ -1,0 +1,35 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.93in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdfauthor={Blake Stone},pdftitle={Positions of minimum parts in integer compositions}]{hyperref}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Positions of minimum parts in integer compositions}\par\vspace{8pt}
+Blake Stone\par{\small Proof developed with OpenAI Codex}
+\end{center}
+For each ordered composition of $n\ge1$, sum the positions of all occurrences of its smallest part, with the first position numbered $1$. Let $A_n$ be the sum over all compositions. For example, $(1,2,1,1,2)$ contributes $1+3+4=8$.
+
+\paragraph{Theorem.} With $\varphi=(1+\sqrt5)/2$,
+\[
+ A_n=(n+1)(n+6)2^{n-5}+O(n^2\varphi^n).
+\]
+In particular $A_n\sim n^2 2^{n-5}$, proving V\'aclav Kote\v{s}ovec's 2025 conjecture in \href{https://oeis.org/A377824}{OEIS A377824}.
+
+\paragraph{Proof.} Write $P_m(x)=x^m/(1-x)$ for the generating function of a single allowed part of size at least $m$. Mark an occurrence of $m$ and let $r$ be the number of parts preceding it. Its position contributes a weight $r+1$. Summation over its prefix and its unrestricted suffix gives
+\[
+ S_m(x)=\left(\sum_{r\ge0}(r+1)P_m(x)^r\right)x^m\frac1{1-P_m(x)}
+       =\frac{x^m}{(1-P_m(x))^3}.
+\]
+Every composition counted by $S_m$ has minimum $m$, and each occurrence contributes its position exactly once. Therefore $\sum_{n\ge1} A_n x^n=\sum_{m\ge1} S_m(x)$.
+
+For minimum one, $S_1(x)=x(1-x)^3/(1-2x)^3$. Put $y=1-2x$; this is $(y^{-3}+2y^{-2}-2-y)/16$. For $n\ge2$ its exact contribution is
+\[
+ [x^n]S_1(x)=\frac{2^n}{16}\left(\binom{n+2}{2}+2(n+1)\right)
+             =(n+1)(n+6)2^{n-5}.
+\]
+The remaining compositions have all parts at least two. Their number is $F_{n-1}$ for $n\ge2$, where $F_1=F_2=1$: their generating function, including the empty composition, is $(1-x)/(1-x-x^2)$. Each has at most $n$ positions and contributes at most $n^2$. Hence the discarded total lies between zero and $n^2F_{n-1}=O(n^2\varphi^n)$, proving the theorem.\hfill$\square$
+
+\paragraph{Example.} For $n=7$ the minimum-one contribution is $416$. The remaining compositions contribute $19$, giving the entry's $A_7=435$.
+\end{document}

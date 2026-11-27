@@ -1,0 +1,618 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={An orphan-count identity, a composition asymptotic, and nine power-sum patterns},pdfauthor={Blake Stone},pdfsubject={Complete proofs and Lean verification of selected sequence assertions}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries An orphan-count identity, a composition\\[3pt]
+asymptotic, and nine power-sum patterns}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with OpenAI Astra 6.2\par
+November 26, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove the remaining weighted-row conjecture for the recursive triangle
+A389524, connecting its original recurrence to Nathanson's literal
+orphan-counting definition and completing the entry's three conjectures.
+We formally verify the A377824 minimum-part-position asymptotic with
+explicit corrections and an exponentially small relative error. A concurrent
+repository manuscript established that result before publication of this
+package and is credited. We also classify nine power-sum families in an
+A289629 comment: eight are true and one is false. Four true families were
+already established in A349989. The additional assertion count is therefore
+six: five proofs and one refutation, alongside the composition formalization.
+Four new Lean modules and two reproduced dependencies verify the results
+from the original definitions. Classical ingredients are explicitly credited;
+bounded prior-work searches do not establish exhaustive historical priority.
+
+\begin{center}
+\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{3.7in}@{}}
+\toprule
+Entry & Contribution & Result\\
+\midrule
+A389524 & 1 proved & Weighted rows count the actual orphans; all three entry conjectures are now proved.\\
+A377824 & 1 formalized & Exact main term and geometric error bound; a concurrent repository proof is credited.\\
+A289629 & 4 proved, 1 refuted & Complete nine-branch classification, with four other true branches credited as prior work.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{A389524: the weighted row counts orphans}
+
+Mats Granvik's A389524~\cite{A389524} defines an integer triangle by the
+source program's recurrence. Its first column is $T(1,1)=1$ and
+$T(n,1)=0$ for $n\ne1$. For $k\ge2$, set $T(n,k)=0$ when $n<k$, and
+otherwise set
+\begin{equation}\label{eq:triangle7}
+T(n,k)=1+\sum_{i=1}^{k-1}T(n-i,k-1)
+          -\sum_{i=1}^{n-1}T(n-i,k).
+\end{equation}
+The exceptional first column is retained throughout the formalization.
+
+Let $h(n)$ be Nathanson's orphan-counting function A274628~\cite{A274628}:
+the number of integer quadruples satisfying
+\[
+ab-cd=n,\qquad a>c\ge0,\qquad b>d\ge0.
+\]
+Write $d(n)$ for the number of positive divisors of $n$, and
+$\sigma(n)=\sum_{r\mid n}r$ for their sum.
+
+\begin{theorem}\label{thm:weighted7}
+For every positive integer $n$,
+\[
+\boxed{\sum_{k=1}^{n}kT(n,k)=h(n).}
+\]
+Equivalently, in the source's reversed ordering,
+\[
+\sum_{j=1}^{n}(n-j+1)T(n,n-j+1)=h(n).
+\]
+Both sides also have the divisor-statistic expression
+\begin{equation}\label{eq:orphan-convolution7}
+2h(n)+d(n)=\sum_{t=1}^{n-1}d(t)d(n-t)+3\sigma(n).
+\end{equation}
+\end{theorem}
+
+This is Conjecture 2 of the entry. The earlier package proves
+$\sum_kT(n,k)=d(n)$ and $T(2n,n)=n-d(n)$, its Conjectures 1 and 3.
+Those earlier results are not counted again here.
+
+\subsection{A direct count of the orphans}
+
+We first prove~\eqref{eq:orphan-convolution7} from the literal quadruples.
+They form a finite set: writing
+$ab-cd=a(b-d)+d(a-c)=b(a-c)+c(b-d)$ shows $a,b\le n$, and then
+$c,d<n$.
+
+If $c=0$, the equation is $ab=n$ and $d$ may be any of
+$0,\ldots,b-1$. Summing these $b$ choices over divisors $b$ of $n$
+gives $\sigma(n)$ orphans.
+
+If $c>0$, use the bijection
+\[
+(a,b,c,d)\longmapsto(x,y,z,w)=(a-c,b,c,b-d).
+\]
+Its image consists exactly of positive quadruples with
+$xy+zw=n$ and $y\ge w$. The inverse is
+$(a,b,c,d)=(x+z,y,z,y-w)$. Positivity and the order condition verify
+both directions.
+
+There are
+\[
+C(n)=\sum_{t=1}^{n-1}d(t)d(n-t)
+\]
+positive ordered quadruples with $xy+zw=n$: choose $t=xy$, then a
+factor pair of $t$ and a factor pair of $n-t$. Swapping the two products
+interchanges $y>w$ and $y<w$. The equality case $y=w$ has
+$(x+z)y=n$; for each divisor $r=x+z$ there are $r-1$ positive splits.
+Its count is therefore $\sigma(n)-d(n)$. It follows that
+\[
+h(n)=\sigma(n)+\frac{C(n)+\sigma(n)-d(n)}2,
+\]
+which proves~\eqref{eq:orphan-convolution7}. This classical convolution
+formula is proved here as a definition bridge, rather than assumed from
+the OEIS generating function.
+
+\subsection{The weighted triangle identity}
+
+Define $R_0(x)=0$ and
+\begin{equation}\label{eq:R7}
+R_{k+1}(x)=1+(1-x^k)R_k(x).
+\end{equation}
+The column polynomials derived from~\eqref{eq:triangle7} are
+\begin{equation}\label{eq:column7}
+\sum_{n\ge0}T(n,k)x^n=x^kR_k(x),\qquad k\ge1.
+\end{equation}
+Indeed, the first column is $x$. Moving the last sum in the recurrence
+to the left gives
+\[
+\frac{C_k(x)}{1-x}=\frac{x^k}{1-x}
+ +(x+\cdots+x^{k-1})C_{k-1}(x),
+\]
+and hence $C_k=x^k+x(1-x^{k-1})C_{k-1}=x^kR_k$.
+The reproduced Lean module proves this bridge by induction on the
+original recurrence using finite coefficient sums.
+
+Fix $N\ge1$ and work in the quotient ring
+$A_N=\Z[x]/(x^{N+1})$, writing $q$ for the class of $x$.
+Every $1-q^r$ with $r\ge1$ is a unit, with a finite geometric inverse.
+Define
+\[
+D=\sum_{r=1}^{N}\frac{q^r}{1-q^r},\qquad
+E=\sum_{r=1}^{N}\frac{r q^r}{1-q^r},\qquad
+W=\sum_{k=1}^{N}kq^kR_k(q).
+\]
+We prove the finite identity
+\begin{equation}\label{eq:weighted7}
+\boxed{2W=D^2-D+3E\quad\text{in }A_N.}
+\end{equation}
+Classical weighted divisor identities underlie this
+formula~\cite{Uchimura,Bressoud,Agarwal}.
+We give all the finite algebraic details below.
+
+First introduce a marker $z$ by $J_0(z)=0$ and
+\[
+J_{k+1}(z)=z\bigl(1+(1-q^k)J_k(z)\bigr).
+\]
+Then $J_k(1)=R_k(q)$. For $d\ge1$, induction gives
+\[
+[z^d]J_k(z)=
+\begin{cases}
+\displaystyle\prod_{j=k-d+1}^{k-1}(1-q^j),&k\ge d,\\
+0,&k<d.
+\end{cases}
+\]
+We claim
+\begin{equation}\label{eq:marked7}
+\sum_{k=0}^{N}q^kJ_k(z)
+=\sum_{d=1}^{N}\frac{q^d}{1-q^d}z^d.
+\end{equation}
+To prove it, put $B_t^{(d)}=\prod_{j=0}^{d-1}(1-q^{t+j})$.
+Cancellation of the common factors gives
+\[
+B_{t+1}^{(d)}-B_t^{(d)}
+=q^t(1-q^d)B_{t+1}^{(d-1)}.
+\]
+The coefficient of $z^d$ on the left of~\eqref{eq:marked7} is
+$\sum_{t=0}^{N}q^{t+d}B_{t+1}^{(d-1)}$; extending the sum to this
+upper limit only adds zero terms. Multiplication by $1-q^d$ telescopes
+to $q^d(B_{N+1}^{(d)}-B_0^{(d)})=q^d$, since these endpoint products
+are respectively $1$ and $0$. Coefficients with $d>N$ vanish.
+This proves~\eqref{eq:marked7}. Differentiation at $z=1$ now gives
+\begin{equation}\label{eq:Jderiv7}
+\sum_{k=1}^{N}q^kJ'_k(1)=E.
+\end{equation}
+
+Next define the first two finite Uchimura moments
+\[
+M_j=\sum_{k=0}^{N}k^j q^k\prod_{i=k+1}^{N}(1-q^i),\qquad j=1,2.
+\]
+They satisfy
+\begin{equation}\label{eq:moments7}
+M_1=D,\qquad M_2=D^2+E.
+\end{equation}
+For a finite proof, put
+\[
+H(z)=\sum_{k=0}^{N}z^kq^k\prod_{i=k+1}^{N}(1-q^i),\quad
+G(z)=\prod_{i=1}^{N}(1-zq^i),\quad
+P=\prod_{i=1}^{N}(1-q^i).
+\]
+Coefficient comparison gives
+$H(qz)=(1-qz)H(z)$ and $(1-qz)G(qz)=G(z)$; the endpoint terms
+vanish because $q^{N+1}=0$. Thus $K(z)=H(z)G(z)$ satisfies
+$K(qz)=K(z)$. For $r>0$, its coefficient of $z^r$ is annihilated by
+the unit $1-q^r$, so it is zero. The constant coefficient is $P$,
+and therefore $HG=P$.
+
+At $z=1$, $G(1)=P$ is a unit and $H(1)=1$. Logarithmic differentiation
+of the finite product, or two applications of the product rule, gives
+\[
+\frac{G'(1)}P=-D,\qquad
+\frac{G''(1)}P=D^2-\sum_{i=1}^{N}
+ \left(\frac{q^i}{1-q^i}\right)^2.
+\]
+Differentiating $HG=P$ once and twice consequently gives
+$H'(1)=D$ and
+$H''(1)=D^2+\sum_i(q^i/(1-q^i))^2$.
+Since $M_1=H'(1)$ and $M_2=H''(1)+H'(1)$, the remaining identity is
+\[
+\sum_{i=1}^{N}\frac{q^i}{(1-q^i)^2}
+=\sum_{i,j=1}^{N}j q^{ij}
+=\sum_{i,j=1}^{N}i q^{ij}=E.
+\]
+These geometric expansions are finite in $A_N$, proving~\eqref{eq:moments7}.
+
+Finally, let $A_k=kR_k(q)-J'_k(1)$. The two defining recurrences imply
+\[
+A_0=0,\qquad A_{k+1}=k+(1-q^k)A_k.
+\]
+Induction, using the common tail-product recurrence for $M_1$ and $M_2$,
+gives
+\[
+2A_{N+1}=N(N+1)-(M_2-M_1).
+\]
+Summing $A_{k+1}-A_k=k-q^kA_k$ from $k=0$ to $N$ also gives
+$2\sum_{k=1}^{N}q^kA_k=N(N+1)-2A_{N+1}=M_2-M_1$.
+Combining this with~\eqref{eq:Jderiv7} and~\eqref{eq:moments7} yields
+\[
+2W=2E+(M_2-M_1)=D^2-D+3E,
+\]
+as claimed.
+
+Take $N=n$. By~\eqref{eq:column7}, $[x^n]W=\sum_{k=1}^{n}kT(n,k)$.
+Factor-pair counting gives $[x^n]D=d(n)$, $[x^n]E=\sigma(n)$, and
+$[x^n]D^2=C(n)$. Extracting this coefficient in~\eqref{eq:weighted7}
+and comparing with~\eqref{eq:orphan-convolution7} proves
+Theorem~\ref{thm:weighted7}. Replacing $k$ by $n-j+1$ gives the
+source's ordering. All steps involve finite sums and polynomial rings;
+no analytic convergence premise is needed.
+
+\textbf{Formal scope and attribution.}
+\texttt{Orphans.lean} proves the literal quadruple count by explicit
+bijections, including finiteness and the factor-pair counts.
+\texttt{Weighted.lean} proves the finite algebra, extracts coefficients,
+and states the exact reversed-row conjecture. The reproduced
+\texttt{Uchimura.lean} and \texttt{Triangle.lean} supply the earlier
+first-moment identity and original recurrence bridge. The classical
+weighted identities are credited; the new assertion resolution is
+their fully checked connection to this specific recursive triangle.
+
+
+\section{A377824: the sum of all minimum-part positions}
+
+For a composition $c=(c_1,\ldots,c_\ell)$ of $n$ into positive integers,
+define
+\[
+ s(c)=\sum_{\substack{1\le j\le\ell\\c_j=\min(c)}}j,
+ \qquad a(n)=\sum_{c\models n}s(c),
+\]
+with $a(0)=0$. Thus every occurrence of the minimum is included, with
+one-based positions. This is A377824; Kot\v{e}\v{s}ovec's April 19, 2025
+conjecture is $a(n)\sim n^2 2^{n-5}$~\cite{A377824}.
+
+\begin{theorem}\label{thm:minimum-positions7}
+For every integer $n\ge2$,
+\[
+ 0\le a(n)-\frac{(n+1)(n+6)2^n}{32}
+ \le n^2\left(\frac74\right)^n.
+\]
+In particular,
+\[
+ \frac{a(n)}{n^2 2^{n-5}}
+ =1+\frac7n+\frac6{n^2}+\varepsilon_n,
+ \qquad 0\le\varepsilon_n\le32\left(\frac78\right)^n,
+\]
+and the conjectured asymptotic follows.
+\end{theorem}
+
+\begin{proof}
+Starting from the composition $(1)$, use the two operations
+\[
+ L(c)=(1,c_1,\ldots,c_\ell),\qquad
+ R(c)=(c_1+1,c_2,\ldots,c_\ell).
+\]
+They enumerate every composition of each subsequent integer exactly
+once: delete the first part when it is $1$, and otherwise decrease it
+by one, to obtain the unique predecessor. The two cases are disjoint.
+Consequently, the number of compositions is $C_n=2^{n-1}$ for $n\ge1$,
+and the number beginning with $1$ is $H_n=2^{n-2}$ for $n\ge2$.
+
+For a composition $c$, let $o(c)$ count its ones and let $w(c)$ sum
+their positions. Let $\alpha(c)$ be the indicator that its first part
+is one. Directly from the two operations,
+\[
+\begin{array}{c|cc}
+ & L(c)&R(c)\\ \hline
+o & o(c)+1&o(c)-\alpha(c)\\
+w & w(c)+o(c)+1&w(c)-\alpha(c)
+\end{array}
+\]
+The left operation shifts every old position by one. The right operation
+removes a marked position only when the first part was one, and that
+position has weight one.
+
+Write $O_n=\sum_{c\models n}o(c)$ and $W_n=\sum_{c\models n}w(c)$.
+Summing the table gives, for $n\ge2$,
+\[
+ O_{n+1}=2O_n+2^{n-2},\qquad
+ W_{n+1}=2W_n+O_n+2^{n-2}.
+\]
+Since the compositions of $2$ are $(1,1)$ and $(2)$, the initial values
+are $O_2=2$ and $W_2=3$. Substitution in the recurrences and induction
+give
+\begin{equation}\label{eq:ones-main7}
+ O_n=(n+2)2^{n-3},\qquad
+ W_n=\frac{(n+1)(n+6)2^n}{32}\qquad(n\ge2).
+\end{equation}
+
+It remains to bound all compositions whose minimum exceeds one.
+Let $E_n$ count compositions without ones, including the empty
+composition at zero, so $E_0=1$ and $E_1=0$. Let $D_n$ count compositions
+whose tail contains no one. For $n\ge1$, the two operations give
+\[
+ E_{n+1}=D_n,\qquad D_{n+1}=E_n+D_n.
+\]
+Indeed, a left child always contains a one, while a right child contains
+no one precisely when its predecessor's tail contains none. For the
+tail statistic, a left child has the whole predecessor as its tail,
+and a right child retains the predecessor's tail. Hence
+$E_{n+2}=E_{n+1}+E_n$ for $n\ge1$; the same equation at zero follows
+from $E_2=1$. Since $(7/4)^2\ge7/4+1$, induction gives
+$E_n\le(7/4)^n$ for all $n\ge0$.
+
+If $c$ contains a one, then $s(c)=w(c)$. Otherwise $w(c)=0$ and,
+because all parts are positive,
+\[
+ 0\le s(c)\le1+\cdots+\ell\le\ell^2\le n^2.
+\]
+Summing over all exceptional compositions proves
+\[
+ 0\le a(n)-W_n\le n^2E_n\le n^2(7/4)^n.
+\]
+Equation~\eqref{eq:ones-main7} proves the first assertion. Dividing by
+$n^2 2^n/32$ gives the stated correction terms and error bound; every
+term after the leading one tends to zero.
+\end{proof}
+
+Knopfmacher and Munagi~\cite{KnopfmacherMunagi} study minimum-part
+counts, sums of their values, and the position of the first minimum.
+Their minimum-one dominance argument and refined composition counts
+are established background. Here the statistic sums all minimum
+positions, and its main term and error are derived directly. The Lean
+proof establishes exhaustive, duplicate-free enumeration and identifies
+the recursive weight with the literal one-based index sum before proving
+the estimate. No generating-function or asymptotic premise is assumed.
+At the final publication check, a concurrent repository manuscript~\cite{Concurrent}
+already proved this asymptotic with the same main term and the sharper error
+$O(n^2\varphi^n)$, where $\varphi=(1+\sqrt5)/2$.
+That manuscript is retained. The present package is an independently
+developed formal companion, proving the explicit bound stated here.
+It is not counted as an additional assertion resolution.
+
+\section{A289629: classification of nine power-sum patterns}
+
+Put $F_k(n)=(k+1)^n+(-k)^n$. Thompson's December 3, 2021 comment in
+A289629~\cite{A289629} conjectures nonsquarefreeness in nine families.
+Four branches are already covered by formulas in A349989~\cite{A349989}
+and are credited below. The assertion concerns square divisibility;
+the displayed $k$ need not be the least eligible value.
+
+\begin{theorem}\label{thm:power-patterns7}
+For every integer $m\ge1$, the eight affirmative rows of the following
+table have the indicated square divisor. The fifth row is false at
+$m=2$.
+\begin{center}
+\begin{tabular}{@{}rlll l@{}}
+\toprule
+Branch & Exponent $n$ & $k$ & Square divisor & Status\\
+\midrule
+1 & $22m-11$ & $2$ & $23^2$ & Proved\\
+2 & $20m-6$ & $3$ & $5^2$ & Prior formula in A349989\\
+3 & $20m-2$ & $3$ & $5^2$ & Prior formula in A349989\\
+4 & $3^m$ & $7$ & $13^2$ & Proved\\
+5 & $15m$ & $7$ & --- & False at $m=2$\\
+6 & $20m-15$ & $14$ & $11^2$ & Proved\\
+7 & $16m-8$ & $19$ & $17^2$ & Prior formula in A349989\\
+8 & $42m-35$ & $23$ & $43^2$ & Proved\\
+9 & $8m-4$ & $113$ & $17^2$ & Prior formula in A349989\\
+\bottomrule
+\end{tabular}
+\end{center}
+The fifth row becomes true when $m$ is restricted to odd integers:
+$13^2\mid F_7(15m)$ for every odd $m\ge1$.
+\end{theorem}
+
+\begin{proof}
+For odd $t$, the elementary factorization
+\[
+ X^t+Y^t=(X+Y)
+ \bigl(X^{t-1}-X^{t-2}Y+\cdots+Y^{t-1}\bigr)
+\]
+gives $X+Y\mid X^t+Y^t$. Taking $X=(k+1)^d$ and $Y=(-k)^d$ yields
+\begin{equation}\label{eq:odd-multiples7}
+ F_k(d)\mid F_k(dt)\qquad(t\text{ odd}).
+\end{equation}
+The required seed factorizations are
+\[
+\begin{aligned}
+F_2(11)&=23^2\cdot331,&F_3(2)&=5^2,\\
+F_7(3)&=13^2,&F_{14}(5)&=11^2\cdot1831,\\
+F_{19}(8)&=17^2\cdot147347969,&F_{23}(7)&=43^2\cdot639073,\\
+F_{113}(4)&=17^2\cdot1148593.&&
+\end{aligned}
+\]
+The eight exponents, in table order with the fifth omitted, are
+\[
+\begin{gathered}
+11(2m-1),\quad2(10m-3),\quad2(10m-1),\quad3\cdot3^{m-1},\\
+5(4m-3),\quad8(2m-1),\quad7(6m-5),\quad4(2m-1).
+\end{gathered}
+\]
+Each multiplier of its seed exponent is positive and odd for $m\ge1$.
+Equation~\eqref{eq:odd-multiples7} proves all eight square-divisibility
+claims. The same argument with $d=3$ and $t=5m$ proves the corrected
+fifth claim when $m$ is odd.
+
+For the counterexample, $m=2$ gives
+\[
+\begin{aligned}
+F_7(30)&=8^{30}+7^{30}=1260479379576072532986987473\\
+ &=113\cdot3361\cdot25741\cdot12001921\cdot10742679301.
+\end{aligned}
+\]
+All five factors are distinct primes, so this integer is squarefree.
+Here is a compact primality certificate for the largest factor, whose
+verification is also included in Lean. The Lucas criterion states that
+$p$ is prime if $a^{p-1}\equiv1\pmod p$ and
+$a^{(p-1)/q}\not\equiv1\pmod p$ for every prime $q\mid p-1$
+~\cite{LucasLean}. Use successively
+\[
+\begin{array}{c|c|l}
+p&a&p-1\\ \hline
+35808931&3&2\cdot3^2\cdot5\cdot23\cdot17299\\
+10742679301&2&2^2\cdot3\cdot5^2\cdot35808931.
+\end{array}
+\]
+Both full powers have residue one. For the distinct prime divisors $q$
+in increasing order, the proper-power residues are respectively
+\[
+\begin{gathered}
+(35808930,\ 1193830,\ 21860597,\ 6523943,\ 6900949),\\
+(10742679300,\ 5670453206,\ 4923777471,\ 9590149649).
+\end{gathered}
+\]
+None equals one. The smaller primalities follow by trial division.
+The complete factorization, primalities, modular powers, and coprimality
+checks are kernel-verified, proving squarefreeness and refuting the
+universally quantified fifth branch.
+\end{proof}
+
+All nine literal branches are therefore settled: eight true and one
+false. Four true branches were already established in A349989, so the
+contribution count here is four remaining family proofs and one
+refutation. The odd-parameter correction is not counted again. No claim
+that all even parameters in the fifth family give squarefree values is
+made. The Lean definitions use the original integer expression and
+prove the general divisibility bridge; the counterexample uses no
+external factorization or primality oracle.
+
+\section{Verification and contribution boundaries}
+
+Each result has a standalone package with full source definitions, a
+written proof, primary source snapshots, prior-work notes, pinned build
+configuration, a fresh package-build log, and a separate audit and
+compilation log. The four new proof modules are the A377824Formal and A289629
+\texttt{Proof.lean} files and the weighted triangle's \texttt{Orphans.lean}
+and \texttt{Weighted.lean}. That package additionally reproduces the two
+earlier dependencies \texttt{Uchimura.lean} and \texttt{Triangle.lean}.
+The latter has only a clarified historical-scope comment; its mathematical
+code is unchanged from the earlier triangle proof.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.6in}@{}}
+\toprule
+Package & Main declarations checked\\
+\midrule
+A389524Weighted & \texttt{Nathanson.orphan\_formula};
+\texttt{weighted\_rows\_nilpotent}, \texttt{weighted\_row}, and
+\texttt{original\_conjecture} in \texttt{A389524Weighted}.\\
+A377824Formal & \texttt{mem\_compositions}, \texttt{compositions\_nodup},
+\texttt{a\_positions}, \texttt{closed\_form\_error},
+\texttt{normalized\_limit}, \texttt{original\_conjecture}.\\
+A289629 & \texttt{odd\_multiple\_dvd}, \texttt{eight\_true\_patterns},
+\texttt{counterexample\_squarefree}, \texttt{pattern\_5\_false},
+\texttt{pattern\_5\_corrected}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All packages pin Lean 4.19.0 and mathlib commit
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+The exact delivered sources passed fresh package builds and independent
+compilations. The public theorem reports contain only the standard axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+No proof placeholders, custom axioms, \texttt{native\_decide} calls,
+or unchecked numerical certificates occur. The finite primality
+certificates in the disproof are checked by the Lean kernel.
+
+With the pinned toolchain selected, reproduction in each package requires
+\texttt{lake exe cache get} followed by \texttt{lake build}.
+The manifests pin transitive dependencies; \texttt{SHA256SUMS.txt}
+identifies the delivered files. The separate audit logs record the fresh
+compilation locations and exact source hashes.
+
+\textbf{Counting and prior work.}
+This manuscript proves the remaining A389524 conjecture, formally verifies
+the A377824 asymptotic, and resolves nine A289629 branch assertions. Four
+of those nine already follow from explicit formulas in A349989. A concurrent
+repository manuscript had proved the composition result by the final
+publication check. Excluding those credited results leaves six additional
+assertions: five proofs and one refutation. The previously proved triangle
+identities, the composition formalization, its correction terms and error
+estimate, and the repaired odd-parameter power-sum statement are not counted
+as further conjecture resolutions.
+
+The selected source comments remained conjectural in the preserved
+exports. Exact-identifier and semantic searches, inspection of the linked
+primary literature, and checks of public proof collections found no
+earlier exact resolution of the six additional assertions. The detailed
+records are in the package \texttt{source\_checks.md} files. These checks
+are bounded; they do not certify exhaustive historical priority or OEIS
+editorial acceptance. The contribution is the explicit resolution and
+complete formal verification of the selected statements, with their
+classical ingredients and previously established cases identified.
+
+\begin{thebibliography}{11}
+\raggedright
+\bibitem{A389524}
+M. Granvik, OEIS A389524, October 7, 2025, including Conjecture 2 and
+the defining source recurrence.
+\url{https://oeis.org/A389524}.
+
+\bibitem{A274628}
+OEIS A274628, Nathanson's orphan-counting function, introduced by
+N. J. A. Sloane, July 7, 2016; literal integer-solution description
+by D. Radcliffe, March 28, 2019.
+\url{https://oeis.org/A274628}.
+
+\bibitem{Uchimura}
+K. Uchimura, An identity for the divisor generating function arising
+from sorting theory, \emph{Journal of Combinatorial Theory, Series A}
+\textbf{31} (1981), 131--135.
+\url{https://doi.org/10.1016/0097-3165(81)90009-1}.
+
+\bibitem{Bressoud}
+D. M. Bressoud and M. V. Subbarao, On Uchimura's connection between
+partitions and the number of divisors, \emph{Canadian Mathematical
+Bulletin} \textbf{27} (1984), 143--145.
+\url{https://doi.org/10.4153/CMB-1984-022-5}.
+
+\bibitem{Agarwal}
+A. Agarwal, S. C. Bhoria, P. Eyyunni, and B. Maji,
+Bressoud--Subbarao type weighted partition identities for a generalized
+divisor function, arXiv:2210.03457 (2022). See equations (1.5) and (1.9)
+for the classical generalized weight identity and second moment.
+\url{https://arxiv.org/abs/2210.03457}.
+
+\bibitem{A377824}
+J. T. Rascoe, OEIS A377824, November 8, 2024; asymptotic conjecture
+by V. Kot\v{e}\v{s}ovec, April 19, 2025.
+\url{https://oeis.org/A377824}.
+
+\bibitem{KnopfmacherMunagi}
+A. Knopfmacher and A. O. Munagi, Smallest Parts in Compositions,
+in \emph{Advances in Combinatorics}, Springer (2013), 197--207.
+\url{https://doi.org/10.1007/978-3-642-30979-3_11}.
+
+\bibitem{A289629}
+J.-S. Gerasimov, OEIS A289629, September 2, 2017; nine-family
+conjectural comment by K. P. Thompson, December 3, 2021.
+\url{https://oeis.org/A289629}.
+
+\bibitem{A349989}
+J. E. Schoenfield, OEIS A349989, December 7, 2021; established square
+divisibility formulas covering four branches of the A289629 comment.
+\url{https://oeis.org/A349989}.
+
+\bibitem{LucasLean}
+B. Bailey and mathlib contributors, Lucas primality theorem,
+pinned mathlib source.
+\url{https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/LucasPrimality.lean}.
+
+\bibitem{Concurrent}
+B. Stone, Positions of minimum parts in integer compositions.
+Concurrent repository manuscript, present at the final publication check
+in commit \texttt{c92ab48c98ac}; developed with OpenAI Codex.
+\url{https://github.com/blakestone-x/math/tree/c92ab48c98acba51cb42ceb73536a7bad251ec2d/A377824}.
+\end{thebibliography}
+\end{document}
