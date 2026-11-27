@@ -2,6 +2,8 @@
 
 Blake Stone · Proof developed with OpenAI Codex.
 
+A follow-up proves a necessary condition for a counterexample to Erdős–Pach #132. If the number of rare distances stays bounded, covering the squared distances by arithmetic progressions of polynomial length takes at least $n^{1/6-o(1)}$ progressions. The theorem also applies separately to squared distances from three noncollinear anchors. [Manuscript (PDF)](additive-covers.pdf) · [LaTeX source](additive-covers.tex) · [Finite checks](verify-additive-covers.py)
+
 For arbitrary subsets of a polynomial-size integer grid, including invertible affine images, the largest $n^{1-o(1)}$ distinct distances are rare. [Proof](arbitrary-subsets.md) · [Manuscript (PDF)](rare-distances-beyond-grids.pdf) · [Finite checks](verify-directions.py)
 
 Let $K\subset\mathbb R^2$ be a fixed compact convex set with nonempty interior. Consider **all** the lattice points $P_t=tK\cap\mathbb Z^2$, with $N=|P_t|$ and $t\to\infty$. A distance is rare if it occurs between at least one and at most $N$ unordered pairs of points. Write $R_t$ for the number of distinct rare distances.

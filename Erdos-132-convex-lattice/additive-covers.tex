@@ -1,0 +1,121 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[letterpaper,textwidth=6.32in,textheight=9.1in,top=0.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\definecolor{ink}{RGB}{29,75,99}
+\usepackage[colorlinks=true,allcolors=ink,pdfauthor={Blake Stone},pdftitle={Rare distances in sets covered by additive progressions}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Rare distances in sets covered\\[2pt] by additive progressions\par}
+\vspace{9pt}
+{\large Blake Stone\par}\vspace{2pt}
+{\small Proof developed with OpenAI Codex\par}
+\end{center}
+\begin{abstract}
+For a planar set of $n$ points, a positive interpoint distance is rare if at most $n$ unordered pairs realize it. Suppose the set is covered by $h$ generalized arithmetic progressions with bounded rank and polynomial side lengths. We show that its largest $\lfloor (n-1)/(h^2n^{o(1)})\rfloor$ distinct distances exist and are rare. The progressions may have unrelated generators and translations. Applied to squared distances measured from three noncollinear points, the result raises an earlier progression-cover exponent from $1/10$ to $1/6$. We also obtain a restriction on which individual points can have simple squared-distance sets. The unrestricted Erd\H{o}s--Pach questions remain open.
+\end{abstract}
+
+\section{Counting inside a pair of parts}
+Let $P\subset\R^2$ have $n\ge2$ points, and write $R(P)$ for the number of its rare distances. List its distinct positive distances as $r_1>\cdots>r_m$, and write $\mu(r)$ for the number of unordered pairs at distance $r$. Erd\H{o}s and Pach ask whether $R(P)\ge2$ for $n\ge5$ and whether the minimum of $R(P)$ tends to infinity with $n$ \cite{problem}.
+
+The one-part count appeared in \cite{previous}. Partition $P$ into $h$ nonempty parts $P_i$. In the set of oriented differences $D_{ij}=P_j-P_i$, let $g_{ij}(s)$ count the distinct vectors of length $s$. Let $E_{ij}(s)$ count the ordered pairs $(x,y)\in P_i\times P_j$ at that distance. Distinct starts with the same displacement count separately in $E_{ij}$.
+
+\begin{lemma}\label{switch}
+For every positive realized distance $r$,
+\[
+ E_{ij}(r)\le g_{ij}(r)\left(1+\sum_{s>r}g_{ij}(s)\right).
+\]
+If $g_{ij}(s)\le U$ for all $i,j,s$, with $U\ge1$, the largest
+$L=\floor{(n-1)/(h^2U^2)}$ distinct distances exist and are rare.
+\end{lemma}
+\begin{proof}
+Fix $v\in D_{ij}$ of length $r$. Among starts with $a\in P_i$ and $a+v\in P_j$, choose $a$ minimizing $a\cdot v$. For each other start $x$, the vector $x+v-a$ still belongs to $D_{ij}$, and
+\[
+ |x+v-a|^2=r^2+2v\cdot(x-a)+|x-a|^2>r^2.
+\]
+Distinct starts give distinct longer vectors. Summing over $v$ proves the first claim. At rank $k$, summing the bound over ordered part pairs gives
+\[
+ 2\mu(r_k)=\sum_{i,j}E_{ij}(r_k)\le h^2U(1+(k-1)U)\le h^2 kU^2.
+\]
+For existence, fix $p\in P_i$. At most $U$ points of any one part are at a given positive distance from $p$. Thus $m\ge(n-1)/(hU)\ge L$. For $k\le L$ the multiplicity bound gives $\mu(r_k)\le n$. 
+\end{proof}
+
+\section{Additive progressions with unrelated generators}
+Identify the plane with $\C$. For fixed $d\ge1$ and $B>0$, a progression here is a set of numbers
+\[
+ u+\sum_{\ell=1}^d m_\ell v_\ell,\qquad 0\le m_\ell\le n^B,\quad m_\ell\in\Z.
+\]
+All parameters $u,v_\ell\in\C$ may vary with the set and with $n$. We count distinct points even if their coefficient representations are nonunique.
+
+\begin{theorem}\label{cover}
+Suppose $P$ is covered by $h$ such progressions. There is a function $U_{d,B}(n)\ge1$, bounded for $n\ge 3$ by
+\[
+ \exp\!\left(C_{d,B}\frac{\log(2n)}{\log\log(3n)}\right),
+\]
+such that the largest $\floor{(n-1)/(h^2U_{d,B}(n)^2)}$ distinct distances exist and are rare. In particular, $h\le n^{1/2-\delta}$ for fixed $0<\delta\le1/2$ guarantees $n^{2\delta-o(1)}$ rare distances.
+\end{theorem}
+\begin{proof}
+Assign each point to a containing progression and discard empty parts. For fixed $i,j$, the differences $z\in D_{ij}$ belong to one translated progression with at most $2d$ generators and coefficient magnitudes at most $n^B$. Their complex conjugates belong to its conjugate progression.
+
+Chang's factorization theorem \cite[proof of Proposition 3, equation (3.3)]{chang} applies to two translated complex progressions of fixed ranks, with arbitrary generators and integer coefficient magnitudes at most $J$. For any fixed nonzero product, the number of distinct factorizations with a factor in each progression is at most $\exp(O_d(\log J/\log\log J))$ for sufficiently large $J$. This estimate counts factor values and is uniform in the product and both progressions. A factor of two for ordering can be absorbed in the bound.
+
+For $|z|=s>0$ use the product $z\overline z=s^2$. The ordered factor pair determines $z$. Taking $J=\max(3,\lceil n^B\rceil)$ bounds every $g_{ij}(s)$ by one function $U_{d,B}(n)$ of the asserted size. Enlarge the constant to include bounded $n$. Lemma~\ref{switch} completes the proof.
+\end{proof}
+
+\section{Squared distances from three anchors}
+Write $S_p=\{|p-x|^2:x\in P\}$, including zero. For fixed $B>0$, let $t_p$ be the minimum number of real arithmetic progressions, each with at most $n^B$ terms, covering $S_p$. All steps and origins may differ, including across anchors.
+\begin{theorem}\label{anchors}
+For every noncollinear triple $a,b,c\in P$, the largest
+\[
+ \floor{\frac{n-1}{(t_at_bt_c)^2 U_{3,B}(n)^2}}
+\]
+distinct distances exist and are rare.
+\end{theorem}
+\begin{proof}
+Use the map $F:\R^2\to\R^2$ given by
+\[
+ F(x)=\bigl(|x-a|^2-|x-b|^2,\ |x-a|^2-|x-c|^2\bigr).
+\]
+Its linear part $T$ has rows $2(b-a)$ and $2(c-a)$, and is invertible. For each anchor assign each point $x$ to one progression covering its squared distance. In one triple of labels, write the three squared distances as $\alpha_p+k_p s_p$ with $p=a,b,c$ and $0\le k_p<n^B$. Then $F(x)$ lies in a translate of the progression generated by
+\[
+ (s_a,s_a),\qquad(-s_b,0),\qquad(0,-s_c)
+\]
+with the three integer coefficients $k_a,k_b,k_c$. Applying $F^{-1}$ to this translate gives a rank-at-most-three progression with the same coefficient bounds. There are at most $t_at_bt_c$ label triples. Theorem~\ref{cover} applies.
+\end{proof}
+
+\begin{corollary}\label{obstruction}
+Fix $B,K>0$ and $\eta>0$. In every sufficiently large $P$ with $R(P)\le K$, all anchors with $t_p\le n^{1/6-\eta}$ lie on a single line. Any cover of the full squared-distance set by progressions of at most $n^B$ terms requires at least $n^{1/6-\eta}$ progressions.
+\end{corollary}
+\begin{proof}
+If $R(P)\le K$, Theorem~\ref{anchors} implies, for every noncollinear triple,
+\[
+ t_at_bt_c>\frac{\sqrt{n-1}}{\sqrt{K+1}\,U_{3,B}(n)}.
+\]
+The right side is $n^{1/2-o(1)}$, precluding a noncollinear triple of anchors satisfying the threshold. In a noncollinear set, any cover of the full squared-distance set covers each $S_p$, giving the stated global bound. For a collinear set, each positive-distance graph has maximum degree two, so every realized distance is rare. An endpoint already sees $n-1$ different distances. Thus collinear sets have $R(P)\ge n-1$.
+\end{proof}
+
+The earlier arithmetic-progression obstruction in \cite{palette} gives exponent $1/10$ for the full squared-distance set. Theorem~\ref{anchors} uses separate covers at three anchors. To conclude unrestricted growth by this method one would still need, for example, to force a noncollinear triple with $t_at_bt_c\le n^{1/2-\delta}$ for some fixed $\delta>0$ under bounded rarity.
+
+\begin{corollary}
+If either $P$ or the full squared-distance set $S=\bigcup_{p\in P}S_p$ has bounded additive doubling, the largest $n^{1-o(1)}$ distinct distances exist and are rare.
+\end{corollary}
+\begin{proof}
+Bounded doubling of $A$ means $|A+A|\le K_0|A|$ for a fixed $K_0$. Freiman's theorem in a torsion-free abelian group puts $A$ in a proper progression of bounded rank and size $O_{K_0}(|A|)$ \cite[Section 3]{survey}. Each side thus has polynomial length here. For $A=P$, apply Theorem~\ref{cover} with $h=1$. For $A=S$, we have $|S|\le n^2$. Choose three noncollinear anchors and apply the map $F$ above. If $S$ lies in one rank-$e$ progression $Q$, then $F(P)\subset(Q-Q)\times(Q-Q)$, one progression of rank at most $2e$ and polynomial side lengths. Pull it back by $F^{-1}$ and apply Theorem~\ref{cover}. The collinear case follows from the preceding proof.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{problem} T. Bloom (ed.), \href{https://www.erdosproblems.com/132}{Erd\H{o}s Problem \#132}. See also F. C. Clemen, A. Dumitrescu and D. Liu, \href{https://arxiv.org/abs/2505.04283}{On multiplicities of interpoint distances}.
+\bibitem{chang} M.-C. Chang, \href{https://math.ucr.edu/~mcc/paper/110%20Factor.pdf}{Factorization in generalized arithmetic progressions and application to the Erd\H{o}s--Szemer\'edi sum-product problems}, proof of Proposition 3, equation (3.3).
+\bibitem{survey} M.-C. Chang, \href{https://doi.org/10.1016/S1631-073X(03)00018-9}{New results on the Erd\H{o}s--Szemer\'edi sum-product problems}, C. R. Math. Acad. Sci. Paris 336 (2003), 201--205.
+\bibitem{palette} Erd\H{o}s Problems research wiki, \href{https://erdosproblems.ai/wiki/research/erdos_132/arithmetic_palettes}{Arithmetic-progression palettes and a uniform ellipse bound}, equation (1).
+\bibitem{previous} B. Stone, \href{https://github.com/blakestone-x/math/blob/75688d782eca12f48b345a79e793f4ad6b25d49e/Erdos-132-convex-lattice/arbitrary-subsets.md}{Rare distances in arbitrary subsets of planar lattices}, for the displacement count with one part.
+\end{thebibliography}
+\end{document}
