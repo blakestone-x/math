@@ -1,5 +1,7 @@
 # A proof of the ternary one-edit recurrence
 
+**Blake Stone** · Counting argument developed with OpenAI Astra 6.2.
+
 OEIS A081732 counts the nonnegative integers whose canonical base-three numeral can be obtained from that of $n$ by exactly one insertion, deletion, or substitution. Zhuorui He added nine conjectured recurrences to the sequence on October 1, 2025. [OEIS A081732](https://oeis.org/A081732)
 
 **Theorem.** For $n\ge9$ and $d\in\{0,1,2\}$,
@@ -46,4 +48,4 @@ The file checks the examples $100_3$, $1000_3$, and $1001_3$, then prints the ax
 
 ## Attribution
 
-Reinhard Zumkeller contributed the sequence in 2003. Zhuorui He stated the ternary recurrence in 2025. Robert Israel recorded the analogous binary recurrence in 2019. The written argument was developed in a conversation with OpenAI Astra, followed by a Lean formalization. [Ternary entry](https://oeis.org/A081732) · [Binary entry](https://oeis.org/A080950)
+Reinhard Zumkeller contributed the sequence in 2003. Zhuorui He stated the ternary recurrence in 2025. Robert Israel recorded the analogous binary recurrence in 2019. [Ternary entry](https://oeis.org/A081732) · [Binary entry](https://oeis.org/A080950)
