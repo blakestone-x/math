@@ -46,7 +46,7 @@ $n\bmod5$ & $s_a(n)$ & $s_b(n)$\\\midrule
  |s_a(n+t)-s_a(n)|\ge15\cdot10^{-12},\qquad
  |s_b(n+t)-s_b(n)|\ge69\cdot10^{-12}.
 \]
-The $35$ intervals are given as integer endpoint pairs in the accompanying \texttt{intervals.csv}, in units of $10^{-12}$. Existence of limits along the individual progressions is open in this analysis.
+For $n\ge1401$, there are $70$ pairwise disjoint enclosures indexed by $n\bmod70$ for each sequence. Consequently each of the $35$ subsequences modulo $35$ fails to converge, and each full ratio sequence has at least $70$ distinct accumulation points.
 
 \hd{1. Conjugate recurrences}
 For each $m$, the top bit of $G(m)$ equals the top bit of $m$. Each lower bit is the XOR of its input bit and the input bit immediately above it. Reading downwards thus recovers $m$ uniquely and defines $H=G^{-1}$. Discarding $k$ low bits commutes with both $G$ and $H$. Induction from the common initial values gives $a_n=G(b_n)$ since $b_{n+2}=a_n+a_{n+1}$. This identity lets a single prefix table control both sequences.
@@ -89,20 +89,27 @@ The table gives $214152\le u_n<216834$ and $161278\le H(u_n)<162174$. For $a$ ta
 Both outer quantities tend to $2$, proving the mean-growth limit.
 
 \newpage
-\hd{3. The thirty-five residue classes}
-Use \eqref{eq:step} again with $s=96$. Begin with the pair $(a_{96},\lfloor a_{97}/2\rfloor)$, evaluated from the defining recurrence. Label a pair by the residue $j$ of its \emph{second} index modulo $35$, so the initial label is $97\bmod35$. All successor prefixes stay below $2^s$ when both inputs are below $2^s$, since $h<2^s$ and $G$ preserves the top bit. The following finite procedure supplies the certificate for Theorem 2.
+\hd{3. Thirty-five and seventy residue classes}
+Fix a precision $s$, starting index $N\ge s$, and period $p$. From the original recurrence compute $(u_N,u_{N+1})$ exactly. Store the pair with label $(N+1)\bmod p$, the residue of the \emph{numerator} index. Generate a finite certificate as follows.
 \begin{enumerate}
-\item Store the initial pair and its label. Whenever processing a stored pair $(u,v)$ with label $j$, enumerate each integer $h$ in \eqref{eq:step}. Store each new pair $(v,G(h))$ with label $(j+1)\bmod35$. At every previously stored pair, check that its label agrees with the proposed label. Process each new pair once.
-\item For every pair of label $j$, use \eqref{eq:ratio} for $a$ and its inverse-Gray version for $b$. Multiply the endpoints by $10^{12}$, taking the floor on the left and the ceiling on the right by integer division. For each sequence and label keep the minimum left endpoint and maximum right endpoint. This gives the $35$ integer pairs in \texttt{intervals.csv}.
-\item Sort the intervals of each sequence by their left endpoints. For consecutive intervals $[L_i,U_i]$, compute the minimum $L_{i+1}-U_i$.
+\item For each stored pair $(u,v)$ of label $j$, enumerate every $h$ in \eqref{eq:step}. Store each new pair $(v,G(h))$ with label $(j+1)\bmod p$. At a previously stored pair, check that its label agrees. Process each new pair once. Both initial prefixes are below $2^s$, and \eqref{eq:step} preserves this bound.
+\item For every pair of label $j$, bound $s_a$ by \eqref{eq:ratio}. For $s_b$ use $(H(u),H(v))$. Multiply endpoints by a scale $D$, rounding the lower endpoint down and the upper up. For each label keep the least lower and greatest upper endpoint. For each sequence sort the intervals by lower endpoint and find the smallest gap between consecutive closed intervals.
 \end{enumerate}
-The calculation closes on $316{,}710$ pairs and $474{,}991$ directed transitions, with consistent labels throughout. The minimum endpoint differences in the third step are $15$ for $a$ and $69$ for $b$. The included Python program verifies every endpoint. A second traversal in the $b$ coordinates starts from the independently computed seed $(b_{96},\lfloor b_{97}/2\rfloor)$ and enumerates the three candidate integers
+The integer calculations give the following counts in each coordinate system. The last two columns are the smallest gaps in units of $1/D$.
+\begin{center}\small
+\begin{tabular}{rrrrrrrr}\toprule
+$p$ & $s$ & $N$ & $D$ & pairs & transitions & gap for $a$ & gap for $b$\\\midrule
+35 & 96 & 96 & $10^{12}$ & 316,710 & 474,991 & 15 & 69\\
+70 & 126 & 1400 & $10^{26}$ & 67,410 & 101,108 & 36 & 25\\\bottomrule
+\end{tabular}
+\end{center}
+The companion files \texttt{intervals.csv} and \texttt{intervals70.csv} give every endpoint. The program also traverses the graph in the $b$ coordinates, starting from the independently computed $b$ prefixes and enumerating the candidates
 \[
  \left\lfloor\frac{G(u)+2G(v)+c}{4}\right\rfloor,\qquad c=0,1,2.
 \]
-It checks every corresponding state and label under $G$ and obtains the same transition count. Both traversals use only exact integer arithmetic.
+It checks every label and state against the $a$ graph under $G$. All computations use exact integers.
 
-Induction using the initial state, closure and labels now places every actual pair in the computed enclosure. Each residue occurs infinitely often. Compactness of each closed interval gives an accumulation point in it. Intervals from distinct residues are disjoint and separated by at least the computed minimum. This proves Theorem 2, including the uniform bounds for every lag outside the multiples of $35$.
+By induction on the actual trajectory, consistent labels and closure place every ratio with $n\ge N+1$ in the enclosure labeled $n\bmod p$. Positive gaps separate the closed intervals. Each residue occurs infinitely often and its interval is compact, giving at least one accumulation point in each. At period $70$, every class modulo $35$ splits into two infinite subsequences in disjoint closed intervals, ruling out convergence in all $35$ classes. Any positive lag indivisible by $p$ moves to a distinct interval and yields the appropriate uniform gap. This proves Theorem~2. Convergence modulo $70$ and finiteness of the full accumulation set remain undetermined here.
 
 \hd{Sources and verification}
 {\small
@@ -110,5 +117,5 @@ Induction using the initial state, closure and labels now places every actual pa
 [2] S. Sykora, \link{https://oeis.org/A265387}{OEIS A265387} (2015), \link{https://github.com/oeis/oeisdata/blob/main/seq/A265/A265387.seq}{source record}, revision 15.\par
 [3] B. Stone, \link{https://github.com/blakestone-x/math/tree/a80ee14b88981065189113eace98e1b8fba58c28/A265385}{The growth rate of OEIS A265385} (2026), the earlier mean-growth result.\par
 The original entries describe the fluctuations qualitatively. Searches by sequence identifier and recurrence wording located the earlier repository note for $a$. The results here establish mathematical statements about the specified recurrences. Publication priority and OEIS review are separate questions.\par
-\texttt{GrayPhases.lean} checks a thirteen-row induction in the $b$ coordinates and proves both five-band tables for every index. \texttt{GrayLimits.lean} proves the real mean-growth limits in Lean 4.19 with Mathlib. The $35$-class computation is reproduced by \texttt{python3 verify.py}.}
+\texttt{GrayPhases.lean} checks a thirteen-row induction in the $b$ coordinates and proves both five-band tables for every index. \texttt{GrayLimits.lean} proves the real mean-growth limits in Lean 4.19 with Mathlib. Both finer computations are reproduced by \texttt{python3 verify.py}.}
 \end{document}

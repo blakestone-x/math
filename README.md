@@ -1,6 +1,8 @@
 # math
 math proofs
 
+[Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
+
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
 - [Modular Ducci sequences — the sharp maximum time before cycling at every even width](Ducci-preperiod/README.md)

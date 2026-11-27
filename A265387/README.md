@@ -1,12 +1,19 @@
-# Thirty-five ratio bands in two Gray-code Fibonacci recurrences
+# Seventy ratio bands in two Gray-code Fibonacci recurrences
 
 Research note for Blake Stone, developed with OpenAI Codex.
 
 Stanislav Sykora asked about the mean growth and persistent consecutive-ratio fluctuations of two sequences built from the binary-reflected Gray transform $G(m)=m\mathbin{\mathrm{XOR}}\lfloor m/2\rfloor$. From initial terms $1,1$, A265385 uses $a_{n+2}=G(a_n+a_{n+1})$ and A265387 uses $b_{n+2}=G(b_n)+G(b_{n+1})$. The two sequences satisfy $a_n=G(b_n)$ at every positive index. [OEIS A265385](https://oeis.org/A265385) · [OEIS A265387](https://oeis.org/A265387)
 
-**Theorems.** For both sequences $x$, the mean growth $(x_{2n}/x_n)^{1/n}$ tends to $2$. From numerator index $n=97$ onward, the adjacent ratios $x_n/x_{n-1}$ lie in 35 pairwise disjoint closed intervals indexed by $n\bmod35$. In particular each ratio sequence has at least 35 distinct accumulation points. Every positive shift indivisible by 35 keeps the two ratios uniformly separated. Convergence along individual residue classes remains a further question. [Manuscript (PDF)](manuscript.pdf) · [Editable LaTeX](manuscript.tex) · [35 exact intervals for each sequence](intervals.csv)
+**Theorems.** For both sequences $x$, the mean growth $(x_{2n}/x_n)^{1/n}$ tends to $2$. From numerator index $n=97$, the adjacent ratios $x_n/x_{n-1}$ lie in 35 disjoint closed intervals indexed by $n\bmod35$. From $n=1401$, they lie in 70 disjoint closed intervals indexed by $n\bmod70$. Consequently **all 35 subsequences modulo 35 fail to converge**, and each full ratio sequence has at least **70 distinct accumulation points**. Convergence along individual classes modulo 70 remains a further question. [Manuscript (PDF)](manuscript.pdf) · [Editable LaTeX](manuscript.tex)
 
-A 13-row prefix induction isolates five coarse bands by hand from $n=20$ onward. A refinement enumerates 316,710 prefix pairs and 474,991 directed transitions. Replaying the calculation in both sets of coordinates verifies every phase label and integral interval endpoint. The smallest gaps between the refined enclosures are $15\cdot10^{-12}$ for A265385 and $69\cdot10^{-12}$ for A265387.
+A 13-row prefix induction isolates five coarse bands by hand from $n=20$. Two more inductions track progressively finer binary prefixes. The verifier replays both sequences in separate coordinates and checks every state, label and integer endpoint.
+
+| Residues | First numerator index | Reachable pairs per graph | Directed transitions | Exact enclosure table |
+| ---: | ---: | ---: | ---: | --- |
+| 35 | 97 | 316,710 | 474,991 | [Endpoints in units of $10^{-12}$](intervals.csv) |
+| 70 | 1401 | 67,410 | 101,108 | [Endpoints in units of $10^{-26}$](intervals70.csv) |
+
+For a positive lag indivisible by 35, the ratios stay separated by at least $15\cdot10^{-12}$ in A265385 and $69\cdot10^{-12}$ in A265387 from $n=97$. For a positive lag indivisible by 70, the corresponding bounds are $36\cdot10^{-26}$ and $25\cdot10^{-26}$ from $n=1401$.
 
 The [earlier paper](../A265385/README.md) already proves the mean growth for A265385 and explicitly leaves its adjacent-ratio fluctuations open. The findings added here are the ratio bands for both sequences and the mean-growth theorem for A265387. Sykora’s original conjectural comments are preserved in the [A265385 source record](https://github.com/oeis/oeisdata/blob/main/seq/A265/A265385.seq) and [A265387 source record](https://github.com/oeis/oeisdata/blob/main/seq/A265/A265387.seq).
 
@@ -16,7 +23,7 @@ The [earlier paper](../A265385/README.md) already proves the mean growth for A26
 | --- | --- |
 | Recurrence, universal 13-row invariant, five ratio bands at every subsequent index | [Lean 4 source](GrayPhases.lean), standard library only |
 | The two real-valued mean-growth limits | [Lean 4 and Mathlib source](GrayLimits.lean) |
-| 35 disjoint intervals for each sequence and gap sizes for every other lag | [Exact Python verifier](verify.py) and the [endpoint table](intervals.csv) |
+| 35 and 70 disjoint intervals per sequence, nonconvergence modulo 35, and lag bounds | [Exact Python verifier](verify.py) and both published endpoint tables |
 | Recorded runs and axiom reports | [Verification transcript](verification.txt) |
 
 Run the exact integer verifier from this directory. It needs only the Python standard library.
@@ -32,4 +39,4 @@ lake exe cache get Mathlib.Analysis.SpecialFunctions.Pow.Continuity Mathlib.Anal
 lake build
 ```
 
-The discrete induction can also be checked by itself with `lean GrayPhases.lean`. The Lean theorems cover the five bands and both growth limits. The 35-band refinement is a computer-assisted integer proof with its own exhaustive verifier.
+The discrete induction can also be checked by itself with `lean GrayPhases.lean`. The Lean theorems cover the five bands and both growth limits. The 35- and 70-band refinements are computer-assisted integer proofs with an exhaustive verifier.

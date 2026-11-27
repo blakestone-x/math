@@ -1,0 +1,116 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[hmargin=.82in,vmargin=.72in]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\LcmTo}[1]{\mathcal L(#1)}
+\setlength{\emergencystretch}{1.2em}
+\begin{document}
+\begin{center}
+{\LARGE Least periods for toroidal semiqueens and\\[2pt]vertex denominators for ordinary queens\par}
+\medskip November 26, 2026
+\end{center}
+\begin{abstract}
+Fix the number $k$ of pieces and count nonattacking toroidal semiqueen placements as a function of board order $n$. We prove that the least quasipolynomial period $\mu_k$ satisfies $\log\log\mu_k=\Theta(k)$. An addition chain for $a$ gives a subcollection of attack equations whose integer relation group has torsion $\Z/a\Z$. The no-period-collapse theorem for central arrangements then makes every such $a$ a divisor of the least period. On the ordinary square board we construct $q$-queen vertices of every denominator through $2^{\lfloor(q-1)/2\rfloor}$, an exponential initial interval in a conjecture of Chaiken, Hanusa and Zaslavsky.
+\end{abstract}
+
+\section{The period and the arrangement}
+A placement is an unordered collection of cells $(r_i,c_i)$ in $(\Z/n\Z)^2$ whose rows, columns and sums are separately distinct. This is the toroidal semiqueen problem after reflecting one coordinate. Let $T(n,k)$ be the number of placements, with $T(n,k)=0$ when $k>n$. A quasipolynomial period is a positive integer $s$ such that the restriction to each residue class $n\bmod s$ agrees with a polynomial in $n$. Write $\mu_k$ for the least such $s$ and $\LcmTo M=\lcm(1,\dots,M)$ for $M\ge1$.
+
+\begin{theorem}\label{thm:growth}
+For $k\ge1$, put $N_k=2^{\lfloor (k-1)/6\rfloor}$. Then
+\[
+  \LcmTo{N_k}\;\mid\;\mu_k\;\mid\;\LcmTo{4^k}.
+\]
+In particular $\log\log\mu_k=\Theta(k)$ as $k\to\infty$.
+\end{theorem}
+
+Stones and Wanless proved fixed-size quasipolynomiality in their enumeration of cyclic partial orthomorphisms~\cite{partial}. Their author manuscript exhibits a subcollection with a power-of-two invariant factor and raises the possibility that such factors cancel in the count~\cite[\S3]{preprint}. Our proof uses a later theorem about central arrangements and realizes every positive integer of bounded addition-chain length. It takes their least common multiple to bound the actual period.
+
+In $\Z^{2k}$ use coordinates $r_1,c_1,\ldots,r_k,c_k$ and the integral central arrangement with equations, for $i<j$,
+\begin{equation}\label{eq:forms}
+ r_i-r_j=0,\qquad c_i-c_j=0,\qquad r_i+c_i-r_j-c_j=0.
+\end{equation}
+The complement modulo $n$ has size $k!T(n,k)$, since an allowed configuration of $k$ distinct cells has $k!$ labelings. Multiplication by $k!$ preserves the least period for fixed $k$.
+
+For any subcollection $E$ of \eqref{eq:forms}, take $Q_E$ to be the free abelian group on the $2k$ coordinate symbols modulo the integral row relations in $E$. Write $e(E)$ for the exponent of its torsion subgroup, taking the exponent to be one when the subgroup is trivial. By the Smith normal form, $e(E)$ is the largest nonzero invariant factor when the matrix has positive rank. The central no-period-collapse theorem of Higashitani, Tran and Yoshinaga~\cite[Thm.~1.2]{hty} states that the minimum period of the complement count equals its lcm period. In the present notation this gives
+\begin{equation}\label{eq:lcm}
+ \mu_k=\lcm_{E}e(E).
+\end{equation}
+For $k=1$ the arrangement is empty and $T(n,1)=n^2$, with period one.
+
+\section{Realizing an addition chain by attack equations}
+An addition chain for $a\ge2$ is a sequence $1=d_0<d_1<\dots<d_\ell=a$ in which each $d_i$ is $d_u+d_v$ for some $u,v<i$, allowing $u=v$.
+
+\begin{lemma}\label{lem:chain}
+For every such chain and every $k\ge1+3\ell$, a subcollection $E$ of \eqref{eq:forms} has
+\[
+ Q_E\cong \Z^{\,2+2(k-1-3\ell)}\oplus\Z/a\Z.
+\]
+\end{lemma}
+\begin{proof}
+Use one label $O$, two labels $R_i,C_i$ for every $0\le i<\ell$, and a label $B_i$ for every $1\le i\le\ell$. These are $1+3\ell$ different labels. Perform the unimodular change of generators that leaves $r_O,c_O$ in place and subtracts them from each other row and column variable. In relative coordinates $O=(0,0)$. Write $s_X=r_X+c_X$ for relative coordinates at label $X$.
+
+Choose the row, column and sum equalities
+\[
+ c_{R_i}=c_O,\quad r_{C_i}=r_O,\quad s_{R_i}=s_{C_i}\qquad(0\le i<\ell).
+\]
+Eliminating generators with unit coefficients leaves $R_i=(x_i,0)$ and $C_i=(0,x_i)$. For each step $d_i=d_u+d_v$, choose
+\[
+ r_{B_i}=r_{R_u},\qquad c_{B_i}=c_{C_v},\qquad
+ s_{B_i}=\begin{cases}s_{R_i}&i<\ell,\\ s_O&i=\ell.\end{cases}
+\]
+Every chosen equality compares the same attack coordinate on two different labels and hence belongs to \eqref{eq:forms}. The first two eliminate the coordinates of $B_i$; the third then gives $x_i=x_u+x_v$ at intermediate steps and $0=x_u+x_v$ at the last step. Successive unit eliminations yield $x_i=d_ix_0$ for $i<\ell$, leaving just $a x_0=0$. The two coordinates of $O$ are free, as are both coordinates of each unused label. This is the stated integral presentation.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:growth}]
+To build $a$ from its binary representation, start at the leading one, double at each remaining bit, and add one when that bit is one. Thus $a$ has an addition chain of length at most $2\lfloor\log_2a\rfloor$. For every $2\le a\le N_k$ we have $1+3\ell\le k$, so Lemma~\ref{lem:chain} and \eqref{eq:lcm} give $a\mid\mu_k$. Their least common multiple gives the lower divisibility bound. If $N_k=1$ it holds immediately.
+
+Every row in \eqref{eq:forms} has Euclidean norm at most two. In a submatrix of rank $r>0$, each nonzero $r$-rowed square minor has absolute value at most $2^r\le4^k$ by Hadamard's inequality. The product of the $r$ invariant factors divides every such minor. Thus $e(E)\le4^k$ for every $E$, proving the upper divisibility bound by \eqref{eq:lcm}.
+
+For $0\le j\le N$, $\binom Nj$ divides $\LcmTo N$. Indeed for each prime $p$ the valuation of the binomial coefficient is the sum of the floor differences
+\[
+ \left\lfloor N/p^i\right\rfloor-\left\lfloor j/p^i\right\rfloor-\left\lfloor(N-j)/p^i\right\rfloor.
+\]
+Each summand is zero or one and vanishes for $p^i>N$. In particular $\LcmTo N\ge2^N/(N+1)$ since the binomial coefficients sum to $2^N$. Applied with $N=N_k$, this gives $\log\log\mu_k\ge (\log 2)k/6-O(1)$ for large $k$. Conversely, $\LcmTo{4^k}\le(4^k)!\le(4^k)^{4^k}$, yielding $\log\log\mu_k\le k\log 4+O(\log k)$.
+\end{proof}
+
+\paragraph{The restricted count.} Stones and Wanless~\cite{partial} write $\omega(n,n-k)=T(n,k)$ and count by $\chi(n,n-k)$ the partial orthomorphisms whose outputs and displacements both avoid zero. Their identity gives $n^2\chi(n,n-k)=(n-k)^2T(n,k)$ when $1\le k<n$. For fixed $k$, the identity holds polynomially on each residue class of a common quasipolynomial period because it holds for infinitely many $n$ there. Multiplication by the nonzero rational function $(n-k)^2/n^2$ preserves equality and inequality of any two constituent polynomials. Hence the two counts have the same minimum quasipolynomial period on their common domain.
+
+\section{Denominators for queens on an ordinary square board}
+
+For $q$ labeled queens the board polytope is $[0,1]^{2q}$. Its attack hyperplanes express equality of first coordinates, second coordinates, coordinate sums, or coordinate differences. A vertex is a point in the polytope uniquely specified by board-facet and attack equations. Its denominator is the least positive integer that makes all coordinates integral after dilation. Chaiken, Hanusa and Zaslavsky conjectured that every integer through $F_q$ is such a denominator, where $F_1=F_2=1$ \cite[Conjecture 6.2]{chz}. The following construction realizes an exponential initial interval for every $q$.
+
+\begin{theorem}\label{thm:ordinary}
+Every integer $1\le a\le 2^{\lfloor(q-1)/2\rfloor}$ is the denominator of a $q$-queen vertex on the square board. If $D_q$ is the least common multiple of its vertex denominators, then $\log\log D_q=\Theta(q)$ as $q\to\infty$.
+\end{theorem}
+\begin{proof}
+Corner configurations realize $a=1$. For $a\ge2$ write $\ell=\lceil\log_2 a\rceil$, and choose the $\ell$ binary digits $b_0,\dots,b_{\ell-1}$ of $2^\ell-a$ in most-significant-first order, using leading zeros. The integers $c_0=1$ and $c_{i+1}=2c_i-b_i$ satisfy $1\le c_i\le c_{i+1}$ and $c_\ell=a$.
+
+Use one corner queen $O=(0,0)$, fixed by two board facets, and two queens $P_i,Q_i$ for each $0\le i<\ell$. Place $P_i$ on the rising diagonal through $O$, so $P_i=(x_i,x_i)$. Equate the second coordinate of $Q_i$ to that of $O$ if $b_i=0$ and of $P_0$ if $b_i=1$. Require $Q_i$ and $P_i$ to have equal coordinate sum. Then
+\[
+Q_i=(2x_i-b_i x_0,\,b_i x_0).
+\]
+Until the last step, equate the first coordinate of $Q_i$ to that of $P_{i+1}$. On the last step fix the first coordinate of $Q_{\ell-1}$ to $1$ by a board facet. Successive substitutions give $x_i=c_i x_0$ and $c_\ell x_0=1$. These equations uniquely specify all coordinates. They lie in $[0,1]$ because $1\le c_i\le a$. All denominators divide $a$, and the first coordinate of $P_0$ equals $1/a$. Thus the denominator is exactly $a$. The construction uses $2\ell+1\le q$ queens. Fix additional labels at $(0,0)$ by independent facet equations.
+
+It follows that $D_q$ is divisible by the least common multiple of all integers through $2^{\lfloor(q-1)/2\rfloor}$. For the upper bound, every vertex satisfies $2q$ independent equations with integral constants. Each normal has Euclidean norm at most two, including the normals of board facets. Cramer's rule and Hadamard's inequality imply that the denominator divides a nonzero determinant with absolute value at most $4^q$. The two bounds on their least common multiple give the claimed order by the same elementary estimate used in the toroidal case.
+\end{proof}
+
+The common denominator in Conjecture~6.5 of~\cite{chz} therefore has double-exponential growth. Conjecture~6.2 asks for the larger interval through $F_q$. The ordinary-board counting quasipolynomial has period dividing $D_q$; its least period is a different question.
+
+For three-direction semiqueens on the square board, Lemma~\ref{lem:chain} also gives an ordinary vertex of denominator $a$ using $2+3\ell$ labels. Pin $O=(0,0)$ and one extra label $P=(0,1)$ by board facets. Replace the last sum equality $s_{B_\ell}=s_O$ by $s_{B_\ell}=s_P=1$. Elimination gives $a x_0=1$, and every computed coordinate is either zero or $d_i/a$ for some $i<\ell$. These coordinates belong to the board and the coordinate $x_0=1/a$ certifies exact denominator. Any extra labels may be fixed at a corner. This also gives double-exponential growth for the common vertex denominator of ordinary semiqueens, with the same determinant upper bound.
+
+\paragraph{Finite check.} The companion \texttt{verify\_periods.py} constructs the subcollection from each binary addition chain for $2\le a\le64$. It uses integer diagonalization to check the torsion order, exponent and free rank, both at the stated number of labels and with additional free labels. It also checks the ordinary semiqueen vertices and every binary construction in Theorem~\ref{thm:ordinary} up to six binary digits, using exact rank and coordinate tests.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{partial} D. S. Stones and I. M. Wanless, \emph{A congruence connecting Latin rectangles and partial orthomorphisms}, Ann. Comb. \textbf{16} (2012), 349--365. \href{https://doi.org/10.1007/s00026-012-0137-6}{doi:10.1007/s00026-012-0137-6}.
+\bibitem{preprint} D. S. Stones and I. M. Wanless, \emph{A congruence connecting Latin rectangles and partial orthomorphisms}, author manuscript, discussion following Theorem~6, pp.~7--8. \href{https://users.monash.edu.au/~iwanless/papers/POLRCong.pdf}{Author PDF}.
+\bibitem{hty} A. Higashitani, T. N. Tran and M. Yoshinaga, \emph{Period collapse in characteristic quasi-polynomials of hyperplane arrangements}, Int. Math. Res. Not. IMRN \textbf{2023}, no.~10, 8934--8963. \href{https://doi.org/10.1093/imrn/rnac104}{doi:10.1093/imrn/rnac104}.
+\bibitem{chz} S. Chaiken, C. R. H. Hanusa, and T. Zaslavsky, \emph{A $q$-Queens Problem IV. Attacking configurations and their denominators}, Discrete Math. \textbf{343} (2020), 111649. \href{https://doi.org/10.1016/j.disc.2019.111649}{doi:10.1016/j.disc.2019.111649}.
+\end{thebibliography}
+\end{document}

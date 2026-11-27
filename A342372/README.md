@@ -6,6 +6,8 @@ Write $C_n=\mathbb Z/n\mathbb Z$. Negating the column coordinate converts the th
 
 [Proof manuscript (PDF)](manuscript.pdf) · [LaTeX source](manuscript.tex)
 
+A second paper proves that the least quasipolynomial period of the toroidal count grows doubly exponentially in the number of pieces. For ordinary queens it constructs a vertex of every denominator through $2^{\lfloor(q-1)/2\rfloor}$ with $q$ pieces, a partial result toward Chaiken, Hanusa and Zaslavsky’s Conjecture 6.2. [Periods and vertex denominators (PDF)](periods.pdf) · [LaTeX source](periods.tex) · [Construction verifier](verify_periods.py) · [Conjecture 6.2](https://arxiv.org/pdf/1807.04741)
+
 ## 1. The residue modulo the board area
 
 **Theorem 1.** For $1\le k\le n$,

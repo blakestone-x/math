@@ -15,8 +15,10 @@ With the checked GrayPhases.olean and pinned Mathlib dependencies on LEAN_PATH.
 'GrayPhases.growth_A265387' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 python3 verify.py
-19-bit precision, period 5: 13 states and 17 distinct directed transitions in each graph.
+19-bit precision, start 19, period 5: 13 states and 17 distinct directed transitions in each graph.
 Smallest gap in units of 1/10000: A265385 16, A265387 6.
-96-bit precision, period 35: 316,710 states and 474,991 distinct directed transitions in each graph.
+96-bit precision, start 96, period 35: 316,710 states and 474,991 distinct directed transitions in each graph.
 Smallest gap in units of 1/1000000000000: A265385 15, A265387 69.
-Both inductions reproduce every published interval.
+126-bit precision, start 1400, period 70: 67,410 states and 101,108 distinct directed transitions in each graph.
+Smallest gap in units of 1/100000000000000000000000000: A265385 36, A265387 25.
+Both coordinate systems reproduce every published interval.

@@ -19,7 +19,7 @@ For each cyclomatic number $c\ge2$, the maximum line-graph signature over all co
 \section{Core paths and a finite reduction}
 Use the notation of the companion manuscript \cite{first}: $H$ is the 2-core of a connected simple graph, $c=|E|-|V|+1$, and $B$ is the set of its $b$ branch vertices of degree at least three. We have $b\le2c-2$. Suppression of the degree-two vertices of $H$ gives a multigraph $K$ with $b$ vertices and $b+c-1$ edges, retaining loops and parallel edges. Let $f(c)$ be the largest signature of a line graph with connected simple root graph of cyclomatic number $c$.
 
-By the single-leaf reduction of \cite{first}, to maximize the signature at a given core we may attach one leaf at each vertex in a subset $P$ of $V(H)$. Mark $S=B\cup P$. The signature on the original graph is
+By the single-leaf reduction of \cite{first}, to maximize the signature at a given core we may attach one leaf at each vertex in a subset $P$ of $V(H)$. Mark $S=B\cup P$. For this leaf-decorated graph the signature is
 \[
 s(L(G))=1-c-|P|+\sg\big(M(H)+2\diag(\mathbf1_P)\big),\qquad M(H)=D(H)+A(H)-2I.
 \]
@@ -116,7 +116,7 @@ Rank-zero matrices at $J$; maximum $\sg(A)-p$ & $18{,}304,8$ & $21{,}632,10$\\
 Rank-one matrices, all failing positive definiteness & 92,416 & 110,208
 \end{tabular}
 \end{center}
-The complete calculation is in \texttt{addendum\_verify.py}, using the integral inertia routine in \texttt{verify.py}. Matrix counts include duplicates from distinct placements of marks. For ranks zero and one, the tests are respectively exact inertia and Sylvester's leading-minor criterion with integer Bareiss elimination; the \texttt{--cross-check} option tests every rank-one exclusion again by inertia. In both columns the rank-zero maximum is strictly smaller than $J-1$, and every rank-one form fails the necessary test. This excludes violations. The known attaining constructions \cite[Theorem 5.3]{pp} supply the reverse inequalities.
+At every even order from two through twelve, the cubic kernel count agrees with OEIS \href{https://oeis.org/A005967}{A005967}. The complete calculation is in \texttt{addendum\_verify.py}, using the integral inertia routine in \texttt{verify.py}. Matrix counts include duplicates from distinct placements of marks. For ranks zero and one, the tests are respectively exact inertia and Sylvester's leading-minor criterion with integer Bareiss elimination; the \texttt{--cross-check} option tests every rank-one exclusion again by inertia. In both columns the rank-zero maximum is strictly smaller than $J-1$, and every rank-one form fails the necessary test. This excludes violations. The known attaining constructions \cite[Theorem 5.3]{pp} supply the reverse inequalities.
 \end{proof}
 
 The companion paper and Theorem~\ref{th:vals} give the conjectured values for $2\le c\le7$. At $c=8$ the companion bounds give $4\le f(8)\le6$. The finite reduction applies there too, but the rank-one enumeration above does not cover that case.

@@ -229,7 +229,7 @@ def alternating_cycle_chain(c):
 
 
 def check_graphs():
-    for c, target in ((2, 1), (3, 2), (4, 2), (5, 3)):
+    for c, target in ((2, 1), (3, 2), (4, 2), (5, 3), (6, 3), (7, 4)):
         n, edges = alternating_cycle_chain(c)
         positive, zero, negative = line_inertia(edges)
         assert len(edges) - n + 1 == c
