@@ -1,0 +1,76 @@
+version: v0.4
+project:
+  name: The longest consecutive run in OEIS A330904
+  description: Consider the nonnegative integers for which the number of ones in binary equals the signed
+    sum of the balanced-ternary digits. Every run of consecutive members has length at most four. The
+    four integers starting at 1026 attain the bound conjectured by Thomas König.
+  authors:
+  - Blake Stone
+  license: CC-BY-4.0
+  responsible_maintainers:
+  - Blake Stone
+sources:
+- title: The longest consecutive run in OEIS A330904 (written proof)
+  id: https://github.com/blakestone-x/math/blob/0acce268478a0c5c89736fc3ae865e600e87a5b9/A330904/README.md
+  authors:
+  - Blake Stone
+  relationship: formalizes
+  note: Proof developed with OpenAI Astra 6.2. This earlier public version contains the mathematical
+    argument.
+- title: OEIS A330904
+  id: https://oeis.org/A330904
+  contributors:
+  - name: Thomas König
+    role: conjecture proposer and contributor of the four-term example
+  type: other
+  relationship: background
+  note: The entry supplies the original conjecture and defines the sequence.
+- title: Collisions of digit sums in bases 2 and 3
+  id: https://arxiv.org/abs/2105.11173
+  authors:
+  - Lukas Spiegelhofer
+  type: paper
+  relationship: background
+  location: page 4 of the preprint
+  note: Discusses the ordinary ternary analogue.
+related_formalizations:
+- id: https://github.com/blakestone-x/math/blob/0acce268478a0c5c89736fc3ae865e600e87a5b9/A330904/Proof.lean
+  relationship: builds-on
+  note: This submission ports the original Lean 4.19 proof to Lean 4.35 and adds separate Challenge
+    and Solution modules.
+classification:
+  arxiv:
+  - math.NT
+  msc2020:
+  - 11A63
+status:
+  scope: All runs of nonnegative integers with equal binary and balanced-ternary digit sums.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: &id001
+  - propext
+  - Quot.sound
+  main_results:
+  - declaration: A330904.sharp_run_bound
+    file: Solution.lean
+    comparator_config: comparator.json
+    sorry_count: 0
+    axioms: *id001
+automation:
+  methods:
+  - method: agent
+    models:
+    - OpenAI Astra 6.2
+    tool_setup: Blake Stone selected the conjecture and requested the proof and its formalization. Astra
+      developed the argument and assisted with the write-up and Lean proof.
+  - method: agent
+    framework: OpenAI Codex
+    tool_setup: Ported the development, prepared the Comparator statement and checked the submission
+      files.
+fidelity:
+  divergences: The statement includes the explicit starting value 1026 and proves the bound for every
+    starting value and run length.
+review:
+  status: self-assessed
+  notes: The local Lean kernel and NanoDa checked the solution through Comparator. No independent human
+    peer review is claimed. Publication priority has not been established.

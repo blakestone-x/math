@@ -1,0 +1,12 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "A330904.sharp_run_bound"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}

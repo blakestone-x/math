@@ -28,7 +28,7 @@ The three classes have distinct lengths, so their counts add to $a(n)=4L+1+r-\de
 
 ## Machine-checked proof
 
-The Lean file gives a second proof. It represents words least significant digit first, defines a one-edit relation, and enumerates exactly the canonical neighboring integers without duplicates. For a numeral of at least three digits, appending a digit carries forward its old neighbors. Four new outputs come from two substitutions and two insertions. Deleting the appended digit contributes a fifth output exactly when adjacent digits differ. [Lean source](Proof.lean)
+The Lean file gives a second proof. It represents words least significant digit first, defines a one-edit relation, and enumerates exactly the canonical neighboring integers without duplicates. For a numeral of at least three digits, appending a digit carries forward its old neighbors. Four new outputs come from two substitutions and two insertions. Deleting the appended digit contributes a fifth output exactly when adjacent digits differ. [Lean source](Solution.lean)
 
 | Lean theorem | What it verifies |
 | --- | --- |
@@ -37,11 +37,12 @@ The Lean file gives a second proof. It represents words least significant digit 
 | `recurrence` | The stated identity holds for every integer $n\ge9$ and every ternary digit. |
 | `nine_cases` | The nine identities follow for every $m\ge3$. |
 
-With Lean installed through Elan, run the following from the repository root. The local toolchain file pins Lean 4.19.0. The proof uses only the bundled standard library.
+With Lean installed through Elan, run the following from the repository root. The local toolchain file pins Lean 4.35.0. The proof uses only the bundled standard library.
 
 ```sh
 cd A081732
-lean Proof.lean
+lake build
+lake comparator
 ```
 
 The file checks the examples $100_3$, $1000_3$, and $1001_3$, then prints the axioms used by the four theorems.
@@ -49,3 +50,9 @@ The file checks the examples $100_3$, $1000_3$, and $1001_3$, then prints the ax
 ## Attribution
 
 Reinhard Zumkeller contributed the sequence in 2003. Zhuorui He stated the ternary recurrence in 2025. Robert Israel recorded the analogous binary recurrence in 2019. [Ternary entry](https://oeis.org/A081732) · [Binary entry](https://oeis.org/A080950)
+
+## Palomar statement
+
+The compared theorem is `A081732.distinct_neighbor_recurrence`. The Lean statement expresses cardinalities by duplicate-free lists characterized by the edit relation. Substituting n = 3m+i and d = j recovers the nine identities. The closed count using runs in the PDF has a separate written proof. [Statement](Challenge.lean) · [Proof](Solution.lean) · [Provenance and AI credits](formalization.yaml)
+
+Blake Stone licenses this submission under CC BY 4.0. [License](../LICENSE)

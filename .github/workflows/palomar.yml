@@ -1,0 +1,32 @@
+name: Palomar preflight
+on:
+  push:
+    branches: [palomar-oeis]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  a081732:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@046554302064b2c83c2b924bea6db87fc5900c68
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: 046554302064b2c83c2b924bea6db87fc5900c68
+      request_id: oeis00081732
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: '{"project_path":"A081732","comparator_config_path":"A081732/comparator.json","authorization_relationship":"I am a responsible author or maintainer"}'
+
+  a330904:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@046554302064b2c83c2b924bea6db87fc5900c68
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: 046554302064b2c83c2b924bea6db87fc5900c68
+      request_id: oeis00330904
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: '{"project_path":"A330904","comparator_config_path":"A330904/comparator.json","authorization_relationship":"I am a responsible author or maintainer"}'

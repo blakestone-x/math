@@ -35,11 +35,18 @@ König's example attains it. Read each row from the most significant digit to th
 
 ## Verification and related work
 
-The Lean theorem `A330904.longest_run` proves both that a run of four exists and that every run has length at most four. It computes both digit sums directly, including the carry when a balanced-ternary digit is $-1$. To check the theorem with the pinned Lean 4.19.0 toolchain, run the following from the repository root. It uses the bundled standard library. [Lean proof](Proof.lean) · [One-page PDF](A330904_proof.pdf)
+The Lean theorem `A330904.longest_run` proves both that a run of four exists and that every run has length at most four. It computes both digit sums directly, including the carry when a balanced-ternary digit is $-1$. To check the theorem with the pinned Lean 4.35.0 toolchain, run the following from the repository root. It uses the bundled standard library. [Lean proof](Solution.lean) · [One-page PDF](A330904_proof.pdf)
 
 ```sh
 cd A330904
-lean Proof.lean
+lake build
+lake comparator
 ```
 
 The parity step also applies to digit sums in any odd base. Lukas Spiegelhofer recorded the analogous bound for ordinary ternary digit sums in the remarks following his introduction, on page 4 of the preprint. [Spiegelhofer, *Collisions of digit sums in bases 2 and 3*](https://arxiv.org/pdf/2105.11173#page=4)
+
+## Palomar statement
+
+The compared theorem is `A330904.sharp_run_bound`. The statement includes the explicit starting value 1026 and proves the bound for every starting value and run length. [Statement](Challenge.lean) · [Proof](Solution.lean) · [Provenance and AI credits](formalization.yaml)
+
+Blake Stone licenses this submission under CC BY 4.0. [License](../LICENSE)

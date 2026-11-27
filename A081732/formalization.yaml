@@ -1,0 +1,81 @@
+version: v0.4
+project:
+  name: The ternary one-edit recurrence for OEIS A081732
+  description: For each nonnegative integer n, count the distinct integers reachable by one insertion,
+    deletion or substitution in its canonical base-three numeral. For n at least 9, appending a ternary
+    digit increases the count by four if it repeats the last digit, and by five otherwise. This gives
+    all nine recurrences conjectured by Zhuorui He.
+  authors:
+  - Blake Stone
+  license: CC-BY-4.0
+  responsible_maintainers:
+  - Blake Stone
+sources:
+- title: The ternary one-edit recurrence for OEIS A081732 (written proof)
+  id: https://github.com/blakestone-x/math/blob/df67667e4352ec4a2c52cae91bf099d319d9dc63/A081732/README.md
+  authors:
+  - Blake Stone
+  relationship: formalizes
+  note: Proof developed with OpenAI Astra 6.2. This earlier public version contains the mathematical
+    argument.
+- title: OEIS A081732
+  id: https://oeis.org/A081732
+  contributors:
+  - name: Reinhard Zumkeller
+    role: sequence contributor
+  - name: Zhuorui He
+    role: conjecture proposer
+  type: other
+  relationship: background
+  note: The entry supplies the original conjecture and defines the sequence.
+- title: OEIS A080950, the binary one-edit sequence
+  id: https://oeis.org/A080950
+  contributors:
+  - name: Robert Israel
+    role: binary recurrence contributor
+  relationship: background
+  note: Israel recorded the binary analogue in 2019.
+related_formalizations:
+- id: https://github.com/blakestone-x/math/blob/df67667e4352ec4a2c52cae91bf099d319d9dc63/A081732/Proof.lean
+  relationship: builds-on
+  note: This submission ports the original Lean 4.19 proof to Lean 4.35 and adds separate Challenge
+    and Solution modules.
+classification:
+  arxiv:
+  - math.CO
+  msc2020:
+  - 68R15
+status:
+  scope: Canonical representations of nonnegative integers. The recurrence assumes a three-digit or
+    longer input, including 100 in base three.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: &id001
+  - propext
+  - Quot.sound
+  - Classical.choice
+  main_results:
+  - declaration: A081732.distinct_neighbor_recurrence
+    file: Solution.lean
+    comparator_config: comparator.json
+    sorry_count: 0
+    axioms: *id001
+automation:
+  methods:
+  - method: agent
+    models:
+    - OpenAI Astra 6.2
+    tool_setup: Blake Stone selected the conjecture and requested the proof and its formalization. Astra
+      developed the argument and assisted with the write-up and Lean proof.
+  - method: agent
+    framework: OpenAI Codex
+    tool_setup: Ported the development, prepared the Comparator statement and checked the submission
+      files.
+fidelity:
+  divergences: The Lean statement expresses cardinalities by duplicate-free lists characterized by the
+    edit relation. Substituting n = 3m+i and d = j recovers the nine identities. The closed count using
+    runs in the PDF has a separate written proof.
+review:
+  status: self-assessed
+  notes: The local Lean kernel and NanoDa checked the solution through Comparator. No independent human
+    peer review is claimed. Publication priority has not been established.
