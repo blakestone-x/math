@@ -1,0 +1,23 @@
+Commands run from the A265386 package directory with the pinned Lean toolchain.
+The project Proof.olean and Limit.olean outputs were absent before this build.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Exit status: 0
+
+$ lake --version
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+Exit status: 0
+
+$ lake build
+ℹ [1805/1807] Built Proof
+info: ././././Proof.lean:182:0: 'A265386.prefix_state' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:183:0: 'A265386.parity_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:184:0: 'A265386.positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:185:0: 'A265386.adjacent_oscillation' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1806/1807] Built Limit
+info: ././././Limit.lean:163:0: 'A265386.squared_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Limit.lean:164:0: 'A265386.growth_rate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit status: 0
+

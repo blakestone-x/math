@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,microtype,booktabs,xcolor}
+\usepackage[colorlinks=true,urlcolor=blue!45!black,linkcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\G}{\operatorname{G}}
+\newcommand{\xor}{\mathbin{\mathrm{xor}}}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\hypersetup{pdftitle={The growth rate and alternating ratios of OEIS A265386},pdfauthor={Blake Stone}}
+\begin{document}
+\begin{center}
+{\Large\bfseries The growth rate and alternating ratios\\[0.15em]of OEIS A265386}\\[0.65em]
+Blake Stone\\[0.15em]
+{\small Proof developed with OpenAI Astra 6.2\quad$\vert$\quad November 26, 2026}
+\end{center}
+\begin{quote}\small\textbf{Abstract.}
+We prove Sykora's conjectured mean growth rate $\sqrt2$ for the recurrence obtained by applying binary-reflected Gray code to both inputs and the output of a Fibonacci step. An explicit set of 48 binary-prefix states is closed under all possible carries. This finite certificate, together with induction, bounds every later term. It also proves that adjacent ratios alternate between values greater than $3$ and values less than $2/3$. Both results are checked in Lean.
+\end{quote}
+
+\section*{1. The recurrence and the prefix transition}
+For a nonnegative integer $m$, write
+\[
+ \G(m)=m\xor\floor{m/2},\qquad F(u,v)=\G\bigl(\G(u)+\G(v)\bigr).
+\]
+Define $a(1)=a(2)=1$ and
+\[
+ a(n)=F\bigl(a(n-1),a(n-2)\bigr)\qquad(n\ge3).
+\]
+This is OEIS A265386, contributed by Stanislav Sykora in 2015~\cite{oeis}.
+
+\begin{theorem}\label{thm:main}
+The mean growth rate is
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}\left(\frac{a(2n)}{a(n)}\right)^{1/n}=\sqrt2.}
+\]
+Moreover, for every integer $k\ge8$,
+\[
+ \frac{a(2k+1)}{a(2k)}>3,
+ \qquad
+ \frac{a(2k+2)}{a(2k+1)}<\frac23.
+\]
+In particular, the adjacent-term ratios do not converge.
+\end{theorem}
+
+\textbf{Prefix identity.} For all nonnegative integers $m,r$,
+\begin{equation}\label{eq:gray}
+ \floor{\frac{\G(m)}{2^r}}=\G\left(\floor{\frac m{2^r}}\right).
+\end{equation}
+Indeed, if $b_i$ is bit $i$ of $m$, bit $i$ of $\G(m)$ is $b_i\xor b_{i+1}$. Deleting the lowest $r$ bits before or after the transform therefore gives the same result.
+
+\textbf{Two-step transition.} Suppose $P=2^r$, $x=\lfloor u/P\rfloor$, and $y=\lfloor v/P\rfloor$. Quotients of sums obey
+\[
+ \floor{\frac{s+t}{P}}=\floor{\frac sP}+\floor{\frac tP}+c,
+ \qquad c\in\{0,1\}.
+\]
+Apply this fact and \eqref{eq:gray} to the next two recurrence steps. For some $c,d\in\{0,1\}$, define
+\begin{equation}\label{eq:transition}
+ z=\G\bigl(\G(x)+\G(y)+c\bigr),\quad
+ w=\G\bigl(\G(y)+\G(z)+d\bigr),\quad
+ T_{c,d}(x,y)=(\lfloor z/2\rfloor,\lfloor w/2\rfloor).
+\end{equation}
+Then the leading quotients of $F(u,v)$ and $F(v,F(u,v))$ at scale $2P$ are exactly $T_{c,d}(x,y)$. The actual carries need not be independent; allowing all four combinations includes every possibility.
+
+\newpage
+\section*{2. A finite certificate for all indices}
+Let $S$ be the following set of 48 ordered pairs. Each row lists one first coordinate and all corresponding second coordinates.
+\begin{center}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{rl}
+\toprule
+$x$ & All $y$ with $(x,y)\in S$\\
+\midrule
+136 & 504, 505, 506, 507\\
+137 & 506, 507, 510\\
+138 & 497, 499, 506, 508, 510\\
+139 & 509, 510, 511\\
+142 & 489, 491, 500\\
+148 & 496, 497\\
+152 & 502\\
+154 & 497, 498, 499, 502, 503\\
+155 & 501, 502, 503\\
+156 & 506, 507, 510, 511\\
+157 & 506, 508, 509, 510, 511\\
+158 & 500, 506, 507, 510, 511\\
+159 & 504, 505, 506, 507, 510\\
+\bottomrule
+\end{tabular}
+\end{center}
+Direct integer calculation verifies the finite closure property
+\begin{equation}\label{eq:closed}
+ (x,y)\in S,\quad c,d\in\{0,1\}
+ \quad\Longrightarrow\quad T_{c,d}(x,y)\in S.
+\end{equation}
+There are exactly $48\cdot4=192$ cases. The accompanying Lean source spells out $S$ and proves \eqref{eq:closed} by kernel evaluation of this finite proposition. All states also satisfy
+\begin{equation}\label{eq:coordinate}
+ 136\le x\le159,\qquad489\le y\le511.
+\end{equation}
+
+\begin{lemma}[Invariant]\label{lem:invariant}
+For every integer $k\ge8$,
+\begin{equation}\label{eq:invariant}
+ \left(\floor{\frac{a(2k)}{2^{k-8}}},\floor{\frac{a(2k+1)}{2^{k-8}}}\right)\in S.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Direct evaluation of the original recurrence gives $a(16)=158$ and $a(17)=510$. Since $(158,510)\in S$, the statement holds for $k=8$. If it holds at $k$, the two-step transition in \eqref{eq:transition} and the closure property \eqref{eq:closed} give the next pair at doubled scale, which is precisely \eqref{eq:invariant} at $k+1$. Induction completes the proof.
+\end{proof}
+
+Set $P=2^{k-8}$. The invariant and \eqref{eq:coordinate} imply the useful bounds
+\begin{align}
+ 136P&\le a(2k)<160P,\label{eq:even}\\
+ 489P&\le a(2k+1)<512P.\label{eq:odd}
+\end{align}
+They prove positivity of every term from index $16$ onward. They also imply the weaker bounds
+\[
+ 2^{k-1}\le a(2k)<2^k,
+ \qquad 2^k\le a(2k+1)<2^{k+1}.
+\]
+After squaring and separating the two parities, we obtain the uniform estimate
+\begin{equation}\label{eq:squared}
+ \boxed{2^n\le4a(n)^2,\qquad a(n)^2<2\cdot2^n\qquad(n\ge16).}
+\end{equation}
+
+\newpage
+\section*{3. Growth and persistent oscillation}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply \eqref{eq:squared} at $n$ and $2n$. Positivity gives
+\[
+ \frac18\,2^n
+ <\left(\frac{a(2n)}{a(n)}\right)^2
+ <8\,2^n\qquad(n\ge16).
+\]
+Taking positive real $2n$th roots yields
+\[
+ \sqrt2\,8^{-1/(2n)}
+ <\left(\frac{a(2n)}{a(n)}\right)^{1/n}
+ <\sqrt2\,8^{1/(2n)}.
+\]
+For every fixed $c>0$, $c^{1/n}\to1$. The squeeze theorem proves the conjectured limit $\sqrt2$.
+
+For the adjacent ratios, let $k\ge8$ and $P=2^{k-8}$. Equations \eqref{eq:even}--\eqref{eq:odd} give
+\[
+ 3a(2k)<480P<489P\le a(2k+1).
+\]
+The upper bound at $k+1$ is $a(2k+2)<320P$, so
+\[
+ 3a(2k+2)<960P<978P\le2a(2k+1).
+\]
+Dividing by the positive denominators proves both claimed ratio inequalities. If adjacent ratios had a common limit, the even-start subsequence would force it to be at least $3$, while the odd-start subsequence would force it to be at most $2/3$, a contradiction.
+\end{proof}
+
+\section*{4. Formal verification}
+The package pins Lean 4.19.0 and a matching Mathlib revision. The module \texttt{Proof.lean} imports only \texttt{Std}: it defines the exact recurrence and 48 states, checks all 192 transitions by ordinary \texttt{decide}, and proves the invariant, parity bounds, positivity, and adjacent-ratio inequalities. The module \texttt{Limit.lean} proves \eqref{eq:squared} and the unconditional real limit theorem \texttt{A265386.growth\_rate\_limit}. Its \texttt{meanGrowth} definition is exactly $(a(2n)/a(n))^{1/n}$, using real division and exponentiation.
+
+Both packaged modules passed a fresh build and an independent rebuild. Their audited theorems use only the standard logical dependencies \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. There are no unfinished proofs, added axioms, or \texttt{native\_decide} calls. The finite closure certificate is connected to every index by induction. Reproduction commands and build output are supplied in \texttt{README.md}, \texttt{verification.txt}, and the independent audit record.
+
+\section*{Source status}
+The live OEIS entry inspected on November 26, 2026 still described the mean growth limit as a conjecture; its internal revision was \#16, January 16, 2016. Searches by identifier and recurrence description, including available formal-proof collections, found no earlier proof of this assertion. This records the source status checked during the work and does not establish exhaustive publication priority.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} S. Sykora, \emph{A265386}, The On-Line Encyclopedia of Integer Sequences, December 7, 2015. \url{https://oeis.org/A265386}. Accessed November 26, 2026.
+\end{thebibliography}
+\end{document}
