@@ -1,0 +1,330 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[margin=.9in,top=.75in,bottom=.8in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\title{Diagonals and populations of five von Neumann cellular automata}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Starting from one live cell on the square lattice, we determine the diagonals
+of rules 62, 65 and 73 at every stage. Rules 65, 321 and 323 share an
+alternating cross whose geometry gives exact population formulas.
+The results account for eighteen OEIS sequences. All sixteen conjectured
+generating functions in the selected entries hold. Ten stated homogeneous
+recurrences require later starting indices.
+\end{abstract}
+\section{Model and diagonal words}
+At time zero only the origin is on. Write $c,e,w,u,d\in\{0,1\}$ for a site's
+value and the values at its four nearest lattice neighbors. Rule $q$
+outputs bit $c+2(e+w+u+d)$ of $q$, with bit zero least significant.
+The displayed stage is the window $[-n,n]^2$ at time $n$.
+The center-to-corner word reads $(0,0),(1,1),\ldots,(n,n)$, in this order.
+Exponents on digits mean repetition.
+\begin{theorem}\label{words}
+The center-to-corner words are as follows.
+\[
+\begin{array}{ccl}
+\text{rule}&\text{stages}&\text{word}\\\hline
+62& n\ge2&0\,1^{\lfloor n/2\rfloor}0^{\lceil n/2\rceil}\\
+65& n\ge5,\ n\text{ even}&11\,0^{n-1}\\
+65& n\ge5,\ n\text{ odd}&00\,1^{n-1}\\
+73& n\ge4,\ n\text{ even}&0^{n+1}\\
+73& n\ge4,\ n\text{ odd}&1^{n+1}
+\end{array}
+\]
+Rule 62 starts with $1,10$. Rules 65 and 73 start with $1,01,100,0011$.
+At time four the rule-65 word is $10000$.
+\end{theorem}
+The stage-one rule-62 diagonal is $10$ while the horizontal ray reads $11$.
+The published Mathematica extraction in \oeis{285613} takes a horizontal slice.
+We use the stated diagonal, which agrees with the listed terms.
+The orientation and the choice between base two and decimal digit strings
+both affect the resulting integer sequence.
+
+Robert Price supplied the sequences. Colin Barker proposed the diagonal,
+population and generating-function formulas in 2016--17. Lars Blomberg proposed
+the dyadic population formula for rules 65 and 323. The last two sections
+give the index mapping and the recurrence corrections.
+
+\newpage
+\section{Rule 62 near the diagonal and outward front}
+By reflection put $x=|X|$, $y=|Y|$, $r=x+y$ and $h=n-r$.
+The active weights for rule 62 are exactly $1,2,3,4,5$.
+\begin{theorem}\label{strip}
+At every stage $n\ge7$ the cell value in each region is given by the table.
+\[
+\begin{array}{c|l}
+\text{region}&\text{condition for being on}\\\hline
+h<0&\text{never}\\
+0\le h\le1&\text{always}\\
+2\le h\le3&x>0,\ y>0,\ r\text{ even}\\
+h\ge4,\ |x-y|\le2&r>0,\ r\text{ even}
+\end{array}
+\]
+In the remaining region the proof allows either bit.
+\end{theorem}
+\begin{proof}
+Let $M(h,x,y)$ be the set of bits allowed by the table. For a target
+$(x,y)$, write $x^- = |x-1|$ and similarly for $y^-$. Its four source neighbors
+have coordinates $(x+1,y),(x^-,y),(x,y+1),(x,y^-)$.
+Evaluate their masks and the center mask at old time $n$. Let $L,H$
+be the sums of their respective minima and maxima with weights $1,2,2,2,2$.
+An on target is forced by $1\le L$ and $H\le5$. An off target is forced
+by $H=0$ or $L\ge6$. These checks cover all assignments of unspecified bits.
+
+Exchange $x,y$ so $x\le y$. With $d=y-x$ set
+\[
+ X'=\min(x,7),\quad
+ Y'=X'+\begin{cases}d&d\le4,\\6+(d\bmod 2)&d>4,\end{cases}
+ \qquad h'=\max(-2,\min(h,7)).
+\]
+The center and each of its four neighbors preserve the tests $r>0$,
+$x,y>0$, parity of $r$, and $|x-y|\le2$. For $d>4$ every neighbor
+stays outside the strip and parity is retained. For smaller $d$ the exact
+gap is preserved. Truncating the smaller coordinate at 7 preserves the
+zero tests. Subtracting an equal amount from both coordinates preserves
+parity. Each delay tested is $h+j$ with $j\in\{-1,0,1\}$, for which truncation
+preserves every threshold.
+Enumerate $-2\le h'\le7$, $0\le X'\le7$, $0\le Y'\le14$. Retain triples with
+$X'+Y'\ge3$ or $h'+X'+Y'\ge7$. Every image at time $n\ge7$ satisfies
+this guard. If its compressed radius is below 3 the coordinates are unchanged
+and truncating $h$ at 7 preserves the guard.
+For each retained triple test $M(h'+1,X',Y')$ against $L,H$ as above.
+All required inequalities hold. The executable table is
+\texttt{certificate} in \texttt{Checkerboard.lean}. The base at time seven
+is obtained by seven updates for $0\le x,y\le7$. Outside this box finite
+propagation gives zero. Induction proves the assertion.
+\end{proof}
+On the diagonal $r=2x$, so for $n\ge7$ the bit is on precisely when
+$1\le x\le\lfloor n/2\rfloor$. Six direct updates finish the early stages.
+
+\newpage
+\section{Alternating crosses and the uniform rule}
+\begin{theorem}\label{cross}
+For $q\in\{65,321,323\}$ the even stage $n=2m\ge6$ has its live cells on
+the coordinate axes out to distance $m$, together with the four cells
+$(\pm1,\pm1)$. The odd stage $n=2m+1\ge5$ is on outside the defect set
+\[
+\begin{split}
+ &\{X=0,\ |Y|\le m+1\}\ \cup\ \{Y=0,\ |X|\le m+1\}\\
+ {}\cup{}&\{|X|\le1,\ |Y|\le m\}\ \cup\ \{|Y|\le1,\ |X|\le m\}.
+\end{split}
+\]
+Rules 65 and 321 coincide at every stage. Rule 323 differs only at stage 1.
+Rule 73 is uniformly off at stage 4 and then alternates uniformly.
+\end{theorem}
+\begin{proof}
+Call the indicated configurations $E_m$ and $O_m$. The following finite
+test proves one update sends $E_m$ to $O_m$ and one sends $O_m$ to $E_{m+1}$
+for all $m\ge3$. A coordinate $z\ge0$ is used only through $z=0$, $z=1$,
+$z\le m$, $z\le m+1$ and $z\le m+2$. We need those tests also for its
+neighbors $z+1$ and $|z-1|$. Set $M=\min(m,7)$. For $m\le7$ replace
+$z$ by $Z=\min(z,11)$. For $m>7$ use
+\[
+ Z=\begin{cases}
+ z&z\le3,\\
+ 4&z>3,\ z+2<m,\\
+ \min(11,7+z-m)&\text{otherwise}.
+ \end{cases}
+\]
+In the last branch $7+z-m\ge5$. The five comparisons, including at both
+neighbors, have the same values for $(z,m)$ and $(Z,M)$.
+It suffices to test $3\le M\le7$, $0\le X',Y'\le11$,
+for each rule and transition. Direct substitution gives the claimed targets
+throughout. The proof \texttt{tables} in \texttt{Cross.lean} checks all $720$
+parameter and coordinate triples per rule.
+Stage five gives $O_2$ and stage six gives $E_3$. Outside the
+time-$n$ box all cells equal the uniform background by finite propagation.
+The three rules agree at stages 0 and 2--5. At stage one rule 323 also
+retains the origin, while rules 65 and 321 agree. For rule 73 the entire
+time-four box is zero, as is the exterior. Its bits 0 and 9 are respectively 1
+and 0, giving the uniform alternation thereafter.
+\end{proof}
+Reading the shapes on $X=Y$ proves the remaining cases of
+Theorem~\ref{words}. At even times the population is $1+4m+4=2n+5$.
+At odd times the defect count is
+\[
+  1+4(m+1)+4(2m-1)=12m+1.
+\]
+The terms count the origin, axial defects, and off-axis defects. The observed
+population is $(2n+1)^2-(12m+1)=4n^2-2n+6$.
+For rule 65 the five initial populations are $1,4,5,36,9$. For rule 323 they
+are $1,5,5,36,9$. The growing observation window matters on odd stages.
+
+\begin{center}
+\begin{tabular}{c@{\qquad\qquad}c}
+\setlength{\unitlength}{4.5pt}\begin{picture}(9,9)
+\put(4,1){\rule{3.8pt}{3.8pt}}
+\put(4,2){\rule{3.8pt}{3.8pt}}
+\put(3,3){\rule{3.8pt}{3.8pt}}
+\put(4,3){\rule{3.8pt}{3.8pt}}
+\put(5,3){\rule{3.8pt}{3.8pt}}
+\put(1,4){\rule{3.8pt}{3.8pt}}
+\put(2,4){\rule{3.8pt}{3.8pt}}
+\put(3,4){\rule{3.8pt}{3.8pt}}
+\put(4,4){\rule{3.8pt}{3.8pt}}
+\put(5,4){\rule{3.8pt}{3.8pt}}
+\put(6,4){\rule{3.8pt}{3.8pt}}
+\put(7,4){\rule{3.8pt}{3.8pt}}
+\put(3,5){\rule{3.8pt}{3.8pt}}
+\put(4,5){\rule{3.8pt}{3.8pt}}
+\put(5,5){\rule{3.8pt}{3.8pt}}
+\put(4,6){\rule{3.8pt}{3.8pt}}
+\put(4,7){\rule{3.8pt}{3.8pt}}
+\end{picture}&
+\setlength{\unitlength}{4.5pt}\begin{picture}(9,9)
+\put(0,0){\rule{3.8pt}{3.8pt}}
+\put(1,0){\rule{3.8pt}{3.8pt}}
+\put(2,0){\rule{3.8pt}{3.8pt}}
+\put(3,0){\rule{3.8pt}{3.8pt}}
+\put(5,0){\rule{3.8pt}{3.8pt}}
+\put(6,0){\rule{3.8pt}{3.8pt}}
+\put(7,0){\rule{3.8pt}{3.8pt}}
+\put(8,0){\rule{3.8pt}{3.8pt}}
+\put(0,1){\rule{3.8pt}{3.8pt}}
+\put(1,1){\rule{3.8pt}{3.8pt}}
+\put(2,1){\rule{3.8pt}{3.8pt}}
+\put(6,1){\rule{3.8pt}{3.8pt}}
+\put(7,1){\rule{3.8pt}{3.8pt}}
+\put(8,1){\rule{3.8pt}{3.8pt}}
+\put(0,2){\rule{3.8pt}{3.8pt}}
+\put(1,2){\rule{3.8pt}{3.8pt}}
+\put(2,2){\rule{3.8pt}{3.8pt}}
+\put(6,2){\rule{3.8pt}{3.8pt}}
+\put(7,2){\rule{3.8pt}{3.8pt}}
+\put(8,2){\rule{3.8pt}{3.8pt}}
+\put(0,3){\rule{3.8pt}{3.8pt}}
+\put(8,3){\rule{3.8pt}{3.8pt}}
+\put(0,5){\rule{3.8pt}{3.8pt}}
+\put(8,5){\rule{3.8pt}{3.8pt}}
+\put(0,6){\rule{3.8pt}{3.8pt}}
+\put(1,6){\rule{3.8pt}{3.8pt}}
+\put(2,6){\rule{3.8pt}{3.8pt}}
+\put(6,6){\rule{3.8pt}{3.8pt}}
+\put(7,6){\rule{3.8pt}{3.8pt}}
+\put(8,6){\rule{3.8pt}{3.8pt}}
+\put(0,7){\rule{3.8pt}{3.8pt}}
+\put(1,7){\rule{3.8pt}{3.8pt}}
+\put(2,7){\rule{3.8pt}{3.8pt}}
+\put(6,7){\rule{3.8pt}{3.8pt}}
+\put(7,7){\rule{3.8pt}{3.8pt}}
+\put(8,7){\rule{3.8pt}{3.8pt}}
+\put(0,8){\rule{3.8pt}{3.8pt}}
+\put(1,8){\rule{3.8pt}{3.8pt}}
+\put(2,8){\rule{3.8pt}{3.8pt}}
+\put(3,8){\rule{3.8pt}{3.8pt}}
+\put(5,8){\rule{3.8pt}{3.8pt}}
+\put(6,8){\rule{3.8pt}{3.8pt}}
+\put(7,8){\rule{3.8pt}{3.8pt}}
+\put(8,8){\rule{3.8pt}{3.8pt}}
+\end{picture}\\[-1pt]
+\small Stage 6 & \small Stage 7
+\end{tabular}\\[2pt]
+{\small Rule 65 on $[-4,4]^2$. Black squares mark live cells.}
+\end{center}
+
+\newpage
+\section{Ten diagonal readouts}
+For $b\ge2$ write $R_b(k)=(b^k-1)/(b-1)$, $u=\lfloor n/2\rfloor$,
+$v=\lceil n/2\rceil$. The forward and reverse values of a word
+$0^f1^w0^t$ are $b^tR_b(w)$ and $b^fR_b(w)$. Theorem~\ref{words} gives
+\[
+\begin{array}{ccll}
+\text{rule}&\text{stages}&\text{center to corner}&\text{corner to center}\\\hline
+62&n\ge2& b^v R_b(u)& bR_b(u)\\
+65&n\ge5,\ n\text{ even}&(b+1)b^{n-1}& b+1\\
+65&n\ge5,\ n\text{ odd}&R_b(n-1)&b^2R_b(n-1)\\
+73&n\ge4,\ n\text{ even}&0&0\\
+73&n\ge4,\ n\text{ odd}&R_b(n+1)&R_b(n+1).
+\end{array}
+\]
+Let $G(z)=\sum_{n\ge0}a_nz^n$. The last column lists every failure among
+indices where the source claims the homogeneous recurrence for $Q$.
+\begin{center}\small
+\begin{tabular}{llllrl}
+\toprule
+Rule & $b$ & Reverse / forward OEIS & Denominator $Q$ & $\deg(QG)$ & Failures\\
+\midrule
+62 & 10 & \oeis{285612} (reverse) & $(1-z)(1-bz^2)$ &4&4\\
+62 & 10 & \oeis{285613} (forward) & $(1-bz)(1-bz^2)$ &4&4\\
+65 & 10 & \oeis{285643} / \oeis{285644} & $(1-z^2)(1-b^2z^2)$ &8&5, 6, 8\\
+65 & 2  & \oeis{285645} / \oeis{285646} & same &8&5, 6, 8\\
+73 & 10 & \oeis{285647} / \oeis{285648} & same &7&none\\
+73 & 2  & \oeis{285649} / \oeis{285650} & same &7&none\\
+\bottomrule
+\end{tabular}
+\end{center}
+For rules 65 and 73 each parity subsequence eventually has the form
+$A+B(b^2)^k$ at $n=2k$ or $2k+1$, yielding the indicated denominator.
+For rule 62, $a_n-ba_{n-2}$ is constant in the reverse direction
+for $n\ge4$. In the forward direction it is a constant multiple of $b^{n-1}$
+for $n\ge4$. These give the displayed denominators. The numerator is obtained by
+\[
+                  [z^n](QG)=\sum_{j=0}^{\min(n,\deg Q)}Q_j a_{n-j}.
+\]
+For example \oeis{285613} has $QG=1-100z^2+1000z^4$. At $n=4$ the
+recurrence predicts $100$ whereas the diagonal $01100$ gives $1100$.
+For \oeis{285646} the numerator is $1+z-z^2-2z^3+4z^5+32z^6-32z^8$.
+In particular $n=4$ does satisfy that recurrence. The three failures come later.
+The coefficient lists for all ten are in the verification record.
+They agree with the published numerators.
+
+\newpage
+\section{Populations, partial sums and first differences}
+Write $p_n$ for a population and define
+$d_n=p_{2^n-1}$, $s_n=\sum_{i=0}^n p_i$, $e_n=p_{n+1}-p_n$.
+Let $\delta=0$ for rule 65 and $\delta=1$ for rule 323. From
+Theorem~\ref{cross} and the five seed values we obtain
+\[
+\begin{aligned}
+ d_n&=4\cdot4^n-10\cdot2^n+12 &&(n\ge2),\\
+ 6(s_n-\delta)&=
+ \begin{cases}4n^3+35n-66&n\text{ even},\\
+               4n^3+12n^2+35n-69&n\text{ odd}\end{cases} &&(n\ge4),\\
+ e_n&=\begin{cases}4n^2+4n+3&n\text{ even},\\-4n^2+4n+1&n\text{ odd}\end{cases}
+ &&(n\ge5).
+\end{aligned}
+\]
+The first identity follows by substitution, including the exceptional stage
+$2^2-1=3$. The partial-sum formula follows by taking successive differences
+and matching $s_4=55+\delta$. The last identity follows by subtraction.
+These verify the parity versions and the combined forms in the entries.
+\begin{center}\small
+\begin{tabular}{llllrl}
+\toprule
+Readout & Rule 65 & Rule 323 & Denominator $Q$ & $\deg(QG)$ & Failures in source\\
+\midrule
+$p_n$ & \oeis{269782}&\oeis{270569}&$(1-z^2)^3$&10&10 (rule 65)\\
+$d_n$ & \oeis{270084}&\oeis{271254}&$(1-z)(1-2z)(1-4z)$&4&none\\
+$s_n$ & \oeis{270085}&\oeis{271255}&$(1-z)^4(1+z)^3$&10&10 (rule 65)\\
+$e_n$ & \oeis{270086}&\oeis{271256}&$(1-z)^2(1+z)^3$&9&9 (both)\\
+\bottomrule
+\end{tabular}
+\end{center}
+For rule 65 the population numerator is
+\[
+  N=1+4z+2z^2+24z^3-3z^4+4z^6+4z^7-8z^8+4z^{10}.
+\]
+Both parity subsequences are polynomials of degree at most two past their
+seeds, so the sixth-order denominator annihilates the tail. Multiplying by it
+gives $N$ from the initial values. For rule 323 add $z(1-z^2)^3$ to $N$.
+Partial sums divide the series by $1-z$. For first differences the series is
+$((1-z)G-p_0)/z$. For the dyadic sequence sum the three geometric progressions
+and correct terms zero and one. This recovers the six published generating functions for
+these eight entries. A270569 and A271255 supply the other two sequences and have
+no listed conjectured generating function. The last nonzero degree in each
+row gives the sharp eventual cutoff.
+
+\paragraph{Sources and verification.}
+All eighteen OEIS entries are linked in the tables. For the local rule convention
+see S. Wolfram, \emph{A New Kind of Science} (2002), p.~170.
+The Lean project checks the local dynamics and the infinite-time inductive
+invariants by kernel reduction and integer arithmetic. The independent Python
+verifier evolves finite exceptions against an infinite background and checks
+the generating numerators against those printed in the entries.
+\end{document}

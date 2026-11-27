@@ -35,6 +35,8 @@ math proofs
 - [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf) · [Arbitrary subsets of affine grids (PDF)](Erdos-132-convex-lattice/rare-distances-beyond-grids.pdf)
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
+- [Knuth multiplication on Wythoff rows and the normalized Horadam determinant](Wythoff-circle-product/README.md) · [Manuscript](Wythoff-circle-product/row-products.pdf)
+- [Diagonals and populations of five von Neumann cellular automata](Von-Neumann-diagonals/README.md) · [Manuscript](Von-Neumann-diagonals/diagonals.pdf)
 
 - [A000556 and A000557 — exact modular periods and both period conjectures of Kinlaw, Morris and Thiagarajan](A000556/README.md) · [Manuscript](A000556/periods.pdf) · [Lean finite cases](A000556/SmallCases.lean)
 - [A016789 — the negabinary three-way XOR identity](A016789/README.md) · [Lean proof](A016789/Proof.lean)
