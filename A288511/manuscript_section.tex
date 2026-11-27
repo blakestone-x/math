@@ -1,0 +1,150 @@
+\section{A288511: the exact thirteen-term length recurrence}
+\label{sec:a288511}
+
+Starting with $w_0=00$, apply a left-to-right nonoverlapping scan with
+rules $00\mapsto0101$ and $10\mapsto001$, copying an unmatched letter.
+Let $L_n=|w_n|$. Kimberling conjectured that these literal lengths are
+the independently defined sequence A288511; the assertion is repeated
+in A288508 and A288512 \cite{A288511,A288508,A288512}.
+We prove this complete assertion, counted once across the three entries.
+
+\paragraph{Theorem.}
+For every $n\ge16$,
+\begin{align*}
+L_n={}&2L_{n-1}-L_{n-2}+2L_{n-3}-4L_{n-4}+4L_{n-5}-4L_{n-6}\\
+ &+4L_{n-7}-4L_{n-8}+4L_{n-9}-3L_{n-10}+2L_{n-11}-3L_{n-12}+2L_{n-13},
+\end{align*}
+with
+\[
+(L_0,\ldots,L_{15})=(2,4,5,7,9,12,17,23,33,48,70,103,152,228,343,515).
+\]
+Thus $L_n=\mathrm{A288511}(n)$ for every $n\ge0$.
+
+\subsection{A literal finite-word coding}
+Use the code $h(A)=10$, $h(B)=100$, $h(C)=1000$ and the substitution
+\[
+\sigma(A)=B,\qquad\sigma(B)=C,\qquad\sigma(C)=AAB.
+\]
+When followed by a word beginning in $1$, a code block scans independently
+of the following word, emitting respectively
+\[
+r(A)=001,\quad r(B)=0010,\quad r(C)=0010101.
+\]
+The three elementary identities $r(X)00=00h(\sigma(X))$ imply
+\begin{equation}
+r(v)00=00h(\sigma(v))
+\label{eq:a288511:rotation}
+\end{equation}
+for every finite code word $v$, by concatenation and induction.
+The required independence is proved from the scanner: no unrestricted
+binary concatenation identity is assumed.
+
+For a phase $i$ modulo ten, put
+\[
+F_i(v,t)=0^{b_i}h(v)h(s_i)1^{t+1},\qquad t\ge0.
+\]
+All boundary data appear in the following table; $\epsilon$ denotes the
+empty token word.
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+$i$&$b_i$&$s_i$&$\ell_i$&$e_i$&$d_i$\\\hline
+0&1&BAA&$\epsilon$&$\epsilon$&1\\
+1&3&CB&AC&A&0\\
+2&1&ABA&$\epsilon$&$\epsilon$&1\\
+3&3&BC&AC&$\epsilon$&1\\
+4&1&CAA&$\epsilon$&A&1\\
+5&3&ABB&AC&$\epsilon$&0\\
+6&1&BCA&$\epsilon$&C&1\\
+7&3&AAB&AC&$\epsilon$&0\\
+8&1&BBA&$\epsilon$&$\epsilon$&1\\
+9&3&CC&AC&AA&1
+\end{tabular}
+\end{center}
+Direct scanning of the ten suffixes gives
+\[
+T(h(s_i)1^{t+1})=00h(e_i)h(s_{i+1})1^{t+1+d_i}.
+\]
+Equation~\eqref{eq:a288511:rotation} then handles the entire core. The
+initial prefix $0$ changes to $000$ after incorporating the interior's
+leading $00$. For initial prefix $000$, the combined output prefix is
+$0101000=0h(AC)$. Hence, for every finite $v$ and every $t\ge0$,
+\begin{equation}
+T(F_i(v,t))=F_{i+1}(\ell_i\sigma(v)e_i,t+d_i).
+\label{eq:a288511:state}
+\end{equation}
+These are identities of literal binary words. The ninth actual iterate is
+\[
+w_9=F_0(ACCBBCBBCAA,5).
+\]
+Induction using~\eqref{eq:a288511:state} therefore describes every subsequent
+actual iterate, with no limiting-word assumption.
+
+\subsection{Eliminating the interior and the boundary cycle}
+If the core has counts $(a,b,c)$, substitution sends them to
+\[
+M(a,b,c)=(2c,a+c,b),\qquad M^3=M+2I.
+\]
+The update additionally inserts the counts of $\ell_i e_i$ and increases
+$t$ by $d_i$. Length is the affine functional
+\[
+\mathcal L(i,a,b,c,t)=2a+3b+4c+t+1+b_i+|h(s_i)|.
+\]
+Let $E$ denote the forward shift and define
+$R_n=L_{n+3}-L_{n+1}-2L_n$. The relation $M^3=M+2I$ eliminates
+the three core counts. At phase $i$ with current coordinate $t$, the
+remaining expression is $-2t+q_i$, where
+\[
+(q_i)_{i=0}^9=(-4,-3,-3,-3,-4,-3,-4,-3,-3,-3).
+\]
+Set $S_n=R_n+R_{n+2}+R_{n+4}+R_{n+6}+R_{n+8}$. The same finite table
+gives $S=-10t+u_i$, with
+\[
+(u_i)_{i=0}^9=(-44,-41,-48,-45,-42,-39,-46,-43,-50,-47).
+\]
+Each of the ten rows satisfies $-10d_i+u_{i+1}-u_i=-7$.
+Consequently $S_{n+1}-S_n=-7$ and
+\begin{equation}
+(E-1)^2(1+E^2+E^4+E^6+E^8)(E^3-E-2)L=0.
+\label{eq:a288511:annihilator}
+\end{equation}
+Expanding this monic degree-thirteen polynomial gives the recurrence in
+the theorem. The boundary model proves it at newest indices at least
+22. Direct evaluation of the preceding literal words proves the six
+remaining instances at indices 16 through 21 and the sixteen initial
+values. Strong induction then proves equality with the independently
+specified source recurrence at every natural index.
+
+The Lean implementation certifies the expanded identity directly for
+all ten phases and four arbitrary integer coordinates, through thirteen
+explicit state transitions. This symbolic identity is then transported
+to the literal words by the proved coding theorem. The $R,S$ elimination
+above is a shorter mathematical explanation of the same polynomial.
+
+\subsection{Source indexing and formal scope}
+The correctly indexed ordinary generating function is $N(x)/D(x)$, where
+\begin{align*}
+D(x)&=(1-x)^2(1-x^2-2x^3)(1-x+x^2-x^3+x^4)(1+x+x^2+x^3+x^4),\\
+N(x)&=2-x^2-3x^3-x^5-x^7-x^9-x^{10}-3x^{11}+x^{12}+2x^{13}+x^{14}-2x^{15}.
+\end{align*}
+The source prints $xN(x)/D(x)$, which is shifted by one and has constant
+coefficient zero despite offset zero and $L_0=2$. We target the source's
+recurrence-defined length assertion. The corrected generating function
+is an algebraic corollary of that theorem, not a separate counted result
+or an additional formal power-series theorem.
+
+The formal endpoint is
+\texttt{Kimberling288511.all\_lengths}; its quantifier is every $n:\mathbb N$,
+and its two sides are the length of the recursive literal scanner and
+an independent integer recurrence with all sixteen source initial values.
+The package contains no admitted theorem, custom axiom, or
+\texttt{native\_decide}. All four proof modules are explicit Lake roots.
+The same length assertion appears in three OEIS entries, so the result
+is counted once. Adjacent position, frequency, and limiting-word
+assertions are not included.
+
+The source and prior-publication screen distinguishes this rule from
+the A288476 rule $00\mapsto0101,1\mapsto011$ and the
+A288462/A288465 Tribonacci rule studied by Dvo\v r\'akov\'a,
+Pelantov\'a, and Shallit. Finite recoding is standard prior art.
+The searches found no earlier proof of this exact source assertion;
+they do not establish exhaustive historical priority.

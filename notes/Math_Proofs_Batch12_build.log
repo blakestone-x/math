@@ -1,0 +1,281 @@
+Batch 12 manuscript build and visual inspection record
+Date: November 27, 2026
+Source: Math_Proofs_Batch12.tex
+Source SHA256: cf1417c25544d20539b4ba17942ac7fc4853f2fbd322c8b0079c2fb06d60e34e
+PDF SHA256: d115983ed5682d1f15eb3b7c85bdb369fca73524a43a764db758103a3daec0ca
+Build: two pdfLaTeX passes with -interaction=nonstopmode -halt-on-error -file-line-error.
+Both passes exited 0. Source bytes were unchanged during compilation.
+Final log warnings, overfull/underfull boxes, missing characters, errors: none.
+Visual inspection: all nine pages inspected at 100 dpi.
+After the degree-zero wording correction, all pages were re-rendered; only page 6 changed.
+The final page 6 was inspected again. Final pages 1-5 and 7-9 are byte-identical PNGs to the previously inspected renders.
+Equations, tables, margins, page breaks, and references are legible and unclipped.
+All 17 font entries are embedded subsets and have Unicode maps.
+
+PDF metadata:
+Title:           Floor sequences, replacement words, and cyclotomic products
+Subject:         Three conjectural identities and complete Lean proofs
+Keywords:        
+Author:          Blake Stone
+Creator:         LaTeX with hyperref
+Producer:        pdfTeX-1.40.26
+CreationDate:    Fri Nov 27 14:06:37 2026 CST
+ModDate:         Fri Nov 27 14:06:37 2026 CST
+Custom Metadata: yes
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           9
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       292918 bytes
+Optimized:       no
+PDF version:     1.7
+
+Font inspection:
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+KWADIY+LMRoman12-Bold                Type 1            Custom           yes yes yes     38  0
+HTHLKP+LMRoman12-Regular             Type 1            Custom           yes yes yes     39  0
+CDKRML+LMRoman10-Regular             Type 1            Custom           yes yes yes     40  0
+BYLFUB+LMRoman10-Bold                Type 1            Custom           yes yes yes     41  0
+CDKRML+LMRoman10-Regular             Type 1            Custom           yes yes yes     42  0
+JSUWLF+LMMathSymbols10-Regular       Type 1            Custom           yes yes yes     43  0
+LHWZMW+LMMathItalic10-Regular        Type 1            Custom           yes yes yes     45  0
+NJKBJK+LMRoman8-Regular              Type 1            Custom           yes yes yes     46  0
+MXGLOA+LMMathExtension10-Regular     Type 1            Custom           yes yes yes     47  0
+DGEBSP+LMRoman10-Italic              Type 1            Custom           yes yes yes     49  0
+ZNAKFS+LMMathItalic8-Regular         Type 1            Custom           yes yes yes     50  0
+HFKFSS+LMMathSymbols8-Regular        Type 1            Custom           yes yes yes     61  0
+HOTKPC+LMMono10-Regular              Type 1            Custom           yes yes yes     75  0
+KUUWCI+MSBM10                        Type 1            Builtin          yes yes yes     77  0
+KXDSVF+LMMathItalic6-Regular         Type 1            Custom           yes yes yes     89  0
+CCSTXP+LMRoman6-Regular              Type 1            Custom           yes yes yes    111  0
+NJKBJK+LMRoman8-Regular              Type 1            Custom           yes yes yes    129  0
+
+Final rendered-page SHA256 hashes:
+7dbbfa8ff69b475ac646b93fd6670019e7539a3a0cbfbff75f82850ac6a81233  page-1.png
+0987bafc872d48199b7e086e2af11e019164e395a3b6ab215a4804e5da8e9842  page-2.png
+18bfd531b10ccd132a65524b57bb86658e251a3580716a53c162b8a6ec3b00b8  page-3.png
+52e302505bcf19f2ec09d395f380a10bb35d7e3c3484db2643eea3a217083a00  page-4.png
+d319dcaa66d11c55cd0252c2b7ce2dd49a5263957074801482709f720490d20e  page-5.png
+28325a18d62c2d4e60bff759223b2fa77da85e4b653ead076df23ed0e4262cc9  page-6.png
+cc897083a5665c9ab129f7ec7f9d997aa69467c326c6b4eb4a314f7af0a4cc4f  page-7.png
+e58f88c9910a82b9c3c00e3e17afd161e16c18d02f2a1f782f8e6a616f333b9f  page-8.png
+e746df205bd8a4f70fcc3d575b9ce617c65edd58157846a7305c446cebcdb2b9  page-9.png
+
+pdfLaTeX pass 1 transcript:
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/workspace/scratch/5f072ff518ad/output/batch12/notes/Math_Proofs_Batch12.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.out)
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.out) (/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+[1{/workspace/scratch/5f072ff518ad/research/batch9/pdfbuild/texmf/fonts/map/pdf
+tex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/shar
+e/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
+thsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/f
+onts/enc/dvips/lm/lm-mathex.enc}]
+[2] (/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+[9]
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.aux) )</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+tt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on /workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/doc
+ument/Math_Proofs_Batch12.pdf (9 pages, 292918 bytes).
+Transcript written on /workspace/scratch/5f072ff518ad/research/batch12/pdfbuild
+/document/Math_Proofs_Batch12.log.
+
+Exit code: 0
+
+
+pdfLaTeX pass 2 transcript:
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/workspace/scratch/5f072ff518ad/output/batch12/notes/Math_Proofs_Batch12.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.out)
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.out) (/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+[1{/workspace/scratch/5f072ff518ad/research/batch9/pdfbuild/texmf/fonts/map/pdf
+tex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/shar
+e/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
+thsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/f
+onts/enc/dvips/lm/lm-mathex.enc}]
+[2] (/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+[9]
+(/workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/document/Math_Proofs
+_Batch12.aux) )</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+tt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on /workspace/scratch/5f072ff518ad/research/batch12/pdfbuild/doc
+ument/Math_Proofs_Batch12.pdf (9 pages, 292918 bytes).
+Transcript written on /workspace/scratch/5f072ff518ad/research/batch12/pdfbuild
+/document/Math_Proofs_Batch12.log.
+
+Exit code: 0
+

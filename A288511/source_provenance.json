@@ -1,0 +1,65 @@
+{
+  "checked": "2026-11-27",
+  "primary_repository": "oeis/oeisdata",
+  "immutable_ref": "571197984aeda7b8b680fe3a1f6a43f9898cd441",
+  "sources": [
+    {
+      "id": "A288508",
+      "live_url": "https://oeis.org/A288508",
+      "export_url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A288/A288508.seq",
+      "current_matches_immutable": true
+    },
+    {
+      "id": "A288511",
+      "live_url": "https://oeis.org/A288511",
+      "export_url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A288/A288511.seq",
+      "current_matches_immutable": true
+    },
+    {
+      "id": "A288512",
+      "live_url": "https://oeis.org/A288512",
+      "export_url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A288/A288512.seq",
+      "current_matches_immutable": true
+    }
+  ],
+  "queries": [
+    "A288511 proof",
+    "A288508 proof lengths",
+    "A288512 proof",
+    "00->0101 10->001",
+    "site:trureturing.org 288511",
+    "site:trureturing.org 288508"
+  ],
+  "search_surfaces": [
+    "system1 web search",
+    "system2 web search",
+    "global GitHub code",
+    "VladimirReshetnikov/ProveIt",
+    "trureturing current index"
+  ],
+  "relevant_predecessors": [
+    {
+      "url": "https://www.trureturing.org/research/oeis-a288476-replacement-iterate-length/",
+      "scope": "00->0101,1->011; different rule"
+    },
+    {
+      "url": "https://dmtcs.episciences.org/articles/17782",
+      "scope": "A288462/A288465, 00->0101,1->10; different rule"
+    }
+  ],
+  "novelty": "No prior proof of the exact target located in this bounded screen; not a worldwide priority assertion.",
+  "repository_heads_at_author_screen": {
+    "the-omega-institute/trureturing": "3eb6613180291b2da0159ffc0d8f43ce01dc709f",
+    "VladimirReshetnikov/ProveIt": "5e38fc96429f83250cea68d8bdcbbf3e08fcef48"
+  },
+  "independent_followup_heads": {
+    "the-omega-institute/trureturing": "38910d2c96de5f4ed439d8fdc0d31b7f34f0e066",
+    "VladimirReshetnikov/ProveIt": "a68af0f507b9a558a8c7e8390e338bd15cc928e2"
+  },
+  "independent_followup_queries": [
+    "A288511",
+    "\"00->0101\" \"10->001\""
+  ],
+  "independent_followup_result": "No matching result in either repository",
+  "search_caveat": "Observed heads can be newer than code-search indexes; this is bounded search evidence, not a complete audit of every head file."
+}

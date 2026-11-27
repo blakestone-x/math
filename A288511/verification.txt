@@ -1,0 +1,37 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A288511_author_bin7gj91
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2793/2797] Built Blocks
+✔ [2794/2797] Built Counts
+ℹ [2795/2797] Built Recurrence
+info: ././././Recurrence.lean:62:0: '_private.Recurrence.0.Kimberling288511.phase_certificate0' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:108:0: '_private.Recurrence.0.Kimberling288511.phase_certificate1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:154:0: '_private.Recurrence.0.Kimberling288511.phase_certificate2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:200:0: '_private.Recurrence.0.Kimberling288511.phase_certificate3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:246:0: '_private.Recurrence.0.Kimberling288511.phase_certificate4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:292:0: '_private.Recurrence.0.Kimberling288511.phase_certificate5' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:338:0: '_private.Recurrence.0.Kimberling288511.phase_certificate6' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:384:0: '_private.Recurrence.0.Kimberling288511.phase_certificate7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:430:0: '_private.Recurrence.0.Kimberling288511.phase_certificate8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Recurrence.lean:476:0: '_private.Recurrence.0.Kimberling288511.phase_certificate9' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2796/2797] Built Proof
+info: ././././Proof.lean:3:0: 'Kimberling288511.rotation' depends on axioms: [propext]
+info: ././././Proof.lean:4:0: 'Kimberling288511.rewrite_shape' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:5:0: 'Kimberling288511.word_shape' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:6:0: 'Kimberling288511.literal_numeric_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:7:0: 'Kimberling288511.recurrence_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:8:0: 'Kimberling288511.literal_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:9:0: 'Kimberling288511.all_lengths' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Blocks.lean: 82cef17807ff684bdfdae2868ae40b42d803df949c5bf01298dfdb7dc9085024
+SHA256 Counts.lean: 6488b5fcd77132f831f87e471f040149e6dda3f7a7f782a74995e4f4c4614297
+SHA256 Proof.lean: 9a2918f542a960ef685e093edced30b84342ad8fad13d98d25bfbd6eb026005f
+SHA256 Recurrence.lean: 8154b23f0f88c38cb9fe8068ec276673b079f3a94b6db6fb3f88561640fb4178
+SHA256 lakefile.lean: c2e1e1b9688e3b2c79128ef5f9d2e27cf361d66f57343b89dad9cd636e99773f
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 54128eb3c73cb23f8bde76f0298e7d713432d92d38d5b0d7fe2d3ac7a0d144a8

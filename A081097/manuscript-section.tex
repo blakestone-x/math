@@ -1,0 +1,168 @@
+\section{A nested-floor sequence and four Pell orbits}\label{sec:pell}
+
+Benoit Cloitre's sequence A081097 lists the positive integers satisfying
+\begin{equation}\label{eq:literal-floor}
+ n^2=\frac15\left(n+
+ \left\lfloor\sqrt5\,n\left\lfloor\sqrt5\,n\right\rfloor\right\rfloor\right).
+\end{equation}
+The entry records Colin Barker's 2013 empirical generating function
+\cite{oeis081097}. We prove that exact formula. The separate conjecture
+in the entry concerning arbitrary nonsquare parameters is outside this theorem.
+Zero satisfies the displayed equation trivially; the positive restriction
+agrees with the source's list and offset.
+
+\begin{theorem}\label{thm:pell-main}
+Let $a(1)<a(2)<\cdots$ enumerate the positive solutions of
+\eqref{eq:literal-floor}. Put
+\[
+ U=\begin{pmatrix}161&360\\72&161\end{pmatrix},\qquad
+ s_0=\binom42,\quad s_1=\binom{29}{13},\quad
+ s_2=\binom{114}{51},\quad s_3=\binom{199}{89}.
+\]
+For $k\ge0$ and $0\le i<4$,
+\[
+ a(4k+i+1)=\frac{(U^ks_i)_1+1}{5}.
+\]
+In particular, the first eight terms are
+$1,6,23,40,273,1870,7343,12816$, and
+\begin{equation}\label{eq:pell-recurrence}
+ a(j+8)=322a(j+4)-a(j)-64\qquad(j\ge1).
+\end{equation}
+As an identity of formal power series,
+\begin{equation}\label{eq:pell-gf}
+\sum_{j\ge1}a(j)z^j=
+\frac{z(z^7+z^6+13z^5+89z^4-17z^3-17z^2-5z-1)}
+{(z-1)(z^2-4z-1)(z^2+4z-1)(z^4+18z^2+1)}.
+\end{equation}
+\end{theorem}
+
+\begin{lemma}[Exact floor reduction]\label{lem:floor-bridge}
+For $n\ge1$, equation \eqref{eq:literal-floor} holds if and only if
+there is an integer $y\ge0$ satisfying
+\[
+ y^2=5n^2-2n+1\quad\hbox{or}\quad y^2=5n^2-2n+2.
+\]
+Equivalently, with $x=5n-1$,
+\begin{equation}\label{eq:pell-admissible}
+ x^2-5y^2\in\{-4,-9\},\qquad x\equiv4\pmod5,\qquad x,y\ge0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Suppose first that the nested-floor equation holds, and put
+$y=\lfloor\sqrt5\,n\rfloor$, $A=5n^2-n$, and $u=\sqrt5\,ny$.
+Then $A\le u<A+1$, with $A,u\ge0$. Dividing the lower inequality by $n$
+and squaring gives
+\[
+ 5y^2\ge(5n-1)^2=25n^2-10n+1.
+\]
+Since $y^2$ is integral, $y^2\ge5n^2-2n+1$.
+If $y^2\ge5n^2-2n+3$, the upper inequality, squared, would imply
+\[
+ 25n^4-10n^3+15n^2\le5n^2y^2
+ <(5n^2-n+1)^2
+ =25n^4-10n^3+11n^2-2n+1,
+\]
+which contradicts $n\ge1$. This proves the two possibilities.
+
+Conversely, suppose $y^2=5n^2-2n+c$ for $c\in\{1,2\}$ and $y\ge0$.
+The inequalities
+\[
+ (\sqrt5\,n-1)^2<5n^2-2n+1\le y^2\le5n^2
+\]
+give $y\le\sqrt5\,n<y+1$, hence the inner floor is $y$.
+Furthermore,
+\[
+ u^2-A^2=(5c-1)n^2>0,\qquad
+ (A+1)^2-u^2=(11-5c)n^2-2n+1.
+\]
+The second expression is positive for $c=1$. For $c=2$ it is
+$(n-1)^2$, also positive unless $n=1$; that exception would require
+$y^2=5$, impossible for an integer. Thus $A\le u<A+1$, proving the
+outer floor identity. Substituting $x=5n-1$ gives the stated norms.
+\end{proof}
+
+\begin{lemma}[Exhaustive descent]\label{lem:pell-descent}
+The pairs satisfying \eqref{eq:pell-admissible} are precisely
+$U^ks_i$ for $k\ge0$ and $0\le i<4$.
+\end{lemma}
+
+\begin{proof}
+The determinant of $U$ is $161^2-5\cdot72^2=1$. Both $U$ and
+\[
+ U^{-1}=\begin{pmatrix}161&-360\\-72&161\end{pmatrix}
+\]
+preserve the norm $x^2-5y^2$ and the first coordinate modulo $5$.
+Each seed satisfies the required conditions, and the forward map preserves
+nonnegativity. This proves one inclusion.
+
+For the converse write $x^2-5y^2=-D$, where $D\in\{4,9\}$.
+If $x\ge483$, then
+\begin{align*}
+ (161x)^2-(360y)^2&=x^2-25920D
+       \ge483^2-25920\cdot9=9>0,\\
+ 5\big((161y)^2-(72x)^2\big)&=x^2+25921D>0,\\
+ (360y)^2-(160x)^2&=320x^2+25920D>0.
+\end{align*}
+All compared quantities are nonnegative, so
+$U^{-1}(x,y)$ has positive coordinates and its first coordinate is
+strictly less than $x$. This is a descent within the same admissible set.
+It terminates at $x<483$. At that point
+\[
+ 5y^2=x^2+D\le482^2+9=232333<5\cdot217^2,
+\]
+so $y<217$. In this finite rectangle the residue and norm tests give
+exactly
+\[
+\begin{array}{c|rrrr}
+ x&4&29&114&199\\
+ y&2&13&51&89\\
+ x^2-5y^2&-4&-4&-9&-4
+\end{array}
+\]
+and no other pair. This finite claim is explicitly checked by Lean's
+kernel in \path{pell_reduced_certificate}; a separate integer script
+repeats it. Reversing the descent proves the unbounded classification.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:pell-main}]
+The floor bridge and descent give all candidates. Coordinatewise,
+\[
+ s_0<s_1<s_2<s_3<Us_0=\binom{1364}{610}.
+\]
+Every entry of $U$ is positive, so these strict inequalities persist
+after applying $U^k$. The first coordinates therefore occur in exactly
+the interleaved order asserted in the theorem. They are congruent to
+$4$ modulo $5$, so $(x+1)/5$ is a positive integer. This proves
+the exact enumeration, including uniqueness of every index.
+
+The matrix identity $U^2-322U+I=0$ gives
+$x_{k+2}=322x_{k+1}-x_k$ on each orbit. Substituting $x_k=5n_k-1$
+gives \eqref{eq:pell-recurrence}. Subtracting consecutive instances yields
+\[
+ a(j+9)=a(j+8)+322a(j+5)-322a(j+4)-a(j+1)+a(j).
+\]
+Using the initial terms, coefficient comparison gives
+\[
+ \sum_{j\ge1}a(j)z^j=
+ \frac{z+5z^2+17z^3+17z^4-89z^5-13z^6-z^7-z^8}
+ {(1-z)(1-322z^4+z^8)}.
+\]
+Finally,
+\[
+ (z^2-4z-1)(z^2+4z-1)(z^4+18z^2+1)=z^8-322z^4+1,
+\]
+which converts this expression to \eqref{eq:pell-gf}. The denominator
+has nonzero constant term, so all manipulations are valid formally.
+\end{proof}
+
+\paragraph{Formal endpoint and attribution.}
+Six Lean modules prove the full statement from the real-floor definition.
+The final theorem \path{A081097.full_resolution} combines strict ordering,
+positive terms, unique literal membership, the coefficient identification,
+and the exact source numerator--denominator identity in $\Z[[X]]$.
+The bounded certificate is only the terminating case of an infinite descent.
+Cloitre's definition and Barker's formula retain their attribution;
+Pell descent and the matrix generating-function method are classical.
+The source and prior-work record is retained in the accompanying package.
+

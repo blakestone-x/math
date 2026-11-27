@@ -1,0 +1,36 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A081097_author_kh7ktb9q
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2805/2811] Built FloorBridge
+info: ././././FloorBridge.lean:167:0: 'A081097.source_iff_pell' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2806/2811] Built PellFinite
+✔ [2807/2811] Built PellOrbits
+ℹ [2808/2811] Built Sequence
+info: ././././Sequence.lean:200:0: 'A081097.term_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sequence.lean:201:0: 'A081097.term_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sequence.lean:202:0: 'A081097.source_iff_unique_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2809/2811] Built GeneratingFunction
+info: ././././GeneratingFunction.lean:121:0: 'A081097.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2810/2811] Built Proof
+info: ././././Proof.lean:18:0: 'A081097.source_iff_pell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:19:0: 'A081097.pell_reduced_certificate' depends on axioms: [propext]
+info: ././././Proof.lean:20:0: 'A081097.pell_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:21:0: 'A081097.source_iff_unique_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:22:0: 'A081097.term_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:23:0: 'A081097.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:24:0: 'A081097.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 FloorBridge.lean: b2182c92df773616bb6f57a9b8e6d0a3ac55b9de84b9d98a9e5373399e7d38d0
+SHA256 GeneratingFunction.lean: e9ce93338076e47f2ca880872e37c81594baee14c3f7a7cc0fac67e3da273baa
+SHA256 PellFinite.lean: e722177acf721a327c77ddc01e4bfa2f147c42f4c057cdaa7b899e9e0d2894a1
+SHA256 PellOrbits.lean: de9194f13c9532716d3f9303492709282a4dba12033a141575a6e6dac1ee5293
+SHA256 Proof.lean: c8664b72dee0ecb3e85e08510ef7002d0906dbb94699b17646b719599fb5c117
+SHA256 Sequence.lean: 55c4387fdcc0e1141298327402244e3954ce4987bdd6ea0961265f5b774d372d
+SHA256 lakefile.lean: 60d04509076d1ee656da28cb273d79be6749a0902ed1910d077df2835e1b1280
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: d0e812b743b93ae5732ea31048ff40dcbcf45a989543a9accb77240f98f5b217

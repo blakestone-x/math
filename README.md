@@ -1,6 +1,11 @@
 # math
 math proofs
 
+- [A081097 — all positive nested-floor solutions and the exact generating function](A081097/README.md) · [Complete Lean proof](A081097/Proof.lean)
+- [A288511 — the full thirteen-term recurrence for literal replacement-word lengths](A288511/README.md) · [Complete Lean proof](A288511/Proof.lean)
+- [A118207 — the complete Liouville–cyclotomic product identity](A118207/README.md) · [Complete Lean proof](A118207/Proof.lean)
+- [Floor sequences, replacement words, and cyclotomic products — Batch 12 manuscript](notes/Math_Proofs_Batch12.pdf) · [Collection guide](notes/Math_Proofs_Batch12_README.md)
+
 - [Sigrist’s prime-factor permutations — bounded displacement and fixed-point density one for every threshold](Sigrist-prime-permutations/README.md) · [Manuscript](Sigrist-prime-permutations/prime-permutations.pdf) · [Fixed-point density in Lean](Sigrist-prime-permutations/Density.lean)
 - [Hadjicostas’s low Josephus survivors — the partial-sum recurrence, exact labels, and the distribution of normalized survivors](Josephus-low-survivors/README.md) · [Manuscript](Josephus-low-survivors/low-survivors.pdf) · [Recurrence and labels in Lean](Josephus-low-survivors/Josephus.lean)
 - [Rush’s totient pairs — a rank counterexample, exact doubling criterion, and prime-power families](Totient-doubling/README.md) · [Manuscript](Totient-doubling/totient-fibers.pdf) · [Pairing criterion in Lean](Totient-doubling/Fibers.lean)

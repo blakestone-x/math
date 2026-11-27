@@ -1,0 +1,196 @@
+{
+  "checked_utc_date": "2026-11-27",
+  "scope_note": "Bounded retrieved results; no claim of exhaustive indexing or worldwide priority.",
+  "github_searches": [
+    {
+      "query": "A118207",
+      "scope": "global",
+      "topn": 100,
+      "returned_hits": 100,
+      "relevant_result_urls": [
+        "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a118/A118207.java",
+        "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/118/A118207.asm",
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2025-10-02.ack.man",
+        "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2025-10-06.ack.man"
+      ],
+      "other_hits": "Unrelated hexadecimal substrings or numerical labels; no target proof located in inspected results.",
+      "raw_research_sha256": "869f80f1256ea8de906bca348a15e948b45502f0d874c441322e47dfa1b19f2b"
+    },
+    {
+      "query": "A118207",
+      "scope": "VladimirReshetnikov/ProveIt",
+      "returned_hits": 0,
+      "raw_research_file": "alg12_A118207_prior0.json"
+    },
+    {
+      "query": "A118207",
+      "scope": "the-omega-institute/trureturing",
+      "returned_hits": 0,
+      "successful_retry": true,
+      "raw_research_file": "alg12_A118207_trure.json"
+    },
+    {
+      "query": "Liouville cyclotomic",
+      "scope": "VladimirReshetnikov/ProveIt",
+      "returned_hits": 10,
+      "result_urls": [
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Analysis/FabiusFunction/README.md",
+          "path": "Analysis/FabiusFunction/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/verification/examples.txt",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/verification/examples.txt"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/SetTheory/Cardinals/docs/reports/README.md",
+          "path": "SetTheory/Cardinals/docs/reports/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Analysis/Transseries/docs/series-and-transseries/README.md",
+          "path": "Analysis/Transseries/docs/series-and-transseries/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/README.md",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_formalization_2026-11-20/verification/examples.txt",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_formalization_2026-11-20/verification/examples.txt"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/exponents-and-q-series/README.md",
+          "path": "Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/exponents-and-q-series/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/new-growth.tex",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/riemann_ipra_prime_criteria_2026-11-20/new-growth.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/representations/README.md",
+          "path": "Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/representations/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/a4404ca0247c31b8760589015b7eb6ab4efb6f92/Analysis/FabiusFunction/docs/fabius_lean_walkthrough/fabius_lean_walkthrough (part II).tex",
+          "path": "Analysis/FabiusFunction/docs/fabius_lean_walkthrough/fabius_lean_walkthrough (part II).tex"
+        }
+      ],
+      "assessment": "Unrelated Fabius/q-series and other material; no matching settlement."
+    },
+    {
+      "query": "Liouville cyclotomic",
+      "scope": "the-omega-institute/trureturing",
+      "returned_hits": 0,
+      "successful_retry": true,
+      "raw_research_file": "alg12_A118207_truresemantic_retry.json"
+    },
+    {
+      "query_family": "Liouville cyclotomic product combinations",
+      "scope": "global",
+      "result_urls": [
+        {
+          "url": "https://github.com/homenc/HElib/blob/3e337a66a91a92d49de6a9505340826b0eb71081/src/NumbTh.cpp",
+          "path": "src/NumbTh.cpp"
+        },
+        {
+          "url": "https://github.com/KULeuven-COSIC/Bootstrapping_Polyfunctions/blob/fc27e5461815499c1d6366a1d73ec7e39087b2cd/HElib/HElib/src/NumbTh.cpp",
+          "path": "HElib/HElib/src/NumbTh.cpp"
+        },
+        {
+          "url": "https://github.com/UCF-Lou-Lab-PET/Universal-BGV/blob/8c86bb416e823432fb4f168ef340957439ca5b4d/HElib/src/NumbTh.cpp",
+          "path": "HElib/src/NumbTh.cpp"
+        },
+        {
+          "url": "https://github.com/Findeton/isp/blob/95e18b333b597a154fec5552240919cafd7a6d43/v14/code/spc_exact.py",
+          "path": "v14/code/spc_exact.py"
+        },
+        {
+          "url": "https://github.com/Magic-Man-us/RustPhysicsEngine/blob/879042143cec95dd5995972cc274bc11c37bf9ce/bindings/python/src/generated/types/exact.rs",
+          "path": "bindings/python/src/generated/types/exact.rs"
+        },
+        {
+          "url": "https://github.com/xenodeve/mip-research/blob/acc343f33476fa5c692037d9f92d75b2fc9f8ce6/tools/igc/mathbackend/algebra.py",
+          "path": "tools/igc/mathbackend/algebra.py"
+        },
+        {
+          "url": "https://github.com/bojieli/ai-infra-book/blob/f639c779a2881165e236c1243bd3279fa3a152b4/references/proceedings/ASPLOS/2026/paper-156.txt",
+          "path": "references/proceedings/ASPLOS/2026/paper-156.txt"
+        },
+        {
+          "url": "https://github.com/acmeism/RosettaCodeData/blob/1d475861d7141ef2fafff293d9339f56e4b0f5db/popular-tasks",
+          "path": "popular-tasks"
+        },
+        {
+          "url": "https://github.com/yao8839836/text_gcn/blob/962223652e9bb164ac2d83cd09fc7b8845ce860b/data/corpus/dblp_vocab.txt",
+          "path": "data/corpus/dblp_vocab.txt"
+        },
+        {
+          "url": "https://github.com/joxeankoret/diaphora/blob/fcd7bdffb05b91951b5b56a5fb368b52964354f5/pygments/lexers/macaulay2.py",
+          "path": "pygments/lexers/macaulay2.py"
+        }
+      ],
+      "assessment": "General cyclotomic code and unrelated works; no settlement located."
+    }
+  ],
+  "web_searches": [
+    {
+      "engine": "system2",
+      "queries": [
+        "\"A118207\" proof",
+        "\"Liouville\" \"cyclotomic\" \"A(x^2)\""
+      ],
+      "relevant_sources": [
+        "https://oeis.org/A118207",
+        "https://oeis.org/A118208"
+      ],
+      "assessment": "Target entry retains conjecture; related reciprocal sequence; many unrelated ID collisions."
+    },
+    {
+      "engine": "system1",
+      "queries": [
+        "\"A118207\" conjecture proof",
+        "Liouville cyclotomic infinite product functional equation F(x) F(-x)"
+      ],
+      "relevant_sources": [
+        "https://oeis.org/A118207",
+        "https://oeis.org/A118205/a118205.pdf",
+        "https://www.math.ucla.edu/~wdduke/preprints/cyclotomic.pdf"
+      ],
+      "assessment": "Target plus known Bala helper and different fixed-index Mahler-type products. No settlement of the paired functional identity located."
+    },
+    {
+      "query_family": "Earlier exact-ID and semantic queries, including Palomar and Hexagon",
+      "assessment": "No matching target settlement found in retrieved results. Raw responses retained in research record."
+    }
+  ],
+  "primary_source": {
+    "url": "https://oeis.org/A118207",
+    "immutable_url": "https://github.com/oeis/oeisdata/blob/06e6099a75de062401e2ebfc79a2cefc9686ca69/seq/A118/A118207.seq",
+    "revision": 29,
+    "revision_timestamp": "2023-09-02 20:31:35",
+    "sha256": "1f100ff7a787d6c39cf54b4229d8d0d6b831d1d16ee0e2dfe1dac7d151c139c1"
+  },
+  "closest_primary_paper": {
+    "author": "Peter Bala",
+    "title": "Cyclotomic polynomials and the generating functions of A118205 and A118206",
+    "date": "2023-04-09",
+    "url": "https://oeis.org/A118205/a118205.pdf",
+    "pages": 4,
+    "bytes": 137907,
+    "sha256": "7e8d3a95f13878cd22ded32670b051b5d7be2baa70b3809043ffda9f0d8c037d",
+    "assessment": "Proposition 1 proves the helper, Proposition 2 its reciprocal form. Full four-page note does not contain the A118207 conjectured identity."
+  },
+  "own_repository_search": {
+    "patterns": [
+      "A118207",
+      "Liouville.*cyclotomic",
+      "cyclotomic.*Liouville"
+    ],
+    "extensions": [
+      "lean",
+      "md",
+      "tex"
+    ],
+    "hits": 0
+  }
+}
