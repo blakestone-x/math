@@ -7,3 +7,15 @@ For alphabet sizes 3 through 8, the formula proves all 33 residue polynomials li
 [Manuscript](balanced-arrays.pdf) · [LaTeX source](balanced-arrays.tex) · [33 polynomials](coefficients.csv) · [Exact verifier](verify.py)
 
 Run `python3 verify.py`. It checks the bridge formula against direct array counts, verifies every coefficient by finite differences, and reduces all six exact denominators.
+
+## The shortest recurrence at every alphabet size
+
+The reduced denominator, for every $q\ge2$, is
+
+$$
+(1-x^{q/\gcd(2,q)})(1-x^q)^{q-1}.
+$$
+
+The least order of an eventual linear recurrence with constant coefficients is $q^2$ for odd $q$ and $q^2-q/2$ for even $q$. For example, an alphabet of ten letters requires order 95. The even-alphabet proof isolates the Fourier contribution from pairs of odd-length walks. Run `python3 verify-even.py` with SymPy to reproduce the eight finite polynomial certificates.
+
+[Manuscript](even-denominators.pdf) · [LaTeX source](even-denominators.tex) · [Exact certificates](verify-even.py)

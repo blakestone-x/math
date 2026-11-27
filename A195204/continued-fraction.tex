@@ -1,0 +1,80 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={The Stieltjes fraction for A195204},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small The Stieltjes fraction for A195204}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries A classical Stieltjes fraction for the polynomials of A195204\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+A falling-factorial basis turns the defining shift of OEIS A195204 into a tridiagonal operator. Pairing the steps of a Dyck path proves Peter Bala's continued-fraction conjecture directly. The resulting fraction belongs to the classical cycle--excedance Eulerian family. The same calculation gives diagonal forms over the integer polynomial ring for both the Hankel matrix and its first shift.
+\end{abstract}
+
+Work over the polynomial ring \(\mathbb Z[a,b,x]\). Define
+\[
+ \mu_0(x)=1,\qquad \mu_{n+1}(x)=x\{a\mu_n(x)+b\mu_n(x+1)\},\qquad A=a+b.
+\]
+\begin{theorem}
+The ordinary moment series has the formal Stieltjes fraction
+\[
+  \sum_{n\ge0}\mu_n(x)z^n
+  =\cfrac{1}{1-\cfrac{\alpha_1z}{1-\cfrac{\alpha_2z}
+       {1-\cfrac{\alpha_3z}{1-\cdots}}}},\qquad
+  \alpha_{2k+1}=A(x+k),\quad \alpha_{2k+2}=b(k+1)\quad(k\ge0).
+\]
+In particular \(a=b=1\) gives exactly the continued fraction proposed in \oeis{195204} in 2024.
+\end{theorem}
+\begin{proof}
+Use an auxiliary variable \(y\), the operator \(L f(y)=y\{af(y)+bf(y+1)\}\), and the basis \(e_j(y)=\prod_{i=0}^{j-1}(y-x-i)\), including \(e_0=1\). The identities \(e_j(y+1)-e_j(y)=je_{j-1}(y)\) and \(ye_j=e_{j+1}+(x+j)e_j\) give
+\[
+ L e_j=A e_{j+1}+\{A(x+j)+bj\}e_j+bj(x+j-1)e_{j-1},
+\]
+with a zero last term when \(j=0\). The coefficient of \(e_0\) in \(L^n e_0\) is its value at \(y=x\), namely \(\mu_n(x)\).
+
+Thus \(\mu_n\) counts weighted Motzkin paths from height zero to zero in \(n\) steps with the three displayed weights. In any returning path, the number of upward crossings of an edge equals the number of its downward crossings. Move the factor \(A\) on each up-step to its matching down-step. The new up weight is one and the down weight from \(j\) is \(Abj(x+j-1)\).
+
+Give up-steps of a Dyck path weight one and down-steps from height \(i\) weight \(\alpha_i\). Group consecutive steps in pairs starting at even heights \(2j\). Two up-steps lift the paired path, and two down-steps lower it with weight \(\alpha_{2j}\alpha_{2j-1}=Abj(x+j-1)\). A mixed pair stays level with total weight \(\alpha_{2j+1}+\alpha_{2j}=A(x+j)+bj\), taking \(\alpha_0=0\) at the boundary. This gives the required Motzkin weights. Finally the generating series \(D_h\) for Dyck excursions based at height \(h\), counted by semilength, satisfies \(D_h=1+\alpha_{h+1}zD_{h+1}D_h\) by first return. Iteration gives the stated fraction coefficient by coefficient.
+\end{proof}
+
+\begin{theorem}
+For \(N\ge1,\ \epsilon=0,1\), let \(H^\epsilon=(\mu_{i+j+\epsilon})_{0\le i,j<N}\). Over \(\mathbb Z[a,b,x]\) it is congruent by a unit triangular matrix to the following diagonal, indexed by \(0\le j<N\):
+\[
+ d_j^0=(Ab)^j j!\,(x)^{\overline j},\qquad
+ d_j^1=A^{j+1}b^j j!\,(x)^{\overline{j+1}} .
+\]
+Here \((x)^{\overline j}=\prod_{i=0}^{j-1}(x+i)\). These diagonals are in divisibility order, giving Smith forms after every integer specialization, up to signs. Every minor of the infinite Hankel matrix is coefficientwise nonnegative in \(a,b,x\).
+\end{theorem}
+\begin{proof}
+Split a Dyck path after \(2i+\epsilon\) steps. The middle height is \(2j+\epsilon\). Let \(C_{ij}\) count weighted prefixes of that length ending at that height. Reversing a prefix to form a suffix contributes one extra down weight at every height from 1 through \(2j+\epsilon\), since net upward crossings before reversal are one on exactly those levels. Thus \(H^\epsilon=C\operatorname{diag}(\prod_{h=1}^{2j+\epsilon}\alpha_h)C^\mathsf T\). The matrix \(C\) is lower triangular with diagonal one, and multiplication gives the displayed factors.
+
+For a minor with increasing row and column indices, start paths at \((-2i,0)\) and end them at \((2j,0)\), using the same nonnegative polynomial weights. In the determinant expansion, intersecting path families cancel by exchanging tails at their first common vertex, with a fixed ordering to resolve ties. Disjoint families can only connect the endpoints in nested order, which pairs the increasing index lists in order. Indeed paths lie in the upper half-plane, and all paths have the same height parity at a given time, so crossing forces a common vertex. Their weights therefore sum with positive sign.
+\end{proof}
+
+\paragraph{Identification and prior work.}
+Sokal and Zeng, equations (2.2), (2.3) and (2.11), record the homogeneous cycle--excedance Eulerian fraction and trace this specialization to Stieltjes, section 81. In their parameters take \((X,Y,U,V)=(Ax,b,A,b)\). Their permutation formula consequently identifies \(\mu_n(x)\) with
+\[
+ \sum_{\pi\in S_n}x^{\operatorname{cyc}(\pi)}
+             b^{\operatorname{exc}(\pi)} A^{\,n-\operatorname{exc}(\pi)} .
+\]
+Here \(\operatorname{exc}(\pi)=\#\{i:\pi(i)>i\}\). The classical fraction predates the OEIS conjecture. The argument above connects the entry's defining recurrence directly to that earlier result. A. D. Sokal and J. Zeng, \href{https://doi.org/10.1016/j.aam.2022.102341}{Some multivariate master polynomials for permutations, set partitions, and perfect matchings, and their continued fractions}, \emph{Adv. Appl. Math.} 138 (2022), 102341.
+
+The unshifted diagonal also follows from A. R. Miller and D. Stanton,
+\href{https://arxiv.org/abs/1704.03539}{Orthogonal polynomials and Smith normal form},
+Theorem 1, by substitution of the Motzkin down-step weights above.
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[left=0.92in,right=0.92in,top=0.78in,bottom=0.78in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={The binary self-shuffle deficit},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small The binary self-shuffle deficit}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries The exponent of the deficit in binary self-shuffles\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+Let \(M_n\) be the largest number of distinct words produced by interleaving two copies of a length-\(n\) binary word. We prove \(M_n\le4^n\exp(-c n^{1/3})\). Together with a lower construction this identifies the exponent of \(\log(4^n/M_n)\) as \(1/3\). In every maximizing input the number of constant runs is \(n^{1/3+o(1)}\) and the longest run has length \(n^{2/3+o(1)}\).
+\end{abstract}
+
+Write \(S(w)\) for the number of distinct outputs. A schedule is a string of \(n\) letters \(A\) and \(n\) letters \(B\), selecting the next input letter from the indicated copy. For each output keep its lexicographically first schedule with \(A<B\). Such a schedule cannot contain an adjacent \(BA\) emitting two equal letters. Interchanging them would preserve both input orders and the entire output. We use independent fair choices of \(A,B\), so every string of length \(2n\) has probability \(4^{-n}\), including the unbalanced strings.
+
+\begin{lemma}\label{many}
+If \(w\) has \(h\) maximal constant runs, then
+\[
+ S(w)\le 2\cdot4^n (7/8)^{(h-1)/3}.
+\]
+\end{lemma}
+\begin{proof}
+Mark a subset of the \(h-1\) transition indices \(i\) for which \(w_i\ne w_{i+1}\), taking the least remaining index and skipping the next two positions. This gives at least \((h-1)/3\) marks separated by at least three input positions.
+
+First count representative schedules in which copy \(A\) finishes first. At the first time \(A\) has read \(i-1\) letters, examine the head of \(B\). If \(B\) has already finished, the target event fails. Otherwise its head equals one of \(w_i,w_{i+1}\), since the alphabet is binary. In the first case the next choices \(BA\) give the forbidden adjacent pair. In the second case \(ABA\) gives it in the last two positions. Given the past, the specified pattern has probability at least \(1/8\). With copy \(B\) finishing first the corresponding patterns are \(BA\) and \(BBA\), according to whether the head of \(A\) matches the first or second distinguished letter of \(B\).
+
+To justify multiplication, use an infinite sequence of fair choices and stop just before each marked input position becomes the head of the distinguished copy, that is, immediately after the preceding input letter has been read (time zero for \(i=1\)). These stopping times are separated by at least three choices. The preceding trial has therefore been decided by the next stopping time. Conditional on each new history, keeping the other copy available and avoiding the specified pattern has probability at most \(7/8\). On a representative balanced schedule with the designated copy finishing first, all trials pass. The two- or three-choice patterns needed in the trials use at most the two remaining distinguished letters and one other letter. Thus they fit before time \(2n\) on the event being bounded. Summing the bounds for the two possible first finishers proves the lemma.
+\end{proof}
+
+\begin{lemma}\label{long}
+Suppose \(w\) contains a constant run of length \(R\). For \(t=\lfloor R/4\rfloor\),
+\[
+ S(w)/4^n\ \le\ 2\exp(-R^2/(16n))+(t+1)2^{-t}
+ \ \le\ C\exp(-cR^2/n)
+\]
+with absolute positive constants.
+\end{lemma}
+\begin{proof}
+Suppose the run occupies positions \(a+1,\ldots,a+R\). At the deterministic time \(T=2a+R\), let \(D\) be the number of \(A\)'s minus the number of \(B\)'s. The fair-coin estimate gives \(\Pr(|D|>R/2)\le 2\exp(-R^2/(8T))\), at most the first term in the bound. For example apply the exponential Markov inequality and \((\cosh u)^T\le\exp(Tu^2/2)\).
+
+When \(|D|\le R/2\), the two input positions \((T\pm D)/2\) both lie between \(a+R/4\) and \(a+3R/4\). Every one of the next \(t\) choices emits the same binary letter. The representatives must avoid \(BA\) there, hence their block has the form \(A^jB^{t-j}\). Its probability is at most \((t+1)2^{-t}\), independently of the previous choices. There is room for the whole block since \(T+t\le2n\). Finally \(R^2/n\le R\), so absolute constants absorb the polynomial prefactor.
+\end{proof}
+
+\begin{theorem}\label{main}
+As \(n\to\infty\), for absolute \(c,C>0\),
+\[
+ c n^{1/3} \ \le\ \log(4^n/M_n)\
+       \le C n^{1/3}(\log n)^{2/3}.
+\]
+In particular \(\lim_{n\to\infty}\log\log(4^n/M_n)/\log n=1/3\). For every choice of maximizing inputs,
+\[
+ \frac{n^{1/3}}{(\log n)^{1/3}}\ll h\ll n^{1/3}(\log n)^{2/3},\qquad
+ \frac{n^{2/3}}{(\log n)^{2/3}}\ll R\ll n^{2/3}(\log n)^{1/3},
+\]
+where \(R\) is the longest run.
+\end{theorem}
+\begin{proof}
+Since \(hR\ge n\), either \(h\ge n^{1/3}\) or \(R\ge n^{2/3}\). Applying Lemmas~\ref{many} and \ref{long} gives the lower bound on the logarithmic deficit.
+
+We recall the lower construction for \(M_n\). For positive ordered run sizes \(r_1,\ldots,r_j\) summing to \(n\), one binary input has at least
+\[
+ P=\prod_{i<j}\binom{r_i+r_{i+1}}{r_i}
+\]
+outputs. Emit the first run from \(A\); then interleave run \(i\) of \(B\) with run \(i+1\) of \(A\) for each \(i\); finish with the last run of \(B\). Each mixed block contains two distinct letters and has fixed length. Rooted plane trees with these successive nonroot level sizes number \(\prod_{i<j}\binom{r_i+r_{i+1}-1}{r_{i+1}}\le P\), by assigning each next level to its ordered parents. Trees with \(n\) edges and height at most \(H\) have at most \((n+1)^H\) profiles. Their contour walks are the nonnegative paths of length \(2n\) on \(0,\ldots,H\) returning to zero. With \(\theta=\pi/(H+2)\) their number is at least
+\[
+ \frac{2\sin^2\theta}{H+2}(2\cos\theta)^{2n}.
+\]
+Indeed this is the contribution of the unit eigenvector proportional to \(\sin((j+1)\theta)\) in the even power of the path adjacency matrix at \((0,0)\); all other eigenvalue contributions are nonnegative. Divide by the profile count and take \(H\asymp(n/\log n)^{1/3}\). The logarithmic loss is \(O(n/H^2+H\log(n+1)+\log H)\), as needed.
+
+For a maximizing word the upper bound on its deficit and Lemmas~\ref{many} and \ref{long} give the upper bounds for \(h,R\). Their lower bounds follow from \(hR\ge n\).
+\end{proof}
+
+\begin{corollary}
+For all sufficiently large \(n\), every maximizing word has strictly more than \(P\) outputs. In particular it cannot be a factor of a doubly infinite word \((0^a1^b)^{\mathbb Z}\).
+\end{corollary}
+\begin{proof}
+The run-product equality theorem in the companion paper identifies exactly those periodic factors and constant words. For a nonconstant such factor the longest run occurs among its first three runs: all interior runs of each letter have the same length, and an end run can only be clipped. If \(r_1\ge R/4\), the trivial binomial bounds already give \(\log(4^n/P)\ge r_1\log 2\). Otherwise one of the first two adjacent lengths differs by at least \(3R/8\). For all positive \(u,v\) the fair-coin bound gives
+\(\binom{u+v}{u}\le2^{u+v}\exp(-(u-v)^2/(2(u+v)))\). Since each adjacent sum is at most \(2R\), again \(\log(4^n/P)\gg R\). The lower bound for \(R\) in Theorem~\ref{main} exceeds the upper bound on a maximizing deficit by an unbounded factor.
+\end{proof}
+
+\paragraph{Sources.}
+J. Shallit, \oeis{331850}. D. Datko and B. Pawlik, \href{https://doi.org/10.3390/sym17020305}{Roots of Binary Shuffle Squares} (2025). The constructive lower bound and equality theorem are in the \href{https://github.com/blakestone-x/math/blob/c92ab48c98acba51cb42ceb73536a7bad251ec2d/A193020/self-shuffles.pdf}{companion manuscript}. The exact maximizing value and the logarithmic factor in its deficit remain open.
+\end{document}

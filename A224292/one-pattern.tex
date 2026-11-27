@@ -1,0 +1,119 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[left=0.89in,right=0.89in,top=0.77in,bottom=0.77in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={One exceptional permutation pattern},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small One exceptional permutation pattern}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries One occurrence of 1243 and none of 1234\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+We derive the generating function for permutations avoiding \(1234\) and containing \(1243\) exactly once. Tracking the insertion of a new minimum proves the four formulas proposed by Pereira and Kote\v{s}ovec in OEIS A224292. With two occurrences we give the generating functions for every split between the two patterns, including OEIS A224293.
+\end{abstract}
+
+Patterns denote relative order in a subsequence of four distinct entries. Write \(g_n\) for the number in the abstract and set \(g_0=0\).
+\begin{theorem}
+With \(R=\sqrt{1-6x+x^2}\) and the branch \(R(0)=1\), one has
+\[
+ G(x)=\sum_{n\ge0}g_nx^n
+ =\frac{1-10x+29x^2-24x^3+4x^4-(1-7x+12x^2-4x^3)R}{8x^2}.
+\]
+Interchanging the roles of the two patterns gives the same sequence.
+\end{theorem}
+
+\section{Insertion before the unique occurrence}
+Build a permutation in order of decreasing values, inserting the new minimum each time. This is reversible by deleting its smallest value. Call an entry \emph{marked} if at least two larger entries lie to its right. If a new minimum is inserted, any occurrence newly formed must use that minimum in its first position, followed by an entry to its right and two still larger entries to the right of that entry. Thus an entry with \(m\) larger entries to its right contributes \(\binom m2\) new occurrences when crossed by the insertion, with the last two in one order or the other. Later insertion of smaller entries leaves the old marks and their \(m\)'s unchanged.
+
+Define the label \(k\) to be the number of entries strictly after the rightmost mark, or the full length when there is no mark. A slot with \(s\) entries to its right creates no occurrences exactly when \(0\le s\le k\). For a nonempty permutation, the two end slots \(s=0,1\) increase \(k\) to \(k+1\). Each \(s=2,\ldots,k\) instead creates a new rightmost mark with label \(s\). Let \(F(x,u)\) count the nonempty permutations avoiding both patterns by length and label, and \(F_1=F(x,1)\). The production rule gives
+\[
+ K F=xu(1-u)+xu^2F_1,\qquad K=1-(1+x)u+2xu^2.
+\]
+Indeed the sum of the non-end child weights is \((u^2-u^{k+1})/(1-u)\) and the length-one label is one. The root \(U=(1+x-R)/(4x)\) of \(K\) has constant term one. Substitution gives \(F_1=(U-1)/U\). All substitutions are legitimate in formal series because each length has polynomial label coefficient.
+
+\section{The insertion that creates the pattern}
+Immediately before creating the unique occurrence, the permutation avoids both patterns. The insertion must cross its rightmost mark, which must have exactly two larger entries to its right, in descending order for \(1243\). It must cross no earlier mark. If the distance in positions from the previous mark to the rightmost one is \(g\), there are \(g\) such insertion slots. Use a fictitious previous mark at position zero when needed.
+
+Trace this rightmost mark back to the step that created it. Its insertion slot had \(s=2\). In a parent with label \(k\ge2\), its distance from the old rightmost mark is \(k-1\), also when the old mark is fictitious. Exactly half of the avoiding parents of that length and label have their final two entries in descending order. Swapping the final two preserves avoidance and the label: at every earlier entry its larger-right count is unchanged, and the last two cannot be marked. To see preservation of avoidance explicitly, an occurrence of either type exists exactly when some marked entry has a smaller entry to its left. This condition is unaffected by the swap. The \(k=1\) parent contributes zero under the factor \(k-1\).
+
+Until the occurrence is created, the designated mark must stay rightmost. The only allowed intervening choices are the two end slots. They change neither the distance to the preceding mark nor the order of its two larger entries. After \(l\) such choices the label is \(2+l\). Inserting the minimum across the designated mark puts the new minimum to its left and preserves this label. Thus the contribution from the birth steps, including the \(k-1\) eligible slots, is
+\[
+ B(x,u)=\frac{x^2u^2}{2(1-2xu)}\bigl(F_u(x,1)-F_1\bigr).
+\]
+The same count applies when the required final pair is ascending.
+
+After birth, every later insertion must be safe. Writing \(G(x,u)\) for the series refined by label, its equation is \(K G(x,u)=(1-u)B(x,u)+xu^2G(x)\). Substituting \(u=U\) gives
+\[
+ G(x)=\frac{x(U-1)}{2(1-2xU)}
+       \left[-1+(1/x-2)F_1\right],
+\]
+since differentiation of the equation for \(F\) at \(u=1\) gives \(F_u(x,1)=-1+(1/x-1)F_1\). Inserting \(U,F_1\) and using \(R^2=1-6x+x^2\) yields the stated radical expression.
+
+\section{Recurrences and coefficient growth}
+Both displayed recurrences in \oeis{224292} hold. With zero coefficients for negative indices they are
+\begin{align*}
+0={}&3(n+2)(n-4)g_n-(17n^2-58n+75)g_{n-1}\\
+ &-3(n^2-8n+18)g_{n-2}+(n-3)(n-5)g_{n-3},\\
+0={}&(n-4)(n+2)(14n-37)g_n-6(14n^3-86n^2+185n-140)g_{n-1}\\
+ &+(n-4)(n-2)(14n-23)g_{n-2}.
+\end{align*}
+Here is a reproducible algebraic verification. If \(p_i(n)\) is the displayed coefficient of \(g_{n-i}\), sum each recurrence after multiplication by \(x^n\). The result is \(\sum_i x^i p_i(D+i)G\), where \(D=x\,d/dx\). Substitution of the theorem gives zero in both cases, using \(R'=(x-3)/R\). The accompanying exact-arithmetic script performs these two polynomial reductions.
+
+Put \(\rho=3-2\sqrt2\) and \(V(x)=1-7x+12x^2-4x^3\). At the unique dominant singularity \(\rho\), we have \(R=\sqrt{1-x/\rho}\sqrt{1-\rho x}\) with \(V(\rho)=150\sqrt2-212>0\). The square-root coefficient estimate \([x^n](1-x)^{1/2}\sim-1/(2\sqrt\pi n^{3/2})\) therefore yields
+\[
+ g_n\sim
+ \frac{V(\rho)\sqrt{1-\rho^2}}{16\rho^2\sqrt{\pi}}\,
+     \frac{\rho^{-n}}{n^{3/2}}
+ =\frac{(3-\sqrt2)(1+\sqrt2)^{2n-1}}{2^{5/4}\sqrt{\pi}\,n^{3/2}} .
+\]
+
+\section{The two-occurrence enumeration}
+Write \(G_{ab}\) for the length series with exactly \(a\) ascending and \(b\) descending final pairs, that is, \(a\) occurrences of \(1234\) and \(b\) of \(1243\). With \(U\) as above, the complete list for total two is
+\begin{align*}
+G_{11}&=\frac{2(U-1)^6(2U-1)(U^2-U+1)}{U^3(2U^2-2U+1)},\\
+G_{20}=G_{02}&=\frac{(U-1)^5(2U^3-U^2+1)}{U^2(2U^2-2U+1)}.
+\end{align*}
+The series \(G_{11}\) counts \oeis{224293} and starts \(2x^6+32x^7+322x^8+2634x^9\).
+
+For the derivation write \(H(P)=P_u(x,1)-P(x,1)\), \(D=H(F)\), and \(G_*=G(x,u)\) for the one-descending-occurrence class. In that class define \(J(x,u)\) to count permutations with descending final pair minus those with ascending final pair. At birth the signed source is \(B_0=x^2u^2D/2\). Indeed immediately after the designated mark is created its two larger entries are the last two, in descending order. After any positive number of intervening end insertions the two possible last operations give opposite final orders and cancel. The crossing insertion preserves the final order. In subsequent safe growth the two end insertions likewise cancel, while each non-end slot preserves the final pair. Thus
+\[
+ (1-u+xu)J=(1-u)B_0+xu^2J(x,1).
+\]
+Its kernel root is \(1/(1-x)\). For the one-ascending-occurrence class the total is again \(G_*\) and the signed series is \(-J\), by the same argument.
+
+Every time a minimum adds an occurrence it crosses a mark. A single mark can contribute one or at least three, since its contribution is a binomial coefficient \(\binom m2\). Hence precisely two occurrences arise in one of the three ways below. In each formula write \(E=1-2xu\). The two columns are the source series at the instant the second occurrence has appeared.
+\[
+\begin{array}{c|cc}
+ &\text{one of each}&\text{two of one specified type}\\ \hline
+\text{two insertions, fresh mark}&x^2u^2H(G_*-J)/E&
+                 x^2u^2H(G_*+J)/(2E)\\[2pt]
+\text{two insertions, same mark}&0&x^3u^2 F_{uu}(x,1)/(4E^2)\\[2pt]
+\text{one insertion, two marks}&x^4u^2D/((1-2x)E)&
+              x^3u^2D(1+x/(1-2x))/(2E)
+\end{array}
+\]
+For the first row, the new mark must have been inserted at \(s=2\) in a one-occurrence parent. Selecting the desired final order in that parent takes half its total plus or minus half its signed series. For opposite types either order of the two births is possible. As before, the number of slots to cross the new mark is its initial distance \(k-1\) from its predecessor, giving \(H\); subsequent end insertions before crossing give \(1/E\).
+
+For the second row, the original distance is \(g=k-1\). The first crossing inserts a new mark to the left of the designated one. Over the \(g\) choices the new distance takes each value \(1,\ldots,g\) once. There are therefore \(\binom{k}{2}\) choices of the two crossing slots. The original pair order must be the specified one, contributing a further factor \(1/2\). Two independent strings of end insertions give \(1/E^2\). If a fresh mark appears to the right, the first row already covers the case.
+
+For the last row, the two rightmost marks must both have been created at \(s=2\). Let \(l\) be the number of end insertions between their creations. If \(l=0\), both marks see the same ordered pair. For \(l>0\), exactly \(2^{l-1}\) choices give either order at the younger mark, independently of the older order. After creating the younger mark there may be any string of end insertions, giving \(u^2/E\). The final insertion must cross both marks and stop before crossing a third. Its number of slots is the original distance attached to the older mark. This gives the stated factors \(D\), with a factor \(1/2\) when its type is fixed.
+
+For each column let \(S(x,u)\) be its sum. All growth after the second occurrence must be safe, so the desired length series is \((U-1)S(x,U)/(xU^2)\). Substituting the solved equations for \(F,G_*,J\) gives the displayed functions. One can perform all these substitutions rationally in \(U\) using \(x=(U-1)/(U(2U-1))\). The accompanying script also checks these formulas directly on permutations.
+
+\paragraph{Sources.}
+B. Nakamura, \href{https://arxiv.org/abs/1301.5080}{Approaches for enumerating permutations with a prescribed number of occurrences of patterns} (2013). P. Ferreira Pereira and V. Kote\v{s}ovec recorded the four formulas in the \href{https://github.com/oeis/oeisdata/blob/976b0c73e00453b1c1e6f16d83108cb9bb744c3b/seq/A224/A224292.seq}{November 2026 record of A224292}. The zero-occurrence parent class is a classical Schröder class; see E. Egge's \href{https://www.ericegge.net/slides/schroder_slides.pdf}{survey of pattern pairs counted by Schröder numbers}.
+\end{document}

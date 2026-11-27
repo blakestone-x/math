@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Equal-length blocks of a square},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Equal-length blocks of a square}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Equal-length blocks of a square with prescribed difference\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+For every nonnegative \(n\) and every base \(b\ge2\), infinitely many squares have two equal-length blocks differing by exactly \(n^2\). The least square root has order \(n^2\). This proves Michel Lagneau's existence conjecture for OEIS A236383. In decimal, twice a square also occurs as a difference infinitely often, whereas a difference of seven is impossible at every width.
+\end{abstract}
+
+Let \(B=b^d\). Two integers \(x,y\) are genuine \(d\)-digit blocks in base \(b\) when \(B/b\le x,y<B\). If \(y=x+c\), their concatenation is a square \(k^2\) exactly when
+\[
+                   k^2=(B+1)x+c.
+\]
+The block-size inequalities matter in addition to this congruence.
+
+\section{A decimal construction}
+\begin{theorem}
+For any \(n\ge0\), take any sufficiently large odd \(d\equiv4n\pmod{11}\). Set \(B=10^d\), \(C=(B+1)/11\), and \(k=5C+n\). Then \(k^2\) has two \(d\)-digit decimal blocks differing by \(n^2\). It suffices that \(B\ge2(n+1)^2\).
+\end{theorem}
+\begin{proof}
+Since \(10=-1+11\) and \(d\) is odd, expansion modulo \(121\) gives \(C\equiv d\pmod{11}\). The hypothesis implies \(5C+2n\equiv0\pmod{11}\). Therefore \(x=(k^2-n^2)/(B+1)=5(5C+2n)/11\) is an integer. Put \(\alpha=5/11\). We have
+\[
+ x=\alpha^2(B+1)+2\alpha n,\qquad y=x+n^2.
+\]
+Since \(\alpha^2>1/10\), \(x\ge B/10\). Since \(y=\alpha^2B+(n+\alpha)^2\) and \(2(1-\alpha^2)>1\), the stated bound on \(B\) gives \(y<B\). Infinitely many odd \(d\) satisfy the required congruence.
+\end{proof}
+
+For example, \(n=9,d=3\) gives \(464^2=215296\), with \(296-215=81\). This construction provides witnesses without requiring that they be the smallest.
+
+\section{All bases and the size of the least witness}
+\begin{theorem}\label{th:bases}
+For each \(b\ge2\) every square difference \(n^2\) occurs at infinitely many widths. For \(n\ge1\) let \(a_b(n)\) be the least witnessing square root. Then \(a_b(n)=\Theta_b(n^2)\).
+\end{theorem}
+\begin{proof}
+Write \(b^2+1=D P\), taking \(D=1\) for even \(b\) and \(D=2\) for odd \(b\). Then \(P\ge5\) is odd, since an odd square is \(1\bmod 8\). Choose any odd \(L\) satisfying \(D L\equiv2n\pmod P\). Such \(L\) form one residue class modulo \(2P\). Put \(B=b^{2L}\), \(C=(B+1)/P\), \(k=(P-1)C+n\). Expanding \((-1+DP)^L\) modulo \(P^2\) gives \(C\equiv DL\pmod P\). Thus \(P\mid(P-1)C+2n\), proving \(B+1\mid k^2-n^2\).
+
+For \(\alpha=(P-1)/P\), the blocks are \(x=\alpha^2(B+1)+2\alpha n\), \(y=\alpha^2B+(n+\alpha)^2\). We have \(\alpha^2\ge16/25>1/b\). Take \(B>(n+1)^2/(1-\alpha^2)\) to ensure \(y<B\). Successive eligible powers \(B\) differ by a factor \(b^{4P}\). Taking the first eligible power above the bound gives \(k=O_b((n+1)^2)\), adjusting a base-dependent constant for the first positive eligible width. Conversely, any witness has \(n^2=y-x<(1-1/b)B\) and \(k^2\ge Bx\ge B^2/b\). This proves the matching lower bound.
+\end{proof}
+
+\section{The companion problem with difference seven}
+\begin{theorem}
+No decimal width permits \(k^2=(10^d+1)x+7\), even when the digit restrictions on \(x\) are dropped.
+\end{theorem}
+\begin{proof}
+Write \(d=2^a u\) with \(u\) odd. The divisor \(F=10^{2^a}+1\) of \(10^d+1\) would require \(k^2\equiv7\pmod F\). If \(a=0\) then \(F=11\), whose nonzero squares are \(1,3,4,5,9\). For \(a\ge1\), \(F\equiv1\pmod4\). The exponent \(2^a\) is 2 or 4 modulo 6. Since \(10\equiv3\bmod7\), this gives \(F\equiv3\) or \(5\bmod7\). Both are nonsquares. Quadratic reciprocity for the Jacobi symbol now gives
+\[
+                    \left(\frac7F\right)=\left(\frac F7\right)=-1.
+\]
+A square coprime to an odd modulus has Jacobi symbol \(+1\), including when the modulus is composite. This contradiction holds for every \(d\).
+\end{proof}
+
+The same obstruction excludes each difference \(7\cdot10^{2h}\), \(h\ge0\), since 10 is a unit modulo \(10^d+1\). In the companion problem recorded by Giovanni Resta this settles the first unreported difference. The original sequence at index seven asks for a difference of \(49\).
+
+\section{Twice a square}
+Every difference \(2n^2\) occurs at infinitely many decimal widths. To see this, take \(t\equiv1\bmod8\), \(z=10^t\), \(B=z^4\), and \(v=n(z^3-z)\). The identity \((z^3-z)^2-2=(z^4+1)(z^2-2)\) gives \(B+1\mid v^2-2n^2\). Since \(10^4+1=73\cdot137\) and \(t\) is odd, \(C=(B+1)/73\equiv137t\bmod73\). Also \(10^8\equiv1\bmod73\), so \(v\equiv990n\bmod73\). Select \(t\) further by \(137t\equiv2\cdot990n\bmod73\). The Chinese remainder theorem allows arbitrarily large such \(t\). For \(k=72C+v\), the cross term and the square of \(72C\) together are divisible by \(B+1\), since \(72C+2v\equiv0\bmod73\). Hence \(x=(k^2-2n^2)/(B+1)\) is integral. For fixed \(n\), both \(x/B\) and \((x+2n^2)/B\) tend to \((72/73)^2\in(1/10,1)\), proving the assertion.
+
+\paragraph{Source.}
+M. Lagneau, \oeis{236383} (2014), with G. Resta's 2019 comment reporting the search for a literal difference of seven.
+\end{document}
