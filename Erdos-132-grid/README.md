@@ -2,6 +2,8 @@
 
 **Blake Stone · Proof developed with OpenAI Codex.**
 
+The result extends to all lattice points in dilates of any fixed planar convex body with interior. The follow-up also gives the typical number of point pairs realizing a distinct distance. [Convex lattice regions](../Erdos-132-convex-lattice/README.md) · [PDF](../Erdos-132-convex-lattice/convex-lattice-distances.pdf)
+
 In an $L\times L$ square grid of $N=L^2$ points, the number of distinct Euclidean distances occurring at most $N^\theta$ times is $N^{\theta+o(1)}$ for every fixed $0<\theta\le1$. At the threshold of $N$ pairs, we also give a lower bound of order $N\log\log N/\log N$.
 
 Erdős and Pach asked whether, for any $N\ge5$ points in the plane, at least two distinct distances occur between at most $N$ unordered pairs, and whether the number of such distances tends to infinity with $N$. The unrestricted questions remain open. The square grid is a classical example with relatively few distinct distances. The estimates here concern the complete grid and follow from its displacement counts and classical number theory. [Erdős and Fishburn (1995), Conjecture 4](https://www.sciencedirect.com/science/article/pii/0166218X9400046G) · [Erdős Problem 132](https://www.erdosproblems.com/132) · [Clemen, Dumitrescu and Liu (2025)](https://doi.org/10.1007/s10474-025-01562-y)

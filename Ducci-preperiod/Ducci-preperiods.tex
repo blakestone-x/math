@@ -1,0 +1,320 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[letterpaper,textwidth=6.0in,textheight=8.65in,top=1.02in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks,pdfauthor={Blake Stone},pdftitle={Preperiods of modular Ducci sequences}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\card}[1]{\lvert #1\rvert}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\A}{A_{m,n}}
+\setcounter{secnumdepth}{1}
+\setlength{\parindent}{1.3em}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Preperiods of modular Ducci sequences\par}
+\vspace{9pt}
+{\large Blake Stone\par}
+\vspace{3pt}
+{\small November 26, 2026\par}
+\end{center}
+\begin{abstract}
+The modular Ducci map adds adjacent coordinates of a cyclic tuple. We prove
+that the upper bound of Lewis and Tefft for its maximum preperiod is attained.
+The lower bound follows from the nilpotency index of the augmentation ideal
+of a cyclic group ring. We also give an elementary recursion that counts the
+tuples of each preperiod for arbitrary width and modulus. It follows that the
+distribution within the basin of any cycle depends only on the cycle length.
+\end{abstract}
+
+\section{The maximum preperiod}
+For $m\ge2$ and $n\ge1$, let $D$ act on $(\Z/m\Z)^n$ by
+$(Dv)_i=v_i+v_{i+1}$, with indices read modulo $n$. Write $\tau(v)$ for
+the least $h\ge0$ for which $D^{h+c}v=D^hv$ for some $c\ge1$, and set
+$L_m(n)=\max_v\tau(v)$. Thus a tuple on a cycle has preperiod zero.
+Dular asked for the largest preperiod of this map \cite[\S7]{dular}.
+Lewis and Tefft determined it for odd $n$ \cite{odd} and proved a
+prime-power upper bound for even $n$. They proposed that equality always
+holds \cite[Theorem 1(3) and the paragraph following it]{even}.
+
+For a prime $p$, an integer $\ell\ge1$, and $k\ge0$, put
+\begin{equation}\label{H}
+ H_p(k,\ell)=
+ \begin{cases}
+  1,& k=0,\\
+  p^{k-1}\bigl(1+\ell(p-1)\bigr),&k\ge1.
+ \end{cases}
+\end{equation}
+Here $v_p(a)$ denotes the exponent of $p$ in $a$, and $p^\ell\parallel m$
+means $\ell=v_p(m)>0$.
+\begin{theorem}\label{max}
+The tuple $(1,0,\dots,0)$ attains the maximum preperiod, which is
+\[
+ L_m(n)=\begin{cases}
+ \displaystyle\max_{p^\ell\parallel m}H_p(v_p(n),\ell),& n\text{ even},\\
+ v_2(m),& n\text{ odd}.
+ \end{cases}
+\]
+\end{theorem}
+In the case singled out by Lewis and Tefft, $p$ is the only common prime
+factor of $n$ and $m$. Writing $k=v_p(n)$ and $\ell=v_p(m)$, their upper
+bound is precisely $H_p(k,\ell)$.
+
+\paragraph{The lower bound in one quotient.}
+Identify the tuple with a polynomial by numbering in the direction for
+which the shift $v_i\mapsto v_{i+1}$ acts as multiplication by $x$.
+For even $n$, reduction of coefficients and substitution $x\mapsto-y$ give
+a surjection
+\[
+ (\Z/m\Z)[x]/(x^n-1)\ \longrightarrow\
+ (\Z/p^\ell\Z)[y]/(y^{p^k}-1),\qquad k=v_p(n).
+\]
+The unit seed maps to $1$ and its $h$th iterate maps to $(1-y)^h$.
+The cyclic augmentation-ideal theorem of Clark and Schauz
+\cite[\S4.3, proof of Theorem 4.7 in the preprint]{cs} gives the exact
+nilpotency index $H_p(k,\ell)$ for $k\ge1$. The image first reaches zero at
+that time, and zero is its only periodic value. A periodic iterate maps
+to a periodic iterate. This proves the conjectured lower bound.
+
+\section{The cyclic components}
+Fix $p^\ell\parallel m$ and write $B=\Z/p^\ell\Z$. When $n$ is even,
+$x=-y$ identifies $B[x]/(x^n-1)$ with $B[y]/(y^n-1)$. Put
+$k=v_p(n)$, $q=p^k$ and $u=n/q$. In the factorization
+\[
+ y^n-1=(y^q-1)C(y),\qquad C(y)=1+y^q+\cdots+y^{(u-1)q},
+\]
+the factors are comaximal since $C(y)\equiv u\bmod (y^q-1)$ and $u$ is
+a unit. The Chinese remainder theorem splits the ring accordingly.
+On the component $B[y]/C$, of size $p^{\ell(n-q)}$, the Ducci multiplier
+$1-y$ is invertible since $C(1)=u$. This component is trivial when $u=1$.
+On the other component it is $-t$, where
+\[
+ R_{k,\ell}=B[t]/\bigl((1+t)^{p^k}-1\bigr),\qquad t=y-1.
+\]
+
+\begin{lemma}[Cyclic nilpotency index]\label{index}
+In $R_{k,\ell}$, the nilpotency index of $t$ is $H_p(k,\ell)$.
+\end{lemma}
+\begin{proof}
+For $k=0$ the element $t$ vanishes. For $k\ge1$, write
+$d=p^{k-1}$, $w=q-d$ and $H=q+(\ell-1)w$. The monic defining relation
+gives a basis $1,t,\ldots,t^{q-1}$ and a reduction
+\[
+ t^q=-\sum_{a=1}^{q-1}\binom qa t^a.
+\]
+Here $v_p\binom qa=k-v_p(a)$, since
+$\binom qa=(q/a)\binom{q-1}{a-1}$ and all coefficients of
+$(1+t)^{q-1}=(1+t^q)/(1+t)$ in $\F_p[t]$ are units. Assign the
+integer monomial $bt^i$ weight $v_p(b)w+i$. Reduction never decreases
+weight. Indeed, $\binom qa t^a$ has weight at least $w+a\ge q$ when
+$v_p\binom qa=1$, because then $d\mid a$. Equality occurs only at $a=d$.
+If the valuation is at least two, its weight is at least $2w+a>q$.
+
+After reduction, a nonzero term modulo $p^\ell$ has weight at most $H-1$.
+Thus all paths reducing $t^H$ vanish. Starting with $t^{H-1}$, the unique
+path that preserves weight chooses $a=d$ at every reduction. After
+$\ell-1$ steps it yields a term of degree $q-1$ and valuation $\ell-1$.
+All other paths vanish. Hence $t^{H-1}\ne0$.
+\end{proof}
+
+\begin{proof}[Completion of the proof of Theorem~\ref{max}]
+An invertible component of a finite ring is periodic under multiplication
+by its unit multiplier. A nilpotent component first becomes periodic when
+it reaches zero. The splitting above and Lemma~\ref{index} give the
+even-width assertion for $B$, with equality on the unit seed.
+
+If $n$ is odd and $p$ is odd, $(1+x)(1-x+\cdots+x^{n-1})=2$ in
+$B[x]/(x^n-1)$, so every tuple is periodic. For odd $n$ and $p=2$, factor
+$x^n-1=(x-1)C_1(x)$. The factors are comaximal since $C_1(1)=n$ is odd.
+On the $C_1$ component, $1+x$ is a unit since $C_1(-1)=1$.
+On the $x-1$ component it acts on $B$ by multiplication by two, with index
+$\ell$. Finally the Chinese remainder theorem in the coefficient modulus
+makes $\tau(v)$ the maximum of the component preperiods. Indeed, after all
+components have entered cycles, a common multiple of their periods is a
+return time. The unit seed attains all component maxima simultaneously.
+\end{proof}
+
+\section{The distribution of preperiods}
+Put $\A(h)=\#\{v:\tau(v)\le h\}$ for $h\ge0$ and $\A(-1)=0$.
+The difference $\A(h)-\A(h-1)$ counts the tuples of preperiod exactly $h$.
+For $s=\min(k,\ell)$ define
+\begin{equation}\label{F}
+ F_{p,k,\ell}(h)=(\ell-s)\min(h,1)+
+ \sum_{i=1}^{s}\min\bigl(h,H_p(k-i+1,\ell-i+1)\bigr).
+\end{equation}
+\begin{theorem}\label{dist}
+For every integer $h\ge0$,
+\[
+ \A(h)=
+ \begin{cases}
+ \displaystyle\prod_{p^\ell\parallel m}
+ p^{\ell(n-p^{k})+F_{p,k,\ell}(h)},\quad k=v_p(n)\text{ in each factor},
+       & n\text{ even},\\[3pt]
+ m^n\,2^{\min(h,b)-b},\quad b=v_2(m),& n\text{ odd}.
+ \end{cases}
+\]
+\end{theorem}
+On the odd-width component where $D$ multiplies by two, exactly
+$2^{\min(\ell,h)}$ elements are killed by step $h$. All invertible
+components are unrestricted. This proves the odd case. The even case
+reduces to showing that $F_{p,k,\ell}(h)$ equals
+$\log_p\card{\ker(t^h\mid R_{k,\ell})}$.
+
+\paragraph{The successive quotients.}
+Fix $p$, write $H(k,\ell)=H_p(k,\ell)$, and put $R=R_{k,\ell}$. For $j\ge0$
+let $e_{k,\ell}(j)=\log_p\card{t^jR/t^{j+1}R}$. The quotient is cyclic
+as a $B$-module, generated by $t^j$. Write $\nu_\ell$ for the $p$-valuation
+truncated at $\ell$, so that $\nu_\ell(0)=\ell$. Then
+\begin{equation}\label{ann}
+ e_{k,\ell}(j)=\min\{\nu_\ell(V(0)): V\in R,\ t^jV=0\}.
+\end{equation}
+In fact $at^j\in t^{j+1}R$ if and only if $a$ is the constant coefficient
+of an annihilator of $t^j$. Evaluation at $t=0$ is well defined. For
+$j<H(k,\ell)$ the right side is at least one, since $t$ is nilpotent and
+an element with unit constant coefficient is a unit.
+
+\begin{proposition}\label{rec}
+For $k\ge1$, $\ell\ge2$ and every $j\ge0$,
+\[
+ e_{k,\ell}(j)=\ind_{\{j<H(k,\ell)\}}+e_{k-1,\ell-1}(j).
+\]
+\end{proposition}
+\begin{proof}
+Put $d=p^{k-1}$, $w=(p-1)d$ and $H'=H(k-1,\ell-1)$. The monic factor
+\[
+ g(t)=\frac{(1+t)^{p^k}-1}{(1+t)^d-1}=\sum_{a=0}^{p-1}(1+t)^{da}
+\]
+has degree $w$, constant coefficient $p$ as an integer polynomial, and
+reduces to $t^w$ modulo $p$. Set $S=B[t]/g$ and let $\pi$ be the image of
+$t$. Writing $g=t^w+pU$ with $U(0)=1$ gives $\pi^{\ell w}=0$.
+The quotient $S/(\pi)$ is $\F_p$. Every $(\pi^i)/(\pi^{i+1})$ has at most
+$p$ elements. Since $\card{S}=p^{\ell w}$ by monicity, all $\ell w$
+successive quotients down to zero have exactly $p$ elements. Every nonzero
+element of $S$ thus equals a unit times $\pi^i$ for a unique $0\le i<\ell w$:
+factor out the largest power of $\pi$, and observe that any element outside
+$(\pi)$ is a unit, since $(\pi)$ is nilpotent and its residue ring is a
+field. It follows that $\operatorname{Ann}_S(\pi^j)=(\pi^{\ell w-j})$
+for $0\le j\le\ell w$. Also $U(\pi)$ is a unit, so $(p)=(\pi^w)$ in $S$.
+
+Consider $0\le j<H'$ and let $V\in R$ annihilate $t^j$. The smaller
+ring $R_{k-1,\ell-1}$ has size $p^{(\ell-1)d}$ and its powers of $t$ descend
+strictly until zero. Hence $H'\le(\ell-1)d$. In particular $\ell w-j\ge d$.
+Under the quotient map $R\to S$, the image $V(\pi)$ lies in
+$(\pi^{\ell w-j})\subseteq(\pi^d)$. Because $d\le w$,
+\[
+ S/(\pi^d)\cong\F_p[t]/t^d=R_{k-1,1}.
+\]
+Consequently the image of $V$ under $R\to R_{k-1,\ell}$ is $pG$ for some
+$G$. The defining polynomial in this smaller ring is monic, so its
+underlying $B$-module is free. From $pt^jG=0$ we obtain $t^jG=0$ modulo
+$p^{\ell-1}$. Evaluation at zero gives $V(0)=pG(0)$ in $B$.
+Equation~\eqref{ann} now yields $e_{k,\ell}(j)\ge1+e_{k-1,\ell-1}(j)$.
+
+Write $H=H(k,\ell)$. We have $H'\le H$, for $R_{k-1,\ell-1}$ is a quotient
+of $R$. The smaller exponents vanish for $j\ge H'$, while the larger ones
+are at least one for $j<H$. The claimed equality therefore holds as a
+lower bound for every $j$. Sum both sides over all $j$. The left side sums
+to $\ell p^k$, and the right to $H+(\ell-1)d=\ell p^k$ by~\eqref{H}.
+Every term must agree.
+\end{proof}
+
+\begin{proof}[Completion of the proof of Theorem~\ref{dist}]
+A finite abelian group endomorphism has equally large kernel and cokernel. Thus
+$\log_p\card{\ker(t^h\mid R)}=\log_p\card{R/t^hR}=\sum_{j=0}^{h-1}e_{k,\ell}(j)$.
+Summing Proposition~\ref{rec} gives the recursion
+\[
+ F_{p,k,\ell}(h)=\min(h,H(k,\ell))+F_{p,k-1,\ell-1}(h).
+\]
+When $\ell=1$, $R_{k,1}=\F_p[t]/t^{p^k}$ yields
+$\min(h,p^k)$. When $k=0$, multiplication by $t$ is zero and the exponent
+is $\ell\min(h,1)$. Iteration gives~\eqref{F}. Multiplying by the sizes of
+the invertible components completes the count.
+\end{proof}
+
+\paragraph{A four-coordinate example.}
+For $n=4$, $m=8$, the local exponent is
+$\min(h,1)+\min(h,3)+\min(h,8)$. All tuples eventually reach zero. The
+individual counts illustrate the change in growth at steps $1$, $3$ and $8$.
+\begin{center}
+\begin{tabular}{@{}lrrrrrrrrr@{}}
+\toprule
+Preperiod $h$ & 0&1&2&3&4&5&6&7&8\\
+Tuples & 1&7&24&96&128&256&512&1024&2048\\
+\bottomrule
+\end{tabular}
+\end{center}
+For a composite modulus, the maxima combine by taking their maximum.
+For example, $L_{72}(12)=\max(H_2(2,3),H_3(1,2))=\max(8,5)=8$.
+
+\paragraph{The basin of a specified cycle.}
+The invertible component consists of $\A(0)$ periodic states. A cycle of
+length $c$ has $c$ such states in its basin. Every periodic state can be
+paired with the same nilpotent states of a given preperiod, so the number
+in that basin with preperiod exactly $h$ is
+\[
+ \frac{c}{\A(0)}\bigl(\A(h)-\A(h-1)\bigr).
+\]
+
+\paragraph{How often is the maximum attained?}
+At least half the tuples have preperiod $L=L_m(n)$. For $L=0$ all do.
+For $L>0$, the tuples of preperiod at most $L-1$ form a proper additive
+subgroup: their nilpotent components belong to the kernels of
+multiplication by the $(L-1)$st power of the local multiplier. The index
+of this subgroup is at least two. More precisely, when $n$ is even,
+$m=p^\ell$, and $k=v_p(n)>0$, the proportion of tuples with the
+maximum preperiod is $1-1/p$. Indeed $H_p(k,\ell)>1$ is the unique
+largest cutoff in~\eqref{F}, so $F_{p,k,\ell}(L)-F_{p,k,\ell}(L-1)=1$.
+
+\paragraph{A coordinate test for periodicity.}
+For even $n$ and each $p^\ell\parallel m$, put $q=p^{v_p(n)}$. A tuple is
+periodic precisely when its projection on every nilpotent component is zero.
+In the polynomial coordinates used above this is the system
+\[
+ \sum_{\substack{0\le j<n\\ j\equiv a\pmod q}}(-1)^jv_j
+ \equiv0\pmod{p^\ell}\qquad(0\le a<q).
+\]
+These are exactly the coefficients obtained by reducing the tuple
+polynomial at $x=-y$ modulo $y^q-1$. Reversing the cyclic numbering
+permutes the congruences since $n$ is even. For odd $n$ the only condition
+is $\sum_jv_j\equiv0\bmod 2^{v_2(m)}$, in agreement with \cite{odd}.
+
+\paragraph{Relation to the lens-space computation.}
+The integral cokernel underlying the local count at $h\ge1$ is
+$\Z[t]/(t^h,(1+t)^{p^k}-1)$. This is also the complex $K^0$-ring of the
+standard lens space $S^{2h-1}/C_{p^k}$. Indeed this space is the circle
+bundle of the $p^k$th tensor power of the tautological line on
+$\mathbb{CP}^{h-1}$, up to dualizing. Its $K$-theory Gysin sequence gives
+exactly the displayed quotient of $K^0(\mathbb{CP}^{h-1})=\Z[t]/t^h$.
+The additive decomposition of this group was computed by Mahammed and
+Yanagida \cite{ma,ya}. In particular it determines the same kernel sizes
+after reduction modulo $p^\ell$. Proposition~\ref{rec} computes these
+sizes directly with finite rings.
+
+\paragraph{Acknowledgment.}
+The author used OpenAI Codex in developing the proofs, checking examples,
+and preparing the manuscript.
+
+\begin{thebibliography}{9}\small
+\bibitem{cs} P.~L. Clark and U. Schauz, Functional degrees and arithmetic
+applications I: the set of functional degrees, \emph{J. Algebra}
+\textbf{608} (2022), 691--718. \href{https://arxiv.org/abs/2201.02763}{arXiv:2201.02763}.
+\bibitem{dular} B. Dular, Cycles of sums of integers, \emph{Fibonacci Quart.}
+\textbf{58} (2020), 126--139. \href{https://arxiv.org/abs/1905.01765}{arXiv:1905.01765}.
+\bibitem{odd} M.~L. Lewis and S.~M. Tefft, Ducci on $\Z_m^n$ and the maximum
+length for $n$ odd (2024). \href{https://arxiv.org/abs/2403.05319}{arXiv:2403.05319}.
+\bibitem{even} M.~L. Lewis and S.~M. Tefft, The maximum length for Ducci
+sequences on $\Z_m^n$ when $n$ is even, \emph{Integers} \textbf{26} (2026), A17.
+\href{https://math.colgate.edu/~integers/aa17/aa17.pdf}{Journal article}.
+\bibitem{ma} N. Mahammed, $K$-th\'eorie des espaces lenticulaires,
+\emph{C. R. Acad. Sci. Paris S\'er. A} \textbf{272} (1971), 1363--1365.
+\bibitem{ya} S. Yanagida, The additive structure of $G^*(L^n(p^k))$,
+\emph{Osaka J. Math.} \textbf{13} (1976), 523--536.
+\href{https://doi.org/10.18910/11698}{doi:10.18910/11698}.
+\end{thebibliography}
+\end{document}
