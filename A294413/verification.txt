@@ -1,0 +1,20 @@
+Verification of exact packaged sources.
+Fresh package build; pinned dependency artifacts were reused from the local cache.
+No existing package oleans were present.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+$ lake build
+ℹ [1617/1619] Built Analytic
+info: ././././Analytic.lean:201:0: 'ComplementaryFibonacci.ratio_limit_of_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Analytic.lean:202:0: 'ComplementaryFibonacci.ratio_limit_of_nat_linear_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1618/1619] Built Proof
+info: ././././Proof.lean:180:0: 'A294413.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:181:0: 'A294413.ratio_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+Exit code: 0
+
+SHA-256:
+35ee9e50e139b60137e69f0269513a85a65b8c538be46fa77dabed0739b0e3ad  Analytic.lean
+1cb2fe23435602b2433a7feb440cf04d70875fa419b1c14ab8644bb7521a18d6  Proof.lean

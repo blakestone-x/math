@@ -2,6 +2,8 @@
 
 **Blake Stone · Proof developed with OpenAI Codex.**
 
+For almost every Tier 3 prime, the first offset with negative Jacobi symbol is exactly the least working offset. The proof classifies the fixed offsets of positive lower relative frequency. [Proof](frequency.md) · [Manuscript (PDF)](frequency.pdf)
+
 The 18 offsets reported as skipped in the original project split into 13 that can never occur first and five that can. The proof includes an exact minimum of 119 as well as 123. [Classification (PDF)](skipped-offsets.pdf) · [Proof and table](skipped-offsets.md) · [Verifier](verify_skips.py)
 
 Every integer of the form $3q$ with $q$ prime and $q\equiv1\pmod4$ occurs as the least offset for infinitely many Tier 3 primes. The follow-up proves this and gives a ten-digit prime whose least offset is 123. [Composite offsets](composite-offsets.md) · [PDF](composite-offsets.pdf) · [Certificate verifier](verify_composite.py)

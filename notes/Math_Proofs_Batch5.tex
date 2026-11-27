@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Four sequence proofs: congruences, growth, and Euler products},pdfauthor={Blake Stone},pdfsubject={OEIS conjectures with Lean verification}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Four sequence proofs:\\[3pt]
+congruences, growth, and Euler products}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with OpenAI Astra 6.2\par
+November 26, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove five assertions recorded as conjectural or tentative in four OEIS
+entries. We count the ordered solutions of a two-cube congruence modulo
+powers of three, classify the residue of a weighted binomial sum by its
+index's base-five digits, establish a golden-ratio limit for a complementary
+recurrence with a negative correction, and identify both the columns and
+row sums of a recursively defined triangle. The accompanying five Lean
+modules have fresh package builds and independent compilations. The
+recurrence theorem derives its growth hypotheses from the defining
+conditions; it does not separately formalize existence or uniqueness of
+the complementary pair. Background algebra and earlier related arguments
+are credited, and no exhaustive historical-priority claim is made.
+
+\section{A087412: a cubic congruence modulo powers of three}
+
+Let
+\[
+ a(N)=\#\{(x,y)\in\{0,\ldots,N-1\}^2:
+                 x^3+y^3\equiv1\pmod N\}.
+\]
+The pairs are ordered. Andrew Howroyd's July 17, 2018 conjecture in
+A087412~\cite{A087412} concerns the prime $3$.
+
+\begin{theorem}\label{thm:cubes}
+For every integer $e\ge2$, $a(3^e)=2\cdot3^e$.
+\end{theorem}
+
+\begin{proof}
+Write $e=k+2$ and $M=3^k$. Each residue modulo $9M$ is uniquely $r+3u$,
+where $r\in\{0,1,2\}$ and $0\le u<3M$. Since
+$(r+3u)^3\equiv r^3\pmod9$, the possible cubic residues are $0,1,8$.
+Two of these sum to $1$ modulo $9$ only in the ordered patterns $(0,1)$
+and $(1,0)$. Thus every solution has one of the disjoint forms
+\[
+ (x,y)=(3u,1+3v)\quad\hbox{or}\quad(1+3u,3v),
+ \qquad 0\le u,v<3M.
+\]
+Swapping the coordinates exchanges the two cases.
+
+Consider the polynomial $F(t)=t+3t^2+3t^3$. Its difference factors as
+\[
+ F(s)-F(t)=(s-t)\bigl[1+3(s+t+s^2+st+t^2)\bigr].
+\]
+For $k>0$, the bracket is a unit modulo $3^k$, because it is congruent to
+$1$ modulo $3$. Consequently $F$ is injective, hence bijective, on the
+finite ring $\Z/M\Z$. For $k=0$ the ring has one element, so bijectivity
+also holds.
+
+In the first residue pattern, expansion gives
+\[
+ (3u)^3+(1+3v)^3-1=9\bigl(3u^3+F(v)\bigr).
+\]
+The original congruence is therefore equivalent to
+$F(v)\equiv-3u^3\pmod M$. For each of the $3M$ possible values of $u$,
+bijectivity gives exactly one solution $v_0$ modulo $M$. Its representatives
+in $0\le v<3M$ are precisely $v_0,v_0+M,v_0+2M$. This gives $9M$ pairs
+in the first case and another $9M$ in the second. The total is
+$18M=2\cdot3^e$.
+\end{proof}
+
+The boundary condition matters: $a(3)=3$, while the first covered values
+are $a(9)=18$, $a(27)=54$, and $a(81)=162$. In Lean,
+\texttt{A087412.original\_count} identifies the indicator sum with the
+cardinality of the literal ordered-pair solution set, and
+\texttt{A087412.original\_conjecture} states Theorem~\ref{thm:cubes}
+directly in terms of that cardinality. The unique residue decomposition,
+permutation argument, and three lifts per root are all formalized.
+The unit argument is implemented using nilpotence of $3$ in
+$\Z/3^k\Z$; it covers the one-element ring as well.
+
+\section{A217280: the zero-or-two base-five classification}
+
+Paul D. Hanna's A217280~\cite{A217280}, introduced September 29, 2012,
+is the weighted binomial sum
+\[
+ a(n)=\sum_{j=0}^{n}\binom nj^3 2^j3^{n-j},\qquad n\ge0.
+\]
+
+\begin{theorem}\label{thm:digits}
+The remainder of $a(n)$ modulo $5$ is $1$ if every digit in the base-five
+representation of $n$ is $0$ or $2$, and is $0$ otherwise.
+\end{theorem}
+
+\begin{proof}
+Write $n=5q+r$, where $0\le r<5$. Decompose the summation index as
+$j=5h+s$, where $0\le s<5$. Lucas's theorem gives
+\[
+ \binom{5q+r}{5h+s}\equiv\binom qh\binom rs\pmod5.
+\]
+If $s>r$, the factor $\binom rs$ is zero. If $s\le r$ and $h\le q$,
+there is no borrow:
+\[
+ 5q+r-(5h+s)=5(q-h)+(r-s).
+\]
+Fermat's congruences $2^5\equiv2$ and $3^5\equiv3\pmod5$ therefore yield
+\begin{align*}
+ &\binom{5q+r}{5h+s}^{\!3}2^{5h+s}3^{5q+r-5h-s}\\
+ &\hspace{1cm}\equiv
+ \left(\binom qh^3 2^h3^{q-h}\right)
+ \left(\binom rs^3 2^s3^{r-s}\right)\pmod5.
+\end{align*}
+To justify factoring the finite sum, pad it with zero summands for
+$j>5q+r$ until its range is $0\le j<5(q+1)$. This convention avoids
+negative exponents in the padded terms; their binomial coefficients
+are zero. The new range is the rectangle
+$0\le h\le q$, $0\le s<5$. The terms with $s>r$ vanish modulo $5$,
+so the sum factors to give
+\begin{equation}\label{eq:lucas}
+ a(5q+r)\equiv a(q)a(r)\pmod5.
+\end{equation}
+
+The single-digit values and remainders are
+\[
+\begin{array}{c|rrrrr}
+ r&0&1&2&3&4\\\hline
+ a(r)&1&5&61&845&12865\\
+ a(r)\bmod5&1&0&1&0&0.
+\end{array}
+\]
+Apply~\eqref{eq:lucas} repeatedly, removing the last base-five digit at
+each step. The remainder is the product of the corresponding digit
+remainders. This product is $1$ exactly when all digits are $0$ or $2$,
+and is $0$ otherwise. For $n=0$, the empty-digit convention gives the
+empty product $1$, agreeing with $a(0)=1$.
+\end{proof}
+
+For example, $62=(222)_5$ gives remainder $1$, whereas $63=(223)_5$
+gives remainder $0$. The formal proof starts from the displayed sum,
+proves the padding and rectangular reindexing, and applies mathlib's
+Lucas theorem~\cite{Lucas}. Its digit predicate uses
+\texttt{Nat.digits 5 n} directly. The public declarations
+\texttt{A217280.conjecture}, \texttt{one\_iff}, and
+\texttt{divisible\_iff} cover every natural index. The Lucas method and
+Fermat congruences are classical; the target is this particular
+classification, not a new general digit-congruence principle.
+
+\section{A294413: growth despite a negative complementary correction}
+
+Let $a,b:\N\to\N$ be strictly increasing sequences with disjoint ranges
+covering the positive integers. Require
+\[
+ a_0=1,\quad a_1=3,\quad b_0=2,\quad b_1=4,
+ \qquad a_{n+2}=a_{n+1}+a_n-b_{n+1}+6.
+\]
+The equation is interpreted over the integers. These are the defining
+conditions in the title and program of Clark Kimberling's
+A294413~\cite{A294413}.
+
+\begin{theorem}\label{thm:ratio}
+For every pair satisfying these conditions, with
+$\phi=(1+\sqrt5)/2$,
+\[
+ \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\phi.
+\]
+More quantitatively, for every $n\ge0$,
+\[
+ \left|\frac{a_{n+2}}{a_{n+1}}-\phi\right|
+ \le20(n+1)\left(\frac23\right)^n.
+\]
+\end{theorem}
+
+\begin{proof}
+We first establish growth from the defining recurrence. If $t<a_i$ and
+$t<b_j$, each integer from $1$ through $t$ occurs among the first $i$
+terms of $a$ or the first $j$ terms of $b$. Hence
+\begin{equation}\label{eq:threshold}
+ t\le i+j.
+\end{equation}
+It follows that $a_i>i+j+1$ implies $b_j\le a_i$: otherwise apply
+\eqref{eq:threshold} at threshold $a_i$ with indices $i+1,j$.
+
+We claim $a_n\ge3n$. The initial cases follow from
+$a_0=1$, $a_1=3$, and $a_2=6$. For $n\ge3$, strong induction gives
+$a_{n-1}\ge3(n-1)>2(n-1)+1$. The preceding consequence with
+$i=j=n-1$ gives $b_{n-1}\le a_{n-1}$. Thus
+\[
+ a_n=a_{n-1}+a_{n-2}-b_{n-1}+6
+ \ge a_{n-2}+6\ge3n.
+\]
+Next, if $b_n>2n+2$, then $a_{n+1}\ge3n+3>2n+2$, and
+\eqref{eq:threshold} at indices $n+1,n$ gives the impossible inequality
+$2n+2\le2n+1$. We have therefore proved
+\begin{equation}\label{eq:complement}
+ b_n\le2n+2.
+\end{equation}
+
+Subtract a linear part by defining $u_n=a_{n+1}-2(n+1)$. Its initial
+values are $u_0=1$, $u_1=2$, and substitution gives
+\[
+ u_{n+2}=u_{n+1}+u_n+2n+6-b_{n+2}.
+\]
+The last term is nonnegative by~\eqref{eq:complement}. Since
+$(3/2)^2\le3/2+1$, two-step induction proves
+\begin{equation}\label{eq:growth}
+ u_n\ge(3/2)^n,\qquad a_{n+1}\ge(3/2)^n.
+\end{equation}
+
+Now put $A_n=a_{n+1}$ and $e_n=6-b_{n+2}$. The recurrence becomes
+$A_{n+2}=A_{n+1}+A_n+e_n$, with $|e_n|\le6(n+1)$.
+For the step error $d_n=A_{n+1}-\phi A_n$, the identity
+$\phi^2=\phi+1$ gives
+\[
+ d_{n+1}=(1-\phi)d_n+e_n.
+\]
+Since $|1-\phi|\le2/3$, setting $K=18+|d_0|$ yields
+$|d_n|\le K(n+1)$ by induction: the next bound is at most
+$\tfrac23K(n+1)+6(n+1)\le K(n+1)\le K(n+2)$.
+Here $d_0=6-3\phi$ and $|6-3\phi|\le2$, so $K\le20$.
+Dividing by the positive lower bound~\eqref{eq:growth} proves the
+displayed quantitative estimate. Its right side tends to zero. Shifting
+the ratio sequence by one index leaves its limit unchanged, which proves
+the original conjecture.
+\end{proof}
+
+\textbf{Source and prior-work qualifications.}
+The source's example complement incorrectly includes $6$, although
+$a_2=6$; the title, seeds, program, and $a$-data agree with the conditions
+above. The actual complement starts $2,4,5,7,8,9,11,\ldots$.
+The formal theorem quantifies over all pairs satisfying the conditions
+and assumes neither growth nor convergence. It does not separately
+construct the mex sequences or prove existence and uniqueness.
+
+Theorem 2.1 of Kimberling and Moses~\cite{KM} assumes existence of the
+ratio limit and a positive disturbance, so it does not prove this case.
+An earlier public note~\cite{Note} claims the same case through a general
+signed-disturbance theorem. That theorem as stated has a counterexample:
+$a_n\equiv1$ satisfies $a_n=a_{n-1}+a_{n-2}-1$, remains positive, and has
+$\sum_{n\ge2}\phi^{-n}<\infty$, but its ratios equal $1$.
+The missing growth condition is supplied here by~\eqref{eq:growth}.
+Related positive-disturbance arguments in that note are prior work. We
+claim the exact formal completion and derived growth bound, without
+claiming invention of recurrence normalization or exhaustive priority.
+
+\section{A380385: Euler-product columns and row sums}
+
+Mats Granvik's A380385~\cite{A380385} defines a triangle by a recursive
+program and gives two tentative identifications. Its explicitly designated
+program sets $T(n,1)=1$ for $n=1$ and $T(n,1)=0$ otherwise. For $k\ge2$,
+it sets $T(n,k)=0$ when $n<k$, and otherwise
+\begin{equation}\label{eq:triangle}
+ T(n,k)=\sum_{i=1}^{k-1}T(n-i,k-1)
+        -\sum_{i=1}^{n-1}T(n-i,k).
+\end{equation}
+The first-column exception is essential and agrees with the displayed
+data. The shorter title recurrence omits it; applying that title literally
+to the first column would give a different array.
+
+\begin{theorem}\label{thm:triangle}
+For $1\le k\le n$,
+\[
+ T(n,k)=[x^{n-k}]\prod_{i=1}^{k-1}(1-x^i).
+\]
+For every $n\ge1$,
+\[
+ \sum_{k=1}^{n}T(n,k)=-\operatorname{A010815}(n),
+\]
+where A010815 is the coefficient sequence of
+$\prod_{i\ge1}(1-x^i)$.
+\end{theorem}
+
+\begin{proof}
+Extend $T(n,k)=0$ for negative $n$. All generating series are formal. Put
+$C_k(x)=\sum_{n\ge0}T(n,k)x^n$. The exceptional first column gives
+$C_1(x)=x$. Move the second sum in~\eqref{eq:triangle} to the left to obtain
+\[
+ \sum_{j=1}^{n}T(j,k)=\sum_{i=1}^{k-1}T(n-i,k-1).
+\]
+The same equation holds when $n<k$, since all relevant terms vanish.
+Taking generating series yields
+\[
+ \frac{C_k(x)}{1-x}=(x+x^2+\cdots+x^{k-1})C_{k-1}(x).
+\]
+Consequently $C_k(x)=x(1-x^{k-1})C_{k-1}(x)$, and induction gives
+\[
+ C_k(x)=x^k\prod_{i=1}^{k-1}(1-x^i).
+\]
+Extracting the coefficient of $x^n$ proves the column formula.
+
+For the row identity, write $P_m(x)=\prod_{i=1}^m(1-x^i)$, with
+$P_0(x)=1$. The proved column polynomial satisfies
+\[
+ C_k(x)=x^kP_{k-1}(x)=P_{k-1}(x)-P_k(x).
+\]
+Thus $\sum_{k=1}^{N}C_k(x)=1-P_N(x)$. Choose $N=n\ge1$ and extract
+the coefficient of $x^n$ to obtain
+\[
+ \sum_{k=1}^{n}T(n,k)=-[x^n]P_n(x).
+\]
+Every factor $1-x^i$ with $i>n$ leaves this coefficient unchanged.
+It is therefore the degree-$n$ coefficient of the infinite Euler product,
+which is precisely A010815~\cite{A010815}.
+\end{proof}
+
+The formal proof defines the recursive triangle first. Strong induction
+then establishes the column formula, using finite polynomial arithmetic.
+The theorem \texttt{A380385.eulerCoefficient\_stable} supplies the exact
+connection between finite products and the infinite-product coefficient;
+no analytic convergence premise is needed. Euler's product, its known
+coefficient sequence, and the related finite-product triangle A231599 are
+prior mathematics. The two results concern their asserted connection to
+this particular recurrence.
+
+\section{Verification, scope, and source record}
+
+The repository contains four standalone packages, with five Lean modules
+in total. Each pins Lean 4.19.0 and mathlib commit
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}. Each package has a fresh
+successful build, a separate mathematical/source review, and independent
+compilation of the exact final sources. Source hashes connect these checks
+to the delivered files. The final theorem axiom reports contain only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; there
+are no proof placeholders, additional axioms, or \texttt{native\_decide}
+calls.
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Package & Main formal declarations\\
+\midrule
+A087412 & \texttt{original\_conjecture}\\
+A217280 & \texttt{conjecture}, \texttt{one\_iff}, \texttt{divisible\_iff}\\
+A294413 & \texttt{conjecture}, \texttt{ratio\_error\_bound}\\
+A380385 & \texttt{column\_formula}, \texttt{row\_sum}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The source snapshots retain the selected assertions as conjectural or
+tentative. Exact-identifier and mathematical-description searches, the
+cited literature, and public proof collections were checked. The earlier
+attempt concerning A294413 is acknowledged explicitly. These are bounded
+source-status findings, not proof of absolute historical priority or
+evidence of OEIS editorial acceptance. The batch resolves five selected
+assertions across four entries, using classical methods with complete
+formal verification.
+
+The A294413 analytic module is reused from the repository's A294532
+package; its signed-error result explicitly requires the lower growth
+bound established here. A separate prior-work addendum in the A294532
+directory records the related notes found during this follow-up search.
+
+Repository: \url{https://github.com/blakestone-x/math}. The package
+READMEs contain full reproduction instructions, precise source-definition
+qualifications, and links to the audit and compilation records.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{A087412}
+OEIS Foundation, A087412, sequence by Yuval Dekel (2003), selected
+conjecture by Andrew Howroyd (July 17, 2018).
+\url{https://oeis.org/A087412}. Official export revision 30,
+September 17, 2019.
+
+\bibitem{A217280}
+P. D. Hanna, OEIS A217280 (September 29, 2012).
+\url{https://oeis.org/A217280}. Official export revision 25,
+July 27, 2022.
+
+\bibitem{Lucas}
+G. Ma and mathlib contributors, \emph{Lucas's theorem}, formalization in
+\texttt{Mathlib/Data/Nat/Choose/Lucas.lean}, pinned mathlib version 4.19.0.
+\url{https://github.com/leanprover-community/mathlib4}.
+
+\bibitem{A294413}
+C. Kimberling, OEIS A294413 (October 31, 2017).
+\url{https://oeis.org/A294413}. Official export revision 9,
+November 1, 2017.
+
+\bibitem{KM}
+C. Kimberling and P. J. C. Moses, \emph{Linear Complementary Equations and
+Systems}, The Fibonacci Quarterly 57(5) (2019), 96--110.
+\url{https://www.fq.math.ca/Papers1/57-5/kimberling-moses.pdf}.
+
+\bibitem{Note}
+\emph{Kimberling Note}, publicly uploaded by \texttt{bambasene564};
+publication date not established. Retrieved November 26, 2026.
+\url{https://www.scribd.com/document/1067832042/kimberling-note}.
+
+\bibitem{A380385}
+M. Granvik, OEIS A380385 (January 23, 2025), with coefficient program
+dated January 25, 2025. \url{https://oeis.org/A380385}.
+Official export revision 20, January 25, 2025.
+
+\bibitem{A010815}
+OEIS Foundation, A010815, Euler-product coefficients.
+\url{https://oeis.org/A010815}. Definition checked against the official
+export, revision 271, May 23, 2026.
+\end{thebibliography}
+\end{document}

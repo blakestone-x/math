@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.8in,bottom=.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\DeclareMathOperator{\pos}{pos}
+\title{Recurrence and position distributions in arbitrarily ordered throwback queues}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+In a throwback queue the head has value $d$ and moves to position $d$, counting from zero.
+For every ordering of distinct positive labels we prove that the leader word is recurrent
+if and only if each label $x$ initially occupies a position at most $x$. Every recurrent
+leader word is uniformly recurrent. A violation produces an explicit prefix that occurs
+exactly once. For arbitrary starting orders every finite block has an ultimately periodic
+occurrence indicator. We give an exact formula for the limiting distribution of each
+label's position, including the dependence on its starting orbit.
+\end{abstract}
+
+\section{Which starting orders give recurrence?}
+Let $Q$ be an infinite list of distinct positive integers. Write $u_t$ for its head at time
+$t$, and $p_t(x)$ for the position of a label $x$. Moving $u_t=d$ past the next $d$ entries
+takes the old position $p$ of any label to
+\[
+ F_d(p)=\begin{cases}d&p=0,\\p-1&1\le p\le d,\\p&p>d.\end{cases}
+\]
+A word is recurrent if every finite block that occurs once occurs infinitely often. It is
+uniformly recurrent if for each such block the gaps between occurrences are bounded.
+
+\begin{theorem}\label{th:rec}
+The following are equivalent: the word $u_0u_1\cdots$ is recurrent, it is uniformly
+recurrent, and $p_0(x)\le x$ for every label $x$. If $p_0(x)>x$, the initial word ending
+at the first appearance of $x$ has exactly one occurrence.
+\end{theorem}
+
+Darnell and Dribus proved individual-label recurrence for all distinct positive queues and
+uniform recurrence for increasing inputs \cite[Theorems 2 and 7]{dd}. An increasing queue
+satisfies this criterion. The criterion also applies, for example, to $(2,1,3,4,\ldots)$.
+The proof of the converse recovers physical positions from an observed finite word.
+
+\begin{lemma}\label{lem:hit}
+From every time, each label eventually reaches the head. After reaching the head, $x$ stays
+in positions $0,\ldots,x$.
+\end{lemma}
+\begin{proof}
+For completeness, induct strongly on the present position $p$ of a label $x$, simultaneously
+over all starting times. If $p>0$, some label $y$ in the first $p$ slots is at least $p$,
+since only $p-1$ positive integers are smaller. By induction $y$ reaches the head. Until
+$x$ itself reaches the head its position is nonincreasing. If $x$ has still not appeared
+when $y$ is thrown, its position decreases to at most $p-1$. Induction now gives the desired
+visit of $x$. Position zero is the base case. After a throw of $x$ its position is $x$,
+and every other throw either preserves or decreases it.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:rec}]
+Suppose $p_0(x)>x$ and let $k$ be the first time with $u_k=x$.
+Given the head $d$ of a step, the inverse of $F_d$ sends $d$ to $0$, sends $q<d$ to $q+1$,
+and fixes $q>d$. In any occurrence of $u_0\cdots u_k$ the final head $x$ is in slot zero.
+Inverting the first $k$ specified steps recovers the same starting slot $p_0(x)>x$.
+This excludes any start after time $k$ by Lemma~\ref{lem:hit}. A start $s$ with
+$1\le s\le k$ would put the actual $x$ at time $k$ at offset $k-s$ in the repeated block,
+before its first $x$. Thus only the original occurrence exists.
+
+Now suppose every initial position is within range. Fix a cutoff $M$ and track all labels
+$x\le M$, recording their positions. These positions stay in range. The state determines
+the next state: a tracked head has its specified throw distance, and an untracked head
+moves every tracked label left by one. The new state also determines its predecessor.
+If a tracked head $d$ was thrown, it is now in slot $d$. Every smaller tracked label was
+crossed and now lies strictly below its own value. Thus the smallest tracked label at its
+own value identifies $d$. If there is no such label, the old head was untracked and every
+old tracked position is recovered by adding one. For a tracked head, use $F_d^{-1}$.
+The forward trajectory therefore has no transient: a collision among finitely many states
+can be followed back to time zero. The tracked state and the leader word with larger
+values replaced by one common symbol are periodic from time zero. Taking $M$ at least
+as large as every value in a specified block makes its occurrences periodic, hence
+syndetic. Uniform recurrence implies recurrence.
+\end{proof}
+
+\begin{corollary}\label{cor:blocks}
+For any starting order, the indicator of the occurrences of each finite nonempty word
+is ultimately periodic. Its limiting frequency is rational. It is positive exactly when
+the word occurs infinitely often.
+\end{corollary}
+\begin{proof}
+Take the maximum label in the word as cutoff. By Lemma~\ref{lem:hit}, after a common finite
+time all tracked labels are within range. The forward and inverse arguments above use only
+the bounds for tracked labels. The capped leader word is periodic from that time, and a
+literal block with all values below or at the cutoff is recognized from this word.
+A periodic indicator with $b$ hits per period $P$ has mean $b/P$.
+\end{proof}
+
+\section{Exact position distributions}
+Section 7 of Darnell and Dribus \cite{dd} asks how to quantify average positions for
+arbitrary distinct inputs. Our earlier note \cite{mix} computes these means for perfectly
+mixing increasing prefixes. A prefix here means the \emph{smallest labels}, whatever their
+initial locations. The next formula uses only the orbit of the smaller labels and a
+congruence. In particular it applies to each orbit separately.
+
+Write the labels in numerical order as $x_0<x_1<\cdots$ and let $r_i=x_i-i+1\ge2$.
+To compute a distribution through level $i$, choose a time $T$ by which all labels through
+$x_i$ lie in range and stay there, as guaranteed by the lemma. In the queue at time $T+t$,
+let $z_i(t)$ be the zero-based position of $x_i$ after deleting all smaller labels.
+Equivalently, $x_i$ occupies the $z_i(t)$-th free slot among $0,\dots,x_i$ after the
+$i$ smaller labels have been placed. Its possible ranks are $0,\dots,r_i-1$.
+Placing labels in order gives a bijection from the product of the rank sets to the
+admissible physical configurations.
+
+Call a step \emph{active at level $i$} if its head is at least $x_i$.
+Let $P$ be the least period of the smaller configuration, $H$ the number of active steps
+in one such period, and $A(t)$ their number in steps $0,\ldots,t-1$, relative to $T$.
+For an empty smaller configuration use $P=H=1$. Let $F_t$ be the free slots at time $t$
+among $0,\ldots,x_i$, and $\rho_t(v)=\#\{w\in F_t:w<v\}$.
+
+\begin{theorem}\label{th:dist}
+Put $g=\gcd(r_i,H)$ and $z=z_i(0)$. The limiting probability of finding $x_i$ in slot $v$
+is zero outside $[0,x_i]$ and otherwise equals
+\[
+ \pi_i(v)=\frac{g}{P r_i}\sum_{t=0}^{P-1}
+ {\bf1}_{v\in F_t}\,{\bf1}_{\rho_t(v)\equiv z-A(t)\pmod g}.
+\]
+Its limiting average position is $\sum_{v=0}^{x_i}v\pi_i(v)$.
+The least period and number of active steps for the \emph{next} level are respectively
+\[
+ P'=P\,r_i/g,\qquad H'=(H/g)(r_i-1).
+\]
+In particular every admissible orbit through the same set of labels has the same length.
+There are $\prod_{j=0}^i r_j/P'$ such orbits.
+\end{theorem}
+\begin{proof}
+A smaller head leaves the relative order of all surviving labels unchanged.
+When a head $d\ge x_i$ moves, every smaller label lies before its insertion slot, since
+each occupies a position strictly below $x_i$. After deletion of the smaller labels the
+throw distance is therefore $d-i$. If $d=x_i$, rank zero becomes $r_i-1$. Otherwise the
+head crosses $x_i$ and its rank decreases by one. Thus each active step decrements the
+rank cyclically, and $z_i(t)\equiv z-A(t)\pmod{r_i}$. The smaller projection evolves
+independently, and its phase determines whether a step is active.
+
+After $P$ steps the smaller configuration returns and the rank is translated by $-H$.
+Its order is $r_i/g$. At each base time $0\le t<P$, the visits at $t+kP$ consequently
+sample each rank congruent to $z-A(t)$ modulo $g$ exactly once per joint orbit.
+On multiplying the uniform time weight $1/P'$ by the indicated count one obtains the
+displayed probabilities. The total number of active steps in $P'$ moves is $Hr_i/g$.
+Every $r_i$-th active step has leader $x_i$, so $(H/g)(r_i-1)$ pass to the next level.
+These arguments apply for every initial rank. The period induction starts with the empty
+configuration. The product of the rank-set sizes counts all admissible states, so division
+by their common period counts the orbits.
+\end{proof}
+
+\paragraph{Dependence on order.}
+Take smallest labels $2$ and $4$. The lower period is $3$ with two active steps, so
+$r_1=4$, $g=2$, and the joint period is $6$. Starting the queue with $(2,4,5,6,\ldots)$,
+the slot counts of $4$ in positions $0,\ldots,4$ are $(1,1,1,2,1)$ per period, giving
+mean $13/6$. Starting with $(2,5,4,6,\ldots)$ gives $(1,1,1,1,2)$ and mean $7/3$.
+The label set and its limiting head frequencies thus allow different mean positions.
+
+\paragraph{Verification.}
+The accompanying Lean development proves the first-visit lemma, the unique-prefix
+obstruction, and the two equivalences of Theorem~\ref{th:rec} from the physical position
+equations, head identity, positivity, and occupancy of every slot. The distribution formula
+is proved above. The exact-arithmetic verifier compares its probabilities with literal
+finite projected orbits from every admissible state of small label sets, and separately
+runs actual permuted queues.
+
+\begin{thebibliography}{9}
+\bibitem{dd} J. Darnell and B. F. Dribus, \emph{Throwback sequences of positive integers},
+Journal of Integer Sequences \textbf{28} (2025), Article 25.5.1.
+\url{https://cs.uwaterloo.ca/journals/JIS/VOL28/Dribus/dribus4.html}.
+\bibitem{mix} B. Stone mathematics repository, \emph{Perfect mixing in increasing
+throwback queues} (2026).
+\href{https://github.com/blakestone-x/math/tree/6fdc6b705f6c8d04bc1a983871fc10a2afdce3d6/Throwback-mixing}{GitHub manuscript at commit 6fdc6b7}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,11 @@
+Independent compilation of the final A217280 source.
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+Fresh output in an isolated audit directory.
+
+$ lean -o Proof.olean Proof.lean
+'A217280.lucas_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A217280.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A217280.one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A217280.divisible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Exit code: 0
+SHA256 Proof.lean: 831c7287cf161b648658c32f6b61945e2259c2206c37b44720a06d4e6c106c45

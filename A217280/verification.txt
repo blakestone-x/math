@@ -1,0 +1,28 @@
+A217280 packaged proof verification
+Date: November 26, 2026 (America/Chicago)
+Lean: 4.19.0
+Mathlib: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: 831c7287cf161b648658c32f6b61945e2259c2206c37b44720a06d4e6c106c45
+Directory: output/batch5/A217280
+Command: lake build
+Dependency source and compiled caches were supplied locally at the exact pinned revisions.
+
+ℹ [2794/2795] Built Proof
+info: ././././Proof.lean:141:0: 'A217280.lucas_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:142:0: 'A217280.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:144:0: 'A217280.one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:145:0: 'A217280.divisible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Process exit code: 0
+
+Package metadata check after setting manifest root name to a217280
+Command: lake build
+ℹ [2794/2795] Replayed Proof
+info: ././././Proof.lean:141:0: 'A217280.lucas_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:142:0: 'A217280.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:144:0: 'A217280.one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:145:0: 'A217280.divisible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Process exit code: 0

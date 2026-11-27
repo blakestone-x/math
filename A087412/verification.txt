@@ -1,0 +1,32 @@
+A087412 final packaged-source verification
+Lean 4.19.0; Mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Local dependency cache reused; this package had no compiled root module before the build.
+
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+exit code: 0
+
+$ lake --version
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+exit code: 0
+
+$ lake build
+ℹ [1125/1126] Built Proof
+info: ././././Proof.lean:209:0: 'A087412.F_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:210:0: 'A087412.original_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:211:0: 'A087412.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:212:0: 'A087412.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+exit code: 0
+
+$ python3 examples.py
+exponent modulus ordered_pair_count
+1 3 3
+2 9 18
+3 27 54
+4 81 162
+5 243 486
+exit code: 0
+
+SHA256 Proof.lean 6cb09cbc47175fad13ef5416a55ad9e72fdf9cd0e19db52f30b5cdfe0bc883ca
+SHA256 source.seq 067f9038381aadb26c052439397604d3b6681df26283d6f5cacf15fe905dff3e

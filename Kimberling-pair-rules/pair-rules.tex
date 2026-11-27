@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=.98in,top=.76in,bottom=.78in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\oeisentry}[1]{\href{https://oeis.org/#1}{\texttt{#1}}}
+\newcommand{\eps}{\varepsilon}
+\title{\vspace{-1.2em}Lengths and letter positions for two binary pair-replacement rules}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Two nonoverlapping replacement rules proposed by Clark Kimberling have three-letter
+descriptions in terms of the gaps between ones. We derive both exact iterate-length
+recurrences, four algebraic position limits, and all-index bounds. The results prove
+the proposed order-seven length recurrence, correct a Tribonacci sequence reference,
+and isolate a single failing index in a proposed inequality.
+\end{abstract}
+
+\section{Statements}
+Begin at $w_0=00$. Scan the current word from the left, replacing $00$ by $001$, replacing
+each $1$ by its prescribed image, and copying any unpaired $0$. The inserted letters are first
+scanned on the next iteration. Write $w_{n+1}=R(w_n)$, $L_n=|w_n|$, and use one-based
+positions $p(n)$ and $q(n)$ of the $n$-th one and zero in the limiting word.
+The two choices $R_T(1)=010$ and $R_C(1)=000$ give \oeisentry{A285666} and \oeisentry{A286939},
+respectively. Kimberling's June 2017 entries explicitly ask about lengths and positions.
+Earlier numerical matches to alternative morphisms for \oeisentry{A286058} appear in Sequence
+Machine \cite{sm}. The proofs here start from the left-to-right replacement itself.
+
+\begin{theorem}\label{th:length}
+For $R_T$, $L_0=2,L_1=3,L_2=6$ and $L_{n+3}=L_{n+2}+L_{n+1}+L_n$ for $n\ge0$.
+Thus $L_n=\text{\oeisentry{A001590}}(n+4)$. The proposed \oeisentry{A001580}, whose $n$-th term is
+$2^n+n^2$, already gives $8$ instead of $|001010|=6$ at $n=2$.
+
+For $R_C$ the lengths start $2,3,6,10,17,29,51$. For every $n\ge0$,
+\[
+ L_{n+7}=L_{n+6}+2L_{n+5}-L_{n+4}-L_{n+3}+2L_{n+2}-2L_n.
+\]
+This proves the identification in \oeisentry{A285665}, including its eighth term $90$.
+\end{theorem}
+
+\begin{theorem}\label{th:dens}
+Let $\alpha>1$ satisfy $\alpha^3=\alpha^2+\alpha+1$, and $\beta>1$ satisfy
+$\beta^3=2\beta+2$. For both rules $m_1=\lim p(n)/n$ and $m_0=\lim q(n)/n=m_1/(m_1-1)$
+exist. Their values are
+\[
+ m_1(T)=\frac{2+3\alpha+4\alpha^2}{1+\alpha+\alpha^2},\qquad
+ m_1(C)=\frac{3\beta^2+6\beta+4}{\beta^2+\beta}.
+\]
+In the order $(m_1,m_0)$ these are approximately $(3.382976,1.419643)$ and
+$(4.899688,1.256431)$, respectively. The proposed strict unit bounds on
+$q(n)/n-m_0$ hold for all $n\ge1$ in \oeisentry{A285667} and \oeisentry{A285432}. The same strict
+unit bounds hold for $p(n)/n-m_1$ in \oeisentry{A286058}. For \oeisentry{A285564} the proposed
+$-1<p(n)/n-m_1<2$ holds exactly for $n\ge2$. Its lower bound fails at $n=1$, where
+$p(1)=3$.
+\end{theorem}
+
+\section{The substitutions on gaps}
+Write $D(k)=10^k$ and extend $D$ to a word of gap symbols by concatenation. The gap
+alphabets below use the letters $a,b,c$ in the order displayed.
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+Rule & $(a,b,c)$ in zeros & $h$ & $S(a)$ & $S(b)$ & $S(c)$\\
+\midrule
+$R_T$ & $(1,2,3)$ & $a=1$ & $c$ & $ca$ & $cb$\\
+$R_C$ & $(2,5,6)$ & $b=5$ & $b$ & $ac$ & $aab$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $h$ denotes both the indicated letter and its zero count. For each of the six cases
+one directly checks
+\[
+                         R(D(k))\,0^h=0^h D(S(k)).
+\tag{1}
+\]
+The rule can be concatenated at a boundary immediately before a $1$. For example under
+$R_C$, $D(5)$ rewrites to $000(001)^2 0$. Appending five zeros gives $0^5D(2)D(6)$.
+
+The infinite gap word is explicitly
+\[
+                         K=h\,S(h)\,S^2(h)\,S^3(h)\cdots .
+\tag{2}
+\]
+Indeed $K=hS(K)$. Taking longer prefixes in (1) gives $R(D(K))=0^hD(S(K))$, so
+$W=00D(K)$ is fixed by $R$. The scan preserves the prefix relation: the only cut that can
+split a token leaves one trailing zero, and the image of $00$ begins with zero. The iterates
+of $00$ are consequently nested prefixes of $W$. Their lengths tend to infinity, because
+each iterate begins with $00$ and replacing that pair increases length. This proves that
+$W$ is precisely the word defined in the entries.
+
+\section{Finite right endpoints and lengths}
+Equation (1) is an identity with an appended suffix. To compute the lengths of the
+unextended finite words, keep a terminal binary word $s_j$. The following table gives a
+cycle of such words and a possibly empty gap string $J_j$. In each part the next row
+wraps back to the first. The notation $(k_1,k_2;d)$ means $D(k_1)D(k_2)10^d$,
+and $(\,;d)$ means $10^d$. All rows assert the finite identity
+$R(s_j)=0^h D(J_j)s_{j+1}$, which follows by applying the original scan.
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$R_T$ suffix & $J_j$ & \hspace{.35in} & $R_C$ suffix & $J_j$\\
+\midrule
+$(\,;0)$ & $\eps$ && $(5,2;5)$ & $ac$\\
+$(\,;1)$ & $\eps$ && $(5,2;1)$ & $\eps$\\
+$(\,;2)$ & $c$    && $(2,6;4)$ & $baa$\\
+&&& $(5,2;0)$ & $\eps$\\
+&&& $(2,6;3)$ & $ba$\\
+&&& $(2,5;1)$ & $\eps$\\
+\bottomrule
+\end{tabular}
+\end{center}
+At $n=1$ in the first rule and $n=4$ in the second, $w_n=00s_0$.
+If $w_n=00D(v)s_j$, applying (1) and the table gives exactly
+\[
+                        w_{n+1}=00D\big(hS(v)J_j\big)s_{j+1}.
+\tag{3}
+\]
+The table is also a small reproducible calculation of both recurrences. To give the
+details, let $X$ be the column vector of letter counts in $v$, $e(w)$ the count column
+of a word, and $d=(1+a,1+b,1+c)$ the row of tile lengths. Then
+\[
+ X'=MX+e(h)+e(J_j),\qquad L_n=2+dX+|s_j|,\qquad
+ M_T=\begin{pmatrix}0&1&0\\0&0&1\\1&1&1\end{pmatrix},\quad
+ M_C=\begin{pmatrix}0&1&2\\1&0&1\\0&1&0\end{pmatrix}.
+\]
+The characteristic polynomials are $x^3-x^2-x-1$ and $x^3-2x-2$. Hence each associated
+third-order length residual depends only on the suffix phase: its coefficient of $X$
+vanishes by Cayley--Hamilton. For $R_T$, evaluating the residual
+$L_{n+3}-L_{n+2}-L_{n+1}-L_n$ at $n=1,2,3$ gives $(0,0,0)$. The initial lengths check
+$n=0$. For $R_C$, the residual $D_n=L_{n+3}-2L_{n+1}-2L_n$ repeats in six phases from
+$n=4$. With direct evaluation also at $0\le n<4$, its cycle from $n=0$ is
+\[
+                          (0,-1,-3,-3,-2,0).
+\]
+These six numbers satisfy $D_{n+4}-D_{n+3}+D_{n+1}-D_n=0$, including at the wrap.
+Multiplying $x^3-2x-2$ by $x^4-x^3+x-1$ gives the recurrence in
+Theorem~\ref{th:length}. This proves the length statements.
+
+\section{Frequencies and bounds}
+Both matrices are primitive: their directed graphs are strongly connected, with a loop
+in the first and cycles of lengths two and three in the second. Perron--Frobenius gives
+limiting normalized count vectors for every $S^j(k)$, uniformly over the three choices of
+$k$. This conclusion applies to all prefixes of $K$: for fixed $j$ discard
+$h\cdots S^{j-1}(h)$, and decompose its infinite tail into complete $S^j$-images.
+At most one end tile is cut, with length bounded for fixed $j$. First take the prefix
+length to infinity and then $j$ to infinity. The right eigenvectors, in our order of
+letters, are proportional to $(1,\alpha,\alpha^2)$ and $(\beta^2-1,\beta,1)$.
+Since $p(1)=3$ and the successive gaps are $1+k$ for $k$ in $K$, the average tile
+length gives the two displayed $m_1$ values. Inverting the increasing one-position
+function gives density $1/m_1$ of ones in binary prefixes. The complementary zero
+density is $1-1/m_1$, proving the formula for $m_0$. For use below, exact substitution
+in the cubics brackets $1.8392<\alpha<1.8393$ and $1.7692<\beta<1.7693$.
+Inserting these rational intervals in the displayed formulae gives
+$3<m_1(T)<7/2$ and $4<m_1(C)<5$.
+
+Both binary words have isolated ones and start with a zero, hence $1\le q(n)/n\le2$
+for all $n$. Both $m_0$ lie strictly between 1 and 2, which proves the two zero bounds.
+
+For $R_T$, every image begins in $c$ and each $a$ in an image is terminal.
+From $K=aS(K)$, two $a$'s are never adjacent. The position $p(n)$ is a sum of $n$
+increments, the first equal to $3$ and the rest between $2$ and $4$, with no adjacent
+$2$'s. At most $\lfloor n/2\rfloor$ increments equal $2$. Thus
+$5/2\le p(n)/n\le4$. Together with $3<m_1(T)<7/2$ this gives the strict inequalities.
+
+For $R_C$ we prove $4\le p(n)/n<6$ for $n\ge2$. For the lower bound, subtract $4$ from
+each increment. The first contributes $-1$. The successive gap letters contribute
+$-1,2,3$ for $a,b,c$ respectively. From $K=bS(K)$ its first three letters are $bac$.
+There are never more than two successive $a$'s since every image ends in $b$ or $c$.
+The first one or two letters of $K$ have sum at least one. The suffix starting with the
+third letter can be grouped into a $b$ or $c$ followed by at most two $a$'s. Every
+prefix of each such group has nonnegative sum. This proves the lower bound. For the
+upper bound, subtract $6$ from each increment. Letter weights are $-3,0,1$, and each
+$c$ is immediately preceded by $a$, since it appears only in the image $ac$. Pairing
+these letters bounds every prefix sum by zero, in addition to the initial $3-6$.
+This proves the claimed upper bound even at $n=1$. Since $4<m_1(C)<5$,
+the proposed lower bound fails there and holds at every later index.
+\hfill$\square$
+
+\paragraph{Verification.}
+The accompanying Lean file proves both recurrences on the literal finite binary words,
+including the boundary identities and initial cases. The analytic limits and inequalities
+are proved in this manuscript. An independent verifier implements the original scan,
+checks the suffix tables and recurrence against literal words, and checks the position
+bounds and the failed first index.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} C. Kimberling, entries \oeisentry{A285665}, \oeisentry{A285666}, \oeisentry{A285667},
+\oeisentry{A286058}, \oeisentry{A286939}, \oeisentry{A285432} and \oeisentry{A285564}, June 2017,
+\emph{The On-Line Encyclopedia of Integer Sequences}. The comparison sequences are
+\oeisentry{A001580} and \oeisentry{A001590}.
+\bibitem{sm} \emph{Sequence Machine}, numerical matches for A286058.\newline
+\url{https://sequencedb.net/index.html?p=600&s=diff}.
+\end{thebibliography}
+\end{document}

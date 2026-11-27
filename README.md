@@ -5,6 +5,8 @@ math proofs
 
 [All 44 numbered conjectures in Mathar’s rectangular tiling paper](Mathar-tilings/README.md)
 
+- [Arbitrarily ordered throwback queues — recurrence, unique prefixes and position distributions](Throwback-arbitrary/README.md) · [Manuscript](Throwback-arbitrary/arbitrary-queues.pdf)
+- [Kimberling’s binary pair rules — six OEIS entries, exact lengths and position limits](Kimberling-pair-rules/README.md) · [Manuscript](Kimberling-pair-rules/pair-rules.pdf)
 - [Throwback queues — a perfect-mixing criterion for every increasing input](Throwback-mixing/README.md) · [Manuscript](Throwback-mixing/throwback.pdf)
 - [Layman's sieve — triangular stabilization and the residue-class sieve conjectures](Layman-sieve/README.md) · [Manuscript](Layman-sieve/sieve.pdf)
 - [Binary substitutions — sharp position errors for six OEIS sequences](Morphic-discrepancy/README.md) · [Manuscript](Morphic-discrepancy/discrepancy.pdf)
@@ -12,9 +14,9 @@ math proofs
 - [Hardin’s rectangular arrays — the threshold for a common recurrence and 25 table predictions](Hardin-constant-stress/README.md) · [Manuscript (PDF)](Hardin-constant-stress/rectangular-recurrences.pdf)
 - [Modular Ducci sequences — the sharp maximum and the number of tuples entering a cycle at each step](Ducci-preperiod/README.md) · [Manuscript (PDF)](Ducci-preperiod/Ducci-preperiods.pdf)
 - [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
-- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md)
+- [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md) · [The least offset for almost every Tier 3 prime (PDF)](Erdos-Straus-offset/frequency.pdf)
 - [Elementary symmetric Boolean functions — a uniform AND-gate upper bound](SymmetricBooleanCircuits/README.md)
-- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf)
+- [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf) · [Arbitrary subsets of affine grids (PDF)](Erdos-132-convex-lattice/rare-distances-beyond-grids.pdf)
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
 
@@ -34,6 +36,7 @@ math proofs
 - [A087324 — prime signatures of decimal 9's complements](A087324/README.md)
 - [A087325 — least 10's complements with a given prime factor count](A087325/README.md) · [Finite-case verifier](A087325/verify.py)
 - [A087339 — infinitely many nonrepunits with two prime digit statistics](A087339/README.md)
+- [A087412 — the exact cubic-congruence count modulo every power of three](A087412/README.md) · [Lean proof](A087412/Proof.lean)
 - [A087726 — an exact count of square-zero matrices modulo any integer](A087726/README.md)
 - [A093035 — ordered divisor triples of bounded sum](A093035/README.md)
 - [A094783 — a counterexample to closure for divisor records](A094783/README.md)
@@ -47,8 +50,10 @@ math proofs
 - [A178811 — consecutive powerful integers with matching prime signatures](A178811/README.md)
 - [A185333 and A185376 — necklaces that admit a palindromic cut, including prescribed color counts](A185376/README.md)
 - [A208354 — a bijection for compositions with a single run of ones](A208354/README.md)
+- [A217280 — a complete base-five digit test for the weighted binomial sum](A217280/README.md) · [Lean proof](A217280/Proof.lean)
 - [A224341 and A224342 — the unique composition two-cycle and five corrected terms](A224341/README.md)
 - [A232622 and Mathar’s tiling formulas — symmetry and four-tile intersections](A232622/README.md) · [Bar tilings](A232622/bar-crossings.md) · [Three-row crossings](A232622/three-row-crossings.md) · [Algebra checks](A232622/verify.py)
+- [A233329–A233333 — least recurrences for rhombus coronas and an exact symmetry count](A233332/README.md) · [Manuscript (PDF)](A233332/rhombus-coronas.pdf) · [Geometric enumeration](A233332/geometry_n4.py)
 - [A238342 — the asymptotic count of compositions with a fixed number of smallest parts](A238342/README.md)
 - [A245211 — partial results on fixed points of the weighted proper-divisor sum](A245211/README.md) · [PDF](A245211/A245211-research.pdf) · [Computations](A245211/verification/README.md)
 - [A261781 — minimal recurrences and spacing of growth constants for marked compositions](A261781/README.md)
@@ -57,6 +62,7 @@ math proofs
 - [A268135 — an explicit fixed digit-sum family and Saunders’s earlier theorem](A268135/README.md)
 - [A269631 — a greedy digit-length sequence is a permutation](A269631/README.md)
 - [A293929 — minimum plus signs to collapse a number](A293929/README.md)
+- [A294413 — golden-ratio convergence with a negative complementary correction](A294413/README.md) · [Lean proof](A294413/Proof.lean)
 - [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
 - [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
@@ -74,9 +80,12 @@ math proofs
 - [A357235, A357216, A357254 — intersections and counts for regular polygons](A357235/README.md)
 - [A364847 — matrix similarity classes with a prescribed unit determinant](A364847/README.md)
 - [A366253, A367183, A367190 — regions, vertices and edges for marked polygons](A366253/README.md)
+- [A380385 — Euler-product column formulas and row sums](A380385/README.md) · [Lean proof](A380385/Proof.lean)
 - [A384700 — circles determined by two rows of grid points](A384700/README.md)
 - [A394659 — independent sets in triangular grids](A394659/README.md) · [Exact verifier](A394659/verify.py)
 
 [Collected proof notes for A068133, A334765, and A394659 (PDF)](notes/OEIS_Proof_Notes.pdf)
 
 [Collected formal proofs for A063956, A073642, A129453, A143132, and the A294532–A294565 family (PDF)](notes/Math_Proofs_Batch4.pdf) · [Collection guide](notes/Math_Proofs_Batch4_README.md)
+
+[Collected formal proofs for A087412, A217280, A294413, and A380385 (PDF)](notes/Math_Proofs_Batch5.pdf) · [Collection guide](notes/Math_Proofs_Batch5_README.md)

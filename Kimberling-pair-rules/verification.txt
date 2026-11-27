@@ -1,0 +1,23 @@
+November 26, 2026
+Lean 4.19.0 (commit 6caaee842e94), mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+
+Two fresh project directories shared the pinned dependency cache. Both built the current sources.
+First lake build
+ℹ [621/622] Built PairRules
+info: ././././PairRules.lean:251:0: 'PairRules.tribonacci_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PairRules.lean:252:0: 'PairRules.order_seven_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Second lake build
+ℹ [621/622] Built PairRules
+info: ././././PairRules.lean:251:0: 'PairRules.tribonacci_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././PairRules.lean:252:0: 'PairRules.order_seven_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Independent Python 3.12.14 verifier
+1 -> 010: literal lengths through n=23; 2145013 binary letters, 634061 one-positions, 1510952 zero-positions.
+1 -> 000: literal lengths through n=23; 829009 binary letters, 169196 one-positions, 659813 zero-positions.
+
+Source cross-check: the nine OEIS records and reference recurrences cited in the manuscript matched the bytes of oeis/oeisdata revision 976b0c73e00453b1c1e6f16d83108cb9bb744c3b.
+
+Manuscript: latexmk -pdf completed, three letter-size pages, with resolved references.
