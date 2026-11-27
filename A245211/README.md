@@ -1,6 +1,6 @@
 # Partial results on fixed points of OEIS A245211
 
-The [three-prime continuation](simple-prime.md) rules out every three-prime fixed point in which at least one prime occurs to the first power, and supplies an exponent restriction for any number of prime factors.
+The [three-prime continuation](simple-prime.md) proves that any three-prime fixed point has ordered exponents $a\ge b\ge c$ with $4\le c\le25$, $b\le10c+7$, and $a\le(3c+4)b+3c$. It also gives a congruence obstruction for any number of prime factors.
 
 **Blake Stone · Developed with OpenAI Astra 6.2**
 

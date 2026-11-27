@@ -1,25 +1,21 @@
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,mathtools}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.86in]{geometry}
 \usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
 \usepackage{xcolor}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newcommand{\Z}{\mathbb Z}
-\title{Three-prime fixed points of a divisor moment must be powerful}
+\title{All prime exponents of a three-prime divisor-moment fixed point must be at least four}
 \author{Blake Stone\\\small Developed with OpenAI Codex}
 \date{November 26, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 Let $S(n)$ be the sum of $d\tau(d)$ over the proper positive divisors of $n$.
-We prove that $S(n)=n$ has no solution $p^a q^b r$ with three distinct
-prime bases and $a,b\ge1$. Hence any three-prime counterexample to
-Krizek's conjecture must be powerful. The proof bounds the smaller
-repeated exponent by $16$ and the larger by $7b+3$, then finishes by a
-reproducible exact enumeration. We also give a uniform obstruction on
+We prove that if $S(n)=n$ has a solution with three distinct prime bases, all exponents are at least four. For ordered exponents $a\ge b\ge c$, we also prove $c\le25$, $b\le10c+7$, and $a\le(3c+4)b+3c$. In the case $c=1$ the sharper bounds $b\le16$ and $a\le7b+3$ permit an exact enumeration. For $c=2$ a modular sieve leaves only two exponent triples. We also give a uniform obstruction on
 individual exponents at every odd prime.
 \end{abstract}
 
@@ -227,10 +223,59 @@ theorem.
 The accompanying Python and C++ programs carry out the finite proof.
 The independent checks use a second segmented prime sieve, literal
 moment divisibility and integer bisection for the missing base.
-The conjecture is still open for three-prime powerful numbers and
+\section{Exponents two and three, and a global box}
+\begin{theorem}
+Suppose a fixed point has exactly three prime divisors, with exponents
+$a\ge b\ge c$. Then
+\[
+ 4\le c\le25,\qquad b\le10c+7,\qquad a\le(3c+4)b+3c.
+\]
+In particular every prime dividing such a number divides it to at
+least the fourth power.
+\end{theorem}
+\begin{proof}
+For the upper bound on $a$, apply Lemma~\ref{lem:single} with the two
+smaller exponents in either order. Continue to write $x<y<z$ for the
+ordered bases, so $y<x^3$. First suppose $c\ge26$.
+Truncate all three factors using \eqref{eq:tail}, as in
+Lemma~\ref{lem:both}. Assign $d_t=2$ to every base, and keep the
+notation $J_s,R_s,Q_s$ from that proof. Positivity and the denominators
+give $J_s\ge1/Q_s$. Since $D+1<2x$ and $x>D/2>200$, the total error
+in any prefix is less than $7/x^{c+1}$. We get $Q_2<x^8$,
+$R_2>1/(2Q_2)$, and $z\le4xQ_2$ as before. Hence
+$Q_3\le16x^2Q_2^3<16x^{26}$. But $7/x^{c+1}<1/(16x^{26})$,
+contradicting $R_3=0$. Thus $c\le25$.
+
+For $c\ge2$ keep one factor of exponent $c$ exact, assigning
+its base $d_t=c$; truncate the other two, assigning each $d_t=2$.
+Suppose $b\ge10c+8$. Now $J_s-R_s<5/x^{b+1}$ and
+$Q_2<x^{2+3c}$, so $R_2>1/(2Q_2)$ and $z\le4xQ_2$.
+If the exact base is $z$, then $Q_2<x^8$ and
+$Q_3\le4^c x^{8+9c}$. If it is $y$, then
+$Q_2<x^{2+3c}$ and $Q_3\le16x^{8+9c}$. If it is $x$,
+then $Q_2<x^{c+6}$ and $Q_3\le16x^{3c+20}$.
+Since $c\ge2$ these all give $Q_3\le4^c x^{8+9c}<x^{8+10c}$.
+The error bound again contradicts $R_3=0$. This proves the bound on $b$.
+
+When $c=2$, the denominator exponent for its exact factor is two
+as well. If $b\ge26$ then $Q_2<x^8$ and $Q_3<16x^{26}$ by the
+first calculation above, with tail error less than $5/x^{b+1}$.
+Thus $b\le25$ and $a\le10b+6$. The modular test in Section~3,
+with the additional moduli $64$ and $81$, leaves precisely
+$(6,2,2)$ and $(50,6,2)$. A separate direct enumeration tries each
+permutation of each triple, every eligible prime $x$, and every eligible
+prime $y$ through the bound $Y$ of Section~3. The largest actual
+second-prime bound is $342{,}300$. Testing the missing last candidate
+against the full moment equation gives no equality in $47{,}103$
+integral tests. This excludes $c=2$. Finally an exponent three
+makes its local moment even at any odd base, whereas $D+1$ is odd.
+All three bases are odd by \eqref{eq:main}, giving a contradiction.
+Section~3 excluded $c=1$.
+\end{proof}
+The conjecture is still open for the remaining exponent triples and
 for unrestricted numbers of prime factors.
 
-\begin{thebibliography}{9}
+\small\begin{thebibliography}{9}
 \bibitem{source} J. Krizek, \href{https://oeis.org/A245211}{OEIS A245211}
 (2014).
 \bibitem{earlier} The agentic-conjectures contributors,
