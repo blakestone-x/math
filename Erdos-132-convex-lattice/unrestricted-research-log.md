@@ -129,3 +129,51 @@ Euclidean compatibility condition on at least two distance classes.
 * [Translated-triangle/orientation bound](https://erdosproblems.ai/wiki/research/erdos_132/translated_triangles)
 * [Marchetto finite cases 7–13](https://github.com/JuanMarchetto/erdos-132-note)
 * [Exact Wei-chain certificates](https://github.com/lyfar/erdos132-wei-certificates)
+
+
+## Continuation: cyclic joint-realizability obstruction
+
+The exact cyclic coloring from Attempt 2 is now ruled out geometrically, not
+merely tested computationally.
+
+**Three-step rigidity theorem.** Let \(m\ge5\) be odd and cyclically label
+distinct planar points \(p_0,\ldots,p_{m-1}\). If each of
+\[
+ |p_{i+1}-p_i|,\qquad |p_{i+2}-p_i|,\qquad |p_{i+3}-p_i|
+\]
+is independent of \(i\), then the points form a regular star \(m\)-gon in
+label order.
+
+For edge vectors \(e_i=p_{i+1}-p_i\), the first two hypotheses give constant
+length and constant adjacent dot product. Consecutive oriented turns are
+therefore \(\pm\theta\). The third hypothesis makes
+\(e_i\cdot e_{i+2}\) constant, so consecutive turn signs must always agree or
+always disagree. Odd parity excludes alternation. Uniform turning and closure
+then give a primitive \(m\)th root of unity; primitivity follows from
+distinctness of the points. Consequently all circular chord classes in the
+half-range are distinct.
+
+For every odd \(n=2t+1\ge9\), this rules out the natural abstract
+one-rare-color construction with class sizes
+\[
+ \underbrace{n+1,\ldots,n+1}_{t-1\text{ classes}},\quad t+2.
+\]
+The construction starts with the circular-difference coloring and moves one
+top-color edge into each lower color. The unchanged step-one, step-two and
+step-three equalities force a regular star polygon, while any moved edge
+would require the top chord length to equal a lower chord length. At \(n=15\)
+this eliminates the profile realization
+\((16,16,16,16,16,16,9)\) from the preceding attempt.
+
+This is a genuine joint metric obstruction, but it does not classify arbitrary
+seven-distance colorings at \(n=15\). The next finite test is to determine
+whether every deletion-critical \(n=15\) candidate contains three compatible
+spanning 2-factors that can be reduced to the rigidity theorem, or to produce
+an exact abstract candidate avoiding that pattern and then impose its
+Cayley--Menger constraints.
+
+Artifacts:
+
+* [Proof manuscript](cyclic-rigidity.tex)
+* [Compiled manuscript](cyclic-rigidity.pdf)
+* [Exact finite verifier](verify-cyclic-rigidity.py)
