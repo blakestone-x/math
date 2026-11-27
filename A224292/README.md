@@ -13,3 +13,5 @@ The same derivation gives the series for two occurrences of either pattern while
 [Manuscript](one-pattern.pdf) · [LaTeX source](one-pattern.tex) · [Symbolic and direct verification](verify.py)
 
 Run `python3 verify.py` with SymPy. It checks the differential identities for both recurrences, compares the series with 25 terms of each OEIS table, and counts the five pattern splits directly for every permutation through length nine.
+
+The sequel determines the generating-function field and coefficient asymptotic for every fixed pair of counts. It also gives the explicit series for two of each pattern. [Sequel](../A224294/README.md)

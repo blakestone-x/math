@@ -1,0 +1,98 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.9in,headheight=14pt]{geometry}
+\usepackage{xcolor,fancyhdr}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=black]{hyperref}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Prime gaps between decimal halves of squares}\rhead{\small Blake Stone}\cfoot{\thepage}
+\hypersetup{pdftitle={Prime gaps between decimal halves of squares},pdfauthor={Blake Stone, with Astra}}
+\begin{document}\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Prime gaps between the decimal halves of squares\par}
+\vspace{0.4em}Blake Stone\\{\small Research manuscript prepared with Astra}
+\end{center}
+\begin{abstract}
+For a set of primes of relative density $227568931/268435456$, every difference $pm^2$, $m\ge1$, occurs between equal-length decimal halves of a square at infinitely many widths. A quadratic Gauss sum constructs a witness at each sufficiently large width in an explicit geometric progression. Each of the differences $3,6,24,30$ occurs at only one width. For the differences from $0$ through $1000$, we give 860 witnesses and prove 67 differences impossible at every width.
+\end{abstract}
+
+In Giovanni Resta's companion question to \href{https://oeis.org/A236383}{OEIS A236383}, the difference $c$ is prescribed directly. At width $d$ put $B=10^d$. We seek $k,x,y$ with
+\[
+ B/10\le x\le y<B,\qquad y=x+c,\qquad k^2=Bx+y=(B+1)x+c.
+\]
+The companion manuscript [1] constructs all square differences and twice-square differences at infinitely many widths and excludes $c=7$ at every width.
+
+\section{Lifting a prime from one width}
+\begin{lemma}\label{blocks}
+For a fixed positive nonsquare $c$ and $B\ge4(c+1)^2$, the block problem at width $d$ is equivalent to $c$ being a square modulo $B+1$.
+\end{lemma}
+\begin{proof}
+Necessity follows from the displayed identity. Given a root, take its sign so that $0\le r\le(B+1)/2$. Then $r^2=c+j(B+1)$ for some $j\ge1$: $c<B+1$ and $c$ is a nonsquare. Thus $r>c+1$. Set $k=B+1-r$ and $x=(k^2-c)/(B+1)$. Since $k\ge(B+1)/2$, we have $x\ge (B+1)/4-c/(B+1)\ge B/10$. Since $k<B-c$, we have $k^2<B(B+1-c)$, which gives $x+c<B$. Both blocks have the required width.
+\end{proof}
+
+\begin{theorem}\label{lift}
+Let $p$ be an odd prime. Suppose $p$ is a unit square modulo $10^d+1$ and either $p\equiv1\pmod4$ or $d$ is even. At every sufficiently large width $dp^k$, every fixed $c=pm^2$ with $m\ge1$ occurs. If $4\mid d$, the same holds for every $2pm^2$.
+\end{theorem}
+\begin{proof}
+Set $X=10^d$, $M=X+1$ and $H=(X^p+1)/(X+1)$. We have $H\equiv p\pmod M$, so $(M,H)=1$. A prime divisor $q$ of $H$ satisfies $q\ne p$ (since $X^p+1\equiv X+1\not\equiv0\bmod p$), and the order of $X$ modulo $q$ is $2p$. Hence $q\equiv1\bmod p$. If $d$ is even, $-1$ is a square modulo $q$, so $q\equiv1\bmod4$. Quadratic reciprocity in either case gives $(p/q)=1$. Unit roots lift to every power of $q$: from a root $u$ modulo $q^e$, choose $u+tq^e$ modulo $q^{e+1}$ by the linear congruence with nonzero coefficient $2u\bmod q$. The Chinese remainder theorem now gives a root modulo $X^p+1$. The hypotheses persist on replacing $d$ by $dp$. Multiplying each root by $m$ and applying Lemma~\ref{blocks} proves the claim for $pm^2$.
+
+For $4\mid d$, put $z=10^{dp^k/4}$. The identity $(z^3-z)^2-2=(z^4+1)(z^2-2)$ supplies a modular square root of two at each such width. Multiply it into the roots just constructed.
+\end{proof}
+
+\paragraph{An explicit root without factoring the new modulus.}
+Let $r^2\equiv p\bmod M$, write $\chi$ for the Legendre symbol modulo $p$, put $z=-X\bmod H$, and set $G=\sum_{j=1}^{p-1}\chi(j)z^j$. The identities $z^p=1$ and $\sum_{j=0}^{p-1}z^j=0$ hold modulo $H$. Therefore $G(z)G(z^{-1})=p$ there: writing $j=ub\bmod p$ in the double sum, the inner sum $\sum_{b=1}^{p-1}z^{(u-1)b}$ equals $p-1$ for $u=1$ and $-1$ otherwise. Also $G(z^{-1})=\chi(-1)G(z)$. Use $g=G$ for $p\equiv1\bmod4$ and $g=10^{dp/2}G$ for $p\equiv3\bmod4$ with $d$ even. Then $g^2\equiv p\bmod H$. An explicit root modulo $MH$ is
+\[
+ r+M\big((g-r)M^{-1}\bmod H\big).
+\]
+For example $14^2\equiv701\bmod101$. A single lift produces the certified witness at width $1402$ in the accompanying table.
+
+\section{A lower density among primes}
+\begin{theorem}
+The lower relative density among primes $p$ such that every $pm^2$, $m\ge1$, occurs at infinitely many widths is at least
+\[
+ \frac{227568931}{268435456}=0.8477603308\ldots .
+\]
+\end{theorem}
+\begin{proof}
+Take the nine seed widths $2^a$ for $0\le a\le8$, and put $F_a=10^{2^a}+1$. These odd numbers are pairwise coprime, since $F_j\equiv2\bmod F_i$ when $j>i$. Their respective numbers of distinct prime factors, from the Cunningham tables [2], are
+\[
+ 1,\ 1,\ 2,\ 2,\ 5,\ 4,\ 3,\ 4,\ 5.
+\]
+The verifier reproduces the products and the primality certificates. Among primes not dividing the finitely many moduli, being a unit square modulo $F_a$ imposes one independent square-class condition per prime factor. Half the units at each odd prime power are squares. For $a=0$ we additionally require $p\equiv1\bmod4$. The nine success fractions in the reduced residue classes are consequently
+\[
+ f_a=1/4,\ 1/2,\ 1/4,\ 1/4,\ 1/32,\ 1/16,\ 1/8,\ 1/16,\ 1/32 .
+\]
+The conditions for different $a$ concern coprime moduli, including the single use of modulus four. The Chinese remainder theorem gives $1-\prod_a(1-f_a)$ for the union. The prime number theorem in arithmetic progressions [3] gives exactly that relative natural density for the union among primes. Theorem~\ref{lift} applies to every prime in this union.
+\end{proof}
+
+\section{Finite and impossible differences}
+For $d\ge2$ the modulus $N=10^d+1$ is $1\bmod4$ and $2\bmod3$, so $(3/N)=(N/3)=-1$. For $d\ge3$ also $N\equiv1\bmod8$ and $(2/N)=1$. Thus three can occur only at width one, and six only at widths one or two. Checking modulo 11 and 101, including the digit bounds, gives exactly the following roots:
+\[
+\begin{array}{c|c|c}
+ c & d & k\\ \hline
+ 3&1&5,\ 6\\
+ 6&2&39,\ 62
+\end{array}
+\]
+In particular $5^2=25$, $6^2=36$, $39^2=1521$, and $62^2=3844$. Theorem~\ref{lift} gives infinitely many widths for five since $4^2\equiv5\bmod11$. Combining this with [1], the differences $0,1,2,4,5,8,9$ occur at infinitely many widths, $3,6$ have the finite lists above, and $7$ never occurs.
+
+Here is the finite certificate used for larger differences. It supplies conclusive exclusions and can leave a case undecided. Work with $1\le c\le1000$. Let $v$ be the odd part of $c$, let $u$ be $v$ with its power of five removed, and let $m=\operatorname{ord}_{u}(10)$, taking $m=1$ for $u=1$. Write $(a/v)$ for the Jacobi symbol, including $(a/1)=1$. For $d\ge10$,
+\[
+ \left(\frac{c}{10^d+1}\right)
+   =\left(\frac{10^d+1}{v}\right)=J(d\bmod m).
+\]
+Indeed the denominator on the left is $1\bmod8$ and the power modulo $v$ has stabilized on the five-part. A residue class $b\bmod m$ with $J(b)=-1$ is impossible.
+
+Write $d=2^a w$ with $w$ odd. For $a=0,\ldots,8$, a nonsquare residue of $c$ at any prime factor of $F_a$ rules out all such widths, since $F_a\mid 10^d+1$. For the other $a$ in this finite list, a surviving class $b$ must satisfy
+\[
+  b\equiv 2^a\pmod{\gcd(m,2^{a+1})}.
+\]
+For $a\ge9$ the power of two dividing $m$ is at most $512$ throughout our range, as the verifier checks. A surviving $b$ must then be divisible by that power. In addition $J(2^a\bmod m)\ne-1$ is necessary since $F_a$ itself divides $10^d+1$. Starting at $2^9\bmod m$, repeated doubling reaches a previous residue, checking all $a\ge9$ in finitely many steps. If every possibility is ruled out, it remains only to enumerate all modular roots and test the digit bounds for $d=1,\ldots,9$. Such a root lies in $[0,10^d]$ for any actual witness, since $k^2<10^{2d}$.
+
+This calculation proves that all 67 differences in \texttt{absent-gaps.txt} are impossible at every decimal width. Two additional finite nonempty cases are $c=24$ (only $k=78$) and $c=30$ (only $k=38,63$), all at width two. Independently, \texttt{gap-witnesses.csv} gives one directly checkable square for each of 860 differences among $0,\ldots,1000$, including these four finite cases. The certificates determine existence or nonexistence for 927 of the 1001 differences. They leave 74 undecided.
+
+\paragraph{Sources.}
+[1] M. Lagneau and G. Resta, \href{https://oeis.org/A236383}{OEIS A236383}. B. Stone with Astra, \href{https://github.com/blakestone-x/math/blob/d8555a3a1d36da63c29db7d17beb09729cc74252/A236383/concatenated-squares.pdf}{Equal-length blocks of a square with prescribed difference}.
+[2] S. S. Wagstaff Jr. and the \href{https://homes.cerias.purdue.edu/~ssw/cun/}{Cunningham Project}, Table $10+$, November 2026.
+[3] For the prime number theorem in arithmetic progressions see H. Davenport, \emph{Multiplicative Number Theory}, 3rd ed., Springer, 2000.
+\end{document}
