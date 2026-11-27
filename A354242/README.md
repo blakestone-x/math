@@ -34,7 +34,7 @@ Now take excursions of $2n$ up and down steps, weighting each down step from hei
 
 ## Sharp period and starting index for integral substitutions
 
-Bala also proposed the Euler-totient period bound for every exponential generating function $G(e^t-1)$ with $G\in\mathbb Z[[z]]$. An existing Lean formalization establishes this bound from $n\ge m$. The following elementary proof gives the smallest universal period and the earliest possible universal starting index for each modulus. [Prior formalization, Theorem 1.8](https://the-omega-institute.github.io/trureturing-mdbook/Blueprint/D5/S1/Recurrence/Periodic/IntegralEgfTotientPeriod.html)
+Bala also proposed the Euler-totient period bound for every exponential generating function $G(e^t-1)$ with $G\in\mathbb Z[[z]]$. An existing Lean formalization establishes this bound from $n\ge m$. Payam Danesh's August 2026 preprint gives the stronger universal Carmichael period for this class. The following argument proves the optimal universal period and starting index. [Prior formalization, Theorem 1.8](https://the-omega-institute.github.io/trureturing-mdbook/Blueprint/D5/S1/Recurrence/Periodic/IntegralEgfTotientPeriod.html) · [Danesh's preprint](https://doi.org/10.33774/coe-2026-4d6jr)
 
 **Theorem.** Let $a_n=n![t^n]G(e^t-1)$. For $m\ge2$, let $\lambda(m)$ be the exponent of the multiplicative group of units modulo $m$, and $E(m)$ the largest exponent in the prime factorization of $m$. For every such $G$,
 
@@ -57,3 +57,5 @@ For sharpness choose $G(z)=(1+z)^u$, so $a_n=u^n$. Any period common to the whol
 For the two entries, integrality of $G$ follows from $[z^j](1-4z)^{-1/2}=\binom{2j}{j}$ and the corresponding coefficient $2^j\binom{2j}{j}$ for $(1-8z)^{-1/2}$. The theorem and a single period's worth of coefficients also settle Bala's examples. Modulo 16, A354242 has terms $1,2,14$ and then repeats $14,6$ from index three. Indeed the universal shift is four from index four, and the displayed residues at indices four through seven are $6,14,6,14$. Modulo seven, A354253 starts at $1$ and repeats $4,3,2,3,0,0$ from index one. Each displayed block has minimal period as written, and inspecting the preceding entry gives the stated least onset.
 
 The verifier compares exact expansions of the continued fraction against Stirling-number moments. It also checks the two least periods and starting indices and the common modular bound for several integral series. [Reproducible checks](verify.py)
+
+The subsequent manuscript determines the **least** eventual period for each of these two individual sequences at every modulus. Theorem 5.1 gives the full prime-power formulas. [Manuscript](../A000556/periods.pdf) · [Finite certificates](../A000556/SmallCases.lean)

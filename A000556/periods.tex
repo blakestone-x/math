@@ -1,0 +1,409 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=0.94in,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,fancyhdr}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Exact modular periods of Fibonacci-weighted Stirling transforms},
+  pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small Exact modular periods}\rhead{\small Fibonacci-weighted Stirling transforms}
+\cfoot{\thepage}\renewcommand{\headrulewidth}{0.3pt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\stir}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\coef}[1]{[X^{#1}]}
+\setlength{\parskip}{0.22em}
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 1pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 1pt}
+\raggedbottom
+
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Exact modular periods of\\[2pt] Fibonacci-weighted Stirling transforms\par}
+\vspace{0.6em}
+{\large Blake Stone\par}
+{\small Research manuscript prepared with OpenAI Codex\par}
+\end{center}
+
+\begin{abstract}
+Kinlaw, Morris and Thiagarajan conjectured that the least eventual period of
+the first of two sequences attached to the golden-ratio polylogarithm equals
+Carmichael's function at every modulus. They also conjectured a family of
+half-periods for the second sequence. We prove both assertions and classify
+the exceptional moduli of the second sequence exactly. Our proof isolates a
+nonzero coefficient in the difference between moments separated by $p-1$,
+then lifts this obstruction through all odd prime powers. We also determine
+the least eventual periods of two central-binomial Stirling transforms at
+every modulus.
+\end{abstract}
+
+\section{The period conjectures}
+
+Let $\phi=(1+\sqrt5)/2$. For $n\ge1$, the two integers $A_n,B_n$ are defined
+by $\Li_{-n}(1/\phi)=A_n+B_n\phi$. They appear in Ledin's Fibonacci power
+sums and in OEIS A000556 and A000557 \cite{KMT,OEIS}. Proposition~4.10 of
+Kinlaw, Morris and Thiagarajan gives
+\begin{equation}\label{eq:stirling}
+ A_n=\sum_{j=0}^n \stir nj j!F_{j+1},\qquad
+ B_n=\sum_{j=0}^n \stir nj j!F_{j+2}.
+\end{equation}
+Here $F_0=0,F_1=1$ and the braces denote Stirling numbers of the second kind.
+We extend both sequences by $A_0=B_0=1$ using \eqref{eq:stirling}. This
+convention preserves every eventual period.
+
+For an integer sequence $S$, let $P_S(m)$ be its least positive eventual
+period modulo $m$. Write $\lambda(m)$ for the exponent of the group of units
+modulo $m$, with $\lambda(1)=1$. Theorem~4.14 of \cite{KMT} establishes
+$P_A(m),P_B(m)\mid\lambda(m)$. Remark~4.15 asks whether the first period
+always attains this bound and proposes specific infinite families where the
+second is half the bound.
+
+\begin{theorem}\label{th:main}
+For every positive modulus $m$, $P_A(m)=\lambda(m)$. Write $m=2^e q$ with
+$q$ odd. Then $P_B(m)=\lambda(m)/2$ exactly when either condition below holds.
+\[
+ m\in\{3,6\},\qquad\text{or}\qquad
+ e\ge4\ \text{ and }\ v_2(\lambda(q))<e-2.
+\]
+At every other modulus $P_B(m)=\lambda(m)$.
+\end{theorem}
+
+For $e\ge4$ this includes $m=2^e$ and $m=3\cdot2^e$ as conjectured.
+It accounts for $112,144,160,176$ in the authors' numerical list and adds
+$3,6$. The latter two have a short direct check. For $n\ge1$ the
+$j=1$ summand for $B_n$ is $2$, the $j=2$ summand is divisible by $6$, and
+$6\mid j!$ for $j\ge3$. Thus $B_n\equiv2\pmod6$ throughout.
+
+\clearpage
+\section{Finite power sums and lifting at odd primes}
+
+Suppose $S_n=n![t^n]G(e^t-1)$ with $G(z)=\sum_{j\ge0}g_jz^j\in\ZZ[[z]]$.
+For $M\mid J!$ set
+\[
+ K_J(X)=\sum_{j=0}^{J-1}g_j(X-1)^j=\sum_{u=0}^{J-1}c_uX^u.
+\]
+The expansion into Stirling numbers and then the binomial theorem give
+\begin{equation}\label{eq:spectrum}
+ S_n\equiv\sum_{u=0}^{J-1}c_u u^n\pmod M .
+\end{equation}
+Indeed the exponential coefficient of $(e^t-1)^j$ is $j!\stir nj$, a
+multiple of $M$ for $j\ge J$. For $M=p^e$ the nonunit bases give zero at
+$n\ge e$, and all unit powers have period dividing $\lambda(p^e)$. The least
+period divides every period, by the division algorithm on a periodic tail.
+The Chinese remainder theorem gives the exact reduction
+\begin{equation}\label{eq:crt}
+ P_S(m)=\lcm_{p^e\parallel m}P_S(p^e).
+\end{equation}
+These upper bounds have precedents in the Fibonacci-weighted case \cite{KMT},
+the ordered Bell case \cite{Poonen}, and the general integral-substitution
+setting \cite{Danesh}. We use \eqref{eq:spectrum} also to obtain lower bounds.
+
+\begin{lemma}[Odd primes]\label{lem:odd}
+Let $p$ be odd. In $\FF_p[X]$ write, uniquely,
+\[
+ K_{2p}(X)=U(X)+(X^p-1)V(X),\qquad \deg U,\deg V<p .
+\]
+Put $u_r=\coef r U$ and $v_r=\coef r V$.
+\begin{enumerate}
+\item The least period modulo $p$ is the exponent of the subgroup of
+$\FF_p^\times$ generated by $\{r:1\le r<p,\ u_r\ne0\}$.
+\item If $v_1\ne0$, shift $p-1$ fails modulo $p^2$ on the periodic tail.
+\item Whenever shift $p-1$ fails modulo $p^2$, one has
+$p^{e-1}\mid P_S(p^e)$ for every $e\ge2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Modulo $p$ the terms in \eqref{eq:spectrum} with bases $r$ and $r+p$
+combine into $u_rr^n$. On any $p-1$ consecutive indices the columns
+$r^n$, $1\le r<p$, are independent over $\FF_p$ by the Vandermonde
+determinant, up to multiplication of columns by units. Thus a tail shift
+$L$ works exactly when $r^L=1$ at each nonzero coefficient.
+
+Use $J=2p$ also modulo $p^2$, since $p^2\mid(2p)!$. At $n\ge2$ divide
+$S_{n+p-1}-S_n$ by $p$ and reduce modulo $p$. Each unit base $u$
+contributes its coefficient times $u^n(u^{p-1}-1)/p$. Grouping by residue
+again gives a sum of independent columns. In the $r=1$ column the base
+$1$ contributes zero. The base $1+p$ has coefficient $v_1$ and
+$((1+p)^{p-1}-1)/p\equiv-1\pmod p$. The combined coefficient is $-v_1$,
+which proves the second assertion.
+
+For $j\ge0$, a unit $u$ satisfies
+$u^{(p-1)p^j}-1\equiv p^j(u^{p-1}-1)\pmod{p^{j+2}}$.
+To see this, write $u^{p-1}=1+pb$ and successively take $p$th powers.
+For odd $p$ the binomial expansion gives $(1+p^a b)^p\equiv1+p^{a+1}b\pmod{p^{a+2}}$
+for $a\ge1$. Apply \eqref{eq:spectrum} at the common modulus $p^{j+2}$.
+Nonunit terms vanish for $n\ge j+2$, so
+\begin{equation}\label{eq:oddlift}
+ S_{n+(p-1)p^j}-S_n\equiv p^j(S_{n+p-1}-S_n)\pmod{p^{j+2}}.
+\end{equation}
+Failure of shift $p-1$ modulo $p^2$ gives arbitrarily large indices of
+failure, hence so does shift $(p-1)p^{e-2}$ modulo $p^e$. Every divisor of
+$\lambda(p^e)$ missing a factor of $p$ from $p^{e-1}$ divides that shift.
+\end{proof}
+
+\clearpage
+\section{Fibonacci weights at primes \texorpdfstring{$p\ge7$}{p at least 7}}
+
+The two functions $R(X)=G(X-1)$ coming from \eqref{eq:stirling} are
+\[
+ R_A(X)=\frac{1}{Q(X)},\qquad
+ R_B(X)=\frac{X}{Q(X)},\qquad Q(X)=1+X-X^2.
+\]
+In characteristic $p$, $(X-1)^p=X^p-1$. Thus $U$ in Lemma~\ref{lem:odd}
+is the representative of $R$ of degree less than $p$ modulo $X^p-1$.
+The denominator is invertible there since $Q(1)=1$. Write $Q U\equiv N$,
+where $N=1$ or $X$. In degrees $3\le r\le p-1$ this reads
+\[
+ u_r=u_{r-2}-u_{r-1}.
+\]
+If two of $u_1,\ldots,u_{p-1}$ vanished at distance one or two, the recurrence
+would give adjacent zeros and then propagate zeros in both directions
+throughout that list. This would leave $U$ constant, which is impossible
+since no constant times $Q$ equals $N$ modulo $X^p-1$. Thus at most
+$\lceil(p-1)/3\rceil$ of these $p-1$ coefficients vanish. For $p\ge7$ the
+nonzero support has more than $(p-1)/2$ elements, so it generates the entire
+multiplicative group. Lemma~\ref{lem:odd} gives period $p-1$ modulo $p$.
+
+To compute $v_1$, factor $Q(X)=(1-aX)(1-bX)$ over $\FF_{p^2}$. The
+distinct elements $a,b$ have $a+b=-1$ and $ab=-1$. Put $\delta=1$ for $A$
+and $\delta=0$ for $B$. Partial fractions give
+\[
+ R(X)=\frac{1}{a-b}\left(\frac{a^\delta}{1-aX}
+                          -\frac{b^\delta}{1-bX}\right).
+\]
+Introduce $Y=X^p$. Using
+$(1-aX)^{-1}=(1+aX+\cdots+a^{p-1}X^{p-1})/(1-a^pY)$,
+the coefficient of $X^r$ in the basis $1,X,\ldots,X^{p-1}$ over rational
+functions in $Y$ is
+\[
+ W_r(Y)=\frac{1}{a-b}\left(\frac{a^{r+\delta}}{1-a^pY}
+                       -\frac{b^{r+\delta}}{1-b^pY}\right).
+\]
+The denominators are nonzero at $Y=1$. Reducing modulo
+$(Y-1)^2=(X-1)^{2p}$ identifies $W_r(1)$ with $u_r$ and $W'_r(1)$
+with $v_r$. Since each of $a^p,b^p$ satisfies $1-z=z^2$,
+\[
+ v_1=\frac{a^{1+\delta}(a^p)^{-3}-b^{1+\delta}(b^p)^{-3}}{a-b}.
+\]
+Frobenius either fixes both roots or interchanges them. In the first case
+this is $(a^{\delta-2}-b^{\delta-2})/(a-b)=1$ for both values of $\delta$.
+In the second case $b=-1/a$ gives
+$v_1=-(a^{4+\delta}-b^{4+\delta})/(a-b)$.
+The quotients $(a^j-b^j)/(a-b)$ at $j=1,\ldots,5$ are
+$1,-1,2,-3,5$ by the quadratic recurrence. Thus the possible values are
+\[
+ \begin{array}{c|cc}
+ & A & B\\ \hline
+ \text{roots fixed} & 1 & 1\\
+ \text{roots interchanged} & -5 & 3
+ \end{array}
+\]
+and all are nonzero for $p\ge7$. Lemma~\ref{lem:odd} now forces both
+periods to equal $(p-1)p^{e-1}$ at every $p^e$ with $p\ge7$.
+
+\clearpage
+\section{Small primes and completion of the classification}
+
+At the primes $3$ and $5$ the following are the least periods, obtained
+from the finite sum \eqref{eq:spectrum}. Section~\ref{sec:cert} gives the
+exact finite test and verification details.
+\[
+\begin{array}{c|rrrr}
+ M&3&9&5&25\\\hline
+ P_A(M)&2&6&4&20\\
+ P_B(M)&1&6&4&20
+\end{array}
+\]
+At both prime squares the period of each sequence contains the odd prime and
+the entire factor $p-1$. Lemma~\ref{lem:odd}(3) gives the full $p$-part at
+every higher power, and reduction to the square preserves the lower bound
+$p-1$ on the prime-to-$p$ part.
+
+\begin{lemma}[Powers of two]\label{lem:two}
+For $j\ge1$ let $w_j$ be the largest $t$ such that $2^j$ is an eventual
+period modulo $2^t$, when this largest $t$ exists. If $w_j+1<2j+4$, then
+$w_{j+1}=w_j+1$. The same test continues to apply at every later $j$.
+\end{lemma}
+
+\begin{proof}
+Write $\Delta_h S_n=S_{n+h}-S_n$. For an odd base $u$,
+$2^{j+2}\mid u^{2^j}-1$ by $u^2\equiv1\pmod8$ and repeated squaring.
+The difference $\Delta_{2h}u^n-2\Delta_hu^n$ equals
+$u^n(u^h-1)^2$. With $h=2^j$, \eqref{eq:spectrum} therefore gives
+$\Delta_{2h}S_n\equiv2\Delta_hS_n\pmod{2^{2j+4}}$ on the tail.
+The right side vanishes modulo $2^{w_j+1}$ and fails to vanish modulo
+$2^{w_j+2}$ arbitrarily far along the tail. The congruence transfers both
+facts. The bound $2j+4$ grows by two at each step while $w_j$ grows by one.
+\end{proof}
+
+At modulus $32$, a full tail block starting at $n=5$ is
+\[
+\begin{array}{c|rrrrrrrr}
+ n&5&6&7&8&9&10&11&12\\\hline
+ A_n\bmod32&15&25&23&1&31&9&7&17\\
+ B_n\bmod32& 2& 0&18&0& 2&0&18& 0
+\end{array}
+\]
+This is a full block because $\lambda(32)=8$. Reading differences two
+steps apart gives $w_1=3$ for $A$ and $w_1=4$ for $B$. Lemma~\ref{lem:two}
+therefore gives $w_j=j+2$ for $A$ and $w_j=j+3$ for $B$, for every $j\ge1$.
+Reduction of the same block handles the initial powers of two. Since each
+period at a power of two is itself a power of two, these thresholds give
+\[
+ P_A(2^e)=\lambda(2^e),\qquad
+ P_B(2^e)=
+ \begin{cases}
+ \lambda(2^e),&1\le e\le3,\\
+ 2^{e-3},&e\ge4 .
+ \end{cases}
+\]
+
+\begin{proof}[Completion of the proof of Theorem~\ref{th:main}]
+Equation~\eqref{eq:crt} gives the claim for $A$. For odd $q$, the only
+local loss for $B$ is at $3^1$, where the missing factor is two. Every
+other odd prime-power period is even. Thus $P_B(q)=\lambda(q)$ except when
+$q=3$. At the moduli $3$ and $6$ the period is one. If $e=2,3$ the factor
+two from $2^e$ restores the full period even when $q=3$. For $e\ge4$ the
+power of two contributed by $2^e$ drops from $2^{e-2}$ to $2^{e-3}$.
+The least common multiple drops by a factor two exactly when the odd
+part's period supplies fewer than $e-2$ factors of two. This is equivalent
+to $v_2(\lambda(q))<e-2$, including $q=1$ and $q=3$.
+\end{proof}
+
+\clearpage
+\section{Two central-binomial transforms}
+
+For $a=1,2$ define
+\[
+ S_n(a)=\sum_{j=0}^n\stir nj j!\binom{2j}{j}a^j,\qquad
+ G_a(z)=(1-4az)^{-1/2}.
+\]
+Write $C=S(1)$ and $D=S(2)$, OEIS A354242 and A354253. Bala's comments
+in these entries ask for an eventual period dividing Euler's totient
+\cite{OEIS,Danesh}. The same lifting method determines the least period for
+each modulus, including a change at $3^6$ for $D$.
+
+\begin{theorem}\label{th:central}
+For both sequences the least period at $p^e$ is $(p-1)p^{e-1}$ for every
+prime $p\ge5$. At $p=3$ one has
+\[
+\begin{aligned}
+P_C(3^e)&=\begin{cases}1,&e=1,\\2\cdot3^{e-1},&e\ge2,\end{cases}
+&
+P_{D}(3^e)&=\begin{cases}3^{e-1},&1\le e\le5,\\2\cdot3^{e-1},&e\ge6.\end{cases}
+\end{aligned}
+\]
+At powers of two the periods are
+\[
+\begin{aligned}
+P_C(2^e)&=\begin{cases}1,&e\le3,\\2,&4\le e\le6,\\2^{e-5},&e\ge7,\end{cases}
+&
+P_{D}(2^e)&=\begin{cases}1,&e\le6,\\2,&7\le e\le8,\\2^{e-7},&e\ge9.\end{cases}
+\end{aligned}
+\]
+For arbitrary $m$ take the least common multiple over its prime powers.
+\end{theorem}
+
+\begin{proof}
+Let $p\ge7$ and $h=(p-1)/2$. In $\FF_p[[z]]$ we have
+$G_a(z)=(1-4az)^hG_a(z^p)$ by Frobenius and the defining square.
+Through degrees below $2p$ this is $(1-4az)^h(1+2az^p)$. With $z=X-1$ this
+yields the following polynomials in Lemma~\ref{lem:odd}.
+\[
+ U(X)=(1+4a-4aX)^h,\qquad V(X)=2aU(X).
+\]
+For $a=1,2$ all coefficients of $U$ through degree $h$ are nonzero, since
+$p$ divides none of $a,1+4a,h!$. The subgroup generated by $1,\ldots,h$
+contains $2h=-1$ in $\FF_p$, as it contains both $2$ and $h$. It therefore
+contains $\pm1,\ldots,\pm h$, the whole unit group. Moreover $v_1=2au_1\ne0$.
+Lemma~\ref{lem:odd} gives the full period at all such prime powers.
+
+The finite tests of Section~\ref{sec:cert} give period $4$ modulo $5$
+and $20$ modulo $25$ for both sequences. At powers of three the initial
+periods for $C$ are $1,6$. For $D$ the first six are
+$1,3,9,27,81,486$. The shift $2$ fails modulo $9$ for both sequences.
+Lemma~\ref{lem:odd}(3) forces the full power of three for all $e\ge2$.
+Reduction to $9$ supplies the factor two for $C$, and reduction to $729$
+supplies it for $D$ from $e=6$ onward. The argument for $5$ uses the
+two periods at $5,25$ in the same way.
+
+At the prime two, the initial periods for $C$ through $2^9$ and for
+$D$ through $2^{13}$ are
+\[
+\begin{array}{c|rrrrrrrrrrrrr}
+e&1&2&3&4&5&6&7&8&9&10&11&12&13\\\hline
+C&1&1&1&2&2&2&4&8&16&&&&\\
+D&1&1&1&1&1&1&2&2&4&8&16&32&64
+\end{array}
+\]
+It follows that $w_3(C)=8$ and $w_5(D)=12$. Both satisfy the strict
+inequality of Lemma~\ref{lem:two}, so all subsequent $w_j$ increase by one
+per step. This gives precisely the stated powers of two. Equation~\eqref{eq:crt}
+handles arbitrary moduli.
+\end{proof}
+
+\clearpage
+\section{Reproducing the finite checks}\label{sec:cert}
+
+All finite moduli used in the proofs divide $18!$. Here is a direct
+integer certificate for each table entry. Form the coefficients of
+$K_{18}(X)$ in \eqref{eq:spectrum} by Horner's rule, using successively
+$P\gets g_j+(X-1)P$ for $j=17,16,\ldots,0$, starting with $P=0$.
+For a candidate period $T$ and $M=p^e$, form
+\[
+ b_u=c_u u^e(u^T-1)\pmod M,\qquad
+ d_i=\sum_{u=0}^{17} b_u u^i\pmod M
+ \quad(0\le i<18).
+\]
+Then $T$ is a period exactly when all eighteen $d_i$ vanish. Indeed these
+are the first eighteen differences starting at $n=e$. The infinite
+difference sequence satisfies the monic recurrence with characteristic
+polynomial $\prod_{u=0}^{17}(Z-u)$, so eighteen consecutive zeros force
+every later difference to vanish. Conversely \eqref{eq:spectrum} gives
+periodicity starting at $e$, so any eventual period holds there already.
+To certify minimality, repeat the test at $T/\ell$ for each prime divisor
+$\ell$ of $T$ and check that at least one residue is nonzero for each test.
+All candidates in the finite tables have prime divisors among $2,3,5$.
+
+For example, modulo $9$ the tail block of $B$ from $n=2$ is
+$8,5,2,2,5,8$. Shifts $2$ and $3$ both fail at its first entry and
+$6=\lambda(9)$ is a period. The companion file \texttt{SmallCases.lean}
+checks all finite inputs to the two theorems by kernel reduction using
+the preceding test. The program \texttt{verify.py} also computes complete
+blocks of length $\lambda(p^e)$ at the finite base cases. For an independent
+check it differentiates the defining generating functions and tests the
+resulting terms at every modulus up to $500$.
+
+\begin{thebibliography}{9}
+\bibitem{KMT} P. Kinlaw, M. Morris and S. Thiagarajan.
+\textit{Sums related to the Fibonacci sequence}.
+Fibonacci Quarterly \textbf{60} (2022), 136--150.
+\href{https://www.fq.math.ca/Papers/60-2/kinlaw03042021.pdf}{Publisher's PDF}.
+See Proposition 4.10, Theorem 4.14 and Remark 4.15.
+
+\bibitem{Poonen} B. Poonen. \textit{Periodicity of a combinatorial sequence}.
+Fibonacci Quarterly \textbf{26} (1988), 70--76.
+\href{https://www.mathstat.dal.ca/FQ/Scanned/26-1/poonen.pdf}{Publisher's archive}.
+
+\bibitem{Danesh} P. Danesh. \textit{Eventual periodicity of weighted
+Stirling transforms and two conjectures of Bala}. Cambridge Open Engage,
+2026, preprint. \href{https://doi.org/10.33774/coe-2026-4d6jr}{doi:10.33774/coe-2026-4d6jr}.
+
+\bibitem{OEIS} OEIS Foundation. The On-Line Encyclopedia of Integer Sequences.
+\href{https://oeis.org/A000556}{A000556},
+\href{https://oeis.org/A000557}{A000557},
+\href{https://oeis.org/A354242}{A354242} and
+\href{https://oeis.org/A354253}{A354253}.
+For the central-binomial questions see P. Bala's comments dated July 2022.
+\end{thebibliography}
+\end{document}
