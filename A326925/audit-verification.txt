@@ -1,0 +1,43 @@
+Independent final audit: fresh isolated Lake build
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Build path: /workspace/scratch/5f072ff518ad/tmp/batch8_A326925_final_audit__j3a_3su
+Only mathlib dependency proof objects reused; all five package modules freshly compiled.
+Exit: 0
+ℹ [2801/2806] Built MobiusIrreducibility
+info: ././././MobiusIrreducibility.lean:79:0: 'MobiusIrreducibility.irreducible_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2802/2806] Built RationalDerivative
+info: ././././RationalDerivative.lean:69:0: 'RationalDerivative.iterate_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2803/2806] Built DerivativePolynomials
+info: ././././DerivativePolynomials.lean:167:0: 'DerivativePolynomials.original_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././DerivativePolynomials.lean:168:0: 'DerivativePolynomials.closed_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2806] Built GoldenUnit
+info: ././././GoldenUnit.lean:329:0: 'GoldenUnit.phi4_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:330:0: 'GoldenUnit.irreducible_phi4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:331:0: 'GoldenUnit.phi2_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:332:0: 'GoldenUnit.phi_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:333:0: 'GoldenUnit.phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:334:0: 'GoldenUnit.neg_phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2806] Built Proof
+info: ././././Proof.lean:90:0: 'A326925.odd_irreducible_over_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:91:0: 'A326925.odd_degree_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:92:0: 'A326925.degree_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:93:0: 'A326925.source_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:94:0: 'A326925.even_derivative_numerator_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+SHA-256 DerivativePolynomials.lean: dfd9673f3f8d2be0514d8a75b55896dbf392eb661045fc768a3b276d68c8556a
+SHA-256 GoldenUnit.lean: e362553050405c282b468c631ea3d080025389fda12901165a2bfa2bf2fddeff
+SHA-256 MobiusIrreducibility.lean: f39a3dac59fa2b21614dd3e22286e0f79a97de40425c172cb209fccb1c92b3a8
+SHA-256 Proof.lean: 1c4b98449d5c9e04a8b3e2d8e2ff1132a5b6195b26828c10156c42782b097659
+SHA-256 RationalDerivative.lean: 54913422f586a5d2dacd6ab40d1f79faa1f2aeecddbe14a08811f1453c1ce5c2
+SHA-256 lakefile.lean: e71e232557fe1ca48b95fe8afdaf86087efc262d116db39331851fff14a5e2ed
+SHA-256 lake-manifest.json: 6d0fb096cbe3b4ba8a0ddfe311a9020a1acf09728d67475a50761c023644bca0
+SHA-256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+Independent exact-source verification:
+A326925: Git blob e8036d79dbacfa38c832486936d3d80b5472cde1 MATCH
+A328610: Git blob 91e469434417481063f3629100c931cc3d2fdce0 MATCH
+A328611: Git blob 273ca073f7b24d3ff7ccb59d92f72e14ba0ce7ea MATCH
+A327315: Git blob 47efe5bcf666241a43536ea4f106e7342c741f96 MATCH
+
+Forbidden proof-shortcut scan: no matches for sorry, admit, axiom, unsafe or native_decide.

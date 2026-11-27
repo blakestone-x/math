@@ -1,0 +1,20 @@
+Fresh package build for the A000033/A000159/A000181 prime-shift family
+Date: November 27, 2026 (America/Chicago)
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof and configuration copied into a fresh isolated directory; only dependency caches reused.
+Command: lake build
+
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:268:0: 'Batch8Menage.menage_eq_sourceMenage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:269:0: 'Batch8Menage.menage_polynomial_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:270:0: 'Batch8Menage.A000033_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:271:0: 'Batch8Menage.A000159_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:272:0: 'Batch8Menage.A000181_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+SHA256 Proof.lean: ca0cf4a84c6d34e10670d6fe7349590e7c77eb519bea1f7a80e14a996e2ebdb1
+SHA256 lakefile.lean: 0e0a33008affce3fe7548211da93ffd8af75840d8fafdb7be7835bda560360fe
+SHA256 lake-manifest.json: b43b88286e8cfa47480b4aee48c91bf817bfe0f5bd3f0b47e24f27db144ea8ed
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea

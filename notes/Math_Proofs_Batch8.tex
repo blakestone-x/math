@@ -1,0 +1,453 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Odd-degree irreducibility, a word identity, and arithmetic assertions},pdfauthor={Blake Stone},pdfsubject={Complete proofs, source correspondence, and Lean verification}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Odd-degree irreducibility, a word identity,\\[3pt]
+and arithmetic assertions}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with OpenAI Astra 6.2\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove that every even-order derivative of
+$(1-x)/(1-x-x^2)$ has irreducible reduced numerator over $\Q$,
+settling the odd-degree clause recorded in A326925. The normalized
+polynomials are in fact irreducible over $\Q(\sqrt5)$. The proof reduces
+them by a linear-fractional transformation to odd binomials and uses an
+integer-trace obstruction in the golden-ratio field. We also prove an exact
+concatenation identity for the A288665 replacement process, establishing
+its conjectured A288668 length recurrence, and refute the A134559
+antidiagonal-product characterization with the prime 54217. Finally, a
+uniform polynomial congruence proves the three prime-shift assertions
+recorded in A000033, A000159, and A000181. Relevant older congruence
+literature could not be fully inspected, so historical novelty is not
+established for those three assertions. Four independently audited Lean
+packages contain complete source-definition bridges and proof terms for
+the stated results: five proved assertions and one refutation. No claim
+of exhaustive historical priority is made.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.8in}@{}}
+\toprule
+Source & Precisely established contribution\\
+\midrule
+A326925 & Odd-degree irreducibility; the even-degree factorization clause remains outside this result.\\
+A288665/A288668 & One shared length assertion, proved through a stronger identity of actual words.\\
+A134559 & One characterization refuted by a fully checked finite counterexample.\\
+A000033/159/181 & Three prime-shift assertions proved and formalized; historical novelty unverified.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{A326925: every odd-degree numerator is irreducible}
+
+Clark Kimberling's A326925~\cite{A326925} records polynomials beginning
+\[
+\begin{aligned}
+P_1&=1-x,& P_2&=2x-x^2,\\
+P_3&=1+3x^2-x^3,& P_4&=1+4x+4x^3-x^4.
+\end{aligned}
+\]
+The entry conjectures that its odd-degree polynomials are irreducible.
+Its title shifts the derivative index by one relative to the degree;
+the displayed polynomials and executable program fix the intended
+convention. We index by degree and prove the original derivative
+correspondence explicitly. The program's nonzero sign and factorial
+normalizations are irrelevant to irreducibility over a field.
+
+\begin{theorem}\label{thm:odd}
+Let $f(x)=(1-x)/(1-x-x^2)$. For every even integer $n\geq0$, the reduced
+numerator of $f^{(n)}$ is irreducible over $\Q$, of degree $n+1$.
+Equivalently, $P_N$ is irreducible for every positive odd degree $N$.
+Moreover, $P_N$ remains irreducible over $\Q(\sqrt5)$.
+\end{theorem}
+
+The even-degree clause, which predicts two irreducible factors of equal
+degree, is a separate assertion and is not proved here.
+
+\subsection{Recurrence and exact derivative correspondence}
+
+Put $D=1-x-x^2$, $A=2x+1$, $B=x^2+x-1=-D$, and introduce $P_0=-1$.
+The polynomials satisfy
+\begin{equation}\label{eq:recurrence8}
+P_{N+2}=AP_{N+1}-BP_N,\qquad P_0=-1,\quad P_1=1-x.
+\end{equation}
+This recurrence can be used as an integral polynomial definition. It
+implies the differential identity
+\begin{equation}\label{eq:diff8}
+D P_N'+N A P_N=N P_{N+1}.
+\end{equation}
+For a direct induction, use $A'=2$, $B'=A$, and $D=-B$. Substituting
+the recurrence at indices $N$ and $N+1$ in the desired identity at
+$N+2$ reduces its difference from zero to $A$ times the identity at
+$N+1$ minus $B$ times the identity at $N$. The base indices 0 and 1
+follow by substitution.
+
+The quotient rule and~\eqref{eq:diff8} now give, by induction on $n$,
+\begin{equation}\label{eq:derivative8}
+\boxed{f^{(n)}(x)=\frac{n!P_{n+1}(x)}{D(x)^{n+1}}.}
+\end{equation}
+Indeed, differentiating the right side gives numerator
+$n![D P_{n+1}'+(n+1)A P_{n+1}]=(n+1)!P_{n+2}$ over $D^{n+2}$.
+The formal development defines rational differentiation using canonical
+numerator and denominator, and proves the quotient rule for every
+representation $p/q$ with $q\ne0$. Thus the bridge is an equality of
+rational functions, not a recurrence assumed for a conjectured numerator.
+
+\subsection{Closed form in a quadratic field}
+
+Set
+\[
+u=\frac{1+\sqrt5}{2},\qquad v=1-u,\qquad K=\Q(u).
+\]
+Then $u+v=1$, $uv=-1$, $u^2=u+1$, and $1<u<2$. The characteristic
+roots of~\eqref{eq:recurrence8}, as a recurrence in $N$, are $x+u$
+and $x+v$. The initial values therefore give
+\begin{equation}\label{eq:closed8}
+(u-v)P_N(x)=v^2(x+u)^N-u^2(x+v)^N.
+\end{equation}
+This identity also follows by checking $N=0,1$ and the recurrence
+directly, without adjoining any further elements. Since $v^2u^4=u^2$,
+\begin{equation}\label{eq:mobius8}
+(u-v)P_N(x)=v^2\big((x+u)^N-u^4(x+v)^N\big).
+\end{equation}
+The leading coefficient on the right is $v^2(1-u^4)\ne0$, so
+$\deg P_N=N$.
+
+\begin{lemma}\label{lem:unit8}
+For every odd prime $p$, the element $u^4$ is not a $p$-th power in $K$.
+\end{lemma}
+\begin{proof}
+Suppose $b^p=u^4$ with $b\in K$. The element $u$ is integral because it
+satisfies the monic equation $u^2-u-1=0$. The integrality of $b^p$ implies
+that of $b$. The field norm gives
+\[
+\operatorname{N}_{K/\Q}(u)=-1,\qquad
+\operatorname{N}_{K/\Q}(b)^p=1.
+\]
+Since $p$ is odd and this norm is rational, $\operatorname{N}(b)=1$.
+In the real embedding under consideration, $b^p=u^4>1$, hence $b>1$.
+Also $u^4=3u+2<8$. Since $p\geq3$, the possibility $b\geq2$ would
+give $b^p\geq8$, a contradiction. Thus $1<b<2$.
+
+The number $b$ is irrational, because $b^p=u^4=3u+2$ is irrational.
+Its other conjugate is $1/b$, by the norm identity. The trace of an
+algebraic integer in this quadratic field is an integer, but
+\[
+2<b+\frac1b<3\qquad(1<b<2).
+\]
+This contradiction proves the lemma.
+\end{proof}
+
+The Lean proof derives all the needed degree, norm, trace, and
+integrality facts from the explicit quadratic polynomial. In particular,
+it does not assume a fundamental-unit classification of $K$.
+
+\subsection{Irreducibility and reduction}
+
+The classical odd binomial irreducibility criterion states that
+$Y^N-c$ is irreducible over a characteristic-zero field when $N$ is odd
+and $c$ is not a $p$-th power for any prime $p\mid N$. This criterion
+is proved in the pinned mathlib dependency~\cite{mathlib}. By
+Lemma~\ref{lem:unit8},
+\begin{equation}\label{eq:binomial8}
+Y^N-u^4\text{ is irreducible over }K\quad(N\text{ odd}).
+\end{equation}
+
+\begin{lemma}\label{lem:mobius8}
+Let $F$ be a field, let $a,b,c\in F$ satisfy $a\ne b$ and $c\ne1$,
+and suppose $Y^N-c$ is irreducible. Then
+\[
+Q(X)=(X-a)^N-c(X-b)^N
+\]
+is irreducible over $F$.
+\end{lemma}
+\begin{proof}
+The hypothesis forces $N>0$, and $c\ne1$ ensures $\deg Q=N$.
+Choose an irreducible factor $g$ of $Q$ and let $x$ be its root in the
+field $E=F[X]/(g)$. The equation $Q(x)=0$ shows $x\ne b$, since
+otherwise $(b-a)^N=0$. Hence $y=(x-a)/(x-b)\in E$ satisfies $y^N=c$.
+Its minimal polynomial is the monic irreducible polynomial $Y^N-c$,
+so
+\[
+N\leq[E:F]=\deg g\leq\deg Q=N.
+\]
+Thus $g$ has the full degree of $Q$ and is associated to it. This proves
+irreducibility.
+\end{proof}
+
+Apply Lemma~\ref{lem:mobius8} with $a=-u$, $b=-v$, and $c=u^4$.
+Equations~\eqref{eq:mobius8} and~\eqref{eq:binomial8} give
+irreducibility of $P_N$ over $K$ for odd $N$. It follows over $\Q$
+as well, since a factorization over $\Q$ would persist over $K$.
+
+For odd $N\geq3$, the irreducible polynomial $P_N$ cannot divide $D$
+because $\deg P_N=N>2$. For $N=1$, $P_1=1-x$ does not divide $D$
+because $D(1)=-1$. Therefore no factor of $P_N$ cancels against a power
+of $D$ for odd $N$. In~\eqref{eq:derivative8}, the factor $n!$ is a
+unit of $\Q$. For even $n$, the reduced numerator is consequently
+associated to $P_{n+1}$, completing the proof of Theorem~\ref{thm:odd}.
+
+\section{A288665/A288668: a literal word identity}
+
+Start with $w_0=00$. Obtain $w_{n+1}$ by scanning $w_n$ from left to
+right and making the nonoverlapping replacements
+\[
+00\longmapsto0110,\qquad10\longmapsto000,
+\]
+copying any letter that does not start a matching pair. These are the
+literal source rules in A288665~\cite{A288665}. A288668~\cite{A288668}
+conjectures the order-three recurrence for the resulting lengths.
+
+\begin{theorem}\label{thm:word8}
+For every $n\geq0$,
+\[
+\boxed{w_{n+3}=w_nw_nw_{n+1},}
+\]
+where juxtaposition denotes concatenation. In particular, if $L_n=|w_n|$,
+\[
+L_{n+3}=L_{n+1}+2L_n,\qquad (L_0,L_1,L_2)=(2,4,5).
+\]
+\end{theorem}
+\begin{proof}
+Introduce three token codes
+\[
+A=00,\qquad B=0110,\qquad C=01000.
+\]
+One pass gives $A\mapsto B$, $B\mapsto C$, and $C\mapsto AAB$.
+For example,
+\[
+0110\mapsto0\,1\,000=01000,
+\qquad01000\mapsto0\,000\,0110=00\,00\,0110.
+\]
+Each token's final pair is consumed by its rewrite, so the same identity
+holds when any binary suffix follows the token. Thus there is no
+boundary-crossing match between these token codes. This arbitrary-suffix
+property is proved explicitly in Lean.
+
+Let $\phi$ be the substitution on token words defined by
+$\phi(A)=B$, $\phi(B)=C$, $\phi(C)=AAB$. Decoding $\phi^n(A)$ therefore
+gives the exact literal iterate $w_n$, by induction. Since $\phi^3(A)=AAB$,
+applying $\phi^n$ and decoding yields the stated concatenation identity.
+The first words are $00$, $0110$, and $01000$, so their lengths are
+$2,4,5$. Taking lengths completes the proof.
+\end{proof}
+
+The source prose gives inconsistent labels for the three initial
+indices. Its data, offset, generating function, and program all agree
+with the values at indices $0,1,2$ used above. This clerical error is
+documented, not counted as another mathematical refutation. The shared
+length assertion is counted once even though both entries record it.
+
+\begin{corollary}
+For any assignment of nonnegative integer weights to the two letters,
+the total weight $W_n$ satisfies $W_{n+3}=W_{n+1}+2W_n$. Moreover,
+for all $n,t\geq0$,
+\[
+w_n\text{ is a prefix of }w_{n+3t},\qquad
+|w_{n+3t}|\geq2^t|w_n|.
+\]
+\end{corollary}
+\begin{proof}
+Weights add under concatenation, proving the first claim. The word
+identity makes $w_n$ a prefix of $w_{n+3}$ and gives
+$|w_{n+3}|\geq2|w_n|$. Iterate these two facts.
+\end{proof}
+
+All lengths are positive. The nested words in each residue class modulo
+three therefore have unbounded lengths and define the three limiting
+words discussed in the related source entries. Their formal prefix and
+growth results are included as consequences, not separately counted
+conjecture resolutions.
+
+\section{A134559: an explicit counterexample}
+
+Lechoslaw Ratajczak's 2019 comment in A134559~\cite{A134559} defines
+\[
+b_n(k)=\sum_{\substack{1\leq u\leq n\\n\bmod u=k}}u,
+\qquad
+P(n)=\prod_{k=0}^{\lceil n/2\rceil-1}b_n(k).
+\]
+It conjectures that the positive integers satisfying
+\begin{equation}\label{eq:gcd8}
+\gcd(P(n),n)=1,\qquad \gcd(P(n+1),n+1)=2
+\end{equation}
+are exactly the primes $p>5$ for which $(p+1)/2$ is prime. This prime
+family is A005383 with its first two entries excluded~\cite{A005383}.
+
+\begin{theorem}\label{thm:counter8}
+The characterization~\eqref{eq:gcd8} is false. Specifically,
+\[
+p=54217,\qquad \frac{p+1}{2}=27109
+\]
+are both prime, but
+\[
+b_{54217}(2737)=162651=3\cdot54217,
+\qquad \gcd(P(54217),54217)=54217.
+\]
+\end{theorem}
+\begin{proof}
+Primality of 54217 and 27109 is verified by trial division, or by the
+proof-producing primality tactic in the accompanying Lean development.
+If $54217\bmod u=2737$, then $u>2737$ and
+\[
+54217=qu+2737,\qquad qu=51480.
+\]
+Conversely, every divisor $u$ of 51480 greater than 2737 gives this
+remainder. Such a $u$ is at most 51480, so it lies in the original
+summation interval. Since $u\geq2738$, its positive complementary divisor
+$q$ is at most 18. Enumerating these possible divisors gives exactly
+\[
+\begin{gathered}
+2860,3432,3960,4290,4680,5148,5720,6435,\\
+8580,10296,12870,17160,25740,51480.
+\end{gathered}
+\]
+Their sum is $162651=3\cdot54217$. The index 2737 lies in the original
+product interval because $2737<\lceil54217/2\rceil=27109$. Thus
+$54217\mid P(54217)$ and the first gcd in~\eqref{eq:gcd8} equals
+54217, not 1. The second gcd condition cannot remedy this failure.
+\end{proof}
+
+The formal proof establishes both inclusions in the displayed remainder
+fiber, both primality claims, the exact sum, its membership as a product
+factor, and the final negation of the proposed characterization over
+positive integers. It never evaluates the enormous full product.
+No minimal-counterexample claim or classification of all failures is
+made.
+
+\input{menage_fragment.tex}
+
+\section{Formal verification, attribution, and scope}
+
+All four packages pin Lean 4.19.0 and mathlib revision
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}. Each contains a
+dependency manifest, exact primary-source snapshots, a readable proof,
+source and prior-work checks, an independent audit, and two fresh build
+records. The builds reuse dependency caches while rebuilding each
+package's own proof objects from its delivered source.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.7in}@{}}
+\toprule
+Package & Main checked endpoints\\
+\midrule
+A326925 & \texttt{odd\_degree\_irreducible};
+\texttt{even\_derivative\_numerator\_irreducible}; exact derivative and degree bridges.\\
+A288668 & \texttt{word\_three\_steps}; \texttt{original\_conjecture}; literal rewriting, weighted recurrence, prefixes and growth.\\
+A134559 & \texttt{witness\_fiber}; \texttt{witness\_prime\_pair}; \texttt{witness\_gcd}; \texttt{conjecture\_false}.\\
+A000033 & \texttt{menage\_eq\_sourceMenage}; uniform polynomial shift; the three entry-specific divisibility theorems.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The printed dependency reports use only Lean's standard axioms:
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, as
+applicable. The proofs contain no admissions, extra axioms, unsafe
+declarations, native evaluation shortcuts, or unproved experimental
+recurrence assumptions. Finite computations in the counterexample use
+ordinary proof-producing arithmetic or kernel reduction.
+
+The source assertions and classical ingredients retain their original
+attribution. The odd binomial criterion is an existing theorem, and the
+m\'enage defining formula is classical. In particular, the proof of the
+three source congruences is complete, but their historical novelty is
+\emph{not established}: Carlitz's 1952 and 1954 papers and Stevens's 1981
+paper are directly relevant, and their full mathematical statements were
+unavailable to the review~\cite{Carlitz1952,Carlitz1954,Stevens1981}.
+The accessible Wyman--Moser paper~\cite{WymanMoser1958} does not reproduce
+the needed polynomial congruence.
+
+Both search engines, the public trureturing index, and relevant nearby
+definitions were checked for the other three targets; no exact earlier
+resolution was located. An unchanged OEIS conjecture label and a bounded
+search cannot certify that no earlier proof exists. Independent review
+here means review by a separate collaborating agent and an isolated
+rebuild; it does not mean external journal peer review or editorial
+acceptance by OEIS. No OEIS submission is represented as completed.
+
+\begin{thebibliography}{99}
+\bibitem{A326925} C. Kimberling and OEIS contributors,
+A326925, derivative-numerator coefficient array, 2019.
+\url{https://oeis.org/A326925}. Exact revision 13, October 31, 2019.
+
+\bibitem{A288665} C. Kimberling and OEIS contributors,
+A288665, binary replacement process.
+\url{https://oeis.org/A288665}. Exact revision 21, July 27, 2024.
+
+\bibitem{A288668} C. Kimberling and OEIS contributors,
+A288668, conjectured lengths of replacement iterates.
+\url{https://oeis.org/A288668}. Exact revision 6, April 7, 2020.
+
+\bibitem{A134559} G. W. Adamson, L. Ratajczak, and OEIS contributors,
+A134559. Ratajczak's antidiagonal-product conjecture is dated
+November 1, 2019. \url{https://oeis.org/A134559}.
+Exact revision 16, September 20, 2025.
+
+\bibitem{A005383} The OEIS Foundation Inc., A005383,
+primes $p$ such that $(p+1)/2$ is prime.
+\url{https://oeis.org/A005383}. Exact revision 143, August 4, 2026.
+
+\bibitem{A000033} The OEIS Foundation Inc., A000033.
+Prime-shift conjecture of M. van Hoeij, June 10, 2019.
+\url{https://oeis.org/A000033}. Exact revision 60, June 21, 2026.
+
+\bibitem{A000159} The OEIS Foundation Inc., A000159.
+Prime-shift conjecture of M. van Hoeij, June 10, 2019.
+\url{https://oeis.org/A000159}. Exact revision 54, June 21, 2026.
+
+\bibitem{A000181} The OEIS Foundation Inc., A000181.
+Prime-shift conjecture of M. van Hoeij, June 10, 2019.
+\url{https://oeis.org/A000181}. Exact revision 30, June 21, 2026.
+
+\bibitem{A058087} The OEIS Foundation Inc., A058087,
+coefficients of the m\'enage hit polynomials.
+\url{https://oeis.org/A058087}. Exact revision 66, November 5, 2025.
+The defining formula is attributed to Kaplansky and Riordan.
+
+\bibitem{Carlitz1952} L. Carlitz, Congruences for the m\'enage polynomials,
+\emph{Duke Mathematical Journal} \textbf{19} (1952), 549--552.
+\href{https://doi.org/10.1215/S0012-7094-52-01957-1}{doi:10.1215/S0012-7094-52-01957-1}.
+Full text unavailable during this review.
+
+\bibitem{Carlitz1954} L. Carlitz, Congruence properties of the m\'enage
+polynomials, \emph{Scripta Mathematica} \textbf{20} (1954), 51--57.
+Bibliographic details confirmed in~\cite{WymanMoser1958}; full text
+unavailable during this review.
+
+\bibitem{Stevens1981} H. Stevens, Arithmetic properties of the m\'enage
+polynomials, \emph{Rocky Mountain Journal of Mathematics} \textbf{11}
+(1981), 635--639.
+\href{https://doi.org/10.1216/RMJ-1981-11-4-635}{doi:10.1216/RMJ-1981-11-4-635}.
+Full text unavailable during this review; page range follows the JSTOR
+issue contents.
+
+\bibitem{WymanMoser1958} M. Wyman and L. Moser, On the probl\`eme des
+m\'enages, \emph{Canadian Journal of Mathematics} \textbf{10} (1958),
+468--480.
+\href{https://doi.org/10.4153/CJM-1958-045-6}{doi:10.4153/CJM-1958-045-6}.
+
+\bibitem{mathlib} The mathlib contributors. Odd binomial irreducibility,
+theorem \texttt{X\_pow\_sub\_C\_irreducible\_of\_odd} in the
+\texttt{Polynomial} namespace. Source file:
+\path{Mathlib/FieldTheory/KummerPolynomial.lean}. Pinned revision:\par
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\par
+\url{https://github.com/leanprover-community/mathlib4}.
+\end{thebibliography}
+\end{document}
+

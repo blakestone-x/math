@@ -1,0 +1,13 @@
+Independent audit: fresh isolated Lake build
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: 1e32288a22699e12b30a57b93687682778d96f750a3b1cf4d4aa52efc53745d9
+Build path: /workspace/scratch/5f072ff518ad/tmp/batch8_A134559_audit_baut_8vh
+Only dependency .olean files reused; Proof.lean freshly compiled.
+Exit: 0
+ℹ [855/856] Built Proof
+info: ././././Proof.lean:102:0: 'A134559.witness_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:103:0: 'A134559.witness_prime_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:104:0: 'A134559.witness_gcd' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:105:0: 'A134559.conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.

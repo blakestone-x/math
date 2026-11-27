@@ -1,6 +1,12 @@
 # math
 math proofs
 
+- [A326925 — every odd-degree derivative numerator is irreducible](A326925/README.md) · [Complete Lean proof](A326925/Proof.lean)
+- [A288665/A288668 — an exact word identity and the replacement-length recurrence](A288668/README.md) · [Lean proof](A288668/Proof.lean)
+- [A134559 — a prime counterexample to the antidiagonal-product characterization](A134559/README.md) · [Lean refutation](A134559/Proof.lean)
+- [A000033, A000159 and A000181 — three ménage prime-shift assertions proved and formalized; historical novelty unverified](A000033/README.md) · [Lean proof](A000033/Proof.lean)
+- [Odd-degree irreducibility, a word identity, and arithmetic assertions — combined manuscript](notes/Math_Proofs_Batch8.pdf)
+
 - [Regular polygons from consecutive rods — classification and infinitely many chains with three equilateral foldings](A382632/README.md) · [Manuscript](A382632/regular-foldings.pdf)
 - [Bala’s two triangular-number product identities (A174114 and A266883)](Bala-product-identities/README.md) · [Manuscript](Bala-product-identities/products.pdf)
 - [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf) · [Complete Lean formalization](A377824Formal/README.md)
@@ -133,4 +139,5 @@ math proofs
 [Eight resolved assertions across A016789, A300984, A324017, A389524, and A393833 (PDF)](notes/Math_Proofs_Batch6.pdf) · [Collection guide](notes/Math_Proofs_Batch6_README.md)
 
 [Weighted orphan identity, nine power-sum branches, and a formal composition asymptotic (PDF)](notes/Math_Proofs_Batch7.pdf) · [Collection guide](notes/Math_Proofs_Batch7_README.md)
+
 
