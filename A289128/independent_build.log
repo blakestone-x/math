@@ -1,0 +1,45 @@
+Independent fresh isolated build of A289128.
+No local proof objects copied or reused. Only pinned external dependencies reused.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/number_theory/A289128_audit/fresh_cbis4_tt
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2795/2801] Built Blocks
+✔ [2796/2801] Built Counts
+✔ [2797/2801] Built InfiniteWord
+ℹ [2798/2801] Built Lengths
+info: ././././Lengths.lean:78:0: 'Kimberling289128.original_length_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2801] Built Limits
+info: ././././Limits.lean:160:0: 'Kimberling289128.zero_ratio_no_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Limits.lean:161:0: 'Kimberling289128.one_ratio_no_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2800/2801] Built Proof
+info: ././././Proof.lean:35:0: 'Kimberling289128.rewrite_pair' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:36:0: 'Kimberling289128.word_blocks' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:37:0: 'Kimberling289128.word_nested' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:38:0: 'Kimberling289128.bit_stabilizes' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:39:0: 'Kimberling289128.infinite_word_unique' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:40:0: 'Kimberling289128.original_length_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:41:0: 'Kimberling289128.position_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:42:0: 'Kimberling289128.zero_even_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:43:0: 'Kimberling289128.zero_odd_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:44:0: 'Kimberling289128.one_even_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:45:0: 'Kimberling289128.one_odd_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:46:0: 'Kimberling289128.A289129_limit_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:47:0: 'Kimberling289128.A289130_limit_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:48:0: 'Kimberling289128.position_ratios_do_not_converge' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+SHA256 Blocks.lean: 6add29086b5a60e96b3e04d58d23642cc075b07488a20326b23276caf4adf086
+SHA256 Counts.lean: 233696500229089963a050bc65bb9ab82e404376f9e79f97b6b2c4ef9d48018a
+SHA256 InfiniteWord.lean: 1c0589fa668737f2530666c05ef364a9a5bc93a2491880e30b9aac459550331a
+SHA256 Lengths.lean: 29652ec770bd21996baa76200804a130c123b7b4c4a936e8e1fb200db075b1f7
+SHA256 Limits.lean: 74567b6ba3152116bde0acf8abf62b611dbdb6cf35524ce0f7b81535662d5f08
+SHA256 Proof.lean: b63cd835b955754b4f8ab4a8e69ba4f6fc9f19e2785c3132647a6364a55b6637
+SHA256 lakefile.lean: 71456b1788a489caac281ae94d4ba40df6a4791a56f20ebbb83095c5e47818e6
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 32e669c5ea83236fe2217ce576ce0b0a87691cab09edfcdb6561fab7a037ecc6
+SOURCE A289128.seq: Git blob 9d7d17a994348a375461510c9f7d98502c8e6137; SHA256 07461291dda2361407f63c8fcde393d21257aa1310fd3d838390edefc1ee1428
+SOURCE A289129.seq: Git blob 9bf9dc96712ee5d5e7ae27d18c24565f70bc69c9; SHA256 6df6caddf7ab986c6d90830d697c708da13262c7e22a878334959b8a8e89f24f
+SOURCE A289130.seq: Git blob e0fb2b25700ab3f7cdf10aae04289285aaad9b91; SHA256 cad7cce855e0823c7869714ed2b943d960688d410fbc956c54b1b244077d3da2
+SOURCE A289131.seq: Git blob 64fb3d4aefee15f68b0ca5ac63386d220216b59f; SHA256 706742c475bf1b50ba3f3129e9801addc9a63592fe7fe2d4bbe2fd05986d00bf

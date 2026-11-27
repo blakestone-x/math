@@ -1,0 +1,212 @@
+\section{A replacement word whose position ratios do not converge}
+\label{sec:a289128}
+
+Clark Kimberling's entries A289128--A289131, introduced on June 28,
+2017, concern the left-to-right nonoverlapping replacement
+\[
+00\longmapsto0010,\qquad01\longmapsto011,\qquad10\longmapsto010.
+\]
+Let $R$ denote one pass of this scanner. A matched pair is consumed,
+and newly emitted letters are not scanned during that pass. An
+unmatched input letter is copied; in particular, an initial $11$
+causes the first $1$ to be copied before scanning continues. Set
+$w_0=00$ and $w_{n+1}=R(w_n)$. The first words are
+\[
+00,\quad0010,\quad0010010,\quad00100100110,
+\]
+followed by $001001001100101010$ and
+$0010010011001010100110110110$.
+
+The entry A289131 conjectures that the lengths satisfy its printed
+order-five recurrence. The adjacent entries A289129 and A289130
+conjecture that the positions of the $k$-th zero and one, divided by
+$k$, tend respectively to $5/2$ and $5/3$. We prove the length
+assertion and prove that neither position ratio has any real limit.
+The repeated length assertion in A289128 is counted once.
+
+\paragraph{Theorem.}
+The literal words $w_n$ are nested prefixes and determine a unique
+infinite binary word $W$. Write $L_n=|w_n|$ and let $Z_n,O_n$ be the
+counts of its zeros and ones. For every $m\ge0$,
+\[
+\begin{array}{c|cc}
+ & n=2m+1 & n=2m+2\\ \hline
+L_n & 10\cdot2^m-3m-6 & 14\cdot2^m-3m-7\\
+Z_n & 4\cdot2^m-1 & 6\cdot2^m-1\\
+O_n & 6\cdot2^m-3m-5 & 8\cdot2^m-3m-6
+\end{array}
+\tag{\ref{sec:a289128}.1}
+\]
+The exceptional initial length is $L_0=2$. With the first six values
+$2,4,7,11,18,28$, these lengths satisfy exactly
+\[
+L_n=L_{n-1}+3L_{n-2}-3L_{n-3}-2L_{n-4}+2L_{n-5}
+\qquad(n\ge6).
+\tag{\ref{sec:a289128}.2}
+\]
+Let $a(k)$ and $b(k)$ be the one-based positions of the $k$-th zero
+and one in $W$. Both are defined for every $k\ge1$. Their ratios have
+the subsequential limits
+\[
+\begin{aligned}
+\frac{a(Z_{2m+1})}{Z_{2m+1}}&\longrightarrow\frac52,
+&\frac{a(Z_{2m+2})}{Z_{2m+2}}&\longrightarrow\frac73,\\
+\frac{b(O_{2m+1})}{O_{2m+1}}&\longrightarrow\frac53,
+&\frac{b(O_{2m+2})}{O_{2m+2}}&\longrightarrow\frac74.
+\end{aligned}
+\tag{\ref{sec:a289128}.3}
+\]
+All four occurrence-rank subsequences are strictly increasing.
+Consequently neither $a(k)/k$ nor $b(k)/k$ converges.
+
+\paragraph{Proof: exact blocks and scanner boundaries.}
+For $t\ge0$, define $A_t=0(10)^t$ and $B_t=0(110)^t$. For any finite
+binary suffix $u$, the scanner satisfies
+\[
+R(A_tB_su)=B_tA_{2s+1}R(u),\qquad R(A_t)=B_t.
+\tag{\ref{sec:a289128}.4}
+\]
+To verify the first equality, the initial $01$ pairs of $A_t$ emit
+$(011)^t$ and leave one $0$. The first $0$ of $B_s$ combines with
+that letter to form $00$, emitting $0010$. Each of the remaining
+$s$ blocks $110$ is parsed as an unmatched $1$ followed by $10$,
+and emits $1010$. Hence the output before $R(u)$ is
+\[
+(011)^t0010(10)^{2s}=0(110)^t0(10)^{2s+1}=B_tA_{2s+1}.
+\]
+The second equality follows from
+$(011)^t0=0(110)^t$. These identities hold for arbitrary suffixes,
+so they justify concatenating the particular blocks used below;
+no concatenation property for arbitrary binary strings is assumed.
+
+Put
+\[
+t_m=2^{m+1}-1,\qquad P_0=0010,\qquad
+P_{m+1}=P_mA_{t_m}B_{t_m}.
+\]
+We prove simultaneously that
+\[
+R(P_mu)=R(P_m)R(u)\quad\hbox{for every }u,
+\qquad R(P_m)=P_mA_{t_m}.
+\tag{\ref{sec:a289128}.5}
+\]
+For $m=0$, the word $0010$ is consumed as the pairs $00,10$, and
+$R(0010)=0010010=P_0A_1$. The scanner is at a complete boundary
+after those input pairs. If (\ref{sec:a289128}.5) holds for $m$,
+then (\ref{sec:a289128}.4) gives
+\[
+R(P_mA_{t_m}B_{t_m})
+=P_mA_{t_m}B_{t_m}A_{2t_m+1}
+=P_{m+1}A_{t_{m+1}},
+\]
+and the same computation with a suffix gives the boundary identity
+at stage $m+1$. Therefore induction on the original iterates yields
+\[
+w_{2m+1}=P_m,\qquad w_{2m+2}=P_mA_{t_m}.
+\tag{\ref{sec:a289128}.6}
+\]
+The next odd iterate appends $B_{t_m}$. Every word is thus a prefix
+of its successor, including $w_0=00$.
+
+\paragraph{Counting and the length recurrence.}
+The block $A_t$ has length $2t+1$, with $t+1$ zeros and $t$ ones.
+The block $B_t$ has length $3t+1$, with $t+1$ zeros and $2t$ ones.
+Starting from $P_0=0010$, induction in
+(\ref{sec:a289128}.6) proves all six formulas in
+(\ref{sec:a289128}.1). In particular the lengths are unbounded,
+so the nested prefixes determine $W$.
+
+The length formulas for a fixed parity are a multiple of $2^m$
+plus an affine function of $m$. They give the shorter relation
+\[
+L_{r+4}+2L_r=3L_{r+2}+3\qquad(r\ge1).
+\]
+Subtracting the relation at $r$ from the relation at $r+1$ gives
+(\ref{sec:a289128}.2). Directly scanning the first five passes
+gives its six initial values. This proves the conjectured equality
+with the separately defined A289131 recurrence for every index.
+Colin Barker already recorded the scalar parity formulas and
+generating function in A289131 on July 2, 2017; the present argument
+proves their equality with the original replacement lengths.
+
+\paragraph{Infinite occurrence positions.}
+Every positive-index iterate ends in $10$. Its final zero is
+therefore the $Z_n$-th zero of the infinite word, and its final one
+is the $O_n$-th one. Thus
+\[
+a(Z_n)=L_n,\qquad b(O_n)=L_n-1\qquad(n\ge1).
+\tag{\ref{sec:a289128}.7}
+\]
+The count formulas show that the odd and even rank subsequences
+increase strictly and tend to infinity. They also prove that both
+symbols occur infinitely often. Substituting
+(\ref{sec:a289128}.1) into (\ref{sec:a289128}.7) gives
+\[
+\begin{aligned}
+\frac{a(Z_{2m+1})}{Z_{2m+1}}
+ &=\frac{10\cdot2^m-3m-6}{4\cdot2^m-1},&
+\frac{a(Z_{2m+2})}{Z_{2m+2}}
+ &=\frac{14\cdot2^m-3m-7}{6\cdot2^m-1},\\
+\frac{b(O_{2m+1})}{O_{2m+1}}
+ &=\frac{10\cdot2^m-3m-7}{6\cdot2^m-3m-5},&
+\frac{b(O_{2m+2})}{O_{2m+2}}
+ &=\frac{14\cdot2^m-3m-8}{8\cdot2^m-3m-6}.
+\end{aligned}
+\]
+Divide by $2^m$ and use $m/2^m\to0$ to obtain
+(\ref{sec:a289128}.3). Were either full ratio convergent, both of
+its displayed subsequences would have the same limit. Since
+$5/2\ne7/3$ and $5/3\ne7/4$, neither converges. This refutes the
+two proposed limits without relying on a finite-prefix
+approximation. $\square$
+
+\paragraph{Formal scope.}
+Lean 4.19.0, with mathlib pinned at
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}, checks the entire
+chain. The scanner uses actual lists of bits and recursively
+consumes the original input. The exact block theorem is
+\texttt{Kimberling289128.word\_blocks}. Theorems
+\texttt{word\_nested}, \texttt{bit\_stabilizes}, and
+\texttt{infinite\_word\_unique} establish the nested limit. The
+infinite letter at zero-based position $i$ is constructed as the
+$i$-th letter of $P_i$; the proof gives $|P_i|\ge i+4$ and
+stabilization in every iterate of index at least $2i+1$.
+
+The one-based position maps use \texttt{Nat.nth}. The theorem
+\texttt{position\_spec} verifies their letters and exact preceding
+occurrence counts at every positive rank. Theorems
+\texttt{odd\_positions} and \texttt{even\_positions} prove
+(\ref{sec:a289128}.7) for those maps. Four real-limit theorems and
+strict monotonicity of the rank sequences imply
+\texttt{position\_ratios\_do\_not\_converge}, which excludes every
+real limit for both ratios. The source-specific endpoints are
+\texttt{A289129\_limit\_false} and
+\texttt{A289130\_limit\_false}. The length endpoint
+\texttt{original\_length\_conjecture} identifies every literal
+length with the independent integer recurrence, including the
+exceptional zeroth word and exact recurrence start at index six.
+All endpoint axiom dependencies are among
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+\paragraph{Sources and prior-work screen.}
+The package preserves the complete official OEIS exports for
+A289128 revision 7, A289129 revision 4, A289130 revision 6, and
+A289131 revision 19. Their saved Git blob hashes match the
+official repository responses. The source review records searches
+with both available engines, exact and semantic checks of the
+current trureturing catalogue, and the existing mathematics
+repository. No earlier proof of this exact length assertion or
+refutation of these two exact position limits was located. This
+bounded review does not certify historical priority.
+
+The trureturing proof of A288476 uses the different rule
+$00\to0101,1\to011$ and explicitly excludes the present position
+and limiting-word questions. Michel Dekking's 2022 proof in
+A288936 sends $10$ to $011$, rather than the $010$ used here, and
+has different growth. The repository's earlier pair-rule and
+morphic-discrepancy results also concern different substitutions.
+Standard scanner recoding and subsequence methods are credited as
+methods, not claimed as new general theory. The four limits above
+are not asserted to classify all cluster points or determine exact
+liminf and limsup values; corrected all-index inequalities are
+outside this package's claimed scope.

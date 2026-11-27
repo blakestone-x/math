@@ -1,6 +1,11 @@
 # math
 math proofs
 
+- [A326926/A326933 — the complete prime-index irreducibility classification](A326926/README.md) · [Exact source theorem in Lean](A326926/Proof.lean)
+- [A211417 — the full positive-shift integrality family with an explicit uniform constant](A211417/README.md) · [Complete Lean proof](A211417/Proof.lean)
+- [A289128–A289131 — the replacement-length conjecture proved and both position limits refuted](A289128/README.md) · [Complete Lean proofs](A289128/Proof.lean)
+- [Five conjecture resolutions in three families — combined manuscript](notes/Math_Proofs_Batch10.pdf) · [Collection guide](notes/Math_Proofs_Batch10_README.md)
+
 - [Largest endpoints of signed smooth gaps — exact values of A391077 and A376924, and a distribution theorem for every finite prime set](Smooth-gaps/README.md) · [Gap manuscript](Smooth-gaps/smooth-gaps.pdf) · [Three classes of smooth decimal rotations](Smooth-gaps/smooth-rotations.pdf)
 
 - [A326925 — the even-degree factorization, completing the odd/even conjecture; Fibonacci/Lucas factor constants](A326925Even/README.md) · [Exact reduced-numerator Lean proof](A326925Even/EvenDerivative.lean)

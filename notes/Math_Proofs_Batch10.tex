@@ -1,0 +1,692 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Five conjecture resolutions in three families},pdfauthor={Blake Stone},pdfsubject={Polynomial irreducibility, factorial-ratio divisibility, replacement words, and complete Lean proofs}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Five conjecture resolutions\\[3pt]in three families}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove the full irreducibility classification for the normalized
+derivative numerators of $1/(1-x+x^2)$: the nonconstant polynomial of
+degree $n$ is irreducible over $\Q$ exactly when $n+1$ is a prime other
+than three. A reciprocal Eisenstein argument handles every allowed
+prime; classical Lucas divisibility excludes composite indices.
+We also prove the entire positive-shift integrality family in
+A211417, giving the explicit uniform multiplier $((30r)!)^r$ for
+each $k\in\{2,3,5\}$ and every shift range $r$.
+Finally, an exact description of a binary replacement word proves
+its conjectured length recurrence and refutes both proposed
+occurrence-position limits. The actual zero-position ratios have
+subsequential limits $5/2$ and $7/3$, and the one-position ratios
+have subsequential limits $5/3$ and $7/4$.
+Three Lean projects verify all five assertions from the literal
+source definitions, using fifteen local proof modules and pinned
+mathlib dependencies. Known ingredients and earlier neighboring
+results are credited. Bounded prior-publication checks found no
+earlier proof of the exact assertions claimed here; this is not a
+certification of historical priority or editorial acceptance.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.55in}@{}}
+\toprule
+Source & Result and count\\
+\midrule
+A326926/A326933 & One full irreducibility classification, repeated in two entries.\\
+A211417 & One general positive-shift integrality conjecture, covering all three prescribed values of $k$ and every $r$.\\
+A289128/A289131 & One shared conjecture identifying the literal iterate lengths with an independently specified recurrence.\\
+A289129 & One limit refutation, strengthened to nonexistence of any real limit.\\
+A289130 & One limit refutation, strengthened to nonexistence of any real limit.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Prime-index irreducibility of the derivative polynomials}
+\label{sec:polynomials}
+
+Kimberling's A326926~\cite{A326926} takes the numerator of the
+derivative of order $n$ of $1/(1-x+x^2)$ and divides it by $n!$.
+The row has degree $n$, beginning with the constant row at $n=0$.
+The irreducibility comment is repeated in A326933~\cite{A326933};
+these are the same assertion. Peter Bala's November 2026 addendum
+already records the recurrence, closed form, roots, and strong
+divisibility. Its one-based row $R(N,x)$ is our $P_{N-1}(x)$.
+
+Put
+\[
+D=1-x+x^2,\qquad A=1-2x,\qquad
+P_0=1,\quad P_1=A,\quad P_{n+2}=AP_{n+1}-DP_n.
+\]
+
+\begin{theorem}\label{thm:polynomials}
+For every $n\ge0$,
+\[
+\left(\frac1D\right)^{(n)}=\frac{n!P_n}{D^{n+1}},
+\qquad \gcd(P_n,D)=1,\qquad \deg P_n=n.
+\]
+The canonical reduced numerator over $\Q[x]$ is exactly $n!P_n$.
+For every $n>0$,
+\[
+P_n\text{ is irreducible over }\Q
+\quad\Longleftrightarrow\quad n+1\text{ is prime and }n+1\ne3.
+\]
+\end{theorem}
+
+\subsection{Differential identities and exact reduced numerators}
+
+The recurrence implies the two identities
+\begin{align}
+P_{n+1}'&=-(n+2)P_n,\label{eq:appell}\\
+DP_n'+(n+1)AP_n&=(n+1)P_{n+1}.\label{eq:differential}
+\end{align}
+For a simultaneous induction, both hold at $n=0$. Since $A'=-2$
+and $D'=-A$, differentiation of the recurrence and the two
+inductive hypotheses give
+\[
+\begin{aligned}
+P_{n+2}'
+ &=-2P_{n+1}+AP_{n+1}'+AP_n-DP_n'\\
+ &=-2P_{n+1}-(n+1)AP_n-DP_n'
+ =-(n+3)P_{n+1}.
+\end{aligned}
+\]
+Also
+\[
+DP_{n+1}'+(n+2)AP_{n+1}
+=(n+2)(AP_{n+1}-DP_n)=(n+2)P_{n+2}.
+\]
+This proves both identities for every $n$.
+
+The derivative formula in Theorem~\ref{thm:polynomials} follows
+by induction from the quotient rule:
+\[
+\left(\frac{n!P_n}{D^{n+1}}\right)'
+=\frac{n!\bigl(DP_n'+(n+1)AP_n\bigr)}{D^{n+2}}
+=\frac{(n+1)!P_{n+1}}{D^{n+2}}.
+\]
+The initial expression is $1/D$.
+
+To verify that this is the reduced numerator, observe
+\[
+A^2=4D-3,\qquad -\frac A3 A+\frac43D=1.
+\]
+Thus $A$ and $D$ are coprime over $\Q$. The base rows $1,A$
+are coprime to $D$, and the recurrence gives
+$P_{n+2}\equiv AP_{n+1}\pmod D$. Induction proves every $P_n$
+coprime to $D$. The scalar $n!$ is a rational unit, so $n!P_n$
+is coprime to $D^{n+1}$. This denominator is monic, which fixes
+the scale of the canonical numerator to be exactly $n!P_n$.
+The source's normalization by $n!$ therefore recovers precisely
+the recurrence polynomial.
+
+\subsection{Coefficients needed for Eisenstein}
+
+The recurrence gives $\deg P_n\le n$ and
+\begin{equation}\label{eq:leading}
+[x^n]P_n=(-1)^n(n+1).
+\end{equation}
+Indeed, the top coefficient in the next recurrence step is
+\[
+(-2)(-1)^{n+1}(n+2)-(-1)^n(n+1)
+=(-1)^{n+2}(n+3).
+\]
+It is nonzero in characteristic zero, proving the degree equality.
+
+Let $s_0=0,s_1=1,s_{j+2}=s_{j+1}-s_j$. Specialization at zero gives
+$P_n(0)=s_{n+1}$. Six applications of this recurrence give
+$s_{j+6}=s_j$ and
+\[
+(s_0,s_1,s_2,s_3,s_4,s_5)=(0,1,1,0,-1,-1).
+\]
+For a prime $p\ne3$, either $p=2$ or $p\equiv1,5\pmod6$.
+Consequently $P_{p-1}(0)=\pm1$.
+
+Now write $P_{p-1}=\sum_{j=0}^{p-1}c_jx^j$. The derivative identity
+\eqref{eq:appell} says $P_{p-1}'=-pP_{p-2}$. Coefficient comparison
+shows $p\mid jc_j$ whenever $1\le j\le p-1$. Since $p\nmid j$,
+we have $p\mid c_j$ throughout that range. Its final coefficient
+is $c_{p-1}=(-1)^{p-1}p$, so $p^2\nmid c_{p-1}$.
+
+Thus the reciprocal polynomial
+\[
+Q(x)=x^{p-1}P_{p-1}(x^{-1})
+=c_0x^{p-1}+c_1x^{p-2}+\cdots+c_{p-1}
+\]
+is Eisenstein at $p$: its leading coefficient is $\pm1$, all other
+coefficients are divisible by $p$, and its constant coefficient
+is not divisible by $p^2$. The classical Eisenstein criterion and
+Gauss's lemma prove $Q$ irreducible over $\Q$. A factorization of
+$P_{p-1}$ would have factors with nonzero constant coefficients;
+their reciprocals would factor $Q$ with unchanged degrees.
+Therefore $P_{p-1}$ is irreducible.
+
+\subsection{Composite indices and the exceptional prime}
+
+Let $U_0=0,U_1=1,U_{j+2}=AU_{j+1}-DU_j$. Then $U_N=P_{N-1}$
+for $N\ge1$. The classical Lucas addition identity is
+\[
+U_{m+n+1}=U_{m+1}U_{n+1}-DU_mU_n.
+\]
+It follows directly by induction on either index. In particular,
+\[
+U_{kd+d}=U_{kd}U_{d+1}-DU_{kd-1}U_d
+\]
+proves by induction on $k\ge1$ that $U_d\mid U_{kd}$. Hence
+\[
+d\mid N\quad\Longrightarrow\quad P_{d-1}\mid P_{N-1}
+\qquad(d,N>0).
+\]
+These identities are existing results, including Norfleet's
+Theorem 1 and Corollary 1~\cite{Norfleet}; their formal proofs
+are included as dependencies.
+
+If $N=n+1$ is composite, it has a proper prime divisor $d$.
+The divisor $P_{d-1}$ then has degree strictly between zero and
+$N-1$. It is a nonconstant proper factor of $P_n$, proving
+reducibility. Finally $P_2=3x(x-1)$ deals with $N=3$.
+This completes Theorem~\ref{thm:polynomials}.
+
+\paragraph{Formal endpoints.}
+The polynomial classification is
+\path{SixthDerivative.irreducible_iff}. The source bridge proves
+\path{derivative_numerator} and
+\path{normalized_source_numerator}, including coprimality and monic
+normalization. The final endpoints
+\path{SixthDerivative.source_numerator_irreducible_iff} and
+\path{SixthDerivative.source_irreducible_iff} state the criterion
+for the canonical numerator and the exact normalized source row.
+The representation-independent rational-function derivative module
+is reused unchanged from the preceding package. No assertion is
+made here about the exact number of factors in every reducible row.
+
+\section{An explicit multiplier for every positive shift range}
+\label{sec:factorial}
+
+The classical integral factorial ratio A211417 is
+\begin{equation}\label{eq:factorial-ratio}
+a(n)=\frac{(30n)!\,n!}{(15n)!\,(10n)!\,(6n)!},\qquad n\ge0.
+\end{equation}
+Peter Bala's August 28, 2025 conjecture asks, for each
+$k\in\{2,3,5\}$ and $r\ge1$, whether a positive constant
+$C(k,r)$ makes
+\[
+\frac{C(k,r)a(n)}{
+\displaystyle\prod_{\substack{1\le i\le r\\\gcd(i,k)=1}}(kn+i)}
+\]
+an integer for every $n\ge0$~\cite{A211417}. We prove that the
+same explicit choice works for all three values of $k$.
+
+\begin{theorem}\label{thm:factorial}
+For $k\in\{2,3,5\}$ and all $r,n\ge0$, put
+\[
+S=\{i:1\le i\le r,\ \gcd(i,k)=1\},\qquad
+B=\prod_{i\in S}(kn+i).
+\]
+Then
+\[
+\boxed{B\mid ((30r)!)^r a(n).}
+\]
+In particular, $C(k,r)=((30r)!)^r>0$ proves the entire
+positive-shift existence conjecture. The case $r=0$ uses an empty
+product and is also included in the formal theorem.
+\end{theorem}
+
+\subsection{The nonnegative floor contribution}
+
+For an integer $m\ge1$, define
+\[
+F(n,m)=\left\lfloor\frac{30n}{m}\right\rfloor
++\left\lfloor\frac n m\right\rfloor
+-\left\lfloor\frac{15n}{m}\right\rfloor
+-\left\lfloor\frac{10n}{m}\right\rfloor
+-\left\lfloor\frac{6n}{m}\right\rfloor.
+\]
+If $t=\lfloor30n/m\rfloor$, nested integer division gives
+\[
+F(n,m)=H(t),\qquad
+H(t)=t+\left\lfloor\frac t{30}\right\rfloor
+-\left\lfloor\frac t2\right\rfloor
+-\left\lfloor\frac t3\right\rfloor
+-\left\lfloor\frac t5\right\rfloor.
+\]
+For example $\lfloor t/2\rfloor=\lfloor15n/m\rfloor$;
+the other terms follow in the same way. We have
+$H(t+30)=H(t)$. Its thirty residues are displayed below:
+\[
+\begin{array}{c|rrrrrrrrrr}
+t=10q+s&s=0&1&2&3&4&5&6&7&8&9\\\hline
+q=0&0&1&1&1&1&1&0&1&1&1\\
+q=1&0&1&0&1&1&0&0&1&0&1\\
+q=2&0&0&0&1&0&0&0&0&0&1
+\end{array}
+\]
+Thus $F(n,m)\in\{0,1\}$, in particular $F(n,m)\ge0$.
+Legendre's factorial formula gives
+\begin{equation}\label{eq:legendre-a}
+v_p(a(n))=\sum_{e\ge1}F(n,p^e).
+\end{equation}
+More explicitly, the nonnegative difference of the numerator and
+denominator valuations proves the known integrality of
+\eqref{eq:factorial-ratio} first; equation~\eqref{eq:legendre-a}
+then follows for its integer value. Every sum is finite.
+
+\subsection{A large divisor forces a unit contribution}
+
+Let $m>30r$. At most one $i\in S$ can satisfy $m\mid kn+i$:
+two distinct such indices would give $m\mid i-j$ despite
+$0<|i-j|<m$.
+
+Suppose such an $i$ exists and write $kn+i=mj$. Put $d=30/k$.
+Since $\gcd(i,k)=1$ and $k>1$, $k\nmid i$; if $k\mid j$,
+the equation would imply $k\mid i$. Hence $k\nmid j$.
+Multiplying the equation by $d$ gives
+\[
+30n+di=mdj,\qquad 0<di<m.
+\]
+It follows that $t=\lfloor30n/m\rfloor=dj-1$. The possible
+residues of $t$ modulo thirty are therefore
+\[
+\begin{array}{c|c|c}
+k&j\bmod k&t\bmod30\\\hline
+2&1&14\\
+3&1,2&9,19\\
+5&1,2,3,4&5,11,17,23
+\end{array}
+\]
+Every displayed residue has $H(t)=1$. Thus the presence of a
+large divisor of any requested linear factor is paid for by a
+contribution $F(n,m)=1$ in the factorial-ratio valuation.
+
+\subsection{All factors, including multiplicities}
+
+Write
+\[
+N_m=\#\{i\in S:m\mid kn+i\}.
+\]
+For $m>30r$, the preceding argument proves $N_m\le F(n,m)$.
+For $1\le m\le30r$, we have $N_m\le|S|\le r$ and
+$\lfloor30r/m\rfloor\ge1$. Since $F(n,m)\ge0$, both cases give
+the single bound
+\begin{equation}\label{eq:contribution}
+N_m\le F(n,m)+r\left\lfloor\frac{30r}{m}\right\rfloor.
+\end{equation}
+For any prime $p$, counting every power dividing every factor yields
+\[
+v_p(B)=\sum_{e\ge1}N_{p^e}.
+\]
+Summing~\eqref{eq:contribution} and using Legendre's formula gives
+\[
+\begin{aligned}
+v_p(B)
+&\le\sum_{e\ge1}F(n,p^e)
++r\sum_{e\ge1}\left\lfloor\frac{30r}{p^e}\right\rfloor\\
+&=v_p(a(n))+r\,v_p((30r)!)
+=v_p\bigl(((30r)!)^r a(n)\bigr).
+\end{aligned}
+\]
+The valuation inequality for every prime proves the divisibility
+in Theorem~\ref{thm:factorial}. All factors $kn+i$ are positive,
+so the literal rational quotient is defined and integral. This
+argument accounts for the full product and repeated prime factors.
+
+\paragraph{Formal scope and prior work.}
+The Lean namespace \path{ChebyshevShifts} proves the contribution
+bound, the finite valuation sums, and
+\path{positive_shift_divisibility}. It defines the source ratio
+literally in $\Q$ and proves \path{sourceRatio_eq_a}, so natural
+division is not being used as a substitute for integrality.
+The theorem \path{positive_shift_rational_integrality} proves the
+stated quotient is the image of an integer. The existential source
+endpoint is \path{bala_positive_shift_conjecture}.
+
+The factorial ratio's original integrality is classical and is not
+counted as a new result. Earlier proofs of four fixed-factor
+assertions and the separate negative-shift family are also excluded
+from the contribution. The explicit multiplier here is generous;
+we do not claim it is the least possible multiplier. The source and
+prior-work report in the package records the checked earlier proofs
+and the exact scope of the positive-shift claim.
+
+\section{A replacement word whose position ratios do not converge}
+\label{sec:a289128}
+
+Clark Kimberling's entries A289128--A289131~\cite{A289128,A289129,A289130,A289131}, introduced on June 28,
+2017, concern the left-to-right nonoverlapping replacement
+\[
+00\longmapsto0010,\qquad01\longmapsto011,\qquad10\longmapsto010.
+\]
+Let $R$ denote one pass of this scanner. A matched pair is consumed,
+and newly emitted letters are not scanned during that pass. An
+unmatched input letter is copied; in particular, an initial $11$
+causes the first $1$ to be copied before scanning continues. Set
+$w_0=00$ and $w_{n+1}=R(w_n)$. The first words are
+\[
+00,\quad0010,\quad0010010,\quad00100100110,
+\]
+followed by $001001001100101010$ and
+$0010010011001010100110110110$.
+
+The entry A289131 conjectures that the lengths satisfy its printed
+order-five recurrence. The adjacent entries A289129 and A289130
+conjecture that the positions of the $k$-th zero and one, divided by
+$k$, tend respectively to $5/2$ and $5/3$. We prove the length
+assertion and prove that neither position ratio has any real limit.
+The repeated length assertion in A289128 is counted once.
+
+\paragraph{Theorem.}
+The literal words $w_n$ are nested prefixes and determine a unique
+infinite binary word $W$. Write $L_n=|w_n|$ and let $Z_n,O_n$ be the
+counts of its zeros and ones. For every $m\ge0$,
+\[
+\begin{array}{c|cc}
+ & n=2m+1 & n=2m+2\\ \hline
+L_n & 10\cdot2^m-3m-6 & 14\cdot2^m-3m-7\\
+Z_n & 4\cdot2^m-1 & 6\cdot2^m-1\\
+O_n & 6\cdot2^m-3m-5 & 8\cdot2^m-3m-6
+\end{array}
+\tag{\ref{sec:a289128}.1}
+\]
+The exceptional initial length is $L_0=2$. With the first six values
+$2,4,7,11,18,28$, these lengths satisfy exactly
+\[
+L_n=L_{n-1}+3L_{n-2}-3L_{n-3}-2L_{n-4}+2L_{n-5}
+\qquad(n\ge6).
+\tag{\ref{sec:a289128}.2}
+\]
+Let $a(k)$ and $b(k)$ be the one-based positions of the $k$-th zero
+and one in $W$. Both are defined for every $k\ge1$. Their ratios have
+the subsequential limits
+\[
+\begin{aligned}
+\frac{a(Z_{2m+1})}{Z_{2m+1}}&\longrightarrow\frac52,
+&\frac{a(Z_{2m+2})}{Z_{2m+2}}&\longrightarrow\frac73,\\
+\frac{b(O_{2m+1})}{O_{2m+1}}&\longrightarrow\frac53,
+&\frac{b(O_{2m+2})}{O_{2m+2}}&\longrightarrow\frac74.
+\end{aligned}
+\tag{\ref{sec:a289128}.3}
+\]
+All four occurrence-rank subsequences are strictly increasing.
+Consequently neither $a(k)/k$ nor $b(k)/k$ converges.
+
+\paragraph{Proof: exact blocks and scanner boundaries.}
+For $t\ge0$, define $A_t=0(10)^t$ and $B_t=0(110)^t$. For any finite
+binary suffix $u$, the scanner satisfies
+\[
+R(A_tB_su)=B_tA_{2s+1}R(u),\qquad R(A_t)=B_t.
+\tag{\ref{sec:a289128}.4}
+\]
+To verify the first equality, the initial $01$ pairs of $A_t$ emit
+$(011)^t$ and leave one $0$. The first $0$ of $B_s$ combines with
+that letter to form $00$, emitting $0010$. Each of the remaining
+$s$ blocks $110$ is parsed as an unmatched $1$ followed by $10$,
+and emits $1010$. Hence the output before $R(u)$ is
+\[
+(011)^t0010(10)^{2s}=0(110)^t0(10)^{2s+1}=B_tA_{2s+1}.
+\]
+The second equality follows from
+$(011)^t0=0(110)^t$. These identities hold for arbitrary suffixes,
+so they justify concatenating the particular blocks used below;
+no concatenation property for arbitrary binary strings is assumed.
+
+Put
+\[
+t_m=2^{m+1}-1,\qquad P_0=0010,\qquad
+P_{m+1}=P_mA_{t_m}B_{t_m}.
+\]
+We prove simultaneously that
+\[
+R(P_mu)=R(P_m)R(u)\quad\hbox{for every }u,
+\qquad R(P_m)=P_mA_{t_m}.
+\tag{\ref{sec:a289128}.5}
+\]
+For $m=0$, the word $0010$ is consumed as the pairs $00,10$, and
+$R(0010)=0010010=P_0A_1$. The scanner is at a complete boundary
+after those input pairs. If (\ref{sec:a289128}.5) holds for $m$,
+then (\ref{sec:a289128}.4) gives
+\[
+R(P_mA_{t_m}B_{t_m})
+=P_mA_{t_m}B_{t_m}A_{2t_m+1}
+=P_{m+1}A_{t_{m+1}},
+\]
+and the same computation with a suffix gives the boundary identity
+at stage $m+1$. Therefore induction on the original iterates yields
+\[
+w_{2m+1}=P_m,\qquad w_{2m+2}=P_mA_{t_m}.
+\tag{\ref{sec:a289128}.6}
+\]
+The next odd iterate appends $B_{t_m}$. Every word is thus a prefix
+of its successor, including $w_0=00$.
+
+\paragraph{Counting and the length recurrence.}
+The block $A_t$ has length $2t+1$, with $t+1$ zeros and $t$ ones.
+The block $B_t$ has length $3t+1$, with $t+1$ zeros and $2t$ ones.
+Starting from $P_0=0010$, induction in
+(\ref{sec:a289128}.6) proves all six formulas in
+(\ref{sec:a289128}.1). In particular the lengths are unbounded,
+so the nested prefixes determine $W$.
+
+The length formulas for a fixed parity are a multiple of $2^m$
+plus an affine function of $m$. They give the shorter relation
+\[
+L_{r+4}+2L_r=3L_{r+2}+3\qquad(r\ge1).
+\]
+Subtracting the relation at $r$ from the relation at $r+1$ gives
+(\ref{sec:a289128}.2). Directly scanning the first five passes
+gives its six initial values. This proves the conjectured equality
+with the separately defined A289131 recurrence for every index.
+Colin Barker already recorded the scalar parity formulas and
+generating function in A289131 on July 2, 2017; the present argument
+proves their equality with the original replacement lengths.
+
+\paragraph{Infinite occurrence positions.}
+Every positive-index iterate ends in $10$. Its final zero is
+therefore the $Z_n$-th zero of the infinite word, and its final one
+is the $O_n$-th one. Thus
+\[
+a(Z_n)=L_n,\qquad b(O_n)=L_n-1\qquad(n\ge1).
+\tag{\ref{sec:a289128}.7}
+\]
+The count formulas show that the odd and even rank subsequences
+increase strictly and tend to infinity. They also prove that both
+symbols occur infinitely often. Substituting
+(\ref{sec:a289128}.1) into (\ref{sec:a289128}.7) gives
+\[
+\begin{aligned}
+\frac{a(Z_{2m+1})}{Z_{2m+1}}
+ &=\frac{10\cdot2^m-3m-6}{4\cdot2^m-1},&
+\frac{a(Z_{2m+2})}{Z_{2m+2}}
+ &=\frac{14\cdot2^m-3m-7}{6\cdot2^m-1},\\
+\frac{b(O_{2m+1})}{O_{2m+1}}
+ &=\frac{10\cdot2^m-3m-7}{6\cdot2^m-3m-5},&
+\frac{b(O_{2m+2})}{O_{2m+2}}
+ &=\frac{14\cdot2^m-3m-8}{8\cdot2^m-3m-6}.
+\end{aligned}
+\]
+Divide by $2^m$ and use $m/2^m\to0$ to obtain
+(\ref{sec:a289128}.3). Were either full ratio convergent, both of
+its displayed subsequences would have the same limit. Since
+$5/2\ne7/3$ and $5/3\ne7/4$, neither converges. This refutes the
+two proposed limits without relying on a finite-prefix
+approximation. $\square$
+
+\paragraph{Formal scope.}
+Lean 4.19.0, with mathlib pinned at
+\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}, checks the entire
+chain. The scanner uses actual lists of bits and recursively
+consumes the original input. The exact block theorem is
+\path{Kimberling289128.word_blocks}. Theorems
+\path{word_nested}, \path{bit_stabilizes}, and
+\path{infinite_word_unique} establish the nested limit. The
+infinite letter at zero-based position $i$ is constructed as the
+$i$-th letter of $P_i$; the proof gives $|P_i|\ge i+4$ and
+stabilization in every iterate of index at least $2i+1$.
+
+Both one-based position maps use \path{Nat.nth}. Their specification,
+\path{position_spec}, proves the symbol and the exact preceding count
+at every positive rank. Theorems \path{odd_positions} and
+\path{even_positions} establish (\ref{sec:a289128}.7) for these maps.
+The four real limits and strict growth of the rank sequences yield
+\begin{center}
+\path{position_ratios_do_not_converge}.
+\end{center}
+This theorem excludes every real limit for both ratios. The named
+refutations are \path{A289129_limit_false} and
+\path{A289130_limit_false}.
+
+The length endpoint \path{original_length_conjecture} identifies
+every literal length with the independent integer recurrence.
+It includes the exceptional zeroth word and the exact start at
+index six. All endpoint axiom dependencies are among
+\path{propext}, \path{Classical.choice}, and \path{Quot.sound}.
+
+\paragraph{Sources and prior-work screen.}
+The package preserves the complete official OEIS exports for
+A289128 revision 7, A289129 revision 4, A289130 revision 6, and
+A289131 revision 19. Their saved Git blob hashes match the
+official repository responses. The source review records searches
+with both available engines, exact and semantic checks of the
+current trureturing catalogue, and the existing mathematics
+repository. No earlier proof of this exact length assertion or
+refutation of these two exact position limits was located. This
+bounded review does not certify historical priority.
+
+The trureturing proof of A288476 uses the different rule
+$00\to0101,1\to011$ and explicitly excludes the present position
+and limiting-word questions. Michel Dekking's 2022 proof in
+A288936 sends $10$ to $011$, rather than the $010$ used here, and
+has different growth. The repository's earlier pair-rule and
+morphic-discrepancy results also concern different substitutions.
+Standard scanner recoding and subsequence methods are credited as
+methods, not claimed as new general theory. The four limits above
+are not asserted to classify all cluster points or determine exact
+liminf and limsup values; corrected all-index inequalities are
+outside this package's claimed scope.
+
+\section{Verification, source correspondence, and attribution}
+\label{sec:verification}
+
+Each package uses Lean 4.19.0 and mathlib revision
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+The repository contains source files, pinned Lake manifests,
+complete mathematical READMEs, preserved primary-source exports,
+bounded prior-publication reports, and separate author and
+independent build records. There are fifteen local proof modules:
+eight for A326926, one for A211417, and six for A289128 and its
+companions. The default Lake targets include every local module.
+From each package directory, the usual reproduction commands are
+\begin{verbatim}
+lake exe cache get
+lake build
+\end{verbatim}
+
+Author and independent verification builds use fresh project
+directories without copying any local proof objects. Only the
+pinned external mathlib and dependency caches are reused. The
+complete builds check the declared public endpoints from their
+actual definitions. The formal files have no admissions, added
+axioms, unsafe declarations, or native-decision proof shortcuts.
+The reported endpoint dependencies are among the standard axioms
+\path{propext}, \path{Classical.choice}, and \path{Quot.sound}.
+This is kernel checking under the usual Lean trust boundary and
+a separate computational review, not a claim of human peer review.
+
+The most significant source-correspondence checks are:
+\begin{itemize}
+\item The polynomial package proves the derivative identity,
+coprimality with the denominator, monic normalization, and exact
+equality with the source's factorial-normalized reduced numerator.
+Reversal is used only after proving the constant coefficient is
+nonzero. The exceptional prime three and linear case are included.
+\item The factorial-ratio package proves that natural division is
+exact and equals the literal rational quotient. Its finite set
+selects precisely the coprime shifts in the source, its constant
+is explicitly positive, and its valuation argument controls the
+whole product with multiplicities at every index.
+\item The replacement package proves the literal scanner identity,
+nesting and uniqueness of the infinite word, actual one-based
+occurrence positions, and unbounded subsequence ranks. Its limits
+are limits of the infinite position sequences. The length proof
+retains all six initial values and begins the recurrence at six.
+\end{itemize}
+
+The seven preserved OEIS exports correspond to the exact entries
+discussed above. Their revision timestamps and official Git blob
+hashes are recorded in the source reports. The classification in
+A326926 and A326933, and the length comment in A289128 and
+A289131, are each counted once despite their repetition across entries. The three
+values of $k$ in the factorial-ratio theorem are one stated general
+family, not three separately counted resolutions.
+
+The prior-work checks include both exact identifiers and semantic
+searches using the relevant definitions. The polynomial review
+credits Bala's source recurrence and Norfleet's classical
+divisibility results, and compares related generalized Fibonacci
+and tangent-polynomial irreducibility papers. The factorial-ratio
+review excludes the known original integrality, previously solved
+fixed factors, and the separately solved negative-shift family.
+The word review credits Barker's scalar formulas and distinguishes
+nearby replacement rules and earlier project packages.
+
+No earlier proof of the precise five assertions claimed here was
+located in the checked sources. That bounded search does not rule
+out unindexed, unpublished, or differently formulated prior work.
+No OEIS editorial acceptance, journal publication, or exhaustive
+historical-priority conclusion is asserted. The mathematical
+claims are the explicit theorems and refutations proved above.
+
+\begin{thebibliography}{9}
+\bibitem{A326926}
+Clark Kimberling, OEIS A326926, introduced October 24, 2019;
+Peter Bala's recurrence and divisibility addendum, November 8, 2026.
+\url{https://oeis.org/A326926}.
+
+\bibitem{A326933}
+Clark Kimberling, OEIS A326933, introduced November 1, 2019.
+\url{https://oeis.org/A326933}.
+
+\bibitem{Norfleet}
+Mark Norfleet, \emph{Characterization of Second-Order Strong
+Divisibility Sequences of Polynomials}, Fibonacci Quarterly
+43(2) (2005), 166--169.
+\url{https://www.fq.math.ca/Papers1/43-2/paper43-2-12.pdf}.
+
+\bibitem{A211417}
+Peter Bala, OEIS A211417, introduced April 11, 2012;
+positive-shift conjecture, August 28, 2025.
+\url{https://oeis.org/A211417}.
+
+\bibitem{A289128}
+Clark Kimberling, OEIS A289128, June 28, 2017.
+\url{https://oeis.org/A289128}.
+
+\bibitem{A289129}
+Clark Kimberling, OEIS A289129, June 28, 2017.
+\url{https://oeis.org/A289129}.
+
+\bibitem{A289130}
+Clark Kimberling, OEIS A289130, June 28, 2017.
+\url{https://oeis.org/A289130}.
+
+\bibitem{A289131}
+Clark Kimberling, OEIS A289131, June 28, 2017;
+Colin Barker's scalar formulas, July 2, 2017.
+\url{https://oeis.org/A289131}.
+\end{thebibliography}
+\end{document}
