@@ -1,0 +1,89 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={A rounded triangle recurrence},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small A rounded triangle recurrence}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries A rounded triangle recurrence and the Pisot sequence $E(5,7)$\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+The floor of the third side of a triangle with included angle \(120^\circ\) defines OEIS A128424. We prove Colin Barker's recurrence and rational generating function, and prove that its tail equals the Pisot sequence \(E(5,7)\) at every index. The two rounding rules eventually agree on a wider family of integer sequences.
+\end{abstract}
+
+Let \(H(x,y)=\sqrt{x^2+xy+y^2}\) and let \(a_1=1,\ a_2=3,\ a_{n+2}=\lfloor H(a_n,a_{n+1})\rfloor\).
+\begin{theorem}\label{th:main}
+For every \(n\ge7\), \(a_n=a_{n-1}+a_{n-3}-1\). For \(n\ge4\), \(a_n=E(5,7)_{n-4}\), where the Pisot sequence starts \(u_0=5,\ u_1=7\) and uses \(u_{j+2}=\lfloor u_{j+1}^2/u_j+1/2\rfloor\). In particular,
+\[
+ \sum_{n\ge1}a_n x^n=
+ \frac{x(1+x-2x^2+x^3-2x^4+x^5-x^6)}
+ {(1-x)(1-x-x^3)} .
+\]
+\end{theorem}
+
+\section{Separation from both rounding thresholds}
+Let \(b_0=4,b_1=6,b_2=9\) and \(b_{j+3}=b_{j+2}+b_j\). Define \(v_j=b_j+1\). The polynomial \(f(x)=x^3-x^2-1\) has one real root \(\rho\) in \((1.46,1.47)\). Its two critical values are negative. Let \(\beta,\bar\beta\) be the complex roots. Their sum is \(1-\rho\), and \(|\beta|=\rho^{-1/2}<0.83\). The factorization \(x^4-x^2-x-1=(x+1)f(x)\) gives \(H(1,\rho)=\rho^2\).
+
+\begin{lemma}\label{lem:error}
+There is \(c>0\) such that \(|b_j-c\rho^j|<1/100\) for every \(j\ge50\).
+\end{lemma}
+\begin{proof}
+The solution of the recurrence is \(c\rho^j+z\beta^j+\bar z\bar\beta^j\), with
+\[
+ c=\frac{9-6(\beta+\bar\beta)+4|\beta|^2}{|\rho-\beta|^2}>0,\qquad
+ z=\frac{9-6(\rho+\bar\beta)+4\rho\bar\beta}
+ {(\beta-\rho)(\beta-\bar\beta)} .
+\]
+These coefficients follow by eliminating the other two modes from the three starting values. We have \(\Re\beta=(1-\rho)/2<0\) and
+\((\Im\beta)^2=1/\rho-((1-\rho)/2)^2>1/4\).
+Thus both factors of the denominator of \(z\) have modulus greater than one. Its numerator has modulus at most \(9+6(1.47+0.83)+4(1.47)(0.83)<30\). The error is bounded by \(60(83/100)^j\), which is less than \(1/100\) for \(j\ge50\) by integer exponentiation.
+\end{proof}
+
+Fix \(j\ge50\) and write \(X=c\rho^j>0\). Expanding the square gives
+\[
+ H(X+1,\rho X+1)^2=\rho^4X^2+3(1+\rho)X+3.
+\]
+The interval for \(\rho\) gives \(3\rho^2<3(1+\rho)<3.8\rho^2\), and \(1.5^2<3<1.9^2\). Consequently
+\[
+ \rho^2 X+1.5<H(X+1,\rho X+1)<\rho^2 X+1.9 .
+\]
+The positive definite quadratic form defining \(H\) is a norm and \(H(x,y)\le |x|+|y|\), hence the perturbation of both inputs by at most \(0.01\) changes \(H\) by at most \(0.02\). The proposed output \(v_{j+2}\) lies within \(0.01\) of \(\rho^2X+1\). It follows that \(v_{j+2}\le H(v_j,v_{j+1})<v_{j+2}+1\).
+
+For the Pisot rule use the identity
+\[
+ \frac{(\rho X+1)^2}{X+1}-(\rho^2 X+1)
+ =-(\rho-1)^2\frac{X}{X+1}.
+\]
+Its absolute value is less than \(0.47^2\). Along the straight line from the ideal inputs \((X+1,\rho X+1)\) to the actual inputs, \(x>0\) and \(0<y/x<2\), since \((\rho X+1.01)/(X+0.99)<2\). The two partial derivatives of \(y^2/x\) therefore have absolute value at most four. Lemma~\ref{lem:error} bounds the combined input and output errors by \(0.09\), so \(|v_{j+1}^2/v_j-v_{j+2}|<1/2\).
+
+\section{Initial indices and consequences}
+For completeness, the following exact integer loop verifies both thresholds for \(0\le j<50\). Here \(x,y,z\) are three successive values of \(v\). The two assertions respectively square the norm inequality and clear the positive denominator in the nearest-integer inequality. The accompanying Lean file verifies this finite calculation using kernel reduction.
+\begin{verbatim}
+x, y, z = 5, 7, 10
+for j in range(50):
+    assert z*z <= x*x + x*y + y*y < (z+1)*(z+1)
+    assert (2*z-1)*x <= 2*y*y < (2*z+1)*x
+    x, y, z = y, z, z+x-1
+\end{verbatim}
+The triangle rule starts \(1,3,3,5,7\), and the two rules uniquely determine all later terms. Thus \(a_{4+j}=v_j=E(5,7)_j\). The recurrence for \(b\) gives the affine recurrence asserted in Theorem~\ref{th:main}. Subtracting consecutive copies gives Barker's fourth-order recurrence \(a_n=2a_{n-1}-a_{n-2}+a_{n-3}-a_{n-4}\) for \(n>7\). Multiplying the series by \((1-x)(1-x-x^3)\) leaves the displayed numerator, by the first seven terms.
+
+More generally, for any real solution of the same recurrence for \(b_j\) with positive coefficient of \(\rho^j\), the error from \(c\rho^j\) tends to zero. For integer \(b_j\), the two rounding arguments apply verbatim from some index onward to \(b_j+1\). This includes every nonzero triple of nonnegative initial integers, by the positive formula for \(c\) with the three initial values in place of \(4,6,9\).
+
+\paragraph{Sources.}
+Z. Seidov defined \oeis{128424}; C. Barker proposed its two formulas, and G. Fischer observed agreement with \oeis{020711} through \(n=41\). Ekhad, Sloane and Zeilberger developed a general method for proving Pisot recurrences in \href{https://arxiv.org/abs/1609.05570}{Automated Proof (or Disproof) of Linear Recurrences Satisfied by Pisot Sequences} (2016). Our proof verifies both defining rounding rules directly. The coefficients \(3,2,1,-1\) in one comment on A020711 give \(64\) in place of \(20\) at index four.
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.83in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.10em}
+\raggedbottom
+\setlength{\emergencystretch}{1em}
+\renewcommand{\labelitemi}{\(\bullet\)}
+
+\hypersetup{pdftitle={Distinct self-shuffles},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Distinct self-shuffles}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Counting distinct self-shuffles by runs\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+For words obtained by interleaving two copies of one word, we give a run-product lower bound and characterize equality. This proves all nine formulas proposed in OEIS A193020. The binary maximum has exponential rate \(4\), with a quantitative lower bound from ordered trees. For \(b\) copies and \(q\) available letters the rate is exactly \(\min(b,q)^b\).
+\end{abstract}
+
+\section{A product visible in the output}
+Let \(S(w)\) be the number of distinct words formed by interleaving two copies of a nonempty word \(w\), preserving the order within each copy. Write \(R_1,\dots,R_h\) for its maximal constant runs, let \(r_i=|R_i|\), and put \(s_0=0\), \(s_i=r_1+\cdots+r_i\), \(n=s_h\).
+\begin{theorem}\label{th:product}
+Over any alphabet,
+\[
+ S(w)\ \ge\ P(w):=\prod_{i=1}^{h-1}\binom{r_i+r_{i+1}}{r_i}.
+\]
+Equality holds precisely for constant words and for contiguous factors of a doubly infinite periodic word \((A^a B^b)^{\mathbb Z}\), where \(A,B\) are distinct letters and \(a,b\ge1\).
+\end{theorem}
+\begin{proof}
+Call the copies first and second. Read \(R_1\) of the first copy. For \(1\le i<h\), interleave \(R_i\) of the second copy with \(R_{i+1}\) of the first. Finish with \(R_h\) of the second. The letters in each mixed block are distinct, and the block lengths are fixed. The choices therefore give exactly \(P(w)\) distinct outputs.
+
+For a prefix of \(w\) of length \(j\), write \(F(j)\) for its vector of letter counts. The constructed outputs have vector \(F(s_{i-1})+F(s_i)\) at output time \(t_i=s_{i-1}+s_i\), for each \(1\le i\le h\). Conversely, prescribe all these vectors together with the zero vector at time zero and \(2F(n)\) at time \(2n\). Subtracting successive vectors forces the first and last constant blocks and precisely the required multiset of letters in each mixed block. Any ordering in a mixed block is one of the constructed shuffles. This characterizes the subset.
+
+At time \(t_i\), every pair of input prefix lengths \(u,t_i-u\) in \([0,n]\) can occur, since those prefixes can be read first and both suffixes completed. The subset is therefore the whole output set exactly when \(F(u)+F(t_i-u)\) is constant over the allowable \(u\), at every \(i\). Comparing successive \(u\) gives the equivalent reflection equations
+\[
+ w_{u+1}=w_{t_i-u},\qquad
+ \max(0,t_i-n)\le u<\min(n,t_i).
+\]
+Thus the longest substring centered at the midpoint of each run and lying symmetrically inside \(w\) must be a palindrome. Indices of letters start at one.
+
+At every interior run center the two neighboring runs must have the same letter, by comparing their nearest symbols. Consequently the successive letters alternate between two letters. If the two neighbors are interior, their lengths must agree, since the reflection would otherwise fail one step beyond the shorter run. The same comparison when just one neighbor meets an endpoint says that this end run cannot be longer than the opposite, interior neighbor. Hence for each letter the interior runs have a common length and the end runs of that letter are at most that long. If a letter occurs only at the endpoints, choose the larger of its run lengths. These conditions embed \(w\) in the stated periodic word, including the cases of two or three runs. Conversely, a full run in that periodic extension has reflection symmetry about its center. A clipped end run has a symmetric window consisting only of that run. All the reflection equations follow.
+\end{proof}
+
+In particular, every nonconstant word of length \(n\) has \(S(w)\ge n\). Equality requires two runs, one of length one. Indeed \(\binom{a+b}{a}\ge a+b\) for \(a,b\ge1\), with equality just when \(\min(a,b)=1\). Starting with the first two runs, appending a run of length \(c\) multiplies the bound by at least \(c+1\). If the previous total length is \(m\ge2\), then \(m(c+1)>m+c\). For binary words the lower bound \(n\) is already Theorem~1 of Datko and Pawlik.
+
+\section{The nine binary offsets}
+Let \(a(m)\) count distinct self-shuffles of the ordinary binary representation of \(m\). John W. Layman proposed the following values in \oeis{193020}. They all hold for every \(k\ge4\). The middle column lists run lengths in their order of occurrence. In every row they are lengths of a factor covered by Theorem~\ref{th:product}, so the last column is the value of the product.
+\begin{center}
+\begin{tabular}{rll}
+\toprule
+\(m\)&Run lengths&\(a(m)\)\\ \midrule
+\(2^k-5\)&\(k-3,1,2\)&\(3(k-2)\)\\
+\(2^k-4\)&\(k-2,2\)&\(k(k-1)/2\)\\
+\(2^k-3\)&\(k-2,1,1\)&\(2(k-1)\)\\
+\(2^k-2\)&\(k-1,1\)&\(k\)\\
+\(2^k-1\)&\(k\)&\(1\)\\
+\(2^k\)&\(1,k\)&\(k+1\)\\
+\(2^k+1\)&\(1,k-1,1\)&\(k^2\)\\
+\(2^k+2\)&\(1,k-2,1,1\)&\(2(k-1)^2\)\\
+\(2^k+3\)&\(1,k-2,2\)&\(k(k-1)^2/2\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The exponential rate of the maximum}
+Set \(M_n=\max_{w\in\{0,1\}^n} S(w)\), the sequence \oeis{331850}.
+\begin{theorem}
+As \(n\to\infty\),
+\[
+ 4^n\exp\!\left[-O\!\left(n^{1/3}(\log n)^{2/3}\right)\right]
+ \ \le\ M_n\ \le\ \frac{1}{n+1}\binom{2n}{n}.
+\]
+In particular, \(\lim_{n\to\infty}M_n^{1/n}=4\).
+\end{theorem}
+\begin{proof}
+A shuffle schedule is a monotone path from \((0,0)\) to \((n,n)\). Fold each excursion below the diagonal across the diagonal. Since both inputs are the same word, switching their labels throughout an excursion preserves every letter of the output. Thus the Catalan number of paths on one side bounds \(M_n\) from above.
+
+Let \(D_{n,H}\) count Dyck paths of length \(2n\) and height at most \(H\). The contour traversal of a rooted ordered tree with \(n\) edges writes an up-step on first entering a child and a down-step on returning. Reading steps with a stack reverses this bijection and preserves height. Write \(r_1,\ldots,r_j\) for the positive sizes of the successive levels below the root of such a tree. They sum to \(n\) and \(j\le H\). For this given profile, the number of trees is
+\[
+ \prod_{i=1}^{j-1}\binom{r_i+r_{i+1}-1}{r_{i+1}}.
+\]
+Indeed the ordered parents at each level receive an ordered list of child counts, a weak composition of the next level size. This product is at most \(P(w)\) for the alternating binary run word with those run lengths. Padding with zeros gives at most \((n+1)^H\) profiles. Consequently \(M_n\ge D_{n,H}/(n+1)^H\).
+
+For the path graph on \(0,\ldots,H\) with adjacency matrix \(L\), we have \(D_{n,H}=(L^{2n})_{00}\). Put \(\theta=\pi/(H+2)\). The unit vector with entries \(\sqrt{2/(H+2)}\sin((i+1)\theta)\) has eigenvalue \(2\cos\theta\), by the sine addition formula. All eigenvalues of \(L^{2n}\) are nonnegative, so
+\[
+ D_{n,H}\ge\frac{2\sin^2\theta}{H+2}(2\cos\theta)^{2n}.
+\]
+For \(H\ge2\) the prefactor is \(\gg(H+2)^{-3}\) and \(\log\cos\theta\ge -O(H^{-2})\). Taking \(H=\max(2,\lfloor(n/\log(n+1))^{1/3}\rfloor)\) proves the inequality. Taking \(n\)-th roots gives the limit.
+\end{proof}
+
+There is also a short proof of the limit alone. For fixed \(r\), a binary word with \(\lfloor n/r\rfloor\) full alternating runs of length \(r\), followed by any remaining letters as one further run, gives at least \(\binom{2r}{r}^{\lfloor n/r\rfloor-1}\) outputs. Take \(n\)-th roots, then let \(r\) grow and use \(\binom{2r}{r}\ge4^r/(2r+1)\).
+
+\section{Any fixed number of copies and letters}
+Let \(M_{b,q}(n)\) be the maximum number of distinct outputs from interleaving \(b\) copies of a length-\(n\) word over \(q\) available letters.
+\begin{theorem}
+For fixed \(b,q\ge2\), put \(d=\min(b,q)\). Then
+\[
+ d^{bn}\exp[-O_{b,q}(\sqrt{n\log n})]\le M_{b,q}(n)\le d^{bn},
+ \qquad \lim_{n\to\infty}M_{b,q}(n)^{1/n}=d^b.
+\]
+\end{theorem}
+\begin{proof}
+There are at most \(q^{bn}\) outputs and at most \(b^{bn}\) schedules. For a construction take \(w=(1^r2^r\cdots d^r)^k\), where superscripts denote repetitions of the indicated letter. Put \(b\) positions on a circle. Mark \(d\) of them with the letters \(1,\ldots,d\) in clockwise order. Put one input copy at each position. For each copy, find its first mark going clockwise, counting the initial position. If this is mark \(i\), read its initial \(i-1\) runs into a fixed prefix of the output. This prepares its first run of letter \(i\).
+
+In one round, each copy at a marked position supplies its next run, and all other copies wait. Interleave the \(d\) supplied constant runs arbitrarily. Then move every copy one position clockwise. Each copy encounters the marks in the same cyclic order as its input runs. In \(b\) rounds it supplies exactly one run of every letter. Execute \(b(k-1)\) rounds. Each copy has enough input, since it started after at most \(d-1\) runs and supplies \(d(k-1)\) more. Append the remaining suffixes in a fixed order. The rounds have known boundaries and each produces \(\binom{dr}{r,\ldots,r}\) distinct words. Appending letters to \(w\) if needed preserves the count by reading the appended letters after these outputs.
+
+Set \(k=\lfloor n/(dr)\rfloor\). The balanced multinomial coefficient is maximal among the multinomial coefficients of total degree \(dr\), by moving one unit from a larger part to a smaller one when they differ by at least two. Hence it is at least \(d^{dr}/(dr+1)^d\), by the multinomial theorem. The number of symbols in the mixed rounds differs from \(bn\) by \(O_{b,q}(r)\), so the logarithmic loss is \(O_{b,q}(r+(n/r)\log(r+1))\). Taking \(r\) of order \(\sqrt{n\log(n+1)}\) for large \(n\) proves the bounds.
+\end{proof}
+
+\paragraph{Prior work.}
+\href{https://doi.org/10.3390/sym17020305}{Datko and Pawlik (2025)} prove the singleton-letter formula \((a+1)(b+1)\) for \(0^a10^b\), as well as the binary lower bound \(n\), and discuss Shallit's finite maxima. The \href{https://the-omega-institute.github.io/trureturing-mdbook/Library/Digit/layman2011a193020.html}{trureturing collection} records proofs for the \(+1\) and \(-4\) offsets in Layman's \oeis{193020}. The exact maximum \(M_n\) for every length in Shallit's \oeis{331850} remains undetermined.
+
+\end{document}

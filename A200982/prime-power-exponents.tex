@@ -1,0 +1,85 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+\renewcommand{\labelitemi}{\(\bullet\)}
+
+\hypersetup{pdftitle={Prime-power divisors of the exponent},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Prime-power divisors of the exponent}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Power sums at prime-power divisors\\ of the Carmichael exponent\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Fix a prime \(\ell\) and an integer \(r\ge1\). Among \(N\) for which \(\ell^r\mid\lambda(N)\), we characterize those satisfying \(\sum_{k=1}^{N-1}k^{\lambda(N)/\ell^r}\equiv0\pmod N\) and give an asymptotic count with a positive explicit leading constant. For \((\ell,r)=(2,1)\) the classification and a finer expansion were already proved by Grau, Moree and Oller-Marcén.
+\end{abstract}
+
+\section{Local criteria}
+Write \(\nu_\ell(b)\) for the exponent of \(\ell\) in \(b\) and \(\lambda\) for the exponent of the group of units modulo \(N\). Throughout \(N\ge3\), \(\ell^r\mid\lambda(N)\), \(H=\nu_\ell(\lambda(N))\), and \(t=\lambda(N)/\ell^r\). Count moduli satisfying the congruence in the abstract.
+\begin{theorem}\label{th:crit}
+An odd \(N\) qualifies if and only if each \(p\mid N\) has
+\[
+ H-r+1\ \le\ \nu_\ell(p-1)\ \le\ H.
+\]
+Equivalently, \(\ell\nmid N\), the largest valuation of \(p-1\) is some \(H\ge r\), and every valuation is within \(r-1\) of that maximum.
+
+An even \(N=2^a m\), \(m\) odd, qualifies if and only if \(\ell=2,\ a\ge2,\ H=r,\ t>1\).
+\end{theorem}
+\begin{proof}
+At \(p^b\Vert N\), summing over a full residue system modulo \(N\) gives \(N/p^b\) copies of the sum modulo \(p^b\). The multiplier is a unit there. The zero term contributes zero. For odd \(p\), the sum of \(t\)-th powers modulo \(p\) is \(-1\) if \(p-1\mid t\) and zero otherwise, by summing over a generator of the units. On lifting from \(p^j\) to \(p^{j+1}\) the sum is multiplied by \(p\) modulo \(p^{j+1}\). In \((v+u p^j)^t\) the linear terms sum to a multiple of \(p^{j+1}\) since \(\sum_{u=0}^{p-1}u\) is divisible by \(p\), and higher terms already vanish. Thus the necessary and sufficient local condition is \(p-1\nmid t\). Since \(p-1\mid\lambda(N)\), precisely the displayed lower bound prevents divisibility. In particular \(p=\ell\) is excluded for odd \(N\). For the remaining primes, \(\lambda(p^b)=p^{b-1}(p-1)\), so the maximum valuation really is \(H\).
+
+Modulo 2 the sum of one block is 1. For even \(t\), the same lifting calculation at 2 works because \(2\mid t\). It gives the nonzero residue \(2^{a-1}\) modulo \(2^a\). For odd \(t\) and \(a\ge2\), opposite residues cancel in pairs, leaving only \((2^{a-1})^t\). This vanishes exactly when \(t>1\). As \(\lambda(N)\) is even for even \(N\ge4\), the exponent \(t\) can be odd only for \(\ell=2,\ H=r\). In that case all odd primes automatically pass their local tests. The Chinese remainder theorem concludes the proof.
+\end{proof}
+
+\section{The counting function}
+Let \(B_{\ell,r}(x)\) count qualifying \(3\le N\le x\). Define
+\[
+ \theta=\sum_{j=1}^r\ell^{-j}=\frac{1-\ell^{-r}}{\ell-1},\qquad
+ \mathcal P=\{p\text{ prime}:1\le\nu_\ell(p-1)\le r\}.
+\]
+Let \(W_{\ell,r}=1\) for odd \(\ell\), and \(W_{2,r}=3/2-2^{-(r+2)}\).
+\begin{theorem}\label{th:asym}
+For fixed \(\ell,r\),
+\[
+ B_{\ell,r}(x)=W_{\ell,r}C_{\ell,r}\,x(\log x)^{\theta-1}
+       +O_{\ell,r}\!\left(x(\log x)^{b-1}\right),
+\]
+where \(b=\max\{\theta-\ell^{-r},\,\theta/\ell,\,1/\varphi(\ell^3)\}<\theta\), and
+\[
+ C_{\ell,r}=\frac1{\Gamma(\theta)}
+ \lim_{s\downarrow1}(s-1)^\theta
+       \prod_{p\in\mathcal P}(1-p^{-s})^{-1}>0.
+\]
+Thus every one of these sets has natural density zero.
+\end{theorem}
+\begin{proof}
+We use the fixed-modulus estimate for integers composed only of primes in a union of reduced residue classes. If the classes occupy a fraction \(\delta>0\) of the reduced classes, their multiplicative semigroup has counting function \(C x(\log x)^{\delta-1}(1+O(1/\log x))\), with \(C\) given by the analogous Euler-product limit. This is the fixed-modulus case of Chang and Martin's Selberg--Delange theorem. For an empty prime set the count is at most one. A valuation \(j\ge1\) comprises \(\ell-1\) classes modulo \(\ell^{j+1}\) and hence has fraction \(\ell^{-j}\).
+
+For odd \(N\) with \(H=r\), count integers supported on \(\mathcal P\), then remove those with no prime of valuation \(r\). The removed set has fraction of classes \(\theta-\ell^{-r}\). The condition \(H=r+1\) uses only valuations \(2,\ldots,r+1\), of total fraction \(\theta/\ell\). For all larger \(H\) together, every prime is \(1\bmod\ell^3\). These two bounds handle the infinite tail without summing estimates with a varying modulus. The prime 2 belongs to none of the sets, including when \(\ell\) is odd.
+
+For even \(N\) we have \(\ell=2\). The condition \(\nu_2(\lambda(2^a))\le r\) with \(a\ge2\) is exactly \(2\le a\le r+2\), since \(\lambda(4)=2\) and \(\lambda(2^a)=2^{a-2}\) for \(a\ge3\). For each such \(a\) the odd part is supported on \(\mathcal P\). If the 2-power part does not attain \(r\), require a prime of valuation \(r\). Omitting this requirement changes the count only by the already bounded smaller term. Moduli with \(t=1\) are finite, since \(\lambda(N)=2^r\) bounds each odd prime by \(2^r+1\) and its exponent by the prime-power formula. Each \(a\) therefore adds the same leading term evaluated at \(x/2^a\). The combined weight is \(1+\sum_{a=2}^{r+2}2^{-a}=3/2-2^{-(r+2)}\). All fixed shifts of \(\log x\) are absorbed in the stated error. Each number defining \(b\) is strictly less than \(\theta\), as \(\theta\ge1/\ell>1/\varphi(\ell^3)\).
+\end{proof}
+
+For example, when \(\ell=3,r=1\), qualifying moduli are exactly products of primes sharing one positive value of \(\nu_3(p-1)\). Their count is asymptotic to \(C_{3,1}x/(\log x)^{2/3}\). When \(\ell=2,r=2\), the largest stratum uses odd primes \(3,5,7\bmod 8\). The whole set has leading term \((23/16)C_{2,2}x/(\log x)^{1/4}\).
+
+\paragraph{The earlier half-exponent case.}
+Grau, Moree and Oller-Marcén, Propositions 5.2 and 5.3, already classified the half-exponent set and obtained an expansion to arbitrarily many orders, with leading coefficient \(0.66896484\ldots\). Their convention on exponents greater than one differs at finitely many small arguments from \oeis{200982}. That paper implies the zero-density conjecture in the entry. The prime-power family above extends the parameter in their question.
+
+\begin{itemize}
+\item J. M. Grau, P. Moree and A. M. Oller-Marcén, \href{https://www.unioviedo.es/grau/ARTICULOS%20PUBLICADOS/articulo52.pdf}{Solutions of the congruence \(1+2^{f(n)}+\cdots+n^{f(n)}\equiv0\pmod n\)}, \emph{Math. Nachr.} 289 (2016), Props.~5.2--5.3.
+\item B. Chang and G. Martin, \href{https://arxiv.org/abs/1908.00035}{The smallest invariant factor of the multiplicative group} (2019).
+\end{itemize}
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Curbed square roots},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Curbed square roots}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Which square roots are curbed?\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+Kimberling asked whether infinitely many nonsquare radicands satisfy his fractional-part inequalities and infinitely many fail. A theorem of Boshernitzan and Ralston supplies an exact continued-fraction test. We apply it to prove that the successful radicands have density zero and that at least \((\tfrac12+o(1))\sqrt X\log X\) successful nonsquares lie below \(X\). We also locate a repeated entry in the published complement.
+\end{abstract}
+
+For \(0<c<1\) a real number \(\alpha\) is \emph{curbed by} \(c\) when
+\(\sum_{k=1}^n(\{k\alpha+c\}-\{k\alpha\})\ge0\) for every positive integer \(n\). Here \(\{x\}=x-\lfloor x\rfloor\). The entries \oeis{194469} and \oeis{194470} concern \(\alpha=\sqrt m,\ c=1/2\).
+
+\begin{theorem}\label{th:curbed}
+Fix \(q\ge2\) and \(c=1-1/q\). Every square radicand succeeds. For nonsquare \(m\), write the ordinary continued fraction as \(\sqrt m=[a_0;\overline{a_1,\ldots,a_L}]\). If \(L\) is even, success means \(q\mid a_i\) for each odd \(i\) in the period. An odd \(L\) requires \(q\mid a_i\) for every \(i\) in the period. In either case the successful radicands have natural density zero.
+\end{theorem}
+\begin{proof}
+Each summand equals \({\bf1}_{\{k\alpha\}<1/q}-1/q\), including at the discontinuity. For squares it is \(1-1/q>0\). For irrational \(\alpha\), Boshernitzan and Ralston's theorem for \(H(1/q)\) identifies the condition exactly with divisibility by \(q\) of every odd-indexed partial quotient after \(a_0\). The periodic continued fraction of a nonsquare integer square root now gives the stated test. An odd period visits every entry at odd indices within two periods.
+
+For density, first consider Lebesgue measure on fractional parts in \([0,1)\). In a continued-fraction cylinder with final two convergent denominators \(Q,Q'\) (\(0\le Q'\le Q\)), the conditional density of the remaining fractional tail \(y\) is proportional to \((Q+Q'y)^{-2}\) for \(0<y<1\). This follows by differentiating the fractional-linear convergent formula, whose determinant has absolute value one. The conditional probability that the next digit is one is
+\[
+ \frac{\int_{1/2}^{1}(Q+Q'y)^{-2}dy}
+      {\int_0^1(Q+Q'y)^{-2}dy}=\frac{1}{2+Q'/Q}\ \ge\ \frac13.
+\]
+This also covers the empty cylinder. Digit one is forbidden at each odd position. Conditioning one position at a time, and leaving even positions unrestricted, bounds the measure surviving \(J\) odd positions by \((2/3)^J\). The full success set has measure zero, since rationals are countable.
+
+The sequence \(\{\sqrt m\}\) is uniformly distributed. Indeed, in \(a^2\le m<(a+1)^2\) the number with fractional part in \([u,v)\subset[0,1)\) is the number of integers in \([(a+u)^2,(a+v)^2)\), namely \(2a(v-u)+O(1)\). Summing full blocks and bounding the last block by \(O(\sqrt X)\) proves the assertion. For each fixed \(J\), imposing the original inequalities through time \(J\) defines a finite union of intervals up to endpoints, since each of the first \(J\) indicator functions has finitely many discontinuities. The upper density of successful radicands is bounded by the measure of this finite-time set. These sets decrease to the measure-zero success set, proving the result.
+\end{proof}
+
+\begin{theorem}\label{th:count}
+For \(q=2\), every \(a^2+d\) with \(a\ge1,\ d\mid a,\ d>0\) succeeds. Consequently the number of successful nonsquares up to \(X\) is at least \(\tfrac12\sqrt X\log X-O(\sqrt X)\). For general \(q\) a lower bound is \(\tfrac{1}{2q}\sqrt X\log X-O_q(\sqrt X)\). In each case the unsuccessful integers have density one.
+\end{theorem}
+\begin{proof}
+For \(1\le d\le a\) with \(d\mid 2a\), put \(y=\sqrt{a^2+d}-a\), so \(0<y<1\). The equations
+\[
+ \frac1y=\frac{2a}{d}+\frac yd,\qquad \frac d y=2a+y
+\]
+give the continued fraction \([a;\overline{2a/d,2a}]\), allowing a repeated shorter period. When \(d\mid a\) both displayed digits are even. In general take \(a=qb,\ d\mid b\). Both digits are multiples of \(q\). All these radicands are nonsquares, and different pairs are distinct since they lie in disjoint blocks for distinct \(a\). For \(A=\lfloor\sqrt X\rfloor-1\), the full blocks for \(1\le a\le A\) lie below \(X\). Summing their counts gives \(\sum_{a\le A}\tau(a)\) for \(q=2\) and \(\sum_{b\le A/q}\tau(b)\) in general. The elementary identity \(\sum_{b\le Y}\tau(b)=\sum_{d\le Y}\lfloor Y/d\rfloor=Y\log Y+O(Y)\) gives the bounds. The density statement follows from Theorem~\ref{th:curbed}.
+\end{proof}
+
+An explicit failing family is \((a+1)^2-1\) for \(a\ge1\). Its square root has fractional part greater than \(1/2\), so the first summand is already negative. For \(q=2\), checking the finite periods verifies all 36 displayed terms of A194469 through 84. In the \href{https://github.com/oeis/oeisdata/blob/976b0c73e00453b1c1e6f16d83108cb9bb744c3b/seq/A194/A194470.seq}{inspected revision of A194470}, the segment \(32,33,34,34,40\) should read \(32,33,34,35,40\). In particular \(5+\tfrac12<\sqrt{35}<6\). With this replacement the 52 displayed terms through 88 agree with the exact complement.
+
+\paragraph{Source.}
+M. Boshernitzan and D. Ralston, \href{https://arxiv.org/abs/0911.2054}{Continued fractions and heavy sequences} (2009). Their characterization predates C. Kimberling's 2011 entries and supplies the general rotation theorem used here.
+\end{document}

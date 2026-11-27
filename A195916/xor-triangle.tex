@@ -1,0 +1,71 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Periods in the XOR triangle},pdfauthor={Blake Stone, with OpenAI Codex}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Periods in the XOR triangle}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Least periods in the XOR Pascal triangle\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with OpenAI Codex}
+\end{center}
+
+\begin{abstract}
+We determine the least period of every column and every active bit of the XOR triangle with diagonal \(1,2,3,\ldots\). A binomial formula also gives the complete rows at powers of two and the translated copies in the reflected triangle. These results prove the assertions of Franklin T. Adams-Watters in OEIS A195915 and A195916.
+\end{abstract}
+For \(1\le k\le n\), define \(T(n,n)=n\), use \(T(n,0)=0\), and set
+\(T(n,k)=T(n-1,k-1)\mathbin{\oplus} T(n-1,k)\) for \(k<n\), where \(\oplus\) is bitwise exclusive or. The reflected triangle is \(U(n,k)=T(n,n+1-k)\).
+
+\begin{theorem}\label{th:period}
+In column \(k\), bit \(j\) (place value \(2^j\), \(j\ge0\)) is zero identically if \(2^j>k\). Otherwise it is purely periodic from the diagonal onward. Its least positive period is the smallest power of two at least \(k-2^j+1\). The whole column has least positive period \(2^{\lceil\log_2 k\rceil}\).
+\end{theorem}
+\begin{proof}
+Over the field \(\mathbb F_2\), let \(d_k\) be bit \(j\) of the integer \(k\), and put
+\[
+ C_k(u)=\sum_{r\ge0} [\text{bit }j\text{ of }T(k+r,k)]u^r,\qquad C_0=0.
+\]
+The constant term is \(d_k\). For \(r\ge1\), the recurrence at offset \(r\) uses column \(k-1\) at offset \(r\) and column \(k\) at offset \(r-1\). Thus
+\((1+u)C_k=C_{k-1}+d_k+d_{k-1}\). Incrementing \(k-1\) toggles bit \(j\) exactly when \(2^j\mid k\), giving
+\[
+ C_k(u)=\sum_{\substack{1\le s\le k\\ 2^j\mid s}}(1+u)^{-(k-s+1)}. \tag{1}
+\]
+An empty sum is zero. Otherwise the reduced denominator is \((1+u)^e\) with \(e=k-2^j+1\), since after multiplication by this denominator only the term \(s=2^j\) is nonzero at \(u=1\). The numerator has degree less than \(e\).
+
+A purely periodic sequence of period \(D\) has generating function \(Q(u)/(1-u^D)\) with \(\deg Q<D\). Conversely any such fraction has period \(D\). Thus for (1) period \(D\) is equivalent to \((1+u)^e\mid1-u^D\); properness ensures the numerator degree condition after conversion. If \(D=2^v d\) with \(d\) odd then \(1-u^D=(1-u^d)^{2^v}\), and \(1-u^d\) has a simple root at one. Hence \(2^v\ge e\) is necessary and sufficient. The bit with \(j=0\) has \(e=k\), and all other bit periods divide its period.
+\end{proof}
+
+\begin{theorem}
+For \(0\le j\) and \(n\ge k\ge1\), bit \(j\) of \(T(n,k)\) is
+\[
+ \sum_{\substack{1\le s\le k\\2^j\mid s}}\binom{n-s}{k-s}\pmod 2 .
+\]
+If \(n=2^J\), then \(T(n,k)=k\) at the powers of two \(k\le n\) and is zero elsewhere. The reflected triangle satisfies \(U(2^J+n,2^J+k)=U(n,k)\) whenever \(1\le k\le n\le2^J\).
+\end{theorem}
+\begin{proof}
+Expand each term of (1) by the negative binomial series. At \(n=2^J\) use \(\binom{2^J-s}{2^J-k}\). In characteristic two the nonzero coefficients of \((1+x)^a=\prod_{i:\,a_i=1}(1+x^{2^i})\) occur precisely at indices whose set bits lie among those of \(a\). In \(J\) bits, \(2^J-s\) and \(2^J-k\) are the complements of \(s-1\) and \(k-1\). Thus the surviving \(s\) are exactly those for which \(s-1\) uses a subset of the set bits of \(k-1\). This already implies \(s\le k\).
+
+To require \(2^j\mid s\), the lowest \(j\) bits of \(s-1\) must all be one. If any required bit is missing from \(k-1\), the count is zero. Otherwise each other set bit of \(k-1\) may be chosen freely, so the count is odd if and only if \(k-1=2^j-1\). This includes \(k=1,j=0\). Bits with \(2^j>k\) are already zero. The assertion about the row follows. Finally reflection sends both entries in the translation identity to the same column \(n+1-k\) of \(T\), with their row indices differing by \(2^J\). Theorem~\ref{th:period} shows that this is a period.
+\end{proof}
+
+For example the fourth column, starting with \(T(4,4)\), repeats \(4,4,6,7\) as determined by (1).
+The original statements, including the claimed period and the reflected copies, are recorded by F. T. Adams-Watters in \oeis{195916} and \oeis{195915} (2011).
+
+\paragraph{Independent formal proof.}
+The accompanying Lean file proves the exact column and bit periods, the reflected translations, and the rows at every power of two from the defining recurrence. Its first identity is
+\[
+ T(n+2^h,k)=T(n,k)\mathbin{\oplus}T(n,\max(0,k-2^h))\qquad(k\le n).
+\]
+Applying a shift twice cancels the two middle terms. If \(2^h<k\le2^{h+1}\), the shift by \(2^h\) already fails at the diagonal because \(T(k,k-2^h)=k-2^h\ne0\). For dyadic rows the formal proof also gives \(T(2^{h+1},k)=T(2^h,k)\) away from the new diagonal, extending rows by zeros on the right.
+\end{document}
