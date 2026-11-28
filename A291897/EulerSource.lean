@@ -1,7 +1,9 @@
 import Mathlib.Data.Nat.Choose.Basic
 import Mathlib.Data.Rat.Lemmas
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Tactic
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
 
 /-!
 # A291897: the Euler polynomial source
