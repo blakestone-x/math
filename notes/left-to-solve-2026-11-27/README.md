@@ -9,3 +9,5 @@
 - [Mathar’s recurrence](../../A141344/Proof.lean). Lean proves the recurrence for every n ≥ 3 from the generating function, accompanying the earlier mathematical proof in this repository.
 
 The finite-state proof and transfer proof identify precisely which mathematical steps have Lean certificates. These research notes do not constitute board acceptance.
+
+[Eight public Left to Solve submissions and their companion proofs](Board-submissions.md)
