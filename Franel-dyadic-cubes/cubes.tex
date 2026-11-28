@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\ord}{v_2}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\title{The exact power of two in cubic Franel sums one row before a dyadic multiple}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 28, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every $q\ge4$, the sum of the cubes of the binomial coefficients in row $2^q-1$ has 2-adic valuation $3q-2$. This proves the first fixed-exponent case in Fabius Wiesner's question. More generally we give an exact digit-sum formula on every sequence of rows $u2^q-1$ with $u$ fixed and odd, beyond an explicit threshold. The first-order term is the same 2-adic constant for every such $u$.
+\end{abstract}
+
+\section{A valuation and its threshold}
+Write $f_n=\sum_{k=0}^n\binom nk^3$, $C_n=(3n)!/(n!)^3$, and let $s(a)$ count the ones in the binary expansion of $a\ge0$.
+Wiesner asked whether the exponent $2^m+1$ gives valuation $3q+m-3$ on every row $2^q-1$ with $q\ge5$, also asking whether the threshold might depend on $m$ \cite{wiesner}. The uniform assertion has a counterexample at $q=5,m=19$ \cite{rows}. Here we settle the fixed exponent three in all rows in question.
+\begin{theorem}\label{main}
+Let $u\ge1$ be odd, $q\ge4$, $n=u2^q-1$, and
+\[
+ c=2q+1+3s(u-1)-s(3u-1).
+\]
+Whenever $2^q-2\ge c+q-1$,
+\[
+ \ord(f_n)=c+q-2=3q-1+3s(u-1)-s(3u-1).
+\]
+In particular $\ord(f_{2^q-1})=3q-2$ for every $q\ge4$. The threshold four is sharp for a statement covering every subsequent $q$.
+\end{theorem}
+For instance $u=3$ gives $\ord(f_{3\cdot2^q-1})=3q+1$ for $q\ge4$. The inequality in the theorem is an effective sufficient condition and eventually holds for every fixed $u$. Legendre's factorial formula gives $\ord(C_n)=3s(n)-s(3n)=c$, because $n=(u-1)2^q+2^q-1$ and $3n=(3u-1)2^q+2^q-3$.
+
+\section{The limiting series}
+We use the classical Franel transformation \cite{oeis,companion}
+\[
+ f_n=\sum_{j=0}^n(-4)^j\frac{(3n-2j)!}{j!(n-j)!^3}.
+ \tag{1}
+\]
+For a derivation, set $V(N,\ell)=\sum_k(-4)^{N-k}\binom Nk\binom{\ell+2k}{2k}\binom{2k}k$. Summing the ordinary binomial transform in $N$ and the negative-binomial series in $\ell$ gives
+\[
+ \sum_{N,\ell\ge0}V(N,\ell)t^Nu^\ell=
+ \frac1{1+4t}\left((1-u)^2-\frac{4t}{1+4t}\right)^{-1/2}.
+\]
+The Legendre generating function and $t=y/(1-y)^2$ give
+$[t^N]\sum_h V(h,\ell)t^h=[y^N](1+y)^\ell(1-y)^{2N-2\ell}
+\sum_i\binom\ell i^2 y^i$; here $dt/t=(1+y)dy/((1-y)y)$ in the coefficient residue.
+At $\ell=N=n$ the right side is $f_n$. Replacing $k$ by $n-j$ on the left gives (1).
+
+Let $(x)_{\underline j}=x(x-1)\cdots(x-j+1)$ and put
+\[
+ R_j(x)=\frac{(-4)^j(x)_{\underline j}^3}{j!(3x)_{\underline{2j}}},
+ \qquad
+ t_j=R_j(-1)=\frac{2\cdot4^j(j!)^2}{(2j+2)!}.
+\]
+Thus $f_n/C_n=\sum_{j=0}^n R_j(n)$. The values at $-1$ exhibit an exact cancellation.
+\begin{lemma}\label{vanish}
+The series $\sum_{j\ge0}t_j$ converges to zero in $\Q_2$. For $k\ge1$,
+\[
+ \ord(t_{k-1})=2k-1-2\ord(k)-s(k).
+ \tag{2}
+\]
+For $k\ge3$ this is at least $\lfloor\log_2 k\rfloor$.
+\end{lemma}
+\begin{proof}
+Since $t_{k-1}=4^k/(2k^2\binom{2k}k)$ and $\ord\binom{2k}k=s(k)$, (2) follows. It tends to infinity. The stated bound is immediate at $3\le k\le7$. For $k\ge8$ let $l=\lfloor\log_2 k\rfloor$; then $s(k)\le l+1$, $\ord(k)\le l$, and $2k\ge4l+2$.
+
+Put $F(z)=\sum_{k\ge1}t_{k-1}z^k$. Over the reals near zero it equals $(\arcsin\sqrt z)^2$. Indeed $Y(x)=(\arcsin x)^2$ obeys $(1-x^2)Y''-xY'=2$, $Y(0)=Y'(0)=0$. The recurrence for the coefficient of $x^{2k}$ gives exactly $t_{k-1}$. The double-angle formula near zero now gives the formal identity over $\Q$
+\[
+ F(4z(1-z))=4F(z).
+\]
+Both sides may be evaluated at $z=1$ in $\Q_2$. In detail the coefficients of $F$ tend to zero, and the Gauss norm of $4z(1-z)$ is at most one, so substituting it in finite partial sums converges in the ring of restricted power series. Evaluation at one is continuous there. We obtain $4F(1)=F(0)=0$.
+\end{proof}
+
+\section{The one surviving term}
+\begin{proof}[Proof of Theorem~\ref{main}]
+Put $x=n+1=u2^q$. For $2j+2<2^q$, comparison of falling factorials gives
+\[
+ \frac{R_j(n)}{t_j}=\prod_{i=1}^j(1-x/i)^3
+               \prod_{i=3}^{2j+2}(1-3x/i)^{-1}.
+ \tag{3}
+\]
+If $h=\lfloor\log_2(2j+2)\rfloor$, every factor is $1$ modulo $2^{q-h}$. For $j\ge2$, Lemma~\ref{vanish} gives $\ord(t_j)\ge h-1$, so $R_j(n)-t_j\equiv0\pmod{2^{q-1}}$. At $j=0$ the difference vanishes. At $j=1$ it is
+\[
+ R_1(n)-t_1=-\frac{(4n-1)(n+1)}{3(3n-1)}. \tag{4}
+\]
+Here $\ord(3n-1)=2$ and $4n-1$ is odd, so (4) has exact valuation $q-2$.
+
+For $2j+2\ge2^q$, $\ord(t_j)\ge q-1$. Also $C_nR_j(n)$ is $(-4)^j$ times an integer by (1): the factorial ratio is a multinomial with parts $j,n-j,n-j,n-j$. Consequently $\ord(R_j(n))\ge2j-c\ge2^q-2-c\ge q-1$ for all remaining $j\le n$. Subtracting the zero series of Lemma~\ref{vanish} from $f_n/C_n$ leaves (4) as the unique term of lowest valuation. Multiplication by $C_n$ gives the formula.
+
+When $u=1$ we have $c=2q$ and $2^q-2\ge3q-1$ for all $q\ge4$. For $q=1,2,3$ the actual valuations are $1,3,9$ respectively, by direct summation. Thus $q=3$ is an exception.
+\end{proof}
+
+\section{The first-order constant}
+Let $H_j=\sum_{i=1}^j1/i$, with $H_0=0$. The estimates above also yield a limit independent of the odd multiplier.
+\begin{corollary}\label{derivative}
+For each fixed odd $u\ge1$, along $n=u2^q-1$ one has in $\Q_2$
+\[
+ \lim_{q\to\infty}\frac{f_n}{(n+1)C_n}
+ = D= 3\sum_{j\ge1}t_j(H_{2j+2}-H_2-H_j),\qquad \ord(D)=-2 .
+\]
+\end{corollary}
+\begin{proof}
+For fixed $j$, subtract one from (3), divide by $x$, and let $x\to0$ to get its logarithmic derivative $3(H_{2j+2}-H_2-H_j)$. The passage through the sum needs a uniform bound. For $2j+2<2^q$ the divided difference has valuation at least $\ord(t_j)-\lfloor\log_2(2j+2)\rfloor$, tending to infinity by (2). In the remaining range, each $R_j(n)/x$ has valuation at least $2^q-2-c-q\to\infty$, for $j\le n$. Each $t_j/x$ in that range has valuation tending uniformly to infinity as well: with $k=j+1$ and $l=\lfloor\log_2 k\rfloor\ge q-1$, (2) gives $2k-3l-2-q\ge 2^{l+1}-4l-3$. The limiting series therefore converges and termwise differentiation along these rows is justified. The $j=1$ term is $-5/12$, of valuation $-2$. All later terms have valuation at least $-1$ by the low-index bound in the preceding proof. This gives $\ord(D)=-2$.
+\end{proof}
+
+\subsection*{Every order of the expansion}
+The rate of approach to $D$ can also be made explicit. For $j\ge0$ put $h_j=\lfloor\log_2(2j+2)\rfloor$ and define $b_{j,k}$ by the formal identity
+\[
+ \sum_{k\ge0}b_{j,k}X^k=\prod_{i=1}^j(1-X/i)^3
+                  \prod_{i=3}^{2j+2}(1-3X/i)^{-1}.
+\]
+For $d\ge1$ set $L_d=\max_{j\ge0}((d+1)h_j-\ord(t_j))$. This finite maximum is attained since (2) grows linearly in $j$. Each $D_k=\sum_{j\ge0}t_j b_{j,k}$ converges, since $\ord(b_{j,k})\ge-kh_j$. Here $D_0=0$ and $D_1=D$.
+\begin{corollary}
+For $n=u2^q-1$ as above, write $x=n+1$. If $2^q-2-c\ge(d+1)q-L_d$, then
+\[
+ \ord\!\left(\frac{f_n}{C_n}-\sum_{k=1}^d D_k x^k\right)\ge(d+1)q-L_d.
+\]
+In particular $L_1=4$. Under $2^q-2-c\ge2q-4$ the normalized unit $4f_n/(xC_n)$ agrees with $4D$ modulo $2^{q-2}$. The first twelve bits give $4D\equiv1959\pmod {4096}$.
+\end{corollary}
+\begin{proof}
+When $h_j<q$, the error from truncating (3) after degree $d$ has valuation at least $\ord(t_j)+(d+1)(q-h_j)\ge(d+1)q-L_d$. When $h_j\ge q$, every one of the subtracted terms has valuation at least $(d+1-k)h_j+kq-L_d\ge(d+1)q-L_d$. Each remaining actual summand, for $j\le n$, has valuation at least $2^q-2-c$, as before. Summing proves the bound. To evaluate $L_1$, (2) gives $\ord(t_j)\ge 2h_j-4$. Check $j+1\le7$ directly; for $k=j+1\ge8$ use $2k\ge5\lfloor\log_2 k\rfloor$. Equality occurs at $j=1$. For the twelve-bit residue, direct evaluation of $12t_{k-1}(H_{2k}-H_2-H_{k-1})$ at $k=2,\ldots,8$ gives $2729,1528,1350,3136,1472,2560,1472$ modulo $4096$. The terms $9\le k\le15$ vanish by direct evaluation. For $k\ge16$ the lower bound $2k-4\lfloor\log_2 k\rfloor-1\ge12$ gives the same conclusion.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{wiesner} F. Wiesner, \href{https://mathoverflow.net/q/496222}{$p$-adic valuation of some generalized Franel numbers}, MathOverflow 496222, June 2025. D. Chen reported the cubic case through $q=20$.
+\bibitem{rows} Blake Stone's mathematics project, \href{https://github.com/blakestone-x/math/tree/8aa1a2147fbce9c321e96e6a90c3099805f2e495/Franel-prime-power-rows}{Exact valuations of binomial power sums one row before a prime power}, November 2026.
+\bibitem{oeis} OEIS Foundation, \href{https://oeis.org/A000172}{A000172}; see also P. Bala's comments in \href{https://oeis.org/A363988}{A363988}.
+\bibitem{companion} Blake Stone's mathematics project, \emph{Supercongruences for Peter Bala's companion binomial sums}, Lemma 2, companion manuscript in this release.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,4 @@
+1173 exact coefficient transformations, including negative upper arguments.
+312 source-family congruences; m=-5 through 7, primes 3 through 13.
+At p=3, m=2, n=r=1 the difference is 5976, congruent to 9 modulo 27.
+256 independent signed-convolution tests, including all eight sign patterns.

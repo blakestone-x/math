@@ -2,6 +2,8 @@
 
 [Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
 
+- [Bala’s companion supercongruences for every integer parameter](Bala-companion-supercongruences/README.md) · [The exact power of two in every cubic Franel row one below a power of two](Franel-dyadic-cubes/README.md)
+
 - [Havermann's fixed points and six greedy digit sequences](Greedy-digit-permutations/README.md) · [Four-prime exclusion for Krizek's fixed points](A245211/four-primes.pdf) · [Circular orderings for singular affine maps](Sun-polynomial-cycles/singular.pdf) · [Square-root digit runs in every base](Square-root-digit-blocks/README.md)
 
 - [Layman’s quadratic equation — exact count of positive solutions and a complete Lean proof of A134002](A134002/README.md)

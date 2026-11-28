@@ -1,6 +1,15 @@
 # Proof fleet scoreboard
 
-The five scoreboard releases contain **54 manuscripts**. The fifth adds four papers and nine pages. The first three releases recorded 47 manuscripts across a snapshot of 133 research projects. Project counts refer to the snapshot in which they were recorded. [Open review](https://github.com/blakestone-x/math/pull/1) · [Research queue](RESEARCH_PLAN.md)
+The six scoreboard releases contain **56 manuscripts**. The sixth adds two papers and seven pages. The first three releases recorded 47 manuscripts across a snapshot of 133 research projects. [Open review](https://github.com/blakestone-x/math/pull/1) · [Research queue](RESEARCH_PLAN.md)
+
+## Sixth release
+
+| Problem | Result | Manuscript and verification |
+|---|---|---|
+| Bala’s companion supercongruences | The $v_m$ congruences hold for every integer $m$, every prime $p\ge5$ and all positive $n,r$. This proves the conjectures in A363986, A363988 and A363990 and completes the pair of families in A363985 alongside Wentao Li’s earlier $u_m$ proof. The extension to $p=3$ has modulus $3^{3r-1}$. | [Paper](Bala-companion-supercongruences/companion.pdf) · [Prior work, Lean lemma, checks and four statement reviews](Bala-companion-supercongruences/README.md) |
+| Wiesner’s cubic Franel rows | For every $q\ge4$ the exact valuation is $3q-2$. A binary digit formula covers every fixed odd multiplier, and an all-orders expansion gives the normalized residues. This meets queue item 3 at fixed exponent three. | [Paper](Franel-dyadic-cubes/cubes.pdf) · [Lean proofs, numerical checks and statement review](Franel-dyadic-cubes/README.md) |
+
+The five first-statement submissions passed the pinned local checker. The Franel disproof of the original uniform cutoff also passed the site's local proof and axiom check. The two new infinite-family proofs are in the manuscripts.
 
 ## Fifth release
 
