@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=.89in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Sharp bounds for off-diagonal entries of absolute tree adjacency matrices}
+\author{Research note prepared for Blake Stone with Astra}
+\date{November 2026}
+\newcommand{\absH}{|H|}
+\begin{document}
+\maketitle
+Let $T$ be a finite unweighted tree with bipartite adjacency matrix $A$, so its full adjacency matrix is $H=\left(\begin{smallmatrix}0&A\\ A^\top&0\end{smallmatrix}\right)$. MathOverflow question 499788 asks if every off-diagonal entry of $(AA^\top)^{1/2}$ has absolute value strictly below one~\cite{mo}. This is the exact target of Left to Solve's board entry \texttt{mo-499788}~\cite{board}. A previous public pull request gives an edge-deletion argument for that strict inequality~\cite{prior}. The following path comparison yields the sharp constant and the sign at each distance. It also applies to fractional powers.
+\begin{theorem}
+Let $u,v$ be vertices in the same bipartition class at distance $2k$, with $k\ge1$. Put $K_\alpha=(H^2)^\alpha$, where $0<\alpha<1$. The sign of $(K_\alpha)_{uv}$ is $(-1)^{k+1}$. Its absolute value is at most the corresponding entry in absolute value for the endpoints of the path on $2k+1$ vertices. Equality holds precisely when $T$ is that path with endpoints $u,v$. The path maxima strictly decrease in $k$. In particular,
+\[
+     |(K_\alpha)_{uv}|\le 2^{\alpha-1}.
+\]
+For $\alpha=1/2$, the exact maximum at distance $2k$ is
+\[
+ c_k=\frac{1}{2k+2}\left(
+ \tan\frac{\pi}{4k+4}+\tan\frac{3\pi}{4k+4}\right).
+\]
+Thus the optimal upper bound for the problem on the board is $c_1=1/\sqrt2$, attained by the two leaves of the three-vertex path.
+\end{theorem}
+\begin{proof}
+For any forest $F$ put $Z_F(t)=\sum_M t^{|V(F)|-2|M|}$, summed over all matchings, including the empty one. The usual determinant expansion contains only fixed points and disjoint transpositions. Thus $\det(itI-H_F)=i^{|V(F)|}Z_F(t)$, also when $F$ is empty.
+
+Let $P$ be the unique path from $u$ to $v$, and $F=T-V(P)$. We claim that
+\[
+  [(itI-H)^{-1}]_{uv}=i^{-(2k+1)}\frac{Z_F(t)}{Z_T(t)},\qquad t>0.
+\]
+For a direct cofactor proof, introduce an indeterminate $s$ in entry $(v,u)$ of $zI-H$ by subtracting $s$. Its determinant has coefficient of $s$ equal to the negative $(v,u)$ cofactor. Every determinant term using that entry selects a directed path from $u$ back to $v$ to close its permutation cycle. This is necessarily $P$. A cycle of length $2k+1$ on these vertices contributes sign $(-1)^{2k}$ from the permutation and $(-1)^{2k+1}$ from the entries, leaving the negative of $\det(zI-H_F)$. Hence the cofactor is exactly that determinant. Divide by $\det(zI-H)$ and set $z=it$.
+
+The scalar fractional-power identity and the spectral theorem give
+\[
+   K_\alpha=\frac{2\sin(\pi\alpha)}{\pi}
+   \int_0^\infty t^{2\alpha-1} H^2(t^2 I+H^2)^{-1}\,dt .
+\]
+The two vertices are distinct and lie in the same color class. The term with $H$ in
+$(itI-H)^{-1}=-(itI+H)(t^2 I+H^2)^{-1}$ has zero $(u,v)$ entry. The preceding cofactor formula now gives
+\[
+   (K_\alpha)_{uv}=(-1)^{k+1}\frac{2\sin(\pi\alpha)}{\pi}
+        \int_0^\infty t^{2\alpha}\frac{Z_F(t)}{Z_T(t)}\,dt . \tag{1}
+\]
+The ratio is positive. The matchings that use no edge between $P$ and $F$ contribute exactly $Z_P(t) Z_F(t)$ to $Z_T(t)$. If $F$ is nonempty, connectedness gives a crossing edge which by itself is another matching. The comparison
+$Z_T(t)\ge Z_P(t) Z_F(t)$ and its strictness prove the assertion about the extremal path, including equality.
+
+Writing $Z_j=Z_{P_j}(t)$ for the path on $j$ vertices, we have $Z_0=1$, $Z_1=t$ and $Z_{j+2}=tZ_{j+1}+Z_j>Z_j$ for $t>0$, by considering the last vertex. The extremal values from (1) therefore decrease strictly. At $k=1$ the two leaves correspond to the all-ones $2\times2$ block of $H^2$, whose $\alpha$ power has off-diagonal entry $2^{\alpha-1}$.
+
+To evaluate the square-root case at every distance, put $t=2\sinh x$ and $b=2k+2$. The recurrence gives $Z_{2k+1}(2\sinh x)=\sinh(bx)/\cosh x$. The path integral becomes
+\[
+ c_k=\frac{2}{\pi}\int_0^\infty
+      \frac{\sinh(3x)+\sinh x}{\sinh(bx)}\,dx.
+\]
+For $0<a<b$, expand $1/\sinh(bx)$ as a geometric series and integrate its nonnegative terms. This gives
+$\sum_{j\ge0} (1/((2j+1)b-a)-1/((2j+1)b+a))=\pi\tan(\pi a/(2b))/(2b)$, by the partial fractions for tangent (equivalently, logarithmically differentiate Euler's product for cosine). Applying this with $a=1,3$ proves the displayed formula.
+\end{proof}
+
+The diagonal blocks of $K_{1/2}$ are $(AA^\top)^{1/2}$ and $(A^\top A)^{1/2}$, so the same result applies to both classes. For example $c_2=(\tan(\pi/12)+1)/6\approx0.211325$. As $k\to\infty$, the maximum is asymptotic to $\pi/(2(k+1)^2)$.
+
+\begin{thebibliography}{9}
+\bibitem{mo} Mostafa, \href{https://mathoverflow.net/questions/499788}{Off-diagonal entries of $(AA^T)^{1/2}$ for the bipartite adjacency matrix of a tree}, MathOverflow, August 2025. In the comments the author also reports a proof of the sign property.
+\bibitem{board} Left to Solve, \href{https://lefttosolve.com/p/mo-499788}{\texttt{mo-499788}}, exact problem statement.
+\bibitem{prior} \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/10258}{Open Math Agents, pull request 10258}, earlier submission for the strict unit bound.
+\end{thebibliography}
+\end{document}

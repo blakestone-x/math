@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=.92in]{geometry}\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Distance thresholds for real powers of a tree adjacency matrix}
+\author{Research note prepared for Blake Stone with Astra}\date{November 2026}
+\begin{document}\maketitle
+Let $H$ be the adjacency matrix of a finite simple tree $T$ and let $u,v$ be vertices at distance $2k$, with $k\ge1$. Write $F_\alpha(T;u,v)=(|H|^{2\alpha})_{uv}$ for $\alpha>0$. For the bipartite block $A$ of $H$, this is the corresponding entry of $(AA^{\mathsf T})^\alpha$ if $u,v$ lie in the row class. The original question \cite{mo} concerns $\alpha=1/2$. The companion note gives the exact square-root constant at each distance. Here the extremal problem has a transition at $\alpha=k$.
+\begin{theorem}
+\begin{enumerate}
+\item If $0<\alpha<k$ is nonintegral, the sign of $F_\alpha$ is the sign of $(-1)^{k+1}\sin(\pi\alpha)$. Its absolute value is maximized precisely when the tree is the path from $u$ to $v$.
+\item For an integer $0<\alpha<k$ the entry vanishes. At $\alpha=k$ it is exactly one.
+\item For every real $\alpha>k$ the entry is strictly positive, and its supremum over finite trees of maximum degree at most $\Delta$ has order $\Theta_{k,\alpha}(\Delta^{\alpha-k})$ as $\Delta\to\infty$. In particular its supremum without a degree bound is infinite.
+\end{enumerate}
+\end{theorem}
+
+\paragraph{The path at subcritical powers.}
+Let $P$ denote the unique path from $u$ to $v$, endpoints included. For a forest $S$ let $Z_S(t)=\sum_M t^{|V(S)|-2|M|}$ where the sum is over its matchings. Expansion of the determinant over permutations gives $\det(itI-H_S)=i^{|V(S)|}Z_S(t)$: only fixed points and transpositions along edges contribute. In the off-diagonal cofactor the open permutation chain must follow $P$. Equivalently eliminate its vertices successively by the first row resolvent identity on a tree. The resolvent entry is
+\[
+ ((itI-H)^{-1})_{uv}=i^{-2k-1}\frac{Z_{T-P}(t)}{Z_T(t)}.
+\]
+Indeed at general $z$ the cofactor equals $\det(zI-H_{T-P})$, since the path edge factors are all one. Dividing by $\det(zI-H)$ gives the resolvent entry.
+
+Here is a justification of the fractional integral at every noninteger $\alpha<k$. Write $j=\lfloor\alpha\rfloor$, $\beta=\alpha-j$. For $x\ge0$ the beta integral gives
+\[
+ x^\alpha=\frac{\sin(\pi\beta)}\pi\int_0^\infty s^{\beta-1}\frac{x^{j+1}}{s+x}\,ds .
+\]
+On dividing the fraction by $s+x$ the polynomial part has degree $j<k$ in $x$; for $x=H^2$ its $(u,v)$ entry vanishes, by distance. The remainder is $(-s)^{j+1}/(s+x)$. On vertices of the same bipartition class the resolvent identity at $s=t^2$ gives $(t^2+H^2)^{-1}_{uv}=(-1)^k Z_{T-P}(t)/(t Z_T(t))$. Consequently
+\[
+ F_\alpha(T;u,v)=\frac{2(-1)^{k+1}\sin(\pi\alpha)}\pi
+ \int_0^\infty t^{2\alpha}\frac{Z_{T-P}(t)}{Z_T(t)}\,dt .
+\]
+No divergent pieces need to be integrated separately. The original spectral integral converges on this finite matrix. At infinity the final integrand is $O(t^{2\alpha-2k-1})$, and at zero the resolvent entry above bounds the ratio by $1/t$.
+Every matching of $P$ and every matching of $T-P$ combine to a matching of $T$. Thus $Z_T\ge Z_P Z_{T-P}$ pointwise for $t>0$, with strict inequality if any edge leaves $P$. The integral gives both the sign and the unique maximizer. The two integral-exponent statements follow by counting walks of length $2\alpha$.
+
+\paragraph{Above the threshold.}
+Set $d=2k$, $f(x)=|x|^{2\alpha}$ and $R=\|H\|$. Starting at $u=u_0$ along the path to $v=u_d$, remove the previous path vertex at each step and keep the component containing $v$. Call these nested trees $T_i$. If $g_i(z)$ is the $u_i$ diagonal entry of $(zI-H_{T_i})^{-1}$, successive single-vertex elimination gives
+\[
+ ((zI-H)^{-1})_{uv}=\prod_{i=0}^d g_i(z).
+\]
+For example the off-diagonal block of the inverse at $u_i$ is its diagonal entry times the row from its neighbors into the resolvent of $T_i-u_i$. Only the neighbor $u_{i+1}$ has a path to $v$ there. Each $g_i$ is the Stieltjes transform of a discrete probability measure $\mu_i$ supported in $[-R,R]$ by the spectral theorem and interlacing. For a polynomial $h$, coefficient extraction in the resolvent expansion (or contour integration) now gives
+\[
+ h(H)_{uv}=\int h[x_0,\dots,x_d]\,d\mu_0(x_0)\cdots d\mu_d(x_d).
+\]
+Here brackets denote the divided difference with its continuous extension at repeated arguments. For a monomial of degree $m\ge d$, this identity follows by multiplying $(z-x_i)^{-1}$ and taking the coefficient of $z^{-m-1}$, the complete homogeneous polynomial of degree $m-d$; it is zero for $m<d$. Approximate $f^{(d)}$ uniformly by polynomials and integrate $d$ times, matching lower Taylor coefficients. The identity extends to $f\in C^d[-R,R]$ by the simplex integral for divided differences, which bounds them by $\|f^{(d)}\|_\infty/d!$.
+
+For $\alpha>k$, $f^{(d)}(x)=(2\alpha)(2\alpha-1)\cdots(2\alpha-d+1)|x|^{2\alpha-d}$ is nonnegative and positive off zero. Its simplex average is strictly positive whenever at least one argument is nonzero. The measure $\mu_0$ has nonzero mass away from zero since $(H^2)_{uu}=\deg u>0$. Thus
+\[
+ 0<F_\alpha(T;u,v)\le {2\alpha\choose 2k} R^{2\alpha-2k}.
+\]
+For maximum degree $\Delta\ge2$, $R\le2\sqrt{\Delta-1}$. To see this, root the tree and compare the action of $H$ on the positive vector $(\Delta-1)^{-\mathrm{dist}(v,\mathrm{root})/2}$ with $2\sqrt{\Delta-1}$ times this vector, at the root and at every other vertex. This proves the desired upper estimate.
+
+For the matching lower estimate, attach $N$ leaves to the midpoint of $P_{2k+1}$, retaining the original endpoints $u,v$. Write $\lambda$ for the spectral radius. It is at least $\sqrt N$ by restriction to the star. All eigenvalues except $\pm\lambda$ lie in $[-2,2]$, by interlacing after deleting the midpoint, since only two paths and isolated vertices remain. In the unit positive Perron vector let $b$ be the midpoint coordinate. On either arm the coordinate at distance $j$ is $b U_{k-j}(\lambda/2)/U_k(\lambda/2)$, where $U_m$ is the Chebyshev polynomial of the second kind. This follows by the path recurrence and zero boundary just past the endpoint. Each new leaf has coordinate $b/\lambda$. The midpoint equation gives $\lambda^2=N+2\lambda U_{k-1}(\lambda/2)/U_k(\lambda/2)=N+O_k(1)$. Normalization therefore gives $b^2\to1/2$. The two Perron eigenvectors differ by bipartition signs and the endpoints are in the same class. Together they contribute
+\[
+ 2\lambda^{2\alpha} b^2/U_k(\lambda/2)^2\sim N^{\alpha-k}.
+\]
+The remaining spectral contribution is bounded in absolute value by $2^{2\alpha}$, by operator norm. Taking $N=\Delta-2$ for large $\Delta$ proves the lower bound.
+\begin{thebibliography}{9}
+\bibitem{mo} \href{https://mathoverflow.net/questions/499788}{MathOverflow 499788}, \emph{Off-diagonal entries of $(AA^T)^{1/2}$ for the bipartite adjacency matrix of a tree}; \href{https://lefttosolve.com/p/mo-499788}{Left to Solve target}.
+\bibitem{prior} \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/10258}{Open Math Agents PR 10258}, an earlier submission for the bound $<1$.
+\end{thebibliography}
+\end{document}

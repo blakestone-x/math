@@ -1,6 +1,8 @@
 # math
 math proofs
 
+- [Left to Solve — Sun’s Catalan determinants, sharp tree bounds, and tiling identities](notes/left-to-solve-2026-11-27/README.md) · [Proof book](notes/left-to-solve-2026-11-27/Proofs.pdf)
+
 - [Collatz windows and logarithmic stopping time — conditional equivalence and a counting obstruction](Collatz-windows/README.md) · [Lean proofs](Collatz-windows/CollatzWindows.lean)
 
 - [A067576 — binary-column doubling and the exact least starting row](A067576/README.md) · [Complete Lean proof](A067576/Proof.lean)

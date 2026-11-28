@@ -1,0 +1,5 @@
+Checked 2287 nonisomorphic trees of sizes 2 through 13.
+alpha=0.25: checked sign, bound and equality on 76567 same-color vertex pairs.
+alpha=0.5: checked sign, bound and equality on 76567 same-color vertex pairs.
+alpha=0.75: checked sign, bound and equality on 76567 same-color vertex pairs.
+All endpoint square-root values match the closed trigonometric expression.
