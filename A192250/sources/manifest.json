@@ -1,0 +1,35 @@
+{
+  "checked": "2026-11-27",
+  "sources": [
+    {
+      "id": "A192250",
+      "sha": "571197984aeda7b8b680fe3a1f6a43f9898cd441",
+      "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A192/A192250.seq",
+      "date": "2024-11-24T14:57:50Z",
+      "sha256": "4a4e0eea7fdf52ba28543e63ff001cfef20bde10fee83f1c1b1d24e68d0cfad4",
+      "bytes": 1444,
+      "saved_matches_retrieved_exactly": true,
+      "previous_saved_match": true
+    },
+    {
+      "id": "A192251",
+      "sha": "571197984aeda7b8b680fe3a1f6a43f9898cd441",
+      "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A192/A192251.seq",
+      "date": "2024-11-24T14:57:50Z",
+      "sha256": "b0c83e6ddd8c5ce61ccbaa3fa2cc5e847acb13e356c584ac96d7795b34a2b578",
+      "bytes": 1065,
+      "saved_matches_retrieved_exactly": true,
+      "previous_saved_match": true
+    },
+    {
+      "id": "A192232",
+      "sha": "9a78c932ddd46088e3cddc37185bdcd858df3cd1",
+      "url": "https://github.com/oeis/oeisdata/blob/9a78c932ddd46088e3cddc37185bdcd858df3cd1/seq/A192/A192232.seq",
+      "date": "2026-09-27T07:03:29Z",
+      "sha256": "f4d298652ee10d6209ba5c058df39f547be6a73d69959297afdfaafccbe6f4e5",
+      "bytes": 6167,
+      "saved_matches_retrieved_exactly": true,
+      "previous_saved_match": true
+    }
+  ]
+}

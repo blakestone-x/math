@@ -1,0 +1,28 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'LucasGreedy.prefix_dominance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.lucas_equality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.kimberling_prefix_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.all_equalities' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.mixed_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.prefix_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.mixed_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.ratio_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.row_entry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.integral_row_entry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.inserted_first_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.inserted_second_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.ordinary_covers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.second_array_pairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.first_array_column_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasGreedy.first_array_column_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+All 350000 inclusive prefixes checked; 70 equality indices match the classification.
+All 9 observed first occurrences and 25 bivariate block recurrences checked.
+Both row-entry formulas checked in 2000 rows through column 10, using 549952 Wythoff successors.

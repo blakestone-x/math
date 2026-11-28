@@ -1,0 +1,19 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'Horadam.primitive_gcd' depends on axioms: [propext]
+'Horadam.lifted_determinant' depends on axioms: [propext, Quot.sound]
+'Horadam.row45_witness' depends on axioms: [propext]
+'WythoffProduct.mul_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WythoffProduct.knuth_double_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WythoffProduct.row_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+65536 ordered digit products; every row and column matched the independent array.
+Column offsets: {0: 13412, 2: 48443, 4: 3681}; array partition checked through 146432.
+90000 positive input pairs checked for the hypotenuse construction, including imprimitive pairs.
+Row 45: (119,193), determinant 121; (134593,217776), gcd 1, absolute determinant 14641.

@@ -1,0 +1,14 @@
+Independent audit: fresh isolated Lake build
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Proof.lean SHA-256: ca0cf4a84c6d34e10670d6fe7349590e7c77eb519bea1f7a80e14a996e2ebdb1
+Build path: /workspace/scratch/5f072ff518ad/tmp/batch8_A000033_independent_7vbt5yw7
+Only dependency caches reused; first-party Proof.lean freshly compiled.
+Exit: 0
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:268:0: 'Batch8Menage.menage_eq_sourceMenage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:269:0: 'Batch8Menage.menage_polynomial_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:270:0: 'Batch8Menage.A000033_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:271:0: 'Batch8Menage.A000159_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:272:0: 'Batch8Menage.A000181_prime_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.

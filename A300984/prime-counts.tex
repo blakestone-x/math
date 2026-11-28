@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.92in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+\title{A missing prime in the finite example for OEIS A300984}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+For a positive integer $n$, write $S(n)$ and $T(n)$ for the sums of its
+squarefree and nonsquarefree divisors, respectively. Michel Lagneau's A300984
+consists of the integers for which both sums are squarefree. The 2018 entry
+lists the odd prime bases occurring in its members of size at most $10^7$ and
+gives the proportion belonging to A082539 as $84\%$. That list omits $937$.
+The corrected count is $39$ of $47$, or $82.98\%$ to two decimal places.
+
+\section*{An explicit missing base}
+Take $n=4\cdot937^2=3{,}511{,}876$. The squarefree divisors are $1,2,937,1874$.
+For the remaining divisors use multiplicativity of the ordinary divisor sum:
+\[
+ S(n)=2814=2\cdot3\cdot7\cdot67,\qquad
+ T(n)=7(1+937+937^2)-2814=6{,}149{,}535=3\cdot5\cdot7\cdot58{,}567.
+\]
+All the displayed factors are distinct primes in their respective products
+(primality can be checked by trial division through the square root).
+A prime $p$ belongs to A082539 exactly when no smaller prime $r$ has
+$r+1\mid p+1$. Since $13+1\mid937+1$, the omitted base contributes to the
+denominator only. A separate divisor-by-divisor enumeration verifies that the
+entire printed set together with $937$ is exactly the set at this cutoff.
+
+\section*{Exact counts at larger decimal cutoffs}
+The prime-support theorem in the accompanying project shows that every member
+of A300984 has the form $2^i p^j$ with $i,j\ge2$, $p\equiv1\pmod{12}$,
+and $3(p+1)$ squarefree. For candidates of this form,
+\[
+ S(2^i p^j)=3(p+1),\qquad
+ T(2^i p^j)=(2^{i+1}-1)(1+p+\cdots+p^j)-3(p+1).
+\]
+These two equalities give a finite exhaustive test. For cutoff $X$, sieve primes
+$p\le\lfloor\sqrt{X/4}\rfloor$. For each, find the smallest candidate for which
+$T$ is squarefree by enumerating both exponents within $2^i p^j\le X$.
+After finding a witness, larger candidates for the same base can be dropped.
+Mark failures of A082539 by striking the larger multiples of $r+1$ for all
+primes $r$ in the sieve. Each base is counted once at each cutoff that contains its first witness.
+
+\begin{center}\begin{tabular}{r@{\quad}rr|r@{\quad}rr}
+\toprule
+$m$ & Bases at $10^m$ & In A082539 & $m$ & Bases at $10^m$ & In A082539\\
+\midrule
+7 & 47 & 39 & 12 & 8,880 & 5,670\\
+8 & 132 & 98 & 13 & 25,639 & 15,783\\
+9 & 382 & 269 & 14 & 74,802 & 44,947\\
+10 & 1,084 & 750 & 15 & 218,702 & 128,324\\
+11 & 3,087 & 2,053 & 16 & 644,008 & 369,981\\
+\bottomrule\end{tabular}\end{center}
+Thus the conjectured strict majority holds at the nine cutoffs $10^8$ through
+$10^{16}$. At the largest cutoff its share is about $57.45\%$. The assertion
+for all integers $m>7$ remains open.
+
+\paragraph{Reproduction.}
+\texttt{majority.cpp} generates the full table using integer divisibility
+and square roots corrected by integer comparisons. To test squarefreeness it
+removes trial primes once up to the cube root of the current cofactor,
+rejecting any repeated factor. On termination the residual has at most two
+prime factors with multiplicity, so it suffices to test for a perfect square
+greater than one. The independent \texttt{check\_majority.py} enumerates each
+candidate's divisors, factors their two sums using SymPy, and tests the proper
+divisors of $p+1$. It checks the witness, the complete printed set, and the
+counts through $10^9$. The earlier shape proof is in \texttt{Proof.lean}.
+The source entries are \href{https://oeis.org/A300984}{A300984} and
+\href{https://oeis.org/A082539}{A082539}.
+\end{document}

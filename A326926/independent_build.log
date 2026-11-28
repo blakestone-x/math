@@ -1,0 +1,50 @@
+Fresh isolated independent build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A326926_independent_29_f886g
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2793/2801] Built ReverseTransfer
+info: ././././ReverseTransfer.lean:66:0: 'ReverseTransfer.irreducible_of_reverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ReverseTransfer.lean:67:0: 'ReverseTransfer.isPrimitive_of_unit_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2794/2801] Built LucasDivisibility
+info: ././././LucasDivisibility.lean:95:0: 'LucasDivisibility.addition' depends on axioms: [propext, Quot.sound]
+info: ././././LucasDivisibility.lean:96:0: 'LucasDivisibility.shifted_dvd_of_dvd' depends on axioms: [propext, Quot.sound]
+ℹ [2795/2801] Built RationalDerivative
+info: ././././RationalDerivative.lean:69:0: 'RationalDerivative.iterate_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2796/2801] Built SixthDerivative
+info: ././././SixthDerivative.lean:60:4: Try this: ring_nf
+info: ././././SixthDerivative.lean:152:0: 'SixthDerivative.derivative_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SixthDerivative.lean:153:0: 'SixthDerivative.degree_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SixthDerivative.lean:154:0: 'SixthDerivative.constant_prime_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2797/2801] Built ReverseEisenstein
+info: ././././ReverseEisenstein.lean:54:0: 'ReverseEisenstein.irreducible_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2798/2801] Built SourceBridge
+info: ././././SourceBridge.lean:114:0: 'SixthDerivative.poly_coprime_D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:115:0: 'SixthDerivative.source_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:116:0: 'SixthDerivative.derivative_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:117:0: 'SixthDerivative.normalized_source_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2801] Built Irreducibility
+info: ././././Irreducibility.lean:119:0: 'SixthDerivative.prime_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Irreducibility.lean:120:0: 'SixthDerivative.prime_of_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Irreducibility.lean:121:0: 'SixthDerivative.irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2800/2801] Built Proof
+info: ././././Proof.lean:27:0: 'SixthDerivative.irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:28:0: 'SixthDerivative.derivative_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:29:0: 'SixthDerivative.normalized_source_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:30:0: 'SixthDerivative.source_numerator_irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:31:0: 'SixthDerivative.source_irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Irreducibility.lean: 82914cc4b12ab911319dd102cc273fef280036997b3c9539322ce27a0111f978
+SHA256 LucasDivisibility.lean: 09e0e9583ce9ec67991f37908dbeb8862b7c2f5fa474a98f13faf69b0060bfca
+SHA256 Proof.lean: 34c19a3bf191757b932ff2b8111cffd2fd79e268f3cddfe39786fa294054decb
+SHA256 RationalDerivative.lean: 54913422f586a5d2dacd6ab40d1f79faa1f2aeecddbe14a08811f1453c1ce5c2
+SHA256 ReverseEisenstein.lean: 768959523a44713ccbf8016cb6071d103fa54453c5cf9c0036254e05c8908bf9
+SHA256 ReverseTransfer.lean: 69b80f8bfa5733d8a9bd01efc8a526b31ac9126587506d6af42f4fcf24d55d50
+SHA256 SixthDerivative.lean: cc4a5b934c95bbdef350b6dfc76509fcbeed96c4132465e9d4218ee2c36d56ef
+SHA256 SourceBridge.lean: 28a5587cb931670825eacb75ec8e124d4f0b65028231f7030b0d2c9e52b78640
+SHA256 lakefile.lean: e5aa034071d7c3ec13febe8987d013773f67c7b97d16a76390da035a5e98f274
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 67825a2f29cb1628c87fd54cc49f199eb34794a442e2d1208b1b4bd4b05c523b

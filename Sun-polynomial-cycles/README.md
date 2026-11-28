@@ -1,10 +1,11 @@
 # Cyclic polynomial labels and OEIS A229827
 
-In a circular ordering, each residue $x$ receives the label $P(x)+\sigma(x)$, where $\sigma(x)$ is its successor. Zhi-Wei Sun posed three existence assertions in September 2013. Two manuscripts settle them and classify the support of his counting sequence. [Original sequence and conjecture](https://oeis.org/A229827) · [Sun’s lecture, slide 36](https://www.mathnet.ru/PresentFiles/21090/sun.pdf)
+In a circular ordering, each residue $x$ receives the label $P(x)+\sigma(x)$, where $\sigma(x)$ is its successor. Zhi-Wei Sun posed three existence assertions in September 2013. The first two manuscripts settle the three assertions in their stated form and classify the support of his counting sequence. The third settles the degree-two case over all odd finite fields. [Original sequence and conjecture](https://oeis.org/A229827) · [Sun’s lecture, slide 36](https://www.mathnet.ru/PresentFiles/21090/sun.pdf)
 
 | Question | Result | Manuscript |
 |---|---|---|
 | Can every prime field of order $p>3$ be ordered for $P=X^2$? | Yes. More generally, the orders on the integers modulo $n\ge 2$ exist exactly when $\gcd(n,6)=1$. | [Proof](square-circle.pdf) · [LaTeX](square-circle.tex) |
+| Which odd fields admit an ordering for a quadratic of degree two? | Every such quadratic works over every odd field of order greater than three, including proper extensions in characteristic three. All fail over the field of order three. | [Odd-field proof](odd-fields.pdf) · [LaTeX](odd-fields.tex) |
 | Does every finite field of order $q$ have an order for every $P\ne c-X$ of degree less than $q-1$? | Squaring on the field of eight elements gives a counterexample. | [Proof](manuscript.pdf) · [LaTeX](manuscript.tex) |
 | Does every eligible finite subset of a field of order greater than seven have such an order? | Squaring on $\{-5/4,1/4,7/4\}\subset\mathbb Q$ forces equal labels in both circular orientations. | [Proof](manuscript.pdf) · [Lean certificate](ThreePoint.lean) |
 
@@ -26,3 +27,7 @@ The second manuscript gives a hand proof of both obstructions and classifies eve
 - Lean 4.19 with mathlib verifies injectivity of the displayed rational triple and the necessary collision in every cyclic ordering of its members. Run `lake env lean /absolute/path/to/ThreePoint.lean` in a mathlib 4.19 project. The general constructive proof is in the first manuscript. [Lean source](ThreePoint.lean)
 
 - A second Lean 4.19 file proves $\gcd(n,6)=1$ for every $n\ge2$ and every permutation $\sigma$ of $\mathbb Z/n\mathbb Z$ for which $x\mapsto x^2+\sigma(x)$ is bijective. The proof passes through divisibility of the integer sum of squares. It also constructs the two prime-field multipliers with opposite Euler-criterion powers for every prime $p>3$. Run `lake env lean /absolute/path/to/Necessity.lean`. Both theorems report only `propext`, `Classical.choice`, and `Quot.sound`. [Lean necessity and prime multiplier proofs](Necessity.lean)
+
+A primitive multiplier ratio makes a triangular system of power-sum equations invertible through degree $q-3$. The new lemma proves the size of each nonempty proper component stays nonzero in the field, even when the field order is a higher power of its characteristic. For squaring the construction gives at least $(q+1)/2$ possible successors of zero and at least $\varphi(q-1)(q+1)/4$ directed circles up to rotation.
+
+Lean 4.33.1 verifies the nonvanishing moment and the resulting nonzero component size from the triangular vanishing implication. The full circle construction is proved in the manuscript. The independent Python verifier constructs 2,457 cycles in 34 fields, examining 2,536 translations in total. It checks each cycle visits every element and each list of labels exhausts the field. Run `python3 -B verify_odd_fields.py`. [Lean lemmas](FieldMoments.lean) · [Verifier](verify_odd_fields.py) · [Output and nine-element example](odd-field-checks.txt)

@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=.93in]{geometry}\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}\newcommand{\CT}{\operatorname{CT}}
+\title{Prime-index congruences for Sun's Catalan Hankel determinant}
+\author{Research manuscript prepared for Blake Stone with Astra}\date{November 2026}
+\begin{document}\maketitle
+Let $C_j=\binom{2j}{j}/(j+1)$, $h_n=\sum_{j=0}^n\binom nj^2 C_j$ and $H_n=\det(h_{i+j})_{0\le i,j\le n}$. Sun's 2013 conjecture (ii) in OEIS A228456 predicts two prime-square congruences~\cite{oeis}. The prime-square congruence for $p\equiv2\pmod3$ and the reduction modulo $p$ for $p\equiv1\pmod3$ follow from a translation of the Franel moments.
+\begin{theorem}
+Let $p>3$ be prime and $S_p=(-1)^{(p-1)/2}H_{p-1}$. Then
+\[
+\begin{aligned}
+S_p&\equiv -3p\binom{(p+1)/2}{(p+1)/6}^{-1}\pmod{p^2}
+   &&(p\equiv2\!\pmod3),\\
+S_p&\equiv 2x\pmod p
+   &&(p=x^2+3y^2,\ x\equiv1\!\pmod3).
+\end{aligned}
+\]
+In particular $v_p(H_{p-1})=1$ in the first case and $0$ in the second.
+\end{theorem}
+
+\section{A translation and the Franel expansion}
+Let $u=v+v^{-1}$ and $Y=1+u^2+u(w+w^{-1})$. Since
+$Y=(1+uw)(1+u/w)$ and $\CT_v(1-v^2)u^{2j}=C_j$, successive constant-term extraction gives
+$h_n=\CT_{v,w}(1-v^2)Y^n$. Put $a=vw$, $b=v/w$ and
+\[
+ g=a+b+ab+a^{-1}+b^{-1}+(ab)^{-1}=Y-3.
+\]
+The substitution preserves constant terms of Laurent polynomials in $a,b$, since its exponent map is injective. The substitution $(a,b)\mapsto(ab,a^{-1})$ preserves $g$ and permutes its six monomials in a single orbit. Thus $d_n=\CT_{a,b}g^n$ and the moments $b_n=\CT(1-ab)g^n$ of the translated variable satisfy
+\[
+ b_n=d_n-d_{n+1}/6,\qquad H_n=\det(b_{i+j})_{0\le i,j\le n}.
+\]
+The second identity follows by the monic triangular change of basis $Y^i\mapsto(Y-3)^i$.
+Moreover $g+2=(1+a)(1+b)(1+(ab)^{-1})$ gives $f_n=\CT(g+2)^n=\sum_j\binom nj^3$.
+The Franel expansion recorded in~\cite[eq.~(2.4)]{mao} gives
+\[
+ f_n=\sum_{j=0}^{\lfloor n/2\rfloor} c_j\binom{n+j}{3j}2^{n-2j},
+ \qquad c_j=\frac{(3j)!}{(j!)^3}.
+\]
+Hence $F(z)=\sum_{n\ge0}f_nz^n=\sum_j c_jz^{2j}(1-2z)^{-3j-1}$. Applying the binomial translation $D(z)=(1+2z)^{-1}F(z/(1+2z))$ yields
+\begin{equation}
+ D(z)=\sum_{n\ge0}d_nz^n=\sum_{j\ge0}c_j z^{2j}(1+2z)^j .
+ \tag{1}
+\end{equation}
+
+\section{Primes congruent to two modulo three}
+Write $p=6k-1$, $m=2k-1$, $J=4k-1$. In degrees at most $2p-1$, only $j<p$ can occur in (1). For these $j$ the valuation of $c_j$ is $\lfloor3j/p\rfloor$. The terms with $j\le m$ end at degree $3m=p-2$, with coefficient
+$d_{p-2}\equiv 2^m c_m\ne0\pmod p$. Thus
+\[
+ b_{p-2}\not\equiv0\pmod p,\qquad b_n\equiv0\pmod p\quad(p-1\le n\le 2p-2).
+\]
+The leading $(p-1)$-square block of the $p$-square Hankel matrix is anti-triangular modulo $p$, with determinant congruent to $(-1)^{(p-1)(p-2)/2}b_{p-2}^{p-1}=(-1)^{(p-1)/2}$. All components above the bottom entry of the last column are divisible by $p$. The Schur complement therefore gives $S_p\equiv b_{2p-2}\pmod{p^2}$.
+
+As $3(J-1)<2p-2$ and $3(J+1)\ge2p$, only $j=J$ contributes to $d_{2p-2}$ and $d_{2p-1}$ modulo $p^2$. Since $3J=2p-1$,
+\[
+ b_{2p-2}\equiv c_J2^{J-1}(J-1/3)\equiv-2^Jc_J/3\pmod{p^2}.
+\]
+Here $J\equiv-1/3\pmod p$ and $p\mid c_J$. Furthermore $c_J/p\equiv1/(J!)^3\pmod p$ by Wilson's theorem, on deleting the factor $p$ from $(2p-1)!$. It remains to show, in $\mathbb F_p$,
+\begin{equation}
+ 2^J\binom{3k}{k}=9(J!)^3.\tag{2}
+\end{equation}
+Wilson's theorem gives $J!(2k-1)!=1$. Pairing each odd factor $2i-1$ of $(2k)!$ with $-2(3k-i)$, which equals it in $\mathbb F_p$, gives $((2k-1)!)^2=(-4)^k k!(3k-1)!/(2k)$. Substitution yields
+\[
+ \frac{2^J\binom{3k}{k}}{(J!)^3}
+ =\frac{2^{6k-1}(-1)^k(3k)((3k-1)!)^2}{(2k)^2}.
+\]
+Since $2^{6k-1}=2$ and $((3k-1)!)^2=(-1)^k$ by Fermat's and Wilson's theorems, the right side is $3/(2k)=9$. Equation (2) gives the claimed square-modulus congruence.
+
+\section{Primes congruent to one modulo three}
+Set $m=(p-1)/3$. The same valuation argument now makes $3m=p-1$ the largest exponent with a nonzero coefficient of $D$ modulo $p$ through degree $2p-1$. Its coefficient is $2^mc_m$. Thus $b_{p-1}=d_{p-1}\ne0$ modulo $p$ and all $b_n$ with $p\le n\le2p-2$ vanish modulo $p$. Reversing the rows proves
+\[
+ S_p\equiv b_{p-1}^p\equiv d_{p-1}\pmod p.
+\]
+Expanding $g=(g+2)-2$ now gives $d_{p-1}\equiv\sum_{i=0}^{p-1}f_i/2^i\pmod p$ because $\binom{p-1}{i}\equiv(-1)^i$. Sun's theorem on Franel sums, recorded in~\cite[eq.~(1.1)]{mao}, gives $2x$ for this last sum modulo $p$.
+
+\paragraph{An exact reduction of the remaining split-prime calculation.}
+Put $h=b_{p-1}$ and $A(z)=(\sum_{i=0}^{p-1}b_{p-1-i}z^i)^{-1}\pmod{(p,z^p)}$. Then
+\[
+ S_p\equiv h^p\left(1-\sum_{r=1}^{p-1}r[z^r]A(z)\,b_{p-1+r}\right)\pmod{p^2}.
+\]
+To see this, reverse the rows to get a Toeplitz matrix, and write it as its lower triangular part $L$ plus a strictly upper triangular matrix $U$. Every entry of $U$ is divisible by $p$. The determinant is therefore $h^p(1+\operatorname{tr}(L^{-1}U))$ modulo $p^2$. Each $r$-th diagonal pair contributes $(p-r)[z^r]A(z)\,b_{p-1+r}$ to the trace. Sun's split-branch prediction $2x-p/(2x)$ modulo $p^2$ requires a further evaluation of this scalar expression.
+
+\paragraph{Rank at all prime powers.}
+For $q=p^e$, write $r=q-1$ when $p\equiv1\pmod3$ and $r=(p-2)(q-1)/(p-1)$ when $p\equiv2\pmod3$. Then the $q$-square integer Hankel matrix of $h$ has rank $r+1$ modulo $p$. Indeed $d_{pn+i}\equiv d_nd_i\pmod p$ for $0\le i<p$ since $g^{pn+i}\equiv g(a^p,b^p)^ng(a,b)^i$, and all exponents in the second factor have both coordinates of absolute value at most $i<p$. Thus each $d_j\bmod p$ is the product of its single-digit values. As $d_1=0$, all values from $q$ through $2q-1$ vanish. The largest index below $q$ with nonzero value is $r$, by taking the largest allowed digit in every position. The same top index applies to the translated $b_j$, hence the first $r+1$ rows form an invertible anti-triangular leading block; the remaining rows vanish. In the split case this gives also
+$(-1)^{(q-1)/2}H_{q-1}\equiv(2x)^e\pmod p$.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} Z.-W. Sun and contributors, \href{https://oeis.org/A228456}{OEIS A228456}, comment (ii), 2013.
+\bibitem{mao} G.-S. Mao and Y. Liu, \href{https://arxiv.org/abs/2111.08775}{On two congruence conjectures of Z.-W. Sun involving Franel numbers}, arXiv:2111.08775v3 (2021), eqs.~(1.1) and (2.4).
+\end{thebibliography}
+\end{document}

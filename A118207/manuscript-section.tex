@@ -1,0 +1,164 @@
+\section{A Liouville--cyclotomic product identity}\label{sec:liouville}
+
+Let $\lambda(n)=(-1)^{\Omega(n)}$ be the Liouville function, where
+$\Omega(n)$ counts prime factors with multiplicity, and let $\Phi_n$ be
+the $n$th cyclotomic polynomial. Stuart Clary's sequence A118207 is defined by
+the formal generating function
+\begin{equation}\label{eq:liouville-A}
+ A(z)=\prod_{n\ge1}(1+z^n)^{\lambda(n)}.
+\end{equation}
+Peter Bala's formula entry of 5 April 2023 conjectures the following
+identity \cite{oeis118207}.
+
+\begin{theorem}\label{thm:liouville-main}
+In the ring of rational formal power series,
+\begin{equation}\label{eq:liouville-target}
+ A(z^2)=\prod_{n\ge1}\Phi_n(z^n)\Phi_n((-z)^n).
+\end{equation}
+\end{theorem}
+
+Every product below is interpreted coefficientwise. In particular, its
+coefficient in degree $N$ is determined by the factors with index at most
+$\max\{1,N\}$. Integer exponents are powers in the group of series with constant
+coefficient $1$. At index $1$ the individual cyclotomic factors have
+constant coefficient $-1$, but their paired product has constant
+coefficient $1$.
+
+The proof uses a product identity already established in Proposition 1 of
+Bala's 9 April 2023 note \cite{bala2023}: if
+\[
+ F(z)=\prod_{n\ge1}(1-z^n)^{\lambda(n)},
+\]
+then
+\begin{equation}\label{eq:bala-known}
+ F(z)=-\prod_{n\ge1}\Phi_n(z^n).
+\end{equation}
+The inspected four-page note proves this identity and a companion
+formula for its reciprocal. It does not state
+\eqref{eq:liouville-target}. We include a proof of the helper identity to
+make the argument and its formalization self-contained, while retaining
+Bala's attribution.
+
+\begin{lemma}[Square-divisor identity]\label{lem:liouville-square}
+For every positive integer $m$,
+\begin{equation}\label{eq:liouville-square}
+ \lambda(m)=\sum_{d^2\mid m}\mu(m/d^2),
+\end{equation}
+where $\mu$ denotes the M\"obius function. Also,
+$\lambda(2m)=-\lambda(m)$.
+\end{lemma}
+
+\begin{proof}
+Write $m=\prod_p p^{e_p}$. There is a unique factorization
+$m=ab^2$ with $a$ squarefree: the exponent of $p$ in $a$ is
+$e_p\bmod2$, and its exponent in $b$ is $\lfloor e_p/2\rfloor$.
+Every term in the sum is zero unless $m/d^2$ is squarefree, so the unique
+nonzero term is
+\[
+ \mu(a)=(-1)^{\sum_p(e_p\bmod2)}
+        =(-1)^{\sum_p e_p}=\lambda(m).
+\]
+Complete multiplicativity follows by adding prime exponents, and
+$\lambda(2)=-1$ gives the final assertion.
+\end{proof}
+
+\begin{lemma}[Bala's normalized Euler product]\label{lem:liouville-bala}
+Define $\Psi_1(z)=1-z$ and $\Psi_n(z)=\Phi_n(z)$ for $n>1$.
+Then
+\begin{equation}\label{eq:liouville-normalized}
+ \prod_{n\ge1}\Psi_n(z^n)=F(z).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The usual cyclotomic factorization, with the sign at $n=1$ normalized,
+gives
+\[
+ \prod_{d\mid n}\Psi_d(z)=1-z^n.
+\]
+M\"obius inversion in the multiplicative group of formal units gives
+\begin{equation}\label{eq:liouville-mobius}
+ \Psi_n(z)=\prod_{d\mid n}(1-z^d)^{\mu(n/d)}.
+\end{equation}
+After substituting $z^n$ and writing $n=ad$, the product becomes
+\[
+ \prod_{a,d\ge1}(1-z^{ad^2})^{\mu(a)}.
+\]
+Regroup by $m=ad^2$. The exponent of $1-z^m$ is
+$\sum_{d^2\mid m}\mu(m/d^2)=\lambda(m)$ by
+Lemma~\ref{lem:liouville-square}. This proves
+\eqref{eq:liouville-normalized}. For a fixed degree $N$, only pairs with
+$ad^2\le N$ can contribute, so the regrouping is finite modulo
+$z^{N+1}$. The single sign change at index $1$ recovers
+\eqref{eq:bala-known}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:liouville-main}]
+First compute $F(z)F(-z)$. For odd $n$,
+$(1-z^n)(1-(-z)^n)=1-z^{2n}$; for even $n$ the product is
+$(1-z^n)^2$. Splitting odd and even indices, then writing $n=2m$ in
+the even part, gives
+\begin{align}
+ F(z)F(-z)
+ &=\prod_{\substack{m\ge1\\m\text{ odd}}}
+       (1-z^{2m})^{\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{2\lambda(2m)}\notag\\
+ &=\prod_{\substack{m\ge1\\m\text{ odd}}}
+       (1-z^{2m})^{\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{-2\lambda(m)}.
+   \label{eq:liouville-evenodd}
+\end{align}
+Thus the exponent attached to $1-z^{2m}$ is $-\lambda(m)$ when
+$m$ is odd and $-2\lambda(m)$ when $m$ is even.
+
+On the other hand, factoring $1-z^{4n}$ gives
+\begin{align*}
+ A(z^2)
+ &=\prod_{n\ge1}
+       \left(\frac{1-z^{4n}}{1-z^{2n}}\right)^{\lambda(n)}\\
+ &=\prod_{\substack{m\ge1\\m\text{ even}}}
+       (1-z^{2m})^{-\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{-\lambda(m)}.
+\end{align*}
+For the numerator reindexing we used $m=2n$ and
+$\lambda(n)=-\lambda(m)$. The exponent at every $m$ therefore
+agrees with \eqref{eq:liouville-evenodd}, proving
+$A(z^2)=F(z)F(-z)$. Apply \eqref{eq:bala-known} at $z$ and $-z$.
+The two overall minus signs cancel, yielding
+\eqref{eq:liouville-target}.
+\end{proof}
+
+\paragraph{Formal products and the exact source bridge.}
+The Lean proof first establishes these identities for an arbitrary
+nilpotent element $x$ of any commutative ring. Each $1-x^n$ with $n>0$
+is a unit, and all sufficiently high powers of $x$ are zero. Consequently
+the products have finite multiplicative support. The proof of
+Lemma~\ref{lem:liouville-bala} uses two explicit finite fiber regroupings
+of the factors $(1-x^{ad^2})^{\mu(a)}$: first by $ad$, then by $ad^2$.
+The square-divisor identity is proved arithmetically from the unique
+squarefree-times-square decomposition, including uniqueness and the
+vanishing of every other M\"obius term.
+
+For each $N\ge0$ this nilpotent theorem is applied to the class of $X$ in
+\[
+ \mathbb{Q}[[X]]/(X^{N+1}).
+\]
+The literal factor families in \path{SourceSeries.lean} are
+$(1+X^{2n})^{\lambda(n)}$ and
+$\Phi_n(X^n)\Phi_n((-X)^n)$, with index zero set to the neutral factor.
+The file proves that their quotient images equal $1$ for $n>N$ and
+identifies the remaining images with the finite-support unit products.
+The generic construction \path{formalProduct} takes the degree-$N$
+coefficient from the prefix through index $N$. Its stabilization theorem
+proves that this definition agrees with every sufficiently long prefix
+in the quotient, rather than assuming a convergence property.
+
+The final theorem \path{A118207.source_conjecture} proves equality of
+the two resulting formal power series.
+\path{A118207.source_coefficient_identity} states their equality in
+every degree. Thus the formal conclusion is the complete infinite
+product identity, with no fixed truncation bound. The methods and
+the helper identity are classical; this package resolves the specific
+conjectural formula recorded in A118207 and supplies its complete Lean
+proof. The bounded prior-work search is documented separately and does
+not establish worldwide priority.

@@ -1,10 +1,20 @@
 # Proof fleet scoreboard
 
-The review branch indexes **133 research projects**. It includes 108 projects from [the upstream snapshot](https://github.com/blakestone-x/math/tree/c92ab48c98acba51cb42ceb73536a7bad251ec2d) and 25 additional projects. The three fleet releases contributed **47 proof manuscripts**. This release adds **19 manuscripts and 67 pages** across 14 projects, including 9 new project directories. Every manuscript has an editable LaTeX source and a PDF. [Open review](https://github.com/blakestone-x/math/pull/1) · [Next proof targets](RESEARCH_PLAN.md)
+The four scoreboard releases contain **50 manuscripts**. This release adds three papers and four contributions to Left to Solve. The first three releases recorded 47 manuscripts across a snapshot of 133 research projects. Project counts refer to the snapshot in which they were recorded. [Open review](https://github.com/blakestone-x/math/pull/1) · [Next proof targets](RESEARCH_PLAN.md)
 
-A project can cover several numbered conjectures. Each entry gives the scope of the proof and links its checks. The project descriptions identify prior results and the parts proved in Lean.
+## Fourth release
+
+| Problem | Result | Manuscript and verification |
+|---|---|---|
+| Sun's quadratic circular labels over odd extension fields | Queue item 6 is solved for every odd prime power $q>3$ and every quadratic of degree two. The field of three elements is the unique odd-field exception. For squaring at least $(q+1)/2$ successors of zero occur. | [Proof](Sun-polynomial-cycles/odd-fields.pdf) · [Formal moment lemma and finite-field checks](Sun-polynomial-cycles/README.md) |
+| Choulet's convolutions and Mathar's recurrences | One parameter identity implies the printed recurrences in 80 OEIS entries. All coefficients and starting indices were checked against the primary sources. Prior proofs of individual cases are credited. | [Proof](Choulet-recurrences/manuscript.pdf) · [All 80 identities and verifier](Choulet-recurrences/README.md) |
+| Lagneau's finite prime count, A300984 | The example at $10^7$ omits 937. The corrected count is 39 of 47. The strict majority holds at every decimal cutoff from $10^8$ through $10^{16}$. The assertion for all larger cutoffs remains open. | [Proof and enumeration](A300984/prime-counts.pdf) · [Independent divisor audit](A300984/README.md) · [Lean proof of the geometric-sum subproblem](A300984/DivisorFormulas.lean) |
+
+Left to Solve received four exact Lean statements covering square concatenations, partition prefixes, regular rod polygons and bar tilings. Two proofs and two disproofs passed the site's checker locally and are available for the second submission stage. [Four statement reviews and four checked solutions](notes/left-to-solve-2026-11-27/board-proofs.md)
 
 ## Third release
+
+The third release added 19 manuscripts and 67 pages across 14 projects, including nine new project directories. Its 133-project index covered 108 projects from the [upstream snapshot](https://github.com/blakestone-x/math/tree/c92ab48c98acba51cb42ceb73536a7bad251ec2d) and 25 additional projects.
 
 | Problem | Result in this release | Manuscripts and checks |
 |---|---|---|

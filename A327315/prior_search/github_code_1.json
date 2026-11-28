@@ -1,0 +1,370 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "results": [
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/SetTheory/Cardinals/docs/reports/README.md",
+          "path": "SetTheory/Cardinals/docs/reports/README.md",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/SetTheory/Cardinals/docs/reports/README.md",
+          "display_title": "SetTheory/Cardinals/docs/reports/README.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "| [`galois-theory-and-radicals/`](galois-theory-and-radicals) — bad characteristics of radical solvers, Fourier–Kummer charts, finite separating ranges for sextic resolvents | 2 |\n| [`hilbert-tenth-problem/`](hilbert-tenth-problem) — witness-faithful Diophantine certificates for discrete computation; Diophantine laws of probabilistic, quantum and continuous computation; recurrence and liveness beyond halting; groups as Diophantine substrates; signal-machine collision certificates; exact events in stochastic and thermal systems; quadratic orthant certificates; polynomial witness histories; smooth Diophantine finalizers; five-particle binary automata; fixed universal polynomials; periodic turmites and a literal Langton ant | 12 |\n| [`convex-geometry/`](convex-geometry) — optimal simplex products for projection-body volume | 1 |",
+              "matches": [
+                {
+                  "text": "smooth",
+                  "indices": [
+                    602,
+                    608
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "[`nonreal-roots-in-iterative-equations`](log-concavity-and-unimodality/nonreal-roots-in-iterative-equations)\n(roots on several circles).  Batch 42 extended five reports again: cyclotomic\nresonances (shifted Catalan Hankel polynomials), decreasing maps (nonreal",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    176,
+                    186
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/Transseries/docs/series-and-transseries/README.md",
+          "path": "Analysis/Transseries/docs/series-and-transseries/README.md",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/Transseries/docs/series-and-transseries/README.md",
+          "display_title": "Analysis/Transseries/docs/series-and-transseries/README.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "exponential layer and a range inverse; necklaces, Lyndon words and\nirreducible polynomials with the finite-grid obstruction, fixed-radical\nanalytic sheets and a two-candidate threshold theorem; the `q`-products of",
+              "matches": [
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    67,
+                    78
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "negatively. For `λ_j = j²` the literal inverse `Q` on `|u| ≤ 1/32`,\n`Re u ≤ 0` is smooth up to the imaginary diameter, and every point `it`\nwith `|t| < 1/32` is a natural-boundary point. Its Borel transform is",
+              "matches": [
+                {
+                  "text": "smooth",
+                  "indices": [
+                    88,
+                    94
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/Polylogarithms/docs/manuscript/chapters/04-depth.tex",
+          "path": "Analysis/Polylogarithms/docs/manuscript/chapters/04-depth.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/Polylogarithms/docs/manuscript/chapters/04-depth.tex",
+          "display_title": "Analysis/Polylogarithms/docs/manuscript/chapters/04-depth.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\\item \\textbf{Two independent summation methods}---the $\\rho$-accelerated cumulative sum and the\n  Euler--Maclaurin smooth-correction series---agree to full working precision.\n\\item \\textbf{Wolfram~15} \\texttt{MultiplePolyLog} at moderate precision.",
+              "matches": [
+                {
+                  "text": "smooth",
+                  "indices": [
+                    116,
+                    122
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "\n\\input{chapters/04-cyclotomic-quotients}\n",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    20,
+                    30
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/references.bib",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/references.bib",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/references.bib",
+          "display_title": "Analysis/GeneralizedRiemannHypothesis/Article/references.bib",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "  author = {Fakhruddin, N. and Khare, C. and Patrikis, S.},\n  title = {Relative deformation theory, relative {S}elmer groups, and lifting irreducible {G}alois representations},\n  journal = {Duke Mathematical Journal},",
+              "matches": [
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    138,
+                    149
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "  author = {Granville, Andrew},\n  title  = {Smooth numbers},\n  note   = {Section~1. \\url{https://library.slmath.org/books/Book44/files/09andrew.pdf}}",
+              "matches": [
+                {
+                  "text": "Smooth",
+                  "indices": [
+                    44,
+                    50
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/hec.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/hec.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/hec.tex",
+          "display_title": "Analysis/GeneralizedRiemannHypothesis/Article/sections/hec.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\n\\paragraph{Irreducible primes.}\nThe geometric part of the source proof produces nonnegative local amounts. A nonnegative class function",
+              "matches": [
+                {
+                  "text": "Irreducible",
+                  "indices": [
+                    12,
+                    23
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "product over $\\Gal(H\\cap C/\\Q)$. The Chebotarev theorem gives infinitely many primes for each of their\nconjugacy classes. The cyclotomic component is trivial, so $p\\equiv1\\pmod q$, while the traces are $2$ and\n$-1$. A finite list of Dirichlet characters has a common modulus, on whose identity class every character",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    126,
+                    136
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex",
+          "display_title": "Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "primes: a nonempty Zariski open subset of $X$ is isomorphic to an open subset of affine\n$5$-space, every nonempty open subset of $X(\\Q_q)$ meets this chart since $X$ is smooth\nand geometrically integral, and ordinary weak approximation in the five coordinates",
+              "matches": [
+                {
+                  "text": "smooth",
+                  "indices": [
+                    169,
+                    175
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "valuation formula attains each minimum at infinitely many odd primes, so removing\n$\\ell$ preserves the gcd. For $p\\ne\\ell$ the cyclotomic character at an arithmetic\nFrobenius at $v$ is $p^{f_v}\\bmod\\ell$.",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    127,
+                    137
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/ana.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/ana.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/ana.tex",
+          "display_title": "Analysis/GeneralizedRiemannHypothesis/Article/sections/ana.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "For $K=\\Q(\\sqrt[3]{2})$, of discriminant $-108$, the weights are computable: for $p\\nmid6$ the\ndegrees $f_i$ of the irreducible factors of $T^3-2$ modulo $p$ give\n$\\Lambda_K(p^j)=(\\log p)\\sum_{f_i\\mid j}f_i$, and $\\Lambda_K(p^j)=\\log p$ for $p\\in\\{2,3\\}$,",
+              "matches": [
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    116,
+                    127
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "\nFor a prescribed common stride the cyclotomic restriction gives more. A finite rational set is\njointly blind for some nonreal point exactly when: it is empty for $m=1$; it has at most one",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    36,
+                    46
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex",
+          "display_title": "Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "Rounded values of \\eqref{zer:eq:Jh} at $\\tau=4$ illustrate the scale and the sign; the\nproofs do not extrapolate them. The primes $p=2,5,59$ respectively exhibit the irreducible,\nmixed and completely split cases of the cubic. The root counts are exact and the weighted",
+              "matches": [
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    166,
+                    177
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "$7$ in the convention of the proof. Both cyclic quartic fields of conductor $16$ pass. The\ndistinct full cyclotomic fields passing the test have minimal conductors\n$1,3,4,5,7,8,9,12,15$; in particular $\\Q(\\zeta_{15})$ has $1.9967391<B_K<1.9967467$. All",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    105,
+                    115
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md",
+          "path": "Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md",
+          "display_title": "Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "  for coefficient-independent samples by `ω^b √(x² + 1)`, a globally smooth\n  branch of an irreducible quadratic (Theorem 16.117); adaptive certificates\n  stay open. Set-sized exceptional sets are removable for globally smooth maps",
+              "matches": [
+                {
+                  "text": "smooth",
+                  "indices": [
+                    73,
+                    79
+                  ]
+                },
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    95,
+                    106
+                  ]
+                },
+                {
+                  "text": "smooth",
+                  "indices": [
+                    224,
+                    230
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "  (Theorems 14.4, 14.7); `Oz/(1+ω^a)` has no nonzero set-sized image yet\n  contains an algebraically closed field containing `No[i]`, exact cyclotomic\n  algebras (Theorem 14.15) and the Cantor algebra `LC(Z_2, E_a)`",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    141,
+                    151
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/mobius_ipra/lean.tex",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/mobius_ipra/lean.tex",
+          "display_url": "https://github.com/VladimirReshetnikov/ProveIt/blob/cb0cb077fdaed91ea722783ba2b61d60973b7f18/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/mobius_ipra/lean.tex",
+          "display_title": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/mobius_ipra/lean.tex",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "with common denominator $(B+1)!$; prove divisibility before exact\ndivision. Polynomial cyclotomic arguments use lists with the explicitly\ngiven degree bound, monic division with remainder, and equality of",
+              "matches": [
+                {
+                  "text": "cyclotomic",
+                  "indices": [
+                    87,
+                    97
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "uses only addition and multiplication of integer pairs or lists.\nFor the irreducible count over a field of cardinality $q$, supply two\n$q$-by-$q$ operation tables and validate the field axioms by a bounded",
+              "matches": [
+                {
+                  "text": "irreducible",
+                  "indices": [
+                    73,
+                    84
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.82in,bottom=.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ph}{\varphi}
+\newcommand{\fl}[1]{\lfloor #1\rfloor}
+\newcommand{\fr}[1]{\{#1\}}
+\title{Three gap sequences from the Wythoff and Stolarsky arrays}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+The second columns of the Wythoff and Stolarsky arrays differ by $0$, $1$ or $-1$.
+Kimberling conjectured that the row indices for each value have exactly three
+consecutive gap sizes. We determine the gaps and their limiting frequencies
+from one first-return map of a golden rotation. The lower Wythoff map also
+pairs the positive and negative lists in increasing order. Their gap
+sequences agree term by term after relabeling.
+\end{abstract}
+
+\section{The three lists}
+Let $\ph=(1+\sqrt5)/2$, $\beta=\ph-1$, $F_0=0$, $F_1=1$ and
+$F_{i+2}=F_{i+1}+F_i$. We number both rows and columns from $1$.
+The Wythoff array and the two Stolarsky entries needed here are
+\begin{align*}
+ W(n,k)&=F_{k+1}\fl{n\ph}+(n-1)F_k,\\
+ S(n,1)&=\fl{(n-1)(\ph+1)+1+\ph/2},&
+ S(n,2)&=\fl{\ph S(n,1)+1/2}.
+\end{align*}
+Set $D(n)=W(n,2)-S(n,2)$ and $R_s=\{n\ge1:D(n)=s\}$.
+For example, $R_0$ starts $1,4,6,7,9$,
+$R_+$ starts $2,5,10,13,15$ and $R_-$ starts $3,8,16,21,24$.
+These give three gap questions in the OEIS \cite{oeis}.
+The entry A387349 also points to Shallit's automata method \cite{shallit}.
+We give a direct proof for the three sets, including occurrence, frequency and
+the correspondence between two of the infinite gap sequences.
+
+\begin{theorem}\label{main}
+The possible gaps in each increasing list and the natural density of its row indices are
+\[
+\begin{array}{lccc}
+\toprule
+\text{Row indices}&\text{OEIS}&\text{successive gap sizes}&\text{row density}\\
+\midrule
+R_0 & \mathrm{A387349} & 1,2,3 & 1/2\\
+R_+ & \mathrm{A387350} & 2,3,5 & \beta/2\\
+R_- & \mathrm{A387351} & 3,5,8 & \beta^2/2\\
+\bottomrule
+\end{array}
+\]
+Within each gap sequence, the proportions for the short, middle and long gaps
+are $\sqrt5-2$, $5-2\sqrt5$ and $\sqrt5-2$, respectively.
+If $m$ is the $i$th member of $R_+$, then $\fl{m\ph}$ is the $i$th
+member of $R_-$. This changes the successive gap lengths
+$2,3,5$ into $3,5,8$, respectively.
+\end{theorem}
+
+\section{Recovering each sign from a single phase}
+Write $f_n=\fr{n\beta}=\fr{n\ph}$, $a=\fl{n\ph}$,
+$p=\beta^2=1-\beta$, $q=\beta^3=2\beta-1$, and $L=1/2$.
+The identities
+\[
+ S(n,1)=n+a-\mathbf1_{f_n<\ph/2},\quad W(n,2)=2a+n-1,\quad
+ (n+a)\ph=2a+n+p f_n
+\]
+follow by substituting $n\ph=a+f_n$ and $\ph^2=\ph+1$.
+If $f_n<\ph/2$, the final rounding adds
+$\fl{p f_n+1/2-\ph}$ to $2a+n$. This floor changes from $-2$ to $-1$
+at $f_n=\beta/2$, since $p\beta/2+1/2-\ph=-1$.
+If $f_n>\ph/2$, the final rounding adds $\fl{p f_n+1/2}=0$.
+The phases for $n\ge1$ avoid $0,\beta/2,\ph/2$ by irrationality of
+$\beta$ and $(2n-1)\beta$. Thus
+\[
+\begin{array}{c|ccc}
+\text{row set}& R_+ & R_0 & R_-\\ \hline
+ f_n & (0,\beta/2) & (\beta/2,\ph/2)&(\ph/2,1).
+\end{array}
+\]
+Equivalently $D(n)=2\fl{n\beta}-\fl{(2n-1)\beta}$, as one sees
+by taking the floor of $2f_n-\beta$.
+
+\section{First return to a Fibonacci-scaled interval}
+View real numbers modulo $1$. For $j\ge0$ and $c\in\mathbb R$ take the interval
+parametrized by $c+(-\beta)^j x$ for $0\le x<L$. A visit at time $n$ has
+$n\beta=h+c+(-\beta)^j x$ for some integer $h$.
+
+\begin{lemma}\label{induced}
+Let $u=F_{j+2}$ and $v=F_{j+3}$. Starting at a visit with coordinate $x$,
+the first positive return time and its new coordinate are
+\[
+\begin{array}{lll}
+\toprule
+\text{starting interval}&\text{time}&\text{new coordinate}\\
+\midrule
+p\le x<L        &u&x-p\\
+0\le x<L-q      &v&x+q\\
+L-q\le x<p      &u+v&x-p+q\\
+\bottomrule
+\end{array}
+\]
+\end{lemma}
+\begin{proof}
+The identity $F_{t+1}\beta-F_t=(-\beta)^t\beta$ follows by induction.
+The steps $(u,F_{j+1})$ and $(v,F_{j+2})$ therefore move the normalized
+coordinate by $-p$ and $q$. Their determinant has absolute value $1$ by
+Cassini's identity. Any return at time $d$ with starting and ending
+coordinates $x,y$ hence has integers $a,b$ satisfying
+\[
+ d=au+bv,\qquad y-x=-ap+bq,\qquad |y-x|<L.
+\]
+If $0<d<u+v$, both coefficients cannot be positive, nor can both be
+nonpositive. Opposite nonzero signs force $|y-x|\ge p+q>L$.
+The remaining possibilities are positive multiples of just one vector.
+A multiple $a\ge2$ gives $ap\ge2p>L$ and a multiple $b\ge2$ gives
+$d\ge2v>u+v$. Thus the only possible early returns are $u$ and $v$.
+The former stays in the interval exactly when $x\ge p$, and the latter
+exactly when $x<L-q$. These conditions are disjoint. In the remaining
+interval the combined step gives $0\le x-p+q<L$, since $0<p,q<L$.
+\end{proof}
+
+For the three row sets the parameters are
+\[
+\begin{array}{c|ccc}
+ &j&c&x\text{ at phase }f\\ \hline
+R_0&0&\beta/2&f-\beta/2\\
+R_+&1&\beta/2&(\beta/2-f)/\beta\\
+R_-&2&\ph/2&(f-\ph/2)/p.
+\end{array}
+\]
+Neither endpoint of any of the three oriented intervals occurs at a positive
+time. The interior cuts $x=p$ and $x=L-q$ also never occur, since adding
+$u$ or $v$ would take them to an endpoint. The lemma gives the successive
+gap sizes in Theorem~\ref{main}. For explicit witnesses, the starting rows
+for the short, middle and long gaps are respectively $(6,4,1)$ in $R_0$,
+$(13,2,5)$ in $R_+$ and $(21,3,8)$ in $R_-$.
+
+\section{Frequencies and the pairing}
+Irrational rotation equidistributes the phases $f_n$ in $[0,1)$.
+Consequently a normalized subinterval of length $t$ in the chart at level
+$j$ is visited with density $\beta^j t$. The whole chart has length
+$\beta^j L$, giving the three row densities. Division by this density makes
+the relative gap frequencies equal to
+\[
+ (L-p)/L,\quad (L-q)/L,\quad (p-L+q)/L.
+\]
+All three are positive. Substituting $p,q,L$ gives the announced constants.
+
+For the bijection put $n=\fl{m\ph}$ with $m>0$. Multiplying $m\ph=n+f_m$
+by $\beta$ gives $f_n=1-\beta f_m$. Hence $m\in R_+$ exactly when
+$n\in R_-$, since $1-\beta^2/2=\ph/2$. Conversely, for $n\in R_-$, set
+$m=\fl{n\beta}+1$. Then $m\ph=n+\ph(1-f_n)$ and
+$0<\ph(1-f_n)<\ph(1-\ph/2)=\beta/2<1$. Thus $\fl{m\ph}=n$, and
+the map is strictly increasing. The two normalized coordinates agree,
+\[
+ \frac{f_n-\ph/2}{p}=\frac{\beta/2-f_m}{\beta}.
+\]
+Their next returns use the same line of Lemma~\ref{induced}, which proves the
+termwise correspondence and completes the theorem.
+
+\paragraph{Verification.} The accompanying Lean project derives the three
+sets from the displayed array definitions. It proves the first-return
+lemma at every level, the exact gap sets, the frequencies and the increasing
+pairing. The integer equidistribution argument is included. It first
+telescopes counts for endpoints $1-\{k\beta\}$, then uses their density
+to obtain arbitrary intervals.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} C. Kimberling, Wythoff--Stolarsky difference and positions of its
+three values, OEIS entries \href{https://oeis.org/A387348}{A387348},
+\href{https://oeis.org/A387349}{A387349}, \href{https://oeis.org/A387350}{A387350}
+and \href{https://oeis.org/A387351}{A387351}, 2025, with subsequent comments.
+\bibitem{shallit} J. Shallit, \emph{An {“Experimental Mathematics”} Approach to Stolarsky Interspersions
+via Automata Theory}, arXiv:2502.03312v2, 2026.
+\href{https://arxiv.org/abs/2502.03312}{arXiv record}.
+\end{thebibliography}
+\end{document}

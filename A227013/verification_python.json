@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "arithmetic": "exact integers and fractions only",
+  "literal_harmonic_blocks": [
+    {
+      "n": 1,
+      "literal_floor": 1
+    },
+    {
+      "n": 2,
+      "literal_floor": 6
+    },
+    {
+      "n": 3,
+      "literal_floor": 40
+    },
+    {
+      "n": 4,
+      "literal_floor": 152
+    },
+    {
+      "n": 5,
+      "literal_floor": 413
+    },
+    {
+      "n": 6,
+      "literal_floor": 920
+    },
+    {
+      "n": 7,
+      "literal_floor": 1792
+    },
+    {
+      "n": 8,
+      "literal_floor": 3173
+    },
+    {
+      "n": 9,
+      "literal_floor": 5232
+    },
+    {
+      "n": 10,
+      "literal_floor": 8160
+    }
+  ],
+  "displayed_source_terms": 37,
+  "central_moment_block_lengths": "1..50",
+  "polynomial_certificate_replays": "t=0..25; all 40 coefficients positive",
+  "generating_function_coefficients": "degrees 0..200",
+  "recurrence_newest_indices": "10..300",
+  "recurrence_residual_at_nine": -1,
+  "scope": "Finite supplementary checks; universal identities are proved in Lean."
+}

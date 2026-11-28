@@ -1,0 +1,183 @@
+\section{Cyclotomic cosets modulo powers of ten}\label{sec:cosets-ten}
+
+For $q$ coprime to $10$, let $C_q(n)$ be the number of distinct
+orbits of the permutation $x\mapsto qx$ on $\mathbb Z/10^n\mathbb Z$.
+Thus the orbit containing $x$ is the finite set of all $q^kx$ with
+$k\ge0$. The zero orbit is included. V.~Raman's sequences
+A220018, A220019, A220020, and A221855 correspond respectively to
+$q=3,7,9,13$. Colin Barker recorded the following conjectures on
+13--14 April 2013 \cite{oeis220018,oeis220019,oeis220020,oeis221855}.
+
+\begin{theorem}\label{thm:cosets-ten}
+For every $n\ge3$,
+\[
+ C_3(n)=8n^2-14n-1,\qquad
+ C_9(n)=4(4n^2-7n-1),\qquad
+ C_{13}(n)=2n(4n-7).
+\]
+For every $n\ge4$,
+\[
+ C_7(n)=5(16n^2-60n+37).
+\]
+\end{theorem}
+
+The ingredients are standard orbit counting, the Chinese remainder
+theorem, and lifting the exponent. A much more general classification
+of cyclotomic cosets and their sizes appears in Zhu--Liu--Wu
+\cite{zhu-liu-wu-cosets}. The present argument gives the explicit
+specialization required by these four recorded formulas, with a
+complete Lean proof from the literal orbit definition.
+
+\begin{lemma}[Divisor formula]\label{lem:cosets-divisors}
+For positive $m$ coprime to $q$, the number of orbits of multiplication
+by $q$ on $\mathbb Z/m\mathbb Z$ is
+\[
+ \sum_{d\mid m}\frac{\varphi(d)}{\operatorname{ord}_d(q)}.
+\]
+Here $\varphi(1)=\operatorname{ord}_1(q)=1$.
+\end{lemma}
+\begin{proof}
+The additive cyclic group $\mathbb Z/m\mathbb Z$ has exactly
+$\varphi(d)$ elements of additive order $d$ for each divisor $d$ of
+$m$. Multiplication by a unit preserves additive order. If $x$ has
+additive order $d$, then
+\[
+ q^kx=x\quad\Longleftrightarrow\quad(q^k-1)x=0
+ \quad\Longleftrightarrow\quad d\mid q^k-1.
+\]
+The least positive such $k$ is $\operatorname{ord}_d(q)$.
+The $\varphi(d)$ elements in the stratum therefore partition into
+orbits of that common size, giving the displayed quotient.
+Summing over all divisors counts every orbit exactly once.
+The stratum $d=1$ consists only of zero.
+\end{proof}
+
+Write $t_+=\max(t,0)$. The exact orders needed in the proof are
+\begin{equation}\label{eq:cosets-orders-two}
+\begin{array}{c|c|c}
+q& i=0,1&i\ge2\\\hline
+3&1&2\cdot2^{(i-3)_+}\\
+7&1&2\cdot2^{(i-4)_+}\\
+9&1&2^{(i-3)_+}\\
+13&1&2^{(i-2)_+}
+\end{array}
+\end{equation}
+and, for $j\ge1$,
+\begin{equation}\label{eq:cosets-orders-five}
+\begin{array}{c|c}
+q&\operatorname{ord}_{5^j}(q)\\\hline
+3&4\cdot5^{j-1}\\
+7&4\cdot5^{(j-2)_+}\\
+9&2\cdot5^{j-1}\\
+13&4\cdot5^{j-1}.
+\end{array}
+\end{equation}
+The orders at $j=0$ are $1$.
+
+\begin{proof}[Proof of the order formulas]
+The orders of $3,7$ modulo $4$ are $2$, and their exact valuations are
+$v_2(3^2-1)=3$ and $v_2(7^2-1)=4$. Lifting the exponent gives
+\[
+ v_2(3^{2k}-1)=3+v_2(k),\qquad
+ v_2(7^{2k}-1)=4+v_2(k).
+\]
+For $i\ge2$, an exponent producing $1$ modulo $2^i$ must be even.
+The displayed laws therefore show that the least possible exponent is
+$2\cdot2^{(i-3)_+}$ or $2\cdot2^{(i-4)_+}$, respectively.
+For $9$ and $13$, which are $1$ modulo $4$, the analogous laws are
+\[
+ v_2(9^k-1)=3+v_2(k),\qquad
+ v_2(13^k-1)=2+v_2(k).
+\]
+They give the other two rows, with the small moduli verified directly.
+
+Modulo $5$, the orders of $3,7,9,13$ are $4,4,2,4$, respectively.
+The exact valuations of $q^e-1$ at these exponents are $1,2,1,1$.
+In particular $7^4-1=2400=5^2\cdot96$ is divisible by $25$ but
+not $125$. For each of the four pairs $(q,e)$, lifting the exponent
+gives
+\[
+ v_5(q^{ek}-1)=v_5(q^e-1)+v_5(k).
+\]
+Any exponent producing $1$ modulo $5^j$ is a multiple of $e$;
+the smallest possible multiplier is the power of $5$ displayed in
+\eqref{eq:cosets-orders-five}. These statements apply to every
+positive exponent, not only a finite list of moduli.
+\end{proof}
+
+Every divisor of $10^n$ has a unique representation $2^i5^j$ with
+$0\le i,j\le n$. By the Chinese remainder theorem,
+\[
+ \operatorname{ord}_{2^i5^j}(q)
+ =\operatorname{lcm}\bigl(\operatorname{ord}_{2^i}(q),
+                         \operatorname{ord}_{5^j}(q)\bigr).
+\]
+Put
+\[
+ T_q(i,j)=\frac{\varphi(2^i5^j)}{\operatorname{ord}_{2^i5^j}(q)}.
+\]
+Then Lemma~\ref{lem:cosets-divisors} becomes
+\begin{equation}\label{eq:cosets-grid}
+ C_q(n)=\sum_{i=0}^n\sum_{j=0}^n T_q(i,j).
+\end{equation}
+Multiplicativity of $\varphi$, together with
+$\varphi(2^{i+1})=2^i$ and $\varphi(5^{j+1})=4\cdot5^j$,
+gives the following complete table:
+\[
+\begin{array}{c|rrrrrr}
+ &i=0&i=1&i=2&i=3&i=4&i\ge5\\\hline
+T_3(i,0)&1&1&1&2&2&2\\
+T_3(i,j),\ j\ge1&1&1&2&4&8&8\\
+T_7(i,0)&1&1&1&2&4&4\\
+T_7(i,1)&1&1&2&4&8&16\\
+T_7(i,j),\ j\ge2&5&5&10&20&40&80\\
+T_9(i,0)&1&1&2&4&4&4\\
+T_9(i,j),\ j\ge1&2&2&4&8&16&16\\
+T_{13}(i,0)&1&1&2&2&2&2\\
+T_{13}(i,j),\ j\ge1&1&1&2&4&8&8
+\end{array}
+\]
+For example, if $i=r+4$ and $j=s+1$, the orders for base $3$ are
+$4\cdot2^r$ and $4\cdot5^s$. Since $2^r$ and $5^s$ are coprime,
+their least common multiple is $4\cdot2^r5^s$. Dividing
+$2^{r+3}\cdot4\cdot5^s$ by it gives $8$. The other infinite
+tails follow by the same exact cancellations.
+
+\begin{proof}[Proof of Theorem~\ref{thm:cosets-ten}]
+The sum through index $n$ of $1,1,2,4,8,8,\ldots$ is
+$8n-16$ for $n\ge3$. The sum through index $n$ of
+$1,1,2,4,8,16,16,\ldots$ is $16n-48$ for $n\ge4$.
+The four $j=0$ rows sum respectively to $2n-1$, $4n-7$,
+$4n-4$, and $2n$, in the ranges required by the theorem.
+Consequently \eqref{eq:cosets-grid} gives
+\begin{align*}
+ C_3(n)&=(2n-1)+n(8n-16)=8n^2-14n-1,\\
+ C_7(n)&=(4n-7)+(1+5(n-1))(16n-48)
+        =80n^2-300n+185,\\
+ C_9(n)&=(4n-4)+2n(8n-16)=16n^2-28n-4,\\
+ C_{13}(n)&=2n+n(8n-16)=8n^2-14n.
+\end{align*}
+These are exactly the four conjectured polynomials.
+\end{proof}
+
+\paragraph{Formal scope and attribution.}
+The Lean definition counts the quotient of $\mathbb Z/10^n\mathbb Z$
+by the action of the subgroup generated by the unit $q$.
+The theorem \path{mem_coset_iff} proves that membership in these
+orbits is equivalent to $y=q^kx$ for some natural $k$.
+The divisor formula is then proved using orbit sizes and additive
+orders. Subsequent modules prove the divisor-to-exponent bijection,
+all prime power orders by exact valuations, every entry and tail of
+the table, and all four sums. Thus the polynomial is the conclusion,
+not the definition of any formal source sequence.
+
+The four endpoint theorems in \path{Proof.lean} use exactly the
+source ranges $n>2$ or $n>3$ and have only the standard Lean logical
+axioms as dependencies. All six modules are explicit build roots.
+The source entries and earlier generators already contain the
+divisor algorithm or polynomial patterns; the general methods are
+classical and are not counted as new results. This package contains
+four related source-assertion proofs in one family. The separately
+recorded bounded prior-work search found no earlier explicit
+settlement of these four formulas and does not establish worldwide
+priority.

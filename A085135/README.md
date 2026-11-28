@@ -25,3 +25,5 @@ Here each individual term is nonzero, the two positive terms have positive sum, 
 For fixed $a$ the third coordinate $bN/a$ uniquely determines $N$. Finiteness of the solutions therefore gives finiteness of $N$. There are only $b-1$ choices for $a$. $\square$
 
 The conclusion is finiteness. Determining the complete list of decimal exceptions would require an additional argument.
+
+A [companion manuscript](../Smooth-gaps/smooth-rotations.pdf) classifies the 33 nontrivial terms with exactly two nonzero digits, with a cyclic gap of at most three positions between successive nonzero digits, or with at least one quarter of all digits nonzero. It also proves that every positive 7-smooth decimal integer has full period.

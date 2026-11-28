@@ -1,0 +1,8 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Fresh direct compilation of packaged Proof.lean
+Exit: 0
+'A134559.witness_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A134559.witness_prime_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A134559.witness_gcd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A134559.conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]

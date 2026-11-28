@@ -1,0 +1,150 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "the-omega-institute/trureturing",
+      "kind": "exact",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "results": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "the-omega-institute/trureturing",
+      "kind": "literal",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "results": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "the-omega-institute/trureturing",
+      "kind": "head",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "commits": [
+            {
+              "sha": "38910d2c96de5f4ed439d8fdc0d31b7f34f0e066",
+              "message": "Merge pull request #34956 from the-omega-institute/lane/math/conformal-maxwell-and-graviton-4d\n\nmath(NullConeGravity): prove 4D conformal Maxwell/Proca selection and de Sitter TT graviton 4D synthesis",
+              "url": "https://api.github.com/repos/the-omega-institute/trureturing/commits/38910d2c96de5f4ed439d8fdc0d31b7f34f0e066",
+              "html_url": "https://github.com/the-omega-institute/trureturing/commit/38910d2c96de5f4ed439d8fdc0d31b7f34f0e066",
+              "diff": null,
+              "files": null,
+              "repository_full_name": "the-omega-institute/trureturing",
+              "comments": null,
+              "author": null,
+              "committer": null,
+              "created_at": "2026-11-27T19:55:00Z",
+              "git_author_email": null,
+              "display_url": "https://github.com/the-omega-institute/trureturing/commit/38910d2c96de5f4ed439d8fdc0d31b7f34f0e066",
+              "display_title": "Merge pull request #34956 from the-omega-institute/lane/math/conformal-maxwell-and-graviton-4d"
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "VladimirReshetnikov/ProveIt",
+      "kind": "exact",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "results": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "VladimirReshetnikov/ProveIt",
+      "kind": "literal",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "results": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "repo": "VladimirReshetnikov/ProveIt",
+      "kind": "head",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "commits": [
+            {
+              "sha": "a68af0f507b9a558a8c7e8390e338bd15cc928e2",
+              "message": "Sync GRH article formalization with origin/main\n\nPreserve the upstream research changes and the checked article proofs.",
+              "url": "https://api.github.com/repos/VladimirReshetnikov/ProveIt/commits/a68af0f507b9a558a8c7e8390e338bd15cc928e2",
+              "html_url": "https://github.com/VladimirReshetnikov/ProveIt/commit/a68af0f507b9a558a8c7e8390e338bd15cc928e2",
+              "diff": null,
+              "files": null,
+              "repository_full_name": "VladimirReshetnikov/ProveIt",
+              "comments": null,
+              "author": null,
+              "committer": null,
+              "created_at": "2026-11-27T19:57:08Z",
+              "git_author_email": null,
+              "display_url": "https://github.com/VladimirReshetnikov/ProveIt/commit/a68af0f507b9a558a8c7e8390e338bd15cc928e2",
+              "display_title": "Sync GRH article formalization with origin/main"
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  }
+]

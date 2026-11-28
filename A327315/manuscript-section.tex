@@ -1,0 +1,229 @@
+\section{The complete irreducibility classification in A327315}
+\label{sec:a327315}
+
+\subsection{The literal source statement}
+
+Let $P_n$ be the numerator of the $n$th derivative of
+\[
+ f(X)=\frac{X-2}{X^2-X+1},
+\]
+divided by $n!$, with the rational function reduced and its denominator
+monic.  OEIS A327315~\cite{A327315} records these rows from $n=0$ and conjectures that
+their irreducible indices are exactly A069353~\cite{A069353}, the numbers $2^a3^b-1$.
+The entry attributes the conjecture to Clark Kimberling in November 2019.
+Its title says degree $n$, but the executable definition and displayed
+rows have degree $n+1$, beginning with $P_0=X-2$.  We follow those
+unambiguous row and derivative indices.
+
+\begin{theorem}[All derivative orders]
+\label{thm:a327315}
+For every integer $n\ge0$,
+\[
+ P_n\text{ is irreducible over }\mathbb Q
+ \quad\Longleftrightarrow\quad
+ n+1=2^a3^b\text{ for some }a,b\ge0.
+\]
+The same criterion holds for the unnormalized reduced numerator $n!P_n$.
+\end{theorem}
+
+There is one classification here.  The stronger irreducibility over a
+quadratic field, the explicit factors in the excluded degrees, and the
+source's degree correction are not counted as additional conjectures.
+
+\subsection{Recurrence and exact reduced numerator}
+
+Put $A=1-2X$ and $D=1-X+X^2$, and define
+\[
+ S_0=-1,\qquad S_1=X-2,\qquad
+ S_{N+2}=A S_{N+1}-D S_N.
+\]
+The top-coefficient recurrence has initial values $-1,1$ and satisfies
+$c_{N+2}=-2c_{N+1}-c_N$.  Consequently
+\[
+ \deg S_N=N,\qquad \operatorname{lc}(S_N)=(-1)^{N+1}.
+\]
+Differentiating the recurrence and using two-step induction gives
+\[
+ S_N'=-N S_{N-1}\quad(N\ge1).
+\]
+Combining this with the recurrence yields, for all $N\ge0$,
+\begin{equation}
+\label{eq:a327315-differential}
+ D S_N'+N A S_N=N S_{N+1}.
+\end{equation}
+Since $D'=-A$, the quotient rule and
+\eqref{eq:a327315-differential} prove inductively that
+\begin{equation}
+\label{eq:a327315-derivative}
+ f^{(n)}(X)=\frac{n!S_{n+1}(X)}{D(X)^{n+1}}.
+\end{equation}
+
+The identities
+\[
+ 4D-A^2=3,\qquad D-(X+1)(X-2)=3
+\]
+give Bezout certificates over $\mathbb Q$ for $(A,D)$ and $(S_1,D)$.
+The polynomial $S_0=-1$ is a unit.  Modulo $D$, the recurrence says
+$S_{N+2}\equiv A S_{N+1}$, so induction proves
+$\gcd(S_N,D)=1$ for every $N$.  Thus the fraction in
+\eqref{eq:a327315-derivative} has no polynomial cancellation.  Its
+denominator is monic, and $n!$ is a nonzero rational unit.  Therefore its
+canonical numerator is exactly $n!S_{n+1}$, and
+\begin{equation}
+\label{eq:a327315-source}
+ P_n=S_{n+1}.
+\end{equation}
+This identifies the recurrence with the original reduced-numerator
+definition, including $n=0$.
+
+\subsection{The quadratic field and fractional-linear form}
+
+Let $K=\mathbb Q(u)$ with $u^2-u+1=0$, and set $v=1-u$.
+The polynomial $Y^2-Y+1=\Phi_6(Y)$ is irreducible over $\mathbb Q$, so
+$[K:\mathbb Q]=2$.  Direct algebra gives
+\[
+ u+v=uv=1,\quad u^2=-v,\quad v^2=-u,\quad
+ u^3=v^3=-1,\quad u^6=v^6=1.
+\]
+Also $u\ne v$, and neither $u$ nor $v$ is zero or one.
+With $\alpha=u-X$ and $\beta=v-X$, we have
+$\alpha+\beta=A$ and $\alpha\beta=D$.  The initial values and
+recurrence therefore prove
+\begin{equation}
+\label{eq:a327315-closed}
+ S_N=-v\alpha^N-u\beta^N
+ =(-1)^{N+1}v\big((X-u)^N-v(X-v)^N\big).
+\end{equation}
+
+We use the following standard fractional-linear observation.  Over any
+field, if $a\ne b$, $c\ne1$, and $Y^N-c$ is irreducible, then
+\[
+ (X-a)^N-c(X-b)^N
+\]
+is irreducible of degree $N$.  Indeed, if $x$ is a root of an irreducible
+factor, then $x\ne b$ and
+$y=(x-a)/(x-b)$ satisfies $y^N=c$.  Thus the extension containing $x$
+has degree at least $N$, while the displayed polynomial has degree $N$.
+Every irreducible factor must have full degree.  The Lean helper proves
+this argument directly with an adjoint-root field.
+
+\subsection{Irreducibility in every allowed degree}
+
+\begin{lemma}
+\label{lem:a327315-cyclotomic}
+For $N=2^a3^b$, with $a,b\ge0$,
+\[
+ Y^{2N}-Y^N+1=\Phi_{6N}(Y).
+\]
+\end{lemma}
+\begin{proof}
+The initial identity is $\Phi_6(Y)=Y^2-Y+1$.  If a prime $p$ divides
+$r$, the classical cyclotomic expansion formula is
+$\Phi_r(Y^p)=\Phi_{rp}(Y)$.  Starting at $r=6$, apply this formula
+$a$ times with $p=2$ and $b$ times with $p=3$.  Both required divisibilities
+hold at every step, and the left side becomes the stated trinomial.
+\end{proof}
+
+\begin{lemma}
+\label{lem:a327315-binomial}
+If $N=2^a3^b$, then $Y^N-v$ is irreducible over $K$.
+\end{lemma}
+\begin{proof}
+Choose an irreducible factor $q\in K[Y]$, of degree $d$, and let $y$ be
+its root in $E=K[Y]/(q)$.  Then $y^N=v$, and hence
+\[
+ y^{2N}-y^N+1=v^2-v+1=0.
+\]
+By Lemma~\ref{lem:a327315-cyclotomic}, this is the irreducible polynomial
+$\Phi_{6N}$ over $\mathbb Q$, of degree $2N$.  It is therefore the
+minimal polynomial of $y$ over $\mathbb Q$.  The tower law gives
+\[
+ 2N\le[E:\mathbb Q]=[K:\mathbb Q][E:K]=2d.
+\]
+Since $q$ divides a degree-$N$ polynomial, $d\le N$.  Thus $d=N$, proving
+the assertion.
+\end{proof}
+
+Equation~\eqref{eq:a327315-closed} and the fractional-linear observation
+now prove that $S_N$ is irreducible over $K$ for every $N=2^a3^b$.
+It follows that $S_N$ is irreducible over $\mathbb Q$ as well: a proper
+rational factorization would remain a proper factorization over $K$.
+
+\subsection{Explicit proper factors in every excluded degree}
+
+Let $N>0$ have a prime divisor $p\notin\{2,3\}$, and write $N=pm$.
+Then $p\equiv1$ or $5\pmod6$, and $1\le m<N$.
+For any $c$ satisfying $c^p=v$, the difference-of-powers identity gives
+\[
+ (X-u)^m-c(X-v)^m
+ \ \mid\ (X-u)^{pm}-v(X-v)^{pm}
+ \qquad\text{in }K[X].
+\]
+If $p\equiv1\pmod6$, choose $c=v$.  Equation~\eqref{eq:a327315-closed}
+then gives $S_m\mid S_N$ over $K$.
+
+If $p\equiv5\pmod6$, choose $c=u$, since $u^5=v$.  Substituting $1-X$
+in the closed form gives the exact reflected identity
+\[
+ S_m(1-X)=-u\big((X-u)^m-u(X-v)^m\big).
+\]
+Consequently $S_m(1-X)\mid S_N$ over $K$.
+
+Both proposed divisors belong to $\mathbb Q[X]$.  Divisibility descends
+to $\mathbb Q[X]$ by polynomial division and injectivity of the
+coefficient embedding.  Each divisor has degree $m$, strictly between
+zero and $N$, so $S_N$ is reducible.
+
+Finally, a positive integer with no prime divisor other than 2 and 3
+has the form $2^a3^b$, by induction on its prime factors.  This proves
+the converse for every positive degree $N$.  Taking $N=n+1$ in
+\eqref{eq:a327315-source} proves Theorem~\ref{thm:a327315}, including
+the initial linear row.  Multiplication by the nonzero constant $n!$
+does not change irreducibility.
+
+\subsection{Prior literature and formal scope}
+
+The source polynomial construction has an exact antecedent in
+L.~Remete's \emph{A generalization of simplest number fields and their
+integral basis}, arXiv:2111.08341v1 (2021)~\cite{Remete}.  His Section 2 defines
+\[
+ f_m^{(N)}(Y)=\sum_{j=0}^N\binom NjY^j g(N-j),
+\]
+where $g$ is six-periodic with values
+$(1,-m,-m-1,-1,m,m+1)$.  Comparison with the definitions gives
+$S_N(X)=(-1)^{N+1}f_1^{(N)}(X-1)$.
+Indeed, at $m=1$, $g(k)=u^{k+1}+v^{k+1}$, so the binomial theorem gives
+$f_1^{(N)}(Y)=u(Y+u)^N+v(Y+v)^N$, which agrees with the closed form
+after the stated shift and sign.
+The family itself, its derivative structure, and fractional-linear
+root symmetries are therefore not new constructions here.
+Remete's Corollary 10 requires a prime $p\ne3$ with
+$v_p(m^2+m+1)=1$.  At $m=1$ that condition fails, and the inspected
+irreducibility subsection does not state the complete degree criterion.
+
+Related classical methods occur in C.~Cass, J.~Cullinan,
+A.~Rasmussen and D.~Trifunovski, \emph{Specializations of Generalized
+Rikuna Polynomials}, International Journal of Number Theory 10 (2014),
+585--600~\cite{Rikuna}, and J.~S.~Calcut, \emph{The Tangent Analogues of the Chebyshev
+Polynomials} (2008)~\cite{Calcut}.  Their relevant definitions and irreducibility or
+angle-factorization sections were checked.  The present proof uses
+standard cyclotomic irreducibility and fractional-linear substitution;
+it does not claim those techniques as new.
+
+The checked A327315 export still labels the exact classification a
+conjecture.  The primary-reference review, exact and semantic web
+queries, trureturing catalog, and targeted global and ProveIt GitHub
+code searches located no earlier proof of that exact classification.
+This is a bounded review, not a guarantee of historical priority.
+The companion source-check report preserves the immutable OEIS exports,
+their hashes, the index convention, and the scope of the prior-art search.
+
+The formal development has nine local Lean modules.  It proves the
+recurrence identities, exact degree, quadratic-field relations,
+cyclotomic identity, both divisibility branches, the all-degree
+criterion, and the exact canonical numerator bridge.  It uses the pinned Lean and mathlib versions
+listed in Section~\ref{sec:verification}.
+The rational-function derivative and fractional-linear helper are
+reused unchanged from earlier packages.  The theorem dependencies are
+the standard \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; no admitted proof or custom axiom is used.

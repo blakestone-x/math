@@ -1,0 +1,118 @@
+\section{Prime-shift congruences for three m\'enage sequences}
+\label{sec:menage}
+
+The entries A000033, A000159, and A000181 record three congruence conjectures
+of Mark van Hoeij, dated June 10, 2019 \cite{A000033,A000159,A000181}.
+We prove all three from a single polynomial identity and formalize the exact
+source-definition bridge in Lean. Historical novelty is not established:
+Carlitz's and Stevens's earlier papers concern m\'enage congruences, but their
+complete theorem statements were unavailable for this review
+\cite{Carlitz1952,Carlitz1954,Stevens1981}.
+
+Following A058087, put $U_0(t)=1$ and, for $n\geq1$, define the classical
+m\'enage hit polynomial
+\begin{equation}\label{eq:menage-source}
+ U_n(t)=\sum_{k=0}^{n}\frac{2n}{2n-k}
+       \binom{2n-k}{k}(n-k)!(t-1)^k.
+\end{equation}
+Write $h_d(n)=[t^d]U_n(t)$. The triangle in A058087 lists coefficients in
+descending degree, so $h_d(n)=\mathrm{A058087}(n,n-d)$ when $d\leq n$
+\cite{A058087}. The relevant fixed degrees are $2,3,4$.
+
+\begin{theorem}\label{thm:menage-shift}
+For every prime $p$ and every $n\geq1$,
+\begin{equation}\label{eq:menage-shift}
+ U_{n+2p}(t)-2(t^p-1)U_{n+p}(t)+(t^p-1)^2U_n(t)
+ \equiv0\pmod p
+\end{equation}
+coefficientwise. Consequently, for every $d<p$,
+\[
+ p\mid h_d(n)+2h_d(n+p)+h_d(n+2p).
+\]
+For $p=2$, this divisibility also holds for every $d<4$.
+\end{theorem}
+
+\begin{proof}
+For $n\geq1$ and $j\geq0$, set
+\[
+ R(n,j)=\binom{n+j}{2j}+\binom{n+j-1}{2j},
+\]
+with a binomial coefficient equal to zero when its lower argument exceeds its
+upper argument. If $j\leq n$, the identity
+\[
+ (n+j)\binom{n+j-1}{2j}=(n-j)\binom{n+j}{2j}
+\]
+shows that $R(n,j)=2n\binom{n+j}{2j}/(n+j)$. Reindexing
+\eqref{eq:menage-source} by $j=n-k$ and using binomial symmetry gives the
+integral polynomial identity
+\begin{equation}\label{eq:menage-integral}
+ U_n(t)=\sum_{j=0}^{n}j!R(n,j)(t-1)^{n-j}.
+\end{equation}
+In particular, all coefficients in the source polynomial are integers.
+
+Work now in $\mathbb F_p[x]$. Frobenius implies
+\[
+\begin{aligned}
+ &(1+x)^{a+2p}-2(1+x)^{a+p}+(1+x)^a\\
+ &\qquad=(1+x)^a\bigl((1+x)^p-1\bigr)^2
+ =x^{2p}(1+x)^a
+\end{aligned}
+\]
+for every $a\geq0$. Therefore, for $r<2p$,
+\begin{equation}\label{eq:menage-binomial}
+ \binom{a+2p}{r}-2\binom{a+p}{r}+\binom ar\equiv0\pmod p.
+\end{equation}
+For $j<p$, apply \eqref{eq:menage-binomial} with $r=2j$, first with $a=n+j$
+and then with $a=n+j-1$. Both upper arguments are nonnegative. Adding gives
+\begin{equation}\label{eq:menage-rook}
+ R(n+2p,j)-2R(n+p,j)+R(n,j)\equiv0\pmod p.
+\end{equation}
+
+Terms of \eqref{eq:menage-integral} with $j\geq p$ vanish modulo $p$ because
+$p\mid j!$. Also $R(n,j)=0$ for $j>n$. Thus the sums for $n,n+p,n+2p$ may
+all be compared over $0\leq j<p$, even when $n<p$. Multiply
+\eqref{eq:menage-rook} by $j!(t-1)^{n+2p-j}$ and sum over that range.
+The common exponent is nonnegative, and the zero terms with $j>n$ justify
+completing the shorter sum. We obtain
+\[
+ U_{n+2p}(t)-2(t-1)^pU_{n+p}(t)+(t-1)^{2p}U_n(t)=0
+ \quad\text{in }\mathbb F_p[t].
+\]
+Since $(t-1)^p=t^p-1$ in this ring, this is \eqref{eq:menage-shift}.
+For $d<p$, taking coefficients of $t^d$ removes every term containing $t^p$
+and yields the stated divisibility.
+
+When $p=2$, the middle term is zero and $(t-1)^4=t^4+1$.
+Hence $U_{n+4}+(t^4+1)U_n=0$ over $\mathbb F_2$, which gives the same
+conclusion in every degree $d<4$.
+\end{proof}
+
+\begin{corollary}
+Each of the following three source assertions holds on its entire domain:
+\[
+\begin{array}{c|c|c|c}
+\text{Entry}&a(n)&\text{Index domain}&\text{Allowed primes}\\\hline
+\mathrm{A000033}&h_2(n)&n\geq1&\text{all primes }p\\
+\mathrm{A000159}&h_3(n)&n\geq3&p\ne3\\
+\mathrm{A000181}&h_4(n)&n\geq4&p>3
+\end{array}
+\]
+In each case, $p\mid a(n)+2a(n+p)+a(n+2p)$.
+\end{corollary}
+
+\begin{proof}
+For $d=2$, every odd prime has $d<p$; for $d=3$, every prime other than
+$2,3$ has $d<p$; for $d=4$, every prime greater than $3$ has $d<p$.
+The remaining prime $2$ in the first two assertions is covered by the
+additional $d<4$ conclusion. At $n=1$, A000033's explicit degree-two
+coefficient formula gives zero, as required by its source offset.
+\end{proof}
+
+The Lean package proves equality between the literal rational rook sum
+\eqref{eq:menage-source} and the integral definition
+\eqref{eq:menage-integral}, including $U_0=1$. Its final declarations
+\texttt{A000033\_prime\_shift}, \texttt{A000159\_prime\_shift}, and
+\texttt{A000181\_prime\_shift} assert integer divisibility with exactly the
+domains above. No conjectural recurrence or finite verification hypothesis is
+used. These are three recorded assertions proved and formalized; the available
+source review does not establish that they were historically open.

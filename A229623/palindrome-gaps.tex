@@ -1,0 +1,86 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Palindromes and digit sums},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Palindromes and digit sums}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries A palindrome one digit sum away\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+We prove Derek Orr's conjecture that the decimal palindromes whose digit sum can be subtracted to leave a palindrome have exactly one term at every length of four or more. With addition, we parametrize all sufficiently large terms and find the exact upper and lower limits of their counting function divided by the decimal logarithm. In other bases the subtraction rule has a second infinite family exactly when the base is odd.
+\end{abstract}
+
+Write \(s_b(N)\) for the sum of the base-\(b\) digits. A word \(w^R\) is \(w\) in reverse order. Zero itself is a palindrome. We first compare successive positive palindromes.
+\begin{lemma}\label{gap}
+Fix a length \(L\), put \(m=\lfloor L/2\rfloor\), and order the \(L\)-digit palindromes by their first \(\lceil L/2\rceil\) digits. For a palindrome other than the first, let \(u\) be this leading integer and \(v\) its number of trailing zero digits. Its distance from its predecessor is
+\[
+ \begin{cases}
+ (b+1)b^{m-1-v},&L=2m,\\
+ b^m,&L=2m+1,\ v=0,\\
+ (b+1)b^{m-v},&L=2m+1,\ v\ge1.
+ \end{cases}
+\]
+Between the last palindrome of one length and the first of the next the gap is two, for lengths at least two.
+\end{lemma}
+\begin{proof}
+For even length write \(N=b^m u+\operatorname{rev}_m(u)\), with reversal at fixed width. Increasing \(u-1\) to \(u\) resets \(v\) terminal digits \(b-1\) and increments the preceding digit. In the reversal this changes the value by \(b^{m-1-v}-(b^m-b^{m-v})\), giving the first formula. For odd length the reflected part is \(\operatorname{rev}_m(\lfloor u/b\rfloor)\). It is unchanged if \(v=0\), and otherwise has \(v-1\) reset digits. The transition across lengths is from \(b^L-1\) to \(b^L+1\).
+\end{proof}
+
+In two successive gaps within a length, at least one upper prefix is indivisible by \(b\), giving a gap of at least \(b^m\). At either end of that list the internal gap next to the change of length also has size at least \(b^m\) for \(m\ge2\), since the second and the last upper prefixes at that length are indivisible by \(b\). The latter statement about the second upper prefix uses \(m\ge2\).
+
+\begin{theorem}\label{minus}
+For all \(L\ge6\), the base-\(b\) palindromes \(N\) of length \(L\) with \(N-s_b(N)\) a palindrome are \(b^{L-1}+1\), and in odd base also \(d b^{L-1}+d\) with \(d=(b+1)/2\). In decimal the classification holds for \(L\ge4\), so \(\oeis{229623}(n)=10^{n-18}+1\) for every \(n>20\).
+\end{theorem}
+\begin{proof}
+For all \(b\ge2,\ L\ge6\) we have \(b^m>(b-1)L\). For \(m=3\) this follows from \(b^3>7(b-1)\); increasing \(m\) multiplies the left side by at least two while adding two to the largest possible \(L\). For decimal the same argument starts at \(m=2\), since \(100>45\). Thus \(s_b(N)\le(b-1)L<b^m\). The first palindrome of length \(L\) has digit sum two and works across the boundary. Otherwise our observation on successive gaps implies that the only possible target is the immediate predecessor. A gap at least \(b^m\) cannot work.
+
+In each remaining case of Lemma~\ref{gap}, delete the trailing zeros from the leading prefix \(u\), calling the remaining word \(w\). Put \(j=|w|-1\). The gap is \((b+1)b^j\). The palindrome consists of \(w\), a string of central zeros, and \(w^R\); in the odd case the middle digit is zero. Its digit sum is \(2s_b(w)\le2(b-1)(j+1)\). For \(j\ge1\), \((b+1)b^j>2(b-1)(j+1)\), first at \(j=1\) and then by induction. Thus \(j=0\) and the single outer digit must satisfy \(2d=b+1\). In odd base this digit exceeds one and the predecessor gap indeed equals \(2d\).
+
+In decimal, direct inspection of the at most three-digit palindromes gives the 20 terms
+\[
+ 0,1,2,3,4,5,6,7,8,9,11,101,181,262,343,424,686,767,848,929.
+\]
+The next term is \(1001\), at index 21, proving the proposed indexing.
+\end{proof}
+
+\section{Adding the digit sum}
+Let \(A_+(X)=\#\{N\le X:N\ge0,\ N,\ N+s_{10}(N)\text{ both palindromes}\}\), the counting function of \oeis{229622}.
+\begin{theorem}
+Every such \(N\) with at least four digits is specified exactly once by the following construction. Choose any \(j\ge1\) and any integer \(w\) with \(10^j\le w<10^{j+1}\), \(10\nmid w\), and \(w\equiv2\pmod9\). Put
+\[
+ c=\frac{11\cdot10^j-2(s_{10}(w)-1)}9.
+\]
+Form the decimal word \(N=(w-1)\,9^c\,(w-1)^R\), where \(9^c\) denotes a string of \(c\) nines. Moreover,
+\[
+ \liminf_{X\to\infty}\frac{A_+(X)}{\log_{10}X}=\frac9{110},\qquad
+ \limsup_{X\to\infty}\frac{A_+(X)}{\log_{10}X}=\frac9{11}.
+\]
+\end{theorem}
+\begin{proof}
+Again \(s_{10}(N)<10^m\). Within length \(L\ge4\) it must reach the immediate successor, and it cannot end across a length boundary. For the last palindrome \(10^L-1\) the gap across the boundary is two, less than its digit sum, while the next internal gap is at least \(10^{\lfloor(L+1)/2\rfloor}\). For any earlier starting point the final internal gap of length \(L\) already exceeds its digit sum. Thus the upper palindrome is \(w0^c w^R\) with a positive central zero block, and its gap to \(N\) is \(11\cdot10^j\), where \(j+1\) is the length of \(w\) and its last digit is nonzero. A zero-length central block would give a gap at least \(10^m\). The case \(w=1\) would cross a length boundary. Decrementing the upper prefix to obtain \(N\) decreases that last digit by one and fills the central block with nines. The condition is \(2(s_{10}(w)-1)+9c=11\cdot10^j\), as claimed. For \(j=0\) the only eligible \(w\) is 2 and yields \(N=191\), already of length three. For every \(j\ge1\) the formula gives \(c>0\), since \(s_{10}(w)\le9(j+1)\). Its integrality is exactly \(w\equiv2\pmod9\). This proves necessity, sufficiency and uniqueness by the unique successor.
+
+For each \(j\ge1\) there are exactly \(9\cdot10^{j-1}\) eligible \(w\): precisely \(10^j\) meet the congruence modulo nine, and \(10^{j-1}\) of these are multiples of ten. Their corresponding lengths are uniformly
+\[
+ L_j=2(j+1)+c=(11/9)10^j+O(j).
+\]
+Thus the clusters for successive \(j\) are eventually disjoint in length. The cumulative number through cluster \(j\) is \(10^j+O(1)\). Just before it the count is \(10^{j-1}+O(1)\). Within it the denominator is \((11/9)10^j+O(j)\), and in the intervening gaps the count stays constant while the denominator increases. Evaluating at the start and end of successive clusters proves both limits.
+\end{proof}
+
+Orr recorded the subtraction conjecture in 2015. T. D. Noe gave an infinite family for the addition problem in 2013; the classification above counts every eligible prefix. The related finite simultaneous list was already recorded in \oeis{244552}.
+\end{document}

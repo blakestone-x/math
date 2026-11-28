@@ -1,0 +1,41 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Lean kernel dependencies
+'VonNeumann.invariant62' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.cross_shapes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.uniform73' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.word62' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.word65_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.word65_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.word73' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.read_runs' depends on axioms: [propext, Quot.sound]
+'VonNeumann.even_population' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.odd_population' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.cross_agreement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'VonNeumann.population_from_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py
+Inductive local checks: 1154 rule-62 mask triples with all completions; two transitions at 720 cross triples for each of three rules.
+Infinite-background simulation: five rules, stages 0 through 55; shapes, counts and diagonals agree.
+A285612: numerator [1, 0, -1, 0, 10], recurrence valid from 5, failures in stated range [4]
+A285613: numerator [1, 0, -100, 0, 1000], recurrence valid from 5, failures in stated range [4]
+A285643: numerator [1, 10, -100, 90, 0, 1000, 10, 0, -1000], recurrence valid from 9, failures in stated range [5, 6, 8]
+A285644: numerator [1, 1, -1, -90, 0, 100, 100000, 0, -100000], recurrence valid from 9, failures in stated range [5, 6, 8]
+A285645: numerator [1, 2, -4, 2, 0, 8, 2, 0, -8], recurrence valid from 9, failures in stated range [5, 6, 8]
+A285646: numerator [1, 1, -1, -2, 0, 4, 32, 0, -32], recurrence valid from 9, failures in stated range [5, 6, 8]
+A285647: numerator [1, 10, -100, 90, -1, 1011, 100, -1100], recurrence valid from 8, failures in stated range []
+A285648: numerator [1, 1, -1, -90, -10000, 110100, 10000, -110000], recurrence valid from 8, failures in stated range []
+A285649: numerator [1, 2, -4, 2, -1, 11, 4, -12], recurrence valid from 8, failures in stated range []
+A285650: numerator [1, 1, -1, -2, -16, 52, 16, -48], recurrence valid from 8, failures in stated range []
+A269782: numerator [1, 4, 2, 24, -3, 0, 4, 4, -8, 0, 4], recurrence valid from 11, failures in stated range [10]
+A270084: numerator [1, -3, 22, -16, 32], recurrence valid from 5, failures in stated range []
+A270085: numerator [1, 4, 2, 24, -3, 0, 4, 4, -8, 0, 4], recurrence valid from 11, failures in stated range [10]
+A270086: numerator [3, 4, 26, -4, -1, 4, 4, -8, 0, 4], recurrence valid from 10, failures in stated range [9]
+A270569: numerator [1, 5, 2, 21, -3, 3, 4, 3, -8, 0, 4], recurrence valid from 11, no recurrence proposed in entry
+A271254: numerator [1, -2, 15, -2, 24], recurrence valid from 5, failures in stated range []
+A271255: numerator [1, 5, 2, 21, -3, 3, 4, 3, -8, 0, 4], recurrence valid from 11, no recurrence proposed in entry
+A271256: numerator [4, 4, 23, -4, 2, 4, 3, -8, 0, 4], recurrence valid from 10, failures in stated range [9]

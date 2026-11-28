@@ -1,0 +1,83 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.9in,headheight=14pt]{geometry}
+\usepackage{xcolor,fancyhdr}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Nakamura's prescribed-pattern conjecture}\rhead{\small Blake Stone}\cfoot{\thepage}
+\hypersetup{pdftitle={Nakamura's conjecture for prescribed counts of 123 and 132},pdfauthor={Blake Stone, with Astra}}
+\begin{document}\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Nakamura's conjecture for prescribed counts\\[2pt] of 123 and 132\par}
+\vspace{0.4em}Blake Stone\\{\small Research manuscript prepared with Astra}
+\end{center}
+\begin{abstract}
+For every fixed $r,s\ge0$, the number of permutations with $r$ occurrences of $123$ and $s$ of $132$ equals $2^n$ times a polynomial of degree $r+s$ for every $n\ge r+s+1$. This proves Conjecture 1 of Nakamura (2013), including its proposed starting index. A finite decomposition of rank codes gives the polynomial and its leading coefficient. For longer patterns beginning with their smallest element, every fixed joint multiplicity vector has a rational generating function and an explicit leading asymptotic.
+\end{abstract}
+
+Occurrences are classical subsequences. Write $a_{r,s}(n)$ for the joint count and let $K=r+s$.
+\begin{theorem}\label{main}
+There is a polynomial $P_{r,s}\in\mathbb Q[n]$ such that
+\[
+ a_{r,s}(n)=2^nP_{r,s}(n)\quad(n\ge K+1),\qquad
+ [n^K]P_{r,s}(n)=\frac{1}{2^{2K+1}r!s!},\qquad \deg P_{r,s}=K.
+\]
+\end{theorem}
+
+\section{Rank digits and a finite list of words}
+Complement the values of the permutation. The patterns now read $321$ and $312$. In position $i$, choose the entry of zero-based rank $e_i$ among the unused values in increasing order. This is a bijection with words satisfying $0\le e_i\le n-i$. In particular $e_n=0$. Exactly $e_i$ later values are smaller than the entry at $i$. Its contribution to the total number of patterns is $\binom{e_i}{2}$.
+
+A digit $e\ge2$ begins a comparison among the first $e$ remaining values, called a pending prefix. Its contribution to the number of $321$ patterns is the number of inversions in the order in which these $e$ values are removed. If the prefix still has size $q$ and the next digit is $j<q$, then the selected value precedes exactly $j$ smaller ones. Add $j$ to its inversion count and decrease $q$ by one. A digit $j\ge q$ skips the prefix. Discard it as soon as $q=1$. These rules apply simultaneously to all pending prefixes, before starting the new prefix of the current digit. The difference between total occurrences and inversions gives the $312$ count.
+
+Work with the word before its obligatory final zero. Call a \emph{cluster} the segment beginning with an $e\ge2$ when there was no pending comparison and ending when no comparison is pending again. Between clusters every digit is independently zero or one. The parsing is unique. In a valid code all clusters end before the last zero, since at that time only one value remains. Conversely, take any such sequence of complete clusters and binary gaps, then append the final zero. Each digit $e\ge2$ has at least $e-1$ subsequent selections before its comparison ends, followed eventually by the final zero. It therefore satisfies $e_i\le n-i$. Every binary digit before the final zero also satisfies the bound. Thus the construction counts exactly the permutations it describes.
+
+\begin{lemma}\label{len}
+A cluster of cost $b=\sum\binom{e_i}{2}$ has length at most $b+1$.
+\end{lemma}
+\begin{proof}
+Let the potential be the largest pending size minus one, or zero if none is pending. The initial digit $e$ contributes $1+\Delta\text{potential}=e\le1+\binom e2$. An interior binary digit reduces the potential by one, giving zero. Before any further exceptional digit the largest size $q$ is at least two. When $e<q$ the new maximum is $q-1$, including the newly started prefix. Otherwise it is $e$, so $1+\Delta\text{potential}=1+e-q\le e-1\le\binom e2$. Summing telescopes because the potential begins and ends at zero.
+\end{proof}
+
+\section{The polynomial and its starting index}
+List all ordered tuples of clusters which jointly have counts $(r,s)$. This list is finite by Lemma~\ref{len}, since the budget bounds every digit and each cluster costs at least one. For one tuple let $j$ be its number of clusters and $L$ their total length. There are $j+1$ binary gaps. At length $n\ge L+1$ the contribution of this tuple is
+\[
+ 2^{n-1-L}\binom{n-1-L+j}{j}. \tag{1}
+\]
+It is zero at smaller lengths. Since $L\le K+j$, the polynomial binomial coefficient in (1) also gives zero whenever $K+1\le n<L+1$: its upper argument is then an integer in $[0,j-1]$. Therefore dividing (1) by $2^n$ and summing over the finite list gives a single polynomial valid from $n=K+1$.
+
+The highest possible $j$ is $K$. To attain this, every cluster costs one and consists of a digit two followed by a single zero or one. This choice fixes its sole pattern type. There are $\binom Kr$ ordered tuples of this kind, each with $L=2K$. Their combined degree-$K$ coefficient is $\binom Kr/(2^{2K+1}K!)$. All other tuples have smaller degree. The empty tuple gives $P_{0,0}=1/2$ for $n\ge1$. This proves Theorem~\ref{main}.
+
+For example, $P_{1,1}=(n-3)(n-4)/32$, recovering Robertson's formula. For \href{https://oeis.org/A224288}{A224288} the same algorithm gives, from $n=5$,
+\[
+ P_{2,2}(n)=\frac{n^4-18n^3+219n^2-994n+1504}{2048}.
+\]
+The accompanying Python code constructs the cluster sum and recovers the initial terms by omitting tuples that do not fit. Lean 4.19 checks the rank bounds for a complete cluster and the inequality $L\le K+j$ used in the proof of the starting index.
+
+\section{All patterns beginning with their smallest entry}
+Fix an integer $b\ge2$. The $b!$ classical patterns of length $b+1$ whose first entry is smallest are indexed by the relative order $\tau$ of their final $b$ entries. Prescribe counts $t_\tau\ge0$ with $K=\sum_\tau t_\tau$ and let $a_{\bf t}(n)$ be the number of permutations realizing them.
+\begin{theorem}\label{arbitrary}
+The generating function $\sum_{n\ge0}a_{\bf t}(n)x^n$ is rational over $\mathbb Q$, with possible finite poles only among $1,1/2,\ldots,1/b$. Furthermore
+\[
+ a_{\bf t}(n)\ \sim\
+ \frac{(b-1)!}{b^{b-1}(b\,b!)^{K}\prod_\tau t_\tau!}\ b^n n^K.
+\]
+\end{theorem}
+\begin{proof}
+Complement values again. A digit $e$ now costs $\binom eb$. Call digits $e\ge b$ exceptional. At most $K$ such digits may occur, and each is bounded in terms of $K,b$. Keep, for each exception, the ordered list of its $e$ smaller values, numbered from one to $e$, and a record of the labels removed so far. A rank $j$ below the remaining size deletes its $(j+1)$-st label and appends it to the removal record. On completion this finite record gives the order of every $b$-subset and hence its full vector of contributions (complementing the order back). Store that vector cumulatively, and the total cost charged at creation. Discard paths exceeding the prescribed counts.
+
+For $n\ge b-1$ process the first $n-b+1$ positions with this finite system, where every ordinary digit $0,\ldots,b-1$ is allowed. Process the final $b-1$ positions with decreasing caps $b-2,\ldots,0$. Require all pending lists to finish. An oversized earlier exceptional rank could not finish its list, so this terminal test enforces all remaining Lehmer bounds. Shorter lengths supply only a polynomial correction.
+
+An exception strictly increases the total charged cost. At unchanged cost, an ordinary digit advances the state only by decreasing the total number of pending labels. Thus the transition matrix of the unrestricted positions is triangular in this ordering (ties can be ordered arbitrarily). At a state with largest unfinished prefix $q$, exactly $\max(b-q,0)$ ordinary digits leave the state unchanged, taking $q=0$ with no prefix. The diagonal entries belong to $\{0,1,\ldots,b\}$. The matrix geometric series gives the rational function and the asserted pole set.
+
+For the leading constant consider $K$ exceptions. They must all have $e=b$. For large $n$, the choices of their positions form $\binom{n-b}{K}$ subsets. All remaining ordinary digits are unrestricted except for the last $b-1$ caps, giving $(b-1)!\,b^{n-b+1-K}$ words per subset. Any set of at most $K-1$ exceptions contributes $O_{b,K}(b^n n^{K-1})$ in total, since their positions and ranks determine all nonordinary digits.
+
+Write $m=\lfloor\sqrt n\rfloor$. For a proportion tending to one of the $K$-subsets, each exception is followed by at least $m$ unrestricted ordinary positions before the next exception or the final tail. Under independent uniform choices of the ordinary digits, the entire pending $b$-prefix is removed within that window with probability tending to one: $b$ zeros suffice. In an infinite stream the next selected member of a remaining prefix of size $q$ is uniform among its $q$ labels, because the accepted ranks are $0,\ldots,q-1$. Its removal order is therefore uniform on $S_b$. The $K$ disjoint windows are independent, so the frequency of the prescribed counts tends to $K!/((b!)^K\prod_\tau t_\tau!)$. Multiplication gives the claimed constant. For $K=0$ the direct count $(b-1)!\,b^{n-b+1}$ already applies.
+\end{proof}
+
+\paragraph{References.}
+B. Nakamura, \href{https://arxiv.org/pdf/1301.5080}{Approaches for enumerating permutations with a prescribed number of occurrences of patterns} (2013), Conjecture 1.
+A. Robertson, \href{https://doi.org/10.46298/dmtcs.261}{Permutations containing and avoiding 123 and 132 patterns} (1999).
+T. Mansour, \href{https://arxiv.org/abs/math/9911243}{Permutations containing and avoiding certain patterns} (1999), including the single-occurrence case for the longer pattern family.
+\end{document}

@@ -1,0 +1,25 @@
+{
+  "checked_utc": "2026-11-27",
+  "reviewer": "independent sequence agent",
+  "repository": "oeis/oeisdata",
+  "files": [
+    {
+      "file": "A327315.seq",
+      "url": "https://github.com/oeis/oeisdata/blob/main/seq/A327/A327315.seq",
+      "oeis_header": "%I A327315 #6 Nov 06 2019 19:14:51",
+      "git_blob_sha1": "47efe5bcf666241a43536ea4f106e7342c741f96",
+      "sha256": "4cf24334a3be2295bb091e05b507ac500c163688bfacb3bfd8372103fc79c463",
+      "bytes": 1753,
+      "matches_preserved_source": true
+    },
+    {
+      "file": "A069353.seq",
+      "url": "https://github.com/oeis/oeisdata/blob/main/seq/A069/A069353.seq",
+      "oeis_header": "%I A069353 #20 Apr 22 2025 03:46:52",
+      "git_blob_sha1": "aeb2a0ed4dcbaff009e9044abd2c52659409c9bf",
+      "sha256": "6926741f40247aef89e3d5f02ba30681f28738dcc0555ba516e418a167f105ef",
+      "bytes": 1770,
+      "matches_preserved_source": true
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "results": [
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/327/A327315.asm",
+          "path": "oeis/327/A327315.asm",
+          "display_url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/327/A327315.asm",
+          "display_title": "oeis/327/A327315.asm",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "; A327315: Irregular triangular array read by rows: row n shows the coefficients of this polynomial of degree n: (1/n!)*(numerator of n-th derivative of (x-2)/(x^2-x+1)).\n; Submitted by vaughan\n; -2,1,-1,4,-1,1,3,-6,1,2,-4,-6,8,-1,1,-10,10,10,-10,1,-1,-6,30,-20,-15,12,-1,-2,7,21,-70,35,21,-14,1,-1,16,-28,-56,140,-56,-28,16,-1,1,9,-72,84,126,-252,84,36,-18,1,2,-10,-45,240,-210,-252,420,-120\n\nlpb $0\n  sub $0,1\n  add $1,1",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    2,
+                    9
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/sources/A327315.seq",
+          "path": "A326925/sources/A327315.seq",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/sources/A327315.seq",
+          "display_title": "A326925/sources/A327315.seq",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "%S A327315 -2,1,-1,4,-1,1,3,-6,1,2,-4,-6,8,-1,1,-10,10,10,-10,1,-1,-6,30,-20,\n%T A327315 -15,12,-1,-2,7,21,-70,35,21,-14,1,-1,16,-28,-56,140,-56,-28,16,-1,1,\n%U A327315 9,-72,84,126,-252,84,36,-18,1,2,-10,-45,240,-210,-252,420,-120",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    3,
+                    10
+                  ]
+                },
+                {
+                  "text": "A327315",
+                  "indices": [
+                    81,
+                    88
+                  ]
+                },
+                {
+                  "text": "A327315",
+                  "indices": [
+                    161,
+                    168
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "%e A327315 First eight polynomials:\n%e A327315   -2 + x\n%e A327315   -1 + 4 x - x^2",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    3,
+                    10
+                  ]
+                },
+                {
+                  "text": "A327315",
+                  "indices": [
+                    39,
+                    46
+                  ]
+                },
+                {
+                  "text": "A327315",
+                  "indices": [
+                    59,
+                    66
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/source_checks.md",
+          "path": "A326925/source_checks.md",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/source_checks.md",
+          "display_title": "A326925/source_checks.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "| A328611 | 11, October 31, 2019 | `273ca073f7b24d3ff7ccb59d92f72e14ba0ce7ea` |\n| A327315 | 6, November 6, 2019 | `47efe5bcf666241a43536ea4f106e7342c741f96` |\n",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    82,
+                    89
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "\nA327315 is a different rational function and a different irreducibility classification. Its conjecture is not covered by the odd-degree theorem under audit. The companion references A094440 and A094441 were read in full: they give related Fibonacci/binomial row polynomials, known formulas, and different derivative numerators. Neither checked record contains a proof of the A326925 irreducibility assertion.\n",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    1,
+                    8
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/AUDIT.md",
+          "path": "A326925/AUDIT.md",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/AUDIT.md",
+          "display_title": "A326925/AUDIT.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "\nThe result concerns one recorded clause: every odd-degree polynomial in this family is irreducible. It also proves irreducibility over the larger quadratic field, the exact degree, and the correspondence with reduced derivative numerators. These stronger statements and supporting lemmas are consequences and proof components, not additional conjecture resolutions. The even-degree factorization clause and A327315 are explicitly outside the claimed result.\n",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    408,
+                    415
+                  ]
+                }
+              ]
+            },
+            {
+              "property": "content",
+              "fragment": "\nThe related A328610 and A328611 exports describe the separate even-degree factors, while A327315 uses a different rational function. None is silently substituted for the family proved here. The four preserved source files were checked against their recorded Git blob hashes.\n",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    90,
+                    97
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/audit-verification.txt",
+          "path": "A326925/audit-verification.txt",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/audit-verification.txt",
+          "display_title": "A326925/audit-verification.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "Independent exact-source verification:\nA326925: Git blob e8036d79dbacfa38c832486936d3d80b5472cde1 MATCH\nA328610: Git blob 91e469434417481063f3629100c931cc3d2fdce0 MATCH\nA328611: Git blob 273ca073f7b24d3ff7ccb59d92f72e14ba0ce7ea MATCH\nA327315: Git blob 47efe5bcf666241a43536ea4f106e7342c741f96 MATCH\n\nForbidden proof-shortcut scan: no matches for sorry, admit, axiom, unsafe or native_decide.",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    234,
+                    241
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/README.md",
+          "path": "A326925/README.md",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/README.md",
+          "display_title": "A326925/README.md",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "Some auxiliary golden-ratio nonpower lemmas are included, but they are not counted as additional conjecture resolutions and do not establish the even-degree clause.\n\n## Sources and historical scope\n\nThe conjecture is attributed in A326925 to Clark Kimberling in 2019. The exact primary export and three related entries are preserved in `sources/`. Both search engines, the current trureturing index, and nearby Fibonacci-polynomial literature were checked. No earlier proof of this exact odd-degree assertion was located. This is a bounded prior-publication search, not a certification of historical priority; details and exact source hashes are in [source_checks.md](source_checks.md).\n\nThe complete independent audit and build logs are included with the package. The source-index discrepancy is documented rather than counted as another resolution, and no result for A327315 or the separate even-degree family is claimed.",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    869,
+                    876
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/renesas/fsp/blob/6e2675336b37fbd805f0c01d5134adfdab4bf294/ra/fsp/src/r_sce/crypto_procedures/src/rsip_e31a/plainkey/primitive/DomainParams.c",
+          "path": "ra/fsp/src/r_sce/crypto_procedures/src/rsip_e31a/plainkey/primitive/DomainParams.c",
+          "display_url": "https://github.com/renesas/fsp/blob/6e2675336b37fbd805f0c01d5134adfdab4bf294/ra/fsp/src/r_sce/crypto_procedures/src/rsip_e31a/plainkey/primitive/DomainParams.c",
+          "display_title": "ra/fsp/src/r_sce/crypto_procedures/src/rsip_e31a/plainkey/primitive/DomainParams.c",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "    0xc07594a6, 0xa42fcb49, 0x086b209d, 0x58316e69,\r\n    0x85945ef2, 0x0183b7db, 0x24a39503, 0x1d6af67b,\r\n    0x6c125b51, 0x981d4c1a, 0xdd920725, 0x1b2438c4,\r\n    0xcc07b710, 0xde40cd39, 0x7a327315, 0x0ad22c4a,\r\n    0xfffcc3f7, 0x7e469a30, 0x278fc07b, 0xefcb1f43,\r\n    0xe2951c04, 0x0eef3ead, 0xfaa6b377, 0x26931965,\r\n    0x9d1b57df, 0x74e155af, 0x9dcd85bd, 0x17710fbc,\r",
+              "matches": [
+                {
+                  "text": "a327315",
+                  "indices": [
+                    190,
+                    197
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/SHA256SUMS.txt",
+          "path": "A326925/SHA256SUMS.txt",
+          "display_url": "https://github.com/blakestone-x/math/blob/2422f82913949a4f4a4db7c7616b09c43546aea7/A326925/SHA256SUMS.txt",
+          "display_title": "A326925/SHA256SUMS.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  lean-toolchain\nc7373216826828af91ad2da5e8121d6fe185da1359a2d1d39b2eeb4886bb878e  source_checks.md\nb669b2d22c1e6e59e5e69c9659c972c63a1c94118df00ab4bb885b9d637c224b  sources/A326925.seq\n4cf24334a3be2295bb091e05b507ac500c163688bfacb3bfd8372103fc79c463  sources/A327315.seq\na496bb4a10aecb8093985383504c0c260c38889c2edae03b0d4a34b984df5597  sources/A328610.seq\n8d435c2fc30a43c5622c444e79688a7d9bb50a509ef62fcbdaac5afe0aa93a83  sources/A328611.seq\n348fb4b6351579fe8a870ebb44b625ff9246b5c0e70278b9ad217b8ee638d063  verification.txt",
+              "matches": [
+                {
+                  "text": "A327315",
+                  "indices": [
+                    324,
+                    331
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/xp4xbox/Turtle-Anti-Virus/blob/055a59d37b02e29a5db299bf0c6c22182da9c0a1/resources/dictionary/13e.txt",
+          "path": "resources/dictionary/13e.txt",
+          "display_url": "https://github.com/xp4xbox/Turtle-Anti-Virus/blob/055a59d37b02e29a5db299bf0c6c22182da9c0a1/resources/dictionary/13e.txt",
+          "display_title": "resources/dictionary/13e.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "13e41eb4cbf17a4837499b39139f077e\n13e41f26cba63e888a973acedf8ea2b8\n13e41f419dd4f85b7bf8c15ba40d2211\n13e4206461259b0616d9be62ea327315\n13e420846fb1b2a5612632269ea4ab00\n13e42143032615f8cf40015b130b71c0\n13e4217e12b3c20e1786543736632f41",
+              "matches": [
+                {
+                  "text": "a327315",
+                  "indices": [
+                    124,
+                    131
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "url": "https://github.com/ArchiveTeam/twitchtv-items/blob/0803705e200c5c45dd66d312d44345aa82ef74cc/disco-items/flv/10_top_5_per_user_100_views.txt",
+          "path": "disco-items/flv/10_top_5_per_user_100_views.txt",
+          "display_url": "https://github.com/ArchiveTeam/twitchtv-items/blob/0803705e200c5c45dd66d312d44345aa82ef74cc/disco-items/flv/10_top_5_per_user_100_views.txt",
+          "display_title": "disco-items/flv/10_top_5_per_user_100_views.txt",
+          "text_matches": [
+            {
+              "property": "content",
+              "fragment": "flv:a327300652\nflv:a327307658\nflv:a327308366\nflv:a327315171\nflv:a327316747\nflv:a327321137\nflv:a327331663",
+              "matches": [
+                {
+                  "text": "a327315",
+                  "indices": [
+                    49,
+                    56
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

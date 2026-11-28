@@ -1,0 +1,90 @@
+Fresh isolated author build from exact package sources; no prebuilt local proof objects were copied.
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+The initial build compiled eleven modules but exceeded memory during implicit executable extraction of GoldenConjugation. Two explicit noncomputable modifiers now suppress that unnecessary extraction; all mathematical definitions and proofs are unchanged. The final build below uses the corrected frozen source and the objects compiled in this same fresh directory.
+
+COMMAND: lake build GoldenConjugation
+ℹ [2801/2802] Replayed GoldenUnit
+info: ././././GoldenUnit.lean:329:0: 'GoldenUnit.phi4_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:330:0: 'GoldenUnit.irreducible_phi4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:331:0: 'GoldenUnit.phi2_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:332:0: 'GoldenUnit.phi_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:333:0: 'GoldenUnit.phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:334:0: 'GoldenUnit.neg_phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2802/2802] Built GoldenConjugation
+info: ././././GoldenConjugation.lean:42:0: 'QuadraticUnits.goldenConj_phi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenConjugation.lean:43:0: 'QuadraticUnits.goldenConj_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+COMMAND: lake build
+ℹ [2801/2814] Replayed GoldenUnit
+info: ././././GoldenUnit.lean:329:0: 'GoldenUnit.phi4_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:330:0: 'GoldenUnit.irreducible_phi4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:331:0: 'GoldenUnit.phi2_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:332:0: 'GoldenUnit.phi_no_odd_prime_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:333:0: 'GoldenUnit.phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenUnit.lean:334:0: 'GoldenUnit.neg_phi_not_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2802/2814] Replayed MobiusIrreducibility
+info: ././././MobiusIrreducibility.lean:79:0: 'MobiusIrreducibility.irreducible_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2803/2814] Replayed RationalDerivative
+info: ././././RationalDerivative.lean:69:0: 'RationalDerivative.iterate_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2804/2814] Replayed DerivativePolynomials
+info: ././././DerivativePolynomials.lean:167:0: 'DerivativePolynomials.original_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././DerivativePolynomials.lean:168:0: 'DerivativePolynomials.closed_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2805/2814] Replayed OddProof
+info: ././././OddProof.lean:90:0: 'A326925.odd_irreducible_over_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././OddProof.lean:91:0: 'A326925.odd_degree_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././OddProof.lean:92:0: 'A326925.degree_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././OddProof.lean:93:0: 'A326925.source_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././OddProof.lean:94:0: 'A326925.even_derivative_numerator_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2806/2814] Replayed SignedKummer
+info: ././././SignedKummer.lean:56:0: 'SignedKummer.irreducible_of_signed_nonpowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2807/2814] Replayed ConjugateDescent
+info: ././././ConjugateDescent.lean:77:0: 'ConjugateDescent.irreducible_of_swapped_factors' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2808/2814] Replayed GoldenConjugation
+info: ././././GoldenConjugation.lean:42:0: 'QuadraticUnits.goldenConj_phi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GoldenConjugation.lean:43:0: 'QuadraticUnits.goldenConj_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2809/2814] Replayed QuadraticUnits
+info: ././././QuadraticUnits.lean:169:0: 'QuadraticUnits.exists_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QuadraticUnits.lean:170:0: 'QuadraticUnits.coordinates_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QuadraticUnits.lean:171:0: 'QuadraticUnits.conj_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QuadraticUnits.lean:172:0: 'QuadraticUnits.no_square_iota_base' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QuadraticUnits.lean:173:0: 'QuadraticUnits.iota_phiJ_nonpower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2810/2814] Replayed BinomialUnits
+info: ././././BinomialUnits.lean:99:0: 'BinomialUnits.irreducible_phi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././BinomialUnits.lean:100:0: 'BinomialUnits.irreducible_neg_phi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././BinomialUnits.lean:101:0: 'BinomialUnits.irreducible_neg_phi2' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2811/2814] Replayed EvenFactors
+info: ././././EvenFactors.lean:163:0: 'EvenFactors.factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenFactors.lean:164:0: 'EvenFactors.fib_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenFactors.lean:165:0: 'EvenFactors.lucas_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2812/2814] Built EvenProof
+info: ././././EvenProof.lean:184:0: 'A326925Even.fib_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenProof.lean:185:0: 'A326925Even.lucas_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenProof.lean:186:0: 'A326925Even.even_degree_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2813/2814] Built EvenDerivative
+info: ././././EvenDerivative.lean:132:0: 'DerivativePolynomials.poly_coprime_D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenDerivative.lean:133:0: 'A326925Even.numerator_coprime_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenDerivative.lean:134:0: 'A326925Even.derivative_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././EvenDerivative.lean:135:0: 'A326925Even.odd_derivative_numerator_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 BinomialUnits.lean: d513fba585129e4b0da6e48820f28be42bf5cf9d024ae028ca761183eac0ea50
+SHA256 ConjugateDescent.lean: 3a7b4ed207055830723381d2a576bd3755ecd94bc018494de1502041216b3462
+SHA256 DerivativePolynomials.lean: dfd9673f3f8d2be0514d8a75b55896dbf392eb661045fc768a3b276d68c8556a
+SHA256 EvenDerivative.lean: 455c2bb0f1f0dc1e9ddc0498162426d5af18f3e91de79c65e38bc43201fa4e1f
+SHA256 EvenFactors.lean: 12182c8dae1d8098e201ee8b06f14bfe93a20f3c0a1e9ea019a6fa0e9eabafa2
+SHA256 EvenProof.lean: 3cd1ef188cc587dc9149d2d6e4c914bdc7f55d937e580e87e9c813e9e776395e
+SHA256 GoldenConjugation.lean: a75afcb2b40c9192d19f09d811393c0a8e2e454f3408110a377bda550cde736f
+SHA256 GoldenUnit.lean: e362553050405c282b468c631ea3d080025389fda12901165a2bfa2bf2fddeff
+SHA256 MobiusIrreducibility.lean: f39a3dac59fa2b21614dd3e22286e0f79a97de40425c172cb209fccb1c92b3a8
+SHA256 OddProof.lean: 1c4b98449d5c9e04a8b3e2d8e2ff1132a5b6195b26828c10156c42782b097659
+SHA256 QuadraticUnits.lean: 5bd8fd71f2404e5b076e8f6863c24a1e1ff8a441aa2758e3c41c63a1fd7d2f3e
+SHA256 RationalDerivative.lean: 54913422f586a5d2dacd6ab40d1f79faa1f2aeecddbe14a08811f1453c1ce5c2
+SHA256 SignedKummer.lean: 5b13b9c70c1d07902637dad7d8a5f784a9fad5fba536813c5ecfa61aa3914224
+SHA256 lakefile.lean: e19f6256cf101a64e1d3e8c177146a93701b18db2f16693e7545c09ab0e3ffd5
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: d07e5f317b2712aa4336b43a9cb254b4933ae1a786fd824323fc55075a474f26

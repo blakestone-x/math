@@ -1,0 +1,637 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Floor sequences, replacement words, and cyclotomic products},pdfauthor={Blake Stone},pdfsubject={Three conjectural identities and complete Lean proofs}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Floor sequences, replacement words,\\[3pt]
+and cyclotomic products}\par
+\vspace{0.5em}
+{\large Three conjectural identities with complete Lean proofs}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proofs developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove three conjectural assertions recorded in the On-Line Encyclopedia
+of Integer Sequences. First, a nested-floor equation with parameter $5$
+reduces exactly to two Pell equations. A terminating inverse-unit descent
+classifies every positive solution into four ordered orbits and proves
+the empirical generating function of A081097. Second, a three-block
+substitution and a ten-phase boundary description prove the proposed
+order-thirteen recurrence for the lengths of the literal replacements
+$00\mapsto0101$, $10\mapsto001$, starting from $00$.
+Third, an odd/even factorization proves Peter Bala's cyclotomic-product
+conjecture for the Liouville-weighted generating function A118207.
+Each result is verified from its source definition in Lean, with exact
+source snapshots, reproducible builds, and separate reviews.
+Classical methods and previously proved helper identities retain their
+attribution. Bounded searches located no earlier proof of these exact
+assertions; the search record does not establish global priority.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.5in}@{}}
+\toprule
+Source & Assertion proved\\
+\midrule
+A081097 & Fixed-parameter nested-floor enumeration and empirical generating function.\\
+A288508/A288511/A288512 & One shared length assertion for a literal binary replacement process.\\
+A118207 & The conjectured identity between a Liouville Euler product and paired cyclotomic factors.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The three word entries repeat the same length assertion and are counted
+once. The four Pell families and their recurrence are components of one
+classification. The established cyclotomic and arithmetic identities used
+in the product proof are supporting results, not additional resolutions.
+
+
+\section{A nested-floor sequence and four Pell orbits}\label{sec:pell}
+
+Benoit Cloitre's sequence A081097 lists the positive integers satisfying
+\begin{equation}\label{eq:literal-floor}
+ n^2=\frac15\left(n+
+ \left\lfloor\sqrt5\,n\left\lfloor\sqrt5\,n\right\rfloor\right\rfloor\right).
+\end{equation}
+The entry records Colin Barker's 2013 empirical generating function
+\cite{oeis081097}. We prove that exact formula. The separate conjecture
+in the entry concerning arbitrary nonsquare parameters is outside this theorem.
+Zero satisfies the displayed equation trivially; the positive restriction
+agrees with the source's list and offset.
+
+\begin{theorem}\label{thm:pell-main}
+Let $a(1)<a(2)<\cdots$ enumerate the positive solutions of
+\eqref{eq:literal-floor}. Put
+\[
+ U=\begin{pmatrix}161&360\\72&161\end{pmatrix},\qquad
+ s_0=\binom42,\quad s_1=\binom{29}{13},\quad
+ s_2=\binom{114}{51},\quad s_3=\binom{199}{89}.
+\]
+For $k\ge0$ and $0\le i<4$,
+\[
+ a(4k+i+1)=\frac{(U^ks_i)_1+1}{5}.
+\]
+In particular, the first eight terms are
+$1,6,23,40,273,1870,7343,12816$, and
+\begin{equation}\label{eq:pell-recurrence}
+ a(j+8)=322a(j+4)-a(j)-64\qquad(j\ge1).
+\end{equation}
+As an identity of formal power series,
+\begin{equation}\label{eq:pell-gf}
+\sum_{j\ge1}a(j)z^j=
+\frac{z(z^7+z^6+13z^5+89z^4-17z^3-17z^2-5z-1)}
+{(z-1)(z^2-4z-1)(z^2+4z-1)(z^4+18z^2+1)}.
+\end{equation}
+\end{theorem}
+
+\begin{lemma}[Exact floor reduction]\label{lem:floor-bridge}
+For $n\ge1$, equation \eqref{eq:literal-floor} holds if and only if
+there is an integer $y\ge0$ satisfying
+\[
+ y^2=5n^2-2n+1\quad\hbox{or}\quad y^2=5n^2-2n+2.
+\]
+Equivalently, with $x=5n-1$,
+\begin{equation}\label{eq:pell-admissible}
+ x^2-5y^2\in\{-4,-9\},\qquad x\equiv4\pmod5,\qquad x,y\ge0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Suppose first that the nested-floor equation holds, and put
+$y=\lfloor\sqrt5\,n\rfloor$, $A=5n^2-n$, and $u=\sqrt5\,ny$.
+Then $A\le u<A+1$, with $A,u\ge0$. Dividing the lower inequality by $n$
+and squaring gives
+\[
+ 5y^2\ge(5n-1)^2=25n^2-10n+1.
+\]
+Since $y^2$ is integral, $y^2\ge5n^2-2n+1$.
+If $y^2\ge5n^2-2n+3$, the upper inequality, squared, would imply
+\[
+ 25n^4-10n^3+15n^2\le5n^2y^2
+ <(5n^2-n+1)^2
+ =25n^4-10n^3+11n^2-2n+1,
+\]
+which contradicts $n\ge1$. This proves the two possibilities.
+
+Conversely, suppose $y^2=5n^2-2n+c$ for $c\in\{1,2\}$ and $y\ge0$.
+The inequalities
+\[
+ (\sqrt5\,n-1)^2<5n^2-2n+1\le y^2\le5n^2
+\]
+give $y\le\sqrt5\,n<y+1$, hence the inner floor is $y$.
+Furthermore,
+\[
+ u^2-A^2=(5c-1)n^2>0,\qquad
+ (A+1)^2-u^2=(11-5c)n^2-2n+1.
+\]
+The second expression is positive for $c=1$. For $c=2$ it is
+$(n-1)^2$, also positive unless $n=1$; that exception would require
+$y^2=5$, impossible for an integer. Thus $A\le u<A+1$, proving the
+outer floor identity. Substituting $x=5n-1$ gives the stated norms.
+\end{proof}
+
+\begin{lemma}[Exhaustive descent]\label{lem:pell-descent}
+The pairs satisfying \eqref{eq:pell-admissible} are precisely
+$U^ks_i$ for $k\ge0$ and $0\le i<4$.
+\end{lemma}
+
+\begin{proof}
+The determinant of $U$ is $161^2-5\cdot72^2=1$. Both $U$ and
+\[
+ U^{-1}=\begin{pmatrix}161&-360\\-72&161\end{pmatrix}
+\]
+preserve the norm $x^2-5y^2$ and the first coordinate modulo $5$.
+Each seed satisfies the required conditions, and the forward map preserves
+nonnegativity. This proves one inclusion.
+
+For the converse write $x^2-5y^2=-D$, where $D\in\{4,9\}$.
+If $x\ge483$, then
+\begin{align*}
+ (161x)^2-(360y)^2&=x^2-25920D
+       \ge483^2-25920\cdot9=9>0,\\
+ 5\big((161y)^2-(72x)^2\big)&=x^2+25921D>0,\\
+ (360y)^2-(160x)^2&=320x^2+25920D>0.
+\end{align*}
+All compared quantities are nonnegative, so
+$U^{-1}(x,y)$ has positive coordinates and its first coordinate is
+strictly less than $x$. This is a descent within the same admissible set.
+It terminates at $x<483$. At that point
+\[
+ 5y^2=x^2+D\le482^2+9=232333<5\cdot217^2,
+\]
+so $y<217$. In this finite rectangle the residue and norm tests give
+exactly
+\[
+\begin{array}{c|rrrr}
+ x&4&29&114&199\\
+ y&2&13&51&89\\
+ x^2-5y^2&-4&-4&-9&-4
+\end{array}
+\]
+and no other pair. This finite claim is explicitly checked by Lean's
+kernel in \path{pell_reduced_certificate}; a separate integer script
+repeats it. Reversing the descent proves the unbounded classification.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:pell-main}]
+The floor bridge and descent give all candidates. Coordinatewise,
+\[
+ s_0<s_1<s_2<s_3<Us_0=\binom{1364}{610}.
+\]
+Every entry of $U$ is positive, so these strict inequalities persist
+after applying $U^k$. The first coordinates therefore occur in exactly
+the interleaved order asserted in the theorem. They are congruent to
+$4$ modulo $5$, so $(x+1)/5$ is a positive integer. This proves
+the exact enumeration, including uniqueness of every index.
+
+The matrix identity $U^2-322U+I=0$ gives
+$x_{k+2}=322x_{k+1}-x_k$ on each orbit. Substituting $x_k=5n_k-1$
+gives \eqref{eq:pell-recurrence}. Subtracting consecutive instances yields
+\[
+ a(j+9)=a(j+8)+322a(j+5)-322a(j+4)-a(j+1)+a(j).
+\]
+Using the initial terms, coefficient comparison gives
+\[
+ \sum_{j\ge1}a(j)z^j=
+ \frac{z+5z^2+17z^3+17z^4-89z^5-13z^6-z^7-z^8}
+ {(1-z)(1-322z^4+z^8)}.
+\]
+Finally,
+\[
+ (z^2-4z-1)(z^2+4z-1)(z^4+18z^2+1)=z^8-322z^4+1,
+\]
+which converts this expression to \eqref{eq:pell-gf}. The denominator
+has nonzero constant term, so all manipulations are valid formally.
+\end{proof}
+
+\paragraph{Formal endpoint and attribution.}
+Six Lean modules prove the full statement from the real-floor definition.
+The final theorem \path{A081097.full_resolution} combines strict ordering,
+positive terms, unique literal membership, the coefficient identification,
+and the exact source numerator--denominator identity in $\Z[[X]]$.
+The bounded certificate is only the terminating case of an infinite descent.
+Cloitre's definition and Barker's formula retain their attribution;
+Pell descent and the matrix generating-function method are classical.
+The source and prior-work record is retained in the accompanying package.
+
+
+\section{A288511: the exact thirteen-term length recurrence}
+\label{sec:a288511}
+
+Starting with $w_0=00$, apply a left-to-right nonoverlapping scan with
+rules $00\mapsto0101$ and $10\mapsto001$, copying an unmatched letter.
+Let $L_n=|w_n|$. Kimberling conjectured that these literal lengths are
+the independently defined sequence A288511; the assertion is repeated
+in A288508 and A288512 \cite{A288511,A288508,A288512}.
+We prove this complete assertion, counted once across the three entries.
+
+\paragraph{Theorem.}
+For every $n\ge16$,
+\begin{align*}
+L_n={}&2L_{n-1}-L_{n-2}+2L_{n-3}-4L_{n-4}+4L_{n-5}-4L_{n-6}\\
+ &+4L_{n-7}-4L_{n-8}+4L_{n-9}-3L_{n-10}+2L_{n-11}-3L_{n-12}+2L_{n-13},
+\end{align*}
+with
+\[
+(L_0,\ldots,L_{15})=(2,4,5,7,9,12,17,23,33,48,70,103,152,228,343,515).
+\]
+Thus $L_n=\mathrm{A288511}(n)$ for every $n\ge0$.
+
+\subsection{A literal finite-word coding}
+Use the code $h(A)=10$, $h(B)=100$, $h(C)=1000$ and the substitution
+\[
+\sigma(A)=B,\qquad\sigma(B)=C,\qquad\sigma(C)=AAB.
+\]
+When followed by a word beginning in $1$, a code block scans independently
+of the following word, emitting respectively
+\[
+r(A)=001,\quad r(B)=0010,\quad r(C)=0010101.
+\]
+The three elementary identities $r(X)00=00h(\sigma(X))$ imply
+\begin{equation}
+r(v)00=00h(\sigma(v))
+\label{eq:a288511:rotation}
+\end{equation}
+for every finite code word $v$, by concatenation and induction.
+The required independence is proved from the scanner: no unrestricted
+binary concatenation identity is assumed.
+
+For a phase $i$ modulo ten, put
+\[
+F_i(v,t)=0^{b_i}h(v)h(s_i)1^{t+1},\qquad t\ge0.
+\]
+All boundary data appear in the following table; $\epsilon$ denotes the
+empty token word.
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+$i$&$b_i$&$s_i$&$\ell_i$&$e_i$&$d_i$\\\hline
+0&1&BAA&$\epsilon$&$\epsilon$&1\\
+1&3&CB&AC&A&0\\
+2&1&ABA&$\epsilon$&$\epsilon$&1\\
+3&3&BC&AC&$\epsilon$&1\\
+4&1&CAA&$\epsilon$&A&1\\
+5&3&ABB&AC&$\epsilon$&0\\
+6&1&BCA&$\epsilon$&C&1\\
+7&3&AAB&AC&$\epsilon$&0\\
+8&1&BBA&$\epsilon$&$\epsilon$&1\\
+9&3&CC&AC&AA&1
+\end{tabular}
+\end{center}
+Direct scanning of the ten suffixes gives
+\[
+T(h(s_i)1^{t+1})=00h(e_i)h(s_{i+1})1^{t+1+d_i}.
+\]
+Equation~\eqref{eq:a288511:rotation} then handles the entire core. The
+initial prefix $0$ changes to $000$ after incorporating the interior's
+leading $00$. For initial prefix $000$, the combined output prefix is
+$0101000=0h(AC)$. Hence, for every finite $v$ and every $t\ge0$,
+\begin{equation}
+T(F_i(v,t))=F_{i+1}(\ell_i\sigma(v)e_i,t+d_i).
+\label{eq:a288511:state}
+\end{equation}
+These are identities of literal binary words. The ninth actual iterate is
+\[
+w_9=F_0(ACCBBCBBCAA,5).
+\]
+Induction using~\eqref{eq:a288511:state} therefore describes every subsequent
+actual iterate, with no limiting-word assumption.
+
+\subsection{Eliminating the interior and the boundary cycle}
+If the core has counts $(a,b,c)$, substitution sends them to
+\[
+M(a,b,c)=(2c,a+c,b),\qquad M^3=M+2I.
+\]
+The update additionally inserts the counts of $\ell_i e_i$ and increases
+$t$ by $d_i$. Length is the affine functional
+\[
+\mathcal L(i,a,b,c,t)=2a+3b+4c+t+1+b_i+|h(s_i)|.
+\]
+Let $E$ denote the forward shift and define
+$R_n=L_{n+3}-L_{n+1}-2L_n$. The relation $M^3=M+2I$ eliminates
+the three core counts. At phase $i$ with current coordinate $t$, the
+remaining expression is $-2t+q_i$, where
+\[
+(q_i)_{i=0}^9=(-4,-3,-3,-3,-4,-3,-4,-3,-3,-3).
+\]
+Set $S_n=R_n+R_{n+2}+R_{n+4}+R_{n+6}+R_{n+8}$. The same finite table
+gives $S=-10t+u_i$, with
+\[
+(u_i)_{i=0}^9=(-44,-41,-48,-45,-42,-39,-46,-43,-50,-47).
+\]
+Each of the ten rows satisfies $-10d_i+u_{i+1}-u_i=-7$.
+Consequently $S_{n+1}-S_n=-7$ and
+\begin{equation}
+(E-1)^2(1+E^2+E^4+E^6+E^8)(E^3-E-2)L=0.
+\label{eq:a288511:annihilator}
+\end{equation}
+Expanding this monic degree-thirteen polynomial gives the recurrence in
+the theorem. The boundary model proves it at newest indices at least
+22. Direct evaluation of the preceding literal words proves the six
+remaining instances at indices 16 through 21 and the sixteen initial
+values. Strong induction then proves equality with the independently
+specified source recurrence at every natural index.
+
+The Lean implementation certifies the expanded identity directly for
+all ten phases and four arbitrary integer coordinates, through thirteen
+explicit state transitions. This symbolic identity is then transported
+to the literal words by the proved coding theorem. The $R,S$ elimination
+above is a shorter mathematical explanation of the same polynomial.
+
+\subsection{Source indexing and formal scope}
+The correctly indexed ordinary generating function is $N(x)/D(x)$, where
+\begin{align*}
+D(x)&=(1-x)^2(1-x^2-2x^3)(1-x+x^2-x^3+x^4)(1+x+x^2+x^3+x^4),\\
+N(x)&=2-x^2-3x^3-x^5-x^7-x^9-x^{10}-3x^{11}+x^{12}+2x^{13}+x^{14}-2x^{15}.
+\end{align*}
+The source prints $xN(x)/D(x)$, which is shifted by one and has constant
+coefficient zero despite offset zero and $L_0=2$. We target the source's
+recurrence-defined length assertion. The corrected generating function
+is an algebraic corollary of that theorem, not a separate counted result
+or an additional formal power-series theorem.
+
+The formal endpoint is
+\texttt{Kimberling288511.all\_lengths}; its quantifier is every $n:\mathbb N$,
+and its two sides are the length of the recursive literal scanner and
+an independent integer recurrence with all sixteen source initial values.
+The package contains no admitted theorem, custom axiom, or
+\texttt{native\_decide}. All four proof modules are explicit Lake roots.
+The same length assertion appears in three OEIS entries, so the result
+is counted once. Adjacent position, frequency, and limiting-word
+assertions are not included.
+
+The source and prior-publication screen distinguishes this rule from
+the A288476 rule $00\mapsto0101,1\mapsto011$ and the
+A288462/A288465 Tribonacci rule studied by Dvo\v r\'akov\'a,
+Pelantov\'a, and Shallit \cite{DPS2026}. Finite recoding is standard prior art.
+The searches found no earlier proof of this exact source assertion;
+they do not establish exhaustive historical priority.
+
+\section{A Liouville--cyclotomic product identity}\label{sec:liouville}
+
+Let $\lambda(n)=(-1)^{\Omega(n)}$ be the Liouville function, where
+$\Omega(n)$ counts prime factors with multiplicity, and let $\Phi_n$ be
+the $n$th cyclotomic polynomial. Stuart Clary's sequence A118207 is defined by
+the formal generating function
+\begin{equation}\label{eq:liouville-A}
+ A(z)=\prod_{n\ge1}(1+z^n)^{\lambda(n)}.
+\end{equation}
+Peter Bala's formula entry of 5 April 2023 conjectures the following
+identity \cite{oeis118207}.
+
+\begin{theorem}\label{thm:liouville-main}
+In the ring of rational formal power series,
+\begin{equation}\label{eq:liouville-target}
+ A(z^2)=\prod_{n\ge1}\Phi_n(z^n)\Phi_n((-z)^n).
+\end{equation}
+\end{theorem}
+
+Every product below is interpreted coefficientwise. In particular, its
+coefficient in degree $N$ is determined by the factors with index at most
+$\max\{1,N\}$. Integer exponents are powers in the group of series with constant
+coefficient $1$. At index $1$ the individual cyclotomic factors have
+constant coefficient $-1$, but their paired product has constant
+coefficient $1$.
+
+The proof uses a product identity already established in Proposition 1 of
+Bala's 9 April 2023 note \cite{bala2023}: if
+\[
+ F(z)=\prod_{n\ge1}(1-z^n)^{\lambda(n)},
+\]
+then
+\begin{equation}\label{eq:bala-known}
+ F(z)=-\prod_{n\ge1}\Phi_n(z^n).
+\end{equation}
+The inspected four-page note proves this identity and a companion
+formula for its reciprocal. It does not state
+\eqref{eq:liouville-target}. We include a proof of the helper identity to
+make the argument and its formalization self-contained, while retaining
+Bala's attribution.
+
+\begin{lemma}[Square-divisor identity]\label{lem:liouville-square}
+For every positive integer $m$,
+\begin{equation}\label{eq:liouville-square}
+ \lambda(m)=\sum_{d^2\mid m}\mu(m/d^2),
+\end{equation}
+where $\mu$ denotes the M\"obius function. Also,
+$\lambda(2m)=-\lambda(m)$.
+\end{lemma}
+
+\begin{proof}
+Write $m=\prod_p p^{e_p}$. There is a unique factorization
+$m=ab^2$ with $a$ squarefree: the exponent of $p$ in $a$ is
+$e_p\bmod2$, and its exponent in $b$ is $\lfloor e_p/2\rfloor$.
+Every term in the sum is zero unless $m/d^2$ is squarefree, so the unique
+nonzero term is
+\[
+ \mu(a)=(-1)^{\sum_p(e_p\bmod2)}
+        =(-1)^{\sum_p e_p}=\lambda(m).
+\]
+Complete multiplicativity follows by adding prime exponents, and
+$\lambda(2)=-1$ gives the final assertion.
+\end{proof}
+
+\begin{lemma}[Bala's normalized Euler product]\label{lem:liouville-bala}
+Define $\Psi_1(z)=1-z$ and $\Psi_n(z)=\Phi_n(z)$ for $n>1$.
+Then
+\begin{equation}\label{eq:liouville-normalized}
+ \prod_{n\ge1}\Psi_n(z^n)=F(z).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The usual cyclotomic factorization, with the sign at $n=1$ normalized,
+gives
+\[
+ \prod_{d\mid n}\Psi_d(z)=1-z^n.
+\]
+M\"obius inversion in the multiplicative group of formal units gives
+\begin{equation}\label{eq:liouville-mobius}
+ \Psi_n(z)=\prod_{d\mid n}(1-z^d)^{\mu(n/d)}.
+\end{equation}
+After substituting $z^n$ and writing $n=ad$, the product becomes
+\[
+ \prod_{a,d\ge1}(1-z^{ad^2})^{\mu(a)}.
+\]
+Regroup by $m=ad^2$. The exponent of $1-z^m$ is
+$\sum_{d^2\mid m}\mu(m/d^2)=\lambda(m)$ by
+Lemma~\ref{lem:liouville-square}. This proves
+\eqref{eq:liouville-normalized}. For a fixed degree $N$, only pairs with
+$ad^2\le N$ can contribute, so the regrouping is finite modulo
+$z^{N+1}$. The single sign change at index $1$ recovers
+\eqref{eq:bala-known}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:liouville-main}]
+First compute $F(z)F(-z)$. For odd $n$,
+$(1-z^n)(1-(-z)^n)=1-z^{2n}$; for even $n$ the product is
+$(1-z^n)^2$. Splitting odd and even indices, then writing $n=2m$ in
+the even part, gives
+\begin{align}
+ F(z)F(-z)
+ &=\prod_{\substack{m\ge1\\m\text{ odd}}}
+       (1-z^{2m})^{\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{2\lambda(2m)}\notag\\
+ &=\prod_{\substack{m\ge1\\m\text{ odd}}}
+       (1-z^{2m})^{\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{-2\lambda(m)}.
+   \label{eq:liouville-evenodd}
+\end{align}
+Thus the exponent attached to $1-z^{2m}$ is $-\lambda(m)$ when
+$m$ is odd and $-2\lambda(m)$ when $m$ is even.
+
+On the other hand, factoring $1-z^{4n}$ gives
+\begin{align*}
+ A(z^2)
+ &=\prod_{n\ge1}
+       \left(\frac{1-z^{4n}}{1-z^{2n}}\right)^{\lambda(n)}\\
+ &=\prod_{\substack{m\ge1\\m\text{ even}}}
+       (1-z^{2m})^{-\lambda(m)}
+   \prod_{m\ge1}(1-z^{2m})^{-\lambda(m)}.
+\end{align*}
+For the numerator reindexing we used $m=2n$ and
+$\lambda(n)=-\lambda(m)$. The exponent at every $m$ therefore
+agrees with \eqref{eq:liouville-evenodd}, proving
+$A(z^2)=F(z)F(-z)$. Apply \eqref{eq:bala-known} at $z$ and $-z$.
+The two overall minus signs cancel, yielding
+\eqref{eq:liouville-target}.
+\end{proof}
+
+\paragraph{Formal products and the exact source bridge.}
+The Lean proof first establishes these identities for an arbitrary
+nilpotent element $x$ of any commutative ring. Each $1-x^n$ with $n>0$
+is a unit, and all sufficiently high powers of $x$ are zero. Consequently
+the products have finite multiplicative support. The proof of
+Lemma~\ref{lem:liouville-bala} uses two explicit finite fiber regroupings
+of the factors $(1-x^{ad^2})^{\mu(a)}$: first by $ad$, then by $ad^2$.
+The square-divisor identity is proved arithmetically from the unique
+squarefree-times-square decomposition, including uniqueness and the
+vanishing of every other M\"obius term.
+
+For each $N\ge0$ this nilpotent theorem is applied to the class of $X$ in
+\[
+ \mathbb{Q}[[X]]/(X^{N+1}).
+\]
+The literal factor families in \path{SourceSeries.lean} are
+$(1+X^{2n})^{\lambda(n)}$ and
+$\Phi_n(X^n)\Phi_n((-X)^n)$, with index zero set to the neutral factor.
+The file proves that their quotient images equal $1$ for $n>N$ and
+identifies the remaining images with the finite-support unit products.
+The generic construction \path{formalProduct} takes the degree-$N$
+coefficient from the prefix through index $N$. Its stabilization theorem
+proves that this definition agrees with every sufficiently long prefix
+in the quotient, rather than assuming a convergence property.
+
+The final theorem \path{A118207.source_conjecture} proves equality of
+the two resulting formal power series.
+\path{A118207.source_coefficient_identity} states their equality in
+every degree. Thus the formal conclusion is the complete infinite
+product identity, with no fixed truncation bound. The methods and
+the helper identity are classical; this package resolves the specific
+conjectural formula recorded in A118207 and supplies its complete Lean
+proof. The bounded prior-work search is documented separately and does
+not establish worldwide priority.
+
+\section{Formal verification, review, and scope}
+
+The accompanying repository contains three independently buildable Lean
+projects and seventeen local proof modules. Every local proof module is
+an explicit default Lake root. All projects pin Lean 4.19.0 and mathlib
+to the same commit:
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}lcp{3.8in}@{}}
+\toprule
+Package & Modules & Principal formal conclusion\\
+\midrule
+A081097 & 6 & Unique increasing enumeration of all positive literal floor solutions and the exact formal generating function.\\
+A288511 & 4 & Equality of every literal replacement length with the independently defined source recurrence.\\
+A118207 & 7 & Equality of the two complete formal products and their coefficients in every degree.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each package supplies an author build and a separate fresh build performed
+during review. The build directories receive source and configuration
+files, with no local proof objects copied. The fixed external mathlib
+cache is shared. Logs record the exact source hashes and the axiom
+dependencies of the principal theorems. The proofs contain no admitted
+theorem, custom axiom, or invocation of \path{native_decide}. The
+principal theorem audits use only \path{propext}, \path{Classical.choice},
+and \path{Quot.sound}; the bounded Pell certificate uses only
+\path{propext}.
+
+The separate review of each package was performed by an agent that had
+not contributed to that package's proof sources. The reviews inspect
+the mathematics, the exact source definitions, boundary and indexing
+cases, and the scope of the formal endpoints. This is independent review
+within the collaboration, not external journal peer review. Exact
+integer and finite-series scripts provide supplementary replays; the
+unbounded conclusions rest on the Lean proofs and the mathematical
+arguments above.
+
+\paragraph{Precise scope.}
+The first theorem concerns the parameter $5$ in A081097; the entry's
+general arbitrary-parameter recurrence conjecture remains outside this
+work. The replacement theorem proves one length assertion repeated in
+three entries; it does not settle neighboring position, frequency, or
+limiting-word questions. Its corrected generating-function offset is
+documented as a corollary, without claiming an additional formal
+power-series theorem. The product theorem resolves the specific
+conjectural formula in A118207; Bala's previously proved helper identity
+and the classical arithmetic ingredients are credited and counted as
+supporting results.
+
+\paragraph{Source and prior-work records.}
+Each package preserves the relevant official OEIS source export and
+links it to an immutable source commit. Its provenance report records
+exact and semantic web searches, global code searches, and checks of
+the ProveIt and trureturing collections. Relevant nearby results were
+read and distinguished by their actual hypotheses and formulas.
+Search-index coverage can lag repository heads. The bounded screen
+located no earlier proof of the three exact assertions addressed here;
+it does not certify worldwide priority. No OEIS edit or announcement
+is part of this publication.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{oeis081097} B. Cloitre; empirical generating function by C. Barker.
+OEIS A081097, revision 12, June 24, 2013.
+\url{https://oeis.org/A081097}.
+\bibitem{A288511} C. Kimberling. OEIS A288511, revision 9, April 7, 2020.
+\url{https://oeis.org/A288511}.
+\bibitem{A288508} C. Kimberling. OEIS A288508, revision 7, April 7, 2020.
+\url{https://oeis.org/A288508}.
+\bibitem{A288512} C. Kimberling. OEIS A288512, revision 11, April 7, 2020.
+\url{https://oeis.org/A288512}.
+\bibitem{DPS2026} L. Dvo\v r\'akov\'a, E. Pelantov\'a, and J. Shallit.
+\emph{On a sequence of Kimberling and its relationship to the Tribonacci word}.
+Discrete Mathematics \& Theoretical Computer Science 28:2 (2026).
+\url{https://doi.org/10.46298/dmtcs.16926}.
+\bibitem{oeis118207} S. Clary; conjecture by P. Bala, April 5, 2023.
+OEIS A118207, revision 29, September 2, 2023.
+\url{https://oeis.org/A118207}.
+\bibitem{bala2023} P. Bala.
+\emph{Cyclotomic polynomials and the generating functions of A118205 and A118206}.
+April 9, 2023, four pages, especially Proposition 1.
+\url{https://oeis.org/A118205/a118205.pdf}.
+\end{thebibliography}
+\end{document}

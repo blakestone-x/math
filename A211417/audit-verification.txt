@@ -1,0 +1,37 @@
+Independent fresh-project verification of A211417.
+UTC: 2026-11-27T18:09:08.296314+00:00
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/audits/A211417_independent_a6cba_m6
+Only the four source/configuration files were copied; no local proof object or project build cache was copied.
+Installed pinned dependency caches were reused. Every dependency HEAD matched its manifest pin; tracked worktrees and indexes were clean.
+LEAN_PATH and LEAN_SRC_PATH were cleared before invoking Lake.
+Command: lake build
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+Dependency revisions:
+plausible 77e08eddc486491d7b9e470926b3dbe50319451a
+LeanSearchClient 25078369972d295301f5a1e53c3e5850cf6d9d4c
+importGraph e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b
+proofwidgets c4919189477c3221e6a204008998b0d724f49904
+aesop 5d50b08dedd7d69b3d9b3176e0d58a23af228884
+Qq fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02
+batteries f5d04a9c4973d401c8c92500711518f7c656f034
+Cli 02dbd02bc00ec4916e99b04b2245b30200e200d0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+Build output:
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:315:0: 'ChebyshevShifts.factorial_ratio_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:316:0: 'ChebyshevShifts.positive_shift_divisibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:317:0: 'ChebyshevShifts.bala_positive_shift_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:318:0: 'ChebyshevShifts.sourceRatio_eq_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:319:0: 'ChebyshevShifts.positive_shift_rational_integrality' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+Input files remained byte-identical in both package and isolated project:
+SHA256 Proof.lean: 4d276b1eb1e954f8d8ceaaf007ef63bfa6a3c9fc7179745d791875877996b964
+SHA256 lakefile.lean: 9770959e597554aaab9688bb2d43645275e922fa6dbd0fc0cbde880ca0da4f72
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 1be2260d9147344501035377a39ddcef84275c8e0b31a4784b1d82f3590b8604
+Forbidden-token scan: no matches; full source was also independently reviewed.

@@ -1,0 +1,706 @@
+{
+  "date": "2026-11-27",
+  "target": "A184534",
+  "queries": [
+    {
+      "query": "\"cube root\" \"fractional\" \"reciprocal\"",
+      "scope": "global",
+      "result_limit": 30,
+      "results": [
+        {
+          "url": "https://github.com/dupontcyborg/numpy-ts/blob/e164b9d6c65d77a9771f585aae6fda89a6844955/src/core/arithmetic.ts",
+          "path": "src/core/arithmetic.ts"
+        },
+        {
+          "url": "https://github.com/Patashu/break_eternity.js/blob/80aa812ee46f70594ad401240b96d139268e5686/src/index.ts",
+          "path": "src/index.ts"
+        },
+        {
+          "url": "https://github.com/nrc-cnrc/MetroloPy/blob/3ed1a4dd7c00498aafbbc2f552892826bcec7df7/src/metrolopy/functions.py",
+          "path": "src/metrolopy/functions.py"
+        },
+        {
+          "url": "https://github.com/snorkel-marlin-repos/keras-team_keras_pr_pull_fc026101-eb90-4991-9e7b-34f94d45cd94/blob/e85fa4fa441c32204656cf395e2be9d7c6698433/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/snorkel-marlin-repos/keras-team_keras_pr_21494_1c7d2a8e-6057-4eb3-9560-e0e2b40a70f5/blob/b5fce67d4324d89d4903110e8bef3ec0e42ec1a4/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/snorkel-marlin-repos/keras-team_keras_pr_21577_3d7300c8-803f-4cdc-abd2-05b1114e5764/blob/0f996ed9e87f3d933bd8af2c06ddb3b9ff28ec7b/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/snorkel-marlin-repos/keras_pr_21681_full/blob/136e3a16afeda00e498354a790365add36f6f3b0/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/snorkel-marlin-repos/keras_c79dfd9c/blob/f21a93575efd8671228177933a3c8d591f1ff768/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/nkeonye-akumah/keras/blob/8a249dc38fedbe2af44251c3af9bbe2ce6a2d55d/keras/src/ops/numpy.py",
+          "path": "keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/rayfowler/rotp-public/blob/e3726fc22c2c44316306c50c79779e3da1c4c140/src/rotp/apachemath/FastMath.java",
+          "path": "src/rotp/apachemath/FastMath.java"
+        },
+        {
+          "url": "https://github.com/stencillogic/astro-float/blob/c0d9a26bd5d66871212f66b54475177b46b9bb66/astro-float-num/src/ext.rs",
+          "path": "astro-float-num/src/ext.rs"
+        },
+        {
+          "url": "https://github.com/Arjun-sup/emotionflow-productivity/blob/206fefd50569666cccce4aa5d7f12c4a1933ea4c/f/keras/src/ops/numpy.py",
+          "path": "f/keras/src/ops/numpy.py"
+        },
+        {
+          "url": "https://github.com/cool-japan/numrs/blob/ee569fa620b91857760c7c3bdf71fac249b163c9/src/ufuncs.rs",
+          "path": "src/ufuncs.rs"
+        },
+        {
+          "url": "https://github.com/PlumBlossomMaid/Insight7/blob/8a3d98632ed2b4af39266eacf1e6a27551733054/bindings/python/insight/unary.py",
+          "path": "bindings/python/insight/unary.py"
+        },
+        {
+          "url": "https://github.com/eduardogade/Olympus/blob/894da95b45bb0666288c59922a2bcbd8664db115/olympus/_src/numpy/ufuncs.py",
+          "path": "olympus/_src/numpy/ufuncs.py"
+        },
+        {
+          "url": "https://github.com/MaximeRivest/tiny-classifiers/blob/b58ee5f272adaf56e721ba4e44a5cbbc4d7e1dc7/phone/web/lib/jax/index.d.cts",
+          "path": "phone/web/lib/jax/index.d.cts"
+        },
+        {
+          "url": "https://github.com/relimited/Adstrum/blob/48d87d6eb66ae14471579b05ffe96641b4c884a3/adstrum.js",
+          "path": "adstrum.js"
+        },
+        {
+          "url": "https://github.com/xShadowBlade/emath.js/blob/9e7ecb64f40324871d19251b9e593f472202ef33/src/E/e.ts",
+          "path": "src/E/e.ts"
+        },
+        {
+          "url": "https://github.com/JunSuzukiJapan/rustorch/blob/9c39288c1c71ffbaf92569918b7474c65ec30f80/src/tensor/ops/math.rs",
+          "path": "src/tensor/ops/math.rs"
+        },
+        {
+          "url": "https://github.com/cryptopatrick/jax-rs/blob/475685758a7304a4f5fca3a842a44661c1b0b68d/src/ops/unary.rs",
+          "path": "src/ops/unary.rs"
+        },
+        {
+          "url": "https://github.com/Orang-Studio/OrangCalc/blob/df387a4e1bfc3dc77e6a256578bd3c07cf2c3bc5/OrangCalc/Engine/Funcs.cs",
+          "path": "OrangCalc/Engine/Funcs.cs"
+        },
+        {
+          "url": "https://github.com/btly0711/NekoRPG/blob/755620204699dc3f9bfafa6a03e3dcc65b114941/src/break_eternity.js",
+          "path": "src/break_eternity.js"
+        },
+        {
+          "url": "https://github.com/Fabian2000/exath-engine/blob/3b53f98d60afd63ad6397287c49d78cfb5b5d187/core/src/symbolic.rs",
+          "path": "core/src/symbolic.rs"
+        },
+        {
+          "url": "https://github.com/dvhart/hcpy/blob/0cafa42c1eb942503fcf662ad495074e5e4d6a2a/hc.py",
+          "path": "hc.py"
+        },
+        {
+          "url": "https://github.com/vmauery/hcpy/blob/26f472aa5d510001de04b4447b5ce374e76e040c/lhc/hc.py",
+          "path": "lhc/hc.py"
+        },
+        {
+          "url": "https://github.com/maximalcode/break_eternity/blob/99aa6cbf988fb9b7fda7548739472bcff3790d85/reference/index.ts",
+          "path": "reference/index.ts"
+        },
+        {
+          "url": "https://github.com/Rust-GPU/rust-cuda/blob/3a82c35a7196731fb60eebdac2a40d2b1bf0ba95/crates/cuda_std/src/float_ext.rs",
+          "path": "crates/cuda_std/src/float_ext.rs"
+        },
+        {
+          "url": "https://github.com/Troxi54/Squareixion/blob/b6a0aa4267ba738afffd3017fec617a0137fd289/js/break_eternity.js",
+          "path": "js/break_eternity.js"
+        },
+        {
+          "url": "https://github.com/PLACEHOLDER-12345/card_incremental/blob/03c861dcd3d5a5c4d32afb1a99140f6858ef5578/JS/break_eternity.js",
+          "path": "JS/break_eternity.js"
+        },
+        {
+          "url": "https://github.com/maximalcode/break_eternity/blob/99aa6cbf988fb9b7fda7548739472bcff3790d85/reference/break_eternity.umd.js",
+          "path": "reference/break_eternity.umd.js"
+        }
+      ],
+      "assessment": "Bounded result paths and excerpts inspected; relevant full-file inspections described in source_checks.md. No target source-to-theorem proof located."
+    },
+    {
+      "query": "\"Kimberling\" \"cube\" \"floor\"",
+      "scope": "global",
+      "result_limit": 30,
+      "results": [
+        {
+          "url": "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+          "path": "js/htm/wiki/dictionary/glossary.js"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/full_check.txt",
+          "path": "oeis/full_check.txt"
+        },
+        {
+          "url": "https://github.com/ikokkari/PythonProblems/blob/d5e40d2475a6cfda48b4f496b2f013e0e47d5b56/tester109.py",
+          "path": "tester109.py"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A248762.txt",
+          "path": "prepare/data/data/A248762.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A011934.txt",
+          "path": "prepare/data/data/A011934.txt"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/D5/S1/Recurrence/KimberlingArrayFirstOccurrence.lean",
+          "path": "D5/S1/Recurrence/KimberlingArrayFirstOccurrence.lean"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8g/TextFilter/WRT-short-Math.dic",
+          "path": "paq8g/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8i/TextFilter/WRT-short-Math.dic",
+          "path": "paq8i/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A186145.txt",
+          "path": "prepare/data/data/A186145.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A024490.txt",
+          "path": "prepare/data/data/A024490.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A000982.txt",
+          "path": "prepare/data/data/A000982.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A033581.txt",
+          "path": "prepare/data/data/A033581.txt"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8b/TextFilter/wrt-short-math.dic",
+          "path": "paq8b/TextFilter/wrt-short-math.dic"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A001629.txt",
+          "path": "prepare/data/data/A001629.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run1/exp45-chk/names.md",
+          "path": "run1/exp45-chk/names.md"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A248780.txt",
+          "path": "prepare/data/data/A248780.txt"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2026-01-16.ack.man",
+          "path": "internal/fischer/aman/2026-01-16.ack.man"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A002620.txt",
+          "path": "prepare/data/data/A002620.txt"
+        },
+        {
+          "url": "https://github.com/UKPLab/TWEAC-qa-agent-selection/blob/ed4f0cafa87aefd4820cca0d7f4881d2de99a9f0/data/stackexchange/train/codegolf.stackexchange.com.txt",
+          "path": "data/stackexchange/train/codegolf.stackexchange.com.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A186219.txt",
+          "path": "prepare/data/data/A186219.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp9-chk/names.md",
+          "path": "run0/exp9-chk/names.md"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A184432.txt",
+          "path": "prepare/data/data/A184432.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A184431.txt",
+          "path": "prepare/data/data/A184431.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A000142.txt",
+          "path": "prepare/data/data/A000142.txt"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A248821.txt",
+          "path": "prepare/data/data/A248821.txt"
+        },
+        {
+          "url": "https://github.com/decal/werdlists/blob/81edb463f7f6311c85defefaf75ac9cd58e5cfb9/dns-hostnames/host-names-small.txt",
+          "path": "dns-hostnames/host-names-small.txt"
+        },
+        {
+          "url": "https://github.com/Backlinko-LLC/2020-google-searches/blob/3fc0b1a25e12720c7ffe951f378233b8469e3632/raw_data/keywords_100_to_500/88.txt",
+          "path": "raw_data/keywords_100_to_500/88.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp11-chk/names.md",
+          "path": "run0/exp11-chk/names.md"
+        },
+        {
+          "url": "https://github.com/Backlinko-LLC/2020-google-searches/blob/3fc0b1a25e12720c7ffe951f378233b8469e3632/raw_data/keywords_1000_to_10000/77.txt",
+          "path": "raw_data/keywords_1000_to_10000/77.txt"
+        },
+        {
+          "url": "https://github.com/gfis/joeis-lite/blob/3d5b30751fba6dacb928a6b3af32f4a6fb67b410/internal/fischer/aman/2026-01-20.ack.man",
+          "path": "internal/fischer/aman/2026-01-20.ack.man"
+        }
+      ],
+      "assessment": "Bounded result paths and excerpts inspected; relevant full-file inspections described in source_checks.md. No target source-to-theorem proof located."
+    },
+    {
+      "query": "\"fractional part\" \"cube root\" \"Kimberling\"",
+      "scope": "global",
+      "result_limit": 50,
+      "results": [
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/full_check.txt",
+          "path": "oeis/full_check.txt"
+        },
+        {
+          "url": "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+          "path": "js/htm/wiki/dictionary/glossary.js"
+        },
+        {
+          "url": "https://github.com/MMiDS-textbook/MMiDS-textbook.github.io/blob/18b6d1e3b2d79dbcbda42b2135cb0433d752366b/utils/datasets/mathworld-titles.csv",
+          "path": "utils/datasets/mathworld-titles.csv"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp5-chk/names.md",
+          "path": "run0/exp5-chk/names.md"
+        },
+        {
+          "url": "https://github.com/Samcil/intro_ml_rebecca_willett/blob/ad363f8f8c6f1a255ef8cc9c9d94d6db4f03cdb4/sebastian_roch_mmids/datasets/mathworld-titles.csv",
+          "path": "sebastian_roch_mmids/datasets/mathworld-titles.csv"
+        }
+      ],
+      "assessment": "Bounded result paths and excerpts inspected; relevant full-file inspections described in source_checks.md. No target source-to-theorem proof located."
+    },
+    {
+      "query": "\"cube-root\" \"floor\" \"proof\"",
+      "scope": "global",
+      "result_limit": 50,
+      "results": [
+        {
+          "url": "https://github.com/SauersML/group-approximation/blob/b4cbab68177c23556f0db49f8a45a431729f6e23/research/mod-s2-induced-torelli-characters-positive-relation-floor-proof.md",
+          "path": "research/mod-s2-induced-torelli-characters-positive-relation-floor-proof.md"
+        },
+        {
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e54523517d0f03e58352e647c403a5af3e525a57/research/cyclic-stage-rank-budget/PROOF.md",
+          "path": "research/cyclic-stage-rank-budget/PROOF.md"
+        },
+        {
+          "url": "https://github.com/SauersML/group-approximation/blob/b4cbab68177c23556f0db49f8a45a431729f6e23/research/mod-s2-normal-level-torelli-floors-coupling-proof.md",
+          "path": "research/mod-s2-normal-level-torelli-floors-coupling-proof.md"
+        },
+        {
+          "url": "https://github.com/Experience-Monks/math-as-code/blob/1d5c84cc3b41d3a23a4efa29b6cc105c946d3c6a/PYTHON-README.md",
+          "path": "PYTHON-README.md"
+        },
+        {
+          "url": "https://github.com/sunil-dsb/design.md/blob/8267737bf1392628d655b880431b56a9f6c3b625/lib/engine/proof.ts",
+          "path": "lib/engine/proof.ts"
+        },
+        {
+          "url": "https://github.com/jlevy/squares/blob/c5775bae40085f67f4c30f8916b0d6e998c304ab/docs/project/reviews/review-2026-10-08-quarter-cube-proof-chains.md",
+          "path": "docs/project/reviews/review-2026-10-08-quarter-cube-proof-chains.md"
+        },
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/05-knowledge/results/session253_cross_problem_frontiers_20261111/niche/PROOF.md",
+          "path": "05-knowledge/results/session253_cross_problem_frontiers_20261111/niche/PROOF.md"
+        },
+        {
+          "url": "https://github.com/themagnificentoofman/calculus.ninja/blob/686463a655c841184a6ea7f18d36aaf66e807a90/scripts/bank/content/coverage.py",
+          "path": "scripts/bank/content/coverage.py"
+        },
+        {
+          "url": "https://github.com/AlexisOlson/natural-latents/blob/f67a1a5f622dfa91f3a147db5c95fa2cf4c8591c/NaturalLatents/Upstream/Floor.lean",
+          "path": "NaturalLatents/Upstream/Floor.lean"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/05-knowledge/results/arithmetic_braids2_20260917_floor_reciprocity.md",
+          "path": "05-knowledge/results/arithmetic_braids2_20260917_floor_reciprocity.md"
+        },
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/05-knowledge/results/collatz_mod6_20260917_floor_sums_odd_functions.out",
+          "path": "05-knowledge/results/collatz_mod6_20260917_floor_sums_odd_functions.out"
+        },
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/05-knowledge/results/collatz_mod6_20260917_floor_sums_odd_functions.md",
+          "path": "05-knowledge/results/collatz_mod6_20260917_floor_sums_odd_functions.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/ppigazzini/z47/blob/01bf3d877b9d66807b2a5f782eb1683d1655fcd8/upstream/docs/numerical-analysis/decimal-context-cube-root.md",
+          "path": "upstream/docs/numerical-analysis/decimal-context-cube-root.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/global_proof_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/global_proof_review.md"
+        },
+        {
+          "url": "https://github.com/Bacon-labs/tamago/blob/db6a2ac47938a8f8701e35bb3ff9e1b606dd924a/verity/proof/Tamago/Proof/Utils/Cbrt/Model.lean",
+          "path": "verity/proof/Tamago/Proof/Utils/Cbrt/Model.lean"
+        },
+        {
+          "url": "https://github.com/rlwhitcomb/utilities/blob/2c220ebb4088ba7118ae7bb48f404a23e0d1bebb/java/info/rlwhitcomb/math/MathUtil.java",
+          "path": "java/info/rlwhitcomb/math/MathUtil.java"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/global_proof.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_7/global_proof.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/global_proof.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/global_proof.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_10/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_10/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_008/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_008/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/themagnificentoofman/calculus.ninja/blob/686463a655c841184a6ea7f18d36aaf66e807a90/scripts/bank/quality/ode-mv/baseline-content/coverage.py",
+          "path": "scripts/bank/quality/ode-mv/baseline-content/coverage.py"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_005/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_005/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/research/problems/cube-root-3-irrational-oq-04/problem.md",
+          "path": "research/problems/cube-root-3-irrational-oq-04/problem.md"
+        },
+        {
+          "url": "https://github.com/systemic-engineering/prism/blob/f0c20203779d87788f5ced4c6f6c9b2325793daa/docs/math/FLOOR.md",
+          "path": "docs/math/FLOOR.md"
+        },
+        {
+          "url": "https://github.com/eliottcassidy2000/math/blob/fddda2d43e41c07f607abefe5eda8a1d081dc207/04-computation/experiments/collatz_mod6_20260917_floor_sums_odd_functions.py",
+          "path": "04-computation/experiments/collatz_mod6_20260917_floor_sums_odd_functions.py"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_6/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_6/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_002/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_002/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_003/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_003/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/tobiaskrogh-ship-it/llm-rust-lean-pipeline/blob/89b8ef6d0a0c83fc5c9cad043ee78401b4b327ed/runs/20260524-151032_cbrt_u64_proof_only_continue.log",
+          "path": "runs/20260524-151032_cbrt_u64_proof_only_continue.log"
+        },
+        {
+          "url": "https://github.com/Bacon-labs/tamago/blob/db6a2ac47938a8f8701e35bb3ff9e1b606dd924a/verity/proof/Tamago/Proof/Utils/Cbrt/OverflowSafety.lean",
+          "path": "verity/proof/Tamago/Proof/Utils/Cbrt/OverflowSafety.lean"
+        },
+        {
+          "url": "https://github.com/DLorell/stoch_to_det/blob/299c75264b07db05eab8e6d232ef88e0988f4790/stoch_to_det/Floor.lean",
+          "path": "stoch_to_det/Floor.lean"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_12/proof_history/sketch_004/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_12/proof_history/sketch_004/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_003/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_003/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_005/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_005/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_6/proof_steps/step_007/review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_6/proof_steps/step_007/review.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_002/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_002/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/competemath/tengoku/blob/4278ae6274809344af6d91485aa4ab01768b226c/Tengoku/GeneralStochToDet/stoch_to_det/Floor.lean",
+          "path": "Tengoku/GeneralStochToDet/stoch_to_det/Floor.lean"
+        },
+        {
+          "url": "https://github.com/facebookresearch/atlas-lean/blob/a318749cc836cc17e83dfc0077419b3e80685558/WantedExt/NumberTheory/OeisConjecturesWanted.lean",
+          "path": "WantedExt/NumberTheory/OeisConjecturesWanted.lean"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_005/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_005/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_004/global_proof_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_004/global_proof_review.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_013/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_1/idea_5/proof_history/sketch_013/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_007/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_007/proof_sketch.md"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_008/current_snapshot/proof_sketch_review.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_9/proof_history/sketch_008/current_snapshot/proof_sketch_review.md"
+        },
+        {
+          "url": "https://github.com/rjwalters/lean-genius/blob/d8540c5a48f69a9f57b87c549c6e09dad63a0670/src/data/proofs/cube-root-2-irrational-oq-05-oq-01-oq-01/meta.json",
+          "path": "src/data/proofs/cube-root-2-irrational-oq-05-oq-01-oq-01/meta.json"
+        },
+        {
+          "url": "https://github.com/CrocSwap/integer-mult-bounds/blob/e54523517d0f03e58352e647c403a5af3e525a57/research/u8-supporting-uniform/verify.py",
+          "path": "research/u8-supporting-uniform/verify.py"
+        },
+        {
+          "url": "https://github.com/DechenZhang/VALG-ML-Theory-Agent/blob/3aa24398fbf12722f54d2aaa207c7782be8c69d3/case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_10/proof_history/sketch_002/proof_sketch.md",
+          "path": "case-studies/colt-2026/01-als-overparameterization/sp-01/perspective_2/idea_10/proof_history/sketch_002/proof_sketch.md"
+        }
+      ],
+      "assessment": "Bounded result paths and excerpts inspected; relevant full-file inspections described in source_checks.md. No target source-to-theorem proof located."
+    },
+    {
+      "query": "\"cubic\" \"reciprocal\" \"Kimberling\"",
+      "scope": "global",
+      "result_limit": 50,
+      "results": [
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Blueprint/D5/S3/ArithSums/OudraA248186CubicFloor.md",
+          "path": "Blueprint/D5/S3/ArithSums/OudraA248186CubicFloor.md"
+        },
+        {
+          "url": "https://github.com/zzllrr/mather/blob/77eec87f2368dc2bb00b0428f9a1f7f7af7f983b/js/htm/wiki/dictionary/glossary.js",
+          "path": "js/htm/wiki/dictionary/glossary.js"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Library/Asymptotics/oudra2023a248186.md",
+          "path": "Library/Asymptotics/oudra2023a248186.md"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8g/TextFilter/WRT-short-Math.dic",
+          "path": "paq8g/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8i/TextFilter/WRT-short-Math.dic",
+          "path": "paq8i/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/JohannesBuchner/paq/blob/a03449adbf3bc4454146e98a59dfaf8810c015e6/paq8b/TextFilter/wrt-short-math.dic",
+          "path": "paq8b/TextFilter/wrt-short-math.dic"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/10.5281-zenodo.24410612/blob/021d6c1ad271a2d31c5478af7a8491df6dc18c46/manuscript/README.md",
+          "path": "manuscript/README.md"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/full_check.txt",
+          "path": "oeis/full_check.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp5-chk/names.md",
+          "path": "run0/exp5-chk/names.md"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp4-chk/names.md",
+          "path": "run0/exp4-chk/names.md"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/10.5281-zenodo.24410612/blob/021d6c1ad271a2d31c5478af7a8491df6dc18c46/versions/v2/manuscript/README.md",
+          "path": "versions/v2/manuscript/README.md"
+        },
+        {
+          "url": "https://github.com/ddmcdonald/sparser/blob/bd784c216aa1f8984c7ed40e3ede87dc139dcff8/Sparser/code/s/tools/ns-stuff/unknown-words-covid-2020-05-12-0512-pdf-37001-37100.lisp",
+          "path": "Sparser/code/s/tools/ns-stuff/unknown-words-covid-2020-05-12-0512-pdf-37001-37100.lisp"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/10.5281-zenodo.24410612/blob/021d6c1ad271a2d31c5478af7a8491df6dc18c46/manuscript/note.tex",
+          "path": "manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/taboege/raku-OEIS/blob/312e7aa1931e8f32c416d02908c88938a786f3d7/t/data/A000045.txt",
+          "path": "t/data/A000045.txt"
+        },
+        {
+          "url": "https://github.com/Atharvsinh-codez/conjectures/blob/8e5651a9842b42d8ef19fbae8d606d1ebdb2c2e0/UNLISTED_CONJECTURES.md",
+          "path": "UNLISTED_CONJECTURES.md"
+        },
+        {
+          "url": "https://github.com/uplink007/FinalProject/blob/fd219467704da28a8cb70051dce23b3aa3245f9c/data/wolfram/wolfram_bad.txt",
+          "path": "data/wolfram/wolfram_bad.txt"
+        },
+        {
+          "url": "https://github.com/UKPLab/TWEAC-qa-agent-selection/blob/ed4f0cafa87aefd4820cca0d7f4881d2de99a9f0/data/stackexchange/train/codegolf.stackexchange.com.txt",
+          "path": "data/stackexchange/train/codegolf.stackexchange.com.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run1/exp144-chk/names.md",
+          "path": "run1/exp144-chk/names.md"
+        },
+        {
+          "url": "https://github.com/MMiDS-textbook/MMiDS-textbook.github.io/blob/18b6d1e3b2d79dbcbda42b2135cb0433d752366b/utils/datasets/mathworld-titles.csv",
+          "path": "utils/datasets/mathworld-titles.csv"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/10.5281-zenodo.24410612/blob/021d6c1ad271a2d31c5478af7a8491df6dc18c46/versions/v2/manuscript/note.tex",
+          "path": "versions/v2/manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/catalog/blob/14da94069e2b7cd22cb95398dd354569ef58ab1e/FACTORY.md",
+          "path": "FACTORY.md"
+        },
+        {
+          "url": "https://github.com/daedalus/oeis_validator/blob/2de1e0ed07318056c983b6d05e07476078440880/data/A000045.txt",
+          "path": "data/A000045.txt"
+        },
+        {
+          "url": "https://github.com/taboege/raku-OEIS/blob/312e7aa1931e8f32c416d02908c88938a786f3d7/t/data/Fibonacci-Search-all.txt",
+          "path": "t/data/Fibonacci-Search-all.txt"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run0/exp9-chk/names.md",
+          "path": "run0/exp9-chk/names.md"
+        },
+        {
+          "url": "https://github.com/jhparkerb/polyplets/blob/9d79abc45dd3af4bcec7780a64ecceb2b9a21fd4/results/subclasses.md",
+          "path": "results/subclasses.md"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/oeis-a208509-affine-polynomial-pair-binomial-coefficients/blob/0ad67285c41f5db25e6d8083675be638d5040824/manuscript/note.tex",
+          "path": "manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A000292.txt",
+          "path": "prepare/data/data/A000292.txt"
+        },
+        {
+          "url": "https://github.com/edt-yxz-zzd/txt_phone/blob/67aa2666b153e675a615317b92c7e2fe232c8ac7/txt/others/数学/logarithm.txt",
+          "path": "txt/others/数学/logarithm.txt"
+        },
+        {
+          "url": "https://github.com/tamnd/wikipedia-math/blob/3c7d6486ce6986856da402e7bb30dc5a2d85fa2e/content/wikitext/0006/60167.wiki",
+          "path": "content/wikitext/0006/60167.wiki"
+        },
+        {
+          "url": "https://github.com/gtshs2/NIPEN/blob/481f1348f6478478e3e9f37f7bbb0e2f6e5f62e0/data/politic_new/Dict_Term_10k",
+          "path": "data/politic_new/Dict_Term_10k"
+        },
+        {
+          "url": "https://github.com/blakestone-x/math/blob/3a1ca46c6977b6134f340cf7f170a9c4dc1a9874/Periodic-symmetric-functions/periodic-symmetric.tex",
+          "path": "Periodic-symmetric-functions/periodic-symmetric.tex"
+        },
+        {
+          "url": "https://github.com/yzhou1122/Few-shot-learning-CodeGolf/blob/146e3a2531937a9a45f9dcf89b859118868863f3/codegolf_questions.txt",
+          "path": "codegolf_questions.txt"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/oeis-a288476-replacement-iterate-length/blob/fed8d55dc4ff84c46a0ae261c5d6590dcfc29e04/manuscript/note.tex",
+          "path": "manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/tamnd/wikipedia-math/blob/3c7d6486ce6986856da402e7bb30dc5a2d85fa2e/analysis/objects/0006/60167-r1375500526.md",
+          "path": "analysis/objects/0006/60167-r1375500526.md"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/oeis-a208509-affine-polynomial-pair-binomial-coefficients/blob/0ad67285c41f5db25e6d8083675be638d5040824/versions/v2/manuscript/note.tex",
+          "path": "versions/v2/manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8h/TextFilter/WRT-short-Math.dic",
+          "path": "paq8/paq8h/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8i/TextFilter/WRT-short-Math.dic",
+          "path": "paq8/paq8i/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/andrew-epstein/paq_history/blob/0358d74d046f580056f1c6790488bb2a3d18f914/paq8/paq8g/TextFilter/WRT-short-Math.dic",
+          "path": "paq8/paq8g/TextFilter/WRT-short-Math.dic"
+        },
+        {
+          "url": "https://github.com/hunterhogan/oeisTypeset/blob/871b4a791adbd9fbb12115e325ff8e00c564adc8/corpus/A000984.html",
+          "path": "corpus/A000984.html"
+        },
+        {
+          "url": "https://github.com/daedalus/oeis_validator/blob/2de1e0ed07318056c983b6d05e07476078440880/data/A000217.txt",
+          "path": "data/A000217.txt"
+        },
+        {
+          "url": "https://github.com/hunterhogan/oeisTypeset/blob/871b4a791adbd9fbb12115e325ff8e00c564adc8/corpus/A000045.html",
+          "path": "corpus/A000045.html"
+        },
+        {
+          "url": "https://github.com/IR1401-Spring-Final-Projects/MathGenealogy1401-36_42/blob/c0d4a40de430d568d75e852e2283ac7afe872919/text_biographies/Leonhard_Euler.txt",
+          "path": "text_biographies/Leonhard_Euler.txt"
+        },
+        {
+          "url": "https://github.com/HeinrichHartmann/arxiv_meta/blob/1d3cff6680c912137a7f243d363079dd33fb5cb4/2015/2015-02-05.json",
+          "path": "2015/2015-02-05.json"
+        },
+        {
+          "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/f34d2b1a5e5b278102f0acb9197430eb394248be/content/open_review.json",
+          "path": "content/open_review.json"
+        },
+        {
+          "url": "https://github.com/IR1401-Spring-Final-Projects/MathGenealogy1401-36_42/blob/c0d4a40de430d568d75e852e2283ac7afe872919/raw_biographies/Leonhard_Euler",
+          "path": "raw_biographies/Leonhard_Euler"
+        },
+        {
+          "url": "https://github.com/mathesis-papers/oeis-a288476-replacement-iterate-length/blob/fed8d55dc4ff84c46a0ae261c5d6590dcfc29e04/versions/v2/manuscript/note.tex",
+          "path": "versions/v2/manuscript/note.tex"
+        },
+        {
+          "url": "https://github.com/nghia71/nghia71.github.io/blob/56ca627e0628d7d61cba1efe1202623044590771/contests/sharygin-2026.html",
+          "path": "contests/sharygin-2026.html"
+        },
+        {
+          "url": "https://github.com/avalur/avalur.github.io/blob/7a4860871a64dcf93139aceb7fe2b56114900846/ai_club/input.txt",
+          "path": "ai_club/input.txt"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/62eec37178e9a0b7ea2306f09407541632d00df7/SetTheory/Cardinals/docs/reports/generating-functions-and-asymptotics/oeis-sequence-asymptotics/a239964-sizes-equal-max-multiplicity/README.md",
+          "path": "SetTheory/Cardinals/docs/reports/generating-functions-and-asymptotics/oeis-sequence-asymptotics/a239964-sizes-equal-max-multiplicity/README.md"
+        },
+        {
+          "url": "https://github.com/schrodinger95/SI618/blob/5e6e50e87c26256840df5d84149e921c74f95c02/SI618_Lab4/si618_lab4_output/part-00006",
+          "path": "SI618_Lab4/si618_lab4_output/part-00006"
+        }
+      ],
+      "assessment": "Bounded result paths and excerpts inspected; relevant full-file inspections described in source_checks.md. No target source-to-theorem proof located."
+    }
+  ]
+}

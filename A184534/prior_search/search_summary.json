@@ -1,0 +1,230 @@
+{
+  "date": "2026-11-27",
+  "target": "A184534",
+  "source": {
+    "url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A184/A184534.seq",
+    "revision": "15, May 15 2017",
+    "export_commit": "571197984aeda7b8b680fe3a1f6a43f9898cd441"
+  },
+  "github_queries": [
+    {
+      "query": "A184534",
+      "scope": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "results": [
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/548388cde9b27d282a17a3ead04870288e40d197/Golden/Frozen/state/D5/S1/Dynamics/Shadowing/UniformTracing.lean.json",
+          "path": "Golden/Frozen/state/D5/S1/Dynamics/Shadowing/UniformTracing.lean.json"
+        }
+      ],
+      "assessment": "Only a coincidental hexadecimal hash hit in dynamics metadata, unrelated to the sequence."
+    },
+    {
+      "query": "A184534",
+      "scope": "global",
+      "results": [
+        {
+          "url": "https://github.com/archmageirvine/joeis/blob/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a184/A184534.java",
+          "path": "src/irvine/oeis/a184/A184534.java"
+        },
+        {
+          "url": "https://github.com/loda-lang/loda-programs/blob/f1b383b2344ab03ae8f79f41289360a6bd4394bd/oeis/184/A184534.asm",
+          "path": "oeis/184/A184534.asm"
+        },
+        {
+          "url": "https://github.com/provables/sequencelib/blob/dfb06c18bba196b5aa5bcb3725fe9d201fb9a61a/Sequencelib/Synthetic/A184/A184534.lean",
+          "path": "Sequencelib/Synthetic/A184/A184534.lean"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/pb/A184534.smt2",
+          "path": "pb/A184534.smt2"
+        },
+        {
+          "url": "https://github.com/provables/sequencelib/blob/dfb06c18bba196b5aa5bcb3725fe9d201fb9a61a/Sequencelib/Synthetic/A184.lean",
+          "path": "Sequencelib/Synthetic/A184.lean"
+        },
+        {
+          "url": "https://github.com/Anon52MI4/oeis-alien/blob/753bbbe72fc4a88009a18bcb9b1cd3ac9cc363ab/run1/exp86-chk/names.md",
+          "path": "run1/exp86-chk/names.md"
+        },
+        {
+          "url": "https://github.com/barakeel/oeis-synthesis/blob/682607e7ba538ff0331dd2347d7e14921ad3278e/src/benchsem_goodanum",
+          "path": "src/benchsem_goodanum"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/aind_sem",
+          "path": "aind_sem"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/aind_syn",
+          "path": "aind_syn"
+        },
+        {
+          "url": "https://github.com/ai4reason/oeis-atp-benchmark/blob/4a80a91728dffea1407ee2f0b8f55622761935cc/all_verified100",
+          "path": "all_verified100"
+        }
+      ],
+      "assessment": "Relevant files inspected: recurrence and formula generators, synthesized integer-program definition, and unbounded equivalence benchmark for two synthesized integer programs (with no real cube-root definition). No literal real-root bridge or proof found."
+    },
+    {
+      "query": "\"A184534\"",
+      "scope": "VladimirReshetnikov/ProveIt",
+      "results": []
+    },
+    {
+      "query": "\"fractional\" \"cube\" \"floor\"",
+      "scope": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "results": [
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/README.md",
+          "path": "Algebra/SurrealNumbers/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/FabiusFunction/README.md",
+          "path": "Analysis/FabiusFunction/README.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Library/notes/renault2013periodrankorder.md",
+          "path": "Library/notes/renault2013periodrankorder.md"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Library/Arith/shi2026second.md",
+          "path": "Library/Arith/shi2026second.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/ProveIt_Walkthrough_2.tex",
+          "path": "ProveIt_Walkthrough_2.tex"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/Library/Analytic/openai2026quasirh.md",
+          "path": "Library/Analytic/openai2026quasirh.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Computability/DiophantineConsistency/SIZE_REDUCTION.md",
+          "path": "Computability/DiophantineConsistency/SIZE_REDUCTION.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Logic/PrimitiveRecursiveArithmetic/docs/proofs/foundations/ipra_coupled_refinement_2026-11-19/code/README.md",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/foundations/ipra_coupled_refinement_2026-11-19/code/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/docs/manifest.tex",
+          "path": "Algebra/SurrealNumbers/docs/manifest.tex"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/D5/S1/Words/ZeckendorfBeattyBridge.lean",
+          "path": "D5/S1/Words/ZeckendorfBeattyBridge.lean"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/SetTheory/Cardinals/docs/reports/ordinals-and-order-types/noisy-parity-cubes/article.tex",
+          "path": "SetTheory/Cardinals/docs/reports/ordinals-and-order-types/noisy-parity-cubes/article.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/gpi.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/gpi.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/li.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/li.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/gra.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/gra.tex"
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/720eb936a3bfd96a946ec055210f018951c4dfaa/D5/S1/Words/ReturnWords/GoldenPhaseShift.lean",
+          "path": "D5/S1/Words/ReturnWords/GoldenPhaseShift.lean"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/dir.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/spn.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/spn.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex",
+          "path": "Analysis/GeneralizedRiemannHypothesis/Article/sections/zer.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md",
+          "path": "Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/README.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/docs/surcomplex/trigonometry/article.tex",
+          "path": "Algebra/SurrealNumbers/docs/surcomplex/trigonometry/article.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Computability/DiophantineConsistency/LEAN_EQUIVALENCE_PLAN.md",
+          "path": "Computability/DiophantineConsistency/LEAN_EQUIVALENCE_PLAN.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/Polylogarithms/docs/manuscript/chapters/05-gamma.tex",
+          "path": "Analysis/Polylogarithms/docs/manuscript/chapters/05-gamma.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/RECONCILIATION.md",
+          "path": "Algebra/SurrealNumbers/docs/surreal/set-sized-quotients-of-omnific-integers/RECONCILIATION.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Combinatorics/Ramsey/Research/GowersSzemeredi/local-quantitative-refinements/58-torsion-restriction-SOURCE_AUDIT.txt",
+          "path": "Combinatorics/Ramsey/Research/GowersSzemeredi/local-quantitative-refinements/58-torsion-restriction-SOURCE_AUDIT.txt"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Computability/HilbertTenthProblem/Papers/EDITORIAL_NOTES.md",
+          "path": "Computability/HilbertTenthProblem/Papers/EDITORIAL_NOTES.md"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/Polylogarithms/docs/manuscript/chapters/06-cm-genus.tex",
+          "path": "Analysis/Polylogarithms/docs/manuscript/chapters/06-cm-genus.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/zeta_ipra_proof_package/paper/sections/07_values_integrals_zeros.tex",
+          "path": "Logic/PrimitiveRecursiveArithmetic/docs/proofs/analytic-number-theory/zeta_ipra_proof_package/paper/sections/07_values_integrals_zeros.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Algebra/SurrealNumbers/docs/foundations-and-computation/computer-algebra/article.tex",
+          "path": "Algebra/SurrealNumbers/docs/foundations-and-computation/computer-algebra/article.tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Analysis/FabiusFunction/docs/fabius_lean_walkthrough/fabius_lean_walkthrough (part II).tex",
+          "path": "Analysis/FabiusFunction/docs/fabius_lean_walkthrough/fabius_lean_walkthrough (part II).tex"
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/55f050804e7225551f74934a0d678bc2a079a2cb/Combinatorics/Ramsey/Research/VanDerWaerden/superexponential-lower-bounds/verify.py",
+          "path": "Combinatorics/Ramsey/Research/VanDerWaerden/superexponential-lower-bounds/verify.py"
+        }
+      ],
+      "assessment": "Returned titles/excerpts concern unrelated root, golden-ratio, Fabius, and foundational material. No settlement located."
+    }
+  ],
+  "web_queries": [
+    {
+      "engine": "system2",
+      "queries": [
+        "\"A184534\" proof cube",
+        "\"A184534\" conjecture floor formula",
+        "\"fractional part\" \"cube root\" \"3n\" floor reciprocal",
+        "\"A184534\" Palomar"
+      ],
+      "outcome": "OEIS source, Sequence Machine formulas checked on prefixes, related cube/fourth-root entries, unrelated educational material; no target proof found."
+    },
+    {
+      "engine": "system1",
+      "queries": [
+        "\"A184534\" proof",
+        "\"A184534\" proof formula",
+        "\"floor\" \"4+n^3\" \"proof\"",
+        "\"reciprocal fractional\" \"cube\" \"floor\""
+      ],
+      "outcome": "OEIS source, related array A184532 and known fourth-root identities A184536/A184537, numerical Sequence Machine results, unrelated background; no target proof found."
+    }
+  ],
+  "limits": "Bounded exact and semantic indexed searches; no guarantee of historical priority or complete repository coverage."
+}

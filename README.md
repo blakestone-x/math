@@ -2,6 +2,60 @@
 
 [Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
 
+- [Layman’s quadratic equation — exact count of positive solutions and a complete Lean proof of A134002](A134002/README.md)
+
+- [All-column ternary digit recurrences](ternary-digit-variation/README.md) · [Mathar’s product recurrence in Lean](A249056/README.md) · [Sun’s divisor–totient conjecture on a density-one set](A248029/README.md) · [Seven power-sum rounding exceptions through 10¹⁰⁰⁰](A072633/README.md)
+
+- [Propp’s 1999 determinant problems — honeycomb hexagons, Aztec rectangles, and the fool’s-diamond square roots](Propp-Gram-determinants/README.md) · [Manuscript](Propp-Gram-determinants/propp-gram.pdf) · [Manyama’s two parity formulas in Lean](Propp-Gram-determinants/Parity.lean)
+
+- [Left to Solve — Sun’s Catalan determinants, sharp tree bounds, and tiling identities](notes/left-to-solve-2026-11-27/README.md) · [Proof book](notes/left-to-solve-2026-11-27/Proofs.pdf)
+
+- [Collatz windows and logarithmic stopping time — conditional equivalence and a counting obstruction](Collatz-windows/README.md) · [Lean proofs](Collatz-windows/CollatzWindows.lean)
+
+- [A067576 — binary-column doubling and the exact least starting row](A067576/README.md) · [Complete Lean proof](A067576/Proof.lean)
+- [A192250 / A192251 — both central-binomial reduction recurrences](A192250/README.md) · [Complete Lean proofs](A192250/Proof.lean)
+- [A227013 — quartic harmonic-mean floors and the generating function](A227013/README.md) · [Complete Lean proof](A227013/Proof.lean)
+- [Binary columns, polynomial reductions, and quartic harmonic means — Batch 14 manuscript](notes/Math_Proofs_Batch14.pdf) · [Collection guide](notes/Math_Proofs_Batch14_README.md)
+
+- [Cyclotomic cosets — four quadratic formulas for multipliers 3, 7, 9, 13](A220018/README.md) · [Complete Lean proofs](A220018/Proof.lean)
+- [A052392 — the subdiagonal generating function and exact recurrence](A052392/README.md) · [Complete Lean proof](A052392/Proof.lean)
+- [A184534 — the reciprocal cube-root floor and generating function](A184534/README.md) · [Complete Lean proof](A184534/Proof.lean)
+- [Cyclotomic cosets, a triangle, and reciprocal cube roots — Batch 13 manuscript](notes/Math_Proofs_Batch13.pdf) · [Collection guide](notes/Math_Proofs_Batch13_README.md)
+
+- [A081097 — all positive nested-floor solutions and the exact generating function](A081097/README.md) · [Complete Lean proof](A081097/Proof.lean)
+- [A288511 — the full thirteen-term recurrence for literal replacement-word lengths](A288511/README.md) · [Complete Lean proof](A288511/Proof.lean)
+- [A118207 — the complete Liouville–cyclotomic product identity](A118207/README.md) · [Complete Lean proof](A118207/Proof.lean)
+- [Floor sequences, replacement words, and cyclotomic products — Batch 12 manuscript](notes/Math_Proofs_Batch12.pdf) · [Collection guide](notes/Math_Proofs_Batch12_README.md)
+
+- [Sigrist’s prime-factor permutations — bounded displacement and fixed-point density one for every threshold](Sigrist-prime-permutations/README.md) · [Manuscript](Sigrist-prime-permutations/prime-permutations.pdf) · [Fixed-point density in Lean](Sigrist-prime-permutations/Density.lean)
+- [Hadjicostas’s low Josephus survivors — the partial-sum recurrence, exact labels, and the distribution of normalized survivors](Josephus-low-survivors/README.md) · [Manuscript](Josephus-low-survivors/low-survivors.pdf) · [Recurrence and labels in Lean](Josephus-low-survivors/Josephus.lean)
+- [Rush’s totient pairs — a rank counterexample, exact doubling criterion, and prime-power families](Totient-doubling/README.md) · [Manuscript](Totient-doubling/totient-fibers.pdf) · [Pairing criterion in Lean](Totient-doubling/Fibers.lean)
+
+- [A327315 — irreducibility exactly in degrees of the form 2^a 3^b](A327315/README.md) · [Complete source theorem in Lean](A327315/Proof.lean)
+- [A289001, A289035, and A289239 — three length conjectures refuted and every eventual monic integer recurrence excluded](A289004/README.md) · [Complete Lean proofs](A289004/Proof.lean)
+- [A complete irreducibility classification and three recurrence refutations — Batch 11 manuscript](notes/Math_Proofs_Batch11.pdf) · [Collection guide](notes/Math_Proofs_Batch11_README.md)
+
+- [Kimberling’s prefix inequality, all equality indices, and both Lucas–Wythoff row-entry formulas](Kimberling-Lucas/README.md) · [Manuscript](Kimberling-Lucas/lucas-representations.pdf) · [Inclusive inequality and equality cases in Lean](Kimberling-Lucas/Equality.lean)
+- [Puszkarz’s amicably refactorable pairs — all partners classified by degree, least-partner formulas, and a counting asymptotic](Refactorable-partners/README.md) · [Manuscript](Refactorable-partners/refactorable-partners.pdf) · [Existence theorem in Lean](Refactorable-partners/Partners.lean)
+
+- [A326926/A326933 — the complete prime-index irreducibility classification](A326926/README.md) · [Exact source theorem in Lean](A326926/Proof.lean)
+- [A211417 — independent Lean formalization of the positive-shift integrality family](A211417/README.md) · [Complete Lean proof](A211417/Proof.lean)
+- [A289128–A289131 — the replacement-length conjecture proved and both position limits refuted](A289128/README.md) · [Complete Lean proofs](A289128/Proof.lean)
+- [Four resolutions and one independent formalization — corrected Batch 10 manuscript](notes/Math_Proofs_Batch10.pdf) · [Collection guide](notes/Math_Proofs_Batch10_README.md) · [Attribution correction](notes/Math_Proofs_Batch10_correction_2026-11-27.md)
+
+- [Largest endpoints of signed smooth gaps — exact values of A391077 and A376924, and a distribution theorem for every finite prime set](Smooth-gaps/README.md) · [Gap manuscript](Smooth-gaps/smooth-gaps.pdf) · [Three classes of smooth decimal rotations](Smooth-gaps/smooth-rotations.pdf)
+
+- [A326925 — the even-degree factorization, completing the odd/even conjecture; Fibonacci/Lucas factor constants](A326925Even/README.md) · [Exact reduced-numerator Lean proof](A326925Even/EvenDerivative.lean)
+- [A288520/A288523 — the literal replacement-length conjecture and a stronger affine recurrence](A288523/README.md) · [Lean proof](A288523/Proof.lean)
+- [A400939 — exactly one division and an explicit permanent tail for infinitely many prime divisors (partial result)](A400939/README.md) · [Lean proof](A400939/Proof.lean)
+- [Two conjecture proofs and an infinite prime family — combined manuscript](notes/Math_Proofs_Batch9.pdf)
+
+- [A326925 — every odd-degree derivative numerator is irreducible](A326925/README.md) · [Complete Lean proof](A326925/Proof.lean)
+- [A288665/A288668 — an exact word identity and the replacement-length recurrence](A288668/README.md) · [Lean proof](A288668/Proof.lean)
+- [A134559 — a prime counterexample to the antidiagonal-product characterization](A134559/README.md) · [Lean refutation](A134559/Proof.lean)
+- [A000033, A000159 and A000181 — three ménage prime-shift assertions proved and formalized; historical novelty unverified](A000033/README.md) · [Lean proof](A000033/Proof.lean)
+- [Odd-degree irreducibility, a word identity, and arithmetic assertions — combined manuscript](notes/Math_Proofs_Batch8.pdf)
+
 - [Regular polygons from consecutive rods — classification and infinitely many chains with three equilateral foldings](A382632/README.md) · [Manuscript](A382632/regular-foldings.pdf)
 - [Bala’s two triangular-number product identities (A174114 and A266883)](Bala-product-identities/README.md) · [Manuscript](Bala-product-identities/products.pdf)
 - [Minimum-part positions in compositions — Kotešovec’s asymptotic with an exponential error bound](A377824/README.md) · [Manuscript](A377824/minimum-positions.pdf) · [Complete Lean formalization](A377824Formal/README.md)
@@ -25,11 +79,14 @@
 - [Hardin’s rectangular arrays — the threshold for a common recurrence and 25 table predictions](Hardin-constant-stress/README.md) · [Manuscript (PDF)](Hardin-constant-stress/rectangular-recurrences.pdf)
 - [Modular Ducci sequences — the sharp maximum and the number of tuples entering a cycle at each step](Ducci-preperiod/README.md) · [Manuscript (PDF)](Ducci-preperiod/Ducci-preperiods.pdf)
 - [Edit-distance codes — exact families for fixed and variable lengths](edit-codes/README.md)
+- [Erdős–Straus at prime denominators — a stronger density-one count for each solution type](Erdos-Straus-prime-denominators/README.md) · [Manuscript](Erdos-Straus-prime-denominators/prime-denominators.pdf)
 - [Prime-square Erdős–Straus decompositions — the least offset is unbounded](Erdos-Straus-offset/README.md) · [The 18 proposed skips classified (PDF)](Erdos-Straus-offset/skipped-offsets.pdf) · [Infinite families of composite minima](Erdos-Straus-offset/composite-offsets.md) · [The least offset for almost every Tier 3 prime (PDF)](Erdos-Straus-offset/frequency.pdf)
 - [Elementary symmetric Boolean functions — a uniform AND-gate upper bound](SymmetricBooleanCircuits/README.md)
 - [Erdős problem 132 — distances of low multiplicity in complete square grids](Erdos-132-grid/README.md) · [Extension to convex lattice regions (PDF)](Erdos-132-convex-lattice/convex-lattice-distances.pdf) · [Arbitrary subsets of affine grids (PDF)](Erdos-132-convex-lattice/rare-distances-beyond-grids.pdf)
 - [Shallit’s Hankel determinant problem — all shifts through order 4096](Shallit-Hankel/README.md)
 - [Two-tap cellular automata — when the period divides the ring width](Two-tap-automata/README.md)
+- [Knuth multiplication on Wythoff rows and the normalized Horadam determinant](Wythoff-circle-product/README.md) · [Manuscript](Wythoff-circle-product/row-products.pdf)
+- [Diagonals and populations of five von Neumann cellular automata](Von-Neumann-diagonals/README.md) · [Manuscript](Von-Neumann-diagonals/diagonals.pdf)
 
 - [A000556 and A000557 — exact modular periods and both period conjectures of Kinlaw, Morris and Thiagarajan](A000556/README.md) · [Manuscript](A000556/periods.pdf) · [Lean finite cases](A000556/SmallCases.lean)
 - [A016789 — the negabinary three-way XOR identity](A016789/README.md) · [Lean proof](A016789/Proof.lean)
@@ -63,15 +120,16 @@
 - [A143132 — the repeating last decimal digits 1,6,6,6](A143132/README.md) · [Lean proof](A143132/Proof.lean)
 - [A178811 — consecutive powerful integers with matching prime signatures](A178811/README.md)
 - [A185333 and A185376 — necklaces that admit a palindromic cut, including prescribed color counts](A185376/README.md)
-- [A193020 and A331850 — exact run counts and the exponential rate of maximum self-shuffles](A193020/README.md) · [Manuscript](A193020/self-shuffles.pdf)
+- [A193020 and A331850 — exact run counts and the exponential rate of maximum self-shuffles](A193020/README.md) · [Manuscript](A193020/self-shuffles.pdf) · [The one-third exponent for the logarithmic deficit](A193020/shuffle-deficit.pdf)
 - [A193649 and nine related sequences — formulas for triangular-array residues](A193649/README.md) · [Manuscript](A193649/triangle-residues.pdf)
 - [A194469 and A194470 — a finite test and density bounds for curbed square roots](A194469/README.md) · [Manuscript](A194469/curbed-roots.pdf)
+- [A195204 — Bala’s continued fraction and its classical Eulerian specialization](A195204/README.md) · [Manuscript](A195204/continued-fraction.pdf)
 - [A195825 and A210843 — the positions, lengths and levels of every partition plateau](A195825/README.md) · [Manuscript](A195825/partition-plateaus.pdf)
 - [A195915 and A195916 — least periods of the XOR Pascal triangle](A195916/README.md) · [Manuscript](A195916/xor-triangle.pdf) · [Lean proof](A195916/Periods.lean)
 - [A197170 and A197171 — every gcd occurs in infinitely many real quadratic fields](A197170/README.md) · [Manuscript](A197170/fundamental-units.pdf)
 - [Periodic elementary symmetric functions — ten formulas and the least recurrence for any fixed number of omissions](Periodic-symmetric-functions/README.md) · [Manuscript (PDF)](Periodic-symmetric-functions/periodic-symmetric.pdf) · [Lean proof](Periodic-symmetric-functions/Periodic.lean)
 - [A200982 — power sums for every prime-power divisor of the Carmichael exponent](A200982/README.md) · [Manuscript](A200982/prime-power-exponents.pdf)
-- [A200984 and five related entries — balanced two-column arrays for every alphabet](A200984/README.md) · [Manuscript](A200984/balanced-arrays.pdf) · [33 formulas](A200984/coefficients.csv)
+- [A200984 and five related entries — balanced two-column arrays for every alphabet](A200984/README.md) · [Manuscript](A200984/balanced-arrays.pdf) · [33 formulas](A200984/coefficients.csv) · [Shortest recurrence at every alphabet size](A200984/even-denominators.pdf)
 - [A203069 and A203077 — bounded displacement of greedy composite power-sum permutations](A203069/README.md) · [Manuscript](A203069/greedy-permutations.pdf)
 - [A203399 — orbit sizes of binary bracelets and the exact rows obeying the divisor rule](A203399/README.md) · [Manuscript (PDF)](A203399/bracelet-orbits.pdf)
 - [A205573 — the sharp walk cutoff and the corrected row and column generating functions](A205573/README.md) · [Manuscript](A205573/bounded-walks.pdf)
@@ -79,9 +137,15 @@
 - [A208354 — a bijection for compositions with a single run of ones](A208354/README.md)
 - [A217280 — a complete base-five digit test for the weighted binomial sum](A217280/README.md) · [Lean proof](A217280/Proof.lean)
 - [A221078 and four related sequences — prime-power periods of trigonometric power sums](A221078/README.md) · [Manuscript](A221078/trigonometric-periods.pdf)
+- [Nakamura’s 2013 conjecture for every prescribed pair of 123 and 132 counts](Nakamura-123-132/README.md) · [Manuscript](Nakamura-123-132/prescribed-patterns.pdf) · [Lean proof of the cluster bounds](Nakamura-123-132/ClusterBound.lean)
+- [Fulmek’s fixed-count 321 generating function, two counterexamples to the Conway–Guttmann refinements, and the asymptotic amplitude](Fulmek-321/README.md) · [Manuscript](Fulmek-321/fulmek-321.pdf) · [Independent count](Fulmek-321/subset_check.cpp)
+- [A224292 and A224293 — exact counts for one or two occurrences of 1234 and 1243](A224292/README.md) · [Manuscript](A224292/one-pattern.pdf)
+- [A224294 — the exact two-of-each formula and the quadratic generating-function field for all fixed counts](A224294/README.md) · [Manuscript](A224294/fixed-patterns.pdf)
 - [A224341 and A224342 — the unique composition two-cycle and five corrected terms](A224341/README.md)
+- [A229623 and A229622 — palindromes separated by their digit sum](A229623/README.md) · [Manuscript](A229623/palindrome-gaps.pdf)
 - [A232622 and Mathar’s tiling formulas — symmetry and four-tile intersections](A232622/README.md) · [Bar tilings](A232622/bar-crossings.md) · [Three-row crossings](A232622/three-row-crossings.md) · [Algebra checks](A232622/verify.py)
 - [A233329–A233333 — least recurrences for rhombus coronas and an exact symmetry count](A233332/README.md) · [Manuscript (PDF)](A233332/rhombus-coronas.pdf) · [Geometric enumeration](A233332/geometry_n4.py)
+- [A236383 — square gaps at infinitely many widths and the impossibility of a gap of seven](A236383/README.md) · [Manuscript](A236383/concatenated-squares.pdf) · [Lean proof of decimal existence](A236383/DecimalWitness.lean) · [Prime gaps, finite witness lists and 67 exclusions](A236383/prime-gaps.pdf)
 - [A238342 — the asymptotic count of compositions with a fixed number of smallest parts](A238342/README.md)
 - [A245211 — partial results on fixed points of the weighted proper-divisor sum](A245211/README.md) · [PDF](A245211/A245211-research.pdf) · [Computations](A245211/verification/README.md)
 - [A249303 and A128100 — cyclotomic factors of Kimberling’s rational iterates](A249303/README.md) · [Manuscript](A249303/cyclotomic-factors.pdf)
@@ -101,6 +165,7 @@
 - [A324017 — two tetration proofs, a canonical counterexample, and corrected compatibility](A324017/README.md) · [Lean proof](A324017/Proof.lean)
 - [A330904 — the longest consecutive run](A330904/README.md) · [Lean proof](A330904/Proof.lean) · [PDF](A330904/A330904_proof.pdf)
 - [A332520 — fixed points by binary length](A332520/README.md) · [Verifier](A332520/verify.py)
+- [A332937, A332938, A360377 and A360378 — prime columns, a prime-free primitive row and the exact gcd distribution](Golden-rotation-arrays/README.md) · [Manuscript](Golden-rotation-arrays/primes-and-primitive-rows.pdf)
 - [A334501, A334509, A334511, A334513 and A334514 — exact ring periods for five cellular automata](A334501/README.md) · [Lean checks for small rings](A334501/SmallRings.lean)
 - [A334765 — the longest consecutive run for the negative balanced-ternary sum](A334765/README.md)
 - [A335858 — ordering binary words by run lengths](A335858/README.md) · [Verifier](A335858/verify.py)
@@ -115,6 +180,7 @@
 - [A366253, A367183, A367190 — regions, vertices and edges for marked polygons](A366253/README.md)
 - [A380385 — Euler-product column formulas and row sums](A380385/README.md) · [Lean proof](A380385/Proof.lean)
 - [A384700 — circles determined by two rows of grid points](A384700/README.md)
+- [A387349–A387351 — three Wythoff–Stolarsky gap conjectures, exact frequencies and paired gap sequences](Golden-rotation-arrays/README.md) · [Manuscript](Golden-rotation-arrays/stolarsky-gaps.pdf)
 - [A389524 — divisor-count row sums and the exact diagonal of a recursive triangle](A389524/README.md) · [Lean proof](A389524/Proof.lean) · [Lean Uchimura identity](A389524/Uchimura.lean) · [Weighted orphan identity: Conjecture 2](A389524Weighted/README.md) · [Lean weighted proof](A389524Weighted/Weighted.lean)
 - [A393833 — palindromic proper-divisor residues exist at every positive index](A393833/README.md) · [Lean proof](A393833/Proof.lean)
 - [A394659 — independent sets in triangular grids](A394659/README.md) · [Exact verifier](A394659/verify.py)
@@ -128,4 +194,5 @@
 [Eight resolved assertions across A016789, A300984, A324017, A389524, and A393833 (PDF)](notes/Math_Proofs_Batch6.pdf) · [Collection guide](notes/Math_Proofs_Batch6_README.md)
 
 [Weighted orphan identity, nine power-sum branches, and a formal composition asymptotic (PDF)](notes/Math_Proofs_Batch7.pdf) · [Collection guide](notes/Math_Proofs_Batch7_README.md)
+
 

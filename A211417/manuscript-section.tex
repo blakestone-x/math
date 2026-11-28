@@ -1,0 +1,192 @@
+\section{An independent formalization of the positive-shift family in A211417}
+\label{sec:a211417-positive-shifts}
+
+\subsection{Statement and scope}
+
+For $n\ge0$, let
+\[
+ A(n)=\frac{(30n)!\,n!}{(15n)!\,(10n)!\,(6n)!}.
+\]
+This is the classical integral factorial ratio recorded as OEIS A211417.
+In a comment dated August 28, 2025, Peter Bala conjectured that for each
+$k\in\{2,3,5\}$ and each integer $r\ge1$, there is a positive constant
+$C(k,r)$ such that
+\[
+ \frac{C(k,r)A(n)}
+ {\displaystyle\prod_{\substack{1\le i\le r\\\gcd(i,k)=1}}(kn+i)}
+ \quad\hbox{is an integer for every }n\ge0.
+\]
+The checked primary source is A211417, revision 94, dated August 26, 2026.
+The entire positive-shift assertion was already proved in the September
+19, 2026 report \emph{Polynomial divisibility of height-one factorial
+ratios}, Part I, in VladimirReshetnikov/ProveIt. Proposition
+\texttt{prop:positive} supplies a smaller lcm multiplier, and Corollary
+\texttt{cor:classificationAB} proves a stronger polynomial-divisor
+classification. The original dated commit contains both statements.
+The report explicitly has no Lean or Rocq formalization. This predecessor
+was located after our initial release. The present contribution is
+therefore an independent formalization of prior mathematics, not a
+new mathematical resolution.
+
+\begin{theorem}[Uniform positive-shift divisibility]
+\label{thm:a211417-positive-shifts}
+For every $k\in\{2,3,5\}$ and all integers $r,n\ge0$,
+\[
+ \prod_{\substack{1\le i\le r\\\gcd(i,k)=1}}(kn+i)
+ \ \mid\ ((30r)!)^r A(n).
+\]
+In particular, Bala's positive-shift conjecture holds with the explicit
+positive integer $C(k,r)=((30r)!)^r$.
+\end{theorem}
+
+This theorem independently formalizes the entire previously proved
+positive-shift family, with arbitrarily many factors. The original
+integrality of $A(n)$ is also a known result.  The
+four fixed-factor assertions in the same OEIS comment have prior
+kernel-checked proofs by Kenta Kitamura, and the separate negative-shift
+$D(r)$ family has a reported paper-complete proof.  Neither is counted
+as a new result here. The positive-shift family is likewise excluded
+from the count of new resolutions. The theorem does not assert that the displayed
+constant is minimal.
+
+\subsection{Floor contributions and the large-divisor lemma}
+
+For positive integers $m$, define
+\[
+ F(n,m)=\left\lfloor\frac{30n}{m}\right\rfloor
+ +\left\lfloor\frac{n}{m}\right\rfloor
+ -\left\lfloor\frac{15n}{m}\right\rfloor
+ -\left\lfloor\frac{10n}{m}\right\rfloor
+ -\left\lfloor\frac{6n}{m}\right\rfloor.
+\]
+Nested integer division, with $t=\lfloor30n/m\rfloor$, gives
+\[
+ F(n,m)=f(t),\qquad
+ f(t)=t+\lfloor t/30\rfloor-\lfloor t/2\rfloor
+                     -\lfloor t/3\rfloor-\lfloor t/5\rfloor.
+\]
+The function $f$ on nonnegative integers is periodic modulo 30, and
+inspection of its 30 residues shows that $f(t)\in\{0,1\}$.
+For clarity, the residues with value 1 are
+\[
+ \{1,2,3,4,5,7,8,9,11,13,14,17,19,23,29\}.
+\]
+Thus $F(n,m)\ge0$ for every $n,m$.  Legendre's formula then gives the
+known integrality of $A(n)$ and the exact valuation identity
+\begin{equation}
+\label{eq:a211417-valuation}
+ v_p(A(n))=\sum_{e\ge1}F(n,p^e)
+\end{equation}
+for every prime $p$.  All these sums are finite.
+
+\begin{lemma}
+\label{lem:a211417-large-divisor}
+Suppose $k\in\{2,3,5\}$, $i\ge1$, $\gcd(i,k)=1$, and $m>30i$.
+If $m\mid kn+i$, then $F(n,m)=1$.
+\end{lemma}
+\begin{proof}
+Write $kn+i=mj$ and put $d=30/k$.  If $k\mid j$, then the same equation
+implies $k\mid i$, contradicting $\gcd(i,k)=1$.  Therefore
+$j\not\equiv0\pmod k$.
+Multiplying the equation by $d$ gives
+\[
+ 30n+di=mdj.
+\]
+Because $0<di<m$, we have
+\[
+ t=\left\lfloor\frac{30n}{m}\right\rfloor=dj-1.
+\]
+For $k=2$ the resulting residue of $t$ modulo 30 is 14.
+For $k=3$ the possible residues are 9 and 19.
+For $k=5$ they are 5, 11, 17, and 23.
+Every one of these residues has $f(t)=1$, proving the claim.
+\end{proof}
+
+\subsection{Proof for the entire product}
+
+\begin{proof}[Proof of Theorem~\ref{thm:a211417-positive-shifts}]
+Fix $k,r,n$ as in the theorem and let
+\[
+ S=\{i\in\mathbb Z:1\le i\le r,\ \gcd(i,k)=1\},
+ \qquad N_m=\#\{i\in S:m\mid kn+i\}.
+\]
+If $m>30r$, there is at most one $i\in S$ with $m\mid kn+i$.
+Indeed, two distinct such indices would imply $m\mid i-j$, whereas
+$0<|i-j|<m$.  If one such index exists, Lemma~\ref{lem:a211417-large-divisor}
+applies because $i\le r$, and gives $F(n,m)=1$.  Consequently
+\[
+ N_m\le F(n,m)\qquad(m>30r).
+\]
+For $m\le30r$ we have $N_m\le|S|\le r$, while
+$\lfloor30r/m\rfloor\ge1$ and $F(n,m)\ge0$.  These two cases combine as
+\begin{equation}
+\label{eq:a211417-uniform-contribution}
+ N_m\le F(n,m)+r\left\lfloor\frac{30r}{m}\right\rfloor
+ \qquad(m\ge1).
+\end{equation}
+For a fixed prime $p$, each factor $kn+i$ contributes one to its
+valuation for each positive $e$ with $p^e\mid kn+i$.  Therefore
+\[
+ v_p\left(\prod_{i\in S}(kn+i)\right)=\sum_{e\ge1}N_{p^e}.
+\]
+This identity counts repeated prime factors across different selected
+indices.  Summing~\eqref{eq:a211417-uniform-contribution} at $m=p^e$,
+and using~\eqref{eq:a211417-valuation} and Legendre's formula again,
+yields
+\begin{align*}
+ v_p\left(\prod_{i\in S}(kn+i)\right)
+ &\le \sum_{e\ge1}F(n,p^e)
+       +r\sum_{e\ge1}\left\lfloor\frac{30r}{p^e}\right\rfloor\\
+ &=v_p(A(n))+r\,v_p((30r)!)\\
+ &=v_p\bigl(((30r)!)^r A(n)\bigr).
+\end{align*}
+Since this holds for every prime, it proves the desired divisibility.
+At $r=0$, the selected set is empty and $((30r)!)^r=1$, so the same
+statement also includes the empty-product boundary.
+\end{proof}
+
+\subsection{Formalization and provenance}
+
+The complete proof is formalized in \texttt{A211417/Proof.lean}, namespace
+\texttt{ChebyshevShifts}, using Lean 4.19.0 and mathlib commit
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+The original numerator and denominator are defined with natural-number
+factorials.  The theorem \texttt{factorial\_ratio\_identity} proves
+that the quotient is exact; \texttt{sourceRatio\_eq\_a} then identifies
+it with the literal rational factorial expression.
+The endpoint \texttt{positive\_shift\_divisibility} proves the displayed
+divisibility with the explicit constant, and
+\texttt{positive\_shift\_rational\_integrality} constructs an integer
+equal to the source's requested rational quotient.
+
+The valuation proof is written with an explicit finite common cutoff
+greater than $30n$, $30r$, and $kn+r$.  It controls the product directly,
+including every multiplicity at every prime-power level.  The proof
+contains no assumed conjecture, artificial finite bound, additional
+axiom, or executable proof oracle.  The checked endpoints use only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+The source archive and bounded prior-resolution checks are supplied in
+\texttt{A211417/source\_checks.md}.  The official OEIS bytes were checked
+against the immutable export commit
+\texttt{dff800c40a409482c9b734eecd1958986302e385}.  The initial searches missed the explicit predecessor. A broader
+GitHub semantic code search later identified the September 19 paper
+and its exact positive-family proposition. The package's
+\texttt{PRIOR\_PROOF.md} records the original commit, exact statement
+overlap, and chronology; \texttt{landau\_provenance.md} also explains
+the classical multivariate Landau implication. The corrected status
+is independent formalization of a previously proved assertion.
+
+Primary links: \url{https://oeis.org/A211417};
+\url{https://github.com/KitaKen1/oeis-a211417};
+\url{https://github.com/google-deepmind/formal-conjectures/pull/5010};
+\url{https://github.com/google-deepmind/formal-conjectures/issues/4923}.
+
+
+Prior proof: OpenAI ChatGPT, \emph{Polynomial divisibility of height-one
+factorial ratios}, Part I, September 19, 2026, unrefereed AI-assisted
+research report. \href{https://github.com/VladimirReshetnikov/ProveIt/blob/a3fe9660ee6c3ab92752594c2099c3cd214012c9/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex}{Original dated source}, commit
+\texttt{a3fe9660ee6c3ab92752594c2099c3cd214012c9}.
+Classical background: Jonathan W. Bober, \emph{Factorial ratios,
+hypergeometric series, and a family of step functions}, Theorem 3.1,
+\url{https://arxiv.org/abs/0709.1977}.

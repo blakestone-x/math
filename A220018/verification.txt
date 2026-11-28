@@ -1,0 +1,31 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A220018_author_cfdgf9rm
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2794/2800] Built OrbitCount
+info: ././././OrbitCount.lean:120:0: 'CyclotomicCosets.cosetCount_eq_divisor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././OrbitCount.lean:121:0: 'CyclotomicCosets.mem_coset_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2795/2800] Built Orders
+✔ [2796/2800] Built DivisorGrid
+✔ [2797/2800] Built ExplicitSums
+✔ [2798/2800] Built GridSums
+ℹ [2799/2800] Built Proof
+info: ././././Proof.lean:54:0: 'CyclotomicCosets.A220018_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:55:0: 'CyclotomicCosets.A220019_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:56:0: 'CyclotomicCosets.A220020_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:57:0: 'CyclotomicCosets.A221855_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:58:0: 'CyclotomicCosets.cosetCount_ten_eq_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 DivisorGrid.lean: 10cca9ac2c628a9749704d7c478415be36daef25f7667258c58c1b187b169e26
+SHA256 ExplicitSums.lean: 15f2bc1f5e6191aa818bb9b3537880892435582da0f1dceb4d7aeda5e62232b6
+SHA256 GridSums.lean: d73842989b5319eb9fe2a1daa6225b521618bc4f833dcd90aab2124ff632c7b3
+SHA256 OrbitCount.lean: e1084442bc60d0e59b7e6ace80678a01215270bf1761a0276ce772294f66c93a
+SHA256 Orders.lean: 300aae7fda1d190b3251ad56d6bdeed561f05a929e958c5da13881a59628cb72
+SHA256 Proof.lean: e5489af063840402e61502112a12c3b15e282cbe2b68dda7e5343d47b0be3c7b
+SHA256 lakefile.lean: d2b763f071d6639eea336283ac86706ed614bb4c1a7e161fd8451187d63254d5
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 7fd045d411c0f3f11f63ea289874dc104491292400f5f5456db7610dde660e34

@@ -1,0 +1,28 @@
+Fresh isolated independent build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A067576_independent_eh98j9wf
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2797/2801] Built Binary
+info: ././././Binary.lean:89:0: 'A067576.count_last_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2798/2801] Built Columns
+info: ././././Columns.lean:74:0: 'A067576.entry_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Columns.lean:75:0: 'A067576.eventually_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2801] Built Sharp
+info: ././././Sharp.lean:107:0: 'A067576.row_infinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sharp.lean:108:0: 'A067576.sharp_onset' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2800/2801] Built Proof
+info: ././././Proof.lean:32:0: 'A067576.entry_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:33:0: 'A067576.entry_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:34:0: 'A067576.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Binary.lean: cfb5301237b6fb70b0deb94784eb6ec34a452a6886eec144b0333848f22d1789
+SHA256 Columns.lean: 38b82c644b679497d6726e633a1e28a9ad9244a93e0d289de9c64c7173a667bc
+SHA256 Proof.lean: b2518d0c0301ad8b6deb99fbe37d14fe4357da3b6b307a7e4ef4f0c41c6e904c
+SHA256 Sharp.lean: eeabed886d0ed1f0d2cb9948db513a30bcd0ba58db2bdab4bc86bd8c76728b3f
+SHA256 lakefile.lean: a0882c2f4cb23c3cbcf69a1fca7e1b6999d56d1c6138bcdf269f76007360f4d3
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: a3564fa9eb40cf2764d54aa1a4dfd888fd606bce612ba0662d92bf4c31f31b74

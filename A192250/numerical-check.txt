@@ -1,0 +1,3 @@
+A192250: 23 published terms match; 100 recurrence instances n=4..103 vanish.
+A192251: 23 published terms match; 100 recurrence instances n=4..103 vanish.
+Literal source substitution terminates for every checked input; all three source SHA-256 checks pass.

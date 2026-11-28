@@ -1,0 +1,119 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.9in,headheight=14pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=black]{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Fixed joint pattern counts}\rhead{\small Blake Stone}\cfoot{\thepage}
+\hypersetup{pdftitle={Fixed joint counts of 1234 and 1243},pdfauthor={Blake Stone, with Astra}}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Fixed joint counts of the permutation patterns\\[2pt] 1234 and 1243\par}
+\vspace{0.4em}Blake Stone\\{\small Research manuscript prepared with Astra}
+\end{center}
+\begin{abstract}
+For every fixed pair of nonnegative occurrence counts the length generating function belongs to the same quadratic field as the large Schröder series. All these classes have growth $C(3+2\sqrt2)^n n^{-3/2}$ with a positive, computable constant. We give the reduced rational function in a Schröder parameter for two occurrences of each pattern, OEIS A224294. Its coefficients are asymptotically $(2759\sqrt2-2999)/64$ times the number avoiding both patterns.
+\end{abstract}
+
+Write $a_{r,s}(n)$ for the number of permutations of $[n]$ containing exactly $r$ occurrences of $1234$ and $s$ of $1243$ as classical subsequences. Let $G_{r,s}(x)=\sum_{n\ge0}a_{r,s}(n)x^n$, including the empty permutation for $r=s=0$. Nakamura obtained functional recurrences and tables for these joint counts [1]. The companion note [2] handles total count at most two.
+\begin{theorem}\label{univ}
+For every fixed $r,s\ge0$, the series $G_{r,s}$ is effectively computable in $\Q(x,\sqrt{1-6x+x^2})$. Its coefficients satisfy a recurrence with polynomial coefficients. There is a computable $C_{r,s}>0$ such that
+\[
+ a_{r,s}(n)\sim C_{r,s}(3+2\sqrt2)^n n^{-3/2}.
+\]
+\end{theorem}
+
+\section{Reading two orders simultaneously}
+Complement values, writing $\sigma_i=n+1-\pi_i$. The patterns become $4321,4312$. For a point $(i,j)$ with $j=\sigma_i$, put
+\[
+ L_i=\#\{a<i:\sigma_a>j\},\qquad R_i=\#\{b>i:\sigma_b<j\}.
+\]
+Then $R_i-L_i=j-i$. This point is the second entry of $L_i\binom{R_i}{2}$ occurrences in total. For type $4321$ its contribution is $L_i I_i$, where
+\[
+ I_i=\sum_{\substack{b>i\\ \sigma_b<j}} R_b. \tag{1}
+\]
+Indeed, each later entry smaller than $\sigma_b$ also lies below $j$. A point with $L_i>0$ and $R_i\ge2$ will be called exceptional.
+
+At time $t$ expose both position $t$ and value $t$. Keep in increasing order the earlier positions waiting for a larger value (upper ends) and the earlier values waiting for a later position (lower ends). The two lists have equal length $h$. If $i<t$ receives value $t$, its zero-based rank in the upper list is $L_i$. If position $t$ receives $j<t$, the rank of $j$ in the lower list is $R_t$. A fixed point has $L_t=R_t=h$. These assertions follow by counting still unmatched earlier positions or values. The five possible steps are listed below. An end created at $t$ is appended after any closure.
+\[
+\begin{array}{c|l|l}
+ &\text{position }t&\text{value }t\\ \hline
+ \text{up}&\text{open upper}&\text{open lower}\\
+ \text{down}&\text{close lower}&\text{close upper}\\
+ \text{upper level}&\text{open upper}&\text{close upper}\\
+ \text{lower level}&\text{close lower}&\text{open lower}\\
+ \text{fixed}&\multicolumn{2}{l}{\sigma_t=t}
+\end{array}
+\]
+These instructions reconstruct the permutation from its steps and closure ranks. A path starts and ends at height zero and can close only available ends. This is the classical cycle-diagram representation [3].
+
+\section{Why only finitely much information is needed}
+Set $K=r+s$, and take $B=K+3$. At an exceptional point, $L_i\le K$, $\binom{R_i}{2}\le K$ and $|j-i|<B$. The height just before closure is at most $B$: for an upper closure there are $L_i$ older ends and at most $j-i-1$ younger ones, hence $h\le R_i$. For a lower closure the analogous bound is $h\le L_i$. An ordinary upper closure must take rank zero since $j>i$ implies $R_i>L_i$. An ordinary lower closure uses rank zero or one since $j<i$ implies $L_i>0$. Ordinary fixed points are possible only at $h=0,1$.
+
+We describe a finite record that enforces both counts. Upon recognizing an exceptional point, add $L_i\binom{R_i}{2}$ to a total counter. Use (1) for the descending-pair counter. At a lower closure, the smaller values still to be used form the first $q=R_i$ lower ends. At a fixed point they are the first $q=h$ ends. Record a pair $(q,L_i)$ if $q\ge2$. When a later lower selection has rank $u<q$, add $L_i u$ to the descending counter, replace $q$ by $q-1$, and discard the pair if $q\le1$. A selection of rank at least $q$ leaves it alone. This works because newly opened values exceed every value in the pending prefix.
+
+For an exceptional upper edge $(i,t)$, first add the contributions $L_iR_b$ from positions $i<b\le t$ already assigned a value less than $t$. Every such $R_b$ is known. A lower or fixed point is assigned at time $b$, and an upper point with $\sigma_b<t$ has already closed. For all remaining summands of (1), the relevant values are exactly the pending lower ends after step $t$. Register their number with weight $L_i$ as above. If two exceptional edges close at one time, process the old pending prefixes first, then account for both new points. A lower point at position $t$ is included in the upper edge's local sum when appropriate.
+
+There are at most $K$ unfinished pairs. To recognize exceptional edges it suffices to retain the closing ranks, opening times truncated at age $B$, and the position assignments in a window of $B$ steps. In the window one retains $R_b$ only for positions whose value is assigned there or at their own later closure within the window. For an upper edge extending beyond it, that position cannot contribute to a local sum computed before the edge closes. A large stored value can be capped above $B$: any summand in (1) is strictly less than the exceptional $R_i<B$. Ranks, counters and comparisons in this bounded window have finite ranges. Reject when the total exceeds $K$ or the descending count exceeds $r$. At height zero with no pending comparisons accept precisely totals $(K,r)$.
+
+Take a cutoff $H=3B+3$. Below it both lists have bounded size. While above it no new exceptional point can arise. Information on recent assignments can be forgotten at the cutoff, since every window preceding an exceptional closure stays below $H$, by the height bound and the fact that height changes by at most one. Older ends can be retained as identical placeholders, in order, on returning to height $H$. Pending prefix lengths and weights are retained across the cutoff.
+
+\section{Summing the high excursions}
+At high levels the up step is unique, each upper level is unique, and there are two choices for a lower level or down step. Erase the binary ranks at lower selections and mark each such selection by $y$. A first-return decomposition gives the generating series for an excursion above a horizontal floor and for a primitive arch from the cutoff to itself:
+\[
+ E(x,y)=1+(1+y)xE(x,y)+yx^2 E(x,y)^2,\qquad A(x,y)=yx^2E(x,y).
+\]
+Thus $A(x,2)=(1-3x-\sqrt{1-6x+x^2})/2$. For each fixed $j$, $A_j(x)=[y^j]A(x,y)$ is rational in $x$. For example, a shape with $j$ lower selections has at most $j$ down steps, equally many up steps, and at most $j$ lower levels. Deleting the upper levels leaves finitely many skeletons, with a geometric series in each gap.
+
+After at most $B$ lower selections in a high arch every inherited prefix has length at most one. While a prefix is unfinished, both ranks zero and one lie in it. For $j<B$, an arch with a prescribed full rank word of length $j$ has weight $A_j$. For each specified first $B$ ranks, the weight of arches having at least $B$ lower selections is
+\[
+ 2^{-B}\left(A(x,2)-\sum_{j<B}2^j A_j(x)\right).
+\]
+These formulas preserve the two counters and any unfinished comparisons. They replace the entire high region by finitely many transitions with weights in the indicated quadratic field and nonnegative series coefficients. The low paths now give a finite linear system $F=e+T(x)F$, with $T(0)=0$. It proves the field assertion and is an algorithm for every pair of counts. The field has dimension two over $\Q(x)$ and is closed under differentiation. Thus $G_{r,s}$ and its first two derivatives satisfy a homogeneous linear dependence over $\Q(x)$. Clearing denominators and extracting coefficients proves P-recursiveness, a property Nakamura anticipated for $r,s\le1$ [1, conclusion].
+
+\section{The singularity and the positive constant}
+Put $\rho=3-2\sqrt2$. In the ordinary class all levels at $h\ge1$ have total weight three, all down steps from $h\ge2$ have weight two, and the down step from one has weight one. At zero there is a fixed point or an up step. Therefore
+\[
+ G_{0,0}(x)=\frac{1}{1-x-x^2E(x,2)}
+           =\frac{1+2v}{1+v},\qquad
+ v=x(1+v)(1+2v)=\frac{1-3x-\sqrt{1-6x+x^2}}{4x}.
+\]
+It is finite at $\rho$, and $v(\rho)=1/\sqrt2$. Its square-root coefficient is nonzero.
+
+For fixed starting and ending heights $h,k\le H$, the sum of ordinary path weights at $\rho$ is finite. Prepending $h$ up steps and appending $k$ specified down steps embeds their labeled walks into the ordinary returns to zero. Finite-control restrictions only decrease this sum. Every permitted path splits into ordinary pieces at at most $K$ steps creating exceptions. Such a step has bounded height and finitely many choices. Consequently the total weight at $\rho$ of paths between any two finite states is finite. In particular $\sum_{m\ge0}T(\rho)^m$ is entrywise finite, and the spectral radius of $T(\rho)$ is less than one. For $|x|\le\rho$, absolute values are bounded entrywise by $T(\rho)$. Each rational $A_j$ has possible poles only at $x=1$ by the skeleton construction. It follows that the inverse system is analytic on $|x|=\rho$ away from $\rho$ and is analytic in a local square-root parameter at $\rho$.
+
+Take a skew sum of $r$ copies of $1234$ and $s$ copies of $1243$, followed by any avoider of the two patterns. Neither pattern can cross a skew-sum boundary, since all values in the earlier block are larger and neither pattern admits such a split. This gives $a_{r,s}(n)\ge a_{0,0}(n-4K)$ for $n\ge4K$. Square-root coefficient transfer [4] gives $a_{0,0}(n)\asymp \rho^{-n}n^{-3/2}$. If the first square-root coefficient of $G_{r,s}$ vanished, the same transfer would give $O(\rho^{-n}n^{-5/2})$, contradicting the injection. This proves Theorem~\ref{univ}, including positivity and computability of its constant.
+
+\section{Two occurrences of each pattern}
+\begin{theorem}\label{exact}
+For the parameter $v$ above,
+\[
+ G_{2,2}(x)=\frac{2v^6 P(v)}{(1+v)^5(1+2v)(1+2v+2v^2)^3}.
+\]
+In ascending order the coefficients of $P$ are
+\[
+ (1,12,78,332,1001,2263,3998,5679,6579,6213,4707,2768,1192,336,48).
+\]
+Moreover $a_{2,2}(n)/a_{0,0}(n)\longrightarrow(2759\sqrt2-2999)/64$.
+\end{theorem}
+Here are the rules and a finite exact certificate for the displayed expression. With at most two occurrences of either type, a lower edge cannot be exceptional. It would have $L>R\ge2$ and therefore contribute at least three copies of the same type if $R=2$, or more than four occurrences if $R\ge3$. A fixed point can be exceptional only at $h=2$, contributing two of one type. The exceptional upper closures have $(L,R)=(1,2)$ or $(1,3)$, with age one or two. Thus a second-oldest upper end may close only at age one or two. All lower ranks are zero or one.
+
+Cut at $h=4$. A prospective exceptional upper edge is appended last. In the age-one case the height immediately after opening must be two. In the age-two case it is at most three, and if it is three the intervening step must close an older end. If it is at most two, one step can raise it only to three. Thus no such edge can cross the cutoff. Keep the ordered upper ages, capping them at three, and a single value from the previous position (its $R$ if lower or fixed, zero otherwise). This value is needed only when the second upper end has age two. In the local sum for an age-two closure, an upper edge starting at $t-1$ cannot have closed below $t$. The current position contributes only if it closes a lower edge. A new unfinished prefix consists of the remaining lower ends. Two lower choices suffice to settle every inherited prefix. For a high arch the weight for one prescribed lower rank, with no other lower selection, is $A_1=x^2/(1-x)$. For each prescribed initial pair with at least two selections the weight is $(A(x,2)-2A_1)/4$.
+
+Starting at height zero with zero counters, the transition rules in \texttt{verify.py} give 346 reachable states. Write $D=(1+3v+2v^2)(1+2v+2v^2)$. The three edge weights (a single step and the two high-arch cases) have common denominator $D$ and respective numerators
+\[
+ v(1+2v+2v^2),\qquad v^2,\qquad v^3(1+v).
+\]
+Multiplying the linear system by $D$ gives entries and right sides of degree at most four. Cramer's rule bounds both degrees of its answer by $4\cdot346$. The candidate numerator has degree 20 and denominator degree 12. After cross-multiplication their difference has degree at most 1404. Both denominators are units at zero. The supplied integer verifier checks every coefficient through degree 1404 in $v$, proving the identity at every degree. It separately checks the 25 coefficients listed in \href{https://oeis.org/A224294}{OEIS A224294}. For the asymptotic ratio differentiate the two rational functions with respect to $v$ at $v=1/\sqrt2$. Their common leading square-root factor cancels, giving $(1+v)^2\,dG_{2,2}/dv$ at that point and the value claimed.
+
+\paragraph{References.}
+[1] B. Nakamura, \href{https://arxiv.org/abs/1301.5080}{Approaches for enumerating permutations with a prescribed number of occurrences of patterns} (2013).
+[2] B. Stone with Astra, \href{https://github.com/blakestone-x/math/blob/d8555a3a1d36da63c29db7d17beb09729cc74252/A224292/one-pattern.pdf}{One occurrence of 1243 and none of 1234}.
+[3] S. Elizalde, \href{https://dmtcs.episciences.org/4602}{Continued fractions for permutation statistics}, \emph{Discrete Math. Theor. Comput. Sci.} 19 (2018).
+[4] P. Flajolet and R. Sedgewick, \emph{Analytic Combinatorics}, Cambridge University Press (2009), Chapter VI.
+\end{document}

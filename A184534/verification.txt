@@ -1,0 +1,36 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A184534_author__r_32270
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2805/2809] Built CubeRoot
+info: ././././CubeRoot.lean:151:0: 'A184534.general_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././CubeRoot.lean:152:0: 'A184534.source_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2806/2809] Built Sequence
+info: ././././Sequence.lean:67:0: 'A184534.source_eq_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sequence.lean:68:0: 'A184534.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sequence.lean:69:0: 'A184534.empirical_closed_form_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2807/2809] Built GeneratingFunction
+info: ././././GeneratingFunction.lean:86:0: 'A184534.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2808/2809] Built Proof
+info: ././././Proof.lean:17:0: 'A184534.rootFloor_eq_of_cubic_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:18:0: 'A184534.general_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:19:0: 'A184534.source_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:20:0: 'A184534.source_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:21:0: 'A184534.source_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:22:0: 'A184534.source_eq_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:23:0: 'A184534.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:24:0: 'A184534.empirical_closed_form_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:25:0: 'A184534.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:26:0: 'A184534.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 CubeRoot.lean: f4ad69fd2c93e2f94db32b718f4bafa11a45cc55c5be406ac2e3b4e70fb1618e
+SHA256 GeneratingFunction.lean: 69e877c2433669b41c8b3befd15ac9b4b8d41c36712e8910fdea5d8d8db203a2
+SHA256 Proof.lean: 038915733781cc98eaa7c1d67cfddf4e48e190b9c9c570d4d77960de124f52c8
+SHA256 Sequence.lean: 7262784735efdbe010c504d41e40d0266a57876b1580c5fabaeae9bdebd5d97b
+SHA256 lakefile.lean: 17ed0e4281beaaa10255533dac334a13232afb801f1e33d801d41cbf126117e8
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 4e8267b75c19b0b125db1807393b95d912285eaa3a23a4a3ab2374d2f3966009

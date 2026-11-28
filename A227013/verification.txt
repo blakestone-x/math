@@ -1,0 +1,55 @@
+Fresh isolated author build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A227013_author_l4jnd0fj
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2805/2813] Built Moments
+⚠ [2806/2813] Built Bounds
+warning: ././././Bounds.lean:19:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././Bounds.lean:36:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././Bounds.lean:97:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././Bounds.lean:112:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././Bounds.lean:112:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2807/2813] Built Certificates
+warning: ././././Certificates.lean:33:2: 'skip' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+warning: ././././Certificates.lean:37:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././Certificates.lean:60:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [2808/2813] Built Sequence
+info: ././././Sequence.lean:117:0: 'QuarticHarmonic.qVal_floor_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Sequence.lean:118:0: 'QuarticHarmonic.closedTerm_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2809/2813] Built SourceBounds
+info: ././././SourceBounds.lean:100:0: 'QuarticHarmonic.harmonic_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBounds.lean:101:0: 'QuarticHarmonic.source_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2810/2813] Built Source
+info: ././././Source.lean:42:0: 'QuarticHarmonic.source_eq_closedTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Source.lean:43:0: 'QuarticHarmonic.corrected_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2811/2813] Built GeneratingFunction
+info: ././././GeneratingFunction.lean:100:0: 'QuarticHarmonic.closed_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2812/2813] Built Proof
+info: ././././Proof.lean:50:0: 'QuarticHarmonic.source_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:51:0: 'QuarticHarmonic.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:52:0: 'QuarticHarmonic.recurrence_fails_at_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:53:0: 'QuarticHarmonic.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Bounds.lean: 436764f74c2658727de4ef7f0951d2797e822e0492987ae38058fde52aa1e361
+SHA256 Certificates.lean: 0d2d9a5141ac52148e6ad0b0f0c060c3b80ee937e68a08b1b3d9efca5f4e90c4
+SHA256 GeneratingFunction.lean: 357a95de3a2e7c371e1ffbc90542f851c34796162710001ddf0a45f21e2e3328
+SHA256 Moments.lean: 001fa9b5c7cf4ed2ed91fe77d51e8b53a1c8f24aea49112f6371b3507b0d6991
+SHA256 Proof.lean: 08c7aa37528b47ea11b79dd2a9dbffe459835a09b027e723fa95a509e06a58a4
+SHA256 Sequence.lean: f7364b3d908cbdd3efa816e8a94383bc76754471e21691eb4462166b2cce67d1
+SHA256 Source.lean: 693130ebbed477552e6264fd33b47e512f2f603f14620945f026f291b4153c56
+SHA256 SourceBounds.lean: 8cc89b0225a22a4a64b3a9cc128917d804565f764d4bf06fb7f0476f27bf6304
+SHA256 lakefile.lean: cb69a498b8d7ae21ac9014da78daf40a21ce53ead79ec452ceeb7f13709dbcef
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 4e8267b75c19b0b125db1807393b95d912285eaa3a23a4a3ab2374d2f3966009

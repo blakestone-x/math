@@ -1,0 +1,714 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Binary columns, polynomial reductions, and quartic harmonic means},pdfauthor={Blake Stone},pdfsubject={Four recorded source assertions in three families, with complete Lean proofs}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Binary columns, polynomial reductions,\\[3pt]
+and quartic harmonic means}\par
+\vspace{0.5em}
+{\large Four source assertions in three families: complete Lean proofs}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proofs developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove four specific conjectural assertions in three mathematical families.
+For the increasing array of positive integers with a fixed number of binary
+ones, we prove Kimberling's eventual column-doubling conjecture and the exact
+least starting row $\max(1,j-1)$ for every column $j$. For the two components
+of central-binomial prefix polynomials reduced by $X^2\mapsto X+1$, a direct
+divisibility certificate proves both of Mathar's recorded recurrences.
+Finally, exact rational moment inequalities establish the generating function
+of the floors of harmonic means between consecutive fourth powers. The last
+proof supplies the corrected same-index floor formula, the valid recurrence
+cutoff, and a full source-to-power-series bridge.
+Each result is verified from its literal source definition in Lean, with
+separate fresh author and reviewer builds, exact source snapshots, and a
+mathematical review outside its authoring team. Prior methods and related
+results are credited. Bounded searches do not establish worldwide priority.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.3in}@{}}
+\toprule
+Source & Exact scope\\
+\midrule
+A067576 & Eventual doubling in every binary-weight column, with the exact least starting row.\\
+A192250/A192251 & Two component recurrences from the literal terminating polynomial-reduction algorithm.\\
+A227013 & The conjectured harmonic-mean generating function, with corrected closed-form and recurrence indices.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The two component recurrences share one proof and count as one family.
+The onset formula, intermediate inequalities, recurrence consequences, and
+indexing corrections are not additional problem counts. These are proofs
+of precise recorded assertions; the established theories used to prove them
+are not claimed as new.
+
+\section{Eventual doubling in the binary-weight array}
+
+For positive integers $i,j$, let $T(i,j)$ be the $j$th positive integer
+whose ordinary binary expansion contains exactly $i$ ones, listed in
+increasing order. This is the array of OEIS A067576, introduced by
+Wilson in 2002. Kimberling conjectured in November 2025 that every
+column of $T(i,j)+1$ eventually forms a geometric progression of ratio
+two \cite{oeis067576}. We prove the conjecture and determine its exact
+starting row.
+
+\begin{theorem}\label{a067576:main}
+For positive $i,j$ with $i\ge j-1$,
+\begin{equation}\label{a067576:formula}
+ T(i,j)+1=(2^j-1)2^{i+1-j}.
+\end{equation}
+Consequently the least positive row $r$ such that
+\[
+ T(i+1,j)+1=2\bigl(T(i,j)+1\bigr)\qquad\text{for every }i\ge r
+\]
+is exactly $\max(1,j-1)$.
+\end{theorem}
+
+\subsection*{Exact ranks from binary prefix counts}
+Let $w(n)$ be the number of ones in the binary expansion of the natural
+number $n$, including $w(0)=0$, and put
+\[
+ C_i(m)=\#\{n\in\mathbb N: n<m,\ w(n)=i\}.
+\]
+The identities $w(2n)=w(n)$ and $w(2n+1)=w(n)+1$ imply
+\begin{align}
+ C_{i+1}(2m)&=C_{i+1}(m)+C_i(m),\label{a067576:even}\\
+ C_{i+1}(2m+1)&=C_{i+1}(m+1)+C_i(m).\label{a067576:odd}
+\end{align}
+Indeed, the even integers below $2m$ correspond to integers below $m$
+of unchanged weight; the odd integers correspond to integers below $m$
+of weight one less. Below $2m+1$, the even part additionally contains
+$2m$, giving the second equation.
+
+Binary induction proves $2^{w(n)}\le n+1$. At an even successor step,
+$2^{w(2n)}=2^{w(n)}\le n+1\le2n+1$; at an odd step,
+$2^{w(2n+1)}=2\cdot2^{w(n)}\le2n+2$. The base $n=0$ is equality.
+Also $w(2^i-1)=i$, since the binary expansion is a string of $i$ ones.
+It follows that
+\begin{equation}\label{a067576:minimum}
+ C_i(m)=0\quad(m<2^i),\qquad C_i(2^i)=1.
+\end{equation}
+For the first equality, every $n<m$ satisfies $n+1\le m<2^i$ and
+therefore cannot have weight $i$. The second follows by adjoining the
+single integer $2^i-1$.
+
+Induction in \eqref{a067576:even} now gives
+\begin{equation}\label{a067576:nearfull}
+ C_i(2^{i+1})=i+1.
+\end{equation}
+The case $i=0$ counts only zero. For the induction step, the two terms
+in \eqref{a067576:even} are $C_{i+1}(2^{i+1})=1$ and
+$C_i(2^{i+1})=i+1$. The two largest integers below $2^{i+1}$ have
+weights
+\[
+ w(2^{i+1}-2)=i,\qquad w(2^{i+1}-1)=i+1.
+\]
+Subtracting their contributions from \eqref{a067576:nearfull} shows
+\begin{equation}\label{a067576:base}
+ w(2^{i+1}-2)=i,\qquad C_i(2^{i+1}-2)=i.
+\end{equation}
+
+\begin{lemma}\label{a067576:rank}
+For all $k,d\ge0$, set $v(k,d)=(2^{k+1}-1)2^d-1$. Then
+\[
+ w(v(k,d))=k+d,\qquad C_{k+d}(v(k,d))=k.
+\]
+\end{lemma}
+\begin{proof}
+For $d=0$, this is \eqref{a067576:base}. Suppose it holds for $d$,
+and write $v=v(k,d)$. Then
+\[
+ v(k,d+1)=2v+1,\qquad
+ v+1=(2^{k+1}-1)2^d<2^{k+d+1}.
+\]
+The weight of $2v+1$ is $k+d+1$. Equations
+\eqref{a067576:odd} and \eqref{a067576:minimum} give
+\[
+ C_{k+d+1}(2v+1)
+ =C_{k+d+1}(v+1)+C_{k+d}(v)=0+k.
+\]
+This proves the induction step.
+\end{proof}
+
+For every positive $i$, the integers $(2^i-1)2^a$, as $a$ varies, show
+that the weight-$i$ row is infinite. Its increasing enumeration is
+therefore characterized by membership and the exact number of smaller
+members. Lemma~\ref{a067576:rank} says that $v(k,d)$ is the $(k+1)$st
+integer of weight $k+d$. For $j\ge1$ and $i\ge j-1$, take
+$k=j-1$ and $d=i+1-j$. Then $k+d=i$, and the lemma gives
+\eqref{a067576:formula}. Multiplying its right side by two gives the
+formula at row $i+1$, proving eventual doubling from
+$\max(1,j-1)$ onward.
+
+\subsection*{The starting row is minimal}
+For $k\ge0$, consider
+\[
+ u=2^{k+2}+(2^k-1).
+\]
+Adding the isolated leading bit shows $w(u)=k+1$. More generally, for
+$0\le n<2^r$ one has $w(2^r+n)=1+w(n)$, and hence for
+$0\le m\le2^r$,
+\begin{equation}\label{a067576:leading}
+ C_{i+1}(2^r+m)=C_{i+1}(2^r)+C_i(m).
+\end{equation}
+The equality splits the count into the integers below $2^r$ and those
+having the new leading bit. Applying it with $i=k$, $r=k+2$ and
+$m=2^k-1$, and then using \eqref{a067576:nearfull} and
+\eqref{a067576:minimum}, yields
+\[
+ C_{k+1}(u)=C_{k+1}(2^{k+2})+C_k(2^k-1)=k+2.
+\]
+Thus $u=T(k+1,k+3)$, so
+\[
+ T(k+1,k+3)+1=5\cdot2^k.
+\]
+At the next row, the already proved formula gives
+\[
+ T(k+2,k+3)+1=2^{k+3}-1=8\cdot2^k-1
+ \ne10\cdot2^k=2\bigl(T(k+1,k+3)+1\bigr).
+\]
+For a column $j\ge3$, choosing $k=j-3$ proves failure at row $j-2$.
+Any earlier proposed onset would include this transition and therefore
+cannot work. For $j=1,2$, doubling already holds from the least positive
+row, namely one. This completes Theorem~\ref{a067576:main}.
+
+\paragraph{Formalization and attribution.}
+The formal weight is \texttt{Nat.bitIndices.length}, and the source
+entry is the zero-based selector \texttt{Nat.nth} at index $j-1$.
+The proof establishes infinite positive rows, strict increase, exact
+membership, and exact rank, as well as the universal formula and the
+\texttt{IsLeast} onset statement. All four source modules compile with
+Lean 4.19.0 and pinned mathlib, and their principal theorem audits use
+only the standard axioms \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}.
+
+Binary-weight ranking is classical. A036563 records the diagonal
+special case, and A066884 presents this array with reversed
+antidiagonals. The paper of Dobri\'c, Skyers and Stanley develops
+polynomial-time weight ranking and unranking \cite{dobric2016}.
+The minimum-onset formula was also already posed as an admitted Lean
+statement in open-math-agents \cite{oma067576}; that file contains no
+proof. We claim a complete proof of the recorded eventual-doubling
+assertion and its exact onset, with no claim of first formulation or
+global historical priority. The package counts as one source-conjecture
+resolution.
+
+
+\section{Two central-binomial polynomial-reduction recurrences}
+\label{sec:a192250}
+
+Let $c_k=\binom{2k}{k}$ and, for $n\geq 1$, set
+\[
+ P_n(X)=\sum_{k=0}^{n-1}c_kX^k.
+\]
+The polynomial reduction used by Kimberling in OEIS A192232 repeatedly
+writes a polynomial as $X^2t(X)+r(X)$, where $\deg r<2$, and replaces it by
+$(X+1)t(X)+r(X)$ until a polynomial of degree at most one is reached
+\cite{OEISA192232}. Write the result of reducing $P_n$ as
+\[
+ R_n(X)=a_n+b_nX.
+\]
+Then $a_n$ is A192250 and $b_n$ is A192251
+\cite{OEISA192250,OEISA192251}. The original offsets are both~1.
+In particular, the source program makes its polynomial list starting at
+degree~0, and reads its first element at sequence index~1. Thus the input
+at index $n$ has $n$ terms, ending in $c_{n-1}X^{n-1}$; it is not $P_{n+1}$.
+The first five pairs $(a_n,b_n)$ are
+\[
+(1,0),\quad(1,2),\quad(7,8),\quad(27,48),\quad(167,258).
+\]
+
+\begin{theorem}
+For either $y_n=a_n$ or $y_n=b_n$, and every $n\geq4$,
+\begin{equation}
+\label{eq:a192250-mathar}
+\begin{split}
+ &(n-1)(n-2)y_n-(5n-7)(n-2)y_{n-1}\\
+ &\qquad{}-2(2n-3)(3n-8)y_{n-2}
+       +4(2n-3)(2n-5)y_{n-3}=0.
+\end{split}
+\end{equation}
+\end{theorem}
+
+These are the two identical recurrences recorded as conjectures by
+R.~J.~Mathar on May~4, 2014. The range $n\geq4$ is the full range in
+which the recurrence uses only terms at the source's indices $1,2,\ldots$.
+The two assertions belong to one polynomial family.
+
+\begin{proof}
+Put $M(X)=X^2-X-1$. First, each source step satisfies
+\[
+ X^2t+r-\bigl((X+1)t+r\bigr)=M(X)t.
+\]
+It therefore preserves the remainder modulo $M$. If the input degree is
+at least two, the new degree is at most the old degree minus one:
+$\deg t=\deg p-2$, while $\deg r<2$ and
+$\deg((X+1)t)\leq\deg t+1$. Hence the algorithm terminates.
+Its terminal polynomial has degree less than two and is congruent to
+the input modulo the monic quadratic $M$, so uniqueness of polynomial
+division identifies it with the remainder modulo $M$. This supporting
+observation is standard; it is also Lemma~1 in Wiktorowicz's 2026 note
+\cite{Wiktorowicz2026Reduction}. We include its proof here to specify the
+source interpretation completely.
+
+Fix $n\geq4$, and abbreviate
+\[
+ A=(n-1)(n-2),\qquad B=(5n-7)(n-2),
+\]
+\[
+ C=2(2n-3)(3n-8),\qquad D=4(2n-3)(2n-5).
+\]
+We claim the following exact identity in $\mathbb Z[X]$:
+\begin{equation}
+\label{eq:a192250-certificate}
+ A P_n-B P_{n-1}-C P_{n-2}+D P_{n-3}
+   =D c_{n-3}X^{n-3}(X^2-X-1).
+\end{equation}
+To verify it, first observe
+\[
+ A-B-C+D=0,\qquad A-B=-2(2n-3)(n-2).
+\]
+The elementary central-binomial identity
+\[
+ (k+1)c_{k+1}=2(2k+1)c_k
+\]
+follows directly from $c_k=(2k)!/(k!)^2$. Applying it successively at
+$k=n-3$ and $k=n-2$ gives
+\[
+ A c_{n-1}=D c_{n-3},\qquad
+ (A-B)c_{n-2}=-D c_{n-3}.
+\]
+Expanding the three last terms of $P_n$ around $P_{n-3}$ now yields
+\begin{align*}
+ A P_n-B P_{n-1}-C P_{n-2}+D P_{n-3}
+ &= (A-B-C+D)P_{n-3}\\
+ &\quad +(A-B-C)c_{n-3}X^{n-3}\\
+ &\quad +(A-B)c_{n-2}X^{n-2}
+       +A c_{n-1}X^{n-1}\\
+ &=D c_{n-3}\bigl(-X^{n-3}-X^{n-2}+X^{n-1}\bigr),
+\end{align*}
+which is exactly \eqref{eq:a192250-certificate}.
+
+Remainder modulo a monic polynomial is $\mathbb Z$-linear.
+Taking remainders in \eqref{eq:a192250-certificate}, and using the source
+identification established above, gives
+\[
+ A R_n-B R_{n-1}-C R_{n-2}+D R_{n-3}=0.
+\]
+Taking the constant coefficient proves \eqref{eq:a192250-mathar} for
+$a_n$, and taking the coefficient of $X$ proves it for $b_n$.
+\end{proof}
+
+\paragraph{Formal verification.}
+The Lean definition \path{sourceReduction} implements the actual
+division-and-substitution procedure by well-founded recursion on the
+polynomial's natural degree. The theorem
+\path{sourceStep_natDegree_lt} proves the decrease needed for every
+recursive call, and \path{sourceReduction_eq_remainder} proves its
+equivalence to the monic remainder. The complete polynomial certificate
+is proved in \path{polynomial_certificate}. The endpoints
+\path{a192250_conjecture} and \path{a192251_conjecture} use the
+literal algorithm and quantify over every $n\geq4$ in the original
+indexing. All three local modules are explicit default build roots.
+A fresh source-only build with Lean~4.19.0 and the pinned mathlib revision
+succeeded; all audited endpoints use only the standard axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+\paragraph{Scope and prior work.}
+The general reduction lemma, the Fibonacci description of the reduced
+monomials, and Campbell's 2016 sum formula for A192251 are supporting
+prior material, not additional new results. Wiktorowicz's explicit
+theorem and table concern polynomial input sequences and
+constant-coefficient recurrences. Here the input is the central-binomial
+sequence, and the selected endpoints are Mathar's two specific
+polynomial-coefficient recurrences. The bounded source and semantic
+search is recorded in the package; no claim of worldwide priority is
+made.
+
+
+\section{A227013: harmonic means between fourth powers}
+\label{sec:quartic-harmonic}
+
+For $n\ge1$, define the literal harmonic mean and its floor by
+\[
+ d_n=n^4-(n-1)^4,\qquad
+ H_n=\sum_{k=(n-1)^4+1}^{n^4}\frac1k,\qquad
+ M_n=\frac{d_n}{H_n},\qquad a_n=\lfloor M_n\rfloor.
+\]
+Kimberling's A227013 records a conjectural rational generating function,
+closed form, and recurrence \cite{oeis227013}. We prove the exact generating
+function, while explicitly correcting the index conventions of the other
+formulas. This is one source family.
+
+\begin{theorem}\label{thm:quartic-main}
+Put
+\[
+ Q(n)=n^4-2n^3+\frac53n^2-\frac23n
+      =\frac{n(n-1)(3n^2-3n+2)}3.
+\]
+Then $a_1=1$, $a_2=6$, and $a_n=\lfloor Q(n)\rfloor$ for every $n\ge3$.
+The exact formal generating function, with coefficient $x^j$ equal to
+$a_{j+1}$, is
+\begin{equation}\label{eq:quartic-gf}
+ \sum_{j\ge0}a_{j+1}x^j=
+ \frac{-1-2x-22x^2-23x^3-20x^4-4x^5+2x^6-3x^7+x^8}
+ {(x-1)^5(1+x+x^2)}.
+\end{equation}
+For every $n\ge10$,
+\begin{equation}\label{eq:quartic-recurrence}
+ a_n=4a_{n-1}-6a_{n-2}+5a_{n-3}-5a_{n-4}
+       +6a_{n-5}-4a_{n-6}+a_{n-7}.
+\end{equation}
+\end{theorem}
+
+\subsection{A finite rational moment bound}
+
+Consider any consecutive block $a+1,\ldots,a+d$ with $a\ge0$ and
+positive integer $d$. Set
+\[
+ c=a+\frac{d+1}2,\qquad r=\frac{d-1}2,\qquad t_j=j-r\quad(0\le j<d).
+\]
+The reflection $j\mapsto d-1-j$ negates $t_j$. Thus
+\begin{equation}\label{eq:quartic-pairing}
+ \sum_{j=0}^{d-1}\frac1{a+1+j}
+ =\sum_{j=0}^{d-1} B(c,t_j),\qquad
+ B(c,t)=\frac12\left(\frac1{c+t}+\frac1{c-t}\right).
+\end{equation}
+Here $c>r\ge|t_j|$, so all denominators are positive.
+The exact identities
+\begin{align}
+ B(c,t)-\left(\frac1c+\frac{t^2}{c^3}+\frac{t^4}{c^5}+\frac{t^6}{c^7}\right)
+ &=\frac{t^8}{c^7(c^2-t^2)}\ge0,\label{eq:quartic-lower-pair}\\
+ \left(\frac1c+\frac{t^2}{c^3}+\frac{t^4}{c^3(c^2-r^2)}\right)-B(c,t)
+ &=\frac{t^4(r^2-t^2)}{c^3(c^2-r^2)(c^2-t^2)}\ge0
+ \label{eq:quartic-upper-pair}
+\end{align}
+hold for every $|t|\le r$. No infinite expansion or analytic remainder
+estimate is involved.
+
+The averaged central moments of $0,\ldots,d-1$ are
+\begin{align*}
+ v_2&=\frac1d\sum_{j<d}t_j^2=\frac{d^2-1}{12},\\
+ v_4&=\frac1d\sum_{j<d}t_j^4=\frac{(d^2-1)(3d^2-7)}{240},\\
+ v_6&=\frac1d\sum_{j<d}t_j^6=\frac{(d^2-1)(3d^4-18d^2+31)}{1344}.
+\end{align*}
+These identities follow by expanding the powers and summing the ordinary
+powers through degree six. In the formal proof each ordinary power sum
+is proved by induction on $d$, and the three displayed identities follow
+by polynomial algebra. Summing \eqref{eq:quartic-lower-pair} and
+\eqref{eq:quartic-upper-pair} gives the exact bounds
+\begin{equation}\label{eq:quartic-LU}
+ dL\le H\le dU,\qquad
+ L=\frac1c+\frac{v_2}{c^3}+\frac{v_4}{c^5}+\frac{v_6}{c^7},\qquad
+ U=\frac1c+\frac{v_2}{c^3}+\frac{v_4}{c^3(c^2-r^2)}.
+\end{equation}
+
+\subsection{Uniform separation of the harmonic mean from its floor}
+
+For the quartic block, take $a=(n-1)^4$ and $d=d_n$. Then
+\[
+ c=(n^2-n+1)^2,\qquad r=(d_n-1)/2,\qquad
+ c^2-r^2=n^4((n-1)^4+1).
+\]
+For $n=t+5$, direct clearing of denominators in \eqref{eq:quartic-LU}
+gives the following two exact rational identities:
+\begin{align}
+ (Q(n)+2/3)L-1
+ &=\frac{P(t)}{315(t^2+9t+21)^{14}},\label{eq:quartic-P}\\
+ 1-Q(n)U
+ &=\frac{R(t)}{45(t+5)^2(t^2+9t+21)^6((t+4)^4+1)}.
+ \label{eq:quartic-R}
+\end{align}
+All coefficients of $P$ and $R$, including their constant terms, are
+positive. The complete coefficient lists appear in Table~\ref{tab:quartic-cert};
+they define the polynomials by $P(t)=\sum_kP_kt^k$ and
+$R(t)=\sum_kR_kt^k$. Consequently both right sides are strictly positive
+for every $t\ge0$. The identities themselves are checked by polynomial
+normalization in Lean, so the table is an exact algebraic certificate.
+
+Since $Q(n)>0$, $d_n>0$, and $H_n>0$, equations
+\eqref{eq:quartic-LU}--\eqref{eq:quartic-R} imply
+\[
+ Q(n)H_n\le Q(n)d_nU<d_n,
+ \qquad
+ (Q(n)+2/3)H_n\ge (Q(n)+2/3)d_nL>d_n.
+\]
+Therefore, for every $n\ge5$,
+\begin{equation}\label{eq:quartic-sandwich}
+ Q(n)<M_n<Q(n)+\frac23.
+\end{equation}
+
+For an integer $n$, the fractional part of $Q(n)$ is $1/3$ when
+$n\equiv2\pmod3$ and is zero otherwise. This follows by substituting
+$n=3k,3k+1,3k+2$ into its polynomial. Thus
+\[
+ Q(n)+2/3\le\lfloor Q(n)\rfloor+1.
+\]
+Together with \eqref{eq:quartic-sandwich}, this places $M_n$ in the
+same unit interval as $Q(n)$ and proves $a_n=\lfloor Q(n)\rfloor$
+for every $n\ge5$.
+
+The remaining literal harmonic means satisfy the following finite rational
+comparisons:
+\[
+\begin{array}{c|r|r|c}
+n&d_n&a_n&\text{exact comparison for }H_n\\\hline
+1&1&1&H_1=1\\
+2&15&6&15/7<H_2\le15/6\\
+3&65&40&65/41<H_3\le65/40\\
+4&175&152&175/153<H_4\le175/152
+\end{array}
+\]
+They can be checked by multiplying through by the common denominator
+of the finitely many positive reciprocals. In Lean all four values
+are explicit kernel computations on exact rational numbers. In particular
+$\lfloor Q(3)\rfloor=40$ and $\lfloor Q(4)\rfloor=152$, completing
+the floor formula at every claimed index.
+
+\begin{table}[p]
+\centering
+\small
+\caption{Complete positive-coefficient certificates for
+\eqref{eq:quartic-P} and \eqref{eq:quartic-R}. A dash means coefficient zero.}
+\label{tab:quartic-cert}
+\begin{tabular}{r|r|r}
+$k$&$P_k$&$R_k$\\\hline
+24&28&---\\
+23&3024&---\\
+22&156572&---\\
+21&5172156&---\\
+20&122369371&---\\
+19&2206424754&---\\
+18&31496055869&---\\
+17&364973853078&---\\
+16&3492525189361&---\\
+15&27925808790492&---\\
+14&188059104987530&26\\
+13&1071825627742992&1612\\
+12&5182093657336537&46362\\
+11&21253816999367298&819836\\
+10&73776484843852949&9958385\\
+9&215711119121472558&87898188\\
+8&527200074613081231&581403224\\
+7&1064965904311292064&2927810658\\
+6&1749657582705865988&11280438711\\
+5&2284392530671416108&33094892742\\
+4&2290486550158893280&72791311130\\
+3&1671930872839271052&116416933660\\
+2&810572143783759280&128020606587\\
+1&216472755572592948&86680806370\\
+0&18186223121964135&27278343429\\
+\end{tabular}
+\end{table}
+
+\subsection{The recurrence and exact generating function}
+
+The sequence $b_n=\lfloor Q(n)\rfloor$ is a quartic polynomial plus
+a correction of period three:
+\[
+ b_n=Q(n)-\frac13\mathbf1_{n\equiv2\ (\mathrm{mod}\ 3)}.
+\]
+If $E$ is the forward shift, the polynomial part is annihilated by
+$(E-1)^5$ and the periodic part by $E^3-1$. Both are therefore
+annihilated by
+\[
+ (E-1)^5(E^2+E+1)
+ =E^7-4E^6+6E^5-5E^4+5E^3-6E^2+4E-1.
+\]
+This gives \eqref{eq:quartic-recurrence} whenever all its indices are
+at least three, that is, $n\ge10$. The Lean proof expands the three
+residue-class polynomials and checks this identity for arbitrary
+quotient $k$, then transports it to the literal source sequence.
+
+The first nine terms are
+\[
+ (a_1,\ldots,a_9)=(1,6,40,152,413,920,1792,3173,5232).
+\]
+Let $A(x)=\sum_{j\ge0}a_{j+1}x^j$ and
+$D(x)=(1-x)^5(1+x+x^2)$.
+The recurrence makes every coefficient of $D(x)A(x)$ from degree nine
+onward zero; its first nine coefficients are
+\[
+ (1,2,22,23,20,4,-2,3,-1).
+\]
+Thus
+\[
+ D(x)A(x)=1+2x+22x^2+23x^3+20x^4+4x^5-2x^6+3x^7-x^8.
+\]
+Negating numerator and denominator gives exactly
+\eqref{eq:quartic-gf}. The denominator has constant coefficient $-1$,
+so it is a unit in $\mathbb Z[[x]]$ and determines the quotient uniquely.
+This proves Theorem~\ref{thm:quartic-main}.
+
+\paragraph{Source indexing.}
+The source's generating function has constant coefficient $1$ despite
+its offset of one; our convention is explicitly $\sum_{j\ge0}a_{j+1}x^j$.
+The separately printed expression
+\[
+ \frac{47}{9}+14n+\frac{41n^2}{3}+6n^3+n^4
+       -\frac29\cos(2\pi n/3)
+\]
+equals $a_{n+2}$ for positive integer $n$. This follows by substituting
+$n+2$ into $Q$ and using the cosine's residue-class values $1,-1/2,-1/2$.
+At $n=1$ it gives $40$, whereas $a_1=1$. It must not be interpreted
+as a correct same-index formula. The raw recurrence cutoff ``$n>2$''
+also fails to specify valid previous positive indices, and even the
+well-defined case $n=9$ fails: its right side is $5233$ instead of
+$a_9=5232$. The corrected unbounded cutoff is $n\ge10$.
+The exact generating-function assertion is the selected resolution;
+these index clarifications are not additional problem counts.
+
+\paragraph{Formal scope and prior work.}
+Eight modules define the finite reciprocal sum and harmonic mean,
+prove the central moments and rational bounds, check the polynomial
+certificates, identify the floor at every positive index, and establish
+the full formal generating function. The endpoint
+\path{QuarticHarmonic.full_resolution} includes the literal coefficient
+identification and the exact source numerator--denominator identity.
+All principal dependencies are the three standard Lean logical axioms;
+there is no admitted inequality, asymptotic hypothesis, or floating-point
+calculation in the proof.
+
+The nearby cubic problem A227012 and a general theorem for cubic block
+functions already have an exact proof and Lean development in
+\path{rajdeepbaror/kimberling-a227012-lean} \cite{prior-cubic-harmonic}.
+We inspected that work and excluded the cubic problem from this batch.
+Its hypotheses do not cover the present fourth-power blocks.
+Moment identities and symmetric reciprocal bounds are elementary
+classical tools. Existing jOEIS and LODA code already encodes the proposed
+recurrence; the contribution here is its complete proof from the literal
+harmonic mean. The bounded exact and semantic prior-work screen is
+recorded separately and does not establish worldwide priority.
+
+\clearpage
+\section{Formal verification and provenance}
+
+The collection contains three independently buildable projects with fifteen
+local proof modules. Every module is an explicit default Lake root. The
+compiler is Lean 4.19.0 and every package pins mathlib commit
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}lcp{3.8in}@{}}
+\toprule
+Package & Modules & Complete formal conclusion\\
+\midrule
+A067576 & 4 & Literal positive increasing binary-weight enumeration, exact formula, eventual doubling, and the least onset for every column.\\
+A192250 & 3 & Termination and correctness of the literal source substitution, followed by both recurrences at every original index $n\ge4$.\\
+A227013 & 8 & Literal finite harmonic mean, exact rational sandwich, all positive floor values, and the full source generating function.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each package was built twice from source and pinned configuration in separate
+fresh directories, without copying its local compiled proof objects.
+Only pinned external dependency caches were shared. Build logs record all
+source hashes and axiom reports. All principal endpoints depend only on
+\path{propext}, \path{Classical.choice}, and \path{Quot.sound}. No theorem
+is admitted, no custom axiom is introduced, and no proof invokes
+\path{native_decide}. The four small harmonic-mean values are computed
+by Lean's kernel using exact rational arithmetic.
+
+A reviewer who did not contribute to a package's proof sources checked its
+mathematics, exact source statements, indices, and endpoint scope, and ran
+its separate clean build. The reviews also repeated literal enumeration or
+substitution computations and checked the quartic polynomial certificates
+independently. These are independent reviews within this collaboration,
+not journal peer review. The finite checks detect transcription or source
+interpretation errors; the universal conclusions are proved mathematically
+and checked by Lean.
+
+\paragraph{Known work and result counting.}
+Binary ranking and unranking are classical, and the exact minimum-onset
+formula was already formulated as an unproved Lean target. The polynomial
+reduction-to-remainder observation and known Fibonacci-weighted descriptions
+are credited, including Wiktorowicz's reduction lemma and Campbell's formula.
+The prior complete proof of A227012 and the general cubic theorem were found
+during screening and excluded; their hypotheses do not cover the quartic
+blocks treated here. Existing source formulas and numerical generators are
+not presented as new discoveries.
+
+This batch covers four OEIS entries in three related families. It resolves
+the selected assertions, not every nearby question or an arbitrary-parameter
+extension. In particular, the quartic result is a complete proof of one
+specific harmonic-mean generating function; it is not a proof of the broad
+recurrence question for all polynomial block functions.
+
+\paragraph{Source record.}
+The packages include immutable official OEIS exports and hashes, exact and
+semantic searches through both web engines, global GitHub searches, and
+checks of current formal-proof collections. Relevant papers and code were
+inspected for actual hypotheses and conclusions. No earlier proof of the
+selected exact assertions was found in those bounded searches. Search caps,
+indexing gaps, and inaccessible material limit historical coverage; the
+records do not establish worldwide priority. No OEIS edits or external
+announcements are part of the repository publication.
+
+\begin{thebibliography}{12}
+\raggedright
+\bibitem{oeis067576}
+R. G. Wilson v; conjecture by C. Kimberling.
+OEIS A067576, revision 57, November 11, 2025.
+\url{https://oeis.org/A067576}.
+
+\bibitem{dobric2016}
+V. Dobri\'c, M. Skyers, and L. J. Stanley.
+\emph{Polynomial Time Computable Triangular Arrays For Almost Sure Convergence}.
+arXiv:1603.04896, 2016.
+\url{https://arxiv.org/abs/1603.04896}.
+
+\bibitem{oma067576}
+GuillaumeBAUD-coder, open-math-agents.
+\texttt{statements/oeis-a067576.lean}, admitted conjecture statement,
+observed commit \texttt{3a0039bdf1da87d3915b73dabafd68415871f2e4}.
+\url{https://github.com/GuillaumeBAUD-coder/open-math-agents}.
+
+\bibitem{OEISA192250}
+The OEIS Foundation Inc., A192250,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+\url{https://oeis.org/A192250}, accessed November 27, 2026.
+
+\bibitem{OEISA192251}
+The OEIS Foundation Inc., A192251,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+\url{https://oeis.org/A192251}, accessed November 27, 2026.
+
+\bibitem{OEISA192232}
+The OEIS Foundation Inc., A192232,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+\url{https://oeis.org/A192232}, accessed November 27, 2026.
+
+\bibitem{Wiktorowicz2026Reduction}
+R. Wiktorowicz,
+\emph{Generating functions for reductions by $x^2\to x+1$: proofs of the empirical formulas},
+2026, \url{https://oeis.org/A192232/a192232.pdf}.
+
+\bibitem{oeis227013} C.~Kimberling. OEIS A227013, revision 21, November 3, 2024.
+\url{https://oeis.org/A227013}.
+\bibitem{prior-cubic-harmonic} \path{rajdeepbaror/kimberling-a227012-lean}. \emph{Clark Kimberling's Harmonic-Mean Conjectures (OEIS A227012 and General Integer Cubics)},
+repository inspected at commit \texttt{f33c98bac3c0eabccf7c66e339d661494960c523}.
+\url{https://github.com/rajdeepbaror/kimberling-a227012-lean}.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype,xcolor}
+\usepackage[margin=1in,top=.88in,bottom=.9in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdftitle={Amicably refactorable pairs}]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\least}{p_{\min}}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Amicably refactorable pairs}\\[6pt]
+{\large Existence, least partners, and their distribution}\\[7pt]
+Blake Stone\\[-1pt]{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+Let $\tau(n)$ be the number of positive divisors of $n$. In 2016 Puszkarz conjectured that every integer $n\ge3$ has a distinct partner $k$ satisfying $\tau(n)\mid k$ and $\tau(k)\mid n$. We prove this conjecture. Every composite $n$ has infinitely many partners with $\tau(k)=n$, and every odd prime $p$ has precisely one partner, $2^{p-1}$. We give a finite formula for the least partner and an asymptotic count of all partners of each fixed composite. The associated graph on the integers at least three is connected, with diameter between five and eight.
+\end{abstract}
+
+\section{Constructing partners}
+Write $\Omega(n)$ for the number of prime factors counted with multiplicity, $\omega(n)$ for the number of distinct prime factors, and $\least(n)$ for the smallest prime factor of $n>1$. Set $\Omega(1)=\omega(1)=0$. Puszkarz's sequence A269781 assigns to each $n\ge3$ its least partner, with value zero if no partner exists \cite{oeis}.
+
+\begin{lemma}\label{lift}
+For positive integers $m,N$ with $\Omega(m)\le\Omega(N)$, there exists a positive multiple $u$ of $m$ with $\tau(u)=N$.
+\end{lemma}
+\begin{proof}
+Induct on $m$. If $m=1$, take $u=2^{N-1}$. Otherwise choose primes $q\mid m$ and $p\mid N$. The hypothesis holds for $m/q$ and $N/p$. Take a corresponding $v=q^e w$ with $q\nmid w$, allowing $e=0$. Put $u=q^{p(e+1)-1}w$. The new exponent is at least $e+1$, so $qv\mid u$ and $m\mid u$. Multiplicativity gives $\tau(u)=p(e+1)\tau(w)=p\tau(v)=N$.
+\end{proof}
+
+\begin{lemma}\label{budget}
+For $n\ge1$ one has $\Omega(\tau(n))\le\Omega(n)$. Equality holds exactly for squarefree $n$, in which case $\tau(n)=2^{\Omega(n)}$. Also $\Omega(t)+2\le t$ for every $t\ge3$.
+\end{lemma}
+\begin{proof}
+For $t\ge3$ with $h=\Omega(t)\ge2$, one has $t\ge2^h\ge h+2$; the case $h=1$ is direct. Thus $\Omega(e+1)\le e-1$ for $e\ge2$, while $\Omega(2)=1$. Sum these inequalities over the positive exponents in the prime factorization of $n$.
+\end{proof}
+
+\begin{theorem}\label{exist}
+The integers $1$ and $2$ have no partners. Each odd prime $p$ has the unique partner $2^{p-1}$. For composite $n$, writing $p=\least(n)$, there exists $c$ such that
+\[
+   \tau(n)\mid c,\qquad \tau(c)=n/p.
+\]
+For every prime $r\nmid c$ with $cr^{p-1}\ne n$, the integer $cr^{p-1}$ is a partner with exactly $n$ divisors. In particular A269781 has no zeros.
+\end{theorem}
+\begin{proof}
+Put $t=n/p$. For $n=4$ take $c=3$. For every other composite, $t\ge3$. If $\Omega(\tau(n))<\Omega(n)$, use Lemma~\ref{lift} with $m=\tau(n)$ and $N=t$, since $\Omega(t)=\Omega(n)-1$. In the equality case, Lemma~\ref{budget} gives $\tau(n)=2^{\Omega(t)+1}$ and $\Omega(t)+1\le t-1$. Thus $c=2^{t-1}$ works. Multiplying $c$ by $r^{p-1}$ multiplies its divisor count by $p$, as required.
+
+A partner of an odd prime $p$ must be even and have exactly $p$ divisors. In the factorization of its divisor count, the exponent at $2$ therefore contributes all of $p$. This forces the integer to equal $2^{p-1}$, which indeed qualifies. The only integer with one divisor is $1$, and the only even integer with at most two divisors is $2$ itself. These observations settle the two excluded indices.
+\end{proof}
+
+\section{Computing the least partner}
+Fix $n\ge3$ and factor $m=\tau(n)=\prod_{i=1}^s q_i^{b_i}$. Enumerate the finitely many tuples of positive integers $d_i$ satisfying
+\[
+ d_i\ge b_i+1,\qquad D=\prod_{i=1}^s d_i\mid n.
+\]
+For such a tuple write $c=\prod_i q_i^{d_i-1}$, $t=n/D$, and let $\ell$ be the least prime outside $\supp(m)$. Call these $c$ the admissible cores.
+
+\begin{theorem}\label{min}
+The least partner is the minimum of the following finite collection. Each tuple with $c\ne n$ contributes $c$. Each tuple with $c=n$ and $t>1$ contributes $n\ell^{\least(t)-1}$.
+\end{theorem}
+\begin{proof}
+Any partner $k$ has a unique expression $k=cu$ with the indicated exponents on the primes of $m$ and $\gcd(u,m)=1$. Then $\tau(u)\mid t$. For $c\ne n$, setting $u=1$ gives the smallest possibility. For $c=n$ we need $u>1$. Every positive exponent $e$ of $u$ has $e+1\mid t$, so $e\ge\least(t)-1$. The least possible $u$ is $\ell^{\least(t)-1}$, and this works precisely when $t>1$. Theorem~\ref{exist} ensures the collection has an element.
+\end{proof}
+
+If $n\ge3$ is squarefree, let $s=\omega(n)$ and let $d$ be the smallest divisor of $n$ exceeding $s$. Then its least partner is $2^{d-1}$. Indeed $\tau(n)=2^s$, and the only squarefree power of two greater than one is $2$. Consequently for distinct odd primes $p<q$ the answer at $pq$ is $2^{p-1}$, whereas at $2q$ it is $2^{q-1}$. At $15$, the displayed A269781 value $4$ agrees with the definition. Its prose rule using the largest prime factor would give $16$ \cite{oeis}.
+
+More generally, if $\tau(n)=q^b$ for prime $q$, take the least $d\mid n$ with $d>b$. The answer is $q^{d-1}$ unless this equals $n$. In that event $n=q^{q^b-1}$ and $d=q^b$. Since $q^{b-1}$ is a divisor below $d$, minimality gives $q^{b-1}\le b$. Thus either $b=1$ or $(q,b)=(2,2)$. The latter case is $n=8$ with least partner $24$. The former gives $n=q^{q-1}$ for odd $q$ and least partner $(2q)^{q-1}$. Indeed the other single-prime candidates have exponent at least $q^2-1$, and $q^{q^2-1}>(2q)^{q-1}$. This includes the value $36$ at $9$.
+
+\clearpage
+\section{The number of partners below a bound}
+For composite $n$, put $p=\least(n)$, $a=p-1$, and
+\[
+  r=\max_{c} v_p(n/\tau(c)),
+\]
+where $c$ ranges over the admissible cores of Section~2. To see that $r\ge1$, retain just the primes dividing $m$ in the $c$ furnished by Theorem~\ref{exist}. Its divisor count divides $n/p$.
+
+For $0\le j\le r$, let $\mathcal B_j$ consist of the positive multiples $b$ of $m$ with $\tau(b)p^j\mid n$ and with every prime in $\supp(b)\setminus\supp(m)$ occurring to exponent strictly larger than $a$. The set $\mathcal B_r$ contains a maximizing core, so the constant below is positive.
+\begin{theorem}\label{asym}
+If $H_n(X)$ counts the partners of $n$ up to $X$, then as $X\to\infty$,
+\[
+ H_n(X)\sim
+ \frac{a}{(r-1)!}\left(\sum_{b\in\mathcal B_r}b^{-1/a}\right)
+ \frac{X^{1/a}(\log\log X)^{r-1}}{\log X}.
+\]
+\end{theorem}
+\begin{proof}
+Temporarily admit $k=n$ if it satisfies both divisibilities. Each permitted $k$ can be written uniquely as $bz^a$, where $z$ is squarefree, $\gcd(z,bm)=1$, and $z$ has $j$ prime factors. To obtain $z$, strip all primes outside $\supp(m)$ with exponent exactly $a$. Every remaining positive off-support exponent $e$ has $e+1\mid n$ and hence $e\ge a+1$. Thus $b\in\mathcal B_j$. Its mandatory core has divisor count dividing $\tau(b)$, so $j\le r$. Conversely each such choice produces a permitted $k$.
+
+Fix $1/(a+1)<\sigma<1/a$. For every $j$ the series $\sum_{b\in\mathcal B_j} b^{-\sigma}$ converges. The mandatory exponents have finitely many choices, and there are at most $\Omega(n)$ other primes because each contributes at least one factor to $\Omega(\tau(b))$. Their exponents belong to $[a+1,n-1]$. Dropping distinctness and taking products of the convergent sum $\sum_{q\ {\rm prime}}q^{-(a+1)\sigma}$ proves the claim.
+
+For fixed $j\ge1$, Landau's theorem for squarefree products of exactly $j$ primes gives
+\[
+ \#\{z\le Y:\omega(z)=\Omega(z)=j,\ (z,bm)=1\}
+ \sim \frac{Y(\log\log Y)^{j-1}}{(j-1)!\log Y}.
+\]
+For $j=1$ this is the prime number theorem. For fixed $b$, removing each excluded prime has smaller order, by applying the formula with $j-1$ factors (and a bounded loss for $j=1$). See \cite{landau}.
+
+Write $G_j(X)=X^{1/a}(\log\log X)^{j-1}/\log X$. Take $Y=(X/b)^{1/a}$. For $b\le X^{1/2}$ the unrestricted Landau bound is $O(G_j(X)b^{-1/a})$, uniformly in $b$ for large $X$. Dominated convergence gives the coefficient $a\sum b^{-1/a}/(j-1)!$. For $b>X^{1/2}$, the trivial count $Y$ bounds the tail by
+\[
+ X^{1/a-(1/a-\sigma)/2}\sum_{b\in\mathcal B_j} b^{-\sigma}.
+\]
+For $j=0$ there are $O(X^\sigma)$ possibilities. The term $j=r$ dominates. Removing a possible self-pair changes the count by at most one.
+\end{proof}
+For example, the partners of $4$ are $3$, $27$, and $3q$ for primes $q\ne3$. Thus $H_4(X)\sim X/(3\log X)$.
+
+\clearpage
+\section{Distances in the partner graph}
+Join distinct partners by an undirected edge. The symmetry of the two divisibilities makes this definition independent of their order.
+\begin{theorem}
+Any finite set of vertices $n\ge3$ lies within distance four of a common vertex. The diameter of this connected graph is at least five and at most eight.
+\end{theorem}
+\begin{proof}
+First find $v$ with $2\tau(n)\mid v$ and $\tau(v)\mid n$. If $\Omega(\tau(n))<\Omega(n)$, apply Lemma~\ref{lift} with $m=2\tau(n)$ and $N=n$. In the equality case take $v=2^{n-1}$ and use Lemma~\ref{budget}. For every prime $P\nmid n$, the vertices $n$ and $nP$ are then at distance at most two via $v$, since $\tau(nP)=2\tau(n)$.
+
+For vertices $n_i$, choose partners $k_i$ using Theorem~\ref{exist}. Let $a_i$ be the odd part of $k_i$ and $t_i=\tau(a_i)\mid n_i$. Choose a common multiple $T$ of the $t_i$ with $\tau(T)=2^h$ by increasing each prime exponent in their least common multiple to an integer of the form $2^e-1$. Take a prime $P$ coprime to $T\prod_i n_i$ so large that $P-1\ge h+1$ and $P-1\ge v_2(2\tau(n_i))$ for every $i$. Set $K_i=2^{P-1}a_i$ and $U=PT$. Now $\tau(K_i)=Pt_i$ divides both $n_iP$ and $U$. Also $\tau(U)=2^{h+1}\mid K_i$ and $\tau(n_iP)=2\tau(n_i)\mid K_i$, as the odd part of $\tau(n_i)$ divides $a_i$. The route $n_i,v_i,n_iP,K_i,U$ proves the common-vertex assertion, with consecutive repetitions omitted. The upper diameter bound follows.
+
+The ball of radius two about $3$ consists of $3$, $4$, and the partners of $4$ listed above. Thus $\Omega(x)\le3$ throughout this ball. The vertex $n=2^{209}$ is outside it. If $n$ lay at distance three or four, a shortest path would contain consecutive vertices $x,y,n$ with $x$ in the ball. The divisibilities would give
+\[
+ \omega(\tau(n))\le\omega(y)\le\Omega(\tau(y))\le\Omega(x)\le3.
+\]
+The middle inequality counts at least one prime factor from each factor $e+1$ of $\tau(y)$. But $\tau(n)=210$ has four distinct prime factors. This proves the lower bound.
+\end{proof}
+
+\paragraph{Verification.}
+The accompanying Lean 4 package proves the lifting lemma, the divisor-count bound, Theorem~\ref{exist}, the single-prime minimum criterion with the self-case excluded, and the odd-semiprime formula. The general minimum rule, the asymptotic, and the graph estimates have written proofs above. An independent divisor sieve checks the minima against a bounded exhaustive search, and the accompanying program reproduces all 54 terms in the published table.
+
+\begin{thebibliography}{9}
+\bibitem{oeis} W. Puszkarz, \emph{Amicably refactorable pairs}, OEIS A269781 (2016), \url{https://oeis.org/A269781}.
+\bibitem{landau} E. Landau, \emph{Handbuch der Lehre von der Verteilung der Primzahlen}, Teubner, Leipzig, 1909. For the squarefree formulation see Section~4 of \emph{On Erd\H{o}s and S\'ark\"ozy's sequences with Property P}, \href{https://doi.org/10.1007/s00605-016-0995-9}{Monatshefte f\"ur Mathematik}.
+\end{thebibliography}
+\end{document}

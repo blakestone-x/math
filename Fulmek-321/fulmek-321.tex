@@ -1,0 +1,188 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[left=0.84in,right=0.84in,top=0.78in,bottom=0.81in,headheight=14pt]{geometry}
+\usepackage{xcolor,fancyhdr}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Cat}{\mathrm{Cat}}
+\newcommand{\NN}{\mathbb N}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Permutations with a fixed number of decreasing triples}\rhead{\small Blake Stone}\cfoot{\thepage}
+\hypersetup{pdftitle={Permutations with a fixed number of decreasing triples},pdfauthor={Blake Stone, with Astra}}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries Permutations with a fixed number\\[2pt] of decreasing triples\par}
+\vspace{0.5em}Blake Stone\\{\small Research manuscript prepared with Astra}
+\end{center}
+\begin{abstract}
+For every prescribed number of decreasing triples we prove the generating-function form conjectured by Fulmek. Its power of the denominator is sharp. Conway and Guttmann's more precise predictions for the numerator degrees and the coefficient formula fail at eight and seven triples, respectively. Their fixed-count asymptotic holds, with a computable positive rational amplitude. The amplitudes have a finite exponential growth rate exceeding $3.19$. The proof splits a permutation diagram into finitely many short pieces joined by ordinary Dyck walks.
+\end{abstract}
+
+Write $a_r(n)$ for the number of permutations of $[n]$ with exactly $r$ triples $i<j<k$ satisfying $\pi_i>\pi_j>\pi_k$. Complementing the values gives the same count for increasing triples. Set $F_r(x)=\sum_{n\ge0}a_r(n)x^n$ and $\Cat_n=\binom{2n}{n}/(n+1)$.
+
+\begin{theorem}\label{form}
+For every $r\ge0$ there are effectively computable $P_r,Q_r\in\mathbb Z[x]$ with
+\begin{equation}
+ F_r(x)=\frac{P_r(x)+Q_r(x)\sqrt{1-4x}}{2x^{2r+1}},
+ \qquad P_r(0)=1,\quad Q_r(0)=-1 . \label{eq:main}
+\end{equation}
+The power $2r+1$ is minimal in a representation with polynomial numerators. For $r\ge1$, $\deg P_r\le3r$ and $\deg Q_r\le3r-1$. In particular, for every $n\ge r\ge1$,
+\begin{equation}
+ a_r(n)=-\sum_{i=0}^{\deg Q_r}[x^i]Q_r(x)\,\Cat_{n+2r-i}. \label{shift}
+\end{equation}
+\end{theorem}
+
+The polynomial and square-root form in \eqref{eq:main} is Fulmek's Conjecture~6. His Remark~7 records that Toufik Mansour had communicated a proof of the general form [1]. The published small cases include work of Noonan, Fulmek and Callan [1,2]. Nakamura and Zeilberger gave conjectural formulas through $r=7$ [3]. Conway and Guttmann proposed the polynomial degrees, a factorial-times-polynomial formula and the asymptotic for general $r$ [4, Sec.~4]. Waite obtained bounds above and below by constant multiples of $\Cat_n$ for each fixed $r$ [5]. We prove the limit and address the two exact predictions below.
+
+\section{Middle entries and ordinary walks}
+At $(i,j)$ with $j=\pi_i$, let $L$ be the number of larger entries earlier and $R$ the number of smaller entries later. The point is the middle entry of exactly $LR$ decreasing triples. Also $R-L=j-i$, by subtracting the number of smaller earlier entries from $j-1$ and from $i-1$. Call the point exceptional if $LR>0$.
+
+Read position $t$ and value $t$ at the same step. Keep lists in increasing order of the earlier positions waiting for values (upper ends) and the earlier values waiting for positions (lower ends). Both have length $h$, the height. An upper closure gives value $t$ to an earlier position. Its rank $m$, starting at zero, counts the older positions still waiting for larger values, hence $m=L$. A lower closure assigns an earlier value to position $t$. Its rank counts the unassigned smaller values, hence $m=R$. If an edge opened $d\ge1$ steps before closing, its cost in triples is $m(m+d)$. A fixed point at height $h$ costs $h^2$.
+
+There are five possible steps. An up step opens both ends. A down step closes one of each. An upper or lower level step closes an end in that list and appends a new end to the same list. A fixed point leaves both lists intact. Every end opens at the back, after closures. A walk from zero to zero together with its closure ranks and step types reconstructs the permutation [6]. The ordinary steps have rank zero at every closure, and permit a fixed point only at zero.
+
+Let $G_{hk}(x)$ count ordinary walks from $h$ to $k$ by their number of steps. Pair consecutive steps of a nonnegative nearest-neighbor walk starting at $2h$. The pairs $UU,DD$ give an up or a down. At positive height $UD,DU$ give the two levels, and at zero only $UD$ is available. This is a bijection to ordinary walks. Write
+\[
+ C=\frac{1-\sqrt{1-4x}}{2x},\qquad u=C-1=x(1+u)^2 .
+\]
+Reflection at $-1$ gives
+\begin{equation}
+ G_{hk}(x)=\frac{u^{|h-k|}-u^{h+k+1}}{\sqrt{1-4x}}
+          =(1+u)\sum_{q=|h-k|}^{h+k}u^q. \label{green}
+\end{equation}
+Indeed the unrestricted walk sum for displacement $2j$ is $u^{|j|}/\sqrt{1-4x}$, by the nearest-neighbor recurrence or by summing $\binom{2n}{n+j}x^n$. The reflected starting height is $-2h-2$.
+
+\section{A finite decomposition}
+For each exceptional edge mark its closed interval of integer times from opening to closure. For an exceptional fixed point mark its singleton time. Group the intervals into connected components by overlap, with time viewed as a real line. In particular disjoint intervals at consecutive times remain separate. A component includes the full step at each of its times. All intervening steps are ordinary.
+
+\begin{lemma}\label{bound}
+For a component of cost $c$, length $\ell$ in steps, entering height $a$ and leaving height $b$,
+\[
+ \ell\le c,\qquad a,b\le c,\qquad a+b+1-\ell\le 2c .
+\]
+Equality in the last bound occurs precisely for a single fixed point at height one.
+\end{lemma}
+\begin{proof}
+An exceptional interval of age $d$ and rank $m\ge1$ has $d+1\le m(m+d)$ integer times. Use $d=0$, $m=h$ for a fixed point. Summing the lengths bounds their union. At the closure of an edge the list has $m$ older ends, the closing end, and at most $d-1$ younger ends. Thus the heights immediately before and after that closure are both at most $m+d$. This also holds for a fixed point. The last time of a component is a closure or a fixed point, giving $b\le c$. At the first time, an exceptional edge opened there has at least $a-1$ older ends, of which at most $d-1$ can disappear before its closure. Consequently $a\le m+d\le c$. A fixed point at the first time also gives $a\le c$.
+
+Choose any exceptional point in the component. If its closure is at local time $t$, the two endpoints of the component are at most $t-1$ and $\ell-t$ steps away on their respective sides. Each step changes height by at most one. Hence
+\[
+ a+b+1-\ell\le 2(m+d)\le2m(m+d)\le2c .
+\]
+Multiple exceptional points make the last inequality strict. A single nonfixed exceptional point has $\ell>1$ and $a,b\le c$, so its bound is also strict. For a single fixed point equality means $2h=2h^2$ with $h\ge1$.
+\end{proof}
+
+Let $N_{c,a,b,\ell}$ count component step words with the indicated data and ranks. This is a finite integer. To enumerate it, start with two lists of $a$ ordinary placeholders. Mark at its opening any end that will close at positive rank. An unmarked end can close only at rank zero. A marked end closes at positive rank and charges $m(m+d)$. A fixed point charges $h^2$. Start with a mark or a positive fixed-point cost, and end at the first step after which no mark is active. Opening a mark at the same step as another closes joins their intervals. Reject costs exceeding $c$ and use the lemma's bound on length. Only placeholders, ages of marks and the two list orders are needed. The full code of ranks and steps determines all marks uniquely.
+
+Fix an ordered tuple of components of total cost $r$, with heights $(a_i,b_i)$, lengths $\ell_i$, and $1\le i\le j$. Put $b_0=a_{j+1}=0$ and $\ell=\sum_i\ell_i$. Its generating function, including the intervening ordinary walks, is
+\begin{equation}
+ x^\ell\prod_{i=0}^{j}G_{b_i,a_{i+1}}(x). \label{tuple}
+\end{equation}
+Ordinary edges may span a component boundary. Rank zero always closes the oldest end, so the entering height supplies all the information a component needs about earlier ends. Every exceptional interval lies entirely within its component. These facts give a bijection in both directions and allow gaps of length zero. Summing \eqref{tuple} with the multiplicities $N$ gives $F_r$. For $r=0$ the empty tuple gives $G_{00}=C$.
+
+For computation let $F_{r,h}$ be the same tuple sum starting at height $h$, so $F_{r,0}=F_r$. Splitting off its first component gives
+\[
+ F_{0,h}=G_{h0},\qquad
+ F_{r,h}=\sum_{1\le c\le r}\sum_{a,b,\ell}
+ G_{ha}N_{c,a,b,\ell}x^\ell F_{r-c,b}.
+\]
+With $V_{r,h}=(1+u)^{2r}F_{r,h}$, the factor $x^\ell$ in this recursion becomes $u^\ell(1+u)^{2(c-\ell)}$. Its exponents are nonnegative. The polynomial table is computed entirely by integer additions and multiplications.
+
+\section{The denominator and the coefficient formula}
+A monomial in the product \eqref{tuple} is $x^\ell C^{j+1}u^q=x^{\ell+q}C^m$ where $m=j+1+2q$. Equation~\eqref{green} and Lemma~\ref{bound} give
+\begin{equation}
+ q+j+1-\ell\le 1+\sum_{i=1}^j(a_i+b_i+1-\ell_i)\le 2r+1. \label{power}
+\end{equation}
+Put $D=2r+1$, $z=xC=(1-\sqrt{1-4x})/2$ and $\bar z=1-z$. The two roots have product $x$. For every $m$, $z^m+\bar z^m$ and $(z^m-\bar z^m)/(z-\bar z)$ are integer polynomials in $x$, of degrees at most $\lfloor m/2\rfloor$ and $\lfloor(m-1)/2\rfloor$, respectively. Both sequences obey $W_{m+2}=W_{m+1}-xW_m$.
+
+Take the sum and the normalized difference of $x^D F_r$ with its conjugate to obtain $P_r$ and $Q_r$. Each monomial has the factor $x^{D+\ell+q-m}$, with nonnegative exponent by \eqref{power}. This proves integrality. For $j\ge1$ the respective degree bounds are $D+\ell-\lceil(j+1)/2\rceil\le3r$ and $D+\ell-\lceil(j+2)/2\rceil\le3r-1$. Equality in \eqref{power} requires $r$ single fixed points of height one and the highest power of $u$ in every bridge. This term has multiplicity one. At $x=0$ the conjugate root $\bar z$ equals one and $z$ equals zero. The unique term attaining equality gives $P_r(0)=1$ and $Q_r(0)=-1$. Thus the conjugate branch has a pole of order exactly $D$. The assertions for $r=0$ follow from $C$. Finally $[x^k]\sqrt{1-4x}=-2\Cat_{k-1}$ for $k\ge1$. The degree bounds allow extraction at $k=n+D$ for every $n\ge r\ge1$, proving \eqref{shift} and Theorem~\ref{form}.
+
+\section{The fixed-count asymptotic and the size of its amplitude}
+\begin{theorem}\label{amplitude}
+For every $r$, $a_r(n)/\Cat_n$ tends to a positive rational $\alpha_r$. In particular
+\[
+ a_r(n)\sim\frac{\alpha_r\,4^n}{\sqrt{\pi}\,n^{3/2}},\qquad
+ \alpha_r=-4^{2r}Q_r(1/4).
+\]
+The limit $\lambda=\lim_{r\to\infty}\alpha_r^{1/r}$ exists, is finite, and exceeds $3.19$.
+\end{theorem}
+\begin{proof}
+Equation~\eqref{shift} gives the limit since $\Cat_{n+j}/\Cat_n\to4^j$ for each fixed integer $j$. For a term \eqref{tuple} its contribution to the limiting ratio is its derivative with respect to $u$ at $u=1$. Indeed each monomial is $x^{\ell+q}C^m$ and
+$[x^k]C^m=m\binom{2k+m}{k}/(2k+m)$ by Lagrange inversion. Its ratio tends to $m2^{m-1}/4^{\ell+q}$, the stated derivative since $x'(1)=0$. All contributions are positive. The tuple of $r\ge1$ fixed points at height one contributes $x^rG_{01}^2G_{11}^{r-1}$. Differentiating gives
+\begin{equation}
+ \alpha_r\ge(r+1)(3/2)^r. \label{lower}
+\end{equation}
+
+Write $D_r=F_r(1/4)$, with $D_0=2$. At this point $G_{hk}=2(2\min(h,k)+1)$, and its logarithmic derivative in $u$ equals $1/2+\max(h,k)$. A tuple's logarithmic derivative is at least one for $r\ge1$ and at most $(r+1)/2+2r$ by the height bounds. Hence
+$D_r\le\alpha_r\le (5r+1)D_r/2$.
+Joining a tuple of cost $r$ to one of cost $s$ replaces two outside factors with values $2$ and $2$ by a bridge of value at least $2$. The joined tuple identifies the split at cumulative cost $r$. Thus $D_{r+s}/2\ge(D_r/2)(D_s/2)$.
+
+For an exponential upper bound, record the at most $r$ step types in the components, their boundaries, and the entering heights. The heights have sum at most $r$. The at most $2r$ closure ranks also sum to at most $r$, since each positive rank costs at least its rank. Stars and bars bounds the number of encodings by a constant to the power $r$. Each tuple's critical bridge product is at most $2^{r+1}3^r$, using $2m+1\le3^m$ and $\sum_i\min(b_i,a_{i+1})\le r$. Fekete's lemma applied to $\log(D_r/2)$ proves existence and finiteness of $\lambda$.
+
+For the numerical lower bound retain only components of cost at most ten and use heights $0,\ldots,10$. Their matrix at the critical point, marking cost by $y$, is
+\[
+ T_{hb}(y)=\sum_{c,a,\ell}2(2\min(h,a)+1)\,N_{c,a,b,\ell}\,4^{-\ell}y^c .
+\]
+At $y=100/319$, exact rational arithmetic gives $T^4\mathbf1>(1+1/125000)T^3\mathbf1$ entrywise. The recurrence above for $N$ and the accompanying verifier reproduce this finite inequality. The vector $T^3\mathbf1$ is positive. By continuity the strict expansion persists at a slightly smaller positive $y$. The restricted tuple series $2\sum_{j\ge0}(T(y)^j\mathbf1)_0$ then diverges, so $\sum D_ry^r$ diverges there as well. Its radius is $1/\lambda$. This proves $\lambda>319/100$.
+\end{proof}
+
+\section{Two counterexamples and their finite checks}
+Conway and Guttmann [4] give two different predictions for the exact counts. The factorial normalization predicts $a_r(n)(n+2r+1)!(n-r)!/(2n-r)!$ is an integer-coefficient polynomial of degree $2r$. At $r=7$, $n=28$, the exact count is $105460690841118844\equiv8\bmod23$. The proposed polynomial would take the value
+\[
+ \frac{105460690841118844\,43!\,21!}{49!}
+ =\frac{12308472573908433737278464000}{23}.
+\]
+Even an eventual polynomial over $\mathbb Q$ is impossible for this normalization. Equation~\eqref{shift} expresses it as a rational function in $n$ throughout $n\ge7$, since all factorials there have integer shifts. At $r=7$ its reduced denominator is $(n-5)(n-6)$. The numerator takes values $1621934672117760000$ and $13624251245789184000$ at 5 and 6. The resulting formula is precisely the distinct $r=7$ expression of Nakamura and Zeilberger [3]. The same computation proves their displayed $r=5,6$ expressions. Polynomial lists and exact checks accompany this paper.
+
+Here is a degree certificate for those three identifications. Each Catalan shift $\Cat_{n+j}$ in \eqref{shift} has $-r\le j\le 2r$ and $2j+r\ge0$ in these rows. Its normalized value is
+\[
+ \frac{(2n+2j)!}{(2n-r)!}
+ \frac{(n+2r+1)!}{(n+j+1)!}
+ \frac{(n-r)!}{(n+j)!}.
+\]
+Multiplication by $\prod_{k=-r+1}^{2r}(n+k)$ clears all denominators and gives degree at most $5r$. It also clears the proposed expressions of [3] within that degree bound. The verifier checks equality at every integer from $r$ through $6r$, which proves the identities.
+
+The second prediction concerns $\deg P_r,\deg Q_r$ in \eqref{eq:main}. The predicted degrees at $r=8$ are both 20. The actual pair is $(21,20)$, with $[x^{21}]P_8=4$. The representation is unique since $\sqrt{1-4x}$ is irrational over $\mathbb Q(x)$. The table uses the sign convention in \eqref{eq:main}.
+\[
+\begin{array}{c|rrrrrr}
+ r & 5 & 6 & 7 & 8 & 9 & 10\\ \hline
+ \deg P_r &13&15&18&21&24&27\\
+ \deg Q_r &12&15&17&20&23&26\\
+ \alpha_r&13123/16&193311/64&86627/8&9861265/256&8658505/64&482979241/1024
+\end{array}
+\]
+
+Both counterexamples have short finite tests independent of the component construction. For the degree test set
+\[
+ p_m(t)=\sum_{k=0}^m(-1)^{m-k}\binom{m+k}{m-k}t^k .
+\]
+Then $\sum_k[t^k]p_m(t)\Cat_{k+j}=0$ for $0\le j<m$. Indeed the one-step ordinary-walk matrix $M$ has diagonal $1,2,2,\ldots$ and off-diagonals one. It satisfies $(M^n)_{00}=\Cat_n$. The polynomials start with $1,t-1$ and satisfy $p_{m+1}=(t-2)p_m-p_{m-1}$ for $m\ge1$. Thus $p_m(M)e_0=e_m$, and $M^je_0$ is supported at heights at most $j$.
+
+If the two degrees at $r=8$ were at most 20, extracting coefficients at $x^{21+k}$ in \eqref{eq:main} would express $a_8(4+k)$ as a fixed linear combination of $\Cat_{k},\ldots,\Cat_{k+20}$ for every $k\ge0$. The sum below would vanish. Direct counts instead give
+\begin{equation}
+ \sum_{k=0}^{21}(-1)^{21-k}\binom{21+k}{21-k}a_8(4+k)=-2. \label{moment}
+\end{equation}
+For the coefficient formula, let $B(n)=a_7(n)(n+15)!(n-7)!/(2n-7)!$. A polynomial of degree 14 has fifteenth forward difference zero. In fact $\Delta^{15}B(7)=-845552707743744000$.
+
+To check both discrepancies using only subsets, build a permutation of $[n]$ from the left. If the used set is $S$ and the next value is $v$, charge
+\[
+ \#\{s\in S:s>v\}\ \#\{t\notin S:t<v\}.
+\]
+This charges each triple at its middle position. For every subset, store counts indexed by charges $0,\ldots,8$, start with one empty word of charge zero, and add each count to its successor indexed by $S\cup\{v\}$ and the increased charge. Computing modulo 47 through length 25 gives $45$ for \eqref{moment} and $5$ for $\Delta^{15}B(7)$. All factorial denominators in this difference are units modulo 47. This check uses the definition of a decreasing triple directly.
+
+\paragraph{References}
+[1] M. Fulmek, \emph{Enumeration of permutations containing a prescribed number of occurrences of a pattern of length three}, Adv. Appl. Math. 30 (2003), 607--632, Conjecture~6 and Remark~7. \href{https://arxiv.org/pdf/math/0112092}{Preprint}.
+
+[2] D. Callan, \emph{A recursive bijective approach to counting permutations containing 3-letter patterns} (2002). \href{https://arxiv.org/abs/math/0211380}{Preprint}.
+
+[3] B. Nakamura and D. Zeilberger, \emph{Using Noonan--Zeilberger functional equations to enumerate (in polynomial time!) generalized Wilf classes}, Adv. Appl. Math. 50 (2013), 356--366. \href{https://doi.org/10.1016/j.aam.2012.10.003}{Journal}.
+
+[4] A. R. Conway and A. J. Guttmann, \emph{Counting occurrences of patterns in permutations}, Electron. J. Combin. 32 (2025), P1.3, Sec.~4. \href{https://doi.org/10.37236/12963}{Journal}.
+
+[5] M. Waite, \emph{Permutations with a fixed number of occurrences of a monotone pattern} (2026). \href{https://arxiv.org/pdf/2506.05712v3}{arXiv preprint, version 3}.
+
+[6] S. Elizalde, \emph{Continued fractions for permutation statistics}, Discrete Math. Theor. Comput. Sci. 19:2 (2018), Article~11. \href{https://dmtcs.episciences.org/articles/4602}{Journal}.
+\end{document}

@@ -1,0 +1,13 @@
+{
+  "source_terms_checked": 23,
+  "recurrence_indices_checked": [
+    0,
+    99
+  ],
+  "formal_identity_coefficients_checked": [
+    0,
+    100
+  ],
+  "result": "PASS",
+  "role": "supplemental finite transcription check, not the proof"
+}

@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!50!black,pdftitle={Low Josephus survivors and the distribution of their labels}]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\raggedbottom
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Low Josephus survivors and the\\[2pt] distribution of their labels}\\[7pt]
+Blake Stone\\[-1pt]{\small Proof developed with OpenAI Codex}
+\end{center}
+\begin{abstract}
+For step size $k\ge2$, Hadjicostas conjectured a partial-sum recurrence listing all population sizes $n\ge k$ for which the Josephus survivor has label at most $k-1$. We derive the recurrence and its label rule from the classical ceiling iteration. We also determine the lower, upper, and logarithmic densities with which the normalized survivor $J_k(n)/n$ lies below any fixed threshold.
+\end{abstract}
+\section{The low labels}
+Label $n$ people $1,\ldots,n$, start counting at $1$, and repeatedly remove every $k$th remaining person. Write $J_k(n)$ for the last label. Fix $b=k-1\ge1$ and set
+\[
+ T_1=1,\qquad T_{j+1}=\ceil{\frac{T_1+\cdots+T_j}{b}}\quad(j\ge1).
+\]
+Hadjicostas proposed that the values of $T$ enumerate the populations with a low survivor, in a 2020 comment on A005427 \cite{oeis}. In the notation of that entry, populations below $k$ are excluded because of initial repetitions. For $k=5$, for example, the populations begin $5,6,8,10,12,15,19$ and their survivor labels are $2,1,3,3,1,1,2$.
+
+\begin{theorem}\label{T}
+For all $n\ge k$,
+\[
+ J_k(n)\le k-1 \quad\Longleftrightarrow\quad n=T_j\ \text{for some }j.
+\]
+Each such $n$ occurs once. If $n=T_{i+2}$ and $D_i=T_1+\cdots+T_{i+1}$, its survivor is
+\[
+ J_k(n)=1+bn-D_i.
+\]
+The number of such populations through $X$ is $\log X/\log(k/b)+O_k(1)$.
+\end{theorem}
+The main input is the ceiling algorithm in Graham, Knuth and Patashnik \cite[Sec.~3.3]{gkp}, also treated by Odlyzko and Wilf \cite{ow}. Bello-Cruz and Quintero-Contreras describe the affine pieces of $J_k$ between extremal points \cite{bello}. We give the direct link to the stated recurrence and verify it from the modular survivor recurrence in Lean.
+
+\clearpage
+\section{From the classical orbit to population sizes}
+Let $D_0=1$ and $D_{i+1}=D_i+\lceil D_i/b\rceil=\lceil kD_i/b\rceil$. Its defining identity proves by induction that $D_i$ is the partial sum in Theorem~\ref{T}. In particular $T_{i+2}=\lceil D_i/b\rceil$.
+
+\begin{lemma}[Classical orbit formula]\label{orbit}
+For every $n\ge1$ there is exactly one $D_i$ with $bn<D_i\le kn$. For this $i$, $J_k(n)=kn+1-D_i$.
+\end{lemma}
+\begin{proof}
+The orbit increases unboundedly. Its first term above $bn$ has predecessor at most $bn$, so the increment is at most $n$ and that term is at most $kn$. Its successor is larger than $kn$, as the next increment is at least $n+1$. This proves existence and uniqueness.
+
+For completeness, set $z(n)=J_k(n)-1$. Removing the first person and renumbering starting immediately after that person gives $z(1)=0$ and $z(n+1)=(z(n)+k)\bmod(n+1)$. At $n=1$ the unique term in $(b,k]$ is $k$. Suppose $D_i=kn-z(n)$ lies in the required interval and put $N=n+1$. Starting from $D_i>b(N-1)$, each orbit step has length $N$ while the current term is at most $bN$. The first term $D_j>bN$ reached in this way therefore has the form $D_i+tN$, $t\ge0$, and is at most $kN$. The difference $kN-D_j$ lies in $[0,N)$ and is congruent to $z(n)+k$ modulo $N$. It is $z(N)$ by the recurrence. This proves the formula.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{T}]
+If $n=T_{i+2}$ then $b(n-1)<D_i\le bn$. Write $e=bn-D_i$, so $0\le e<b$. Now $D_{i+1}=kn-e$. For $n\ge k$ this is in $(bn,kn]$. Lemma~\ref{orbit} gives $J_k(n)=1+e$.
+
+Conversely suppose $J_k(n)=1+e$ with $0\le e<b$. The term $D_j=kn-e$ in the lemma has a predecessor. This predecessor satisfies $D_{j-1}\le bn$, since otherwise its successor exceeds $kn$. If $D_{j-1}\le b(n-1)$ its successor is at most $k(n-1)$, less than $kn-e$. Therefore $\lceil D_{j-1}/b\rceil=n$, as required. Once a jump has length $n\ge k$, the next ceiling strictly increases, since the orbit rises by more than $b$. This proves uniqueness.
+
+Put $\alpha=k/b$. From $\alpha D_i\le D_{i+1}<\alpha D_i+1$ one gets $\alpha^i\le D_i\le(1+1/(\alpha-1))\alpha^i$ by summing a geometric series. Counting the indices with $D_i\le bX$ gives the asserted logarithmic count for integral $X$. The excluded initial terms contribute a constant.
+\end{proof}
+
+\clearpage
+\section{The label update and all population sizes}
+Let $n_i=T_{i+2}$ and $e_i=bn_i-D_i$ for every $i\ge0$, including the initial small populations. The ceiling bounds give $0\le e_i<b$. Substituting $D_{i+1}=D_i+n_i$ gives
+\[
+ b n_{i+1}=k n_i+e_{i+1}-e_i,\qquad
+ e_{i+1}\equiv e_i-n_i\pmod b.
+\]
+Together with $0\le e_{i+1}<b$, this determines both the next label and the next population. In particular $n_{i+1}$ is either $\lfloor k n_i/b\rfloor$ or $\lceil k n_i/b\rceil$. For $0\le i\le b-1$ one has $D_i=i+1$. At $i=b-1$ we have $n_i=T_k=1$ and $e_i=0$, exactly the starting state of the shifted rule proposed in A005427. Writing $j_i=1+e_i$ shows that its update is $j_{i+1}=1+((j_i-n_i-1)\bmod b)$, with $j_i=J_k(n_i)$ once $n_i\ge k$.
+
+For an arbitrary integer $1\le s\le n$, Lemma~\ref{orbit} gives an exact membership test
+\[
+ J_k(n)=s\quad\Longleftrightarrow\quad kn+1-s\in\{D_0,D_1,\ldots\}.
+\]
+The condition $1\le s\le n$ places this candidate in the unique orbit interval. For example, the fixed populations $J_k(n)=n$ are exactly the integers $(D_i-1)/b\ge1$ obtained from $D_i\equiv1\pmod b$.
+
+\section{The distribution of the normalized survivor}
+For $0<x<1$, define $A_x(N)=\#\{1\le n\le N:J_k(n)/n\le x\}$. Small labels occur more frequently at the beginning of an orbit interval. This effect persists at every scale.
+\begin{theorem}\label{dist}
+For fixed $k\ge2$ and $0<x<1$,
+\[
+ \liminf_{N\to\infty}\frac{A_x(N)}{N}=\frac{(k-1)x}{k-x},
+ \qquad
+ \limsup_{N\to\infty}\frac{A_x(N)}{N}=x .
+\]
+Every value between the limits is a subsequential limit. The logarithmic density exists and equals
+\[
+ \lim_{N\to\infty}\frac{1}{\log N}
+   \sum_{\substack{n\le N\\ J_k(n)/n\le x}}\frac1n
+ =\frac{\log(k/(k-x))}{\log(k/(k-1))}.
+\]
+\end{theorem}
+For $k=2$ and $x=1/2$ the ordinary frequency oscillates between $1/3$ and $1/2$. Logarithmic averaging gives $\log(4/3)/\log2$.
+
+\clearpage
+\begin{proof}[Proof of Theorem~\ref{dist}]
+For a fixed orbit term $D=D_i$, the integers assigned to it are precisely
+\[
+ D/k\le n<D/b .
+\]
+For those integers $J_k(n)=kn+1-D$. The successful ones are the initial segment $n\le(D-1)/(k-x)$. For sufficiently large $D$ this threshold lies strictly inside the interval. Its total integer length and its number of successes are, respectively,
+\[
+ D(1/b-1/k)+O(1),\qquad D(1/(k-x)-1/k)+O(1).
+\]
+Let $L=bx/(k-x)$, the ratio of these two coefficients. Each complete interval contributes $L$ times its length to the success count with an error $O(1)$. Lemma~\ref{orbit} partitions all positive integers, including any boundary integers. There are $O_k(\log N)$ complete intervals before $N$. Thus the frequency just before the interval indexed by $D$ tends to $L$, since its starting position is $D/k+O(1)$. Just after its last success the frequency tends to
+\[
+ \frac{L D/k+D/(k-x)-D/k}{D/(k-x)}=x.
+\]
+Within the interval the running proportion first increases, then decreases. This proves both extremal limits. Consecutive values of $A_x(N)/N$ differ by at most $1/(N+1)$, so passage between those endpoints gives every intermediate subsequential limit.
+
+On each sufficiently large complete interval, comparison with the integral of $1/t$ gives successful harmonic weight $\log(k/(k-x))+O_{k,x}(1/D)$. The shift of the cutoff by $1/(k-x)$ and rounding of both endpoints are included in that error. The total error over all complete intervals stays bounded because $D_i\ge(k/b)^i$. A partial terminal interval has bounded harmonic weight. The geometric bounds in the proof of Theorem~\ref{T} give $\log N/\log(k/b)+O_k(1)$ complete intervals. Division by $\log N$ proves the logarithmic formula.
+\end{proof}
+\begin{thebibliography}{9}\small
+\bibitem{oeis} P. Hadjicostas, comments of July 22, 2020, \href{https://oeis.org/A005427}{OEIS A005427}. For $k=5$, see \href{https://oeis.org/A120160}{A120160}.
+\bibitem{gkp} R. L. Graham, D. E. Knuth and O. Patashnik, \emph{Concrete Mathematics}, 2nd ed., Addison-Wesley, 1994, Sec.~3.3, Eqs.~(3.19)--(3.20).
+\bibitem{ow} A. M. Odlyzko and H. S. Wilf, \href{https://doi.org/10.1017/S0017089500008272}{Functional iteration and the Josephus problem}, Glasgow Math. J. \textbf{33} (1991).
+\bibitem{bello} Y. Bello-Cruz and R. Quintero-Contreras, \href{https://cs.uwaterloo.ca/journals/JIS/VOL27/Cruz/cruz4.pdf}{Analytical study and efficient evaluation of the Josephus function}, J. Integer Seq. \textbf{27} (2024), Article 24.3.8.
+\end{thebibliography}
+\end{document}

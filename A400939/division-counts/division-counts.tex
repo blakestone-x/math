@@ -1,0 +1,121 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[top=.78in,bottom=.85in,left=.92in,right=.92in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Z}{\mathbb Z}
+\title{Division counts in the generalized halving Recam\'an walk}
+\author{Blake Stone\\\small Proof and computations developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every fixed power of two $k\ge2$, the generalized halving Recam\'an walk divides at least $c_{k,\varepsilon}N^{1/2-\varepsilon}$ times through index $N$, for every $\varepsilon>0$ and all sufficiently large $N$. The argument counts failed divisions by pairing intervals between successful ones and bounding the solutions of a quadratic equation for each pair. For arbitrary $k\ge2$ we also give a finite test for exactly one division and a uniform deadline of $\lceil4k^{3/2}\rceil+6k$ for the second division whenever it exists. The test yields an explicit classification for all prime powers.
+\end{abstract}
+
+\section{The walk and its addition intervals}
+Damijanic's sequence A400939 starts at 1. Its generalization with fixed integer divisor $k\ge2$ is
+\[
+ a_1=1,\qquad
+ a_{n+1}=\begin{cases}
+ a_n/k & k\mid a_n\text{ and }a_n/k\notin\{a_1,\ldots,a_n\},\\
+ a_n+n+1 & \text{otherwise}.
+ \end{cases}
+\]
+A division at index $d$ means the transition from $a_{d-1}$ to $a_d$ uses division. Write $D_k(N)$ for the number of divisions at indices at most $N$, and $T_n=n(n+1)/2$. Split $1,\ldots,N$ before each division index. Each resulting interval carries a constant integer $C$ such that $a_n=T_n-C$. Since $1\le a_n\le T_n$ by induction, $0\le C\le T_N$. Damijanic's entry describes this triangular form and states the triangular-residue stopping criterion. It asks whether every positive integer appears for $k=2$, and whether division eventually ceases for every $k$ having an odd prime factor \cite{OEIS}. The previous manuscript \cite{prime} treats one infinite prime family. The results below address the frequency of divisions and the first two division indices.
+
+\section{How frequently division occurs for a power of two}
+\begin{theorem}\label{main}
+Fix $k=2^e$ with $e\ge1$. For every $\varepsilon>0$ there is $c_{k,\varepsilon}>0$ such that
+\[
+ D_k(N)\ge c_{k,\varepsilon}N^{1/2-\varepsilon}
+\]
+for all sufficiently large $N$.
+\end{theorem}
+
+\begin{lemma}\label{pell}
+Fix $k=2^e\ge2$ and $A>0$. Uniformly over odd integers $b$ with $|b|\le A X^2$, the number of solutions of
+\[
+ x^2-ky^2=b,\qquad 1\le x,y\le X
+\]
+is $O_{k,A,\delta}(X^\delta)$ for every $\delta>0$ and $X\ge2$.
+\end{lemma}
+\begin{proof}
+Write $g=\gcd(x,y)$, $u=x/g$, $v=y/g$, $b'=b/g^2$ and $m=|b'|$.
+There are at most $\tau(|b|)$ possible $g$, where $\tau$ counts positive divisors. Since $\gcd(u,v)=1$, also $\gcd(v,m)=1$. Thus each solution gives a root $t=uv^{-1}\bmod m$ of $t^2\equiv k\pmod m$, with a single residue class when $m=1$. Each prime dividing $m$ is odd and coprime to $k$. At most two roots occur modulo each prime power $p^h\mid m$: comparing any two roots $r,s$, at most one of $r-s,r+s$ is divisible by $p$, so $r\equiv s$ or $-s\pmod{p^h}$. By the Chinese remainder theorem there are at most $\tau(m)\le\tau(|b|)$ classes.
+
+Fix $g,t$ and order solutions by $\alpha=u+v\sqrt k$. This positive number determines $u,v$ since $u-v\sqrt k=b'/\alpha$. For two solutions with $\alpha_2>\alpha_1$, put $r=\alpha_2/\alpha_1$. Then
+\[
+ (r+r^{-1})/2=(u_2u_1-kv_2v_1)/b'\in\Z,
+\]
+because $u_i\equiv t v_i\pmod m$. The left side exceeds 1, so $r\ge2+\sqrt3$. Since $1\le\alpha\le(1+\sqrt k)X$, this gives $O_k(\log(2X))$ solutions per class, including when $k$ is a square. Altogether the count is $O_k(\tau(|b|)^2\log(2X))$. For every $\eta>0$, $\tau(M)\ll_\eta M^\eta$: for primes $p\ge2^{1/\eta}$ one has $s+1\le p^{\eta s}$, and the finitely many smaller primes contribute bounded factors $\sup_{s\ge0}(s+1)p^{-\eta s}$. Applying this with sufficiently small $\eta$ proves the lemma.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+The $k$ numbers $T_0,\ldots,T_{k-1}$ are distinct modulo $k$. In fact, for $0\le j<i<k$, the two positive factors of $2(T_i-T_j)=(i-j)(i+j+1)$ have opposite parity and each is less than $2k$. Their product cannot be divisible by $2k$, a power of two. Also $2k$ is a period of $T_n\bmod k$. Thus every interval of length $L$ and offset $C$ contains at least $L/(2k)-1$ indices with $k\mid T_n-C$.
+
+Let $D=D_k(N)$. Intersect the $D+1$ addition intervals with $[1,N-1]$. There are at least $(N-1)/(2k)-(D+1)$ indices at which $a_n$ is divisible by $k$. Exactly $D$ result in division. For every blocked index choose an earlier witness $j\le n$ with $a_j=a_n/k$. Suppose the offsets at $n,j$ are $C,C'$ respectively. The equality $T_n-C=k(T_j-C')$ gives
+\[
+ (2n+1)^2-k(2j+1)^2=1-k+8(C-kC').
+\]
+The right side is odd and has magnitude $O_k(N^2)$. For an ordered pair of intervals the right side is fixed, so Lemma~\ref{pell} bounds the number of blocked indices assigned to that pair by $O_{k,\delta}(N^\delta)$. Counting the at most $(D+1)^2$ pairs gives
+\[
+ (N-1)/(2k)\le 2D+1+O_{k,\delta}\big((D+1)^2N^\delta\big).
+\]
+Taking $\delta=2\varepsilon$ proves the claim for $0<\varepsilon<1/2$, and hence for all $\varepsilon>0$.
+\end{proof}
+
+\section{An exact test and a deadline for the second division}
+\begin{theorem}\label{second}
+Let $k\ge2$ have odd part $h$. Let $m$ be the least positive index for which $k\mid T_m$ and $T_m/k$ is not a positive triangular number. This $m$ exists and is at most $2k$. Define $C=T_{m+1}-T_m/k$. Then the first division is at index $m+1$. There is a second division if and only if $8C+1$ is a square modulo $h$, with the test always true for $h=1$. Whenever there is a second division its index is at most
+\[
+ \lceil 4k^{3/2}\rceil+6k.
+\]
+\end{theorem}
+\begin{proof}
+Before the first division, the visited values through index $n$ are $T_1,\ldots,T_n$. A candidate quotient $T_n/k$ is smaller than $T_n$, so it has appeared exactly when it is triangular. At indices $2k-1,2k$ the two candidate quotients are $2k-1,2k+1$. They cannot both be triangular, since consecutive triangular numbers from $3$ onward differ by at least three. This proves the bound on $m$.
+
+After the first division the values follow $T_n-C$ until another division occurs. An opportunity on that trajectory requires $T_n\equiv C\pmod k$. For the odd part $h$, the identity $8T_n+1=(2n+1)^2$ and the invertibility of 2 modulo $h$ give precisely the square test in the theorem. For a nontrivial power-of-two part $s$ of $k$, every residue is attained, by the permutation proof in Theorem~\ref{main}. A solution class modulo $2s$ preserves $T_n\bmod s$ and can be combined with the odd-part solution modulo $h$ by the Chinese remainder theorem. This proves the equivalence with solvability modulo $k$. Any solution then repeats at spacing $2k$.
+
+It remains to force an unvisited quotient in bounded time. Write $J=\lceil4k^{3/2}\rceil$. We have $0<C<T_{2k+1}<4k^2$, and all values before the first division are at most $T_{2k}$. For $n\ge J$,
+\[
+ (T_n-C)/k>8k^2-4k>T_{2k}.
+\]
+Choose the smallest $n_0\ge J$ in one solution class of period $2k$. Suppose no second division has occurred through index $n_0+4k+1$. At each of $n_i=n_0+2ki$, for $i=0,1,2$, the quotient must already have occurred, and its size puts its witness in the translated part of the walk. Hence each $n_i$ admits an integer $j=F(n_i)$ with $T_{n_i}-C=k(T_j-C)$, where
+\[
+ F(t)=\frac{1}{2}\left(\sqrt{\frac{(2t+1)^2+B}{k}}-1\right),\qquad B=(k-1)(8C+1).
+\]
+Here $0<B<33k^3$. Differentiation gives
+\[
+ 0<F''(t)=\frac{2B}{\sqrt{k}\big((2t+1)^2+B\big)^{3/2}}
+ \le \frac{B}{4\sqrt{k}\,t^3}.
+\]
+The second difference $F(n_2)-2F(n_1)+F(n_0)$ is the integral of $F''(n_0+u+v)$ over $0\le u,v\le2k$. It is positive and at most $33k^{9/2}/n_0^3\le33/64<1$. This contradicts integrality. Since $n_0\le J+2k-1$, the stated deadline follows.
+\end{proof}
+
+\begin{corollary}
+Among the prime powers $k=p^e$ with $e\ge1$, the walk divides exactly once precisely in the following cases:
+\[
+ \begin{array}{ll}
+ p\text{ odd},\ p\equiv 2,3\pmod5 &\text{for every }e\ge1,\\
+ p=5 &\text{for }e\ge2.
+ \end{array}
+\]
+Every other prime power gives at least two divisions.
+\end{corollary}
+\begin{proof}
+Powers of two satisfy Theorem~\ref{main}. For an odd prime power, $k\mid T_n$ if and only if $k\mid n$ or $k\mid n+1$, since consecutive integers are coprime. The first two candidate sources are $k-1,k$, with quotients $(k-1)/2,(k+1)/2$. These are consecutive positive integers and cannot both be triangular. Thus $m=k-1$ or $k$. Direct substitution gives $2C=k^2+1$ or $(k+1)^2$, respectively. In both cases $8C+1\equiv5\pmod k$.
+For $p\ne5$ odd, quadratic reciprocity gives a root of 5 modulo $p$ exactly when $p\equiv1,4\pmod5$. Such a root lifts at every power: given $r^2\equiv5\pmod{p^j}$, choose $t\bmod p$ so that $(r+tp^j)^2\equiv5\pmod{p^{j+1}}$, using $p\nmid2r$. For $p=5$ the zero root modulo 5 cannot lift modulo 25. Theorem~\ref{second} gives the classification.
+\end{proof}
+
+\paragraph{Checks and scope.}
+A separate implementation of the literal visited-value rule checked the second-division criterion and its deadline for every $2\le k\le512$. Exactly 307 have one division and 204 have a second. It also checked the collision equation and the associated congruence for all blocked attempts through index $100{,}000$ at $k=2,4,8,16,32$. For $k=2$ there were $44{,}540$ successful halvings. These checks illustrate the proofs. The lower bound does not determine a limiting proportion or establish occurrence of every positive integer. For a divisor admitting a second division the eventual stopping question remains separate.
+
+\begin{thebibliography}{9}
+\bibitem{OEIS} Z. Damijanic, The halving Recaman walk, \href{https://oeis.org/A400939}{OEIS A400939}, 2026. See the \href{https://github.com/oeis/oeisdata/blob/df38d77b83a78d8ab5aaa501dec6e3a3db977f01/seq/A400/A400939.seq}{archived entry}, comment on general divisors.
+\bibitem{prime} B. Stone, An infinite prime family for the generalized halving Recam\'an walk, \href{https://github.com/blakestone-x/math/blob/888d3b3f258bbc442c941a2c444bd8c0100a6963/A400939/README.md}{repository manuscript and formalization}, 2026.
+\end{thebibliography}
+\end{document}

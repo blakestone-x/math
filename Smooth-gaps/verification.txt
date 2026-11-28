@@ -1,0 +1,47 @@
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+lake build
+Build completed successfully.
+
+Kernel dependency reports
+'SmoothRotations.eliminate_modulus' depends on axioms: [propext]
+'SmoothRotations.denominator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.absentFive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.absentSeven' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.attain_iff_scaled_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.smooth_gap_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.maximalFive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.maximalSeven' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.five31' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.seven31' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.five281' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.seven1849' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.five583' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.seven3737' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.beforeFirstZeroFive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SmoothGaps.beforeFirstZeroSeven' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+python3 verify.py --radical-file <radical-table> --primes-file <first-16-primes-table>
+Upstream revision 97034f286c52b8e64f82bf00816a561aa01e26cd
+Input SHA-256 digests
+c28a87a2015c987d6665647117094cab4e9072a7d23301c5d89f892d3d2b2fb3  solutions_uptoRadical_10000000.txt
+80f3cd4e2535285f9a5c5811d9646b60523f7caef6fb0506202af761a743da98  solutions_2_3_5_7_11_13_17_19_23_29_31_37_41_43_47_53.txt
+
+radical table: 432408 rows, largest c = 8251953408
+all ten Lean triple lists match their complete upstream prime supports
+5-smooth: 6113 primitive orientations, 5123 retained maxima
+466 certified rough parts admit multiple representations; on smooth gaps the maximum multiplicity is 50, first at 1296000
+7-smooth: 20429 primitive orientations, 9813 retained maxima
+3992 certified rough parts admit multiple representations; on smooth gaps the maximum multiplicity is 188, first at 3360631680000
+A376925(11) = 3466384181 + 162615350840320 = 162618817224501
+A376925(12) = 3466384181 + 162615350840320 = 162618817224501
+A376925(13) = 1169745467950813 + 6231375784189187 = 7401121252140000
+A376925(14) = 1792160394037 + 31264971026196510 = 31266763186590547
+A376925(15) = 176202799695875 + 3178472661789594624 = 3178648864589290499
+A376925(16) = 98936203248000000 + 6959907875844540383 = 7058844079092540383
+5-smooth: all 333333 values agree, 73096 nonzero, first shortfall (281, 256), first zero 583
+b-file SHA-256 278703d8c3c6a35ee050ee5ab3c78fe9b2ebb4044a054639fd165a13e20646ba
+7-smooth: all 47619 values agree, 42257 nonzero, first shortfall (1849, 1800), first zero 3737
+b-file SHA-256 f00b13db67af982e8e067217981fe9512b7f4a7362498bc7ade7acfe78eb1947
+rotation audit: width <= 18, 66060 smooth integers, 33 nontrivial values, 24 with exactly two nonzero digits

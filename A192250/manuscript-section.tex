@@ -1,0 +1,130 @@
+\section{Two central-binomial polynomial-reduction recurrences}
+\label{sec:a192250}
+
+Let $c_k=\binom{2k}{k}$ and, for $n\geq 1$, set
+\[
+ P_n(X)=\sum_{k=0}^{n-1}c_kX^k.
+\]
+The polynomial reduction used by Kimberling in OEIS A192232 repeatedly
+writes a polynomial as $X^2t(X)+r(X)$, where $\deg r<2$, and replaces it by
+$(X+1)t(X)+r(X)$ until a polynomial of degree at most one is reached
+\cite{OEISA192232}. Write the result of reducing $P_n$ as
+\[
+ R_n(X)=a_n+b_nX.
+\]
+Then $a_n$ is A192250 and $b_n$ is A192251
+\cite{OEISA192250,OEISA192251}. The original offsets are both~1.
+In particular, the source program makes its polynomial list starting at
+degree~0, and reads its first element at sequence index~1. Thus the input
+at index $n$ has $n$ terms, ending in $c_{n-1}X^{n-1}$; it is not $P_{n+1}$.
+The first five pairs $(a_n,b_n)$ are
+\[
+(1,0),\quad(1,2),\quad(7,8),\quad(27,48),\quad(167,258).
+\]
+
+\begin{theorem}
+For either $y_n=a_n$ or $y_n=b_n$, and every $n\geq4$,
+\begin{equation}
+\label{eq:a192250-mathar}
+\begin{split}
+ &(n-1)(n-2)y_n-(5n-7)(n-2)y_{n-1}\\
+ &\qquad{}-2(2n-3)(3n-8)y_{n-2}
+       +4(2n-3)(2n-5)y_{n-3}=0.
+\end{split}
+\end{equation}
+\end{theorem}
+
+These are the two identical recurrences recorded as conjectures by
+R.~J.~Mathar on May~4, 2014. The range $n\geq4$ is the full range in
+which the recurrence uses only terms at the source's indices $1,2,\ldots$.
+The two assertions belong to one polynomial family.
+
+\begin{proof}
+Put $M(X)=X^2-X-1$. First, each source step satisfies
+\[
+ X^2t+r-\bigl((X+1)t+r\bigr)=M(X)t.
+\]
+It therefore preserves the remainder modulo $M$. If the input degree is
+at least two, the new degree is at most the old degree minus one:
+$\deg t=\deg p-2$, while $\deg r<2$ and
+$\deg((X+1)t)\leq\deg t+1$. Hence the algorithm terminates.
+Its terminal polynomial has degree less than two and is congruent to
+the input modulo the monic quadratic $M$, so uniqueness of polynomial
+division identifies it with the remainder modulo $M$. This supporting
+observation is standard; it is also Lemma~1 in Wiktorowicz's 2026 note
+\cite{Wiktorowicz2026Reduction}. We include its proof here to specify the
+source interpretation completely.
+
+Fix $n\geq4$, and abbreviate
+\[
+ A=(n-1)(n-2),\qquad B=(5n-7)(n-2),
+\]
+\[
+ C=2(2n-3)(3n-8),\qquad D=4(2n-3)(2n-5).
+\]
+We claim the following exact identity in $\mathbb Z[X]$:
+\begin{equation}
+\label{eq:a192250-certificate}
+ A P_n-B P_{n-1}-C P_{n-2}+D P_{n-3}
+   =D c_{n-3}X^{n-3}(X^2-X-1).
+\end{equation}
+To verify it, first observe
+\[
+ A-B-C+D=0,\qquad A-B=-2(2n-3)(n-2).
+\]
+The elementary central-binomial identity
+\[
+ (k+1)c_{k+1}=2(2k+1)c_k
+\]
+follows directly from $c_k=(2k)!/(k!)^2$. Applying it successively at
+$k=n-3$ and $k=n-2$ gives
+\[
+ A c_{n-1}=D c_{n-3},\qquad
+ (A-B)c_{n-2}=-D c_{n-3}.
+\]
+Expanding the three last terms of $P_n$ around $P_{n-3}$ now yields
+\begin{align*}
+ A P_n-B P_{n-1}-C P_{n-2}+D P_{n-3}
+ &= (A-B-C+D)P_{n-3}\\
+ &\quad +(A-B-C)c_{n-3}X^{n-3}\\
+ &\quad +(A-B)c_{n-2}X^{n-2}
+       +A c_{n-1}X^{n-1}\\
+ &=D c_{n-3}\bigl(-X^{n-3}-X^{n-2}+X^{n-1}\bigr),
+\end{align*}
+which is exactly \eqref{eq:a192250-certificate}.
+
+Remainder modulo a monic polynomial is $\mathbb Z$-linear.
+Taking remainders in \eqref{eq:a192250-certificate}, and using the source
+identification established above, gives
+\[
+ A R_n-B R_{n-1}-C R_{n-2}+D R_{n-3}=0.
+\]
+Taking the constant coefficient proves \eqref{eq:a192250-mathar} for
+$a_n$, and taking the coefficient of $X$ proves it for $b_n$.
+\end{proof}
+
+\paragraph{Formal verification.}
+The Lean definition \texttt{sourceReduction} implements the actual
+division-and-substitution procedure by well-founded recursion on the
+polynomial's natural degree. The theorem
+\texttt{sourceStep\_natDegree\_lt} proves the decrease needed for every
+recursive call, and \texttt{sourceReduction\_eq\_remainder} proves its
+equivalence to the monic remainder. The complete polynomial certificate
+is proved in \texttt{polynomial\_certificate}. The endpoints
+\texttt{a192250\_conjecture} and \texttt{a192251\_conjecture} use the
+literal algorithm and quantify over every $n\geq4$ in the original
+indexing. All three local modules are explicit default build roots.
+A fresh source-only build with Lean~4.19.0 and the pinned mathlib revision
+succeeded; all audited endpoints use only the standard axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+\paragraph{Scope and prior work.}
+The general reduction lemma, the Fibonacci description of the reduced
+monomials, and Campbell's 2016 sum formula for A192251 are supporting
+prior material, not additional new results. Wiktorowicz's explicit
+theorem and table concern polynomial input sequences and
+constant-coefficient recurrences. Here the input is the central-binomial
+sequence, and the selected endpoints are Mathar's two specific
+polynomial-coefficient recurrences. The bounded source and semantic
+search is recorded in the package; no claim of worldwide priority is
+made.

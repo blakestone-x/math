@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,booktabs}
+\usepackage[margin=.94in]{geometry}\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}\newcommand{\CT}{\operatorname{CT}}
+\title{The residues and growth of a Catalan Hankel determinant}
+\author{Research manuscript prepared for Blake Stone with Astra}\date{November 2026}
+\begin{document}\maketitle
+Let $C_k=\binom{2k}{k}/(k+1)$, $h_n=\sum_{k=0}^n\binom nk^2 C_k$, and $H_n=\det(h_{i+j})_{0\le i,j\le n}$. The moments are OEIS A086618 and the determinants are A228456. Sun conjectured in 2013 that $H_n$ is always positive and odd and never $7$ modulo $8$. The Left to Solve target also includes V. Kot\v e\v sovec's growth prediction~\cite{board,oeis}. Beach~\cite{beach} proved positivity, the growth rate $9/4$, and the residue law modulo four, leaving the case $n\equiv1\pmod4$ of Sun's assertion open. Our finite calculation gives $H_{4m+1}\equiv3\pmod8$ for every $m$, and determines every other residue as well. We include an independent proof of the growth limit. A separate supplement studies Sun's prime-square conjecture.
+\begin{theorem}
+The positive integers $H_n$ have precisely the residues $1,3,5$ modulo eight, and
+\[
+             \lim_{n\to\infty} H_n^{1/n^2}=\frac94 .
+\]
+The natural densities of the three residues, in the stated order, are $1/2,1/4,1/4$.
+\end{theorem}
+
+\section{An integral and the growth rate}
+Let $T$ have density $\sqrt{(4-t)/t}/(2\pi)$ on $0<t<4$. The beta integral gives $\mathbb E T^k=C_k$. Independently let $\phi$ be uniform on $[0,2\pi]$. Then
+\[
+Y=|1+\sqrt T e^{i\phi}|^2,\qquad \mathbb E Y^n=h_n.
+\]
+Indeed angular integration of $(1+\sqrt T e^{i\phi})^n(1+\sqrt T e^{-i\phi})^n$ keeps exactly the pairs with equal indices. The law $\mu$ of $Y$ is supported on $[0,9]$. For every $0<y<9$ there exists $0<t<4$ such that $(1-\sqrt t)^2<y<(1+\sqrt t)^2$: for $0<y<4$ we can take $t=1$, and for $4\le y<9$ take $t$ close enough to $4$. The conditional density on that open interval is
+\[
+ \big(\pi\sqrt{4t-(y-1-t)^2}\big)^{-1}.
+\]
+Integrating over a small compact $t$-interval gives a positive lower bound on a neighborhood of each $y$. Every compact interval $[a,b]\subset(0,9)$ therefore has a uniform positive density lower bound $c_{a,b}$.
+
+The determinant is a positive definite Gram determinant, as every nonzero polynomial has positive norm for $\mu$. Write $N_j$ for the least squared $L^2(\mu)$ norm of a monic polynomial of degree $j$. Monic Gram--Schmidt gives $H_n=\prod_{j=0}^n N_j$. On $[0,9]$ a monic scaled Chebyshev polynomial has uniform norm $2(9/4)^j$ for $j\ge1$. On $[a,b]$ the monic scaled Legendre polynomial minimizes the squared Lebesgue norm. Its squared norm is $(b-a)^{2j+1}/((2j+1)\binom{2j}{j}^2)$ by its leading coefficient and orthogonality. Consequently
+\[
+ \frac{c_{a,b}(b-a)^{2j+1}}{(2j+1)\binom{2j}{j}^2}\ \le N_j\le\ 4(9/4)^{2j}.
+\]
+Taking logarithms, summing, and dividing by $n^2$ traps the lower and upper limits between $\log((b-a)/4)$ and $\log(9/4)$. Let $b-a\to9$.
+
+\section{Converting the determinant to scalar ratios}
+Let $\ell(f)=\mathbb E f(Y-1)$, an integer functional on integer polynomials. Translation by one is unitriangular and preserves Hankel determinants. The odd angular powers vanish and the even ones give central binomial coefficients, so
+\[
+ \ell(X^j)=\sum_{k=0}^{\lfloor j/2\rfloor}
+        \binom{j}{2k}\binom{2k}{k} C_{j-k}\equiv C_j\pmod2 .
+\]
+For the Catalan law on $[0,4]$ take the monic orthonormal polynomials $P_j(X)=U_{2j}(\sqrt X/2)$ using the second-kind Chebyshev polynomials. Indeed $T=u^2$ for $u$ of semicircular density $\sqrt{4-u^2}/(2\pi)$ on $[-2,2]$, for which $U_k(u/2)$ are orthonormal. The usual sine expression for $U_k$ gives
+\[
+ P_iP_j=\sum_{k=|i-j|}^{i+j}P_k,\qquad
+ \sum_{k\ge0}P_k(X)t^k=\frac{1+t}{1+(2-X)t+t^2}.
+\]
+Put $d_k=\ell(P_k)$. Then $d_0=1$ and $d_k$ is even for $k>0$ by orthogonality and the moment congruence. The Gram matrix in this monic basis has entries
+$G_{ij}=\sum_{k=|i-j|}^{i+j}d_k$ and is the identity modulo two, proving that all $H_n$ are odd.
+
+Work modulo eight and put $H_{-1}=1$. The new column above the diagonal at size $n+1$ is an even vector $v$, and the preceding Gram matrix has inverse equal to the identity modulo two. Its Schur complement therefore gives
+\[
+ R_n:=H_n/H_{n-1}\equiv G_{nn}-\sum_{i=0}^{n-1}G_{in}^2\pmod8 .
+\]
+For an even integer $u$, $u^2\equiv2u\pmod8$, since $u(u-2)$ is divisible by eight. In the sum over $i<n$, a term $d_k$ for $1\le k\le2n$ occurs $\min(k,2n-k)$ times, of parity $k$. Since $2d_k$ is a multiple of four,
+\[
+ R_n\equiv \sum_{k=0}^{2n}(-1)^k d_k\pmod8 .
+\]
+This simplifies the full problem to a constant term. Put $u=x+x^{-1}$, $g=u^2+u(y+y^{-1})$, and let $\CT$ extract the constant in $x,y$. Then $\ell(f)=\CT(1-x^2)f(g)$: the angular average gives the constant term in $y$, and $\CT_x(1-x^2)u^{2r}=C_r$, while odd powers have zero constant term. Equivalently one can write $Y-1=u^2+2u\cos\phi$ with semicircular $u$, since the random angle absorbs its sign. Multiplying the series $\sum d_k(-t)^k$ by $1/(1-t)$, the numerator cancels. Even extraction is invariant under replacing $t$ by $-t$. Hence
+\[
+ R_n=[t^{2n}]\CT\frac{1-x^2}{Q(x,y,t)}\quad(\bmod 8),\qquad
+ Q=1-\big(x^2+x^{-2}+(x+x^{-1})(y+y^{-1})\big)t+t^2.
+ \tag{1}
+\]
+
+\section{A finite certificate for every index}
+Here are the complete rules defining the finite computation, implemented in the accompanying Python program using integer polynomial arithmetic. Let $\Lambda_r$ select monomials with exponent triple $(2a,2b,2c+r)$ and replace that triple with $(a,b,c)$, for $r=0,1$. For each numerator $P$ represent the scalar sequence $s_P(n)=[t^nx^0y^0]P/Q^4$. In $(\mathbb Z/8\mathbb Z)[x^{\pm1},y^{\pm1},t]$ we have
+\[
+ Q(x,y,t)^8=Q(x^2,y^2,t^2)^4.
+\]
+This follows from the Frobenius congruence modulo two followed by squaring twice. Multiplication by $Q^4$ before digit selection consequently takes $s_P(2n+r)$ to $s_{\Lambda_r(PQ^4)}(n)$. Either spatial exponent of a numerator can be replaced by its absolute value, combining like terms, because $Q$ is separately inversion-invariant in $x,y$ and the spatial constant term is unchanged. The output at $n=0$ is the constant coefficient of $P$ since $Q(x,y,0)=1$. Begin with $(1-x^2)Q^3$ followed by the low digit zero, as in (1). Repeatedly process both digits until no new numerator is encountered. This yields 23 ratio states, all with odd outputs.
+
+For the product, let $s_i$ denote the ratio states and $S_i(n)=\prod_{j<n}s_i(j)$. Every odd unit modulo eight squares to one, so product expressions use two subsets $A,B$ representing $\prod_{i\in A}S_i(n)\prod_{j\in B}s_j(n)$. Let $T_r(A)$ send each member to its digit-$r$ successor, cancelling repeated indices in pairs. Splitting an initial interval into evens and odds gives the two transitions
+\[
+ (A,B)\longmapsto
+ \big(T_0(A)\mathbin\triangle T_1(A),\ 
+ T_r(B)\mathbin\triangle (T_0(A)\text{ if }r=1\text{, else }\varnothing)\big).
+\]
+The output is the product of the zero-index outputs in $B$. Initialize $A=B=\{0\}$, with state 0 corresponding to $R_n$. This represents $H_n=\prod_{j=0}^n R_j$. Enumerating reachable pairs gives 78 states. Partition refinement, first by output and then by the classes of the successors until stable, gives the following table. Starting at state zero, read the bits of $n$ from least to most significant and take the indicated output.
+\[
+\begin{array}{r|rrr@{\hskip20pt}r|rrr}
+s&T_0&T_1&H&s&T_0&T_1&H\\\hline
+0&1&2&1&7&9&4&5\\
+1&3&4&1&8&3&10&1\\
+2&5&6&3&9&11&7&5\\
+3&3&7&1&10&8&12&1\\
+4&8&4&1&11&11&10&5\\
+5&5&5&3&12&9&12&5\\
+6&6&6&1&&&&
+\end{array}
+\]
+The complete enumeration uses 33 and 128 states before minimization when reflection folding is omitted. Both versions give the displayed table. Since its only outputs are $1,3,5$, the assertion holds for every $n$. Each occurs already at $n=0,1,4$, respectively.
+
+\paragraph{An explicit binary formula.}
+Write $m=\sum_{j\ge0}t_j2^j$, with $t_j\in\{0,1\}$ and eventually zero. Then
+\[
+ H_{2m}\equiv1+4\left(t_1(1-t_0)+\sum_{j\ge2}t_j(1-t_{j-2})\bmod 2\right)\pmod8 .
+\]
+Indeed, after reading the zero low bit of $2m$ and then $t_0$, the table enters state $3$ or $4$. Label these $000,110$, respectively, and label states $7,8,9,10,11,12$ by $011,100,101,010,001,111$. A state $uvw$ sends digit $r$ to $vr(w+r(1-u)\bmod2)$ and has output $1+4w$. Thus the initial two memory bits are $(t_0,t_0)$ and each later digit changes the sign bit by precisely the summand displayed above.
+\paragraph{Residue frequencies.}
+The table gives $H_{4m+1}=3$ and $H_{4m+3}=1$ modulo eight. On even inputs, the first digit takes the start to state 1, and the second takes it into the closed set $E=\{3,4,7,8,9,10,11,12\}$. The average of the two transition matrices on $E$ is doubly stochastic (each column has indegree two). Its directed graph is strongly connected and has a loop, so independent uniform low bits converge to the uniform distribution on $E$. The involution $(3\ 11)(4\ 12)(7\ 10)(8\ 9)$ commutes with both transitions and interchanges outputs 1 and 5. Accordingly any fixed remaining high-bit prefix sends the uniform input distribution to a distribution balanced between those two outputs. The imbalance on any aligned block of $2^j$ consecutive indices is therefore $o(2^j)$ uniformly in the high prefix as $j\to\infty$. Partitioning $[0,N)$ into aligned blocks of a large fixed size and one shorter remainder gives natural densities $1/2,1/4,1/4$.
+\begin{thebibliography}{9}
+\bibitem{beach} C. Beach, \href{https://doi.org/10.5281/zenodo.24438853}{Hankel determinants of $\sum_k\binom nk^2 C_k$: proof of a conjecture of Kot\v e\v sovec and part of a conjecture of Sun}, Zenodo, November 22, 2026.
+\bibitem{board} \href{https://lefttosolve.com/p/oeis-a228456}{Left to Solve, A228456}, statement on November 27, 2026.
+\bibitem{oeis} Z.-W. Sun and further contributors, \href{https://oeis.org/A228456}{OEIS A228456}; P. D. Hanna and M. Somos, \href{https://oeis.org/A086618}{OEIS A086618}.
+\end{thebibliography}
+\end{document}

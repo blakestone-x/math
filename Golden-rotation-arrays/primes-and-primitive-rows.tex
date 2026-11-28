@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,top=.84in,bottom=.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\ph}{\varphi}
+\newcommand{\fl}[1]{\lfloor #1\rfloor}
+\newcommand{\fr}[1]{\{#1\}}
+\title{Prime columns and primitive rows\\in the Wythoff array}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Every column $k$ of the Wythoff array contains a proportion
+$\ph^{-(k+1)}$ of the primes, where $\ph$ is the golden ratio and $k$ starts at $1$.
+Yet one explicit primitive row consists entirely of composite numbers.
+This proves Kimberling's column conjecture and refutes his row conjecture.
+We identify the counterexample as a tail of Vsemirnov's composite Fibonacci-like
+sequence and give a congruence class of initial pairs containing a positive
+density of primitive, prime-free rows. We also prove that precisely
+$6/\pi^2$ of rows, in natural density, are primitive, and that their
+longest consecutive run has length five.
+\end{abstract}
+
+\section{Two prime conjectures}
+Write $\ph=(1+\sqrt5)/2$, $\beta=\ph-1=1/\ph$,
+$F_0=0$, $F_1=1$ and $F_{k+2}=F_{k+1}+F_k$. Morrison's Wythoff array
+\cite{morrison} has entries
+\begin{equation}\label{W}
+ W(m,k)=F_{k+1}\fl{m\ph}+(m-1)F_k,\qquad m,k\ge1 .
+\end{equation}
+We also use \eqref{W} at $k=0$ as an auxiliary initial value.
+A row is primitive when its consecutive entries are coprime.
+Kimberling asked whether every column contains infinitely many primes, and
+whether every primitive row does \cite{primes}.
+
+\begin{theorem}\label{primes}
+For each $k\ge1$,
+\[
+ \lim_{X\to\infty}
+ \frac{\#\{\ell\le X:\ell\text{ prime and }\ell=W(m,k)\text{ for some }m\ge1\}}{\pi(X)}
+ =\beta^{k+1}.
+\]
+The row $M=5\,381\,684\,723\,742\,272\,612\,570$ is primitive and contains
+no primes.
+\end{theorem}
+
+\subsection*{The interval for a column}
+For a positive integer $n$ set $f_n=\fr{n\beta}$. We claim that
+\begin{equation}\label{window}
+ n\text{ belongs to column }k
+ \quad\Longleftrightarrow\quad
+ f_n\in
+ \begin{cases}
+ (\beta^{k+2},\beta^k) & k\text{ even},\\
+ (1-\beta^k,1-\beta^{k+2}) & k\text{ odd}.
+ \end{cases}
+\end{equation}
+To see this, take $b=m-1$, $a=\fl{m\ph}$, and write
+$n=bF_k+aF_{k+1}$, $h=bF_{k-1}+aF_k$. From
+$F_{t+1}\beta-F_t=(-\beta)^t\beta$ we obtain
+\[
+ n\beta-h=(-\beta)^k x,\qquad x=\beta a-b=1-\beta f_m .
+\]
+Since $m>0$, we have $\beta^2<x<1$, giving the forward implication.
+Conversely, either open interval in \eqref{window} gives an integer $h$
+and an $x$ in this range with $n\beta=h+(-\beta)^k x$. The vectors
+$(F_k,F_{k-1})$, $(F_{k+1},F_k)$ are a basis of $\mathbb Z^2$, so
+$(n,h)$ has integral coefficients $b,a$ in this basis. The identity above
+forces $x=\beta a-b$. If $b\le-1$, the inequality $x<1$ forces $a\le0$
+and hence $n\le0$. Thus $m=b+1\ge1$. Multiplication of
+$\beta^2<x<1$ by $\ph$ gives $\beta<a-\ph b<\ph$,
+which implies $a<m\ph<a+1$. This proves \eqref{window}.
+
+Both intervals have length $\beta^k(1-\beta^2)=\beta^{k+1}$.
+Vinogradov's theorem gives uniform distribution of $\fr{\ell\beta}$
+as $\ell$ runs through the primes, because $\beta$ is irrational
+\cite[\S5]{vinogradov}. Applying it to \eqref{window} proves the asserted
+relative density and infinitude in each column.
+
+\subsection*{A prime-free primitive row}
+Vsemirnov \cite{vsemirnov} proved that the Fibonacci-like sequence with seeds
+$A_0=106276436867$, $A_1=35256392432$ has no prime terms.
+Morrison's array lists the positive Fibonacci sequences up to a shift
+\cite{morrison,orderings}. To locate this example explicitly, recurrence gives
+\begin{align*}
+ A_{53}&=M-1=5381684723742272612569,&
+ A_{54}&=8707748799751085288495,\\
+ A_{55}&=14089433523493357901064,&
+ A_{56}&=22797182323244443189559.
+\end{align*}
+Set $a_0=A_{54}$ and $u_0=A_{53}$. The exact integer inequalities
+\[
+ (2a_0-M)^2\le 5M^2<(2a_0+2-M)^2,\qquad 2a_0-M\ge0
+\]
+give $\fl{M\ph}=a_0$. Therefore $W(M,1)=A_{55}$, $W(M,2)=A_{56}$,
+and the shared recurrence gives $W(M,k)=A_{k+54}$ for all $k\ge1$.
+The Euclidean algorithm gives $\gcd(u_0,a_0)=1$, and the gcd of successive
+terms is invariant under the recurrence. This completes Theorem~\ref{primes}.
+
+For an independently checkable certificate put $T_k(a,u)=F_{k+1}a+F_k u$.
+The following are Vsemirnov's covering data with each index residue shifted
+by $-54$. Each triple $(s,t,r)$ certifies that $s$ divides the term at every
+column $k\equiv r\pmod t$.
+\[
+\begin{array}{rrr@{\qquad}rrr@{\qquad}rrr}
+\toprule
+s&t&r&s&t&r&s&t&r\\\midrule
+3&4&1&47&16&3&1103&48&27\\
+2&3&1&19&18&14&181&90&26\\
+5&5&0&61&15&3&41&20&4\\
+7&8&7&23&24&11&541&90&8\\
+17&9&2&107&36&26&2521&60&54\\
+11&10&2&31&30&6&&&\\\bottomrule
+\end{array}
+\]
+Indeed $s\mid F_t$ and $s\mid T_r(a_0,u_0)$ for each triple. The identity
+$T_{k+t}=F_{t-1}T_k+F_tT_{k+1}$ propagates the divisibility.
+The periods divide $720$, and the listed classes cover every residue
+$0,\ldots,719$. Since $T_k(a_0,u_0)\ge a_0>2521$, all divisors are proper.
+The Lean proof verifies the table and coverage by integer arithmetic.
+
+\section{Consecutive primitive rows}
+Let $u=m-1$, $a=\fl{(u+1)\ph}$ and $G(u)=\gcd(u,a)$.
+The auxiliary term $W(m,0)=a$ and the next term $a+u$ have gcd $G(u)$.
+Consecutive pairs throughout the row have this same gcd. Entries A332937
+and A332938 ask for the largest run with $G=1$ and its limiting proportion
+\cite{primitive}.
+
+\begin{theorem}
+The largest number of consecutive primitive rows is five.
+Furthermore the row of index $\ell+1$ is primitive for every prime $\ell>3$.
+\end{theorem}
+\begin{proof}
+Among six consecutive row indices, take the three odd ones $m,m+2,m+4$.
+For such indices $u$ is even. At least one of
+$\fl{m\ph},\fl{(m+2)\ph},\fl{(m+4)\ph}$ is even. Indeed, both consecutive
+increments are at least three, and the total increment is at most seven.
+If all three numbers were odd, each increment would be at least four.
+This contradiction gives a nonprimitive row in any run of six.
+For rows $36$ through $40$ the five floor values are $58,59,61,63,64$.
+Their gcds with $35,36,37,38,39$, respectively, are all one.
+
+For a prime $\ell>3$ we have $\ell\ge5$ and
+$\ell<\fl{(\ell+1)\ph}<2\ell$. Therefore $\ell$ cannot divide that floor.
+This proves the observation of Karttunen in A332937.
+\end{proof}
+
+\section{The distribution of row gcds}
+\begin{theorem}\label{density}
+For every integer $g\ge1$ the row indices with gcd $g$ have natural density
+\[
+ \frac{6}{\pi^2 g^2}.
+\]
+In particular the primitive-row density is $6/\pi^2=0.60792710\ldots$.
+\end{theorem}
+This also follows from Estermann's theorem on primitive points in strips
+of irrational slope \cite{estermann}. Indeed, put $u=gv$ and $a=gw$.
+The points $(v,w)$ lie in a strip of vertical width $1/g$ with $v\le N/g$.
+We give a self-contained counting reduction for this particular slope. Its
+uniform bound will also handle residue restrictions on both coordinates.
+
+Let $C_d(N)=\#\{1\le u\le N:d\mid G(u)\}$. For $d\ge2$, write $u=dv$.
+There is an integer $w$ with $dw=\fl{(dv+1)\ph}$ precisely when
+\begin{equation}\label{strip}
+ \beta<d(w-v\ph)<\ph.
+\end{equation}
+The endpoints are strict because $(dv+1)\ph$ is irrational.
+As $0<\beta/d<\ph/d<1$, such a $w$ must be $\fl{v\ph}+1$. Thus
+\[
+ 1-\ph/d < \fr{v\beta} < 1-\beta/d .
+\]
+The interval has length $1/d$, and $1\le v\le\fl{N/d}$. Equidistribution
+gives $C_d(N)/N\to1/d^2$, also true for $d=1$.
+
+\begin{lemma}\label{majorant}
+For $d,N\ge1$ we have $C_d(N)\le10N/d^2$.
+\end{lemma}
+\begin{proof}
+If $v\ge1$, $w\in\mathbb Z$ and $|w-v\ph|\le2$, the nonzero integer
+$(w-v\ph)(w+v\beta)=w^2-vw-v^2$ has absolute value at least one. Also
+$|w+v\beta|\le2+v(\ph+\beta)\le5v$. Thus $1\le5v|w-v\ph|$.
+For a point of \eqref{strip}, $|w-v\ph|<2/d$ gives $d^2\le10u$.
+For two such points at $u_1<u_2$, subtract \eqref{strip} to obtain
+$|(w_2-w_1)-(v_2-v_1)\ph|<1/d$. The same norm argument gives
+$d^2\le5(u_2-u_1)$. These inequalities also apply at $d=1$, since
+\eqref{strip} itself still holds for points counted. Hence
+$u\mapsto\fl{10u/d^2}$ injects the counted points into the integers
+from $1$ to $\fl{10N/d^2}$.
+\end{proof}
+
+The divisor identity for the Möbius function gives
+$\mathbf1_{G(u)=g}=\sum_{gd\mid G(u)}\mu(d)$ for $u>0$.
+The lemma bounds each normalized summand in absolute value by
+$10/(gd)^2$. Dominated convergence now yields
+\[
+ \lim_{N\to\infty}\frac1N\#\{1\le u\le N:G(u)=g\}
+ =\sum_{d\ge1}\frac{\mu(d)}{(gd)^2}
+ =\frac{1}{g^2\zeta(2)}=\frac{6}{\pi^2g^2}.
+\]
+The omitted first row has no effect on density.
+
+\section{A positive-density family of prime-free primitive rows}
+Let $P=1821895895860356790898731230$ be the product of the $17$ displayed
+primes. Consider the rows with $u\equiv u_0\pmod P$ and
+$a=\fl{(u+1)\ph}\equiv a_0\pmod P$. Each $T_k(a,u)$ is congruent to
+$T_k(a_0,u_0)$ modulo $P$. For $a>2521$ the certificate therefore makes
+every entry composite.
+
+\begin{corollary}\label{family}
+The primitive rows in these two residue classes, with $a>2521$, have
+natural density
+\[
+ \frac1{P^2}\prod_{\ell\ {\rm prime},\ \ell\nmid P}(1-\ell^{-2})>0 .
+\]
+\end{corollary}
+\begin{proof}
+For any modulus $L\ge1$ and prescribed residues $r,s\bmod L$, the conditions
+$u\equiv r$, $a\equiv s\pmod L$ have joint natural density $1/L^2$.
+Indeed, for $u=r+Lv$, the second condition says that
+$\{v\ph+(r+1)\ph/L\}$ belongs to $[s/L,(s+1)/L)$, taking
+$0\le s<L$. This rotated irrational orbit is equidistributed. Among the
+$1/L$ fraction of indices in the first progression it selects a fraction
+$1/L$.
+
+If $(d,P)=1$, the Chinese remainder theorem combines the two prescribed
+residues with $d\mid u,a$ into one pair modulo $Pd$. Its density is
+$1/(Pd)^2$. If $(d,P)>1$, the conditions are incompatible since
+$\gcd(u_0,a_0)=1$. For the restricted count of primitive rows apply
+Möbius inversion again. The absolute contribution of each $d$, after
+division by $N$, is bounded by $10/d^2$ by Lemma~\ref{majorant}.
+Interchanging the limit and the sum gives
+$P^{-2}\sum_{(d,P)=1}\mu(d)/d^2$ and hence the stated product.
+It is positive by convergence of $\sum_{\ell}\ell^{-2}$. Discarding the
+finitely many small values $a\le2521$ leaves this limit unchanged.
+\end{proof}
+This density concerns the specified class of rows. It supplies a lower bound
+on the lower density of all prime-free primitive rows.
+
+\paragraph{Formal scope.}
+Lean proves the column intervals, the transfer of prime equidistribution to
+column densities and infinitude, the explicit primitive composite row, the
+congruence certificate, the run bound and witness, the prime-offset observation
+and Theorem~\ref{density}. The transfer takes Vinogradov's published theorem
+as one explicit hypothesis. The limit calculation for the restricted family
+in Corollary~\ref{family} is given above.
+
+\begin{thebibliography}{9}
+\bibitem{morrison} D. R. Morrison, A Stolarsky array of Wythoff pairs,
+\emph{A Collection of Manuscripts Related to the Fibonacci Sequence},
+Fibonacci Association, 1980, 134--136.
+\bibitem{orderings} C. Kimberling, Orderings of the set of all positive Fibonacci
+sequences, \emph{Applications of Fibonacci Numbers} 5 (1993), 405--416.
+\href{https://doi.org/10.1007/978-94-011-2058-6_39}{DOI}.
+\bibitem{primes} C. Kimberling, OEIS \href{https://oeis.org/A360377}{A360377}
+and \href{https://oeis.org/A360378}{A360378} (2023). See also the conjectural
+row assumption in \href{https://oeis.org/A333086}{A333086} (2020).
+\bibitem{primitive} C. Kimberling, OEIS \href{https://oeis.org/A332937}{A332937}
+and \href{https://oeis.org/A332938}{A332938} (2020), with A. Karttunen's
+prime-offset observation in A332937 (2025).
+\bibitem{vinogradov} J.-M. De Koninck and I. K\'atai, Spacings between selected
+prime divisors of an integer, \emph{Bull. Aust. Math. Soc.} 107 (2023), 403--415.
+\href{https://doi.org/10.1017/S0004972722000880}{DOI}.
+\bibitem{vsemirnov} M. Vsemirnov, A new Fibonacci-like sequence of composite
+numbers, \emph{J. Integer Seq.} 7 (2004), Article 04.3.7.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL7/Vsemirnov/vsem5.pdf}{Article}.
+\bibitem{estermann} T. Estermann, On the number of primitive lattice points in a
+parallelogram, \emph{Canad. J. Math.} 5 (1953), 456--459.
+\href{https://doi.org/10.4153/CJM-1953-051-6}{DOI}.
+\end{thebibliography}
+\end{document}

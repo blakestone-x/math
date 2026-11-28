@@ -1,0 +1,34 @@
+Fresh isolated independent build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch10/A118207_independent_q4v8uyds
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+✔ [2819/2826] Built FiniteProducts
+✔ [2820/2826] Built FormalProduct
+✔ [2821/2826] Built CyclotomicUnits
+✔ [2822/2826] Built Arithmetic
+✔ [2823/2826] Built EulerRegroup
+ℹ [2824/2826] Built SourceSeries
+info: ././././SourceSeries.lean:185:0: 'A118207.source_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceSeries.lean:186:0: 'A118207.source_coefficient_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2825/2826] Built Proof
+info: ././././Proof.lean:16:0: 'A118207.liouville_sum_moebius_squares' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:17:0: 'A118207.product_scaledCycloUnit_eq_euler' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:18:0: 'A118207.nilpotent_cyclotomic_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:19:0: 'A118207.cutMap_formalProduct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:20:0: 'A118207.source_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:21:0: 'A118207.full_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Arithmetic.lean: 84a567b418c8af3d509dc0d407595f41255064443f1a5015f872a0b9563a033e
+SHA256 CyclotomicUnits.lean: db7b4d27f042ffd7236877b8657c0e5dc35fa36778eb23c1848b879480b917f5
+SHA256 EulerRegroup.lean: cc73f8747a60a6f4cd722dbacd31d1724944b975a2a777715d114a319a1ed911
+SHA256 FiniteProducts.lean: 2c430cf7196d5dc6b3c3f2e863e5a4fee7375c43df7269296221b5c50ab585da
+SHA256 FormalProduct.lean: 8dd5be1f7a0c2a7a9b7e521ba1d823403fa32dc76925cd598fa7550dda15f3ee
+SHA256 Proof.lean: 1e68f5b8ec4c4f808b042433222c2bc3d9f0cf3ecaf2fc702c23c9495078b8e3
+SHA256 SourceSeries.lean: 00dad070218609aef62bd16be76307db20f2504ce2f48c4818354117eb3b2103
+SHA256 lakefile.lean: bd86387e72d658612cadc06d6a9c8d77ef693bcfaa787f654ebfff3dcaa2c781
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 7fd045d411c0f3f11f63ea289874dc104491292400f5f5456db7610dde660e34

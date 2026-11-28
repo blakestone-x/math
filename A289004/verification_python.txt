@@ -1,0 +1,39 @@
+{
+  "source_blobs_checked": 6,
+  "direct_scanner_variants": 3,
+  "iterations_checked": [
+    0,
+    23
+  ],
+  "first_failure": 22,
+  "actual_at_22": 268184,
+  "claimed_at_22": 268182,
+  "all_counts_equal": true,
+  "tail": [
+    {
+      "n": 19,
+      "actual": 53908,
+      "claimed": 53908
+    },
+    {
+      "n": 20,
+      "actual": 92027,
+      "claimed": 92027
+    },
+    {
+      "n": 21,
+      "actual": 157099,
+      "claimed": 157099
+    },
+    {
+      "n": 22,
+      "actual": 268184,
+      "claimed": 268182
+    },
+    {
+      "n": 23,
+      "actual": 457819,
+      "claimed": 457812
+    }
+  ]
+}

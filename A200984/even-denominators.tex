@@ -1,0 +1,114 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=0.95in,headheight=14pt]{geometry}
+\usepackage{fancyhdr,xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!55!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\oeis}[1]{\href{https://oeis.org/A#1}{A#1}}
+\setlength{\parskip}{0.18em}
+\raggedbottom
+
+\hypersetup{pdftitle={Minimal denominators for balanced arrays},pdfauthor={Blake Stone, with Astra}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Minimal denominators for balanced arrays}\rhead{\small Blake Stone}\cfoot{\thepage}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\LARGE\bfseries The shortest recurrences for balanced two-column arrays\par}
+\vspace{0.5em}
+Blake Stone\\
+{\small Research manuscript prepared with Astra}
+\end{center}
+
+\begin{abstract}
+For an ordered alphabet of even size \(q\), the exact reduced denominator of the generating function of balanced, weakly increasing two-column arrays is \((1-x^{q/2})(1-x^q)^{q-1}\). Together with the odd-alphabet formula this gives the shortest eventual constant-coefficient recurrence at every alphabet size. The extra poles at the even moduli are detected by two odd-length bridges.
+\end{abstract}
+
+Let \(A_q(n)\) count \(n\)-by-2 arrays weakly increasing in rows and columns, on \(q\ge2\) ordered letters, with all letter counts differing by at most one. Include the empty array. We use the polynomial enumeration in the \href{https://github.com/blakestone-x/math/blob/c92ab48c98acba51cb42ceb73536a7bad251ec2d/A200984/balanced-arrays.pdf}{companion paper} and recall the facts needed here.
+\begin{theorem}\label{th:den}
+The reduced denominator of \(\sum_{n\ge0} A_q(n)x^n\), normalized to have constant term one, is
+\[
+               (1-x^{q/\gcd(q,2)})(1-x^q)^{q-1}.
+\]
+In particular the least eventual recurrence order is \(q^2\) for odd \(q\) and \(q^2-q/2\) for even \(q\).
+\end{theorem}
+
+\section{The two coefficients that can matter}
+Write \(2n=qu+t\), \(0\le t<q\). Each letter occurs \(u\) or \(u+1\) times, with exactly \(t\) high multiplicities. Putting \(a\) of a letter of multiplicity \(c\) in the left column gives a step \(2a-c\). The two sorted columns form an array precisely when the steps have nonnegative partial sums and total zero. For a fixed \(u\), let \(B_{j,k}\) count unrestricted zero-sum walks of length \(j\) with \(k\) high steps. The bridge--excursion formula gives
+\[
+ A_q(n)=[z^q v^t]\exp\left(\sum_{j\ge1}\frac{z^j}{j}
+                          \sum_{k=0}^j B_{j,k}v^k\right).
+\]
+The bridge term vanishes for \(ju+k\) odd. At compatible parity it is a polynomial in \(u\) of degree at most \(j-1\), whose leading coefficient is \(\binom jk f_j\). Here \(f_j\) is the density at zero of the sum of \(j\) independent uniform variables on \([-1/2,1/2]\), with \(f_1=1\). Indeed, bounded compositions or inclusion--exclusion give
+\[
+ f_j=\frac{1}{(j-1)!}\sum_{h<j/2}(-1)^h\binom jh(j/2-h)^{j-1}\qquad(0\le h).
+\]
+In particular the polynomial at compatible parity is the same function of \(u\) whenever that parity is unrestricted. The cited companion paper proves polynomiality even at the smallest heights.
+
+Set \(q=2Q\) for the rest of the proof. The terms with one bridge yield the leading coefficient of degree \(q-1\), proportional to \(\binom q{2s\bmod q}\) when \(n\equiv s\bmod q\). This has period \(Q\). Only degrees \(q-1,q-2\) are needed: the companion paper gives the denominator bound \((1-x^Q)(1-x^q)^{q-1}\). In general, for a periodic coefficient \(c(n)\) multiplying \(n^h\), its contribution has a pole of order \(h+1\) at a root \(\zeta\) of unity precisely when its finite Fourier sum \(\sum_{s=0}^{q-1}c(s)\zeta^s\) is nonzero. This follows by expanding \(c\) into its finite Fourier series and differentiating geometric series. Pole orders are constant at all primitive roots of a given order since the coefficients are rational.
+
+At any \(Q\)-th root \(\zeta\) the leading Fourier sum, up to a nonzero factor, is
+\[
+ \sum_{s=0}^{Q-1}\binom q{2s}\zeta^s
+  =\tfrac12\{(1+w)^q+(1-w)^q\}-1,\qquad w^2=\zeta,\quad w^q=1 .
+\]
+At \(\zeta=1\) the sum is positive. If its order is two, \(4\mid q\) and \(w=i\) gives the half-sum \(\pm 2^{q/2}\). For order \(d\ge3\) choose \(\zeta=e^{2\pi i/d}\), \(w=e^{\pi i/d}\). The half-sum has modulus at least \((\sqrt3)^q(1-3^{-q/2})/2>1\), since \(|1+w|\ge\sqrt3\) and \(|(1-w)/(1+w)|\le1/\sqrt3\). Thus all these poles have order \(q\).
+
+\section{The other roots}
+Let \(\zeta\) have order \(d\mid q\) with \(\zeta^Q=-1\), and choose the same principal \(\zeta,w\); now \(w^q=-1\). Pair the residues \(s\) and \(s+Q\), \(0\le s<Q\). They have the same \(t=2s\), and \(u=(2n-t)/q\) has opposite parity. The single bridge and all products of two even-length bridges give the same polynomial in \(n\) at both residues, since the bridge parity conditions then depend only on \(k\). Products of three or more bridges have degree at most \(q-3\).
+
+For two odd lengths \(i,q-i\), a split of the \(t\) high steps into \(k,t-k\) contributes in the even-\(u\) class exactly for even \(k\), and in the odd-\(u\) class exactly for odd \(k\). It follows by the exponential formula that the difference of the coefficients of \(n^{q-2}\), up to a common positive factor, is \([v^t]D(v)\), where
+\[
+ a_i=\frac{f_i f_{q-i}}{2i(q-i)},\qquad
+ D(v)=\sum_{\substack{1\le i<q\\i\ {\rm odd}}}a_i(1-v)^i(1+v)^{q-i}.
+\]
+The common factor is \((2/q)^{q-2}\) from the change of variable. Symmetry \(a_i=a_{q-i}\) makes \(D\) even, and its top coefficient is \(-D(0)\). Consequently the relevant Fourier sum is proportional to
+\[
+ \sum_{s=0}^{Q-1}[v^{2s}]D(v)\,\zeta^s=D(w)-D(0).
+ \tag{1}
+\]
+We prove it never vanishes.
+
+\section{Bounds for the weights}
+The convolution densities are symmetric and attain their maximum at zero, by induction using the interval convolution. For a centered density bounded by \(M\), its variance is at least \(1/(12M^2)\): for \(0\le t\le1/(2M)\) we have \(\Pr(|X|>t)\ge1-2Mt\), which can be integrated against \(2t\,dt\). Since the variance here is \(i/12\), \(f_i\ge1/\sqrt i\). Ball's cube slicing theorem bounds every central hyperplane section of the unit cube by \(\sqrt2\). The density of the sum is the central section area divided by \(\sqrt i\), the length of its normal vector. Thus \(f_i\le\sqrt{2/i}\). Consequently
+\[
+ \frac{a_i}{a_1}\le2\left(\frac{q-1}{i(q-i)}\right)^{3/2}.
+ \tag{2}
+\]
+For \(q\ge6\) and \(3\le i\le q-3\), the right side is at most \(2(5/9)^{3/2}<1\). The endpoints have the same weight. In particular \(D(0)\le q a_1\).
+
+Suppose \(q\ge18\). For \(d\ge4\), write \(\tau=\tan(\pi/(2d))\), so \(1/q<\tau<1/2\). Factoring \((1+w)^q\) from \(D(w)\) leaves \(\sum_{i\ {\rm odd}}a_i(-i_{\mathbb C}\tau)^i\), where \(i_{\mathbb C}^2=-1\). Its modulus is at least \(a_1\tau(1-\sum_{j\ge1}\tau^{2j})\ge2a_1\tau/3\). Here \(|1+w|=2\cos(\pi/(2d))>9/5\). Hence \(|D(w)|>(2/3)(9/5)^q a_1/q>q a_1\), proving (1) is nonzero.
+
+The only other possibility is \(d=2\), with \(q\equiv2\bmod4\) and \(w=i_{\mathbb C}\). Factoring \((1+w)^q\) leaves an alternating sum over odd indices, up to a unit scalar. The two endpoints have the same sign and the opposite-sign terms have \(i\equiv3\bmod4\). Their total divided by \(a_1\) is at most \(10/(3\sqrt3)\). Here are the details of this numerical bound. By (2), symmetry and the integral comparison for the decreasing function \((q/(x(q-x)))^{3/2}\) on \([3,q/2]\), the sum is at most
+\[
+ 4(1-1/q)^{3/2}
+ \left\{\left(\frac{q}{3(q-3)}\right)^{3/2}
+       +\frac{q-6}{2\sqrt{3q(q-3)}}\right\}.
+\]
+The integral has mesh factor \(1/4\). An antiderivative is \(2(2x-q)/\sqrt{qx(q-x)}\). With \(x=1/q\), squaring positive quantities reduces the bound to
+\[
+ (1-x)^3(5-27x+54x^2)^2\le25(1-3x)^3.
+\]
+The difference multiplied by \(q^7\) is a polynomial in \(q-6\) with descending coefficients
+\[
+ (120,2841,27313,135411,360315,475200,226800).
+\]
+For \(q\ge18\) this yields
+\[
+ |D(w)|\ge 2^{q/2}\left(2-\frac{10}{3\sqrt3}\right)a_1
+        > 2^{q/2}a_1/16 > q a_1 .
+\]
+
+\section{Finite cases and conclusion}
+For the remaining even \(q\le16\), the following certificate uses only integer polynomial division. Let
+\(T_i=\sum_{0\le h<i/2}(-1)^h\binom ih(i-2h)^{i-1}\). In \(D\) replace \(a_i\) by \(\binom qi T_iT_{q-i}\), a common positive multiple of the original weights. Form \(P(z)=\sum_{s<Q}[v^{2s}]D(v)\,z^s\). The degrees of the monic greatest common divisor with \(1+z^Q\), in order for \(q=2,4,\ldots,16\), are
+\[
+                       0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0.
+\]
+The supplied verifier computes these gcds directly. This proves (1) also in the finite cases. Every root with \(\zeta^Q=-1\) has a pole of order \(q-1\), and all \(Q\)-th roots have a pole of order \(q\). The even case of Theorem~\ref{th:den} follows. The odd case was proved in the companion paper.
+
+\paragraph{Sources.}
+R. H. Hardin's examples include \oeis{201445}, \oeis{201136} and \oeis{201095}. K. Ball, \href{https://doi.org/10.1090/S0002-9939-1986-0840631-0}{Cube slicing in \(\mathbb R^n\)}, \emph{Proc. Amer. Math. Soc.} 97 (1986), 465--473.
+\end{document}

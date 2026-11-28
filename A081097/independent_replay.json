@@ -1,0 +1,49 @@
+{
+  "independent_source_matches": true,
+  "source_sha256": "ac65edf8f88112594d9f04f03f1cf9f5a958b6e54fc7d3f21f93661809f0ef20",
+  "literal_floor_method": "math.isqrt(5*n*n) and math.isqrt(5*n*n*inner*inner); no floating-point floors",
+  "positive_n_checked": 1000000,
+  "literal_members": [
+    1,
+    6,
+    23,
+    40,
+    273,
+    1870,
+    7343,
+    12816,
+    87841,
+    602070
+  ],
+  "orbit_members_same": [
+    1,
+    6,
+    23,
+    40,
+    273,
+    1870,
+    7343,
+    12816,
+    87841,
+    602070
+  ],
+  "bounded_pell_seeds": [
+    [
+      4,
+      2
+    ],
+    [
+      29,
+      13
+    ],
+    [
+      114,
+      51
+    ],
+    [
+      199,
+      89
+    ]
+  ],
+  "status": "PASS; supplementary finite checks only"
+}

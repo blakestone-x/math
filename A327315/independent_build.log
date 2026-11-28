@@ -1,0 +1,51 @@
+Fresh isolated independent build; no local proof objects copied.
+Build directory: /workspace/scratch/5f072ff518ad/research/batch11/sequences/A327315_independent_tff8jbl8
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+
+ℹ [2793/2802] Built MobiusIrreducibility
+info: ././././MobiusIrreducibility.lean:79:0: 'MobiusIrreducibility.irreducible_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2794/2802] Built TwistedDerivative
+info: ././././TwistedDerivative.lean:108:0: 'TwistedDerivative.derivative_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././TwistedDerivative.lean:109:0: 'TwistedDerivative.degree_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2795/2802] Built RationalDerivative
+info: ././././RationalDerivative.lean:69:0: 'RationalDerivative.iterate_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2796/2802] Built CyclotomicSmooth
+info: ././././CyclotomicSmooth.lean:122:0: 'CyclotomicSmooth.binomial_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2797/2802] Built SourceBridge
+info: ././././SourceBridge.lean:135:0: 'TwistedDerivative.poly_coprime_D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:136:0: 'TwistedDerivative.source_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:137:0: 'TwistedDerivative.derivative_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SourceBridge.lean:138:0: 'TwistedDerivative.normalized_source_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2798/2802] Built SixthField
+info: ././././SixthField.lean:122:0: 'SixthField.v_binomial_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2799/2802] Built ClosedForm
+info: ././././ClosedForm.lean:152:0: 'TwistedDerivative.transform_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ClosedForm.lean:153:0: 'TwistedDerivative.irreducible_smooth_K' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ClosedForm.lean:154:0: 'TwistedDerivative.irreducible_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ClosedForm.lean:155:0: 'TwistedDerivative.poly_dvd_multiple' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ClosedForm.lean:156:0: 'TwistedDerivative.reflected_dvd_multiple' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2800/2802] Built Classification
+info: ././././Classification.lean:81:0: 'TwistedDerivative.irreducible_iff_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2801/2802] Built Proof
+info: ././././Proof.lean:26:0: 'TwistedDerivative.irreducible_iff_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:27:0: 'TwistedDerivative.derivative_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:28:0: 'TwistedDerivative.normalized_source_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:29:0: 'TwistedDerivative.source_numerator_irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:30:0: 'TwistedDerivative.source_irreducible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+
+SHA256 Classification.lean: 1a89ad057e4d0dbeec44f62d30b31fdcabc5d212df2f8332780f0a02c7b2face
+SHA256 ClosedForm.lean: ac2e298de8c766626bb103361cfb2e538a54f7bdf4d25dde1dfc8677621e5f17
+SHA256 CyclotomicSmooth.lean: 205dbf72e868987e42a2848c9300191a5e74297e8edc48dbd2ba504b6c4947f9
+SHA256 MobiusIrreducibility.lean: f39a3dac59fa2b21614dd3e22286e0f79a97de40425c172cb209fccb1c92b3a8
+SHA256 Proof.lean: b095327806306b64c9daf39a8042690481c85e528503328e6a430aa15b2703a3
+SHA256 RationalDerivative.lean: 54913422f586a5d2dacd6ab40d1f79faa1f2aeecddbe14a08811f1453c1ce5c2
+SHA256 SixthField.lean: cae7eb778719f1056c5396bb9a8b79c3cb1c3d1d50022defcdd2bf606ca034b6
+SHA256 SourceBridge.lean: a8cbd56e27157c51f8c6288c80685c65518981739c7f7b941652ae6ea0a548a3
+SHA256 TwistedDerivative.lean: 89d6672800c003a5178103a9c4a2f8e19203c874cfcaf7a73e99cdcfaa282773
+SHA256 lakefile.lean: 049cce733832d7cef6f663a4dc7e980fcb9e963647e318ef6918128cc5f3ed4f
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 lake-manifest.json: 035e3b7a6c051a325512dd6f9cae22f550aef1812d231f39f9068275acbb426c

@@ -1,0 +1,19 @@
+Fresh standalone package build
+Lean 4.19.0
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Build directory: /workspace/scratch/5f072ff518ad/tmp/batch8_A288668_build_rhsswlhl
+
+ℹ [2793/2794] Built Proof
+info: ././././Proof.lean:172:0: 'Kimberling288668.word_eq_decode' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:173:0: 'Kimberling288668.word_three_steps' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:174:0: 'Kimberling288668.weighted_recurrence' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:175:0: 'Kimberling288668.original_conjecture' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:176:0: 'Kimberling288668.phase_prefix' depends on axioms: [propext, Quot.sound]
+info: ././././Proof.lean:177:0: 'Kimberling288668.phase_length_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+SHA256 Proof.lean: a57dbbfaca953f3b188309ff37cf285824011feeae14dd2ab593a2cddd05f860
+SHA256 lakefile.lean: cbf094c4ca9ed58a734612c9a213c39d622106c978da6149e87480081cb28de9
+SHA256 lake-manifest.json: a99f03df107de50a18307dbe1fab623cac12e870aed023a729f87ceee8ce0c06
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea

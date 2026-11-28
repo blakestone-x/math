@@ -1,0 +1,250 @@
+{
+  "checked": "2026-11-27",
+  "scope": "Bounded indexed searches; observed heads do not imply complete indexing",
+  "heads": [
+    {
+      "repository": "VladimirReshetnikov/ProveIt",
+      "sha": "26d30b08a30e969d1af5ba9e702c4ca5b1daabfd",
+      "date": "2026-11-27T21:24:48Z"
+    },
+    {
+      "repository": "the-omega-institute/trureturing",
+      "sha": "66615771c6b1ac838521edbc757411a8e05fc1f5",
+      "date": "2026-11-27T21:25:47Z"
+    }
+  ],
+  "queries": [
+    {
+      "query": "A192250",
+      "repositories": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "limit": 30,
+      "status": "fulfilled",
+      "results": []
+    },
+    {
+      "query": "A192251",
+      "repositories": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "limit": 30,
+      "status": "fulfilled",
+      "results": []
+    },
+    {
+      "query": "central binomial reduction",
+      "repositories": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "limit": 30,
+      "status": "fulfilled",
+      "results": [
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Problems/hanna-a246423-legendre-central-binomial.md",
+          "fragments": [
+            "- **Kernel-checked:** `HannaLegendreCentralBinomialTransform.T_coeff`, `T_odd` and `T_even` give the exact first-moment coefficients for $T(x)=\\sum_{n\\ge0}n x^n(1+x)^{-2n-1}Q_n(-x)$; these are private, consumed declarations. `T_mod_two` gives $T\\equiv x\\pmod2$. The mod-four module's `twice_T2_four`, `source_residue_four` and `result` prove the correction and its cancellation at degree two, explaining why the exponent starts at two.\n- **Proved in prose:** $T(x)=x(1-2x)(1+4x^2)^{-3/2}$. The coefficient of $x^{2m}$ in the last factor is $(-1)^m(2m+1)\\binom{2m}m$. Multiplication by $x-2x^2$ gives exactly `T_odd` and `T_even`, since $2(2m+1)\\binom{2m}m=(2m+2)\\binom{2m+1}m$; the constant coefficient is zero.\n- **Computed:** `check.py` checks A246056 against its b-file, the exact reduced-series coefficients and the ternary residue law for degrees $0\\ldots300$; its pinned program, hash, command and exit are in the [A246056 experiment entry](hanna-a246056-a246423-legendre-central-binomial.md#evidence). This is a finite check.\n- **Computed:** `check_a246423.py` checks A246423 against its b-file, the exact $R$ and $T$ coefficients and both moment/residue reductions for degrees $0\\ldots300$; its pinned program, hash, command and exit are in the [A246423 experiment entry](hanna-a246423-legendre-central-binomial.md#evidence). This is a finite check.\n- **Open:** the separate route-check program's Legendre substitutions at $n=0\\ldots8$, symbolic WZ residual and square relation through degree $80$ have no program in the two published experiment commits cited here. No independently reproduced reading of that program is claimed. The exact identities above have their own proof evidence.\n- **Open:** residues modulo eight are unaddressed. The full Kummer valuation theorem and a general formal Legendre generating-function theorem are not added.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Problems/hanna-a246056-a246423-legendre-central-binomial.md",
+          "fragments": [
+            "- **Kernel-checked:** `HannaLegendreCentralBinomialTransform.T_coeff`, `T_odd` and `T_even` give the exact first-moment coefficients for $T(x)=\\sum_{n\\ge0}n x^n(1+x)^{-2n-1}Q_n(-x)$; these are private, consumed declarations. `T_mod_two` gives $T\\equiv x\\pmod2$. The mod-four module's `twice_T2_four`, `source_residue_four` and `result` prove the correction and its cancellation at degree two, explaining why the exponent starts at two.\n- **Proved in prose:** $T(x)=x(1-2x)(1+4x^2)^{-3/2}$. The coefficient of $x^{2m}$ in the last factor is $(-1)^m(2m+1)\\binom{2m}m$. Multiplication by $x-2x^2$ gives exactly `T_odd` and `T_even`, since $2(2m+1)\\binom{2m}m=(2m+2)\\binom{2m+1}m$; the constant coefficient is zero.\n- **Computed:** `check.py` checks A246056 against its b-file, the exact reduced-series coefficients and the ternary residue law for degrees $0\\ldots300$; its pinned program, hash, command and exit are in the [A246056 experiment entry](hanna-a246056-a246423-legendre-central-binomial.md#evidence). This is a finite check.\n- **Computed:** `check_a246423.py` checks A246423 against its b-file, the exact $R$ and $T$ coefficients and both moment/residue reductions for degrees $0\\ldots300$; its pinned program, hash, command and exit are in the [A246423 experiment entry](hanna-a246423-legendre-central-binomial.md#evidence). This is a finite check.\n- **Open:** the separate route-check program's Legendre substitutions at $n=0\\ldots8$, symbolic WZ residual and square relation through degree $80$ have no program in the two published experiment commits cited here. No independently reproduced reading of that program is claimed. The exact identities above have their own proof evidence.\n- **Open:** residues modulo eight are unaddressed. The full Kummer valuation theorem and a general formal Legendre generating-function theorem are not added.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/Lean/FabiusFunction/CentralQBinomialReduction.lean",
+          "fragments": [
+            "* `finiteQPochhammerIn_mul_neg`: `(x;q)_n (-x;q)_n = (x\u00b2;q\u00b2)_n`.\n* `finiteQPochhammerIn_two_mul`: `(q;q)_{2k} = (q;q\u00b2)_k (q\u00b2;q\u00b2)_k`.\n* `finiteQPochhammerIn_map_ringHom`: naturality of the finite symbol.\n* `central_gaussianBinomial_sq_mul`: the reduction, division-free.\n* `central_gaussianBinomial_sq_div`: the reduction as a quotient.\n-/\n"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/SetTheory/Cardinals/docs/reports/generating-functions-and-asymptotics/oeis-sequence-asymptotics/power-tower-derivative-term-counts/code/a281434.py",
+          "fragments": [
+            "        self._t_rows: Dict[int, List[Tuple[int, ...]]] = {}\n        self._binomial_rows: List[Tuple[int, ...]] = [(1,)]\n\n    def binomial(self, n: int, k: int) -> int:\n        if k < 0 or k > n:\n            return 0\n        rows = self._binomial_rows"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S1/Recurrence/CentralFactorialParityIdentity.md",
+          "fragments": [
+            "\n*Proof.* Machine-checked in Lean as `D5/S1/Recurrence/CentralFactorialParityIdentity.weighted_sum_reduction` (`\u2713 std3`). \u220e\n",
+            "\nThe upper coefficient index is l=2(n-m-1)+1. The reflected coefficient expansion and adjacent-binomial relation give the displayed scalar multiple.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/exponents-and-q-series/q_pochhammer_q_binomial_monograph/README.md",
+          "fragments": [
+            "and six theorems), `QPochhammerLogDerivative` (zero definitions and ten\ntheorems), `QPochhammerOrderDerivative` (zero definitions and three theorems),\n`JacobiCubic` (zero definitions and two theorems),\n`CentralQBinomialReduction` (zero definitions and six theorems),\n`RegularCentralQBinomialSum` (two definitions and one theorem), and\n`CyclotomicFactorization` (zero definitions and seven theorems). The newest\ncyclotomic surfaces are `CyclotomicDivisibility` (zero definitions and three"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/exponents-and-q-series/q_pochhammer_q_binomial_monograph/PROVENANCE.md",
+          "fragments": [
+            "`QPochhammerLogDerivative` (zero definitions and ten theorems),\n`QPochhammerOrderDerivative` (zero definitions and three theorems), and\n`JacobiCubic` (zero definitions and two theorems). The current tail adds\n`CentralQBinomialReduction` (zero definitions and six theorems),\n`RegularCentralQBinomialSum` (two definitions and one theorem), and\n`CyclotomicFactorization` (zero definitions and seven theorems), followed by\n`CyclotomicDivisibility` (zero definitions and three theorems),"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/D5/S1/Recurrence/CentralFactorialParityIdentity.lean",
+          "fragments": [
+            "\n/-- The adjacent-binomial relation over the rational coefficient field. -/\ntheorem choose_adjacent (p d : \u2115) :",
+            "\nprivate lemma weighted_sum_reduction_core (n m : \u2115) (hm : m \u2264 n) :\n    \u2211 k \u2208 range (m + 1), (4 : \u211a) ^ k * (baseProduct n 1).coeff (n - k) *"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S1/Recurrence/CentralFactorialParityIdentity.scribe.cs",
+          "fragments": [
+            "                DescribeId.Create(\"central-factorial-identity-427\"),\n                DeclarationHandle.Create(\"D5/S1/Recurrence/CentralFactorialParityIdentity.identity_427\"),\n                H(\"Parity Identity\"),",
+            "                DescribeId.Create(\"central-factorial-weighted-reduction\"),\n                DeclarationHandle.Create(\"D5/S1/Recurrence/CentralFactorialParityIdentity.weighted_sum_reduction\"),\n                H(\"Weighted Sum Reduction\"),"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/Lean/FabiusFunction/RegularCentralQBinomialSum.lean",
+          "fragments": [
+            "`sum_k [2k,k]_(q^2) q^k / ((-q;q)_(2k) [2k+1+alpha]_q)\n  = Gamma_(q^2)(3/2) Gamma_(q^2)((alpha+1)/2) / Gamma_(q^2)((alpha+2)/2)`.\n\nThe proof first applies the division form of the central Gaussian-binomial\nreduction, identifies the resulting series with a scalar multiple of a\n`2phi1`, and invokes the full-domain q-Gauss summation.  Two one-factor\nshifts reduce its product value to the displayed q-gamma quotient."
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Library/Recurrence/hanna2026a397241b.md",
+          "fragments": [
+            "stabilization. For two series with constant coefficient one that agree below\ndegree n, the difference of their degree-n equation residuals equals the\ndifference of their degree-n coefficients. Over ZMod 2, the all-ones series\nsatisfies the same equation: central binomial coefficients are even, and\nLucas reduction gives evenness of choose(4m+1, 2m) for m > 0. Uniqueness then\nidentifies the reduced series with the all-ones series, proving the conjecture.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Problems/luschny-a323206.md",
+          "fragments": [
+            "The private integer polynomial `z` uses this shared owner, and `z_cast_eq_A`\nproves that its rational image is the literal source array.\n\nTwo hockey-stick sums and the central-binomial Catalan identity yield\n\n$$\n\\sum_{j=0}^{k}b(k,j)"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Problems/oeis-a397241-diagonal-power-ratio-all-odd.md",
+          "fragments": [
+            "\nThe same multiplier-one argument gives uniqueness over ZMod 2.\n`central_binom_even` proves `2 | C(2m,m)` for m > 0 by directly reusing\nMathlib's central-binomial evenness theorem. Lucas reduction in the private\n`odd_diagonal_even` then gives evenness of `C(4m+1,2m)` for m > 0.\nTogether these show that the all-ones series `(1-X)^(-1)` satisfies the\nreduced equation. In integer binomial notation its residual is"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S1/Recurrence/Invariants/HannaLegendreCentralBinomialTransform.md",
+          "fragments": [
+            "# The integer central-binomial transform\n\n## Abstract",
+            "\nThe derivative of the alternating convolution computes the first moment. Its reduction modulo two is exactly X.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S3/Analytic/OriginalHalfBinomialIntegral.md",
+          "fragments": [
+            "\nFor every real r with 0<=r<1, the complex series with nth term halfBinomial(n)^2 times (r:Complex)^n is summable. The real function theta maps to 1/sqrt(1-r*sin(theta)^2) is interval integrable from zero to pi/2, and the sum of that same complex series equals the complex embedding of (2/pi) times that real integral. The original coefficient halfBinomial(n) is the product of (-1/2-j) for 0<=j<n, divided by n!, including its zeroth term and its alternating sign before squaring. No analytic identity or convergence assertion is a hypothesis.\n\nWrite b_n=centralBinom(n)/4^n. The original successor law gives halfBinomial(n)=(-1)^n b_n. Mathlib's binomial power series identifies sum b_n u^n with 1/sqrt(1-u) for 0<=u<1. The sine-power reduction formula gives integral from zero to pi/2 of sin(theta)^(2n) equal to (pi/2)b_n. Each term b_n r^n sin(theta)^(2n) is bounded in absolute value by r^n, since 0<=b_n<=1 and sin(theta)^2<=1. The summable geometric bound justifies termwise interval integration. Continuity and the lower bound 1-r>0 give actual integrability of the square-root kernel. Uniqueness of sums and the real-to-complex continuous embedding yield the displayed literal identity.\n\nThis is the classical Euler-Gauss representation of the complete elliptic integral, with parameter r and normalization 2/pi. No originality claim is made. The result supplies the analytic bridge needed for complementary-period endpoint estimates; it does not establish the logarithmic constant, the nome, an original Gaussian realization, crossing, string theory or an AdS/CFT correspondence.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/README.md",
+          "fragments": [
+            "> `GaussianBinomialCumulants` 2+24,\n> `GaussianBinomialPalindromic` 0+14,\n> `GaussianBinomialPolynomialStructure` 0+5,\n> `CentralQBinomialReduction` 0+6, `RegularCentralQBinomialSum` 2+1,\n> `CentralQVandermondeInfinite` 0+4,\n> `CyclotomicFactorization` 0+7,\n> `JacobiTripleProduct` 2+25,"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/Polylogarithms/README.md",
+          "fragments": [
+            "  - the method notes `docs/reduction-method.md`, `docs/proof-certificates.md`,\n    `docs/roadmap.md` and `docs/prior-notebooks*.md`;\n  - the companion Hypergeometric project (`src/Hypergeometric`, for example\n    `central-binomial-arcsin-ladder`).\n\n  Links of the form `../../tools/\u2026`, `../../identities/\u2026`, `../reduction-method.md`\n  and `../proof-certificates.md` therefore do not resolve here."
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Logic/PrimitiveRecursiveArithmetic/docs/proofs/probability/central_limit_ipra_2026-11-15/paper/central_limit_ipra.tex",
+          "fragments": [
+            "uniform CDF convergence, the characteristic-function formulation,\nquantitative Lindeberg and Lyapunov theorems, the binomial and local\nde Moivre--Laplace theorems, fixed-dimensional multivariate convergence,",
+            "with alternating-series tail bounds.\n\\item \\(\\exp,\\sin,\\cos\\) use range reduction and finite Taylor sums with\nfactorial remainders.  The Taylor/Cauchy packet supplies the general finite"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S1/Recurrence/Invariants/HannaLegendreCentralBinomialModThree.md",
+          "fragments": [
+            "\n*Commentary.*\n\nThe integer lift allows coefficientwise reduction. The alternating binomial-square transform and Lucas recurrence identify the ternary support and its signed residue.\n\n## References\n"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Blueprint/D5/S1/Recurrence/Invariants/HannaLegendreCentralBinomialModFour.md",
+          "fragments": [
+            "\nHanna's binomial-square generating function has the asserted residues at every coefficient.\n",
+            "\nThe integer lift allows coefficientwise reduction. The alternating transform plus twice its first moment reduces to powers of two; the first-moment term cancels the degree-two residue.\n"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Library/Words/norton2026a398542.md",
+          "fragments": [
+            "The full interval is guarded because dead(0)=m+2.\n\nThe live coefficient proof applies the pinned Catalan, inverse-unit,\nbinomial-series, central-binomial and ascending-Pochhammer APIs. Odd powers\nT^(2r+1) have coefficient binomial(2k,k) times a rational polynomial of\ndegree r; even powers T^(2r), r>=1, have coefficient 4^k times a rational\npolynomial of degree r-1. The finite polynomial A gives witnesses depending"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Computability/HilbertTenthProblem/Lean/README.md",
+          "fragments": [
+            "witness counts from 12, 14, and 28 to 15, 17, and 31. This is a proved\nexistential reduction and makes no additional decoder or effective\nenumeration claim.",
+            "`Jones1982.theorem_2` uses the same polynomial and index hypotheses and\nreplaces the three binomial coefficients with one central binomial\ncoefficient. The packing bounds follow from the displayed common equations,"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Analysis/FabiusFunction/docs/DOCUMENTATION_AUDIT.md",
+          "fragments": [
+            "`finiteQPochhammerIn_map_ringHom`, `central_gaussianBinomial_sq_mul_int`,\n`central_gaussianBinomial_sq_mul`, and `central_gaussianBinomial_sq_div`;\nand `CyclotomicFactorization.lean` 0+7: `div_add_div_le_div`,",
+            "`gaussianBinomial_X_eq_prod_cyclotomic`.  The first module gives the\ndivision-free central squared-base reduction over commutative rings and a\nfield quotient under two nonvanishing hypotheses.  The second gives the"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/D5/S1/Recurrence/Invariants/HannaLegendreCentralBinomialTransform.lean",
+          "fragments": [
+            "  map_series: bind-only; consumers: HannaLegendreCentralBinomialModFour.integral4, HannaLegendreCentralBinomialModFour.map_source_four, HannaLegendreCentralBinomialModFour.map_R_four, HannaLegendreCentralBinomialModThree.integral3, HannaLegendreCentralBinomialModThree.mod_three_series.\n  den_rescale: bind-only; consumers: den_coeff.\n  den_coeff: bind-only; consumers: reduced_term_coeff.\n  Q_zero: bind-only; consumers: HannaLegendreCentralBinomialModFour.term_reduction_four, reduced_term_coeff.\n  rational_den: bind-only; consumers: HannaLegendreCentralBinomialModFour.series4_eq, HannaLegendreCentralBinomialModThree.series3_eq.\n  certificate: bind-only; consumers: F_recurrence.\n  F: definition; consumers: F_recurrence, square_binomial_sum."
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/Library/Combinatorics/gil2026grid.md",
+          "fragments": [
+            "7.1 supplies the opposite-candidate ties and the larger boundary competitor.\nSection 6 supplies the six-point reduction for n\u22659 outside the exceptional\nset, whose coordinate sums 3 and 2n-3 exclude antidiagonal membership here.",
+            "Equation (2.1) handles the opposite half, Theorem 5.1 with n\u22655 handles the\neven central obstruction, and Lemma 2.2(ii)/(iii) handles both endpoints.\nThese grid/path results are literature inputs and are not Lean-verified"
+          ]
+        },
+        {
+          "url": "https://github.com/the-omega-institute/trureturing/blob/c02b06a24ce6fac12cebf2aebc2e5ce9b446eadb/D5/S1/Recurrence/Invariants/HannaLegendreCentralBinomialModFour.lean",
+          "fragments": [
+            "   utility: none\n   digest: Hanna's central-binomial power-series residue conjecture holds at every index. -/\n",
+            "  map_T2_four: bind-only; consumers: integer_coefficient_reduction_four.\n  integer_coefficient_reduction_four: bind-only; consumers: source_residue_four.\n  square_moment_mod_two: bind-only; consumers: twice_T2_four."
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Computability/HilbertTenthProblem/Lean/Diophantine/Paper1982/NineReduce.lean",
+          "fragments": [
+            "import Diophantine.Paper1982.Theorem2\n\n/-!\n# Jones 1982, \u00a73: membership through two unknowns and one central binomial coefficient\n\nThe first step of the reduction to nine unknowns.  Fix the index `\u27e8z, u, y\u27e9` of a normalized\nquartic.  The ceiling is `b = xy + 1 + \u03b5`, the radix `B = b\u2075`, and every other quantity of the"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Algebra/BakerCampbellHausdorff/docs/paper-2/tex/appendix_coverage.tex",
+          "fragments": [
+            "Zassenhaus formula & Compact product after left multiplication by $e^{-tX}$. & \\Cref{eq:zassenhaus} with $C_1=Y$, as explained in its proof.\\\\\nZassenhaus formula & All subsequent exponents and analytic meaning. & \\Cref{eq:zass-residual,eq:zass-finite-Lie,thm:zass-convergence}; \\cref{tab:zass56}.\\\\\nSuzuki--Trotter discussion & Product approximations and higher-order factorizations. & \\Cref{sec:splitting}, including full effective-exponent formulas.\\\\\nCampbell identity & $\\Ad_{e^X}=e^{\\ad_X}$; complete nested-commutator expansion and ODE. & \\Cref{thm:campbell,eq:ad-binomial}.\\\\\nCampbell identity & General conjugation/braiding and its central reduction. & \\Cref{eq:conjugate-exponential,eq:braid-general,eq:central-conjugation}.\\\\\nInfinitesimal version & Full series for $e^{-X}\\dd e^X$. & \\Cref{eq:left-dexp,eq:theta-all}.\\\\\nInfinitesimal version & Structure-constant expansion; matrix $M$ and $W$. & \\Cref{eq:theta-first,eq:W-all}; all orders contracted explicitly.\\\\"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/Computability/HilbertTenthProblem/Lean/Diophantine/Paper1982/ShortPolynomialDefs.lean",
+          "fragments": [
+            "\nnamespace Jones1982\n\n/-- The positive-witness version of (D1)\u2013(D37), before degree reduction.\nThere is no retained power equation or central-binomial test. -/\nstructure ShortPolynomialWitnesses (\u03bd x z u y : \u2115) where\n  b : \u2115"
+          ]
+        },
+        {
+          "url": "https://github.com/VladimirReshetnikov/ProveIt/blob/d55deacc97e0c55ca8b5d68285fb192b2e4b7872/SetTheory/Cardinals/docs/reports/generating-functions-and-asymptotics/oeis-sequence-asymptotics/a360592-self-powered-binomial-sums/article.tex",
+          "fragments": [
+            "``Report~230'' in Part~II is Part~I. Part~II reproves at $p=1$ the inputs it\nuses. Its exact reduction (Lemma~\\ref{spb:ml:lem:exact}), defect expansion\n(Lemma~\\ref{spb:ml:lem:defects}), Poisson estimates",
+            "$B$, $\\mathcal B$ & $B=N^{pn/q}$ (Part~I); $B^{\\ge2}_{d,k}$ partition counts (both); $B_{M,\\nu,a}$ conditioned binomials and $B_j(r;\\nu)$ binomial log coefficients (Part~II); $\\mathcal B_a$ the conditioned binomial family; $B_n$ a competitor.\\\\\n$C$ & $C_{p,j}(c)$ the coefficients (Part~I), $C_j(c)=C_{1,j}(c)$ (Part~II); $\\mathcal C_2(r;\\mu)$ the Charlier polynomial (Part~I) and $C_1,C_2,C_3(r;\\mu)$ (Part~II); $\\mathcal C_n$ the central event. \\emph{False reading:} Part~II's $C_2(r;\\mu)$ is Part~I's $\\mathcal C_2$, not the coefficient $C_2(c)$; the arguments distinguish them.\\\\\n$\\nu$ & $\\nu_K=(K+1)/q$ an exponent (Section~\\ref{spb:ep:sec:inverse}); in Part~II $\\nu$ the unconditioned binomial mean, $\\nu_0$, $\\nu_1$, $\\widehat\\nu$, $\\nu(\\alpha)$.\\\\"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "5*n-7 3*n-8",
+      "repositories": [
+        "VladimirReshetnikov/ProveIt",
+        "the-omega-institute/trureturing"
+      ],
+      "limit": 30,
+      "status": "fulfilled",
+      "results": []
+    }
+  ]
+}

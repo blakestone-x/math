@@ -1,0 +1,66 @@
+{
+  "result": "PASS",
+  "method": "direct permutation-orbit enumeration, including zero; independent of divisor/orders formulas",
+  "checks": [
+    {
+      "source": "A220018",
+      "multiplier": 3,
+      "indices": [
+        1,
+        5
+      ],
+      "literal_orbit_counts": [
+        4,
+        11,
+        29,
+        71,
+        129
+      ]
+    },
+    {
+      "source": "A220019",
+      "multiplier": 7,
+      "indices": [
+        1,
+        5
+      ],
+      "literal_orbit_counts": [
+        4,
+        27,
+        93,
+        265,
+        685
+      ]
+    },
+    {
+      "source": "A220020",
+      "multiplier": 9,
+      "indices": [
+        1,
+        5
+      ],
+      "literal_orbit_counts": [
+        6,
+        20,
+        56,
+        140,
+        256
+      ]
+    },
+    {
+      "source": "A221855",
+      "multiplier": 13,
+      "indices": [
+        1,
+        5
+      ],
+      "literal_orbit_counts": [
+        4,
+        12,
+        30,
+        72,
+        130
+      ]
+    }
+  ]
+}

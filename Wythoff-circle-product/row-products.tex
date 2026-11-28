@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[margin=.94in,top=.78in,bottom=.82in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ph}{\varphi}
+\newcommand{\fl}[1]{\lfloor #1\rfloor}
+\title{Knuth multiplication on the rows of the Wythoff array}
+\author{Blake Stone mathematics repository\\[-2pt]\small Proof developed with OpenAI Codex}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Peter Munn's conjecture that taking the Wythoff row of a positive integer carries
+Knuth's Fibonacci product to the multiplication of extended Wythoff rows. Comparing a
+quadratic irrational with two thresholds gives both the output row and the exact column.
+We also determine the common divisor in a construction from Horadam's Fibonacci triples.
+A primitive row of determinant $121$ gives a counterexample to a proposed squarefree-part rule.
+\end{abstract}
+
+\section{Rows, columns and products}
+Let $F_0=0$, $F_1=1$, $F_{i+2}=F_{i+1}+F_i$, and $\ph=(1+\sqrt5)/2$.
+If $x=\sum_{i\in I}F_i$ and $y=\sum_{j\in J}F_j$ are the Zeckendorf expansions
+with indices at least $2$, Knuth's product is $x\circ y=\sum_{i\in I,j\in J}F_{i+j}$.
+Set $T(a,b)=(a+b,a)$ and $B_r=(\fl{(r+1)\ph},r)$ for $r\ge0$. Both ordinary row and
+column numbers start at zero. The entry $W(r,i)$ is the second coordinate of
+$T^{i+2}B_r$. The Wythoff array contains each positive integer exactly once
+\cite{kim}. Write $R(x)$ for its row.
+
+Munn uses the orbit of $B_r$ under all integral powers of $T$ as the extended row.
+For pairs put
+\[
+ (a,b)*(c,d)=(ac+bd,\ ad+bc-bd).
+\]
+The row product $A(r,s)$ is the index of the orbit containing $B_r*B_s$.
+Munn asks whether $R(x\circ y)=A(R(x),R(y))$ in OEIS A357097 \cite{munn}.
+
+\begin{theorem}\label{main}
+Let $C=B_r*B_s=(J,K)$, let $D=J-\ph K$ and $\beta=\ph-1$.
+For $x=W(r,i)$ and $y=W(s,j)$ the location of $x\circ y$ is
+\[
+\begin{array}{c|c|c}
+\text{condition}& R(x\circ y)=A(r,s) & \text{column of }x\circ y\\\hline
+D<\beta & 2K-J & i+j+4\\
+\beta<D<\ph & K & i+j+2\\
+D>\ph & J+K & i+j
+\end{array}
+\]
+The three cases are equivalently $J<L$, $J=L$, and $J>L$, where
+$L=\fl{(K+1)\ph}$. The endpoints cannot occur. Each case occurs.
+\end{theorem}
+\noindent
+For example, taking both inputs in column zero, the rows $(2,2)$, $(1,2)$
+and $(1,1)$ give $6\circ6=84$ in row $4$, column $4$,
+$4\circ6=58$ in row $8$, column $2$, and $4\circ4=40$ in row $15$, column $0$.
+
+\newpage
+\section{A canonical pair for each integer}
+The two embeddings are
+\[
+ U(a,b)=a+\beta b,\qquad D(a,b)=a-\ph b.
+\]
+Each sends $*$ to ordinary multiplication. They send $T$ to multiplication by
+$\ph$ and $-\beta$, respectively, using $\beta\ph=1$ and $\beta^2=1-\beta$.
+Let $P(n)=(\fl{(n+1)\ph}-1,n)$. For $n\ge0$ irrationality gives
+\begin{equation}\label{strip}
+    -\beta^2<D(P(n))<\beta.
+\end{equation}
+Conversely, the unique integer $a$ in $-\beta^2<a-\ph n<\beta$ is
+$\fl{(n+1)\ph}-1$. The interval has length one. If two pairs satisfy
+\eqref{strip}, the absolute value of the internal coordinate of their product is
+less than $\beta^2$, since $\beta^2<\beta$. Thus the product also satisfies
+\eqref{strip}.
+
+\begin{lemma}\label{knuth}
+For all positive integers $x,y$, $P(x)*P(y)=P(x\circ y)$.
+\end{lemma}
+\begin{proof}
+Write $V_i=(F_{i+1},F_i)=T^i(1,0)$. The identities
+$T(a)*b=T(a*b)=a*T(b)$ give $V_i*V_j=V_{i+j}$.
+We show that $P(x)=\sum_{i\in I}V_i$. Its second coordinate is $x$.
+Its first is determined by \eqref{strip}, since
+$D(\sum V_i)=\sum_{i\in I}(-\beta)^i$. For every finite binary word,
+including the empty word,
+\[
+   -1< t=\sum_{k=0}^{m-1}d_k(-\beta)^k <\ph.
+\]
+Indeed $t=d_0-\beta t'$ for the remaining word, and both $-\beta t'$ and
+$1-\beta t'$ lie in $(-1,\ph)$. Multiplication by $\beta^2$ gives
+\eqref{strip} for words starting at index $2$. This argument allows consecutive
+one-digits.
+By bilinearity the second coordinate of $P(x)*P(y)$ is exactly Knuth's double sum.
+The product satisfies \eqref{strip}, which determines its first coordinate.
+\end{proof}
+
+The first coordinate of $P(n)$ is also
+$2n-\fl{(n+1)/\ph^2}$, since $\ph+\ph^{-2}=2$.
+The second coordinate of $P(x)*P(y)$ therefore recovers Lunnon's formula for
+$x\circ y$ in A101330 \cite{knuth}.
+
+\section{Finding the output row}
+The anchors have $U(B_r)>0$ and $\beta<D(B_r)<\ph$. Conversely, every integral
+pair $(J,K)$ with $U>0$ and $\beta<D<\ph$ is $B_K$. Indeed
+$K=(U-D)/(\ph+\beta)>-1$, and
+$\ph(K+1)-1<J<\ph(K+1)$ determines $J$. Each $T$-orbit has at most one
+anchor. Odd shifts change the sign of $D$, and a nonzero even shift scales it
+by a power of $\beta^2$ or $\ph^2$. The endpoints of the anchor interval
+have ratio $\ph/\beta=\ph^2$.
+
+\newpage
+\begin{proof}[Proof of Theorem~\ref{main}]
+Here $D(C)\in(\beta^2,\ph^2)$ and $U(C)>0$. If $D(C)=\beta$ then
+$J+1=\ph(K+1)$, forcing $(J,K)=(-1,-1)$. If $D(C)=\ph$, then
+$J=\ph(K+1)$, forcing $(J,K)=(0,-1)$. Both have $U<0$.
+Thus the unique anchor of the product orbit is
+\[
+ B_{A(r,s)}=
+ \begin{cases}
+ T^{-2} C=(J-K,\,2K-J),&D(C)<\beta,\\
+ C,&\beta<D(C)<\ph,\\
+ T^2 C=(2J+K,\,J+K),&D(C)>\ph.
+ \end{cases}
+\]
+In the first case the new $D$ is $\ph^2D(C)\in(1,\ph)$. In the last it is
+$\beta^2D(C)\in(\beta,1)$. The physical coordinate stays positive.
+This verifies Munn's orbit definition for arbitrary starting columns, since shifting
+either factor shifts their product by the same amount.
+
+For $i\ge0$, $T^{i+2}B_r=P(W(r,i))$. At $i=0$ its internal coordinate is
+$\beta^2D(B_r)\in(0,\beta)$. Each further shift multiplies this by
+$-\beta$, preserving \eqref{strip}.
+Now multiply the pairs at the two entries. Lemma~\ref{knuth} gives
+$P(x\circ y)=T^{i+j+4}C$. Substitution of the three anchors gives the indicated
+columns. The examples on page 1 establish occurrence.
+\end{proof}
+
+\section{The common divisor in Horadam's construction}
+Kenneth J. Ramsey's comment in A022344 proposes a squarefree-part formula for
+the determinant of a sequence of hypotenuses interlaced with their differences
+\cite{ramsey}. Write $x,y,x+y,x+2y$ for four consecutive terms in a row.
+The hypotenuse is $H=x^2+2xy+2y^2$, with legs $2y(x+y)$ and $x(x+2y)$.
+The second leg corrects the factor $xy$ in the comment. Between this hypotenuse
+and the next insert
+\[
+     K=H(y,x+y)-H(x,y)=(x+y)(x+3y).
+\]
+Under $(x,y)\mapsto(y,x+y)$ the pair $(H,K)$ becomes $(H+K,H+2K)$, so the
+interleaved sequence obeys the Fibonacci recurrence. Put $\Delta(x,y)=y^2-xy-x^2$.
+Expansion gives
+\begin{equation}\label{norm}
+           \Delta(H,K)=-\Delta(x,y)^2.
+\end{equation}
+
+\begin{theorem}\label{gcd}
+For relatively prime nonnegative $x,y$, $\gcd(H,K)=\gcd(5,x+3y)=\gcd(5,|\Delta(x,y)|)$.
+The absolute determinant after dividing $H,K$ by their common divisor is
+$\bigl(|\Delta(x,y)|/\gcd(5,|\Delta(x,y)|)\bigr)^2$.
+\end{theorem}
+\begin{proof}
+As $H=(x+y)^2+y^2$, it is coprime to $x+y$. Any common divisor
+of $H,K$ divides $x+3y$. Modulo $x+3y$ one has $H\equiv5y^2$ and $y$ is
+invertible, hence the gcd is $\gcd(5,x+3y)$.
+Modulo five, $\Delta(x,y)\equiv-(x+3y)^2$. Equation~\eqref{norm} finishes the proof.
+\end{proof}
+
+\newpage
+For arbitrary positive $x,y$, first divide the input pair by $d=\gcd(x,y)$.
+Both $H$ and $K$ scale by $d^2$. Thus Theorem~\ref{gcd}, applied to the primitive
+input pair, gives the determinant after normalization for every row.
+
+\paragraph{Row 45.}
+Row $45$ has anchor $(74,45)$ and begins $119,193,312,505,\ldots$.
+Here $\Delta(119,193)=121$ and the squarefree part after removing square
+factors is $1$. The first two interleaved terms are $134593,217776$.
+Their gcd is $1$ and the absolute determinant is $14641=121^2$. The proposed
+squarefree-part formula gives $1$. Reading the squarefree portion as the product
+of distinct prime divisors would instead predict $11^2=121$.
+The multiplicativity of the original J determinant under Munn's row product
+was already recorded in A357097 and A022344 \cite{munn,ramsey}.
+
+\paragraph{Verification.}
+The Lean files prove the digit identity for arbitrary finite binary words,
+the exact row and column theorem for all ordinary array indices, the primitive gcd
+identity, the determinant identity, and the numerical counterexample.
+The independent verifier uses integer square roots, direct Zeckendorf expansions,
+and an array generated from its row recurrences. It also checks the determinant
+formula after normalization for imprimitive input pairs.
+
+\begin{thebibliography}{9}
+\bibitem{kim} C. Kimberling, The Zeckendorf array equals the Wythoff array,
+\emph{Fibonacci Quarterly} 33 (1995), 3--8.
+\url{https://www.fq.math.ca/Scanned/33-1/kimberling.pdf}.
+\bibitem{munn} P. Munn, Multiplication table for the rows of the extended Wythoff array,
+OEIS \href{https://oeis.org/A357097}{A357097} (2022).
+For the row map see \href{https://oeis.org/A019586}{A019586}.
+\bibitem{knuth} N. J. A. Sloane, Knuth's Fibonacci product, OEIS
+\href{https://oeis.org/A101330}{A101330}, including F. Lunnon's formula (2008).
+\bibitem{ramsey} A. F. Horadam, Fibonacci number triples, \emph{Amer. Math.
+Monthly} 68 (1961), 751--753. K. J. Ramsey's entry comment (2007) appears
+in OEIS \href{https://oeis.org/A022344}{A022344}.
+\end{thebibliography}
+\end{document}

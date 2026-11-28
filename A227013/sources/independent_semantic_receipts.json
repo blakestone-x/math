@@ -1,0 +1,63 @@
+{
+  "checked": "2026-11-27",
+  "reviewer": "number13",
+  "repositories": [
+    "VladimirReshetnikov/ProveIt",
+    "the-omega-institute/trureturing"
+  ],
+  "observed_revisions": {
+    "ProveIt": "26d30b08a30e969d1af5ba9e702c4ca5b1daabfd",
+    "trureturing": "66615771c6b1ac838521edbc757411a8e05fc1f5"
+  },
+  "queries": [
+    {
+      "query": "\"harmonic\" \"quartic\"",
+      "assessment": "Visible results concern quartic digamma/harmonic-zeta identities, spectral moments and Mertens sample bounds, not harmonic means between fourth powers.",
+      "limit": 30,
+      "returned": 30,
+      "sample_urls": [
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/Blueprint/D5/S3/Weil/Mertens/IntegratedExplicit/QuarticSampleMass.scribe.cs",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/Polylogarithms/docs/reports/stieltjes-harmonic-resonance/continuations/ordered-jet-normal-forms/code/verify_numeric.py",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/Polylogarithms/docs/reports/stieltjes-harmonic-resonance/continuations/barnes-resolvents/sections/05_quartic_harmonic.tex",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/Polylogarithms/docs/reports/stieltjes-harmonic-resonance/continuations/quartic-tails-resolvents/sections/quartic_bridge.tex",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/Polylogarithms/docs/reports/stieltjes-harmonic-resonance/continuations/quartic-tails-resolvents/README.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/Polylogarithms/docs/reports/stieltjes-harmonic-resonance/continuations/quartic-tails-resolvents/sections/introduction.tex"
+      ]
+    },
+    {
+      "query": "\"harmonic\" \"fourth\"",
+      "assessment": "Visible results concern Fourier harmonics, harmonic-number tail estimates, digamma fourth powers and other unrelated analysis; no target proof located.",
+      "limit": 30,
+      "returned": 30,
+      "sample_urls": [
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/Blueprint/D5/S3/Weil/Mertens/IntegratedExplicit/QuarticSampleMass.scribe.cs",
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/Problems/misawa-nishimura-harmonic-strength-pair-refutation.md",
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/Blueprint/D5/S3/Fourier/Concentration/SecondFourthHarmonicBound.md",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Combinatorics/Ramsey/Research/GowersSzemeredi/local-quantitative-refinements/code/34-torsion-gaps-verify_odd_fourth_gap.py",
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/D5/S3/Fourier/Concentration/SecondFourthHarmonicBound.lean",
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/Blueprint/D5/S3/Arith/GoldenResource/HarmonicGammaUpperTail.md"
+      ]
+    },
+    {
+      "query": "\"harmonic mean\" \"floor\"",
+      "assessment": "Five hits concern noncommutative matrix means, Jacobian fiber counts, Ramsey theory and Fabius-function products; no block-harmonic floor theorem.",
+      "limit": 30,
+      "returned": 5,
+      "sample_urls": [
+        "https://github.com/the-omega-institute/trureturing/blob/66615771c6b1ac838521edbc757411a8e05fc1f5/D5/S3/Quantum/Matrix/LinGProperty/GeometricMeanBound.lean",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/SetTheory/Cardinals/docs/reports/jacobian-conjecture/arithmetic-local-global-fibers/article.tex",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Combinatorics/Ramsey/Papers/arXiv-2303.09521v2/Ramsey_arXiv_revised.tex",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/representations/Fabius_Rvachev_New_Frontiers-2/fabius_frontier_experiments.py",
+        "https://github.com/VladimirReshetnikov/ProveIt/blob/26d30b08a30e969d1af5ba9e702c4ca5b1daabfd/Analysis/FabiusFunction/docs/semi-formalized-research-frontiers/drafts/representations/Fabius_Rvachev_New_Frontiers-2/fabius_rvachev_new_frontiers.tex"
+      ]
+    },
+    {
+      "query": "A227013",
+      "assessment": "No hits.",
+      "limit": 30,
+      "returned": 0,
+      "sample_urls": []
+    }
+  ],
+  "scope": "Independent reviewer follow-up to the author search. Bounded indexed searches, not an exhaustive repository audit or global-priority claim."
+}

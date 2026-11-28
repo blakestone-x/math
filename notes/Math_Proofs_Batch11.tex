@@ -1,0 +1,665 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={A complete irreducibility classification and three recurrence refutations},pdfauthor={Blake Stone},pdfsubject={A327315, A289001, A289035, A289239, and complete Lean proofs}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries A complete irreducibility classification\\[3pt]
+and three recurrence refutations}\par
+\vspace{0.5em}
+{\large Blake Stone}\par
+Proof developed with ChatGPT\par
+November 27, 2026
+\end{center}
+
+\textbf{Abstract.}
+We prove that the factorial-normalized numerator of the derivative of
+order $n$ of $(X-2)/(X^2-X+1)$ is irreducible over $\Q$ exactly when
+$n+1=2^a3^b$ for nonnegative integers $a,b$.  A sixth-root quadratic
+field and a cyclotomic degree argument prove irreducibility in every
+allowed degree.  Explicit rational row factors, sometimes reflected
+under $X\mapsto1-X$, handle every excluded degree.
+We also refute the proposed common length sequence for three binary
+replacement systems.  Their literal lengths agree with the proposed
+sequence through iteration 21 and first disagree at iteration 22,
+where the lengths are $268184$ instead of $268182$.  We prove exact
+count dynamics, a uniform discrepancy bound, and the successive-length
+ratio limit $1+\sqrt2/2$.  This nonintegral algebraic growth constant
+rules out every eventual monic integer linear relation, of any order.
+Two Lean projects, with sixteen local proof modules, verify these
+statements from the literal source definitions.  Established polynomial
+families, methods, and related word results are credited.  Bounded
+literature and repository searches located no earlier proof of the
+exact assertions addressed here; this is not a certification of priority.
+
+\begin{center}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{4.5in}@{}}
+\toprule
+Source & Result and scope\\
+\midrule
+A327315/A069353 & One complete irreducibility classification for every derivative order.\\
+A289001/A289004 & One length-conjecture refutation for $01\mapsto001$.\\
+A289035 & One length-conjecture refutation for $01\mapsto010$.\\
+A289239 & One length-conjecture refutation for $01\mapsto100$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The three word assertions share a single count theorem; their repeated
+appearance in A289004 and A289001 is counted once.  The corrected growth
+and recurrence obstruction are stronger conclusions within that same
+family.  The separate prime question in A069353 and the other position
+or fixed-point conjectures in the word entries are outside these claims.
+
+\section{The complete irreducibility classification in A327315}
+\label{sec:a327315}
+
+\subsection{The literal source statement}
+
+Let $P_n$ be the numerator of the $n$th derivative of
+\[
+ f(X)=\frac{X-2}{X^2-X+1},
+\]
+divided by $n!$, with the rational function reduced and its denominator
+monic.  OEIS A327315~\cite{A327315} records these rows from $n=0$ and conjectures that
+their irreducible indices are exactly A069353~\cite{A069353}, the numbers $2^a3^b-1$.
+The entry attributes the conjecture to Clark Kimberling in November 2019.
+Its title says degree $n$, but the executable definition and displayed
+rows have degree $n+1$, beginning with $P_0=X-2$.  We follow those
+unambiguous row and derivative indices.
+
+\begin{theorem}[All derivative orders]
+\label{thm:a327315}
+For every integer $n\ge0$,
+\[
+ P_n\text{ is irreducible over }\mathbb Q
+ \quad\Longleftrightarrow\quad
+ n+1=2^a3^b\text{ for some }a,b\ge0.
+\]
+The same criterion holds for the unnormalized reduced numerator $n!P_n$.
+\end{theorem}
+
+There is one classification here.  The stronger irreducibility over a
+quadratic field, the explicit factors in the excluded degrees, and the
+source's degree correction are not counted as additional conjectures.
+
+\subsection{Recurrence and exact reduced numerator}
+
+Put $A=1-2X$ and $D=1-X+X^2$, and define
+\[
+ S_0=-1,\qquad S_1=X-2,\qquad
+ S_{N+2}=A S_{N+1}-D S_N.
+\]
+The top-coefficient recurrence has initial values $-1,1$ and satisfies
+$c_{N+2}=-2c_{N+1}-c_N$.  Consequently
+\[
+ \deg S_N=N,\qquad \operatorname{lc}(S_N)=(-1)^{N+1}.
+\]
+Differentiating the recurrence and using two-step induction gives
+\[
+ S_N'=-N S_{N-1}\quad(N\ge1).
+\]
+Combining this with the recurrence yields, for all $N\ge0$,
+\begin{equation}
+\label{eq:a327315-differential}
+ D S_N'+N A S_N=N S_{N+1}.
+\end{equation}
+Since $D'=-A$, the quotient rule and
+\eqref{eq:a327315-differential} prove inductively that
+\begin{equation}
+\label{eq:a327315-derivative}
+ f^{(n)}(X)=\frac{n!S_{n+1}(X)}{D(X)^{n+1}}.
+\end{equation}
+
+The identities
+\[
+ 4D-A^2=3,\qquad D-(X+1)(X-2)=3
+\]
+give Bezout certificates over $\mathbb Q$ for $(A,D)$ and $(S_1,D)$.
+The polynomial $S_0=-1$ is a unit.  Modulo $D$, the recurrence says
+$S_{N+2}\equiv A S_{N+1}$, so induction proves
+$\gcd(S_N,D)=1$ for every $N$.  Thus the fraction in
+\eqref{eq:a327315-derivative} has no polynomial cancellation.  Its
+denominator is monic, and $n!$ is a nonzero rational unit.  Therefore its
+canonical numerator is exactly $n!S_{n+1}$, and
+\begin{equation}
+\label{eq:a327315-source}
+ P_n=S_{n+1}.
+\end{equation}
+This identifies the recurrence with the original reduced-numerator
+definition, including $n=0$.
+
+\subsection{The quadratic field and fractional-linear form}
+
+Let $K=\mathbb Q(u)$ with $u^2-u+1=0$, and set $v=1-u$.
+The polynomial $Y^2-Y+1=\Phi_6(Y)$ is irreducible over $\mathbb Q$, so
+$[K:\mathbb Q]=2$.  Direct algebra gives
+\[
+ u+v=uv=1,\quad u^2=-v,\quad v^2=-u,\quad
+ u^3=v^3=-1,\quad u^6=v^6=1.
+\]
+Also $u\ne v$, and neither $u$ nor $v$ is zero or one.
+With $\alpha=u-X$ and $\beta=v-X$, we have
+$\alpha+\beta=A$ and $\alpha\beta=D$.  The initial values and
+recurrence therefore prove
+\begin{equation}
+\label{eq:a327315-closed}
+ S_N=-v\alpha^N-u\beta^N
+ =(-1)^{N+1}v\big((X-u)^N-v(X-v)^N\big).
+\end{equation}
+
+We use the following standard fractional-linear observation.  Over any
+field, if $a\ne b$, $c\ne1$, and $Y^N-c$ is irreducible, then
+\[
+ (X-a)^N-c(X-b)^N
+\]
+is irreducible of degree $N$.  Indeed, if $x$ is a root of an irreducible
+factor, then $x\ne b$ and
+$y=(x-a)/(x-b)$ satisfies $y^N=c$.  Thus the extension containing $x$
+has degree at least $N$, while the displayed polynomial has degree $N$.
+Every irreducible factor must have full degree.  The Lean helper proves
+this argument directly with an adjoint-root field.
+
+\subsection{Irreducibility in every allowed degree}
+
+\begin{lemma}
+\label{lem:a327315-cyclotomic}
+For $N=2^a3^b$, with $a,b\ge0$,
+\[
+ Y^{2N}-Y^N+1=\Phi_{6N}(Y).
+\]
+\end{lemma}
+\begin{proof}
+The initial identity is $\Phi_6(Y)=Y^2-Y+1$.  If a prime $p$ divides
+$r$, the classical cyclotomic expansion formula is
+$\Phi_r(Y^p)=\Phi_{rp}(Y)$.  Starting at $r=6$, apply this formula
+$a$ times with $p=2$ and $b$ times with $p=3$.  Both required divisibilities
+hold at every step, and the left side becomes the stated trinomial.
+\end{proof}
+
+\begin{lemma}
+\label{lem:a327315-binomial}
+If $N=2^a3^b$, then $Y^N-v$ is irreducible over $K$.
+\end{lemma}
+\begin{proof}
+Choose an irreducible factor $q\in K[Y]$, of degree $d$, and let $y$ be
+its root in $E=K[Y]/(q)$.  Then $y^N=v$, and hence
+\[
+ y^{2N}-y^N+1=v^2-v+1=0.
+\]
+By Lemma~\ref{lem:a327315-cyclotomic}, this is the irreducible polynomial
+$\Phi_{6N}$ over $\mathbb Q$, of degree $2N$.  It is therefore the
+minimal polynomial of $y$ over $\mathbb Q$.  The tower law gives
+\[
+ 2N\le[E:\mathbb Q]=[K:\mathbb Q][E:K]=2d.
+\]
+Since $q$ divides a degree-$N$ polynomial, $d\le N$.  Thus $d=N$, proving
+the assertion.
+\end{proof}
+
+Equation~\eqref{eq:a327315-closed} and the fractional-linear observation
+now prove that $S_N$ is irreducible over $K$ for every $N=2^a3^b$.
+It follows that $S_N$ is irreducible over $\mathbb Q$ as well: a proper
+rational factorization would remain a proper factorization over $K$.
+
+\subsection{Explicit proper factors in every excluded degree}
+
+Let $N>0$ have a prime divisor $p\notin\{2,3\}$, and write $N=pm$.
+Then $p\equiv1$ or $5\pmod6$, and $1\le m<N$.
+For any $c$ satisfying $c^p=v$, the difference-of-powers identity gives
+\[
+ (X-u)^m-c(X-v)^m
+ \ \mid\ (X-u)^{pm}-v(X-v)^{pm}
+ \qquad\text{in }K[X].
+\]
+If $p\equiv1\pmod6$, choose $c=v$.  Equation~\eqref{eq:a327315-closed}
+then gives $S_m\mid S_N$ over $K$.
+
+If $p\equiv5\pmod6$, choose $c=u$, since $u^5=v$.  Substituting $1-X$
+in the closed form gives the exact reflected identity
+\[
+ S_m(1-X)=-u\big((X-u)^m-u(X-v)^m\big).
+\]
+Consequently $S_m(1-X)\mid S_N$ over $K$.
+
+Both proposed divisors belong to $\mathbb Q[X]$.  Divisibility descends
+to $\mathbb Q[X]$ by polynomial division and injectivity of the
+coefficient embedding.  Each divisor has degree $m$, strictly between
+zero and $N$, so $S_N$ is reducible.
+
+Finally, a positive integer with no prime divisor other than 2 and 3
+has the form $2^a3^b$, by induction on its prime factors.  This proves
+the converse for every positive degree $N$.  Taking $N=n+1$ in
+\eqref{eq:a327315-source} proves Theorem~\ref{thm:a327315}, including
+the initial linear row.  Multiplication by the nonzero constant $n!$
+does not change irreducibility.
+
+\subsection{Prior literature and formal scope}
+
+The source polynomial construction has an exact antecedent in
+L.~Remete's \emph{A generalization of simplest number fields and their
+integral basis}, arXiv:2111.08341v1 (2021)~\cite{Remete}.  His Section 2 defines
+\[
+ f_m^{(N)}(Y)=\sum_{j=0}^N\binom NjY^j g(N-j),
+\]
+where $g$ is six-periodic with values
+$(1,-m,-m-1,-1,m,m+1)$.  Comparison with the definitions gives
+$S_N(X)=(-1)^{N+1}f_1^{(N)}(X-1)$.
+Indeed, at $m=1$, $g(k)=u^{k+1}+v^{k+1}$, so the binomial theorem gives
+$f_1^{(N)}(Y)=u(Y+u)^N+v(Y+v)^N$, which agrees with the closed form
+after the stated shift and sign.
+The family itself, its derivative structure, and fractional-linear
+root symmetries are therefore not new constructions here.
+Remete's Corollary 10 requires a prime $p\ne3$ with
+$v_p(m^2+m+1)=1$.  At $m=1$ that condition fails, and the inspected
+irreducibility subsection does not state the complete degree criterion.
+
+Related classical methods occur in C.~Cass, J.~Cullinan,
+A.~Rasmussen and D.~Trifunovski, \emph{Specializations of Generalized
+Rikuna Polynomials}, International Journal of Number Theory 10 (2014),
+585--600~\cite{Rikuna}, and J.~S.~Calcut, \emph{The Tangent Analogues of the Chebyshev
+Polynomials} (2008)~\cite{Calcut}.  Their relevant definitions and irreducibility or
+angle-factorization sections were checked.  The present proof uses
+standard cyclotomic irreducibility and fractional-linear substitution;
+it does not claim those techniques as new.
+
+The checked A327315 export still labels the exact classification a
+conjecture.  The primary-reference review, exact and semantic web
+queries, trureturing catalog, and targeted global and ProveIt GitHub
+code searches located no earlier proof of that exact classification.
+This is a bounded review, not a guarantee of historical priority.
+The companion source-check report preserves the immutable OEIS exports,
+their hashes, the index convention, and the scope of the prior-art search.
+
+The formal development has nine local Lean modules.  It proves the
+recurrence identities, exact degree, quadratic-field relations,
+cyclotomic identity, both divisibility branches, the all-degree
+criterion, and the exact canonical numerator bridge.  It uses the pinned Lean and mathlib versions
+listed in Section~\ref{sec:verification}.
+The rational-function derivative and fractional-linear helper are
+reused unchanged from earlier packages.  The theorem dependencies are
+the standard \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; no admitted proof or custom axiom is used.
+
+\section{A shared false length recurrence for three binary scanners}
+\label{sec:a289004}
+
+The OEIS entries A289001, A289035, and A289239 give three replacement rules
+starting with $w_0=00$ and conjecture that their iterate lengths are the
+independently defined sequence A289004
+\cite{A289001,A289004,A289035,A289239}.
+We refute all three mapping assertions and prove a structural obstruction:
+their common actual length sequence satisfies no eventual monic
+constant-coefficient integer recurrence, of any order.
+The assertion repeated in A289004 and A289001 is counted once.
+
+\subsection{The literal sources and the first disagreement}
+
+Every rule has $00\mapsto0010$ and $10\mapsto010$; the remaining image is
+as follows.
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Source word & Image of $01$ & Formal variant\\
+\hline
+A289001 & $001$ & \texttt{left}\\
+A289035 & $010$ & \texttt{middle}\\
+A289239 & $100$ & \texttt{right}\\
+\hline
+\end{tabular}
+\end{center}
+The scanner consumes nonoverlapping matches from the original input, copies
+an unmatched leading letter, and retains a final singleton. Replacements
+are not rescanned during the same pass. A289035 explicitly specifies the
+retained-final-letter convention.
+
+The proposed comparison sequence has
+\[
+ (a_0,\ldots,a_9)=(2,4,7,11,18,31,52,89,151,257)
+\]
+and, for $n\ge10$,
+\begin{equation}
+ a_n=2a_{n-1}-a_{n-2}+2a_{n-4}-a_{n-5}
+       +a_{n-7}-a_{n-8}-a_{n-10}.
+ \label{eq:a289004:claimed}
+\end{equation}
+The source prose accidentally repeats index 9 for the last two initial
+values. Its displayed terms and Mathematica program unambiguously put 151
+at index 8 and 257 at index 9; these are the values used in the formal
+independent definition.
+
+\paragraph{The source refutations.}
+The three scanners have the same length $L_n$ at every iteration. For
+every $n<22$, $L_n=a_n$, while
+\[
+ L_{22}=268184\ne268182=a_{22}.
+\]
+Moreover, recurrence~\eqref{eq:a289004:claimed}, when applied to the actual
+lengths, fails after every finite cutoff.
+
+The first differing values are:
+\begin{center}
+\begin{tabular}{r|r|r}
+$n$ & actual $L_n$ & A289004 $a_n$\\
+\hline
+19 & 53908 & 53908\\
+20 & 92027 & 92027\\
+21 & 157099 & 157099\\
+22 & 268184 & 268182\\
+23 & 457819 & 457812
+\end{tabular}
+\end{center}
+This is a failure of the proposed recurrence beyond a long common initial
+segment, rather than a change in the seed or the starting index.
+
+\subsection{The exact all-iteration count equations}
+
+Call a finite word good if every 1 is immediately followed by a 0.
+Equivalently, it is a concatenation of the blocks $0$ and $10$.
+Every nonempty good word ends in 0 and has no factor $11$.
+The seed is good, and each of the three scanners preserves this property.
+For the left variant, the only output block ending in 1 is the image
+$001$ of $01$. In a good input, such a pair must be followed by a 0,
+and the output of the remaining suffix starts in 0. This checks the only
+potential boundary problem; all other relevant output blocks end in 0.
+The formal preservation argument treats every good finite input word.
+
+Let $O_n$ denote the number of ones in the $n$th word and put
+$e_n=L_n\bmod2$. A good word of length $L_n$ is scanned into exactly
+$\lfloor L_n/2\rfloor$ pairs, followed by $e_n$ final zeros.
+Every consumed pair produces one 1. A $00$ pair has output length 4,
+and a mixed pair has output length 3. Since every input 1 belongs to
+a mixed pair, this gives the exact equations
+\begin{equation}
+ O_{n+1}=\left\lfloor\frac{L_n}{2}\right\rfloor,
+ \qquad
+ L_{n+1}=2L_n-O_n-e_n,
+ \qquad (L_0,O_0)=(2,0).
+ \label{eq:a289004:counts}
+\end{equation}
+The right-hand sides do not depend on the variant. Induction therefore
+proves the common length and common ones-count assertions. Eliminating
+$O_n$ yields a corrected scalar recurrence:
+\begin{equation}
+ L_{n+2}+\left\lfloor\frac{L_n}{2}\right\rfloor
+       +(L_{n+1}\bmod2)=2L_{n+1},
+ \qquad L_0=2,\quad L_1=4.
+ \label{eq:a289004:corrected}
+\end{equation}
+Evaluating this proved count state and the independent recurrence
+\eqref{eq:a289004:claimed} establishes both the first discrepancy and
+agreement at every earlier index. The Lean proof does not presume
+\eqref{eq:a289004:counts}: it derives it from the literal lists.
+
+\subsection{Uniform discrepancy and growth}
+
+Set
+\[
+ \mu=1-\frac{\sqrt2}{2},\qquad
+ \lambda=1+\frac{\sqrt2}{2},\qquad
+ S_n=L_n-(2+\sqrt2)O_n.
+\]
+From \eqref{eq:a289004:counts} and
+$2O_{n+1}+e_n=L_n$, direct substitution gives
+\begin{equation}
+ S_{n+1}=\mu S_n+(1-\mu)e_n.
+ \label{eq:a289004:error}
+\end{equation}
+Since $S_0=2$, $0<\mu<1$, and $0\le e_n\le1$, induction proves
+\begin{equation}
+ 0\le S_n\le2\qquad(n\ge0).
+ \label{eq:a289004:bound}
+\end{equation}
+Every good word has at most half its letters equal to 1. Combining
+$2O_n\le L_n$ with \eqref{eq:a289004:counts} gives
+\[
+ L_{n+1}\ge L_n+\left\lfloor\frac{L_n}{2}\right\rfloor,
+ \qquad L_n\ge n+2.
+\]
+Thus $L_n\to\infty$. A second rearrangement of the exact count equations is
+\begin{equation}
+ \frac{L_{n+1}}{L_n}
+ =\lambda+\mu\frac{S_n}{L_n}-\frac{e_n}{L_n}.
+ \label{eq:a289004:ratio}
+\end{equation}
+The two error quotients tend to zero by \eqref{eq:a289004:bound}, so
+\begin{equation}
+ \lim_{n\to\infty}\frac{L_{n+1}}{L_n}
+ =1+\frac{\sqrt2}{2}.
+ \label{eq:a289004:limit}
+\end{equation}
+This argument proves existence of the limit. For every fixed
+$j\ge0$, multiplying $j$ successive ratios proves
+$L_{n+j}/L_n\to\lambda^j$.
+
+\subsection{The obstruction to every eventual integer recurrence}
+
+\paragraph{Theorem.}
+For every monic polynomial $p(X)=\sum_i p_iX^i\in\mathbb Z[X]$
+and every cutoff $N$, there is an $n\ge N$ such that
+\[
+ \sum_i p_iL_{n+i}\ne0.
+\]
+In particular, no recurrence
+$L_{n+d}=\sum_{i<d}c_iL_{n+i}$ with fixed $c_i\in\mathbb Z$
+can hold eventually.
+
+\paragraph{Proof.}
+If such a relation held for every sufficiently large $n$, division by
+$L_n$ and the fixed-shift limits would give
+\[
+ p(\lambda)=\sum_i p_i\lambda^i=0.
+\]
+Monicity would make $\lambda$ an algebraic integer. Closure under
+subtraction and multiplication would then make
+\[
+ (\lambda-1)^2=\frac12
+\]
+an algebraic integer. The rational-root theorem says that a rational
+algebraic integer is an integer, contradicting $1/2\notin\mathbb Z$.
+\hfill$\square$
+
+The characteristic polynomial of the precise source recurrence is
+\[
+ p_0(X)=X^{10}-2X^9+X^8-2X^6+X^5-X^3+X^2+1.
+\]
+It is monic, so the theorem proves failures of the source recurrence
+arbitrarily far out, not merely at iteration 22. The coefficient scope
+is exactly monic integer recurrences; arbitrary rational or real
+coefficients are not covered by the stated result.
+
+\subsection{Prior results and formal endpoints}
+
+Dekking and Keane proved that the infinite fixed word A289001 is the
+Pell word \cite[Theorem~4]{DekkingKeane}. The related position results
+are already known. Dekking also proved a floor recurrence for the
+final-letter-removed iteration in A293077 \cite{A293077}; the related
+density discussion is recorded in A289037 \cite{A289037}.
+Those are prior results, not additional new assertions of this work.
+The removed-letter lengths differ from the literal retained-singleton
+lengths already at iteration 2, where they are 6 rather than 7.
+
+The current source entries, both web-search engines, the trureturing
+catalogue and its relevant replacement report, the existing repository,
+and global/ProveIt GitHub code searches were checked. No matching earlier
+refutation of these retained-singleton length assertions was found in
+that bounded screen. Unindexed or differently phrased predecessors
+are not excluded.
+
+The seven-module Lean package proves the entire source chain.
+\texttt{word\_counts} is the all-index literal scanner bridge;
+\texttt{first\_failure} certifies the least failing index;
+\texttt{three\_source\_conjectures\_false} states the three mapping
+refutations; and \texttt{literal\_corrected\_recurrence} states
+\eqref{eq:a289004:corrected}. The analysis endpoints are
+\texttt{discrepancy\_bounds} and
+\texttt{literal\_length\_ratio\_tendsto}. The stronger source-facing
+obstruction is
+\begin{center}
+\texttt{literal\_no\_eventual\_monic\_relation}.
+\end{center}
+The exact order-ten specialization is
+\begin{center}
+\texttt{original\_recurrence\_fails\_after\_every\_cutoff}.
+\end{center}
+The formalization uses the pinned versions in
+Section~\ref{sec:verification}. Its main theorems use
+only the standard axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; no extra axiom or native-decision shortcut is used.
+
+\section{Formal artifacts, verification, and attribution}
+\label{sec:verification}
+
+The two standalone Lake projects pin Lean 4.19.0 and mathlib revision
+\begin{center}
+\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+All sixteen local proof modules are explicit build roots.  Each project
+is built from source in an author directory and a separate independent
+directory.  These builds copy no local proof objects; they reuse only
+the pinned external dependency cache.  The package records include
+the complete build output, exact source hashes, source snapshots, and
+the scope of the prior-publication searches.
+
+For the derivative family, the final source-facing equivalence is
+\begin{center}
+\path{TwistedDerivative.source_irreducible_iff}.
+\end{center}
+The companion endpoint
+\path{TwistedDerivative.source_numerator_irreducible_iff}
+gives the same criterion for the unnormalized canonical numerator.
+Thus the classification does not rely on an unproved bridge from a
+recurrence to the source rational function.
+
+For the word family, \path{A289004.three_source_conjectures_false}
+refutes the three exact mapping claims.  The literal-list limit and
+recurrence obstruction are
+\path{A289004.literal_length_ratio_tendsto} and
+\path{A289004.literal_no_eventual_monic_relation}.
+All reported theorem dependencies are drawn from the standard axioms
+\path{propext}, \path{Classical.choice}, and \path{Quot.sound}.
+No local admitted theorem, custom axiom, unsafe declaration, or
+native-evaluation proof shortcut is used.
+
+The mathematical reviews check source definitions and quantifiers in
+addition to successful compilation.  The two package-level independent
+reviews are performed by contributors who authored none of the package
+they are reviewing.  An additional manuscript review compares the
+conventional proofs with the formal endpoints.  These are assistant
+reviews and kernel checks, not claims of journal peer review or
+editorial acceptance by the OEIS.
+
+\subsection*{Correction to the preceding batch}
+
+During this batch's expanded repository search, we found a September
+19, 2026 report in VladimirReshetnikov/ProveIt that already proves
+the entire A211417 positive-shift integrality family and a stronger
+polynomial-divisor classification~\cite{PriorA211417}.  The preceding
+batch initially counted that assertion as a new resolution.  Its Lean
+proof remains unchanged and valid, but the appropriate contribution
+label is an independent formalization of prior work.  The accompanying
+Batch 10 manuscript and guide now make that correction and retain
+their original reviews as historical records.  This attribution
+correction is not counted among the current batch's four source
+assertions.  The dated correction record gives the precise prior
+proposition, original repository commit, and before-and-after hashes.
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{A327315}
+The OEIS Foundation Inc., \emph{A327315}, entry attributed to Clark
+Kimberling, November 1, 2019; revision 6, November 6, 2019.
+\url{https://oeis.org/A327315}.
+Official export checked November 27, 2026; immutable export commit
+\texttt{571197984aeda7b8b680fe3a1f6a43f9898cd441}.
+
+\bibitem{A069353}
+The OEIS Foundation Inc., \emph{A069353: Numbers of form $2^i3^j-1$
+with $i,j\ge0$}, revision 20, April 22, 2025.
+\url{https://oeis.org/A069353}.
+Official export checked November 27, 2026.
+
+\bibitem{Remete}
+L.~Remete, \emph{A generalization of simplest number fields and their
+integral basis}, arXiv:2111.08341v1, November 16, 2021.
+\url{https://arxiv.org/abs/2111.08341}.
+
+\bibitem{Rikuna}
+C.~Cass, J.~Cullinan, A.~Rasmussen and D.~Trifunovski,
+\emph{Specializations of Generalized Rikuna Polynomials},
+International Journal of Number Theory \textbf{10}(3) (2014), 585--600.
+DOI: 10.1142/S1793042113501108.
+Author-hosted preprint:
+\url{https://homepages.math.uic.edu/~dtrifu2/pdf/rikuna_spec.pdf}.
+
+\bibitem{Calcut}
+J.~S.~Calcut, \emph{The Tangent Analogues of the Chebyshev Polynomials},
+November 10, 2008.
+\url{https://www2.oberlin.edu/faculty/jcalcut/arctan.pdf}.
+
+\bibitem{A289001}
+Clark Kimberling, OEIS A289001, fixed point of
+$00\mapsto0010$, $01\mapsto001$, $10\mapsto010$.
+Revision 37, 9 March 2022.
+\url{https://oeis.org/A289001}.
+
+\bibitem{A289004}
+Clark Kimberling, OEIS A289004, the order-ten recurrence and
+conjectured replacement lengths.
+Revision 15, 7 April 2020.
+\url{https://oeis.org/A289004}.
+
+\bibitem{A289035}
+Clark Kimberling, OEIS A289035, fixed point of
+$00\mapsto0010$, $01\mapsto010$, $10\mapsto010$.
+Revision 21, 22 March 2022.
+\url{https://oeis.org/A289035}.
+
+\bibitem{A289239}
+Clark Kimberling, OEIS A289239, fixed point of
+$00\mapsto0010$, $01\mapsto100$, $10\mapsto010$.
+Revision 7, 7 April 2020.
+\url{https://oeis.org/A289239}.
+
+\bibitem{A293077}
+Clark Kimberling, OEIS A293077, lengths for the final-letter-removed
+mapping at A289035; proof of its floor recurrence by Michel Dekking,
+20 March 2022. Revision 26, 23 March 2022.
+\url{https://oeis.org/A293077}.
+
+\bibitem{A289037}
+Clark Kimberling, OEIS A289037, positions of ones in A289035;
+comments by Michel Dekking, March 2022.
+Revision 13, 22 March 2022.
+\url{https://oeis.org/A289037}.
+
+\bibitem{DekkingKeane}
+Michel Dekking and Michael Keane,
+\emph{Two-block substitutions and morphic words},
+arXiv:2202.13548v2, 20 February 2023.
+\url{https://arxiv.org/abs/2202.13548}.
+
+\bibitem{PriorA211417}
+\emph{Polynomial divisibility of height-one factorial ratios},
+Part I, manuscript dated September 19, 2026, author line OpenAI ChatGPT,
+in VladimirReshetnikov/ProveIt.  In particular, Proposition
+\path{prop:positive}, Corollary \path{cor:classificationAB}, and the
+subsection on unrestricted positive offsets.
+\href{https://github.com/VladimirReshetnikov/ProveIt/blob/a3fe9660ee6c3ab92752594c2099c3cd214012c9/docs/reports/congruences-and-valuations/factorial-ratio-polynomial-divisibility/article.tex}{Pinned original September 19 source},
+commit \path{a3fe9660ee6c3ab92752594c2099c3cd214012c9}.
+\end{thebibliography}
+\end{document}

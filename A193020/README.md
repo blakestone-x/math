@@ -9,3 +9,15 @@ Datko and Pawlik previously proved the singleton-letter formula and the lower bo
 [Manuscript](self-shuffles.pdf) · [LaTeX source](self-shuffles.tex) · [Exact verifier](verify.py)
 
 Run `python3 verify.py` to enumerate all binary input words through length eight and all ternary input words through length six, and to check offsets, tree profiles and the rotating construction.
+
+## How far the maximum falls below $4^n$
+
+Let $M_n$ be the largest number of distinct shuffles of a length-$n$ binary word with itself. Its logarithmic deficit has exponent exactly one third,
+
+$$
+c n^{1/3}\le \log(4^n/M_n)\le C n^{1/3}(\log n)^{2/3}
+$$
+
+for sufficiently large $n$. Every maximizing word has $n^{1/3+o(1)}$ constant runs and a longest run of length $n^{2/3+o(1)}$. The proof uses two ways that schedules can produce the same word. The exact logarithmic factor and the maximum at arbitrary length remain open. [A331850](https://oeis.org/A331850)
+
+[Manuscript](shuffle-deficit.pdf) · [LaTeX source](shuffle-deficit.tex) · [Direct schedule checks](verify-deficit.py)

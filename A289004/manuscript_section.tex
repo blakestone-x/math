@@ -1,0 +1,225 @@
+\section{A shared false length recurrence for three binary scanners}
+\label{sec:a289004}
+
+The OEIS entries A289001, A289035, and A289239 give three replacement rules
+starting with $w_0=00$ and conjecture that their iterate lengths are the
+independently defined sequence A289004
+\cite{A289001,A289004,A289035,A289239}.
+We refute all three mapping assertions and prove a structural obstruction:
+their common actual length sequence satisfies no eventual monic
+constant-coefficient integer recurrence, of any order.
+The assertion repeated in A289004 and A289001 is counted once.
+
+\subsection{The literal sources and the first disagreement}
+
+Every rule has $00\mapsto0010$ and $10\mapsto010$; the remaining image is
+as follows.
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Source word & Image of $01$ & Formal variant\\
+\hline
+A289001 & $001$ & \texttt{left}\\
+A289035 & $010$ & \texttt{middle}\\
+A289239 & $100$ & \texttt{right}\\
+\hline
+\end{tabular}
+\end{center}
+The scanner consumes nonoverlapping matches from the original input, copies
+an unmatched leading letter, and retains a final singleton. Replacements
+are not rescanned during the same pass. A289035 explicitly specifies the
+retained-final-letter convention.
+
+The proposed comparison sequence has
+\[
+ (a_0,\ldots,a_9)=(2,4,7,11,18,31,52,89,151,257)
+\]
+and, for $n\ge10$,
+\begin{equation}
+ a_n=2a_{n-1}-a_{n-2}+2a_{n-4}-a_{n-5}
+       +a_{n-7}-a_{n-8}-a_{n-10}.
+ \label{eq:a289004:claimed}
+\end{equation}
+The source prose accidentally repeats index 9 for the last two initial
+values. Its displayed terms and Mathematica program unambiguously put 151
+at index 8 and 257 at index 9; these are the values used in the formal
+independent definition.
+
+\paragraph{The source refutations.}
+The three scanners have the same length $L_n$ at every iteration. For
+every $n<22$, $L_n=a_n$, while
+\[
+ L_{22}=268184\ne268182=a_{22}.
+\]
+Moreover, recurrence~\eqref{eq:a289004:claimed}, when applied to the actual
+lengths, fails after every finite cutoff.
+
+The first differing values are:
+\begin{center}
+\begin{tabular}{r|r|r}
+$n$ & actual $L_n$ & A289004 $a_n$\\
+\hline
+19 & 53908 & 53908\\
+20 & 92027 & 92027\\
+21 & 157099 & 157099\\
+22 & 268184 & 268182\\
+23 & 457819 & 457812
+\end{tabular}
+\end{center}
+This is a failure of the proposed recurrence beyond a long common initial
+segment, rather than a change in the seed or the starting index.
+
+\subsection{The exact all-iteration count equations}
+
+Call a finite word good if every 1 is immediately followed by a 0.
+Equivalently, it is a concatenation of the blocks $0$ and $10$.
+Every nonempty good word ends in 0 and has no factor $11$.
+The seed is good, and each of the three scanners preserves this property.
+For the left variant, the only output block ending in 1 is the image
+$001$ of $01$. In a good input, such a pair must be followed by a 0,
+and the output of the remaining suffix starts in 0. This checks the only
+potential boundary problem; all other relevant output blocks end in 0.
+The formal preservation argument treats every good finite input word.
+
+Let $O_n$ denote the number of ones in the $n$th word and put
+$e_n=L_n\bmod2$. A good word of length $L_n$ is scanned into exactly
+$\lfloor L_n/2\rfloor$ pairs, followed by $e_n$ final zeros.
+Every consumed pair produces one 1. A $00$ pair has output length 4,
+and a mixed pair has output length 3. Since every input 1 belongs to
+a mixed pair, this gives the exact equations
+\begin{equation}
+ O_{n+1}=\left\lfloor\frac{L_n}{2}\right\rfloor,
+ \qquad
+ L_{n+1}=2L_n-O_n-e_n,
+ \qquad (L_0,O_0)=(2,0).
+ \label{eq:a289004:counts}
+\end{equation}
+The right-hand sides do not depend on the variant. Induction therefore
+proves the common length and common ones-count assertions. Eliminating
+$O_n$ yields a corrected scalar recurrence:
+\begin{equation}
+ L_{n+2}+\left\lfloor\frac{L_n}{2}\right\rfloor
+       +(L_{n+1}\bmod2)=2L_{n+1},
+ \qquad L_0=2,\quad L_1=4.
+ \label{eq:a289004:corrected}
+\end{equation}
+Evaluating this proved count state and the independent recurrence
+\eqref{eq:a289004:claimed} establishes both the first discrepancy and
+agreement at every earlier index. The Lean proof does not presume
+\eqref{eq:a289004:counts}: it derives it from the literal lists.
+
+\subsection{Uniform discrepancy and growth}
+
+Set
+\[
+ \mu=1-\frac{\sqrt2}{2},\qquad
+ \lambda=1+\frac{\sqrt2}{2},\qquad
+ S_n=L_n-(2+\sqrt2)O_n.
+\]
+From \eqref{eq:a289004:counts} and
+$2O_{n+1}+e_n=L_n$, direct substitution gives
+\begin{equation}
+ S_{n+1}=\mu S_n+(1-\mu)e_n.
+ \label{eq:a289004:error}
+\end{equation}
+Since $S_0=2$, $0<\mu<1$, and $0\le e_n\le1$, induction proves
+\begin{equation}
+ 0\le S_n\le2\qquad(n\ge0).
+ \label{eq:a289004:bound}
+\end{equation}
+Every good word has at most half its letters equal to 1. Combining
+$2O_n\le L_n$ with \eqref{eq:a289004:counts} gives
+\[
+ L_{n+1}\ge L_n+\left\lfloor\frac{L_n}{2}\right\rfloor,
+ \qquad L_n\ge n+2.
+\]
+Thus $L_n\to\infty$. A second rearrangement of the exact count equations is
+\begin{equation}
+ \frac{L_{n+1}}{L_n}
+ =\lambda+\mu\frac{S_n}{L_n}-\frac{e_n}{L_n}.
+ \label{eq:a289004:ratio}
+\end{equation}
+The two error quotients tend to zero by \eqref{eq:a289004:bound}, so
+\begin{equation}
+ \lim_{n\to\infty}\frac{L_{n+1}}{L_n}
+ =1+\frac{\sqrt2}{2}.
+ \label{eq:a289004:limit}
+\end{equation}
+This argument proves existence of the limit. For every fixed
+$j\ge0$, multiplying $j$ successive ratios proves
+$L_{n+j}/L_n\to\lambda^j$.
+
+\subsection{The obstruction to every eventual integer recurrence}
+
+\paragraph{Theorem.}
+For every monic polynomial $p(X)=\sum_i p_iX^i\in\mathbb Z[X]$
+and every cutoff $N$, there is an $n\ge N$ such that
+\[
+ \sum_i p_iL_{n+i}\ne0.
+\]
+In particular, no recurrence
+$L_{n+d}=\sum_{i<d}c_iL_{n+i}$ with fixed $c_i\in\mathbb Z$
+can hold eventually.
+
+\paragraph{Proof.}
+If such a relation held for every sufficiently large $n$, division by
+$L_n$ and the fixed-shift limits would give
+\[
+ p(\lambda)=\sum_i p_i\lambda^i=0.
+\]
+Monicity would make $\lambda$ an algebraic integer. Closure under
+subtraction and multiplication would then make
+\[
+ (\lambda-1)^2=\frac12
+\]
+an algebraic integer. The rational-root theorem says that a rational
+algebraic integer is an integer, contradicting $1/2\notin\mathbb Z$.
+\hfill$\square$
+
+The characteristic polynomial of the precise source recurrence is
+\[
+ p_0(X)=X^{10}-2X^9+X^8-2X^6+X^5-X^3+X^2+1.
+\]
+It is monic, so the theorem proves failures of the source recurrence
+arbitrarily far out, not merely at iteration 22. The coefficient scope
+is exactly monic integer recurrences; arbitrary rational or real
+coefficients are not covered by the stated result.
+
+\subsection{Prior results and formal endpoints}
+
+Dekking and Keane proved that the infinite fixed word A289001 is the
+Pell word \cite[Theorem~4]{DekkingKeane}. The related position results
+are already known. Dekking also proved a floor recurrence for the
+final-letter-removed iteration in A293077 \cite{A293077}; the related
+density discussion is recorded in A289037 \cite{A289037}.
+Those are prior results, not additional new assertions of this work.
+The removed-letter lengths differ from the literal retained-singleton
+lengths already at iteration 2, where they are 6 rather than 7.
+
+The current source entries, both web-search engines, the trureturing
+catalogue and its relevant replacement report, the existing repository,
+and global/ProveIt GitHub code searches were checked. No matching earlier
+refutation of these retained-singleton length assertions was found in
+that bounded screen. Unindexed or differently phrased predecessors
+are not excluded.
+
+The seven-module Lean package proves the entire source chain.
+\texttt{word\_counts} is the all-index literal scanner bridge;
+\texttt{first\_failure} certifies the least failing index;
+\texttt{three\_source\_conjectures\_false} states the three mapping
+refutations; and \texttt{literal\_corrected\_recurrence} states
+\eqref{eq:a289004:corrected}. The analysis endpoints are
+\texttt{discrepancy\_bounds} and
+\texttt{literal\_length\_ratio\_tendsto}. The stronger source-facing
+obstruction is
+\begin{center}
+\texttt{literal\_no\_eventual\_monic\_relation}.
+\end{center}
+The exact order-ten specialization is
+\begin{center}
+\texttt{original\_recurrence\_fails\_after\_every\_cutoff}.
+\end{center}
+The formalization uses the pinned versions in
+Section~\ref{sec:verification}. Its main theorems use
+only the standard axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; no extra axiom or native-decision shortcut is used.

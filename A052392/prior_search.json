@@ -1,0 +1,43 @@
+{
+  "checked": "2026-11-27",
+  "repository_heads": [
+    {
+      "repository": "VladimirReshetnikov/ProveIt",
+      "sha": "49af140e6ff2b0d19fa62ff703ccfc0cc25b3e68",
+      "date": "2026-11-27T21:04:18Z"
+    },
+    {
+      "repository": "the-omega-institute/trureturing",
+      "sha": "720eb936a3bfd96a946ec055210f018951c4dfaa",
+      "date": "2026-11-27T20:51:50Z"
+    }
+  ],
+  "github_queries": [
+    {
+      "query": "\"McGarvey\" \"subdiagonal\"",
+      "result_count": 10,
+      "urls": [
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A089126.txt",
+        "https://github.com/ddmcdonald/sparser/blob/bd784c216aa1f8984c7ed40e3ede87dc139dcff8/Sparser/code/s/tools/ns-stuff/unknown-words-covid-2020-05-12-0512-pdf-40001-40100.lisp",
+        "https://github.com/africamonkey/OEIS-Spider/blob/7cbc069b47ea504c99a845a429ac9b1bdab96139/prepare/data/data/A000045.txt",
+        "https://github.com/taboege/raku-OEIS/blob/312e7aa1931e8f32c416d02908c88938a786f3d7/t/data/A000045.txt",
+        "https://github.com/daedalus/oeis_validator/blob/2de1e0ed07318056c983b6d05e07476078440880/data/A000045.txt",
+        "https://github.com/taboege/raku-OEIS/blob/312e7aa1931e8f32c416d02908c88938a786f3d7/t/data/Fibonacci-Search-all.txt",
+        "https://github.com/massimo-nocentini/oeis-tools/blob/df7bc58819ee7cc7574f7e56b444afc4ef050bef/notebooks/oeis-interaction.ipynb",
+        "https://github.com/hunterhogan/oeisTypeset/blob/871b4a791adbd9fbb12115e325ff8e00c564adc8/corpus/A000045.html",
+        "https://github.com/alkahest-cas/alkahest/blob/16a6f2418d8311b0b0d060dcdcc6aa659ed6a1b2/tests/data/oeis_novelty_fixture.json",
+        "https://github.com/CopperNickel/Simple.Oeis/blob/2971663713d658b62821c1e55a1c4eea0e2209de/Simple.Oeis.Test/Responses/Fibonacci.json"
+      ]
+    },
+    {
+      "query": "\"A054120\" \"generating\"",
+      "result_count": 0,
+      "urls": []
+    },
+    {
+      "query": "\"A052392\"",
+      "result_count": 0,
+      "urls": []
+    }
+  ]
+}

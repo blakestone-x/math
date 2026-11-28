@@ -1,0 +1,10 @@
+{
+  "checked": "2026-11-27",
+  "source": "https://oeis.org/A227013",
+  "revision": 21,
+  "source_revision_date": "2024-11-03",
+  "export_commit": "571197984aeda7b8b680fe3a1f6a43f9898cd441",
+  "immutable_url": "https://github.com/oeis/oeisdata/blob/571197984aeda7b8b680fe3a1f6a43f9898cd441/seq/A227/A227013.seq",
+  "bytes": 1180,
+  "sha256": "46325556aa29c1c490c7b3fbd35295840230765aede9205bdb98b77986e890bc"
+}
