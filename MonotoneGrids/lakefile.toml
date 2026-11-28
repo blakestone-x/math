@@ -1,0 +1,11 @@
+name = "monotoneGridCounts"
+defaultTargets = ["MonotoneGridCounts"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
+
+[[lean_lib]]
+name = "MonotoneGridCounts"
+roots = ["Boards", "Certificate", "Semantics", "A207065", "A207167", "A207449", "A207452", "A207598", "A208138", "A209648"]
