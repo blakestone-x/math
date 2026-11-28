@@ -9,4 +9,4 @@ require mathlib from git
 
 @[default_target]
 lean_lib CollatzWindows where
-  roots := #[`CollatzWindows, `Descent]
+  roots := #[`CollatzWindows, `Descent, `Escape]

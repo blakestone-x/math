@@ -38,6 +38,22 @@ Lean checks the parity count and the strict rational lower bound `C > 97/5`. The
 
 [Descent criteria and numerical certificate](Descent.lean)
 
+## An exact criterion for escape
+
+Let `a(m,t)` count odd inputs in the first `t` shortcut steps from `m`. A positive orbit tends to infinity if and only if **some** positive integer `m` satisfies
+
+```text
+3^a(m,t) ≥ 2^t  for every t ≥ 0.
+```
+
+Every escaping orbit supplies such an `m` among its own iterates. Conversely, the orbit of any such `m` escapes. Equivalently, escape occurs precisely when the 2-adic set `Slope.omegaSet` contains a positive ordinary integer.
+
+The proof counts visits of a nonrepeating orbit to each interval from `32^j` up to `32^(j+1)`. There are at most `65 · 29^j` visits, giving a convergent geometric bound for the sum of the reciprocals of all iterates. This bounds the accumulated affine corrections. Consequently the coefficient `3^a(n,t)/2^t` tends to infinity and attains a minimum at a finite time. Starting at that minimum gives the required integer. In the reverse direction, the coefficient around every positive cycle is strictly below one. Repeated periods eventually violate the displayed inequality.
+
+Full convergence is equivalent to two further claims. Every positive integer has a prefix with `3^a(m,t) < 2^t`, and every positive cycle visits 1. Both claims remain open. [Lean proof](Escape.lean)
+
+Garcia and Tal studied the sparsity of divergent orbits. Pulowski spelled out the implication from reciprocal summability to growth of the coefficient. This file proves its own explicit counting estimate in Lean. [Garcia and Tal, Acta Arithmetica 90 (1999)](https://doi.org/10.4064/aa-90-3-245-250) · [Pulowski’s derivation](https://mathoverflow.net/q/513539)
+
 ## Reproduce
 
 The package pins Lean 4.19.0 and mathlib commit `c44e0c8ee63ca166450922a373c7409c5d26b00b`. From this directory with the pinned Lean toolchain installed, run
