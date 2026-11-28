@@ -1,0 +1,40 @@
+Fresh source-only independent build
+Date (UTC): 2026-11-28T07:10:25.516555+00:00
+Compiler: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Mathlib revision: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Source directory: /workspace/scratch/5f072ff518ad/output/batch16/A104722
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A104722/independent-20261128T071025-c43381af
+External pinned dependency caches are shared; no local compiled objects are copied.
+Explicit default roots: Proof, Source
+SHA256 Proof.lean: 1125d4b43fcd9de29d9a5dc601e7fb87000e5b09197bcd2e5da8ca5eca1ae36e
+SHA256 Source.lean: ec8bbf26087787067b63787d97de3ca85623c9a0ba9ef755091800a34e537bda
+SHA256 lake-manifest.json: 84f99bbe365b5f3d6a43e1f0e55c04d9424a70373b4c64ff4492a0c58ffd5392
+SHA256 lakefile.lean: cbe892e6781a832602545cdde247a96a7cb7f14223593896b530cdacddb41bbf
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+Command: lake build
+⚠ [949/951] Built Source
+warning: ././././Source.lean:85:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: ././././Source.lean:92:0: 'A104722.source_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Source.lean:93:0: 'A104722.source_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Source.lean:94:0: 'A104722.catalan_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [950/951] Built Proof
+info: ././././Proof.lean:51:0: 'A104722.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:52:0: 'A104722.index_three_exception' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+All local roots compiled: True
+Standard axiom audit: True
+Status: PASS
+
+Supplementary replay by the independent reviewer
+Date (UTC): 2026-11-28T07:12:35.618619+00:00
+Command: python verify.py
+PASS: immutable source snapshot sizes and SHA256 hashes.
+PASS: all 35 source terms match the literal convolution.
+PASS: exact parity identities through n = 200.
+PASS: residual at n = 3 is 4; every recurrence index 4 <= n <= 200 vanishes.
+PASS: both symbolic Catalan linear-combination certificates.
+PASS: supplementary verification complete; no finite test is used as the universal proof.
+Exit code: 0

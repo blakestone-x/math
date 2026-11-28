@@ -1,0 +1,220 @@
+{
+  "checked_at": "2026-11-28 UTC",
+  "description": "Fresh immutable-file reads; ID matches occur inside unrelated hexadecimal data. Header excerpts and surrounding match context retained.",
+  "files": [
+    {
+      "url": "https://github.com/leochlon/tiny-bayes/blob/c7f2ae616ff42665bd1276db36ebde765a94a302/pythia/point/CON/W/E9.lean",
+      "bytes": 132202,
+      "sha256": "98ad91e7720395176590e7bf2de90214f35ded0356d0d5c363eadf2829d26c33",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "6a251ba122282da835147aa92c1ed1aa14a368a45920ad18f0a1001ed62ab322d8255fa0ee2cfd24a1047221779e9bab8caba8a3079f4f2bcba7e9a2b52b0229ff28b6a9eba96d9ddc23de27059e48ab09a632a"
+      ],
+      "first_lines": "namespace CON.W\ndef e9 : List Nat := [\n0xaa000d46245823e69b8ba8982713244ea17aa51e23eba7f9189d29df21f1a9cb254f2a712af1a40326daab9a2cf69e28a494a7be2aeaa5282a0d2a47a1d4a23628c4ab46969784b7253625f4171324f8295daa16033c1d76a8372c76a3c8a901a7da280e177b2a74a823a86194f12025aa1c25faa6dfac6d213329bea9d7a6802c9fa82920c3a02ca22e2444a4212640229924222a0b969a27b021512d12a577a4af2189a598a9c29eab240aa8cfa77f22baa8c92c192855293928c1a3e622faac992828a52ca34c2c38a98ea41f29a826c520e62824247ba752a37cabbe25362305a654a4a520e71e44abffa9b82f4aa332a836a5a09d2aa8dc2463a20c16c3,\n0xa918ad20aa6d28a7a415a91027d0aa3a1880abd2a39e289620afa5f5a6a728439eeea9691506a656a58b26f820042"
+    },
+    {
+      "url": "https://github.com/Qiuzhen-CFSG/CFSG/blob/0c6635528a02dd46f2e93e2ade0c4ac647ad1eb7/Theory/SpecificGroups/Janko3/RecognitionPresentation/OrderBound/M1Cover/destCodeData00.lean",
+      "bytes": 85830,
+      "sha256": "5d3c815c5026b14111aca130ccd23aa98a101121ab15f6cc2b099f714a33c8f3",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "d7a134732bad5d68e6509ebab5d5a12472eba95d48e5d09683541aa1147267fd3fe8e4d08e8a3451a10472265d32e8e45086ba75d3)) (branch 163 (fun _ => 0x8ffd182be55f2a2ec7f66ed3768fed17ab"
+      ],
+      "first_lines": "module\n\npublic import Theory.SpecificGroups.Janko3.RecognitionPresentation.OrderBound.M1Cover.Base\n\n/-! Kernel-checked coset certificate for ATLAS J3G1-P1, literal subgroup M\u2081.\nGenerated from `source/compact.json` by `source/generate.py`.\nThe data are untrusted; `Scan.chunk_sound` supplies actual subgroup witnesses. -/\n"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch054.lean",
+      "bytes": 55949,
+      "sha256": "32a8487027c7dfc0296283db643c9326678e2912a9ceb63db0b6ce4dfc0546e2",
+      "needle": "A104722",
+      "occurrences": 3,
+      "contexts": [
+        "79ad8d3c682335994cb785712ac93d49b64c323b11748584141f00e5c6c834b1998c005d02cf15a0a1047222010306f03441710ac049421a08003781ac0c805f02f016c0b005502a012006e033016009c04c023",
+        "b9a78d0466b32996f0ae2559293136c98647622e91188283e01d80e5c6c834c1998c005d02cf15a0a1047222010307543781a20b8849421a07603781ac0c805f02d81640b005502a00f806e033016009c046021"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch054"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch045.lean",
+      "bytes": 53293,
+      "sha256": "a84eb3373833edc1c292fbf465a1152417794e97648f3a0811df059ca9d6c073",
+      "needle": "A104722",
+      "occurrences": 2,
+      "contexts": [
+        "0b4a54ce9d54209f20f5471b3731b3cd6e69834119acca655926191d88ba42d1d80d906983001740a104722060ea86882e212508682d814009a04781bc0d605f02d81640aa05401b80cc04e0230108074038013",
+        "f9b3cd6e684335994cc725ee2ea9688ae455828691748243b01b20d306663191800ba059a2b614e0a1047221f10387542e213e093043413e07c03b81c00c605f02e016c0b205502a011007e038015809c048023"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch045"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch137.lean",
+      "bytes": 59640,
+      "sha256": "4ad69533494975b2941250706e440a1d047897057bb447e7a6e55829f0993505",
+      "needle": "A104722",
+      "occurrences": 2,
+      "contexts": [
+        "41b3cd6e69b34219acca65d52d215c8a7e50e26e123c8ec45d1d80df46c834c18c8c005d02cd15b0a1047221f0ea86ec2e213e093043414a09f04101f00ee070036018c0c005f02e016c0b205502a012808803f",
+        "11f28f5872f37e9b90d32667327155c98448e23b917c88442d1fd8ec07283651a60cc06342cb15b0a1047221d0f707543721a30ab04902160f206c82c413a07203781a80d2063030016c0b404201f80e8070037"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch137"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch112.lean",
+      "bytes": 62397,
+      "sha256": "bc176774257ae96224a93ec07916531d941a0c99cdac1fddad02d1e4ce965167",
+      "needle": "A104722",
+      "occurrences": 2,
+      "contexts": [
+        "f9b3cd6e684335994cc725ee2ea9688ae455828691748243b01b20d306663191800ba059a2b614e0a1047221f10387542e213e093043413e07c03b81c00c605f02e016c0b205502a011007e038015809c048023",
+        "99c08d7069a343193cc7655829e149ca164c125511e08bc44720b0f2069633018c8c045962b614d0a104722070e986f834216f0ac04f024c0da04881b80d206302f81580aa04902380d806803101800b8056027"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch112"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch117.lean",
+      "bytes": 62915,
+      "sha256": "190a4708c1ecd77b59e4419344f9d6da14d0779d3ff1ca59a314f6ea7ff6b0ad",
+      "needle": "A104722",
+      "occurrences": 2,
+      "contexts": [
+        "79ad8d3c682335994cb785712ac93d49b64c323b11748584141f00e5c6c834b1998c005d02cf15a0a1047222010306f03441710ac049421a08003781ac0c805f02f016c0b005502a012006e033016009c04c023",
+        "b9a78d0466b32996f0ae2559293136c98647622e91188283e01d80e5c6c834c1998c005d02cf15a0a1047222010307543781a20b8849421a07603781ac0c805f02d81640b005502a00f806e033016009c046021"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch117"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch002.lean",
+      "bytes": 51229,
+      "sha256": "eaa02bc2c230e0d89832a50ea397cef3b7c28ccf4db4537f309b4d99dd2772d7",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "c9c10d9c6823361948c705d52b9149892047822f11148584141f10f2472a3631998c045ce2cd15a0a1047221f0ea868831415809f04941e806b02f81680ac054019809c04401e00e006c034014009003c01a00b"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch002"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch043.lean",
+      "bytes": 53559,
+      "sha256": "20b28a450387f7c7c2922f3258069c14959a5bace87d763ecf17bd163be79b4c",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "e3699ab0a224df262d08c7e03e51d30dcc6d034118e0c405bc293136c98645f2160f8479236515a0a1047222010307b83aa1bc0d1056027e125058023411807903781ac0d406903401900b605a02b01540a8041"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch043"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch063.lean",
+      "bytes": 53847,
+      "sha256": "822eaaec6f8eb709b528f1415267bd4e69bd2add4221fed61d921266e5a8e84b",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "ba5092228df45621ed0927f93999b40cd8636311181cbd85d72d315d0a8251026f12387903651808a104722070f7075434618a0ac0498118069033818c0b405602a81500a605002100c405e02b011007803a01c"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch063"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch053.lean",
+      "bytes": 55045,
+      "sha256": "4c5292f6d87468767e26a29db12d3624677040be00d0e54d05e2bf4ec13636e2",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "89e50e9671b3811b98d6e69e34119ac9b64c023a917c88c4291f00ec072e37b1a60ccc62e3001678a104722200f7075437810d05802300d206402d81680b205802a815008804101f00dc066031016008c044021"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch053"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch126.lean",
+      "bytes": 56344,
+      "sha256": "581717c12299023c18c7460eb226bfaadc511831b864d7652bd37dd4454f3bec",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "a25152288e24161f8cf7e7693ac1c78e1a6d335d19bcc9c4c123c0fec7903b01b28d3063230115b0a104722070f7075431415608583c81b20ab034818c0b805a01880ac04802200b003c01a00c004802000e006"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch126"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch091.lean",
+      "bytes": 58279,
+      "sha256": "ab6533b8bbc39524c560e69a739a42d56df205de8e8c91f0b5be714f6e555b8f",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "c1a7cd1a6683279704a8653527c135c95a49424191888623e11bc0d9469a3341910bf45c82cf1578a1047222010087b82b013f09002c012406f03381900c005702b015408a03201880b003c01d00b8024010006"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch091"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch145.lean",
+      "bytes": 61075,
+      "sha256": "f7ef0ed7dec1b68855ff4e1d98a38afbefa245040b7d735fabd99183417a7e51",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "0a104fca7c83d51e1cea471b3731b3cd6e69834119acca655926191d88ba42d1d80d906983001740a104722060ea86882e212508682d814009a04781bc0d605f02d81640aa05401b80cc04e0230108074038013"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch145"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch111.lean",
+      "bytes": 62259,
+      "sha256": "01a1153d7e69c937852ee9340744f476cc6ba8db1334e068057d901bc3109eec",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "4a054ff26e93681ad8d0a66c31d9888bd85d72d315d0a7851026f12a891c37e1b28d2c63430115b0a104722070f7068c31415804a82300e406903181780b405702b01540a80500248108074031015809804401f"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch111"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch109.lean",
+      "bytes": 62438,
+      "sha256": "a502c63683a0017f8068d7a0094284dc72337a5e0e3cee5cf018da26481c78a0",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "126f9316929449a118fc07ca3cc9d30dcc6d034118e0c405bc293136c98645f2160f8479236515a0a1047222010307b83aa1bc0d1056027e125058023411807903781ac0d406903401900b605a02b01540a8041"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch109"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch151.lean",
+      "bytes": 63283,
+      "sha256": "f308fd2dd8abcd7082348e963e2af7a93a3ec328ac9d022a8d365464be14ef2e",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "31adcd3c6823359824b7c55b294136c98047522f91188523e01e58ec072e37b1a60ccc62e3001678a104722200f7075437810d05802300d206402d81680b205802a815008804101f00dc066031016008c044021"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch151"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch153.lean",
+      "bytes": 63795,
+      "sha256": "012b593c4a4040821c3399e92a095741f769e9cf021466e18180a7bad09ea785",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "81ad4d406512f61698ae852728593789824aa24711e082c3fb1ef8f207603941b28d2866a2e615b0a104722070f7062824c0db03181780b805a02c81580aa05002381080760380158098048022010807803a016"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch153"
+    },
+    {
+      "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch162.lean",
+      "bytes": 69095,
+      "sha256": "a51b5be4876ebca0c9baebb2df64f2bb71fd2de82da7993bbcb8126134f85750",
+      "needle": "A104722",
+      "occurrences": 1,
+      "contexts": [
+        "41b3cd6e69b34219acca65d52d215c8a7e50e26e123c8ec45d1d80df46c834c18c8c005d02cd15b0a1047221f0ea86ec2e213e093043414a09f04101f00ee070036018c0c005f02e016c0b205502a012808803f"
+      ],
+      "first_lines": "module\nprelude\npublic import IncreasingEmbedding\n\n@[expose] public section\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\nnamespace Papers.RationalityTen.GraphCoverageDescriptions.GraphCoverageBatch162"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+PASS: immutable source snapshot sizes and SHA256 hashes.
+PASS: all 35 source terms match the literal convolution.
+PASS: exact parity identities through n = 200.
+PASS: residual at n = 3 is 4; every recurrence index 4 <= n <= 200 vanishes.
+PASS: both symbolic Catalan linear-combination certificates.
+PASS: supplementary verification complete; no finite test is used as the universal proof.

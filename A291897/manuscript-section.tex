@@ -1,0 +1,93 @@
+\section{A291897: squares in Euler-polynomial numerators}
+
+Write $\operatorname{num}(q)$ for the numerator of a rational number $q$
+when its denominator is positive and numerator and denominator are coprime.
+The source entry A291897 is
+\[
+ a(n)=\operatorname{num}\bigl(E_{2n-1}(n)\bigr),\qquad n\ge1,
+\]
+where $E_m(z)$ denotes the Euler polynomial. Its recorded conjecture is
+that $(2n-1)^2$ divides $a(n)$ \cite{a291897-source}.
+
+Let $e_m$ be the signed Euler numbers. We use the conventions
+\[
+ \operatorname{sech}t=\sum_{m\ge0}e_m\frac{t^m}{m!},\qquad
+ \frac{2e^{zt}}{e^t+1}=\sum_{m\ge0}E_m(z)\frac{t^m}{m!}.
+\]
+Thus $e_0=1$, $e_m=0$ for odd $m$, and for positive even $m$,
+\[
+ e_m=-\sum_{j=0}^{m-1}\binom mj e_j.
+\]
+The recurrence follows by comparing coefficients in
+$\cosh t\operatorname{sech}t=1$ and proves that every $e_m$ is an integer.
+These conventions and formulas are classical \cite{a291897-dlmf,a291897-carlitz}.
+
+Define the integral centered polynomial
+\begin{equation}\label{eq:euler-centered}
+ P_m(x)=\sum_{j=0}^m\binom mj e_{m-j}x^j.
+\end{equation}
+Multiplying the exponential generating series gives
+\[
+ \sum_{m\ge0}P_m(x)\frac{t^m}{m!}
+ =e^{xt}\operatorname{sech}t
+ =\frac{2e^{(x+1)t}}{e^{2t}+1}
+ =\sum_{m\ge0}2^m E_m\!\left(\frac{x+1}{2}\right)\frac{t^m}{m!}.
+\]
+Consequently
+\begin{equation}\label{eq:euler-convention}
+ P_m(x)=2^mE_m\!\left(\frac{x+1}{2}\right).
+\end{equation}
+This is also the centered finite expansion in DLMF~24.2.10.
+
+\begin{theorem}\label{thm:euler-general}
+Let $m\ge1$ be odd, and let $x\in\Z$ satisfy $m\mid x$. Then
+\[
+ m^2\mid P_m(x),\qquad
+ m^2\mid\operatorname{num}\!\left(\frac{P_m(x)}{2^m}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+In \eqref{eq:euler-centered}, the term $j=0$ is $e_m=0$.
+The term $j=1$ is $m e_{m-1}x$, which is divisible by $m^2$.
+For $j\ge2$, the factor $x^j$ is divisible by $m^2$.
+Thus every summand is divisible by $m^2$, proving the first assertion.
+
+Let $P_m(x)/2^m=u/v$ in lowest terms, with $v>0$. Cancellation
+divides the original numerator and denominator by a common positive
+integer $c$ dividing $2^m$. Since $m$ is odd, $\gcd(m^2,c)=1$.
+The relation $m^2\mid P_m(x)=cu$ therefore implies $m^2\mid u$.
+\end{proof}
+
+\begin{corollary}\label{thm:euler-source}
+For every integer $n\ge1$,
+\[
+ (2n-1)^2\mid\operatorname{num}\bigl(E_{2n-1}(n)\bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Set $m=x=2n-1$ in Theorem~\ref{thm:euler-general} and use
+\eqref{eq:euler-convention}.
+\end{proof}
+
+\paragraph{Formal scope.}
+\texttt{EulerSource.lean} defines the signed Euler numbers by the integer
+recurrence, then uses the finite centered expansion to define the rational
+Euler value and its reduced numerator. \texttt{EulerProof.lean} proves
+the square-divisibility theorem, the coprime cancellation lemma, and
+Corollary~\ref{thm:euler-source} for every positive natural index.
+All divisibility and rational-reduction steps are formalized. The identification
+with the analytic generating-function convention is the classical calculation
+above; a separate analytic equivalence is not a Lean theorem in this package.
+
+\paragraph{Attribution and selected scope.}
+The existing admitted open-math-agents statement uses the same finite
+source representation and credits \texttt{@DhruRules}; that representation
+is acknowledged \cite{a291897-oma}. The classical centered expansion is
+not a new formula. Shevelev's source-linked paper proves a different
+denominator theorem for $E_n(x)-E_n(1)$ \cite{a291897-shevelev}.
+The bounded prior-work screening is recorded in the accompanying package;
+it does not establish worldwide priority. The general theorem and its
+A291897 specialization are counted as one family. The adjacent
+A292911 conjecture about a third factor of $2n-1$ is outside this result.

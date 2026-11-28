@@ -1,6 +1,10 @@
 # math
 math proofs
 
+- [A291897 — squares dividing every Euler-polynomial numerator in the source family](A291897/README.md)
+- [A104722 — repeated-Catalan convolution recurrence and its exact starting index](A104722/README.md)
+- [Euler numerators and repeated Catalan convolutions — Batch 16 manuscript](notes/Math_Proofs_Batch16.pdf) · [Collection guide](notes/Math_Proofs_Batch16_README.md)
+
 - [A045994 — the Motzkin-convolution recurrence and corrected generating function](A045994/README.md)
 - [A202253 / A202254 — exact bounded zero-sum array counts, recurrences, and generating functions](A202253/README.md)
 - [Motzkin convolutions and bounded zero-sum arrays — Batch 15 manuscript](notes/Math_Proofs_Batch15.pdf) · [Collection guide](notes/Math_Proofs_Batch15_README.md)

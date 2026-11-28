@@ -1,0 +1,312 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{2em}
+\Urlmuskip=0mu plus 2mu
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Batch 16: Euler polynomial numerators and repeated Catalan convolutions}
+\author{BlakeStone\\\small Proofs developed with ChatGPT}
+\date{November 28, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove that $(2n-1)^2$ divides the reduced numerator of
+$E_{2n-1}(n)$ for every positive integer $n$, the assertion recorded
+in A291897. The proof is a specialization of an odd-degree centered
+Euler-polynomial divisibility lemma. We also derive Mathar's A104722
+recurrence from the literal self-convolution of repeated Catalan numbers,
+with the necessary starting index $n\ge4$ and an explicit failure at $n=3$.
+These are two mathematical families with four checked Lean modules.
+Classical Euler and Catalan formulas are credited. The analytic
+identification of the finite Euler formula is explained mathematically;
+a separate analytic equivalence is outside the Lean development.
+\end{abstract}
+
+\section{A291897: squares in Euler-polynomial numerators}
+
+Write $\operatorname{num}(q)$ for the numerator of a rational number $q$
+when its denominator is positive and numerator and denominator are coprime.
+The source entry A291897 is
+\[
+ a(n)=\operatorname{num}\bigl(E_{2n-1}(n)\bigr),\qquad n\ge1,
+\]
+where $E_m(z)$ denotes the Euler polynomial. Its recorded conjecture is
+that $(2n-1)^2$ divides $a(n)$ \cite{a291897-source}.
+
+Let $e_m$ be the signed Euler numbers. We use the conventions
+\[
+ \operatorname{sech}t=\sum_{m\ge0}e_m\frac{t^m}{m!},\qquad
+ \frac{2e^{zt}}{e^t+1}=\sum_{m\ge0}E_m(z)\frac{t^m}{m!}.
+\]
+Thus $e_0=1$, $e_m=0$ for odd $m$, and for positive even $m$,
+\[
+ e_m=-\sum_{j=0}^{m-1}\binom mj e_j.
+\]
+The recurrence follows by comparing coefficients in
+$\cosh t\operatorname{sech}t=1$ and proves that every $e_m$ is an integer.
+These conventions and formulas are classical \cite{a291897-dlmf,a291897-carlitz}.
+
+Define the integral centered polynomial
+\begin{equation}\label{eq:euler-centered}
+ P_m(x)=\sum_{j=0}^m\binom mj e_{m-j}x^j.
+\end{equation}
+Multiplying the exponential generating series gives
+\[
+ \sum_{m\ge0}P_m(x)\frac{t^m}{m!}
+ =e^{xt}\operatorname{sech}t
+ =\frac{2e^{(x+1)t}}{e^{2t}+1}
+ =\sum_{m\ge0}2^m E_m\!\left(\frac{x+1}{2}\right)\frac{t^m}{m!}.
+\]
+Consequently
+\begin{equation}\label{eq:euler-convention}
+ P_m(x)=2^mE_m\!\left(\frac{x+1}{2}\right).
+\end{equation}
+This is also the centered finite expansion in DLMF~24.2.10.
+
+\begin{theorem}\label{thm:euler-general}
+Let $m\ge1$ be odd, and let $x\in\Z$ satisfy $m\mid x$. Then
+\[
+ m^2\mid P_m(x),\qquad
+ m^2\mid\operatorname{num}\!\left(\frac{P_m(x)}{2^m}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+In \eqref{eq:euler-centered}, the term $j=0$ is $e_m=0$.
+The term $j=1$ is $m e_{m-1}x$, which is divisible by $m^2$.
+For $j\ge2$, the factor $x^j$ is divisible by $m^2$.
+Thus every summand is divisible by $m^2$, proving the first assertion.
+
+Let $P_m(x)/2^m=u/v$ in lowest terms, with $v>0$. Cancellation
+divides the original numerator and denominator by a common positive
+integer $c$ dividing $2^m$. Since $m$ is odd, $\gcd(m^2,c)=1$.
+The relation $m^2\mid P_m(x)=cu$ therefore implies $m^2\mid u$.
+\end{proof}
+
+\begin{corollary}\label{thm:euler-source}
+For every integer $n\ge1$,
+\[
+ (2n-1)^2\mid\operatorname{num}\bigl(E_{2n-1}(n)\bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Set $m=x=2n-1$ in Theorem~\ref{thm:euler-general} and use
+\eqref{eq:euler-convention}.
+\end{proof}
+
+\paragraph{Formal scope.}
+\texttt{EulerSource.lean} defines the signed Euler numbers by the integer
+recurrence, then uses the finite centered expansion to define the rational
+Euler value and its reduced numerator. \texttt{EulerProof.lean} proves
+the square-divisibility theorem, the coprime cancellation lemma, and
+Corollary~\ref{thm:euler-source} for every positive natural index.
+All divisibility and rational-reduction steps are formalized. The identification
+with the analytic generating-function convention is the classical calculation
+above; a separate analytic equivalence is not a Lean theorem in this package.
+
+\paragraph{Attribution and selected scope.}
+The existing admitted open-math-agents statement uses the same finite
+source representation and credits \texttt{@DhruRules}; that representation
+is acknowledged \cite{a291897-oma}. The classical centered expansion is
+not a new formula. Shevelev's source-linked paper proves a different
+denominator theorem for $E_n(x)-E_n(1)$ \cite{a291897-shevelev}.
+The bounded prior-work screening is recorded in the accompanying package;
+it does not establish worldwide priority. The general theorem and its
+A291897 specialization are counted as one family. The adjacent
+A292911 conjecture about a third factor of $2n-1$ is outside this result.
+
+
+\section{A104722: a recurrence for repeated Catalan numbers}
+
+Write $C_r=\frac1{r+1}\binom{2r}{r}$ for the Catalan numbers, and
+define the repeated sequence and its self-convolution by
+\begin{equation}\label{eq:a104722-source}
+ b_n=C_{\lfloor n/2\rfloor},\qquad
+ a_n=\sum_{k=0}^{n}b_kb_{n-k}\qquad(n\ge0).
+\end{equation}
+This is the literal definition of A104722 \cite{a104722-source}.
+The initial values are $a_0,a_1,a_2,a_3=1,2,3,4$.
+
+\begin{theorem}\label{thm:a104722}
+For every integer $n\ge4$,
+\[
+ (n+4)a_n+(n+1)a_{n-1}
+ -4(n+1)a_{n-2}+4(2-n)a_{n-3}=0.
+\]
+At $n=3$, the left side is $4$, so the starting index cannot be
+lowered to $3$.
+\end{theorem}
+
+\begin{proof}
+The standard Catalan convolution and ratio identities are
+\begin{equation}\label{eq:a104722-catalan}
+ \sum_{j=0}^{r}C_jC_{r-j}=C_{r+1},\qquad
+ (r+2)C_{r+1}=2(2r+1)C_r.
+\end{equation}
+The first is the coefficient form of $C(x)=1+xC(x)^2$;
+the second follows from the binomial formula.
+
+For the odd argument $2r+1$, pair the even and odd summation
+indices in \eqref{eq:a104722-source}. Both terms in the $j$th
+pair are $C_jC_{r-j}$, giving
+\begin{equation}\label{eq:a104722-odd}
+ a_{2r+1}=2\sum_{j=0}^{r}C_jC_{r-j}=2C_{r+1}.
+\end{equation}
+For the even argument $2r+2$, the even terms sum to
+$\sum_{j=0}^{r+1}C_jC_{r+1-j}=C_{r+2}$ and the odd terms sum to
+$\sum_{j=0}^{r}C_jC_{r-j}=C_{r+1}$. Hence
+\begin{equation}\label{eq:a104722-even}
+ a_{2r+2}=C_{r+2}+C_{r+1}.
+\end{equation}
+Both identities hold for every $r\ge0$.
+
+Let $R(n)$ denote the recurrence's left side and set
+\[
+ H_r=(r+2)C_{r+1}-2(2r+1)C_r.
+\]
+The second identity in \eqref{eq:a104722-catalan} says $H_r=0$.
+Substitute \eqref{eq:a104722-odd} and \eqref{eq:a104722-even}
+into $R(n)$ and collect the three adjacent Catalan numbers.
+For the two parity cases this gives the exact certificates
+\begin{align*}
+ R(2r+4)&=2H_{r+2}+6H_{r+1},\\
+ R(2r+5)&=6H_{r+2}+2H_{r+1}.
+\end{align*}
+For clarity, their expanded forms are
+\[
+\begin{aligned}
+R(2r+4)
+ &=(2r+8)C_{r+3}+(-2r-2)C_{r+2}-(24r+36)C_{r+1},\\
+R(2r+5)
+ &=(6r+24)C_{r+3}-(22r+54)C_{r+2}-(8r+12)C_{r+1}.
+\end{aligned}
+\]
+Thus both parity cases vanish and exhaust all integers $n\ge4$.
+At the preceding index, direct substitution gives
+\[
+ R(3)=7\cdot4+4\cdot3-16\cdot2-4\cdot1=4.
+\]
+\end{proof}
+
+\paragraph{Prior work and scope.}
+The source records Mathar's conjecture on November 9, 2012, but
+prints no lower bound on $n$ \cite{a104722-source}; the theorem
+supplies the necessary bound. This is a single recurrence family.
+The Catalan expressions are established background. The OEIS
+entry credits James Sellers's May 19, 2008 generating-function
+argument for agreement with A059348 after the first term.
+The related sequence has a different OEIS offset
+\cite{a104722-related}. Zhao, Li and Sun's Theorem 3.7
+\cite{a104722-zhao} gives a related permutation enumeration in
+Catalan numbers; no novelty is claimed here for those formulas.
+
+The contribution of this package is the explicit recurrence
+derivation from the literal convolution, its endpoint correction,
+and its checked Lean proof. The bounded prior-work search is
+documented separately and does not establish global priority.
+The formalization uses mathlib's natural-number Catalan sequence,
+proves both parity formulas by finite-sum pairing, derives the ratio
+from the central-binomial-coefficient identity, and checks both
+linear-combination certificates. Its final results are
+\texttt{A104722.source\_recurrence} and
+\texttt{A104722.index\_three\_exception}.
+
+\section{Verification and scope of the release}
+
+The accompanying repository packages contain all Lean sources, pinned
+toolchain and dependency manifests, frozen OEIS source snapshots with
+hashes, supplementary exact-arithmetic scripts, build logs, and separate
+agent review reports. Each package's complete set of local proof modules
+is listed as an explicit default build target. The command
+\texttt{lake build} checks the package under Lean~4.19.0 and mathlib
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+
+For this release, each of the two packages passed an author build and
+a separate fresh source-only build: four successful package builds in
+total. The builds used separate local directories and copied no compiled
+proof objects from one another. They shared the same pinned compiler and
+external dependency caches. The word ``independent'' describes this
+separate compilation and a review by another proof agent, not verification
+by a second theorem prover or external peer review.
+
+The printed principal theorem audits use only Lean's standard
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}
+axioms. Source checks exclude local admissions, custom axiom declarations,
+and \texttt{native\_decide}. Input hashes in the build logs bind the
+checks to the published sources. The supplementary finite calculations
+help detect source, index, and sign mistakes; the universal mathematical
+assertions are established by the human and Lean proofs, with the
+formal boundaries stated in the relevant sections.
+
+The counts in this collection refer to mathematical families and selected
+recorded assertions. Supporting identities, boundary corrections, and
+corollaries are not separately counted as solved open problems. Each
+package's \texttt{source\_checks.md} records a bounded prior-work inquiry
+and credits known ingredients. Neither the recorded conjecture label nor
+those searches establishes current worldwide open status or priority.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{a291897-source}
+V.~Shevelev, OEIS A291897, \emph{Numerator of $E(2n-1,n)$}, 2017.
+Frozen OEIS data at commit \texttt{091a90f51479669655f4e46343867ea2abd5d4ff};
+\url{https://oeis.org/A291897}.
+
+\bibitem{a291897-dlmf}
+NIST Digital Library of Mathematical Functions,
+formulas 24.2.6--24.2.10 and 24.5.4,
+\url{https://dlmf.nist.gov/24.2} and \url{https://dlmf.nist.gov/24.5}.
+
+\bibitem{a291897-carlitz}
+L.~Carlitz, \emph{A Note on Euler Numbers and Polynomials},
+Nagoya Mathematical Journal \textbf{7} (1954),
+\url{https://doi.org/10.1017/S0027763000018043}.
+
+\bibitem{a291897-shevelev}
+V.~Shevelev, \emph{On a Luschny question}, arXiv:1708.08096v3 (2017),
+\url{https://arxiv.org/abs/1708.08096v3}.
+
+\bibitem{a291897-oma}
+GuillaumeBAUD-coder/open-math-agents,
+\texttt{statements/oeis-a291897.lean}, admitted statement crediting
+\texttt{@DhruRules}, commit
+\texttt{5494b7a26d84a2fe7ab23ca2e45e1e864f5714f9},
+\url{https://github.com/GuillaumeBAUD-coder/open-math-agents}.
+
+
+\bibitem{a104722-source}
+P.~Barry; recurrence conjecture by R.~J.~Mathar,
+\emph{OEIS A104722: Self-convolution of repeated Catalan numbers}.
+The entry includes James Sellers's May 19, 2008 argument.
+Immutable source commit
+\texttt{091a90f51479669655f4e46343867ea2abd5d4ff}.
+\url{https://oeis.org/A104722}.
+
+\bibitem{a104722-related}
+The OEIS Foundation, \emph{A059348}.
+Immutable source commit
+\texttt{091a90f51479669655f4e46343867ea2abd5d4ff}.
+\url{https://oeis.org/A059348}.
+
+\bibitem{a104722-zhao}
+T.~Zhao, X.~Li and Y.~Sun,
+\emph{Enumeration of Permutations Without Consecutive Descents
+Avoiding Patterns of Length 3},
+Advances in Mathematics (China) \textbf{54}(1) (2025), 50--60,
+Theorem 3.7. \url{https://doi.org/10.11845/sxjz.2023026b}.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,53 @@
+Batch 16: release verification
+Date (UTC): 2026-11-28T07:18:34.716588+00:00
+Lean 4.19.0; mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b
+Two fresh source-only package builds per mathematical family.
+Separate build directories share only the pinned compiler and external dependencies.
+Independent reviews were by separate proof agents, not external peer reviewers.
+
+A291897
+Proof modules: EulerProof.lean, EulerSource.lean
+verification.txt: PASS; SHA256 cdb3a93e87cb73c3544346d306f1869d57cecb45c859056385b759b3049ec4e5
+Date (UTC): 2026-11-28T07:09:52.750924+00:00
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A291897/author-20261128T070952-bd22e714
+Explicit default roots: EulerProof, EulerSource
+independent_build.log: PASS; SHA256 15fbdf5e7ca7f98bd0548e8825cab382d823bc9b0253f86809a9f7cc4a837dd1
+Date (UTC): 2026-11-28T07:10:06.223751+00:00
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A291897/independent-20261128T071006-a21d07f7
+Explicit default roots: EulerProof, EulerSource
+Independent substantive review: PASS; SHA256 822077d424a79bf89acd66c3b0bea14e30e218d6a67a969ee183b67f353c1063
+SHA256 A291897/EulerProof.lean: c36364428c3bf1095c6fb0be6cfb359a29253a9d0a2ef4983b347eb7e970d1f4
+SHA256 A291897/EulerSource.lean: 1b46dd9bdb2b593f903b2a7dd59e3e0d4c4a2155bdb667e733320bdfbef45833
+SHA256 A291897/lakefile.lean: a295ea6a27206c28db942eb2b0b09ab5da576261cc54b634e5fed4c503a8af94
+SHA256 A291897/lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 A291897/lake-manifest.json: db53dcf19b380f988038e0f5953e08e49f97f0be70c8973b5d2ea4daffa154f8
+
+A104722
+Proof modules: Proof.lean, Source.lean
+verification.txt: PASS; SHA256 6b0b43b23ea072acfdd6acd780085cb159379766ecaf64bd29d5b35a9693e45e
+Date (UTC): 2026-11-28T07:08:31.579593+00:00
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A104722/author-20261128T070831-8d078c75
+Explicit default roots: Proof, Source
+independent_build.log: PASS; SHA256 b8a38e279fa1c61c2ea60084c6bc57d407447fcab17e9209a797c65473f3efe2
+Date (UTC): 2026-11-28T07:10:25.516555+00:00
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A104722/independent-20261128T071025-c43381af
+Explicit default roots: Proof, Source
+Independent substantive review: PASS; SHA256 d2858b762ee80e8c8074b25701d3469cfcbf730c2aa019e673c70c4370228a52
+SHA256 A104722/Proof.lean: 1125d4b43fcd9de29d9a5dc601e7fb87000e5b09197bcd2e5da8ca5eca1ae36e
+SHA256 A104722/Source.lean: ec8bbf26087787067b63787d97de3ca85623c9a0ba9ef755091800a34e537bda
+SHA256 A104722/lakefile.lean: cbe892e6781a832602545cdde247a96a7cb7f14223593896b530cdacddb41bbf
+SHA256 A104722/lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+SHA256 A104722/lake-manifest.json: 84f99bbe365b5f3d6a43e1f0e55c04d9424a70373b4c64ff4492a0c58ffd5392
+
+Total local proof modules: 4
+Successful package builds: 4
+Standard printed axioms: propext, Classical.choice, Quot.sound
+Local source audit: no admissions, custom axioms, or native_decide
+Frozen OEIS snapshot hashes: independently checked against all package manifests
+Manuscript: 5 pages; every page rendered and visually reviewed: PASS
+PDF compilation: installed local pdfTeX/LaTeX and fonts; no external compiler service
+No overfull boxes, unresolved citations, or unresolved references in final TeX log
+PDF SHA256: 89f77c8c8ed879c76ca5a0313e81d9a3c3560e688561cc70214ff3d90d11064e
+LaTeX SHA256: ca904dcdd01e9ee5c580ee82db3f7dd290b991ffe4d6c453c4582df9d27402c4
+The Euler analytic source identification, where applicable, is a human proof; the finite formula divisibility is formalized.
+No worldwide-priority claim. Selected source assertions and exclusions are stated in each package.

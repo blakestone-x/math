@@ -1,0 +1,578 @@
+{
+  "checked_at": "2026-11-28 UTC",
+  "scope": "Bounded GitHub code-search refresh; returned totals are not worldwide priority evidence.",
+  "queries": [
+    {
+      "query": "A045994 repo:the-omega-institute/trureturing",
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "path": "D5/S3/Arith/Divisors/ErdosNicolas/Data/Main22.lean",
+          "url": "https://github.com/the-omega-institute/trureturing/blob/8c0727e92a0b9376eff4a6cd78e647a1feab3bb8/D5/S3/Arith/Divisors/ErdosNicolas/Data/Main22.lean",
+          "repository": "the-omega-institute/trureturing"
+        }
+      ]
+    },
+    {
+      "query": "A045994 repo:kolinhuang0427/open-math-results",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A104722 repo:the-omega-institute/trureturing",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A104722 repo:kolinhuang0427/open-math-results",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A045994 language:Lean",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A104722 language:Lean",
+      "total_count": 19,
+      "incomplete_results": false,
+      "items": [
+        {
+          "path": "pythia/point/CON/W/E9.lean",
+          "url": "https://github.com/leochlon/tiny-bayes/blob/c7f2ae616ff42665bd1276db36ebde765a94a302/pythia/point/CON/W/E9.lean",
+          "repository": "leochlon/tiny-bayes"
+        },
+        {
+          "path": "Theory/SpecificGroups/Janko3/RecognitionPresentation/OrderBound/M1Cover/destCodeData00.lean",
+          "url": "https://github.com/Qiuzhen-CFSG/CFSG/blob/0c6635528a02dd46f2e93e2ade0c4ac647ad1eb7/Theory/SpecificGroups/Janko3/RecognitionPresentation/OrderBound/M1Cover/destCodeData00.lean",
+          "repository": "Qiuzhen-CFSG/CFSG"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch054.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch054.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch045.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch045.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch137.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch137.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch112.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch112.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch117.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch117.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch002.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch002.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch043.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch043.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch063.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch063.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch053.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch053.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch126.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch126.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch091.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch091.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch145.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch145.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch111.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch111.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch109.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch109.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch151.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch151.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch153.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch153.lean",
+          "repository": "caiusdfolkerts/research"
+        },
+        {
+          "path": "small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch162.lean",
+          "url": "https://github.com/caiusdfolkerts/research/blob/487611b97e9c0b59ee583b451e92130a789b2caa/small_nonrational/source/finite/graph_coverage_batch/graph_coverage_batch162.lean",
+          "repository": "caiusdfolkerts/research"
+        }
+      ]
+    },
+    {
+      "query": "Motzkin repo:kolinhuang0427/open-math-results",
+      "total_count": 7,
+      "incomplete_results": false,
+      "items": [
+        {
+          "path": "targets/oeis-A092920/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A092920/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A108430/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A108430/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A092920/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A092920/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A092920/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A092920/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A092920/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A092920/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/derycke-2402.15372-conj7_1/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/derycke-2402.15372-conj7_1/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A092920/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A092920/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        }
+      ]
+    },
+    {
+      "query": "Catalan repo:kolinhuang0427/open-math-results",
+      "total_count": 77,
+      "incomplete_results": false,
+      "items": [
+        {
+          "path": "targets/oeis-A014137/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A168452/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A168452/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157002/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157002/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A162481/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A162481/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157003/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157003/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A158826/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A158826/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A168452/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A168452/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157003/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157003/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157002/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157002/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157002/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157002/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/otmani-2608.14453-rem3.2/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/otmani-2608.14453-rem3.2/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/check-check-2.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/check-check-2.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A162481/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A162481/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A168452/notes/check-check-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A168452/notes/check-check-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157003/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157003/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A158826/notes/check-check-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A158826/notes/check-check-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157002/notes/check-check-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157002/notes/check-check-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157003/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157003/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A162481/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A162481/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/notes/novelty-gate2-watch-6.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/notes/novelty-gate2-watch-6.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/novelty-gate2-watch-6.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/novelty-gate2-watch-6.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A119262/notes/novelty-gate2-watch-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A119262/notes/novelty-gate2-watch-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/notes/novelty-gate3-watch-6.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/notes/novelty-gate3-watch-6.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/notes/novelty-gate2-watch-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/notes/novelty-gate2-watch-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/novelty-gate2-watch-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/novelty-gate2-watch-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/notes/novelty-gate2-watch-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/notes/novelty-gate2-watch-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/novelty-gate3-watch-1.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/novelty-gate3-watch-1.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A119262/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A119262/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/notes/novelty-gate3-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/notes/novelty-gate3-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/novelty-gate2-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/notes/check-check-2.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/notes/check-check-2.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/notes/check-check-2.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/notes/check-check-2.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157002/notes/check-check-1.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157002/notes/check-check-1.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/otmani-2608.14453-rem3.2/notes/check-check-2.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/otmani-2608.14453-rem3.2/notes/check-check-2.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A187430/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A187430/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/README.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/notes/audit-helper-a250917.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/notes/audit-helper-a250917.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A158826/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A158826/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A162481/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A162481/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A014137/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A014137/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A186997/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A186997/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A157003/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A157003/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/notes/novelty-gate3-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/notes/novelty-gate3-watch-5.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/TARGET.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/TARGET.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/notes/check-check-3.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/notes/check-check-3.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A168452/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A168452/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/otmani-2608.14453-rem3.2/verify.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/otmani-2608.14453-rem3.2/verify.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/otmani-2608.14453-rem3.2/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/otmani-2608.14453-rem3.2/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A250917/notes/check-check-2.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A250917/notes/check-check-2.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/notes/novelty-gate3-watch-6.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/notes/novelty-gate3-watch-6.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/notes/check-check-3.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/notes/check-check-3.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/AUDIT.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/AUDIT.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/oeis-A165204/notes/check-check-2.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A165204/notes/check-check-2.py",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/alexandersson-2609.05131-prob10.1/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/alexandersson-2609.05131-prob10.1/PROOF.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/ragunathan-2603.29978-conj6.1/notes/audit-helper-ragunathan.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/ragunathan-2603.29978-conj6.1/notes/audit-helper-ragunathan.md",
+          "repository": "kolinhuang0427/open-math-results"
+        },
+        {
+          "path": "targets/schwob-2606.12129-conj8.7/notes/check-check-2.py",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/schwob-2606.12129-conj8.7/notes/check-check-2.py",
+          "repository": "kolinhuang0427/open-math-results"
+        }
+      ]
+    }
+  ]
+}

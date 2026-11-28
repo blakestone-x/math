@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/archmageirvine/joeis/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a045/A045994.java",
+    "file": "A045994.java",
+    "bytes": 666,
+    "sha256": "705c85edaba54d94f1583e05205f6d3f423ccc1b38c8255bfa5c203856c7d38b"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/Maxima-enthusiast/OEISSnippets/2eae6f12843a3cf9dbd5ae0af76d50221cc77286/A045/A045994.wxm",
+    "file": "A045994.wxm",
+    "bytes": 526,
+    "sha256": "f2fce23b4d4460e0e09e9af3545e71c3fd1885a6628879199054a72a012b0a5f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/archmageirvine/joeis/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a104/A104722.java",
+    "file": "A104722.java",
+    "bytes": 477,
+    "sha256": "aee84e7c64415dd5372daa19e05f4d35387878873d8d4c42edf8a2260fc74ade"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/archmageirvine/joeis/abb609413c9b320e769eaf41c0eef4ee43d1b5e7/src/irvine/oeis/a059/A059348.java",
+    "file": "A059348.java",
+    "bytes": 520,
+    "sha256": "a1a08edccc4ffa85982e13a054bf688dafb329e831b1cd3e611d0402f1dafabb"
+  }
+]

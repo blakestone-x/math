@@ -1,0 +1,94 @@
+\section{A104722: a recurrence for repeated Catalan numbers}
+
+Write $C_r=\frac1{r+1}\binom{2r}{r}$ for the Catalan numbers, and
+define the repeated sequence and its self-convolution by
+\begin{equation}\label{eq:a104722-source}
+ b_n=C_{\lfloor n/2\rfloor},\qquad
+ a_n=\sum_{k=0}^{n}b_kb_{n-k}\qquad(n\ge0).
+\end{equation}
+This is the literal definition of A104722 \cite{a104722-source}.
+The initial values are $a_0,a_1,a_2,a_3=1,2,3,4$.
+
+\begin{theorem}\label{thm:a104722}
+For every integer $n\ge4$,
+\[
+ (n+4)a_n+(n+1)a_{n-1}
+ -4(n+1)a_{n-2}+4(2-n)a_{n-3}=0.
+\]
+At $n=3$, the left side is $4$, so the starting index cannot be
+lowered to $3$.
+\end{theorem}
+
+\begin{proof}
+The standard Catalan convolution and ratio identities are
+\begin{equation}\label{eq:a104722-catalan}
+ \sum_{j=0}^{r}C_jC_{r-j}=C_{r+1},\qquad
+ (r+2)C_{r+1}=2(2r+1)C_r.
+\end{equation}
+The first is the coefficient form of $C(x)=1+xC(x)^2$;
+the second follows from the binomial formula.
+
+For the odd argument $2r+1$, pair the even and odd summation
+indices in \eqref{eq:a104722-source}. Both terms in the $j$th
+pair are $C_jC_{r-j}$, giving
+\begin{equation}\label{eq:a104722-odd}
+ a_{2r+1}=2\sum_{j=0}^{r}C_jC_{r-j}=2C_{r+1}.
+\end{equation}
+For the even argument $2r+2$, the even terms sum to
+$\sum_{j=0}^{r+1}C_jC_{r+1-j}=C_{r+2}$ and the odd terms sum to
+$\sum_{j=0}^{r}C_jC_{r-j}=C_{r+1}$. Hence
+\begin{equation}\label{eq:a104722-even}
+ a_{2r+2}=C_{r+2}+C_{r+1}.
+\end{equation}
+Both identities hold for every $r\ge0$.
+
+Let $R(n)$ denote the recurrence's left side and set
+\[
+ H_r=(r+2)C_{r+1}-2(2r+1)C_r.
+\]
+The second identity in \eqref{eq:a104722-catalan} says $H_r=0$.
+Substitute \eqref{eq:a104722-odd} and \eqref{eq:a104722-even}
+into $R(n)$ and collect the three adjacent Catalan numbers.
+For the two parity cases this gives the exact certificates
+\begin{align*}
+ R(2r+4)&=2H_{r+2}+6H_{r+1},\\
+ R(2r+5)&=6H_{r+2}+2H_{r+1}.
+\end{align*}
+For clarity, their expanded forms are
+\[
+\begin{aligned}
+R(2r+4)
+ &=(2r+8)C_{r+3}+(-2r-2)C_{r+2}-(24r+36)C_{r+1},\\
+R(2r+5)
+ &=(6r+24)C_{r+3}-(22r+54)C_{r+2}-(8r+12)C_{r+1}.
+\end{aligned}
+\]
+Thus both parity cases vanish and exhaust all integers $n\ge4$.
+At the preceding index, direct substitution gives
+\[
+ R(3)=7\cdot4+4\cdot3-16\cdot2-4\cdot1=4.
+\]
+\end{proof}
+
+\paragraph{Prior work and scope.}
+The source records Mathar's conjecture on November 9, 2012, but
+prints no lower bound on $n$ \cite{a104722-source}; the theorem
+supplies the necessary bound. This is a single recurrence family.
+The Catalan expressions are established background. The OEIS
+entry credits James Sellers's May 19, 2008 generating-function
+argument for agreement with A059348 after the first term.
+The related sequence has a different OEIS offset
+\cite{a104722-related}. Zhao, Li and Sun's Theorem 3.7
+\cite{a104722-zhao} gives a related permutation enumeration in
+Catalan numbers; no novelty is claimed here for those formulas.
+
+The contribution of this package is the explicit recurrence
+derivation from the literal convolution, its endpoint correction,
+and its checked Lean proof. The bounded prior-work search is
+documented separately and does not establish global priority.
+The formalization uses mathlib's natural-number Catalan sequence,
+proves both parity formulas by finite-sum pairing, derives the ratio
+from the central-binomial-coefficient identity, and checks both
+linear-combination certificates. Its final results are
+\texttt{A104722.source\_recurrence} and
+\texttt{A104722.index\_three\_exception}.

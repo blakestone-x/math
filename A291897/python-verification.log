@@ -1,0 +1,5 @@
+PASS: all 15 frozen A291897 terms from the literal numerator definition
+PASS: centered definition equals independently computed Euler polynomials, degrees 0..12
+PASS: conjecture replay for n=1..100 with exact reduced rational numerators
+PASS: generalized multiple-of-degree statement for odd m<=25 and -5<=k<=5
+Finite replay is supplementary; EulerNumerator.source_conjecture proves every positive n.

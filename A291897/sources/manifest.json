@@ -1,0 +1,19 @@
+{
+  "oeis_commit": "091a90f51479669655f4e46343867ea2abd5d4ff",
+  "files": [
+    {
+      "path": "A291897.seq",
+      "bytes": 1970,
+      "sha256": "ae128d1e6038f8c1e7d7f9d4debd37bec241b14b607689f394e4d9ead2b6f785",
+      "source_url": "https://raw.githubusercontent.com/oeis/oeisdata/091a90f51479669655f4e46343867ea2abd5d4ff/seq/A291/A291897.seq",
+      "role": "selected assertion"
+    },
+    {
+      "path": "A292911.seq",
+      "bytes": 1564,
+      "sha256": "bc0a1f32d69d13c798e7fb54a9e54a8516bee5913804d99b3dcd847d83abb1c7",
+      "source_url": "https://raw.githubusercontent.com/oeis/oeisdata/091a90f51479669655f4e46343867ea2abd5d4ff/seq/A292/A292911.seq",
+      "role": "neighboring cubic conjecture, not claimed"
+    }
+  ]
+}
