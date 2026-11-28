@@ -13,6 +13,31 @@ The W4 statement and split-map valuation formula come from the supplied research
 * **Counting and exceptional starts.** The displayed count estimate and the assumed mass-decay bound imply an infinitely-often lower bound on survival time. A separate binary residue model satisfies the count estimate while arbitrarily large starts survive forever. Using that estimate to deduce a pointwise upper bound would require additional structure specific to the dynamics.
 * **2-adic results.** The distance criterion characterizes survival of the multiplicative coefficient. Transferring its converse to numerical stopping uses the coefficient stopping time conjecture. The file also constructs the 2-adic logarithm that gives the exact valuation formula for the split-map family.
 
+## What happens at the first coefficient drop?
+
+Let `t` be the first depth at which `3^a < 2^t`, with `a` odd steps so far. Write `R` for the number of runs of consecutive odd steps. If the numerical endpoint still satisfies `T^t(n) ≥ n`, Lean proves both inequalities
+
+```text
+T^t(n) < n + R
+n (2^t − 3^a) ≤ 3^a R.
+```
+
+During an odd run, the identity `2(T(x)+1) = 3(x+1)` carries one additive unit through the entire run. In particular, with one odd run a numerical miss must be an exact return to the starting value. The file also gives an exact test for which larger starts with the same first `t` parities miss descent. Existence of a suitable prefix for every positive start remains open. The coefficient stopping time conjecture is discussed in [Lagarias's survey](https://web.williams.edu/Mathematics/sjmiller/public_html/355Sp24/addcomments/Lagarias_3x%2B1AndItsGeneralizations.pdf).
+
+The same file checks the classical rising blocks starting at `2^k w − 1`. For any proposed step limit and any lower bound on the start, there is a larger integer whose entire initial segment stays strictly above its starting value after time zero. This explains the need for a start-dependent search horizon. [Roosendaal’s account of the rising family](https://www.ericr.nl/wondrous/)
+
+## A necessary bound on the window constant
+
+Starting at `4,861,718,551,722,727`, exactly 632 of the first 1,011 shortcut steps are odd. Hence `8 × 632 = 5,056 > 5 × 1,011 = 5,055`. This start forces every admissible W4 constant to satisfy
+
+```text
+C > 1011 / log₂(4861718551722727) ≈ 19.401122169.
+```
+
+Lean checks the parity count and the strict rational lower bound `C > 97/5`. The start is entry 1916 of a published table. [OEIS A033491 data](https://oeis.org/A033491/b033491.txt)
+
+[Descent criteria and numerical certificate](Descent.lean)
+
 ## Reproduce
 
 The package pins Lean 4.19.0 and mathlib commit `c44e0c8ee63ca166450922a373c7409c5d26b00b`. From this directory with the pinned Lean toolchain installed, run
