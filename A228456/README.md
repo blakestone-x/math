@@ -7,3 +7,9 @@ The prime supplement proves Sun’s predicted congruence modulo p² for every od
 [Mathematical proof](a228456.tex) · [Binary classification](binary/proof.md) · [Lean classification theorem](binary/SunBinary.lean) · [Complete proof book](../notes/left-to-solve-2026-11-27/Proofs.pdf) · [Board statement](https://lefttosolve.com/p/oeis-a228456)
 
 Run `python3 verify_a228456.py` and `python3 binary/verify.py` to reproduce the finite certificate. Lean 4.33.1 checks the complete output classification for the finite automaton. The determinant-to-automaton identification is proved in the manuscript.
+
+## Split primes and the board formalization
+
+Write $S_p=(-1)^{(p-1)/2}H_{p-1}$. For $p=x^2+3y^2$ and $x\equiv1\pmod 3$, Sun predicts $S_p\equiv 2x-p/(2x)\pmod{p^2}$. We reduced that prediction to one coefficient of a fixed hypergeometric series and verified this coefficient for all 1,371 split primes through 25,000. A proof for every split prime remains open. [Coefficient reduction and verifier](split-reduction/single-coefficient/proof.md) · [Elementary evaluation of the comparison unit](split-reduction/split-unit-factorial.md) · [Alternative trace calculation](split-reduction/split-gaussian-trace.md)
+
+The board's exact declaration covers positivity, the mod-eight exclusion and the limit. The submitted Lean reduction derives it from three specified arithmetic facts. The child reduction gives a nine-pair argument for the remaining residue, conditional on two explicit scalar-moment identities. [Submitted board reduction](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18116) · [Child reduction](board/oeis-a228456.R1.H3.R1.lean)

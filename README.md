@@ -1,6 +1,8 @@
 # math
 math proofs
 
+- [All-column ternary digit recurrences](ternary-digit-variation/README.md) · [Mathar’s product recurrence in Lean](A249056/README.md) · [Sun’s divisor–totient conjecture on a density-one set](A248029/README.md) · [Seven power-sum rounding exceptions through 10¹⁰⁰⁰](A072633/README.md)
+
 - [Propp’s 1999 determinant problems — honeycomb hexagons, Aztec rectangles, and the fool’s-diamond square roots](Propp-Gram-determinants/README.md) · [Manuscript](Propp-Gram-determinants/propp-gram.pdf) · [Manyama’s two parity formulas in Lean](Propp-Gram-determinants/Parity.lean)
 
 - [Left to Solve — Sun’s Catalan determinants, sharp tree bounds, and tiling identities](notes/left-to-solve-2026-11-27/README.md) · [Proof book](notes/left-to-solve-2026-11-27/Proofs.pdf)

@@ -53,3 +53,7 @@ $$D_n=sM^{n-n_0}\left(M^{n_0-2}-\sum_{j=1}^r c_jM^{n_0-2-j}\right)e.$$
 By Cayley–Hamilton it satisfies a monic linear recurrence of degree at most the number of retained states. Using exact integer transfers, the program verifies $D_{16},\ldots,D_{81}=0$ at width four and $D_{32},\ldots,D_{251}=0$ at width five, proving both identities at every subsequent index. Multiplying the width-four series by its recurrence denominator gives numerator coefficients (ascending powers)
 $$0,2,-4,1,-6,9,5,-22,54,-41,-14,25,-17,11,-4,1.$$
 The program checks that this is precisely the numerator in Mathar's November 2026 empirical generating function after combining the two terms in his expression.
+
+## Lean verification
+
+The board received the formal statement in [PR 18043](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18043). The [formal development](formal) checks the transfer recurrence, the geometric placement dictionary, exact-cover splitting, and full-width counts of labeled paths. The final identification between those paths and the exact-cover count used by the board is a separate formal step; the combinatorial proof above gives that identification on paper.
