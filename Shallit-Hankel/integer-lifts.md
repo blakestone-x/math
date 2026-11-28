@@ -1,0 +1,7 @@
+# Three integer symbols for shifted Hankel determinants
+
+For any starting position $s_0$, an explicit word on $\{1,4,7\}$ has nonzero Hankel determinants of every order there and every odd order at every position. More generally, an order $r$ determinant starting at $s$ has exact 3-adic valuation $r-1$ whenever $2^{\nu_2(r)}$ divides $s-s_0$. The construction takes two successive discrete antiderivatives of Lunnon's ternary Pagoda sequence. [Manuscript](integer-lifts.pdf) · [LaTeX source](integer-lifts.tex) · [Pagoda theorem, p. 145](https://doi.org/10.4204/EPTCS.1.13)
+
+For every cutoff $R$, a second construction gives a word on three positive integers at most $48R$ with all determinants through order $R$ nonzero at every position. It counts the factors in Lunnon's Dakota sequence and specializes its affine determinant polynomials at rational points of bounded height. The general problem of one fixed finite integer alphabet working at all orders and positions remains open. [Shallit's Problem 43](https://ems.press/content/serial-article-files/46296) · [Dakota certificate](https://doi.org/10.5281/zenodo.21728308)
+
+The Python checker computes integer determinants directly, verifies the lift congruence, and checks a sample cutoff at every position by enumerating the complete factor language through the required lengths. Run it with Python 3. [Checker](verify_integer_lifts.py) · [Reference output](integer-lifts-verification.txt)

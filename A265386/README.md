@@ -4,6 +4,8 @@
 
 A complete written and Lean-checked proof of the mean-growth conjecture in [OEIS A265386](https://oeis.org/A265386), together with a quantitative theorem about its persistent alternating ratios.
 
+The [arbitrary-seed continuation](universal.md) proves mean growth $\sqrt2$ and at least six distinct ratio accumulation points for every positive starting pair. [New manuscript](universal.pdf)
+
 ## Results
 
 Let `G(m) = m XOR floor(m/2)` be the binary-reflected Gray transform. The sequence is

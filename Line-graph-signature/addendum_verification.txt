@@ -1,0 +1,12 @@
+connected cubic kernels on 4 vertices: 5
+connected cubic kernels on 6 vertices: 17
+connected cubic kernels on 8 vertices: 71
+connected cubic kernels on 10 vertices: 388
+exceptional kernel counts: b=9: 9, b=10: 26
+rank-zero forms and maximum net signatures: (576, 8), (18304, 8)
+rank-one forms excluded by exact Sylvester tests: 92416
+connected cubic kernels on 12 vertices: 2592
+exceptional kernel counts: b=11: 4, b=12: 13
+rank-zero forms and maximum net signatures: (512, 9), (21632, 10)
+rank-one forms excluded by exact Sylvester tests: 110208
+all rank-one exclusions also verified by integral congruence inertia

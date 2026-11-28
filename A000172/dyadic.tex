@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\CT}{\operatorname{CT}}
+\newcommand{\val}{v_2}
+\title{Irreducibility of Sun's Franel polynomials on dyadic families}
+\author{Blake Stone research collection\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $f_n$ be the binomial polynomial that Zhi-Wei Sun conjectured is irreducible over the rationals for every $n\ge2$. We prove irreducibility at every $n=b2^t$ and $n=b2^t+1$ in the domain for each odd $b\le127$. For every fixed nonnegative offset $c$, the factors other than a single irreducible factor of $f_{b2^t+c}$ have combined degree at most $\lfloor c/2\rfloor$ for all sufficiently large $t$. The same asymptotic statements hold for each fixed $b$ with no adjacent ones in binary. A constant-term representation gives a Frobenius congruence after translation. Once the endpoints of a 2-adic Newton polygon have stabilized, its finite slopes force the degrees of rational factors to be divisible by growing powers of two. A prime above $n$ puts an independent upper bound on the degree of any complementary factor.
+\end{abstract}
+
+\section{Two bounds on possible factor degrees}
+Sun posed the irreducibility question in 2013 \cite{sun}. Reindex his polynomial as
+\[
+ f_n(X)=\sum_{j=0}^{d} a_j X^j,\quad d=\lfloor n/2\rfloor,\quad
+ a_j=\binom nj^2\binom{2n-2j}n
+ =\binom n{2j}\binom{2j}j\binom{2n-2j}{n-j}.
+\]
+Write $s(m)$ for the number of ones in the binary expansion of $m$. The first manuscript establishes the conjecture for $2\le n\le2048$ and for $n=p-2,p-1,p,p+1$ with $p$ prime \cite{first}. The present infinite families include indices outside those results. For instance $n=2^{6j+3}$, $j\ge1$, has both $n-1$ and $n+1$ composite since they are multiples of seven and three, respectively.
+
+Let $q$ be the next prime after $n$. The earlier argument gives a factor of $f_n$ of degree at least $n-(q-1)/2$. In fact $n<q<2n$, so the coefficients up to but excluding index $n-(q-1)/2$ have $q$-valuation one, and the remaining coefficients are units. Exactly one integral primitive factor can have constant coefficient divisible by $q$; it must account for the whole multiplicity of zero after reduction. For every $n$ the complementary factors have total degree at most $g(n)=(q-1)/2-\lceil n/2\rceil$. At even $n$ a reducible $f_n$ must therefore have a rational factor of degree between $1$ and
+\begin{equation} g(n)=(q-1-n)/2. \label{gap}\end{equation}
+
+For an integral polynomial $P$ with nonzero constant and leading coefficients its lower Newton polygon is the lower convex hull of the points $(i,\val([X^i]P))$ at nonzero coefficients. Suppose that every slope is nonzero. For an edge with coordinate increments $(l,h)$, the power of two in the denominator of its reduced slope equals $2^{\max(0,\val(l)-\val(|h|))}$. Put
+\[
+ K(P)=\min_{(l,h)} \{\val(l)-\val(|h|)\}.
+\]
+Every rational factor degree is divisible by $2^{\max(0,K(P))}$. To recall the product argument, for real $u$ minimize $\val(p_i)-ui$. In a product, the least and the greatest minimizing indices are the sums of the corresponding indices in the factors: at either extreme the contribution of least valuation is unique. At each slope $u$ the difference of these two indices is the total horizontal length of edges of slope $u$. Thus the slopes of a factor occur in the product. On each factor edge its horizontal length is a multiple of the reduced slope denominator because both vertex coordinates are integers. Summing these lengths proves the assertion, the usual Newton polygon product rule.
+
+\section{Stabilization under doubling}
+\begin{lemma}\label{double}
+For $n=b2^t$ with $b$ odd, and $r\in\mathbb Z$, one has the coefficientwise congruence
+\[
+ f_{2n}(r+X)\equiv f_n(r+X^2)\pmod{2^{t+1}}.
+\]
+If $t\ge1$ and both endpoint valuations of the polygon of $f_n(r+X)$ are at most $t$, the polygon of $f_{2n}(r+X)$ is its horizontal dilation by two. This dilation repeats at every further doubling.
+\end{lemma}
+\begin{proof}
+In a Laurent polynomial ring put $A=z+z^{-1}$ and $P(X,z,w)=A^2+A(w+Xw^{-1})$. Taking constant terms in $z,w$ gives
+\[
+ f_n(X)=\CT_{z,w}P(X,z,w)^n.
+\]
+Indeed one must select $2j$ copies of the term involving $w$, with $j$ of each sign. The remaining power of $A$ is $2n-2j$. For $Q(X,z,w)=P(r+X,z,w)$ the Frobenius identity modulo two gives $Q^2\equiv Q(X^2,z^2,w^2)\pmod2$. Raising to $b$ and squaring $t$ times gives the asserted modulus, because squaring two congruent integers or integral polynomials gains a power of two once they are congruent modulo two. Taking constant terms commutes with doubling the Laurent exponents.
+
+Under the endpoint hypothesis the entire lower polygon has height at most $t$. Odd exponents on the new side have valuation at least $t+1$. Even exponents at levels $0,\ldots,t$ keep their exact old heights, and a higher coefficient stays higher than $t$. This gives the dilation and preserves the endpoint hypothesis at the next level.\end{proof}
+
+The identity $\val\binom{2h}{h}=s(h)$ and the factorial valuation formula give
+\[
+ \val(a_j)=2s(j)+s(n-2j)+s(n-j)-s(n)\ge s(n).
+\]
+To see equality, use the product of three binomials above. Equality requires both $s(j)+s(n-j)=s(n)$ and an odd $\binom n{2j}$. Equivalently every set bit of $j$ and of $2j$ is a set bit of $n$. Write $e$ for the integer whose bits are the bitwise intersection of $n$ and $\lfloor n/2\rfloor$. It follows that
+\begin{equation}
+ 2^{-s(n)}f_n(X)\equiv(1+X)^e\pmod2,\qquad
+ 2^{-s(n)}f_n(1+X)\equiv X^e\pmod2. \label{min}
+\end{equation}
+The second polynomial has exactly one coefficient of minimal valuation. Its lower polygon therefore has no horizontal edge. At even $n=b2^t$ its unnormalized leading coefficient has valuation $2s(b)$.
+
+\begin{theorem}\label{rays}
+Fix an odd $b$. If at some $t_0\ge1$ both endpoint valuations of $P=f_{b2^{t_0}}(1+X)$ are at most $t_0$, then $f_{b2^t}$ is irreducible for all sufficiently large $t$. More precisely, for $t\ge t_0$ it suffices that $g(b2^t)<2^{\max(0,t-t_0+K(P))}$. The endpoint hypothesis holds whenever the binary expansion of $b$ has no consecutive ones.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{double} and \eqref{min}, $K$ increases by exactly one on every doubling. A nonconstant complementary factor must obey both the divisibility bound and \eqref{gap}. The prime number theorem gives $g(n)=o(n)$, whereas $2^{t-t_0+K(P)}$ is a fixed positive multiple of $n$. If $b$ has no consecutive ones, $e=0$ in \eqref{min}. Both the value at one and the leading coefficient have valuations at most $2s(b)$ for every $t\ge1$, so $t_0=2s(b)$ works.\end{proof}
+
+\section{Fixed offsets}
+\begin{theorem}\label{offset}
+Suppose $b$ satisfies the endpoint hypothesis of Theorem~\ref{rays}, and fix $c\ge0$. At every sufficiently large $t$, $f_{b2^t+c}$ has an irreducible factor of degree at least $b2^{t-1}$. The total degree left over is at most $\lfloor c/2\rfloor$. In particular both the offset zero and the offset one are eventually irreducible.
+\end{theorem}
+\begin{proof}
+Put $N=b2^t$ and choose $k$ with $2^k>2c$. Repeated squaring as in Lemma~\ref{double} shows, for $t\ge k$, that
+\[
+ Q^{N}\equiv Q(X^{2^k},z^{2^k},w^{2^k})^{N/2^k}\pmod{2^{t-k+1}}.
+\]
+For $k=0$ this identity is exact. In $Q^c$ each Laurent exponent in $z,w$ has absolute value at most $2c$. Hence in multiplying the right side by $Q^c$, only its constant Laurent coefficient can contribute to the final constant term. Comparing with the same congruence for $f_N$ yields
+\[
+ f_{N+c}(r+X)\equiv f_c(r+X) f_N(r+X)\pmod{2^{t-k+1}}.
+\]
+Take $r=1$. The constant and leading coefficients of the product have bounded valuations independent of $t$, by Lemma~\ref{double} and fixed $c$. Since $N$ is even, the product and the left side have exactly the same degree. For sufficiently large $t$ their lower polygons coincide, by the height argument in the lemma.
+
+The nonzero slopes contributed by $f_N$ shrink to zero, and their reduced denominators are all divisible by a fixed positive multiple of $2^t$ as in Theorem~\ref{rays}. The fixed slopes of $f_c$ are nonzero by \eqref{min}; when $c=0,1$ there are none. Thus the two slope sets eventually are disjoint. The next-prime argument leaves complementary factors of total degree $g(N+c)=o(N)$. No edge of any such factor can have an $f_N$ slope, since its horizontal length would be at least that slope's reduced denominator. By the product rule, the total available horizontal length at the other slopes is $\deg f_c=\lfloor c/2\rfloor$. This proves the claim.\end{proof}
+
+For a useful sharper modulus when $c=1$, suppose $N=b2^t$ with $t\ge1$. In the product $Q\cdot Q(X^2,z^2,w^2)^{N/2}$ only the $w^0$ terms of the first factor can contribute. The part of the second factor with $w$-exponent zero uses an even number of the factors containing $w^{\pm2}$, so every exponent of $z$ in that part is divisible by four. The $w^0$ part of $Q$ is $z^2+2+z^{-2}$, and only its constant 2 survives. This proves
+\begin{equation}
+ f_{N+1}(r+X)\equiv 2 f_N(r+X)\pmod {2^t}.\label{plus}
+\end{equation}
+When $t\ge t_0+2$ both endpoint heights of $2 f_N(1+X)$ are strictly less than $t$. Its polygon is that of $f_N(1+X)$ translated up one unit, and \eqref{plus} proves that $f_{N+1}(1+X)$ has the same polygon as this product.
+\begin{theorem}
+If either $n$ or $n-1$ has odd part at most 127, then $f_n$ is irreducible for every $n\ge2$.
+\end{theorem}
+\begin{proof}
+For each odd $1\le b\le127$, the accompanying certificate gives $t_0\le14$ and $L=t_0-K(P)$. In particular
+\[
+ \max_{b\le 127,\ b\ {\rm odd}} b\,2^L=888.
+\]
+For $n=b2^t\ge396738$ and $t\ge t_0$, Dusart's Proposition~6.8 \cite{dusart} gives $q-n\le n/(25\log^2 n)$. Since $\log n>12$, this gives $g(n)<n/7200<n/888\le2^{t-L}$. Theorem~\ref{rays} applies. For $n=b2^t+1$ with $t\ge t_0+2$ the factor-degree divisor is the same by \eqref{plus}. Now $g(n)=(q-n-2)/2<n/7200<(n-1)/888$ for $n\ge396738$. For the finitely many earlier indices we use the first paper when applicable. At the remaining indices, the directly computed polygon, or its dilation past the applicable threshold, gives a power of two strictly larger than $g(n)$. The verifier checks each such inequality using trial division for the next prime. For example, $b=3,t_0=4$ gives polygon $(0,4),(16,2),(24,4)$, hence $L=2$. For $b=5,t_0=4$ it gives $(0,2),(32,3),(40,4)$ and $L=1$.
+
+For $n=2^t+1$ with $t\ge2$, the one bits of $n$ are nonadjacent, so \eqref{min} reduces $f_n/2^{s(n)}$ to the constant one modulo two. The leading coefficient has valuation $s(d)+s(d+1)=3$ with $d=2^{t-1}$; here $\binom n{2d}=n$ is odd. Since $s(n)=2$, the reciprocal of the normalized polynomial satisfies Eisenstein's criterion at two. The indices $n=2,3$ are linear. The same reciprocal argument at $n=2^t$, $t\ge1$, uses $s(n)=1$ and leading valuation two, giving a calculation-free proof on that entire ray.\end{proof}
+
+\section{Verifying the finite polygons}
+At precision $M$ the program stores the odd part of each factorial modulo $2^M$, then uses only inverses of odd integers in binomial coefficients. It sums $a_j\binom ji$ for the coefficient of $X^i$ after translation. If $n=b2^t$, both $a_j$ and the coefficient at $i>0$ after translation obey the respective lower bounds $s(b)+t-1-\val(j)$ and $s(b)+t-1-\val(i)$. Indeed $\val\binom n{2j}\ge t-1-\val(j)$ from $2j\binom n{2j}=n\binom{n-1}{2j-1}$. The two central binomials contribute $s(j)+s(n-j)\ge s(b)$, and $\val\binom ji\ge\val(j)-\val(i)$. These bounds allow the program to skip exponents guaranteed to lie above its precision. It computes the lower hull by integer cross-products. The transcript lists every base exponent and loss, and the verifier independently compares its modular polygons with direct, full integer translations at 49 even and 63 odd indices. For $n=b2^t+1$, the same skipping bound follows from $2j(2j-1)\binom n{2j}=n(n-1)\binom{n-2}{2j-2}$. The full irreducibility conjecture remains open.
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, March 21, 2013 comment, \href{https://oeis.org/A000172/internal}{OEIS A000172}.
+\bibitem{first} Blake Stone research collection, \emph{Large irreducible factors of Sun's Franel-number polynomials} (2026). \href{https://github.com/blakestone-x/math/blob/c18014b822980b0d6cb9b78fc228e5efda2718c6/A000172/manuscript.pdf}{Manuscript with the prime-gap bound and the finite certificates}.
+\bibitem{dusart} P. Dusart, \emph{Estimates of some functions over primes without R.H.}, Proposition 6.8 (2010). \href{https://arxiv.org/abs/1002.0442}{arXiv:1002.0442}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.92in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,xcolor,hyperref,microtype}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue!60!black,citecolor=blue!60!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\ord}{v_p}
+\title{Exact valuations of binomial power sums one row before a prime power}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For every odd prime $p$, every $q\ge1$ and every positive even $r$, the sum of the $r$th powers of the entries in binomial row $p^q-1$ has $p$-adic valuation $q+v_p(r-1)$. A difference congruence makes these signed power sums, divided by $p^q$, an isometric permutation of the $p$-adic integers as the exponent varies. This proves the odd-prime conjecture posed by Fabius Wiesner in 2025. The proposed binary formula with fixed threshold $q\ge5$ fails. We prove eventual stabilization for every fixed binary row, give an explicit counterexample at $(q,m)=(5,19)$, and determine the exact valuation for all $m\ge1$ at every $4\le q\le22$.
+\end{abstract}
+
+\section{The odd-prime conjecture}
+Write $F_n(r)=\sum_{k=0}^n\binom nk^r$ for $r\ge1$. Wiesner \cite{question} asked whether $v_p(F_{p^q-1}(p^m+1))=q+m$ for every odd prime $p$ and $m,q\ge1$. The same question proposes a different formula for the prime two, and asks whether its starting row must depend on the power. Calkin \cite{calkin} proved general divisibility theorems for binomial power sums. Lengyel \cite{lengyel} studied rates of $p$-adic convergence as the row index varies. Here we fix one row and compare different exponents.
+
+For $n=p^q-1$, put
+\[
+ B(r)=\sum_{k=0}^n(-1)^{kr}\binom nk^r .
+\]
+For even $r$ this is exactly $F_n(r)$. Write $\mathbb Z_{(p)}$ for the rationals with denominator prime to $p$.
+\begin{theorem}\label{main}
+For every odd prime $p$, $q\ge1$, and distinct positive integers $r,s$,
+\[
+ \frac{B(r)-B(s)}{p^q(r-s)}\equiv-1\pmod p\quad\text{in }\mathbb Z_{(p)}.
+\]
+In particular $v_p(F_{p^q-1}(r))=q+v_p(r-1)$ for all positive even $r$. The map $r\mapsto B(r)/p^q$ extends uniquely to an isometric bijection $\mathbb Z_p\to\mathbb Z_p$.
+\end{theorem}
+\begin{proof}
+Set $b_k=\binom nk$ and $u_k=(-1)^k b_k$. The consecutive quotient gives
+\[
+ u_0=1,\qquad u_i/u_{i-1}=1-X_i,\qquad X_i=p^q/i.
+\]
+For $1\le i\le n$, $h_i=v_p(X_i)\ge1$, so $u_i\equiv1\pmod p$. For $v_p(X)=h\ge1$ and any integer $d>0$, the binomial expansion gives
+\begin{equation}\label{linear}
+ (1-X)^d-1\equiv-dX\pmod{p^{v_p(d)+h+1}}.
+\end{equation}
+Indeed $v_p\binom dj\ge v_p(d)-v_p(j)$, and $(j-1)h-v_p(j)\ge1$ for $2\le j\le d$ when $p$ is odd. In particular $v_p(u_i^d-1)\ge v_p(d)+1$.
+
+Assume $r>s$, let $d=r-s$, and put $Y_k=u_k^{r-1}-u_k^{s-1}$. Write $u=u_{i-1}$ and $v=1-X_i$. The increment satisfies
+\[
+ Y_i-Y_{i-1}=u^{s-1}\big[(u^d-1)(v^{s-1}-1)+u^d v^{s-1}(v^d-1)\big]
+ \equiv-dX_i\pmod{p^{v_p(d)+h_i+1}}.
+\]
+The first product vanishes modulo the indicated power, and the unit multiplying $v^d-1$ reduces to one. Since $Y_0=0$, sum by parts using $\sum_{k=i}^n(-1)^k b_k=(-1)^i\binom{n-1}{i-1}$. This last identity follows at once from Pascal's identity. Then
+\[
+ B(r)-B(s)=\sum_{i=1}^n(-1)^i\frac{i}{n}b_i(Y_i-Y_{i-1}).
+\]
+After division by $d p^q$, the $i$th summand is congruent to $-u_i/n\equiv-1/n\pmod p$, because $v_p(i)+h_i=q$ and $p\nmid n$. Summing gives $-1$. Interchanging $r,s$ covers the opposite order. Now $B(1)=0$. The difference formula proves the valuation claim, and makes $B(r)/p^q$ distance preserving. Positive integers are dense in $\mathbb Z_p$. The extension permutes residues at every precision by injectivity on the finite residue ring. Surjectivity follows by lifting the unique preimages through these compatible permutations.
+\end{proof}
+
+\section{The binary threshold}
+Set $n=2^q-1$ and $S_m=F_n(2^m+1)$ for $m\ge1$. All $b_k=\binom nk$ are odd, since $(1+X)^{2^q-1}=1+X+\cdots+X^{2^q-1}$ in $\mathbb F_2[X]$. Wiesner asked whether $v_2(S_m)=3q+m-3$ for every $q\ge5$. The next observation rules out every fixed threshold uniform in $m$.
+\begin{lemma}\label{lift}
+For $q,m\ge1$, write $U_m=(S_m-2^n)/2^m$. Then $U_m$ is an integer divisible by eight, and
+\[
+ U_{m+1}\equiv U_m\pmod{2^{m+4}}.
+\]
+In particular $v_2(S_m)=n$ when $m\ge\max(1,n-2)$.
+\end{lemma}
+\begin{proof}
+For every odd $b$, $b^{2^m}\equiv1\pmod{2^{m+2}}$. This follows from $b^2\equiv1\pmod8$ and repeated squaring. The row contains equal pairs $b_k=b_{n-k}$ since $n$ is odd. Thus $S_m-\sum_k b_k=\sum_k b_k(b_k^{2^m}-1)$ is divisible by $2^{m+3}$. The same pairing in
+\[
+ U_{m+1}-U_m=\sum_k b_k(b_k^{2^m}-1)^2/2^{m+1}
+\]
+gives the displayed modulus. Finally $\sum_k b_k=2^n$ and $m+3>n$ in the claimed range.
+\end{proof}
+
+For example, at $q=5,m=29$ the actual valuation is 31 and the proposed value is 41, by the lemma alone. The same argument shows that, for $m\ge29$, any threshold $q_0(m)$ valid for all $q\ge q_0(m)$ must exceed $\lfloor\log_2(m+3)\rfloor$. A sharper finite-row result determines the first failure at $q=5$.
+\begin{theorem}\label{finite}
+For every $4\le q\le22$ and every $m\ge1$, let $h=3q-3$. Then
+\[
+ v_2(S_m)=\begin{cases}\min(n,m+h),&m+h\ne n,\\n+2,&m+h=n.\end{cases}
+\]
+In particular the first failing exponent at $q=5$ is $m=19$, when the valuation is 33 in place of 31.
+\end{theorem}
+\begin{proof}
+The finite certificate proves, for each indicated $q$ and $1\le m\le L=3q-4$, the integer congruence
+\begin{equation}\label{units}
+ S_m-2^n\equiv 2^{m+h}c_m\pmod{2^{m+h+3}},\qquad
+ (c_1,c_2,c_3,c_4,\ldots)=(1,7,3,3,\ldots).
+\end{equation}
+The computation uses $m+h+3\le128$. At $L$, Lemma~\ref{lift} freezes $U_m\bmod 2^{h+3}$ for all $m\ge L$, since $L+4=h+3$. Thus \eqref{units} holds at every positive $m$. Unequal valuations give the minimum. At a tie $m=n-h\ge3$ for $q\ge4$, so $S_m/2^n\equiv1+3=4\pmod8$.
+
+For reproducibility, take one representative from each symmetric pair, $0\le k<2^{q-1}$. Starting at $b_0=1$, if $k=2^v a$ with $a$ odd, compute $b_k=b_{k-1}(2^{q-v}a^{-1}-1)$ modulo $2^{128}$. Seven Newton steps $x\gets x(2-ax)$ starting at one give the inverse, as each step squares the error. Squaring $b_k$ successively gives the powers $b_k^{2^m}$ for all $1\le m\le L$. Add $2b_k b_k^{2^m}$ to the corresponding accumulator and test \eqref{units}. The recorded run checks each row, including the largest at $n=4{,}194{,}303$. A separate Python implementation uses literal integer binomial coefficients and modular exponentiation for $4\le q\le11$ and verifies $S_{19}\equiv 2^{33}\pmod{2^{34}}$ directly at $q=5$.
+\end{proof}
+Whether the binary formula holds for every sufficiently large $q$ at each fixed $m$ remains open in this work. The odd-prime result has no restriction on $m$ or $q$.
+
+\begin{thebibliography}{9}
+\bibitem{question} F. Wiesner, \emph{$p$-adic valuation of some generalized Franel numbers}, MathOverflow, June 2025. \url{https://mathoverflow.net/q/496222}.
+\bibitem{calkin} N. J. Calkin, \emph{Factors of sums of powers of binomial coefficients}, Acta Arith. 86 (1998), 17--26. \url{https://doi.org/10.4064/aa-86-1-17-26}.
+\bibitem{lengyel} T. Lengyel, \emph{On the rate of $p$-adic convergence of sums of powers of binomial coefficients}, Int. J. Number Theory 13 (2017). \url{https://doi.org/10.1142/S1793042117501111}.
+\end{thebibliography}
+\end{document}

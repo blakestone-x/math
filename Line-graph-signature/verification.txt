@@ -1,0 +1,12 @@
+rooted trees through order 10, direct cofactor and inertia checks: 1205
+all connected labelled cubic multigraphs on 2 vertices: 2, without a qualifying edge: 2
+all connected labelled cubic multigraphs on 4 vertices: 35, without a qualifying edge: 16
+all connected labelled cubic multigraphs on 6 vertices: 3550, without a qualifying edge: 0
+8-vertex cubic multigraphs, exhaustively generating possible exceptions up to relabeling: 0
+attaining chain c=2, order=9, edges=10, line inertia=(5, 1, 4)
+attaining chain c=3, order=14, edges=16, line inertia=(9, 0, 7)
+attaining chain c=4, order=18, edges=21, line inertia=(11, 1, 9)
+attaining chain c=5, order=23, edges=27, line inertia=(15, 0, 12)
+attaining chain c=6, order=27, edges=32, line inertia=(17, 1, 14)
+attaining chain c=7, order=32, edges=38, line inertia=(21, 0, 17)
+deterministic subdivided cubic kernels with sampled pendant forests, exact line-graph inertia: 120

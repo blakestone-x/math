@@ -1,0 +1,5 @@
+Five initial pairs and 243 determinants per pair checked.
+Independent binomial sums agree with the integer Franel solution.
+Denominator valuations checked at odd primes and their applicable powers.
+Avoided-prime witnesses checked at exponents 1 through 64.
+Sharp uniform power checked at exponents 2 through 64 and rows 1 through 128.

@@ -1,0 +1,156 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\ii}{\mathrm{i}}
+\title{Simple negative zeros of the squared Delannoy triangle}
+\author{Blake Stone's proof fleet}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The ordinary matrix square of the path-count Delannoy triangle has $n$ simple negative zeros in its $n$th row polynomial. This proves the Delannoy assertion in Mao and Wang's Conjecture~4.1. The smallest closed interval containing the zeros in all rows is $[-4-3\sqrt2,-3+2\sqrt2]$. The argument applies to the product of two weighted Delannoy triangles when the first diagonal-step weight is positive and the second is at least $1/3$. This threshold is sharp for a guarantee uniform over the first weight. We also determine the largest interval $[-R,0]$ on which the weighted Delannoy transformation preserves real-rootedness in every degree.
+\end{abstract}
+
+For $a>0$, let $D_a(n,k)$ enumerate paths from $(0,0)$ to $(n-k,k)$ with steps east, north and northeast. Each east or north step has weight one and each northeast step has weight $a$. Write
+\[
+ d_n^a(x)=\sum_{k=0}^n D_a(n,k)x^k,
+ \qquad G_n^{a,b}(x)=\sum_{k=0}^n D_a(n,k)d_k^b(x).
+\]
+Thus $G_n^{a,b}$ is row $n$ of the ordinary matrix product $D_aD_b$. In particular, $a=b=1$ gives the matrix square in Mao and Wang~\cite[Conj.~4.1]{MW}. The known root interval for a single unweighted row is due to Wang, Zheng and Chen~\cite{WZC}. A public proof-development note~\cite{TT} derives a divided difference for the square, gives a partial count of roots from a circle, and proposes using complementary Chebyshev samples. We give a complete sign count, including the transition between the two parameter ranges. The other assertion of Mao and Wang's conjecture concerns the Eulerian triangle.
+
+\begin{theorem}\label{thm}
+For $a>0$, $b\ge1/3$, and $n\ge1$, $G_n^{a,b}$ has exactly $n$ distinct negative real zeros.
+\end{theorem}
+
+\paragraph{Ordinary row polynomials.}
+Decomposition by the last step gives $d_0^a=1$, $d_1^a=1+x$, and
+\begin{equation}\label{rec}
+ d_n^a=(1+x)d_{n-1}^a+axd_{n-2}^a \qquad (n\ge2).
+\end{equation}
+For $v>0$ put $L_a=(\sqrt{1+a}-\sqrt a)^2$ and $R_a=(\sqrt{1+a}+\sqrt a)^2$. On $L_a<v<R_a$ define
+\[
+ \theta(v)=\arccos\frac{1-v}{2\sqrt{av}}.
+\]
+This maps $(L_a,R_a)$ strictly increasingly onto $(0,\pi)$, since $v^{-1/2}-v^{1/2}$ is strictly decreasing. The characteristic roots of~\eqref{rec} at $x=-v$ are $\sqrt{av}\,e^{\pm\ii\theta(v)}$. The initial conditions give
+\begin{equation}\label{cheb}
+ d_n^a(-v)=(av)^{n/2}\frac{\sin((n+1)\theta(v))}{\sin\theta(v)}.
+\end{equation}
+In particular $d_n^a$ is monic with simple zeros $-r_1,\ldots,-r_n$, where $\theta(r_j)=j\pi/(n+1)$, ordered by increasing $r_j$.
+
+\paragraph{The divided difference.}
+Fix $a,b,n$ and abbreviate $p=d_n^a$, $G=G_n^{a,b}$. If $U,V$ are distinct and
+\[
+ U+V=1+x,\qquad UV=-bx,
+\]
+then~\eqref{rec} gives $d_k^b(x)=(U^{k+1}-V^{k+1})/(U-V)$. Consequently
+\begin{equation}\label{dd}
+ G(x)=\frac{U p(U)-V p(V)}{U-V}.
+\end{equation}
+The identity comes directly from the matrix product. Both $p$ and $G$ are monic of degree $n$.
+
+\paragraph{Interior sample points.}
+Put $h=\sqrt{b(b+1)}$, $s=b+h$, and take
+\[
+ U=-b+h e^{\ii\phi},\quad V=\overline U,
+ \quad y=|U|^2/b,\qquad 0<\phi<\pi.
+\]
+Then $U+V=1-y$ and $UV=by$. The parameter $y$ is strictly increasing, from $(h-b)^2/b$ to $s^2/b$. Equation~\eqref{dd} gives
+\[
+ G(-y)=\frac{\operatorname{Im}(U p(U))}{\operatorname{Im} U}.
+\]
+Let $m=\#\{j:r_j<s\}$ and $e=\#\{j:r_j=s\}\in\{0,1\}$. For each factor take its ordinary argument in $(0,\pi)$ and define
+\[
+ A(\phi)=\arg U+\sum_{j=1}^n\arg(U+r_j).
+\]
+The continuous function $A$ tends to zero at $\phi=0$, since $h-b>0$. At $\phi=\pi$ its limit is $(m+1+e/2)\pi$. Indeed $U$ approaches $-s$ from above, and each factor ending at zero approaches with limiting argument $\pi/2$. Continuity therefore supplies, in increasing order of $\phi$, points at which $A=(j+1/2)\pi$ for $0\le j\le m$: take the first time each level is reached. Here $G(-y)$ has sign $(-1)^j$.
+
+\paragraph{Exterior sample points.}
+If $m=n$ the interior points already give $n$ sign changes. Otherwise, for each $j=m+1,\dots,n$, take $v$ uniquely specified by
+\[
+ \theta(v)=(j+1/2)\pi/(n+1).
+\]
+We have $v>r_j\ge s$ and $v<R_a$. Define
+\[
+ u=b+\frac{h^2}{v-b},\qquad y=uv/b=u+v+1.
+\]
+Thus $b<u<s<v$, $(u-b)(v-b)=h^2$, and $U=-v$, $V=-u$ satisfy the hypotheses of~\eqref{dd} at $x=-y$. The value $y$ exceeds $s^2/b$ and increases with $v>s$, since $d(u+v)/dv=1-h^2/(v-b)^2>0$.
+
+The assumption $b\ge1/3$ is equivalent to $s\ge1$. Hence $v>1$ and $uv>s^2\ge1$, so $1/v<u<v$. Since $L_aR_a=1$, both $u$ and $v$ belong to $(L_a,R_a)$. The function $w\mapsto |\sqrt{w}-1/\sqrt{w}|$ is invariant under $w\mapsto 1/w$ and increases for $w\ge1$. It follows that
+\[
+ |\cos\theta(u)|\le |\cos\theta(v)|,\qquad
+ \sin\theta(u)\ge\sin\theta(v)>0 .
+\]
+At the specified $v$, the oscillatory numerator in~\eqref{cheb} has absolute value one and sign $(-1)^j$. Therefore
+\[
+ |u p(-u)|\le \frac{u(au)^{n/2}}{\sin\theta(u)}
+ <\frac{v(av)^{n/2}}{\sin\theta(v)}
+ =|v p(-v)|.
+\]
+In~\eqref{dd} this gives $G(-y)=[v p(-v)-u p(-u)]/(v-u)$ of sign $(-1)^j$. These points follow the interior points and continue the same alternation, including when $r_{m+1}=s$. The full list consists of $n+1$ strictly increasing positive $y$ with signs $+,-,+,\ldots$. Each consecutive pair brackets a different real zero. Monicity and degree give simplicity and exhaust the zeros, proving Theorem~\ref{thm}.\hfill$\square$
+
+\begin{corollary}\label{edges}
+For $n\ge1$ every zero of $G_n^{1,1}$ lies in $(-4-3\sqrt2,-3+2\sqrt2)$. The smallest zero tends to $-4-3\sqrt2$ and the largest tends to $-3+2\sqrt2$ as $n\to\infty$.
+\end{corollary}
+\begin{proof}
+Here $s=1+\sqrt2<R_1=3+2\sqrt2$. All interior samples have $y>(h-b)^2/b=3-2\sqrt2$. All exterior samples have $v<R_1$ and hence $y<y_{\max}$, where
+\[
+ y_{\max}=R_1\left(1+\frac{2}{R_1-1}\right)=4+3\sqrt2.
+\]
+The interior range ends at $s^2<y_{\max}$. The bracketing proof gives the claimed open interval.
+
+Since $\theta(s)<\pi$, for all sufficiently large $n$ the last two test points are exterior. Both angles tend to $\pi$, so both corresponding $v$ tend to $R_1$. The zero between them has $y\to y_{\max}$. At the other end, fix any sufficiently small $\phi>0$ for which $\operatorname{Re}U>0$. For all $n$ and all $r_j\le R_1$,
+\[
+ \arg(U+r_j)\ge
+ \arctan\!\left(\frac{\operatorname{Im}U}{\operatorname{Re}U+R_1}\right)>0.
+\]
+Thus $A(\phi)>3\pi/2$ for all sufficiently large $n$. The first two sign samples then occur before $\phi$. Letting $\phi\downarrow0$ gives zeros with $y\to3-2\sqrt2$, as required.
+\end{proof}
+
+\section*{The sharp preservation interval for the transformation}
+Mao and Wang also ask under what conditions the Delannoy transformation preserves real-rootedness. Write $T_b(x^k)=d_k^b(x)$ and extend linearly. For an arbitrary $b>0$, put $h=\sqrt{b(b+1)}$ and $s=b+h$ as above.
+\begin{theorem}\label{th:transform}
+The largest $R\ge0$ such that $T_b$ preserves real-rootedness for every real polynomial with all zeros in $[-R,0]$ is $s$. If every zero of a nonconstant input belongs to $(-s,0]$, the output has simple negative zeros. For each $c>s$ there are constants $\kappa>0$ and $N$ such that $T_b((x+c)^n)$ has at least $\kappa n$ distinct zeros in the upper half-plane for all $n\ge N$.
+\end{theorem}
+\begin{proof}
+Normalize the input $p$ to be monic. Identity~\eqref{dd} is valid for $G=T_b(p)$ for every polynomial $p$ by linearity. If all its zeros lie in $(-s,0]$, the interior sample argument applies with $m=\deg p$ and $e=0$, counting input roots with multiplicity. It gives $\deg p$ different negative output zeros. When some input zeros equal $-s$, move them slightly to the right and take the coefficientwise limit. Real-rootedness is closed for monic polynomials of fixed degree. The preceding test points confine all the zeros to a fixed compact negative interval, so they remain negative in the limit.
+
+Now take $p=(x+c)^n$ where $d=c-b>h$. Parametrize the characteristic roots by
+\[
+ U=w-b,\qquad V=h^2/w-b,\qquad x=x(w)=w+h^2/w-2b-1 .
+\]
+These give $U+V=1+x$ and $UV=-bx$. Set
+\[
+ W(w)=\frac{U+c}{V+c}=\frac{w(w+d)}{dw+h^2}.
+\]
+The quotient representation shows that $W(w)^n U/V=1$ implies $T_b(p)(x(w))=0$ whenever $U,V$ are nonzero and distinct and $V+c\ne0$.
+
+For $w=q e^{\ii\phi}$ direct subtraction gives
+\[
+ |d+w|^2-|d+h^2/w|^2
+ =(q-h^2/q)\big(q+h^2/q+2d\cos\phi\big).
+\]
+For $q>h$ sufficiently close to $h$, take $0<\phi<\pi$ with $\cos\phi=-(q+h^2/q)/(2d)$, which is possible because $d>h$. This gives an arc with $|W(w)|=1$ and $\operatorname{Im}x(w)=(q-h^2/q)\sin\phi>0$. On this arc $U,V$ are distinct, and $U,V,V+c$ are nonzero. The nonconstant rational function $W$ has finitely many critical points. Choose a point $w_0$ of the arc with $W'(w_0)\ne0$. Also $x'(w_0)=1-h^2/w_0^2\ne0$.
+
+Choose a sufficiently small closed disk $B$ about $w_0$ so that $W$ and $x$ are injective there, $x(B)$ lies in the upper half-plane, and a holomorphic logarithm of $U/V$ exists in a neighborhood of $B$. We can ensure $U\ne V$ and $V+c\ne0$ throughout $B$. Define
+\[
+ W_n=W\exp\big(n^{-1}\log(U/V)\big).
+\]
+On $B$ these functions converge uniformly to $W$. Set $\eta=\min_{\partial B}|W-W(w_0)|>0$. For all large $n$ and every $n$th root of unity $\zeta$ with $|\zeta-W(w_0)|<\eta/3$, Rouch\'e's theorem applied on $\partial B$ gives a zero of $W_n-\zeta$ in $B$: the comparison function $W-W(w_0)$ has one simple zero there, and the difference is less than $2\eta/3$ on the boundary. A fixed open arc of the unit circle satisfies this condition on $\zeta$, giving at least $\kappa n$ choices for some $\kappa>0$. Distinct choices give distinct $w$, and hence distinct $x(w)$ in the upper half-plane. Since $W_n(w)^n=W(w)^nU/V$, all these $x(w)$ are zeros of $T_b(p)$. Taking $s<c\le R$ rules out every larger preservation interval.
+\end{proof}
+
+\begin{corollary}
+For a fixed $b>0$, the positive-degree rows of $D_aD_b$ are real-rooted for every $n$ and every $a>0$ if and only if $b\ge1/3$.
+\end{corollary}
+\begin{proof}
+The forward guarantee for $b\ge1/3$ is Theorem~\ref{thm}. If $0<b<1/3$, then $b+\sqrt{b(b+1)}<1$. By Theorem~\ref{th:transform} some $T_b((x+1)^n)$ has a nonreal zero. As $a\downarrow0$, formula~\eqref{rec} gives $d_n^a(x)\to(x+1)^n$ coefficientwise. A limit of monic real-rooted polynomials of fixed degree is real-rooted. Thus $G_n^{a,b}=T_b(d_n^a)$ has a nonreal zero for all sufficiently small positive $a$. For instance, $40G_3^{1/16,1/5}(x)=40x^3+261x^2+536x+330$ has discriminant $-1851464$.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{MW} J.~Mao and L.~Wang, \emph{The Narayana transformation}, 2026, Conjecture~4.1. \href{https://arxiv.org/abs/2607.01572v1}{arXiv:2607.01572v1}.
+\bibitem{WZC} Y.~Wang, S.-N.~Zheng and X.~Chen, \emph{Analytic aspects of Delannoy numbers}, Discrete Math. 342 (2019). \href{https://doi.org/10.1016/j.disc.2019.04.003}{doi:10.1016/j.disc.2019.04.003}.
+\bibitem{TT} The Omega Institute, \emph{Negative roots of the original Delannoy matrix square}, proof-development record, October 2026. \href{https://the-omega-institute.github.io/trureturing-mdbook/Problems/mao-wang-2026-delannoy-square-negative-roots.html}{Problem, partial formalization and proposed route}.
+\end{thebibliography}
+\end{document}

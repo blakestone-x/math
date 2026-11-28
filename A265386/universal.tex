@@ -1,0 +1,73 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,xcolor,hyperref}
+\geometry{left=.92in,right=.92in,top=.76in,bottom=.8in}
+\definecolor{ink}{HTML}{195552}
+\hypersetup{colorlinks=true,urlcolor=ink,linkcolor=ink,pdftitle={Universal alternating growth in the doubly Gray-transformed Fibonacci recurrence}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\fl}[1]{\left\lfloor#1\right\rfloor}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\begin{document}
+{\small\sffamily\color{ink} INTEGER SEQUENCES \hfill RESEARCH NOTE}\par
+{\LARGE\bfseries Universal alternating growth in the doubly\\[2pt] Gray-transformed Fibonacci recurrence}\par
+{\small Research note for Blake Stone, developed with OpenAI Codex}\par
+\medskip
+Let $G(m)=m\mathbin{\mathrm{XOR}}\fl{m/2}$ and, from any two positive integers, define
+\[
+ c_{n+2}=G\bigl(G(c_n)+G(c_{n+1})\bigr),\qquad s(n)=c_n/c_{n-1}.
+\]
+Sykora introduced the seed $(1,1)$ in 2015 as OEIS A265386. He conjectured mean growth $\sqrt2$ with large persistent fluctuations of the consecutive ratios [1]. A previous manuscript establishes this for the original seeds and separates the two parities by the bounds $s(2k+1)>3$, $s(2k+2)<2/3$ [2]. We obtain uniform bounds for arbitrary seeds and prove that substantial variation persists within each parity.
+
+\begin{theorem}
+For every pair of positive initial integers there exists $N$ such that the bit length of $c_n$ gains exactly one every two steps for $n\ge N$, with single-step increases alternating between zero and one. Both $c_n^{1/n}$ and $(c_{2n}/c_n)^{1/n}$ converge to $\sqrt2$. In one parity class of large $n$ the ratio lies in $I_-$, and in the other it lies in $I_+$, where
+\[
+ I_- = \left(\frac{23384}{42965},\frac{327170}{516613}\right)
+ \subset (0.5442,0.6333),\qquad
+ I_+ = \left(\frac{516677}{163824},\frac{261182}{70185}\right)
+ \subset (3.1538,3.7214).
+\]
+Among $s(n),s(n+2),s(n+4),s(n+6)$, three are pairwise more than $1/4096$ apart for all sufficiently large $n$. Each parity subsequence has at least three distinct accumulation points, and $s$ has at least six.
+\end{theorem}
+
+\section*{A recurrence on two-bit shifts}
+Reading its output from the high bit down recovers the input of $G$, so $H=G^{-1}$ exists. Both maps preserve bit length and commute with deleting low-order bits. Since XOR with the right shift is a linear operation on binary words over $\mathbb F_2$,
+\[
+  T(m)=G(G(m))=m\mathbin{\mathrm{XOR}}\fl{m/4}.
+\]
+Thus $d_n=G(c_n)$ follows $d_{n+2}=T(d_n+d_{n+1})$. Write $\ell(x)$ for the binary length of $x$. The sum has length at least the maximum of the two summand lengths and exceeds that maximum by at most one. Consequently from the third term onward the lengths are nondecreasing with increments in $\{0,1\}$. If adjacent terms have the same length then their sum has the next length, so the lengths tend to infinity.
+
+Fix a precision $s\ge2$. For sufficiently large $n$ write $D=2^{\ell(d_{n+1})-s}$ and
+\[
+ (u,v)=\left(\fl{d_n/D},\fl{d_{n+1}/D}\right).
+\]
+Then $2^{s-2}\le u<2^s$ and $2^{s-1}\le v<2^s$. The prefix of the sum in these units is $h=u+v+\eta$ with $\eta\in\{0,1\}$. Put $e=\mathbf1_{h\ge2^s}$. The next possible prefix pairs are
+\[
+        \left(\fl{v/2^e},\fl{T(h)/2^e}\right).                 \tag{1}
+\]
+Indeed the bit length rises by $e$, and $T$ commutes with discarding the low bits.
+
+\newpage
+\section*{All recurrent prefix states}
+At $s=2$ start from the six pairs allowed above. At each precision draw the edges in (1) between present pairs. Keep the vertices of cyclic strongly connected components, counting a singleton only if it has a loop. Pass to the four children $(2u+i,2v+j)$ of each retained pair, $i,j\in\{0,1\}$. The construction contains the tail of every actual orbit at each precision by induction: in a finite graph every vertex outside a directed cycle can occur at most once in a single path.
+\begin{center}
+\begin{tabular}{r|rrrrrrr}
+precision & 2&6&12&16&17&18&19\\\midrule
+recurrent vertices &3&43&1081&15403&29137&53264&99771\\
+cyclic components &1&3&3&2&2&2&1
+\end{tabular}
+\end{center}
+At $s=19$ the incoming length increase at $(u,v)$ is $i=\mathbf1_{u<2^{18}}$. For every retained edge its outgoing increase satisfies $e=1-i$. Of the $99771$ states, $60914$ have $i=0$ and $38857$ have $i=1$. Alternating increments prove $\ell(c_{n+2})=\ell(c_n)+1$ on the tail. Thus for constants $C_1,C_2>0$ depending on the seeds,
+$C_1\,2^{n/2}\le c_n\le C_2\,2^{n/2}$. Taking $n$th roots, both of these bounds and of their quotient at indices $2n,n$, gives the two limits.
+
+In a state $(u,v)$, put $x=H(u)$ and $y=H(v)$. The actual ratio $s(n+1)$ lies strictly in $(y/(x+1),(y+1)/x)$ since the two truncated remainders belong to $[0,1)$ in units of $D$. The minimum lower and maximum upper endpoints over each value of $i$ give precisely $I_-$ and $I_+$ in the theorem.
+
+\section*{Separation within each parity}
+For each vertex replace its closed ratio interval by its outward rounding on the grid $2^{-19}\mathbb Z$. The program constructs the two-step successor graph inside the retained set. Its length-three paths record four ratios of one parity. At the first vertex, select its interval; at each successive vertex, select its interval if it is at distance greater than $128/2^{19}$ from every interval already selected. Stop upon selecting three. From every starting vertex the search stops by its fourth vertex on every path. There are $1209839$ partial paths in this enumeration, including the starts and successful leaves. Each selected triple yields three actual values pairwise farther than $128/2^{19}=1/4096$ apart.
+
+Fix either parity and take blocks of four from its tail. One of the four triples of positions is selected infinitely often. Compactness gives a subsequence of blocks along which the three corresponding values converge, and the limits are pairwise at least $1/4096$ apart. The two parity intervals have disjoint closures, giving at least six accumulation points in all.
+
+\section*{Sources and exact verification}
+\small
+[1] S. Sykora, \href{https://oeis.org/A265386}{OEIS A265386} (2015), \href{https://github.com/oeis/oeisdata/blob/main/seq/A265/A265386.seq}{source record}.\par
+[2] B. Stone with OpenAI Astra, \href{https://github.com/blakestone-x/math/blob/c18014b822980b0d6cb9b78fc228e5efda2718c6/A265386/A265386_proof.pdf}{The growth rate and alternating ratios of OEIS A265386} (2026).\par
+Run \texttt{python3 universal\_verify.py} with ordinary assertions enabled. It reconstructs (1), uses exact rationals for the endpoint extrema, and repeats the two-step graph check in original $c$ coordinates, taking $h=G(u)+G(v)+\eta$ and replacing $T(h)$ by $G(h)$ in (1). The two computations agree under $G$ on all 99771 retained states. The exact cardinality of the accumulation set remains open.
+\end{document}

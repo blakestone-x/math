@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+\renewcommand{\labelitemi}{$\bullet$}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\sg}{\operatorname{sig}}
+\newcommand{\diag}{\operatorname{diag}}
+\title{A finite kernel for extremal line-graph signature}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For each cyclomatic number $c\ge2$, the maximum line-graph signature over all connected simple graphs is attained by a graph with at most $17c-17+14\lfloor(c-2)/2\rfloor$ vertices. Thus each fixed-cyclomatic extremal problem has a finite, explicit search space. We apply a smaller signed-matrix enumeration to obtain $f(6)=3$ and $f(7)=4$. The finite calculation uses integer arithmetic and is provided in full.
+\end{abstract}
+
+\section{Core paths and a finite reduction}
+Use the notation of the companion manuscript \cite{first}: $H$ is the 2-core of a connected simple graph, $c=|E|-|V|+1$, and $B$ is the set of its $b$ branch vertices of degree at least three. We have $b\le2c-2$. Suppression of the degree-two vertices of $H$ gives a multigraph $K$ with $b$ vertices and $b+c-1$ edges, retaining loops and parallel edges. Let $f(c)$ be the largest signature of a line graph with connected simple root graph of cyclomatic number $c$.
+
+By the single-leaf reduction of \cite{first}, to maximize the signature at a given core we may attach one leaf at each vertex in a subset $P$ of $V(H)$. Mark $S=B\cup P$. For this leaf-decorated graph the signature is
+\[
+s(L(G))=1-c-|P|+\sg\big(M(H)+2\diag(\mathbf1_P)\big),\qquad M(H)=D(H)+A(H)-2I.
+\]
+The core splits at the marks into segments, which may have coinciding ends. The interior block of every segment is the ordinary adjacency matrix of a path. Let $e_u$ denote a coordinate vector at a mark. If a segment joins marks $u,v$, the following exact rules hold.
+\begin{itemize}
+\item A segment of odd length contributes $s(e_ue_v^\top+e_ve_u^\top)$ at its ends, with $s=1$ for length $1\bmod4$ and $s=-1$ for length $3\bmod4$. Its interior has zero signature. On a loop this contribution is $2s e_ue_u^\top$.
+\item A segment of even length leaves a zero diagonal coordinate coupled to $e_u+s e_v$, up to nonzero scaling of this null coordinate, with $s=1$ for length $2\bmod4$ and $s=-1$ for length $0\bmod4$. There is no additional correction to the form on the marks. A vanishing coupling gives just a decoupled zero coordinate.
+\end{itemize}
+For odd lengths these are the inverse endpoint entries of the even-order path matrix, as calculated in \cite{first}. For even lengths its odd-order interior $P_{2j-1}$ has kernel spanned by $(1,0,-1,0,\ldots,(-1)^{j-1})$. The diagonal sign change by the two color classes anticommutes with its adjacency matrix and preserves the kernel. On the orthogonal complement of the kernel the inverse therefore also anticommutes with this sign change. The two ends of the interior lie in the same color class, so all inverse pairings between their projections are zero. The invertible block has signature zero and only the displayed null coupling remains. For a loop, identification of the endpoints adds their contributions.
+
+Let $U$ have the even-segment coupling vectors as columns, let $r=\operatorname{rank} U$, and let $W=\ker U^\top$. Let $F$ on $S$ have diagonal $d_H(v)-2+2\mathbf1_P(v)$, augmented by the odd-segment contributions. The block on the marks and interior null coordinates is congruent to $r$ hyperbolic planes, uncoupled zero coordinates, and $F$ restricted to $W$. Indeed one may choose a complement to $W$ on the marks, pair it with $r$ null coordinates, and eliminate the invertible block $\left(\begin{smallmatrix}0&I\\I&*\end{smallmatrix}\right)$. The Schur complement is $F|_W$, since $W$ has zero coupling to the null coordinates. In particular
+\begin{equation}\label{eq:main}
+s(L(G))=1-c-|P|+\sg(F|_W)
+   \le1-c+b-|P\cap B|-r.
+\end{equation}
+
+Call a mark active if it occurs in a nonzero coupling column. At most $2r$ marks are active: a basis of $r$ columns has support of cardinality at most $2r$, and their union contains the support of every column. An even loop with zero coupling can be replaced by a positive odd loop, increasing $F$ by $2e_ue_u^\top$ while leaving $W$ unchanged. This replacement weakly increases signature. All remaining even segments have active ends.
+
+Consider a string of odd segments between retained marks, whose $j$ internal marks are degree-two vertices in $P$ with no active constraint. Each internal mark has diagonal two. Eliminate them. Their signed tridiagonal matrix is positive definite: switching signs gives the $j$ by $j$ matrix with diagonal two and successive entries $-1$. It has inverse end diagonals $j/(j+1)$ and inverse between-end entries $1/(j+1)$ for $j\ge1$, by solving its endpoint difference equations. Write $w=1/(j+1)$. The Schur complement contributes endpoint diagonals $-(1-w)$ and signed off-diagonal $s w$, $s\in\{-1,1\}$. For $j=0$ the same statement describes a single signed edge. Eliminating the $j$ positive coordinates exactly cancels their $j$ leaf costs. Replacing this string by one odd segment of sign $s$ increases the residual form by
+\[
+ (1-w)(e_u+s e_v)(e_u+s e_v)^\top\succeq0.
+\]
+This formula also holds for equal endpoints, by identifying the two endpoint coordinates in the quadratic forms. Elimination is valid on $W$, as these $j$ interior coordinates are unconstrained. Thus every such string may be replaced without decreasing the extremal objective.
+
+\begin{theorem}\label{th:finite}
+For $c\ge2$, $f(c)$ is attained by a connected simple graph on at most
+\[
+17c-17+14\left\lfloor\frac{c-2}{2}\right\rfloor
+\]
+vertices.
+\end{theorem}
+\begin{proof}
+The lower construction of Paone and Paone gives $f(c)\ge\lfloor(c+1)/2\rfloor$ \cite[Theorem 5.3]{pp}. Start from a maximizer. Put $p=|P\cap B|$. By \eqref{eq:main}, $p+r\le c-1-\lfloor(c+1)/2\rfloor=\lfloor(c-2)/2\rfloor$. Retain the branch marks and the active degree-two marks, and shorten every intervening odd string as above. At most $2r$ extra marked vertices subdivide the original kernel. There are at most $b+c-1+2r$ segments. Realize odd signs by lengths three or five and even coupling signs by lengths four or six. Each segment has its own new internal vertices, giving a simple graph even for parallel links and loops. Attach the remaining leaves, at most $p+2r$ in all. The resulting order is at most
+\[
+ b+2r+5(b+c-1+2r)+p+2r
+ \le17c-17+14r+p.
+\]
+Since $14r+p\le14\lfloor(c-2)/2\rfloor$, this proves the bound. All replacements preserve $c$ and cannot decrease signature. The starting graph was a maximizer, hence so is the result.
+\end{proof}
+
+\section{Two independent branch obstructions}
+A \emph{qualifying edge} of $K$ is a multiplicity-one edge between distinct loopless cubic vertices. An induced matching of qualifying edges has disjoint endpoints, with no other edges between endpoints of different matched edges.
+\begin{lemma}\label{lem:matching}
+If $K$ has an induced matching of $h$ qualifying edges, then $s(L(G))\le b-c+1-h$.
+\end{lemma}
+\begin{proof}
+By the leaf reduction it suffices to treat a leaf set $P$. Discard from the matching all edges incident to $P\cap B$; at most $p=|P\cap B|$ are discarded. Suppose $h'$ edges remain. For each, keep its two branch endpoints and all paid (leaf-bearing) marks in the interior of the kernel edge; call this set of marks $T_e$. Delete the other marks from the core matrix $A_P=M(H)+2\diag(\mathbf1_P)$. The component containing the chosen edge is the underlying marked path with zero-diagonal unmarked paths possibly hanging from its two ends. Indeed each other incidence at either endpoint leads along a different kernel edge to a deleted mark. The hypotheses exclude loops, parallel return paths, and connections to the other chosen pairs. All remaining components with no kept mark are unmarked paths.
+
+The signature of the component for $e$ is at most $|T_e|-1$. Deleting $T_e$ gives a zero-signature linear forest, which first yields the bound $|T_e|$. Equality requires every interior null mode to be uncoupled and the residual form on $T_e$ to be positive definite, by the same null-coordinate decomposition used above. Thus every segment between successive marks on the path has odd length. Each hanging unmarked path must have even order; an odd one has a null vector with nonzero entry at its attached end. Even hanging paths leave zero diagonal correction. The residual form on $T_e$ is consequently a signed path with end diagonals one, interior diagonals two, and off-diagonals of magnitude one. Switching signs gives a path Laplacian, which is singular. This excludes equality.
+
+Reinserting each deleted mark increases signature by at most one by interlacing, so $\sg(A_P)\le |S|-h'$. The leaf costs and \eqref{eq:main} give $s(L(G))\le1-c+b-p-h'\le1-c+b-h$.
+\end{proof}
+
+\section{Exact values at six and seven independent cycles}
+\begin{theorem}\label{th:vals}
+The maximal line-graph signatures at cyclomatic numbers six and seven are
+\[
+f(6)=3,\qquad f(7)=4.
+\]
+\end{theorem}
+\begin{proof}
+Write $J=2c-2$, taking $J=10,12$ for $c=6,7$, respectively. A violation of the proposed values requires $\sg M(G)\ge J-1$. The bound in \eqref{eq:main} gives $b\ge J-1$ and $r+p\le b-(J-1)$. If $b=J-1$, all branch vertices are cubic except one of degree four. Now $r=p=0$ and the presence of one qualifying edge suffices to exclude a violation by Lemma~\ref{lem:matching}. If $b=J$, all branch vertices are cubic, $r+p\le1$, and an induced matching of two qualifying edges suffices. We describe the remaining finite cases explicitly.
+
+\paragraph{Generation of kernel multigraphs.}
+The connected cubic multigraphs on two vertices are the triple edge and the bridge with a loop at each end. The following expansions from order $b$ to $b+2$ generate all connected cubic multigraphs.
+\begin{enumerate}
+\item Subdivide one edge once, attach a new vertex by an edge to the subdivision vertex and put a loop at the new vertex.
+\item Subdivide two edges once each and join the subdivision vertices. If two positions on the same edge are chosen, subdivide that edge twice and add an edge parallel to the new middle edge.
+\end{enumerate}
+For completeness, if a cubic graph of order at least four has a loop, remove its vertex and suppress its neighbor, which cannot itself have a loop by connectedness. This reverses the first expansion. Otherwise remove a nonbridge edge, and suppress its two former ends, which now have degree two. If a parallel edge remains between those two ends, suppression contracts their common path and corresponds to two positions on one edge. A triple edge could only occur at order two. This reverses the second expansion while preserving connectedness. All graphs with degrees three except for one vertex of degree four arise by contraction of a nonloop edge of a cubic graph: split the four incidences of the exceptional vertex into two pairs and join the new vertices. The result is connected, with loops and parallel edges permitted.
+
+The verifier constructs these expansions, identifies duplicates by an exact canonical adjacency-matrix encoding, and tests all edges or pairs of edges for Lemma~\ref{lem:matching}. Canonicalization partitions by degree and loop count, refines each cell by the sorted multisets of multiplicities to the other cells (including itself), individualizes every vertex choice in a smallest nonsingleton cell, and takes the minimum terminal encoding. It follows inductively that isomorphic multigraphs have the same encoding. Equality of two terminal encodings explicitly identifies their adjacency matrices after relabeling.
+
+\paragraph{Rank zero.}
+When $r=0$, shorten all interior paid sites by Section 1. Replace each even zero-coupling loop by a positive odd loop. The resulting matrix on the branch vertices is
+\[
+A=\diag(d_K(v)-2+2\mathbf1_{P\cap B}(v))
+  +\sum_{uv\in E(K)}s_{uv}(e_ue_v^\top+e_ve_u^\top),\qquad s_{uv}\in\{-1,1\}.
+\]
+Parallel edges are counted with multiplicity and a loop adds $2s_{uu}$ to the diagonal. We test $p=0$ and, when $b=J$, all choices of one branch leaf. The quantity to check is $\sg(A)-p$. Switching coordinates can fix every sign along a spanning tree to $+1$, leaving only $c$ freely chosen signs. The verifier evaluates the matrix by exact symmetric congruence.
+
+\paragraph{Rank one.}
+This case occurs only at $b=J$ with $p=0$. All nonzero even couplings have the same support and are proportional. After shortening the odd strings, there are at most two degree-two paid marks; if there are two, they are the ends of an even segment and therefore lie on the same original kernel edge. Thus one takes either the original kernel or puts one or two new marks in order on one of its edges. The diagonal for each new mark is two, and all original diagonals are one. Select a pair of endpoints (possibly coincident) supporting a nonempty set of parallel segments. Declare any positive number of those segments even, requiring that every added mark occur in the chosen pair. Other segments contribute independent odd signs. These choices also cover zero-coupling even loops by their dominating odd replacement.
+
+For an even loop with nonzero coupling, $W$ is given by $x_u=0$. Delete its vertex and all incident odd-edge terms. For distinct endpoints one may switch the sign of one coordinate so that $W$ imposes $x_u=x_v$. Identify the two coordinates, adding their diagonals and retaining all surviving signed edges as edges or loops. All choices of signs on the remaining edges are allowed, so fixing the sign of this identification loses no case. In each resulting graph it is sufficient to test chord signs after switching a spanning forest. If $k$ degree-two paid marks were added, the residual constrained matrix has dimension $J+k-1$ and a cost of $k$ in \eqref{eq:main}. Reaching $\sg M(G)\ge J-1$ requires this constrained matrix to be positive definite.
+
+\begin{center}
+\begin{tabular}{lrr}
+ & $c=6$ & $c=7$\\\hline
+Connected cubic kernel types on $J$ vertices & 388 & 2,592\\
+Exceptional types on $J-1$ and $J$ vertices & $9,26$ & $4,13$\\
+Rank-zero matrices at $J-1$; maximum $\sg(A)-p$ & $576,8$ & $512,9$\\
+Rank-zero matrices at $J$; maximum $\sg(A)-p$ & $18{,}304,8$ & $21{,}632,10$\\
+Rank-one matrices, all failing positive definiteness & 92,416 & 110,208
+\end{tabular}
+\end{center}
+At every even order from two through twelve, the cubic kernel count agrees with OEIS \href{https://oeis.org/A005967}{A005967}. The complete calculation is in \texttt{addendum\_verify.py}, using the integral inertia routine in \texttt{verify.py}. Matrix counts include duplicates from distinct placements of marks. For ranks zero and one, the tests are respectively exact inertia and Sylvester's leading-minor criterion with integer Bareiss elimination; the \texttt{--cross-check} option tests every rank-one exclusion again by inertia. In both columns the rank-zero maximum is strictly smaller than $J-1$, and every rank-one form fails the necessary test. This excludes violations. The known attaining constructions \cite[Theorem 5.3]{pp} supply the reverse inequalities.
+\end{proof}
+
+The companion paper and Theorem~\ref{th:vals} give the conjectured values for $2\le c\le7$. At $c=8$ the companion bounds give $4\le f(8)\le6$. The finite reduction applies there too, but the rank-one enumeration above does not cover that case.
+\begin{thebibliography}{9}
+\bibitem{first} Blake Stone's mathematics project, \emph{The signature of line graphs at small cyclomatic number}, companion manuscript, 2026.
+\bibitem{pp} A. Paone and M. Paone, \emph{Line-Graph Signature Beyond the 2-Core: Counterexamples, Pendant Attachments, and Bounds at Fixed Cyclomatic Number}, v1.3, 2026. \href{https://doi.org/10.5281/zenodo.21706797}{doi:10.5281/zenodo.21706797}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,xcolor}
+\usepackage[margin=0.85in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\val}{v}
+\title{Integral solutions of the Franel recurrence and sharp uniform congruences for binomial power sums}
+\author{Blake Stone\\\small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Conjectures 4.5, 5.4 and 5.6 of Schulte, VanSchalkwyk and Yang.
+Every integral solution of the classical Franel recurrence is an integer
+multiple of the Franel numbers. Every other solution with integral initial
+values has unbounded denominator powers at every odd prime. An entire binomial power-sum sequence avoids some prime exactly when its exponent is odd. For each
+exponent $a\ge2$, we also determine the largest power of two modulo which
+the sum of the $a$th powers of a binomial row is always its number of odd
+entries.
+\end{abstract}
+\section{Initial values and denominators}
+Let $F_n=\sum_{j=0}^n\binom{n}{j}^{3}$. Franel's classical recurrence,
+with $F_0=1$ and $F_1=2$, reads
+\begin{equation}
+ n^2u_n=(7n^2-7n+2)u_{n-1}+8(n-1)^2u_{n-2},\qquad n\ge2.
+ \label{eq:rec}
+\end{equation}
+Schulte, VanSchalkwyk and Yang \cite{report} asked in their Conjecture 4.5
+which positive integer initial values yield an integer sequence. The
+solution with initial values $(0,1)$ also occurs in the literature on
+Franel Ap\'ery limits \cite{apery}.
+
+\begin{theorem}
+For arbitrary $u_0,u_1\in\mathbb Z$, all terms of \eqref{eq:rec} are
+integers exactly when $u_1=2u_0$. Otherwise, for every odd prime $p$
+and $r\ge1$, at least one of $u_{p^r-1},u_{p^r}$ has $p$-adic
+valuation at most $v_p(u_1-2u_0)-2r$, with $v_p(0)=+\infty$.
+\end{theorem}
+\begin{proof}
+Write $\delta=u_1-2u_0$. The determinant
+$W_n=F_{n-1}u_n-F_nu_{n-1}$ has $W_1=\delta$.
+Subtracting the two instances of \eqref{eq:rec} gives
+$n^2 W_n=-8(n-1)^2W_{n-1}$, whence
+\begin{equation}
+ W_n=\frac{(-8)^{n-1}}{n^2}\,\delta\qquad(n\ge1).
+ \label{eq:wronskian}
+\end{equation}
+For an odd prime and $n=p^r$, the right hand side has valuation
+$v_p(\delta)-2r$ when $\delta\ne0$. The $F_n$ are integers, so two
+terms with larger valuations could not give this determinant.
+In particular the denominator powers are unbounded. When $\delta=0$,
+uniqueness for the recurrence gives $u_n=u_0F_n$ for every $n$.
+\end{proof}
+
+\begin{corollary}
+If $\delta\ne0$, then at any odd prime $p$ with $v_p(\delta)<2$,
+one has $v_p(u_p)=v_p(\delta)-2$.
+For $p=3$, and more generally for any odd prime such that all
+$F_0,\ldots,F_{p-1}$ are units modulo $p$, one has
+$v_p(u_{p^r})=v_p(\delta)-2r$ whenever $2r>v_p(\delta)$.
+\end{corollary}
+\begin{proof}
+All terms through $u_{p-1}$ are $p$-integral by \eqref{eq:rec}. Also
+$F_{p-1}\equiv\sum_{k=0}^{p-1}(-1)^{3k}=1\pmod p$.
+Apply \eqref{eq:wronskian} with $n=p$.
+
+For the second claim, Lucas's theorem applied inside the defining
+binomial sum shows that $F_n\equiv\prod_i F_{d_i}\pmod p$, where
+$d_i$ are the base-$p$ digits of $n$; the sum factors independently on
+these digits. This identity already appears in \cite{report}.
+Hence all $F_n$ are $p$-units under the hypothesis, which holds at three
+since $F_0,F_1,F_2=1,2,10$. Divide \eqref{eq:wronskian} by
+$F_{n-1}F_n$ and sum from $1$ to $p^r$. In the sum for
+$u_{p^r}/F_{p^r}-u_0$ the unique term of least valuation is the last
+one, with valuation $v_p(\delta)-2r$. It is negative by hypothesis
+and cannot cancel against $u_0$.
+\end{proof}
+
+\section{Primes avoided by a whole sequence}
+For $n\ge0$ and $a\ge1$ put $S_{n,a}=\sum_{k=0}^n\binom{n}{k}^{a}$.
+Conjecture 5.4 of \cite{report} predicts the following classification.
+\begin{theorem}
+There exists a prime dividing none of $S_{0,a},S_{1,a},\ldots$
+if and only if $a$ is odd.
+\end{theorem}
+\begin{proof}
+For each odd $a$, the identity $x^a=x$ in $\mathbb F_3$ gives
+$S_{n,a}\equiv\sum_k\binom nk=2^n\not\equiv0\pmod3$.
+Indeed the identical argument works at any odd prime $p$ for which
+$p-1\mid a-1$, by Fermat's theorem.
+For even $a$ and any prime $p$, $\binom{p-1}{k}\equiv(-1)^k\pmod p$.
+Thus $S_{p-1,a}\equiv\sum_{k=0}^{p-1}1=0\pmod p$, including $p=2$.
+\end{proof}
+The even-exponent conclusion also follows from Calkin's earlier
+prime-interval divisibility theorem \cite[Proposition 3]{calkin}
+with $n=p-1$ and interval parameter one. The source report gives
+the modulus-three observation for the classical cubic sum.
+
+\section{The best uniform power of two}
+Let $s_2(n)$ count the ones in the binary expansion of $n$.
+Conjecture 5.6 in \cite{report} asks whether $S_{n,a}/2$ is odd
+exactly when $n$ is a power of two.
+
+\begin{theorem}
+The largest nonnegative integer $h$ for which
+$S_{n,a}\equiv 2^{s_2(n)}\pmod{2^h}$ holds for every $n\ge1$ is
+\[
+ h=\begin{cases}
+  2,&a\text{ odd},\\
+  \min\{a,\,3+v_2(a)\},&a\text{ even}.
+ \end{cases}
+\]
+In particular $S_{n,a}/2$ is odd exactly when $n$ is a power of two.
+\end{theorem}
+\begin{proof}
+The coefficient of $X^k$ in $(1+X)^n$ is odd precisely when the set
+bits of $k$ form a subset of those of $n$. This follows by factoring
+$(1+X)^n$ modulo two using the binary expansion of $n$. Hence there
+are $2^{s_2(n)}$ odd coefficients. If $n=2m$ the unpaired middle
+coefficient is even since $\binom{2m}{m}=2\binom{2m-1}{m-1}$.
+All odd coefficients occur in pairs of equal values $u$.
+Such a pair contributes $2(u^a-1)$ to the difference from the number
+of odd coefficients. All even coefficients contribute multiples of
+$2^a$.
+
+For odd $a$, each difference from an odd pair is divisible by four.
+For even $a$, write $a=2^v c$ with $c$ odd. Every odd $u$ satisfies
+$u^2\equiv1\pmod8$, and each further squaring raises the guaranteed
+modulus by a factor of two. Thus $u^a\equiv1\pmod{2^{v+2}}$.
+The extra factor two from pairing gives the asserted uniform modulus.
+To see sharpness, at $n=2$ the difference is exactly $2^a$.
+At $n=3$ it is $2(3^a-1)$. For odd $a$ the latter has valuation two;
+for even $a$ its valuation is $v_2(a)+3$, by factoring
+$3^{2^v}-1$ into $3-1$, $3+1$, and successive terms of the form
+$3^{2^j}+1$ of valuation one, then observing that an odd multiplier
+of the exponent preserves the valuation. Finally $h\ge2$, and
+$2^{s_2(n)}$ equals two modulo four exactly when $s_2(n)=1$.
+\end{proof}
+
+\small\begin{thebibliography}{9}
+\bibitem{report} A. Schulte, S. VanSchalkwyk and A. Yang,
+\emph{On the divisibility and valuations of the Franel numbers},
+2014 MSRI-UP research reports, pp. 127--162, Conjectures 4.5, 5.4 and 5.6.
+\href{https://slmath-production-assets.sfo3.digitaloceanspaces.com/system/cms/files/81/files/original/Research_Reports_2014_MSRI-UP_%28Single_File%29.pdf}{Original report}.
+\bibitem{apery} A. Straub and W. Zudilin,
+\href{https://arminstraub.com/downloads/pub/franel-aperylimits.pdf}{Sums of powers
+of binomials, their Ap\'ery limits, and Franel's suspicions}.
+\bibitem{calkin} N. J. Calkin, \href{https://www.math.clemson.edu/~calkin/Papers/factors_sums_powers_binomial_coefficients.pdf}{Factors of sums of powers of binomial coefficients}, Acta Arith. 86 (1998), 17--26.
+\end{thebibliography}
+\end{document}

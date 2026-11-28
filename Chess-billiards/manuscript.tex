@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,microtype}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\usepackage{xcolor}
+\geometry{hmargin=.90in,vmargin=.78in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+\begin{center}
+{\LARGE Periodic directions in square chess billiards\\[3pt]have full measure}\par\medskip
+Blake Stone's mathematics project, developed with OpenAI Codex\\November 26, 2026
+\end{center}
+\begin{abstract}
+A point moves across a square along chords of two prescribed directions in alternation. We prove that almost every pair of directions gives a periodic trajectory. The conclusion holds on every parallelogram. This refutes the two measure predictions of Hanusa and Mahankali. For slopes $a,-b$ of unequal positive magnitudes we give a continued-fraction test for periodicity. The exceptional parameters on each fixed slope-ratio ray have Hausdorff dimension strictly below one. The example with slopes $1/3,-1/4$ has dense boundary trajectories and exact unfolded vertical drift $1-1/\sqrt2$. The proof reduces the square to a piecewise affine circle map and establishes the measure result by uniform distortion of explicit inverse branches.
+\end{abstract}
+
+\section{Directions and the classification}
+Following Hanusa and Mahankali~\cite{hm}, at the end of a chord change to the other direction and follow it to the opposite boundary point. If the new line only touches a corner, its chord has length zero and the following step retraces the incoming chord. A time step of the boundary map $S$ comprises two successive chords, so the initial move direction is restored. Slopes parallel to a side or to one another form a null set in the product of the two direction circles. Our explicit classification concerns finite nonzero slopes of opposite signs. Directions of the same sign have a fixed corner.
+
+Let $\mathcal N(B)$ be the set of direction pairs on a board $B$ admitting a periodic orbit or a fixed point, in the normalized angular measure of~\cite[\S6.4]{hm}. Their Conjectures 6.14 and 6.15 predict, respectively, a measure strictly below one on every polygon with at least four sides and a measure of $3/4$ on the square. Nogueira and Troubetzkoy proved that periodicity holds on an open dense set of square parameters~\cite[Theorem~13]{nt}. With the open regions already accounting for $3/4$ in~\cite[Theorem~6.13]{hm}, open density already implies that $3/4$ is too small. We determine the measure and give an elementary criterion.
+
+\begin{theorem}\label{main}
+For every parallelogram $B$, $\mathcal N(B)$ has measure one. On the square with slopes $a,-b$, $a,b>0$, put
+\[
+ s=\frac{ab}{a+b},\qquad l=\frac{\min(a,b)}{a+b},\qquad t=l(1-l).
+\]
+For $a\ne b$ apply the following test, initially to $u=s$. Set $x=\dist(u,\Z)$. If $x=0$ or $x\ge l$, stop. Otherwise replace $u$ by $t/x$ and repeat. A periodic trajectory exists exactly when this test stops. If it never stops, each boundary orbit of $S$ is dense and $S$ is uniquely ergodic. At each fixed ratio $a/b\ne1$, the set of $s$ for which the test never stops has Hausdorff dimension strictly below one. If $a=b$, periodicity holds exactly when $a$ is rational.
+\end{theorem}
+
+This gives a periodicity criterion and the period in the opposite-sign case of Question~7.6 of~\cite{hm}. The period is read from the same test by reversing its arithmetic steps, as made precise below. The original question also asks for the locations of periodic points. The section map below gives their coordinates by affine iteration.
+
+\section{A vertical section of the unfolded square}
+Reflect the board across each side hit and let the new coordinates be $X,Y$. Choose their signs initially so that the lifted ray travels to the right and upwards. In the unit grid of the plane its slope is $a$ on cells where $\lfloor X\rfloor+\lfloor Y\rfloor$ is even and $b$ on the other cells. Indeed the folded vertical and horizontal signs are $(-1)^{\lfloor Y\rfloor}$ and $(-1)^{\lfloor X\rfloor}$, respectively. Crossing one edge switches the chosen direction. At a grid vertex both signs switch, and the folded path backtracks, with the intervening zero chord prescribed by the corner convention. A translation by one cell, when needed, interchanges $a,b$. Every oriented chess trajectory is represented by this unfolding, and folding modulo two in both coordinates recovers its ordered nonzero segments.
+
+Write $m=b/(a+b)$, so $s/a=m$, $s/b=1-m$. Define $H:\R\to\R$ by $H(0)=0$, $H(y+2)=H(y)+1$, with slopes $m$ on $[0,1]$ and $1-m$ on $[1,2]$. If $Y_n$ is the height on the grid line $X=n$, put $z_n=Y_n+n$. Within the $n$th column, the slope at corrected height $Y+n$ is $a$ on the even strips and $b$ on the odd strips. Thus $H(Y+n)$ increases by $s$ across that column, including when several horizontal edges are crossed. Changing columns adds one to the corrected height. It follows that
+\[
+ H(z_{n+1})=h_m(H(z_n)+s),\qquad h_m(v)=H(H^{-1}(v)+1).
+\]
+The lift $h_m$ commutes with integral translations, $h_m^2(v)=v+1$, and
+\[
+ h_m(v)=
+ \begin{cases}
+ m+(1-m)v/m,&0\le v\le m,\\
+ 1+m(v-m)/(1-m),&m\le v\le1 .
+ \end{cases}
+\]
+Let $R_s(v)=v+s$ and use $G_s=R_s h_m$, conjugate by $R_s$ to $h_m R_s$. Write $r(s)$ for its real translation number, the limit of $[G_s^n(v)-v]/n$, independent of $v$. This is Poincar\'e's theorem for increasing degree-one lifts. As $H(y)-y/2$ is bounded, for positive $s$ the mean vertical drift per unit horizontal motion is
+\begin{equation}\label{eq:drift}
+ D(s)=2r(s)-1=\lim_{n\to\infty}\frac{Y_n-Y_0}{n},\qquad
+ \min(a,b)\le D(s)\le\max(a,b).
+\end{equation}
+The same limit holds for unrestricted real $X\to\infty$ by the bounded slopes.
+
+\begin{lemma}\label{kin}
+The boundary map has a periodic orbit exactly when $D(s)$ is rational. If $D(s)=p/q$ in lowest terms and $s>0$, every periodic orbit of $S$ has least period $p+q$.
+\end{lemma}
+\begin{proof}
+The section is a circle homeomorphism, so it has a periodic point if and only if $r(s)\in\mathbb Q$. For such a point with $D=p/q$, the least number of columns before its corrected height returns modulo two is the denominator of $(p+q)/(2q)$. This is $q$ when $p,q$ are odd and $2q$ when their parities differ. Over that number $k$ of columns the vertical advance is exactly $kp/q$, from the integer drift of the periodic section lift. For the folded oriented segment to repeat, the two lifted coordinates must advance by even integers. This follows by marking an interior point on that segment, where its position and the two signs of its velocity determine its unique preimage modulo $2\Z^2$. For odd $p,q$ the first section return has odd displacement in both coordinates, and a second one is required. For opposite parities the first return already has even displacement. Thus the primitive folded return always advances $(2q,2p)$ and crosses $2q+2p$ grid lines, counting both at each grid vertex. Each line crossing is one billiard move including the corner pause. The period for two-move time is $p+q$. Conversely any folded periodic orbit closes on the lattice $2\Z^2$ by the same oriented-segment argument, so gives a periodic section point.
+\end{proof}
+
+\section{An arithmetic test}
+Fix $l\in(0,1/2)$ and regard $s$ as variable; the unordered slope magnitudes are $s/l,s/(1-l)$. Interchanging them leaves $D$ unchanged by a vertical translation of the unfolded grid. Define $D(s)=2r(s)-1$ also for signed $s$. Three identities drive the test:
+\begin{equation}\label{eq:sym}
+ D(s+j)=D(s)+2j\quad(j\in\Z),\qquad D(-s)=-D(s),\qquad
+ D(t/s)=\frac1{D(s)}\quad(s>0).
+\end{equation}
+Indeed $G_{s+j}=R_jG_s$. Since $h_m^{-1}=R_{-1}h_m$, $G_s^{-1}$ is conjugate by a translation to $R_{-1}G_{-s}$, giving the second identity. For the third, exchange $X,Y$ in the unfolded grid. Its two slopes become $1/a,1/b$, whose ratio parameter $l$ is unchanged and whose common parameter becomes $1/(a+b)=t/s$. Since every ray is increasing in both coordinates with slopes bounded away from zero and infinity, its inverse has reciprocal asymptotic drift by~\eqref{eq:drift}.
+
+We have $D(0)=0$ since $h_m^2=R_1$. Also $D(x)=1$ for $l\le x\le1/2$. Indeed $h_m(v)-v$ has range $[l,1-l]$, from its values at $0,m$. There is then a solution of $G_x(v)=v+1$, giving $r(x)=1$. When $0<x<l$, both positive slopes are strictly below one and~\eqref{eq:drift} gives $0<D(x)<1$.
+
+Upon reducing modulo integers and reflection, the first two identities in~\eqref{eq:sym} determine $D(u)$ from $D(x)$ by the same signed shift, with integer translations doubled. At an interior step the third gives $1/D(x)=2j\mathbin{\pm}D(x')$, where $j$ is a nearest integer to $t/x$ and $x'=\dist(t/x,\Z)$. If the algorithm stops, reversing these operations computes a rational $D(s)$. If all steps are interior and $D(x)=p/q$ is rational in lowest terms, then $0<p<q$ and the denominator of $D(x')=|q/p-2j|$ is at most $p$. At every step the positive denominator would strictly decrease, a contradiction. Lemma~\ref{kin} gives the periodicity assertion.
+
+An irrational rotation number implies that an orientation-preserving piecewise linear circle homeomorphism with finitely many positive slopes is conjugate to an irrational rotation, by Denjoy's bounded-variation theorem~\cite{denjoy}. This applies directly to the original two-chord boundary map in perimeter coordinates. For a nontangent-to-edges direction the chord map is a piecewise affine orientation-reversing homeomorphism, with finitely many pieces and nonzero slopes, as seen by projecting each edge linearly along the prescribed direction onto the exit edge. Its square-step composition is orientation preserving. In the nontermination case Lemma~\ref{kin} excludes a periodic point, hence all boundary orbits are dense and the map is uniquely ergodic. At $a=b$ the unfolded slope is constant and $D=a$, yielding the stated separate case.
+
+\section{Measure and dimension}
+It suffices to work on $J=[0,l]$. The inverse branches carrying an interior remainder $y$ to a preceding interior remainder are
+\[
+ f_{j,+}(y)=\frac{t}{j+y},\qquad f_{j,-}(y)=\frac{t}{j-y},\quad j=1,2,\ldots .
+\]
+Indeed $t/x>1-l>1/2$, so its nearest integer is positive. Conversely all displayed maps take $J$ into $J$, since $j\mathbin{\pm}y\ge1-l$. Their image interiors are disjoint because the intervals $j\mathbin{\pm}(0,l)$ have disjoint interiors. The maps have $|f'|\le c=l/(1-l)<1$ and $\log|f'|$ is Lipschitz with constant $K=2/(1-l)$ on $J$. For a composition $w$ of any length, the chain rule and geometric series bound $\sup_J|w'|/\inf_J|w'|\le C=\exp(Kl/(1-c))$.
+
+The first level omits an open interval $E$ of positive length. For instance take $E=\{t/(1+y):l<y<1/2\}$, all of whose points lie in $J$ and have next remainder outside $J$. Inside each interval $w(J)$, the next level loses at least a fraction $\eta=|E|/(C|J|)>0$ by the derivative ratio bound. Consequently the sum of the lengths of the intervals at generation $n$ is at most $|J|(1-\eta)^n$. Infinite paths form a null set.
+
+In fact $\sum_{|w|=n}\sup_J |w'|\le C(1-\eta)^n$. Fix $n$ large enough that this is less than one. The sum $\sum_{|w|=n}(\sup |w'|)^d$ converges uniformly in $d\in[3/4,1]$, by the chain rule and $\sum_{j,\pm}(\sup|f_{j,\pm}'|)^{3/4}<\infty$. By continuity it is below one for some $d<1$. Further compositions of these $n$-step maps cover every nonterminating point by intervals of shrinking diameter with total $d$th powers tending to zero. Thus their Hausdorff dimension is at most $d<1$. Taking the countable signed integer translates needed by the initial nearest-integer reduction preserves this bound.
+
+For each open sector $a<b$ or $a>b$, $(a,b)\leftrightarrow (l,s)$ is a smooth bijection with smooth inverse, with $a,b$ recovered as $s/l,s/(1-l)$ in the appropriate order. Fubini's theorem gives a null exceptional set of slope pairs. The change from finite slopes to angles also preserves null sets. Equal magnitudes and side-parallel or coincident directions contribute measure zero. Equal-sign pairs have a fixed corner because both directions are supporting lines at that corner. This proves Theorem~\ref{main} on the square. An invertible affine map from the square onto any parallelogram sends chords and the corner rule to their counterparts. Its projective map on directions is a smooth diffeomorphism of the direction circle, so the exceptional set remains null.
+
+\section{Three examples posed in the original paper}
+The same identities settle the observations in Figures 9--11 of~\cite{hm}.
+\begin{itemize}
+\item If $a+b=1/k$ for an integer $k\ge1$, the exchanged section parameter is $t/s=k$. On that section $G_k$ induces the involution $h_m$ modulo one. Consequently every trajectory closes, $D(s)=1/(2k)$, and every two-move boundary period is $2k+1$. This gives period three for $a=1/3,b=2/3$ (Figure~9).
+\item For $a=3/10,b=4/10$, we have $l=3/7$, $t=12/49$, $s=6/35$ and $t/s=10/7=1+l$. Thus $D(s)=1/3$ and the boundary period is four. On the exchanged section the map acts modulo one as $G_l$, which has exactly one fixed point since $h_m(v)-v$ attains its maximum only once modulo one. The other section orbits approach it from one side on the cut circle. Its primitive folded lift is one cycle: here the reduced section period is odd, so the two parity lifts join on that cycle, as in Lemma~\ref{kin}. All trajectories approach this folded trajectory set (Figure~10).
+\item For $a=1/3,b=1/4$, $t=12/49$, $s=1/7$. Write $d=D(1/7)$, $e=D(2/7)$. As $t/(1/7)=2-2/7$ and $t/(2/7)=1-1/7$, we get
+\[
+ 1/d=4-e,\qquad 1/e=2-d.
+\]
+The bounds $1/4\le d\le1/3$ select $d=1-1/\sqrt2$ from the two roots. Thus even the orbit starting at the corner in Figure~11 is dense in the boundary.
+\end{itemize}
+
+There are also explicit curves on which every orbit is dense. For an integer $k\ge2$ choose $0<a<1/k$ and set $b=(1-ka)/(k-a)$. Both slopes have magnitude less than one. Now $1/(a+b)=k-ab/(a+b)$, or $t/s=k-s$. Hence $D(s)^{-1}=2k-D(s)$, and the bound $D(s)<1$ gives $D(s)=k-\sqrt{k^2-1}$. This is irrational. In particular every rational $a$ in this interval gives a pair of rational slopes with dense boundary orbits.
+
+For comparison with internal-wave billiards, when $m>1/2$ the longer arc of $h_m$ has length $m$ and contracts by $(1-m)/m$, and the shorter one expands by the reciprocal factor. For $G_s$ the shorter arc's left endpoint moves by $s+1-m$. These data identify, up to rotation of the section, the family of Lenci, Bonanno and Cristadoro~\cite[Appendix A, (A.2)--(A.4)]{lbc}. Their dilation-surface theorem for these maps gives an independent route to the slice-wise full-measure conclusion. The explicit arithmetic test above proves it directly and also treats individual exceptional inputs.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{hm} C. R. H. Hanusa and A. V. Mahankali, \emph{A billiards-like dynamical system for attacking chess pieces}, European J. Combin. \textbf{95} (2021), 103341. \href{https://doi.org/10.1016/j.ejc.2021.103341}{doi:10.1016/j.ejc.2021.103341}.
+\bibitem{nt} A. Nogueira and S. Troubetzkoy, \emph{Chess billiards}, Math. Intelligencer \textbf{44} (2022), 331--338. \href{https://arxiv.org/abs/2007.14773}{arXiv:2007.14773}.
+\bibitem{lbc} M. Lenci, C. Bonanno and G. Cristadoro, \emph{Internal-wave billiards in trapezoids and similar tables}, Nonlinearity \textbf{36} (2023), 1029--1052. \href{https://arxiv.org/abs/2102.01654}{arXiv:2102.01654}.
+\bibitem{denjoy} I. Liousse, \emph{PL homeomorphisms of the circle which are piecewise $C^1$ conjugate to irrational rotations}, Bull. Braz. Math. Soc. \textbf{35} (2004), 269--280, pp.~269--270 (class $P$ version of Denjoy's theorem). \href{https://www.kurims.kyoto-u.ac.jp/EMIS/journals/em/docs/boletim/vol352/v35-2-a7-2004.pdf}{Text}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\fl}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\mant}{\operatorname{mant}}
+\title{Subexponential growth and compulsory binary prefixes\\in Sigrist's greedy substring sequence}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Start with $a_1=2$. After partial sum $S_n$, choose the least unused positive integer $x$ whose binary expansion occurs in $S_n+x$. We prove that the mean logarithmic growth on $k$ consecutive steps tends to zero uniformly in the starting index as $k\to\infty$. In particular $S_n^{1/n}\to1$, and for every fixed $\varepsilon>0$ the steps with $a_{n+1}\ge\varepsilon S_n$ have upper Banach density zero. We also prove that the number of values in $[2^L,2^{L+1})$, divided by $L$, tends to infinity. Both results are unconditional. The conjecture that every positive integer occurs remains open.
+\end{abstract}
+
+\section{The rule and legal prefixes}
+R\'emy Sigrist defined OEIS A316994 in 2018 \cite{oeis}. Write $S_n=\sum_{i=1}^n a_i$. Binary words have no leading zeros. A positive integer $x$ is \emph{legal} at sum $S$ if its word occurs in $S+x$. At any step the rule selects the least unused legal integer. Since $a_2=1$ and $S_n$ exceeds every previous individual term for $n\ge2$, $x=S_n$ is then an unused legal choice because $S_n$ is a prefix of $2S_n$. The process is infinite and $a_{n+1}\le S_n$ for $n\ge2$, as observed in the earlier note \cite{previous}. Define $\rho_n=a_{n+1}/S_n$ and $\mant(t)=t/2^{\fl{\log_2 t}}$ for $t>0$.
+
+\begin{lemma}\label{lem:prefix}
+For $d\ge1$ put $D=2^d-1$. Whenever $x=\fl{S/D}>0$, $x$ is legal at $S$. If the chosen term exceeds $x$, then $x$ has already occurred.
+\end{lemma}
+\begin{proof}
+Write $S=Dx+v$ with $0\le v<D$. Then $S+x=2^d x+v$, which starts with the word of $x$. The second assertion is greedy minimality.
+\end{proof}
+
+\section{Limiting mantissas of relatively large steps}
+Fix any integer horizons $N_j\to\infty$ and real scales $B_j\ge1$. Let $M$ be the set of limits of $\mant(S_m)$ along subsequences of those horizons, using steps $m=m(j)<N_j$ with
+\begin{equation}\label{eq:qualified}
+ S_m/B_j\longrightarrow\infty,\qquad \liminf\rho_m>0 .
+\end{equation}
+Both the subsequence and the positive lower bound may depend on the limit. The set $M\subset[1,2]$ is defined using all such choices.
+\begin{lemma}\label{lem:infinite}
+If $M$ is nonempty, it is infinite.
+\end{lemma}
+\begin{proof}
+Take any $\theta\in M$ and steps realizing it. Write $H=\fl{\log_2 S_m}$. Fix a sufficiently large prime exponent $d$ such that $1/D<\liminf\rho_m$, where $D=2^d-1$. By Lemma~\ref{lem:prefix}, $x=\fl{S_m/D}$ was selected at some earlier index $i\le m$. Write $S'=S_{i-1}$. Eventually $x\le S'\le S_m-x$. The first inequality uses the one-step bound at $i-1$, which applies since $x\to\infty$. Since $x$ occurs as a binary word in $S_i$, there exist integers $U,r,v\ge0$ such that, for $\ell=1+\fl{\log_2 x}$,
+\begin{equation}\label{eq:factor}
+ S'=U2^{\ell+r}+(2^r-1)x+v,\qquad 0\le v<2^r .
+\end{equation}
+Here $U$ and $v$ are the portions before and after the occurrence. We have $r<d$ for large horizons since $2^r x\le S_i\le S_m<D(x+1)$. Also $r=0$ is impossible eventually. In that case $2^\ell$ divides $S'$, so every $1\le y<x$ is legal as a suffix of $S'+y$. Choosing $x$ forces every one of those integers to have occurred already, giving $S_i\ge x(x+1)/2$. This contradicts $S_i<D(x+1)$ for large $x$.
+
+Put $H'=\fl{\log_2 S'}$. At this fixed $d$, $U$, $r$, $H-H'$ and $\ell+r-H'$ all range over finite sets, since $x,S',S_m$ are within fixed factors of one another. After passing to a subsequence they are constant. Divide \eqref{eq:factor} by $2^{H'}$. We obtain another limiting mantissa
+\begin{equation}\label{eq:affine}
+ \theta'=A+B\theta,\qquad A=U2^{\ell+r-H'},\qquad
+ B=2^{H-H'}\frac{2^r-1}{2^d-1},\qquad 1\le r<d .
+\end{equation}
+Indeed $x=S_m/D+O(1)$ and $v/2^{H'}\to0$. The earlier steps $i-1$ remain within the same horizons. They satisfy \eqref{eq:qualified} because $S'\ge x\sim S_m/D$ and $\liminf x/S'\ge 1/(D-1)$. Therefore $\theta'\in M$.
+
+If $\theta$ is irrational, take arbitrarily many distinct admissible prime exponents $d$. The odd part of the reduced denominator of $B$ is $2^d-1$, by $\gcd(2^r-1,2^d-1)=2^{\gcd(r,d)}-1=1$. Hence the coefficients $B$ are distinct. All values $A+B\theta$ are distinct because the $A$ and $B$ are rational.
+
+If $\theta$ is rational, suppose $M$ is finite and let $H_0$ be a common denominator for all its rational elements. Write $\theta=u/v$ in reduced form. For distinct prime exponents $d$ the numbers $D=2^d-1$ are pairwise coprime. Choose an admissible $d$ such that $D$ is coprime to $H_0uv$, and take any prime $p\mid D$. The number $A$ in \eqref{eq:affine} has a power-of-two denominator, while the reduced denominator of $B\theta$ is divisible by $p$. Thus $\theta'=A+B\theta$ is rational with denominator divisible by $p$, contradicting $\theta'\in M$.
+\end{proof}
+
+\section{Uniform growth on consecutive blocks}
+\begin{theorem}\label{th:growth}
+The mean logarithmic growth on a long block satisfies
+\begin{equation}\label{eq:block}
+ \lim_{k\to\infty}\sup_{n\ge1}\frac1k\log\frac{S_{n+k}}{S_n}=0 .
+\end{equation}
+In particular $S_n^{1/n}\to1$. For every $\varepsilon>0$, the relatively large steps have upper Banach density zero, meaning
+\[
+ \lim_{k\to\infty}\sup_{n\ge1}
+ \frac1k\#\{m:n\le m<n+k,\ \rho_m\ge\varepsilon\}=0 .
+\]
+\end{theorem}
+\begin{proof}
+Suppose \eqref{eq:block} fails. Then there are blocks starting at indices $n$ with lengths $k\to\infty$ such that $\log_2(S_{n+k}/S_n)\ge\gamma k$ for some fixed $\gamma>0$. Put $t=\lceil\log_2 S_n\rceil$ and $\Delta=\fl{\log_2 S_{n+k}}-t$. Thus $\Delta\ge\gamma k-2$, so $\Delta\to\infty$ and eventually $k\le C\Delta$ for a fixed $C$.
+
+Consider the integer exponents $b$ in $[t+\Delta/8,t+\Delta/4]$. Once $\Delta>8$, each lower endpoint $2^{b-1}$ exceeds $S_n$, hence exceeds every one of the first $n$ terms. Of the first $N=n+k$ terms only the last $k$ can contribute to $[2^{b-1},2^{b+2}]$. Each such term lies in at most four windows. Averaging over the $\Delta/8+O(1)$ exponents gives $b$ for which at most a fixed number $K=K(C)$ of the first $N$ terms lie in the window. Pass to a subsequence of blocks on which this count is constant and their increasing list, divided by $2^b$, converges coordinate by coordinate. Let $P\subset[1/2,4]$ be the finite set of limiting coordinates. Use these horizons $N$ and scales $B=2^b$ to define $M$ in Section~2.
+
+Every $\theta\in M$ belongs to $P$. For steps realizing $\theta$, write $H=\fl{\log_2 S_m}$ and set $d=H-b\to\infty$. Lemma~\ref{lem:prefix} supplies a candidate $y=\fl{S_m/(2^d-1)}$ with
+\[
+ y/S_m\to0,\qquad y/2^b-\mant(S_m)\to0.
+\]
+Eventually $y<a_{m+1}$, so $y$ was used among the first $N$ terms and lies in the chosen interval. A further subsequence with fixed position in the sorted list gives $\theta\in P$.
+
+Yet $M$ is nonempty. The first partial sum reaching $2^{t+\lceil\Delta/2\rceil}$ occurs inside the block. It is at most twice that threshold by the one-step bound. From there to $S_{n+k}$ at least $\Delta/2-O(1)$ binary logarithmic units must be gained in at most $k\le C\Delta$ steps. Some step $m<N$ therefore satisfies $\log_2(1+\rho_m)\ge1/(3C)$ for large $\Delta$. Its starting sum has $S_m/2^b\ge 2^{\Delta/4}$. Extracting a convergent subsequence of the bounded mantissas gives an element of $M$. Lemma~\ref{lem:infinite} contradicts $M\subset P$.
+
+Fixing the starting index in \eqref{eq:block} gives the assertion for $S_n^{1/n}$. The logarithmic increase over a block is the sum of its single-step increases. Each step with $\rho_m\ge\varepsilon$ contributes at least $\log(1+\varepsilon)$, so \eqref{eq:block} also gives the upper Banach density statement.
+\end{proof}
+
+\section{Entire families of prefixes in the range}
+Let $R(X)$ count all distinct values of the infinite sequence at most $X$, regardless of when they appear.
+\begin{lemma}\label{lem:compulsory}
+If a fixed integer is legal at infinitely many stages, it occurs. If distinct terms have normalized mantissas converging to a nondyadic number $z\in(1,2)$, then the range contains $\fl{2^L z}$ for every $L\ge0$.
+\end{lemma}
+\begin{proof}
+Whenever an unused legal integer $p$ is passed over, the selected term is a previously unused positive integer smaller than $p$. This can happen at most $p-1$ times.
+
+Fix $p=\fl{2^L z}$. The binary representation of $z$ has the word of $p$ as its first $L+1$ digits, and has a zero at some fixed subsequent place because $z$ is nondyadic. For the terms in the hypothesis, this finite portion of the word eventually agrees with the one for $z$. Each term occurs inside its own resulting partial sum $S_i$. The designated zero in that occurrence is at a position tending to infinity above the units place, since the lengths of distinct terms tend to infinity. Adding $p$ cannot carry past this zero when its position $j$ satisfies $2^j>p$. Thus the displayed copy of $p$ survives in $S_i+p$ at infinitely many indices. The first assertion gives the result.
+\end{proof}
+\begin{theorem}\label{th:rays}
+Let $R_L$ count the values of the sequence in $[2^L,2^{L+1})$. Then
+\[
+ \frac{R_L}{L}\longrightarrow\infty,\qquad
+ \frac{R(X)}{(\log X)^2}\longrightarrow\infty .
+\]
+If $\rho_n\to0$, then the sequence is a permutation.
+\end{theorem}
+\begin{proof}
+If $\rho_n\to0$, fix $k\ge1$. For each sufficiently large $t$, let $n$ be the first index satisfying $S_n+k\ge k2^t$. The preceding partial sum lies below the threshold after adding $k$, and the step satisfies $a_n=o(S_{n-1})<2^t$. Hence $k2^t\le S_n+k<(k+1)2^t$, so its word starts with $k$. These indices tend to infinity. Lemma~\ref{lem:compulsory} proves that every $k$ occurs.
+
+Otherwise define $M$ with horizons $N_j=j$ and scales $B_j=1$. There exist steps with $\rho_n$ bounded away from zero and $S_n\to\infty$, so $M$ is nonempty and therefore infinite by Lemma~\ref{lem:infinite}. For any $\theta\in M$ take steps realizing this limit, and set $u=\theta$ if $\theta<2$ and $u=1$ if $\theta=2$. For every sufficiently large fixed $d$, the candidates $x=\fl{S_n/(2^d-1)}$ are smaller than the chosen terms and therefore already belong to the range. They tend to infinity with normalized mantissas converging to
+\[
+ z_d=\frac{u}{1-2^{-d}}\in(1,2).
+\]
+Here the normalization divides by one additional power of two when $\theta=2$. All sufficiently large $d$ give nondyadic $z_d$. This is immediate for irrational $u$. If $u=A/B$ is rational in reduced form, dyadicity requires the odd integer $2^d-1$ to divide $A$. Lemma~\ref{lem:compulsory} now forces the whole family $\{\fl{2^L z_d}:L\ge0\}$ into the range for each such $d$.
+
+Choose any prescribed number $K$ of distinct resulting values of $u$. There are infinitely many to choose from since only $\theta=1,2$ can give the same $u$. Around these $K$ values take intervals with pairwise disjoint closures. For each family restrict to $d$ sufficiently large that all $z_d$ lie in the corresponding interval. We have $z_d-z_{d+1}\ge2^{-d-1}$, so exponents $d\le L-1$ in each family give at least $L-O_K(1)$ distinct integers $\fl{2^L z_d}$. For large $L$ integers from different intervals are distinct as well. Thus $R_L\ge K L-O_K(1)$. Since $K$ was arbitrary, $R_L/L\to\infty$. Summing over the complete intervals below $X$ gives the second limit. In the permutation case both limits hold directly.
+\end{proof}
+
+\section{Exact computation}
+For a partial sum $S$ one can list every legal $x\le S$ without scanning all of them. Fix the binary length $\ell$ of $x$ and the number $r$ of trailing bits after its occurrence in $S+x$. For $r=0$ all such $x$ work exactly when $2^\ell\mid S$. For $r\ge1$ put $D=2^r-1$ and $s=S\bmod 2^{\ell+r}$. The condition is $s=Dx+v$ for $0\le v\le D$, by \eqref{eq:factor}. There is no wrap since $Dx+v\le D2^\ell<2^{\ell+r}$. Thus the candidates are $\fl{s/D}$ and, only if $D\mid s$, $\fl{s/D}-1$, restricted to the prescribed length. Conversely every such candidate gives the specified occurrence. The maximum necessary $r+\ell$ is the binary length of $2S$.
+
+The accompanying standard-library verifier compares this formula with direct binary substring tests for all $1\le x\le S\le511$ and compares the two minimum searches on the first 2,000 sequence positions. The first million terms sum to $506{,}007{,}688{,}844$ and include every integer from $1$ through $525{,}675$. The earlier conditional counting theorem \cite{previous} still gives a power-saving upper bound on the range under any omission. Neither it nor the present growth theorem decides whether an omission occurs.
+\begin{thebibliography}{9}
+\bibitem{oeis} R. Sigrist, OEIS A316994, 2018. \url{https://oeis.org/A316994}.
+\bibitem{previous} Blake Stone's mathematics project, \emph{The greedy binary-substring sequence A316994 is infinite}, and \emph{If A316994 omits one integer, its range has density zero}, companion notes (2026).
+\end{thebibliography}
+\end{document}

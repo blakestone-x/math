@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype,float}
+\usepackage[hmargin=0.86in,vmargin=0.76in]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\card}[1]{\lvert #1\rvert}
+\setlength{\emergencystretch}{1.2em}
+\begin{document}
+\begin{center}
+{\LARGE Congruences and exact counts for\\[3pt] nonattacking toroidal semiqueens\par}
+\medskip November 26, 2026
+\end{center}
+\begin{abstract}
+We prove the three congruences in Walter Trump's 2021 note on toroidal semiqueens. The placement count modulo the board area vanishes except for an explicit prime-size exception. Coordinate symmetries give a divisibility theorem modulo three and the exact parity of every entry. We also answer the note's question about four semiqueens by counting partial transversals of an arbitrary Latin square in terms of its intercalates. A partition sum extends the known cyclic formulas through six pieces to seven pieces and gives formulas for every finite abelian group table.
+\end{abstract}
+
+\section{Setup and the prime-power calculation}
+Let $C_n=\Z/n\Z$ and let $T(n,k)$ count unordered placements of $k$ semiqueens on $C_n^2$, with attacks along rows, columns and diagonals of one fixed slope. Negating one coordinate if necessary identifies the diagonal with the symbol $r+c$. A placement is thus a set of cells on which each of $r$, $c$, and $r+c$ is injective. Such sets are partial transversals of the cyclic addition table. Assume $1\le k\le n$ except where the empty placement $T(n,0)=1$ is specified. Trump asked for the following residue in conjecture~(8) of his note~\cite{trump}. For $k=n$, this recovers the congruence for $T(n,n)/n$ cited and proved in Stones and Wanless~\cite{compound}.
+
+\begin{theorem}\label{thm:area}
+For $1\le k\le n$,
+\[
+T(n,k)\equiv\begin{cases}(k-2)n^2/k & k\text{ is an odd prime divisor of }n,\\ 0&\text{otherwise}\end{cases}\pmod{n^2}.
+\]
+\end{theorem}
+
+The group $C_n^2$ acts on placements by translation. Marking one piece makes the action free: fixing the marked cell forces the translation to be the identity. Therefore
+\begin{equation}\label{eq:marked}n^2\mid kT(n,k).\end{equation}
+The row projection of the stabilizer of a nonempty placement is injective. Indeed a translation with zero row component that preserves the placement must fix the unique piece in every occupied row. The column and symbol projections are also injective. In particular each stabilizer is cyclic.
+
+\begin{lemma}\label{lem:prime}
+Let $p$ be prime, $p^a\parallel n$ and $m=n/p$. Then
+\[
+T(n,k)\equiv\begin{cases}(p-2)p^jT(m,j) & k=pj,\\0 & p\nmid k\end{cases}\pmod {p^{2a}}.
+\]
+\end{lemma}
+\begin{proof}
+Let $P$ be the subgroup of elements of $p$-power order in $C_n^2$, of size $p^{2a}$. Placements with trivial $P$-stabilizer have orbits of this size. Every other placement is fixed by a unique subgroup of order $p$, because its stabilizer is cyclic. In $C_n^2$, the subgroups of order $p$ satisfying injectivity on all three coordinates are exactly
+\[
+H_u=\langle(m,um)\rangle,\qquad u\in\F_p\setminus\{0,-1\}.
+\]
+The row projection lets us normalize the first coordinate of the generator to $m$. The other two projections then exclude $u=0,-1$. Thus there are $p-2$ choices, including none when $p=2$.
+
+Every $H_u$-orbit of cells has $p$ elements. It reduces modulo $m$ to a single cell and uses all $p$ lifts of its row, column and symbol. Each quotient cell has $p^2$ lifts and hence gives $p$ such orbits. A union of orbits is a placement precisely when their projected cells have distinct rows, columns and symbols. Thus $H_u$ fixes no placements unless $k=pj$, and then fixes $p^jT(m,j)$. The fixed sets for the different $H_u$ are disjoint. Summing them modulo $p^{2a}$ proves the lemma.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:area}]
+Lemma~\ref{lem:prime} gives residue zero for $p=2$. For odd $p$ and $k=p$, it gives $(p-2)p m^2=(p-2)n^2/p$. For $k=pj$ with $j\ge2$, \eqref{eq:marked} on the smaller board gives $p^{2(a-1)}\mid jT(m,j)$. Moreover $v_p(j)\le j-2$: for $j=2$ this uses oddness of $p$, and for $j\ge3$ one has $3^{v_p(j)}\le p^{v_p(j)}\le j\le 3^{j-2}$. It follows that $p^{2a}\mid p^jT(m,j)$. This proves the claimed residues at every prime dividing $n$. When $k=p$ is exceptional, $(p-2)n^2/p$ is divisible by the square of every other prime-power factor of $n$. The Chinese remainder theorem completes the proof.
+\end{proof}
+
+\section{Two coordinate symmetries}
+\begin{theorem}\label{thm:three}
+If $3\mid n$ or $k\equiv2\pmod3$, then $3\mid T(n,k)$.
+\end{theorem}
+\begin{proof}
+The cyclic group of column translations acts freely on nonempty placements, so $n\mid T(n,k)$. This proves the first case. If $3\nmid n$, regard a cell as $(r,c,-r-c)$. Cycling these coordinates preserves placements. The only fixed cell is $(0,0,0)$, since a fixed cell is $(x,x,x)$ with $3x=0$. An invariant placement consists of three-cell orbits and possibly the origin. Thus none has size $2\bmod3$, and all orbits on placements of that size have length three.
+\end{proof}
+
+\begin{theorem}\label{thm:parity}
+For odd $n$ and $0\le k\le n$, one has $T(n,k)\equiv\binom nk\pmod2$. For even $n$, all positive-size counts are even.
+\end{theorem}
+\begin{proof}
+Transpose the addition table. A fixed placement containing an off-diagonal cell $(r,c)$ would contain $(c,r)$ with the same symbol. Hence it consists of diagonal cells. For odd $n$ their symbols $2r$ are distinct, giving precisely $\binom nk$ fixed placements. The other placements occur in pairs. For even $n$ use the column translations in the preceding proof.
+\end{proof}
+If $2^a\mid n+1$ and $a\ge1$, the lowest $a$ binary digits of $n$ are one. In $\F_2[x]$, the product formula $(1+x)^n=\prod_{i:n_i=1}(1+x^{2^i})$, for $n=\sum n_i2^i$, makes $\binom nh$ odd for $0\le h<2^a$. Setting $h=n-k$ proves oddness for $k>n-2^a$, in particular for $k>n-a$. Theorems~\ref{thm:three} and~\ref{thm:parity} settle (9) and (10) of~\cite{trump}. The parity and modulo-three facts about full cyclic transversals, $k=n$, were previously known; see Wanless~\cite[Thms.~10--11]{wanless}.
+
+\section{Four pieces and Latin intercalates}
+For an order-$n$ Latin square $L$, let $M_j$ count its size-$j$ partial transversals and $I(L)$ its intercalates, the $2\times2$ subsquares on two symbols.
+\begin{theorem}\label{thm:four}
+The following identity holds for every Latin square of order $n\ge1$:
+\[
+4M_4=(n^2-9n+24)M_3-n^2\big((n-2)^3+1\big)+4I(L),\quad
+M_3=\frac{n^2(n-1)(n-2)(n^2-6n+10)}6.
+\]
+For $C_n$, one has $4I(L)=n^2$ for even $n$ and $4I(L)=0$ for odd $n$.
+\end{theorem}
+\begin{proof}
+For a size-$j$ partial transversal $S$, let $b(S)$ count cells whose three coordinates are all used by $S$. Inclusion--exclusion on the used rows, columns and symbols gives $n^2-3jn+3j^2-b(S)$ extensions. Indeed each kind of used coordinate selects $jn$ cells, and a pair of kinds selects $j^2$ cells. Any cell counted by $b(S)$ outside $S$ meets three distinct members of $S$, since two coordinates determine a cell. Thus $b(S)=j$ for $j=1,2$. Summing extensions and dividing by $j+1$ gives $M_2=n^2(n-1)(n-2)/2$ and the stated expression for $M_3$.
+
+For $j=3$ set $h(S)=b(S)-3$. Fix a cell $w$ and count three mutually nonattacking cells $P,Q,R$ different from $w$, sharing respectively its row, column, and symbol. Initially there are $(n-1)^3$ choices. The possible conflicts are $P,Q$ sharing a symbol, $P,R$ sharing a column, and $Q,R$ sharing a row. Each individual conflict has $(n-1)^2$ choices. Each pair of conflicts has $n-1$, because the cell common to the two constraints determines the others. A triple conflict makes $w,P,Q,R$ an intercalate. Summing over $w$ gives
+\[
+\sum_{|S|=3}h(S)=n^2\big((n-1)^3-3(n-1)^2+3(n-1)\big)-4I(L).
+\]
+The extension formula for $j=3$ now gives $4M_4$. For $C_n$, an intercalate through $(r,c)$ uses other row $r+d$ and other column $c+d$, where $d\ne0$ and $2d=0$. There is exactly one such $d$ for even $n$, and none for odd $n$.
+\end{proof}
+For the cyclic table this gives a direct proof of the known fourth-column formula~\cite{partial} asked for in~\cite[p.~1]{trump}:
+\[
+\frac{24T(n,4)}{n^2}=n^6-18n^5+135n^4-534n^3+1154n^2-1260n+516+6\gcd(2,n).
+\]
+
+\section{Fixed-size enumeration for abelian groups}
+Let $G$ be a finite abelian group of order $n$ and $t_d=\card{\{g\in G:dg=0\}}$. Let $M_k(G)$ count the partial transversals of size $k$ in the addition table. For $G=C_n$, $t_d=\gcd(d,n)$ and $M_k(G)=T(n,k)$. Stones and Wanless~\cite{partial} proved fixed-size quasipolynomiality for cyclic groups and tabulated the polynomials for $k\le6$. Their notation $\omega(n,n-k)$ denotes $T(n,k)$.
+\begin{theorem}\label{thm:coeff}
+For $4\le k\le7$,
+\[
+ M_k(G)=\frac{n^2}{k!}\big(U_k(n)+V_k(n)t_2+W_k(n)t_3+X_k(n)t_4+Y_k(n)t_2^2\big),
+\]
+with the integer polynomials in Tables~\ref{tab:ordinary} and~\ref{tab:torsion}.
+\end{theorem}
+\begin{proof}
+Temporarily order the pieces and represent their cells as triples of coordinates adding to zero. Let $A,B,C$ independently range over partitions of $\{1,\dots,k\}$. For a partition $A$, put $w(A)=\prod_{D\in A}(-1)^{|D|-1}(|D|-1)!$. For a tuple of coordinates, the sum of $w(A)$ over partitions on whose blocks the tuple is constant is the indicator that the coordinates are distinct. Indeed $w(A)$ is the sum of the signs of permutations with cycle partition $A$. Permutations preserving the values form a product of symmetric groups, with sign sum zero whenever a value occurs twice. Applying this identity to all three coordinates gives a sum with weights $w(A)w(B)w(C)$.
+
+For a fixed triple, introduce one variable per block. The $k$ constraints are $x_{A(i)}+y_{B(i)}+z_{C(i)}=0$. Eliminate each $z$ by subtracting a representative equation in each block of $C$ from the other equations there. The remaining integer matrix has $v=|A|+|B|$ columns. Unimodular row and column operations diagonalize it with positive nonzero entries $d_1,\dots,d_s$. The operations are invertible over $G$. The number of assignments is therefore $n^{v-s}\prod_{i=1}^s t_{d_i}$, with $t_1=1$. Summing over partition triples gives a finite formula for every $k$.
+
+For the tables, group the triples by simultaneous relabeling under the symmetric group. Select a representative $A$, then a representative $B$ under its stabilizer, then a representative $C$ under the common stabilizer. Multiply the weight by these three successive orbit sizes, and sum it at the indicated exponent and tuple of nonunit diagonal entries. If $B_k$ is the $k$th Bell number, the sum of the orbit multiplicities is checked to be $B_k^3$. The reproducible integer calculation is furnished in \texttt{partitions.py}. It eliminates pivots by Euclidean row and column operations. Table~\ref{tab:ordinary} records the terms with no nonunit entries, and Table~\ref{tab:torsion} all remaining terms.
+\end{proof}
+
+\begin{table}[H]\centering
+\caption{Coefficient of $n^e$ in $U_k(n)$. Dashes denote zero.}\label{tab:ordinary}
+\smallskip
+\begin{tabular}{r|rrrr}\toprule
+$e$ & $k=4$ & $k=5$ & $k=6$ & $k=7$\\\midrule
+0 & 516 & 26112 & 2227680 & 290897280\\
+1 & -1260 & -69840 & -6360480 & -876214080\\
+2 & 1154 & 72580 & 7131232 & 1032823344\\
+3 & -534 & -40740 & -4459740 & -690701256\\
+4 & 135 & 13862 & 1773420 & 301696192\\
+5 & -18 & -2970 & -475290 & -92076600\\
+6 & 1 & 395 & 87682 & 20302524\\
+7 & --- & -30 & -11055 & -3275496\\
+8 & --- & 1 & 915 & 385042\\
+9 & --- & --- & -45 & -32235\\
+10 & --- & --- & 1 & 1827\\
+11 & --- & --- & --- & -63\\
+12 & --- & --- & --- & 1\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering
+\caption{Torsion polynomials in Theorem~\ref{thm:coeff}, in ascending powers of $n$. All omitted polynomials vanish.}\label{tab:torsion}
+\smallskip
+\begin{tabular}{rcl}\toprule
+$k$ & Polynomial & Coefficients, constant term first\\\midrule
+4 & $V_4$ & $6$\\
+5 & $V_5$ & $960,\, -360,\, 30$\\
+6 & $V_6$ & $168480,\, -106200,\, 24300,\, -2430,\, 90$\\
+6 & $W_6$ & $1440$\\
+7 & $V_7$ & $37336320,\, -30360960,\, 10099320,\, -1785420,\, 177660,\, -9450,\, 210$\\
+7 & $W_7$ & $846720,\, -181440,\, 10080$\\
+7 & $X_7$ & $40320$\\
+7 & $Y_7$ & $20160$\\
+\bottomrule\end{tabular}\end{table}
+
+For cyclic groups the displayed formulas give quasipolynomials of periods dividing $2,2,6,12$ for $k=4,5,6,7$, respectively. For example $T(6,4)=1224$ and $T(7,4)=8869$. A second computation, \texttt{verify.py}, enumerates partial transversals row by row, checking all cyclic orders from 1 through 10, four additional abelian tables, and the four-piece identity in a Latin square obtained by switching an intercalate. Both programs use only the Python standard library.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{trump} W. Trump, \emph{Number $T(n,k)$ of ways of arranging $k$ non-attacking semi-queens on a $n\times n$ toroidal board}, March 10, 2021, updated April 7, 2021. Supplement to \href{https://oeis.org/A342372}{OEIS A342372}. \url{https://oeis.org/A342372/a342372_2.pdf}.
+\bibitem{wanless} I. M. Wanless, \emph{Transversals in Latin squares}, Quasigroups and Related Systems \textbf{15} (2007), 169--190. \href{https://mfoi2017.math.md/files/qrs/v15-n1/v15-n1-\%28pp169-190\%29.pdf}{Journal PDF}.
+\bibitem{compound} D. S. Stones and I. M. Wanless, \emph{Compound orthomorphisms of the cyclic group}, Finite Fields Appl. \textbf{16} (2010), 277--289. \href{https://doi.org/10.1016/j.ffa.2010.04.001}{doi:10.1016/j.ffa.2010.04.001}.
+\bibitem{partial} D. S. Stones and I. M. Wanless, \emph{A congruence connecting Latin rectangles and partial orthomorphisms}, Ann. Comb. \textbf{16} (2012), 349--365. \href{https://doi.org/10.1007/s00026-012-0137-6}{doi:10.1007/s00026-012-0137-6}.
+\end{thebibliography}
+\end{document}

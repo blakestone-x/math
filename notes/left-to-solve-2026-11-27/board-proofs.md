@@ -1,0 +1,16 @@
+# Four conjectures submitted to Left to Solve
+
+Each proof below passed the site's unmodified checker locally against its exact proposed Lean statement, Lean 4.33.1 and formal-conjectures revision `9097e2f90e66d2f6244209cb1c07f7120d17ec53`. Each fork link pins a commit containing both the statement and its checked proof. The upstream pull requests submit the statements for human review. The site's separate proof review opens after the statement is merged. [Contribution protocol](https://lefttosolve.com/join)
+
+| Problem | Exact result | Statement review | Checked proof |
+|---|---|---|---|
+| Lagneau's square concatenations, A236383 | For every positive $n$, a square can be split into equal-width decimal blocks whose difference is $n^2$. Both blocks have their full decimal width. | [PR 18313](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18313) | [Lean proof](https://github.com/blakestone-x/open-math-agents/blob/cbe9bee593d3622dd4fb2421c9c8cfc3a7a8daf7/proofs/oeis-a236383.lean) |
+| Kimberling's common partition prefix, A308355 | Numbering row $n$ by the partitions of $n$, its printed $n+1$ formula fails at $n=1$. The row has only one entry, while A025065(2) is two. | [PR 18318](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18318) | [Lean disproof](https://github.com/blakestone-x/open-math-agents/blob/1070c541b63aba1f5f970a97d0938f6b57fe1726/proofs/oeis-a308355.lean) |
+| Regular polygons made from rods, A382632 | Rods of lengths $1$ through $n$ can trace a regular polygon exactly once with corners at joints precisely for 2 or 3 sides. | [PR 18322](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18322) | [Lean proof](https://github.com/blakestone-x/open-math-agents/blob/271adef824307c850fade9438c9d61ae0b4154a9/proofs/oeis-a382632.lean) |
+| Yane's minimum-perimeter tilings, A394981 | The first two counts are both one. The proposed factor of four for every positive odd index therefore fails at $n=1$. | [PR 18327](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18327) | [Lean disproof](https://github.com/blakestone-x/open-math-agents/blob/f05f357870ffeefe8d9fc938fb2c592951eca727/proofs/oeis-a394981.lean) |
+
+For the polygon exclusion, four successive corner coordinates $t_j$ would yield four distinct squares $8t_j+1$ in arithmetic progression. The formal proof reuses the upstream formalization of the four-squares theorem by @nitdaman with credit. The digon uses rods 1 to 3. For the triangle, joints 3, 6 and 8 give corner coordinates 6, 21 and 36 on a perimeter of 45. [Four-squares dependency, PR 852](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/852) · [Polygon manuscript](../../A382632/regular-foldings.pdf)
+
+The preceding project manuscripts also give the corrected all-row partition identity and the factor-four tiling theorem for odd $n\ge3$. [Square construction](../../A236383/concatenated-squares.pdf) · [Partition proof](../../A308355/partition-prefix.pdf) · [Tiling proof](../../A394981/tilings.pdf)
+
+To reproduce a verdict, check out the commit linked in the proof column in a checkout of the site repository with its pinned Lean dependencies. Run `bash tools/check.sh proofs/oeis-a236383.lean verdict.json`, substituting the file for the chosen problem. The two proofs and two disproofs each passed the checker's axiom whitelist.

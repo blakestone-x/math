@@ -1,0 +1,4 @@
+Literal binomial row sums checked for 0 <= n <= 120.
+Exact recurrence through n=12000; 426 qualifying rows checked.
+50 factorial-sum checks at q=6 through 1000 for five odd multipliers.
+4D modulo 4096 = 1959; all 35 comparisons at q >= 18 agree.

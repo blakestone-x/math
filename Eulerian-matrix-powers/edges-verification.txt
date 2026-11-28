@@ -1,0 +1,3 @@
+Permutation enumeration through 8 and independent Eulerian formulas through 20 agree.
+315 edge constants agree with independent sums over maximizing compositions.
+Three exact sign brackets at row 128 agree with the two extremes and the near-zero scale.

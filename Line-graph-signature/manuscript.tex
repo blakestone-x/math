@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black,pdftitle={The signature of line graphs at small cyclomatic number}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\sg}{\operatorname{sig}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\core}{\operatorname{core}_2}
+\title{The signature of line graphs at small cyclomatic number}
+\author{Blake Stone's mathematics project\\\small AI-assisted research manuscript}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For connected simple graphs of cyclomatic numbers $2,3,4,5$, respectively, the largest possible adjacency signature of a line graph is $1,2,2,3$. These values settle four cases of a conjecture of A. Paone and M. Paone. For every $c\ge4$ we improve the published preprint bound $s(L(G))\le c$ to $s(L(G))\le c-2$. The argument bounds signature by the number of branching vertices of the 2-core and identifies when equality in this bound is impossible. We also show that, for a fixed core, the maximum over all pendant forests is attained by attaching at most one leaf at each core vertex.
+\end{abstract}
+
+\section{The fixed-cyclomatic problem}
+Let $G$ be a finite connected simple graph, with $n$ vertices and $m$ edges. Its cyclomatic number is $c=m-n+1$. The vertices of its line graph $L(G)$ are the edges of $G$, adjacent when they share an endpoint. For a real symmetric matrix $A$, write $\sg(A)=n_+(A)-n_-(A)$, counting strictly positive and strictly negative eigenvalues with multiplicity. Set $s(L(G))=\sg(A(L(G)))$.
+
+Paone and Paone define $f(c)$ as the maximum of $s(L(G))$ over connected simple graphs with cyclomatic number $c$. Their Conjecture 5.4 states that $f(c)=\lfloor(c+1)/2\rfloor$ for $c\ge1$. They establish this quantity as a lower bound for every $c$ and obtain the upper bound $f(c)\le c$ \cite[Proposition 5.2 and Theorem 5.3]{pp}. We prove the following upper bounds.
+\begin{theorem}\label{th:main}
+Let $c\ge2$, let $H=\core(G)$, and let $b$ be the number of vertices of degree at least three in $H$. Then
+\[
+ s(L(G))\le b-c+1\le c-1.
+\]
+For every $c\ge4$ we have $s(L(G))\le c-2$. Consequently
+\[
+ f(2)=1,\qquad f(3)=2,\qquad f(4)=2,\qquad f(5)=3.
+\]
+\end{theorem}
+The construction giving equality in these four cases is already available in \cite[Theorem 5.3]{pp}. The contribution here is the corresponding all-orders upper bound. For example, at $c=6$ these results give $3\le f(6)\le4$.
+
+Write $Q=D+A$ for the signless Laplacian and $M(G)=Q(G)-2I$. The unsigned vertex-edge incidence matrix $B$ satisfies $BB^\top=Q(G)$ and $B^\top B=2I+A(L(G))$. Their nonzero eigenvalues agree. The difference in matrix sizes contributes $m-n$ additional eigenvalues $-2$ to the edge-space count relative to the vertex-space count. Thus, also when $B$ has deficient rank,
+\begin{equation}\label{eq:sig}
+ s(L(G))=\sg(M(G))-c+1.
+\end{equation}
+This is the vertex-space identity of \cite[Lemma 2.2]{pp}.
+
+\section{A bound on the response of a pendant tree}
+The 2-core is obtained by repeatedly deleting vertices of degree less than two. For $c\ge1$ it is connected and nonempty and has cyclomatic number $c$. The deleted vertices form rooted trees, each joined to a single core vertex by one edge. Let $T$ be one such tree, rooted at the endpoint $r$ of that edge outside the core. Define
+\[
+ C_T=Q(T)-2I+e_re_r^\top,\qquad
+ q_T=-\sg(C_T),\qquad t_T=1-(C_T^{-1})_{rr}.
+\]
+Here $q_T$ measures the signature lost on elimination, and $t_T$ is the net diagonal change on the parent vertex. We recall the recurrence of \cite[Lemma 3.5 and Proposition 3.7]{pp} with its short proof. If $T_i$ are the child subtrees, elimination of their blocks leaves the root pivot
+\begin{equation}\label{eq:rec}
+ a=-1+\sum_i t_{T_i},\quad
+ q_T=\sum_i q_{T_i}-\operatorname{sgn}(a),\quad
+ t_T=1-1/a.
+\end{equation}
+Indeed the root diagonal is the number of children minus one and each child subtracts its inverse root entry. For a singleton $a=-1$. Inductively each inverse root entry is a ratio of odd integers. Thus each $t_{T_i}$ is an even numerator over an odd denominator, and $a$ has odd numerator and denominator. In particular, no pivot in this recurrence vanishes.
+
+\begin{lemma}\label{lem:tree}
+For every finite rooted tree, $q_T\ge0$. If $q_T=0$ then $t_T=0$. If $q_T=1$ then either $t_T=2$ or $t_T<1$.
+\end{lemma}
+\begin{proof}
+Induct on the tree. A singleton has $(q,t)=(1,2)$. Suppose all children satisfy the assertions, and put $h=\sum_i q_{T_i}$. If $h=0$, all child corrections vanish, so $a=-1$ and $(q_T,t_T)=(1,2)$. If $h\ge1$, then $q_T=h-\operatorname{sgn}(a)\ge0$. For $q_T=0$ we must have $h=1$ and $a>0$. Exactly one child has $q=1$, all others have zero correction, and positivity requires that the unique child's correction exceed one. By induction that correction equals two, so $a=1$ and $t_T=0$. Finally, for $q_T=1$ with $h\ge1$, necessarily $h=2$ and $a>0$, which gives $t_T=1-1/a<1$.
+\end{proof}
+In particular, $\sg(C_T)=0$ implies $(C_T^{-1})_{rr}=1$ for every rooted tree. Paone and Paone observed this implication through order thirteen \cite[Remark 3.9]{pp}.
+
+\begin{corollary}\label{cor:leaves}
+Fix a connected nonempty 2-core $H$. Among all connected graphs with 2-core $H$, the largest line-graph signature is attained by attaching one leaf at each vertex of some subset $P\subseteq V(H)$.
+\end{corollary}
+\begin{proof}
+Eliminating a tree at $v$ contributes $-q_T$ to the signature and adds $t_Te_ve_v^\top$ to the residual matrix. These contributions add over the trees at $v$ \cite[Proposition 3.6]{pp}. Fix all corrections at other vertices and write $N$ for the remaining core matrix before the correction at $v$. Write $h=\sum q_T$ and $d=\sum t_T$ for the trees at $v$. If $h=0$ then $d=0$. If $h=1$ then $d\le2$ by Lemma~\ref{lem:tree}, and the contribution $-1+\sg(N+de_ve_v^\top)$ is at most that obtained with a single leaf. This uses monotonicity of the signature under positive semidefinite perturbations. If $h\ge2$ then $-h+\sg(N+de_ve_v^\top)\le\sg(N)$ since a rank-one perturbation can increase signature by at most two. Thus we can choose either no tree or a singleton at $v$ without decreasing the signature. Repeat at every core vertex. A maximum exists over the resulting finite set of choices.
+\end{proof}
+
+\section{A bound from branching vertices}
+By Corollary~\ref{cor:leaves} we may assume that the attachments consist of one leaf at each vertex of $P$. Eliminating them gives
+\begin{equation}\label{eq:paid}
+ \sg M(G)=-|P|+\sg A_P,\qquad A_P=M(H)+2\diag(\mathbf1_P).
+\end{equation}
+For a general $G$ the right hand side, for a suitable $P$, is an upper bound. Let $B_0=\{v:\deg_H(v)\ge3\}$ and $S=B_0\cup P$. When $c\ge2$, $B_0$ is nonempty. Removing $S$ leaves a disjoint union of paths and possibly no vertices. In fact all remaining vertices have degree two in $H$, and a surviving cycle of such vertices would be a whole component of $H$. The corresponding principal block of $A_P$ is the ordinary adjacency matrix of a linear forest. Its signature is zero by the spectral symmetry of bipartite graphs. Bordering a symmetric matrix by one row and its matching column can increase signature by at most one, by interlacing. Therefore
+\[
+ \sg M(G)\le-|P|+|S|= b-|P\cap B_0|\le b.
+\]
+Since $\sum_{v\in B_0}(\deg_H(v)-2)=2c-2$, we have $b\le2c-2$, with equality only when all branch vertices have degree three. Equation~\eqref{eq:sig} proves the first part of Theorem~\ref{th:main}.
+
+\section{Strictness in the cubic case}
+We establish the remaining improvement in Theorem~\ref{th:main}. Suppose $c\ge4$ and $b=2c-2$. Suppress the degree-two vertices of $H$ to form a connected cubic multigraph $K$ on $b\ge6$ vertices. A link represents a maximal path with internal vertices of degree two in $H$. This permits parallel links and loops, and each loop contributes two to the degree.
+
+\begin{lemma}\label{lem:link}
+Every connected cubic multigraph on at least six vertices has a pair of distinct loopless vertices joined by exactly one edge.
+\end{lemma}
+\begin{proof}
+A vertex with a loop has just one incident nonloop edge. If there were no loopless vertices, connectedness would give at most two vertices. The loopless vertices induce a connected multigraph since a looped vertex cannot lie internally on a simple path. If the stated pair does not exist, any adjacent loopless vertices have multiplicity at least two. Each then has at most one distinct loopless neighbor. Thus there are at most two loopless vertices. One such vertex can have at most three looped neighbors. Two such vertices use at least two incidences each on their mutual edges and can have at most one looped neighbor each. In either case the multigraph has at most four vertices, a contradiction.
+\end{proof}
+
+Take any $P$ as in \eqref{eq:paid}. If $P\cap B_0\ne\varnothing$, the preceding bound is already strict. Otherwise, equality $\sg M(G)=b$ would require $\sg A_P=|S|$. We analyze this equality. Decompose $H$ into path segments whose endpoints belong to $S$ and whose internal vertices lie outside $S$. A segment may have the same endpoint twice. The interior blocks are ordinary path adjacency matrices with zero diagonal, all of signature zero. Split their direct sum orthogonally into an invertible block and its nullspace and eliminate the invertible block. The matrix still to consider on the null coordinates and the marked vertices has the form
+\[
+ \begin{pmatrix}0&U^\top\\ U&F\end{pmatrix}.
+\]
+If $h=\operatorname{rank}U$, this matrix has $h$ hyperbolic pairs, uncoupled zero directions, and a remaining symmetric form on $|S|-h$ coordinates. To see this, change bases to put the nonzero coupling in the form $I_h$, split the corresponding null coordinates and partners as an invertible $2h$-dimensional block $\left(\begin{smallmatrix}0&I\\I&*\end{smallmatrix}\right)$, and take its Schur complement. Its signature is zero. Hence equality requires $U=0$ and $F$ positive definite.
+
+Choose a unique edge $uv$ supplied by Lemma~\ref{lem:link} and take the path in $H$ that it represents. Its marked vertices in order are $u$, the sites of $P$ internal to this path, and $v$; all are distinct. Every segment incident to any of these marked vertices has distinct endpoints. For $u,v$ this uses looplessness in $K$, and for an internal marked vertex it follows from its position on the $u,v$ path. A segment of even edge length between distinct marked vertices would have an odd number of interior vertices. The adjacency matrix of that interior path has a null vector with alternating entries $1,0,-1,0,\ldots$ whose two end entries are nonzero. Its couplings to the two distinct marked endpoints cannot cancel, contrary to $U=0$. Thus every segment incident to the chosen marked path has odd edge length.
+
+For an odd-length segment, its interior is a path on an even number of vertices. Its adjacency matrix is invertible, its two inverse end diagonals are zero and its inverse entry between the ends is $1$ or $-1$. Indeed, solving $A(P_{2j})z=e_1$ gives alternating entries $1,-1,1,\ldots$ on the even sites and zero on the odd sites, and reversal gives the other end. Elimination therefore leaves the two endpoint diagonals unchanged and gives an effective off-diagonal entry $1$ or $-1$. A direct edge already has this form.
+
+It follows that the principal submatrix of $F$ on the chosen marked path is tridiagonal, with end diagonals $1$, interior diagonals $2$, and consecutive off-diagonals $\pm1$. The original branch diagonals are $3-2=1$, the marked interior diagonals are $2-2+2=2$, and no segment creates a chord. Indeed $uv$ is unique in $K$ and the interior sites have degree two in $H$. Congruence by a diagonal sign matrix makes every off-diagonal entry $-1$. The resulting matrix is the ordinary Laplacian of a path and annihilates the all-ones vector. A positive definite matrix cannot have this principal submatrix. We conclude $\sg M(G)\le b-1$.
+
+If $b<2c-2$, Section 3 already gives $\sg M(G)\le2c-3$. The cubic case now gives the same inequality. Applying \eqref{eq:sig} yields $s(L(G))\le c-2$, as asserted. Substitution of $c=2,3,4,5$ and the lower constructions in \cite{pp} finish the proof of Theorem~\ref{th:main}.\hfill$\square$
+
+\begin{thebibliography}{9}
+\bibitem{pp} A. Paone and M. Paone, \emph{Line-Graph Signature Beyond the 2-Core: Counterexamples, Pendant Attachments, and Bounds at Fixed Cyclomatic Number}, preprint v1.3, 2026. \href{https://doi.org/10.5281/zenodo.21706797}{doi:10.5281/zenodo.21706797}.
+\bibitem{fu} L. Francis and T. Uptain, \emph{The signature of connected line graphs is unbounded}, 2026. \href{https://arxiv.org/abs/2607.22874}{arXiv:2607.22874}.
+\end{thebibliography}
+\end{document}

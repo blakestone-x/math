@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.92in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\rev}{\operatorname{rev}}
+\title{A smaller exponential bound for binary reverse subtraction}
+\author{Blake Stone research collection\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Repeated subtraction of a binary word's reversal modulo its fixed width eventually reaches a palindrome. For the maximum hitting time $M_m$ at widths $2m$ and $2m+1$, we improve the bound $2^{m+1}-2$ to $O(58^{m/20})$, with exponential base less than $1.2251$. The bound applies at all widths. Its finite computation concerns a block of twenty paired positions. Four pairs alone give $O(5^{m/4})$, with a certificate on 41 states.
+\end{abstract}
+
+\section{From stopping times to boundary borrows}
+Write $F(w)=w-\rev_n(w)\pmod {2^n}$, where reversal preserves all leading zeroes. Scheuerle's A338203 records the first time a palindrome appears, and A338205 gives the even-width maxima \cite{tri,max}. The companion paper proves all-width termination and deletion of the odd central digit \cite{first}. The extremal example there gives $M_m\ge m$. We bound how long the borrows in mirrored columns can alternate.
+
+Read pairs from outside in. A boundary after $j$ pairs has two borrows, the one exiting the low block inward and the one entering the high block from the inside. At the outer boundary these are the initial low borrow zero and the final high borrow. A run consists of consecutive subtraction steps at which the two boundary borrows coincide and their common value alternates. Let $R_j$ be the supremum of the lengths of such runs at boundary $j$ across all words, widths admitting this boundary, and time intervals. We have $R_0\le1$. Lemma~3 of the companion paper gives $R_j\le2^{j+1}-1$ by splitting a run at one pair.
+
+For clarity, at the central pair of an even-width word the inner borrow $u$ is shared. An equal pair remains equal, since its low incoming borrow passes unchanged to the high column. While the pair is unequal its high digit equals $u$ and flips at the next step. If the next pair of central digits is also unequal, the outer two borrows must both equal $1-u$. Thus a run of $T$ unequal central states forces $T-1$ alternating steps at boundary $m-1$. Deleting an equal central pair commutes with subtraction and preserves the palindrome test. Consequently
+\begin{equation}\label{eq:time}
+ M_0=0,\qquad M_m\le M_{m-1}+1+R_{m-1}.
+\end{equation}
+
+\section{A block of paired columns under alternating input}
+Consider $k$ successive mirrored pairs during a run at their inner boundary. At a time when the common inner borrow is zero, let $x_i,y_i$ be the low and high digits of pair $i$, counted from the outside, and put
+\[
+ e_i=x_i-y_i,\quad B=\sum_{i=0}^{k-1}2^i e_i,\quad
+ D=\sum_{i=0}^{k-1}2^{k-1-i}e_i,\quad z=\sum_{i=0}^{k-1}3^i e_i.
+\]
+When the inner borrow is one, use the complements of all digits and borrows for these definitions. Complementing the digits swaps the sign of each difference. Complementing the incoming borrow in a column complements the output digits and outgoing borrow, since $-w-(1-a)=-(w-a)-1$. The same normalized transition therefore works in both phases.
+
+Write $a$ for the normalized low incoming borrow of the block, and set $N=2^k$. The prescribed inner borrow zero requires $B-a\ge0$. Subtracting the two blocks produces low value $L=B-a$, high value $H=(-D)\bmod N$, and outer high borrow $h=\mathbf 1_{D>0}$. The next step has the opposite inner phase, so the normalized differences are the negatives of the actual output differences in this frame. Define $T(v)=\sum_{i}\mathrm{bit}_i(v)3^i$. The next vertex is therefore
+\begin{equation}\label{eq:trans}
+ z'=T(\rev_k H)-T(L).
+\end{equation}
+The highest nonzero balanced digit determines the sign of both $B$ and $z$. The possible vertices are precisely the integers from zero to $(3^k-1)/2$, by uniqueness of balanced ternary and realization of each signed pair. A transition to $z'<0$ ends the run before its next step. A final step is allowed even when its successor belongs to no further run.
+
+\begin{lemma}
+At every block width the only directed cycles in the normalized graph are self-loops. There are exactly $2^k$ self-loops, each at a unique input borrow $a=h$.
+\end{lemma}
+\begin{proof}
+Lift a normalized directed cycle to periodic binary digits and borrows, repeating it twice when necessary to restore the original phase. Each actual digit block may be read as the preceding edge's output; that output depends only on the preceding signed state and its chosen borrow. Start at the innermost pair. When its inner borrows coincide, an equal pair stays equal. Periodicity forces its mismatch indicator to be constant. If always equal, its outer borrows equal the inner bit $u$. If always unequal, its high digit equals $u$, and continued inequality forces both outer borrows to be $1-u$. In either case the outer borrows again coincide and alternate in fixed phase. Induction outwards shows that each signed digit after normalization is constant. Thus the cycle is a self-loop.
+
+At a loop put $P=\rev_k H$. Balanced ternary uniqueness in \eqref{eq:trans} gives $e_i=\mathrm{bit}_i(P)-\mathrm{bit}_i(L)$ and $B=P-L$. Since $L=B-a$, it follows that $P=2L+a$. Write $d_i=\mathrm{bit}_i(P)$, $d_k=0$. Then $a=d_0$ and $e_i=d_i-d_{i+1}$. Conversely, take any $k$ bits $d_i$ and set $e_i$ by this formula. Telescoping gives $B-d_0=\lfloor P/2\rfloor$ and $D=2^k d_0-\rev_k P$. Thus $h=\mathbf 1_{D>0}=d_0$, and $a=d_0$ realizes a self-loop. The bits can be recovered from $e_i$ starting at $d_k=0$, so all $2^k$ loops are distinct.
+\end{proof}
+
+\begin{lemma}\label{lem:finite}
+Suppose the graph of \eqref{eq:trans} becomes acyclic after deletion of self-loops. Suppose each self-loop occurs at $a=h$ and has a unique such choice at its vertex. In the resulting directed acyclic graph let $C_k$ be the largest number of self-loop-bearing vertices on a path, and $P_k$ the largest number of edges on a path. Then
+\[
+ R_{j+k}\le C_kR_j+P_k+1.
+\]
+\end{lemma}
+\begin{proof}
+At one vertex, consecutive self-loops represent a fixed normalized pair $a=h$, so the actual outer borrows coincide and alternate throughout that part of the run. Its length is at most $R_j$. After leaving a vertex, the path never returns to it. Hence at most $C_k$ of these parts occur, with at most $P_k$ transitions between distinct valid vertices and at most one final step outside the graph.\end{proof}
+
+\begin{theorem}
+At widths $2m$ and $2m+1$, $M_m=O(58^{m/20})$. In particular $\limsup M_m^{1/m}\le58^{1/20}<1.2251$.
+\end{theorem}
+\begin{proof}
+The integer computation below gives $C_{20}=58$ and $P_{20}=181$. Lemma~\ref{lem:finite} gives $R_{j+20}\le58R_j+182$. Thus $R_{j+20}+182/57\le58(R_j+182/57)$. Iterating separately in the twenty residue classes gives $R_j=O(58^{j/20})$, since the first twenty values are finite. The geometric sum in \eqref{eq:time} has the same order. At odd width deleting the middle bit passes its borrow unchanged and preserves the first palindrome time.\end{proof}
+
+\section{Exact finite certificate}
+\begin{center}
+\begin{tabular}{rrrrr}\toprule
+Pairs & Vertices & Self-loops & $C_k$ & $P_k$\\\midrule
+1&2&2&2&1\\
+4&41&16&5&7\\
+8&3,281&256&11&23\\
+12&265,721&4,096&22&53\\
+16&21,523,361&65,536&36&102\\
+18&193,710,245&262,144&47&135\\
+19&581,130,734&524,288&53&158\\
+20&1,743,392,201&1,048,576&58&181\\\bottomrule
+\end{tabular}
+\end{center}
+For each vertex the program tests both low borrows and computes \eqref{eq:trans}. A self-loop must have $a=h$. This also implies uniqueness because $h$ is fixed by the vertex. Delete the loops and start a queue with every indegree-zero vertex. When removing a vertex, update its successors' maximum number of marked vertices and maximum path length. Decrement each successor's indegree and enqueue it upon reaching zero. Processing every vertex certifies acyclicity. Induction in this order proves that both recorded maxima cover all paths, including paths starting at an arbitrary vertex. The queue-based C++17 implementation computes all rows through eighteen pairs. A second implementation reconstructs successors from two precomputed blocks of balanced ternary digits and uses depth-first search. Encountering an active vertex on a nonloop edge would certify a cycle and abort the calculation. At each finished vertex it stores the two longest suffix statistics in a two-byte entry. It agrees with the queue calculation through eighteen pairs and gives the two larger rows using about 3.25 GiB at twenty pairs. Both large rows have been reproduced. An independent Python verifier uses full binary words in both phases through six pairs and obtains the same marked-path counts. The four-pair line of the table already gives a bound with exponential base $5^{1/4}<1.496$. A polynomial upper bound or superlinear lower bound remains open in this work.
+\begin{thebibliography}{9}
+\bibitem{tri} T. Scheuerle, fixed-width reverse-subtraction hitting times, OEIS A338203. \url{https://oeis.org/A338203}
+\bibitem{max} T. Scheuerle, worst-case times, OEIS A338205. \url{https://oeis.org/A338205}
+\bibitem{first} Blake Stone research collection, \emph{Termination of binary reverse subtraction at every word width} (2026). \href{https://github.com/blakestone-x/math/blob/c18014b822980b0d6cb9b78fc228e5efda2718c6/A338203/manuscript.pdf}{Original proof and bounds}.
+\end{thebibliography}
+\end{document}

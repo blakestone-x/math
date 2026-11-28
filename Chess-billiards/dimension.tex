@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,microtype,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\geometry{hmargin=.94in,vmargin=.87in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dimH}{\dim_{\mathrm H}}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+\begin{center}
+{\LARGE Hecke limit sets and the Hausdorff dimension\\[3pt]of exceptional square chess billiards}\par\medskip
+Blake Stone's mathematics project, developed with OpenAI Codex\\November 27, 2026
+\end{center}
+\begin{abstract}
+The pairs of directions for which square chess billiards has no periodic trajectory form a set of angular measure zero and Hausdorff dimension two. Along each ray of unequal opposite slope magnitudes, their dimension equals that of a Hecke triangle group limit set, with group parameter $(a+b)/\sqrt{ab}$ for slopes $a,-b$. This yields the complete range of slice dimensions and an asymptotic expansion at extreme slope ratios. The proof identifies the chess-billiard exceptional sets, up to countably many points, with the classical limit sets.
+\end{abstract}
+
+\section{Direction pairs and Hecke groups}
+
+In the chess billiard of Hanusa and Mahankali~\cite{HM}, a point on the boundary of a square alternates between chords in two prescribed directions. At a supporting corner a zero-length chord counts as one move. Let $\mathcal E$ be the set of nonparallel direction pairs for which there is no periodic orbit, including fixed points as periodic. Use the usual angular coordinates on the two direction circles.
+
+For opposite slopes $a,-b$, with $a,b>0$ and $a\ne b$, put
+\[
+ l=\frac{\min(a,b)}{a+b},\qquad t=l(1-l),\qquad s=\frac{ab}{a+b},
+ \qquad w=\frac{1}{\sqrt t}=\frac{a+b}{\sqrt{ab}}>2.
+\]
+On either ordering of the slope magnitudes the variables $(l,s)$ form smooth coordinates. Denote by $\mathcal E_l$ the set of $s>0$ producing no periodic trajectory. Write $\Lambda_w$ for the limit set of the Hecke group
+\[
+ \Gamma_w=\langle T(z)=z+w,\ S(z)=-1/z\rangle
+\]
+on the boundary of the upper half-plane, and $\delta(w)=\dimH\Lambda_w$.
+
+\begin{theorem}\label{main}
+The set $\{s/\sqrt t:s\in\mathcal E_l\}$ and the positive part of $\Lambda_w$ differ by at most countably many points. In particular
+\[
+ d(l):=\dimH\mathcal E_l=\delta\!\left(\frac{1}{\sqrt{l(1-l)}}\right).
+\]
+The function $d$ increases continuously and strictly from $1/2$ to $1$ as $l$ ranges from $0$ to $1/2$. With $\gamma$ denoting the Euler--Mascheroni constant, as $t\downarrow0$,
+\[
+ d(l)=\frac12+\sqrt t+t\log t+2\gamma t
+       +O\!\left(t^{3/2}\log^2(1/t)\right).
+\]
+The set $\mathcal E$ has Hausdorff dimension two, including on every parallelogram after transporting directions by an invertible affine map.
+\end{theorem}
+
+The measure-zero assertion is proved in the companion paper~\cite{periodic}. The spectral and asymptotic facts about $\Gamma_w$ are due to Phillips--Sarnak and Soares~\cite{PS,Soares}. The identification of the square's individual rays with these groups is the step that supplies the geometric interpretation and the dimension of the two-parameter set.
+
+\section{Coding the slice}
+
+We use the following square-billiard criterion~\cite[Theorem~1]{periodic}. Start with $x=\operatorname{dist}(s,\Z)$. The parameter belongs to $\mathcal E_l$ precisely if $0<x<l$ at every step of
+\[
+ x\longmapsto \operatorname{dist}(t/x,\Z).
+\]
+For context, unfolding across the square's edges produces a monotone trajectory in the unit grid with alternating slopes $a,b$ in the two checkerboard colors. Its vertical drift $D(s)$ is rational exactly when a periodic trajectory exists. Integer translation, reflection and exchange of the axes yield $D(s+j)=D(s)+2j$, $D(-s)=-D(s)$ and $D(t/s)=1/D(s)$. On $[l,1/2]$ the drift equals one, and on $(0,l)$ it lies strictly between zero and one. The algorithm follows from strict descent of the denominator of a rational drift at each nonterminating step.
+
+On $J=[0,l]$ the inverse branches of the interior part of the criterion are the contractions
+\[
+ f_{j,\epsilon}(x)=\frac{t}{j+\epsilon x},\qquad j\ge1,\quad \epsilon\in\{-1,1\}.
+\]
+Indeed $t/x>1-l>1/2$ if $0<x<l$, and the nearest integer is positive. The images of $J$ lie in $J$, have disjoint interiors and have derivative magnitude bounded by $l/(1-l)<1$. Infinite digit sequences therefore determine unique points of $J$. Each nonterminating point is obtained in this way. An infinite sequence can encode a terminating point only if one of its tails represents $0$ or $l$. Indeed every tail lies in $J$, and an interior image has the prescribed next remainder by the nearest-integer rule. Such points belong to the countable collection of all finite words applied to $0,l$. The remaining terminal remainders in $(l,1/2]$ are outside the images of the inverse coding.
+
+\begin{lemma}\label{coding}
+Up to countably many points, $\Lambda_w$ is the union over $k\in\Z$ of $kw+K$, where $K$ consists of all the limits of infinite compositions of $Q_n(z)=-1/(nw+z)$ with $n\in\Z\setminus\{0\}$. It is symmetric about zero. The image of $K$ under $z\mapsto\sqrt t\,|z|$ equals the set of infinite inverse-branch codes in $J$.
+\end{lemma}
+\begin{proof}
+On the closed unit disk each $Q_n$ takes values in that disk and has Lipschitz constant at most $(w-1)^{-2}<1$, by the difference formula for reciprocals. Thus $K$ is independent of the point from which the compositions are evaluated; using zero shows $K$ is real. Any element of the orbit of $i$ under $\Gamma_w$ can be written
+\[
+ T^k Q_{n_1}\cdots Q_{n_h}(i).
+\]
+Indeed $Q_n=ST^n$, one can combine successive powers of $T$ and remove $S^2$, and a trailing $S$ fixes $i$. The limit set is the collection of the boundary accumulation points of this orbit.
+
+For a convergent sequence of orbit points, an unbounded leading translation yields $\infty$ after passing to a subsequence. Otherwise fix $k$ on a subsequence. One may then successively fix each next digit on an infinite subsequence, or choose its absolute value tending to infinity. A sequence of fixed finite depth and fixed digits gives an interior point. A digit tending to infinity maps the entire disk uniformly to zero and yields a translate of a finite word applied to zero. There are only countably many such points. If digits keep stabilizing indefinitely, the common-prefix contraction implies convergence to a point of $kw+K$. Conversely the partial compositions applied to $i$ converge to their real infinite-word limit, which is therefore a limit point. The sign relation $Q_{-n}(-z)=-Q_n(z)$ gives symmetry of $K$.
+
+In signed coordinates $v=\sqrt t\,z$ the map $Q_n$ becomes $v\mapsto -t/(n+v)$. The interval $[-l,l]$ is invariant because $t/(1-l)=l$. Taking absolute values gives $f_{|n|,\epsilon}(|v|)$ with $\epsilon=\operatorname{sgn}(n)\operatorname{sgn}(v)$, with either choice at zero. Conversely, for any folded word $(j_i,\epsilon_i)_{i\ge1}$ choose an initial output sign $\sigma_0$, set $n_i=-\sigma_{i-1}j_i$ and choose the next input sign $\sigma_i=-\sigma_{i-1}\epsilon_i$. This signed word folds to the prescribed one, by the same equality of branches and contraction.
+\end{proof}
+
+Since the positive parameter $s$ is first reduced by distance to the integers, its nonterminating set is the positive part of all integer translates of the signed, folded-back central set. The scaling by $1/\sqrt t$ turns those translates into $kw$. Lemma~\ref{coding} proves the countable-difference assertion. The positive part of the limit set has the full Hausdorff dimension by symmetry and translation invariance. Phillips and Sarnak's dimension law for the Hecke groups~\cite{PS} gives strict continuous decrease from one to $1/2$ for $2<w<\infty$. The substitution $w=1/\sqrt t$ in Soares's asymptotic formula~\cite[Theorem~1.9]{Soares} proves the expansion. For example $l=(1-\sqrt5/3)/2$ gives $w=3$ and the rigorous bounds $0.75065<d(l)<0.75322$ from~\cite[Remark~1.12]{Soares}.
+
+\section{Passing from rays to pairs}
+
+Fix any $d<1$ with $d>0$. On an open interval of $l$ below $1/2$, the dimension of each $s$-slice in $(0,1)$ exceeds $d$. Restriction to $(0,1)$ preserves the slice dimension by integer translation. If this subset of the $(l,s)$-plane had dimension less than $1+d$, it would admit, for every $k\ge1$, a countable cover by balls of diameters $r_{k,i}<1/k$ with $\sum_i r_{k,i}^{1+d}<2^{-k}$. At each $l$, intersect these balls with its vertical line. Integrating their summed $d$th powers over $l$ gives at most $\sum_i r_{k,i}^{1+d}$, since each ball projects to an interval of length at most its diameter. Summing in $k$ gives a finite integral. For almost every $l$ the slice covers would then have $d$th powers summing to zero in the limit, contrary to the slice dimension bound on an open interval. The two-parameter dimension is consequently at least $1+d$ for all $d<1$, and so equals two.
+
+The changes between $(l,s)$, the slopes and the two angles are smooth diffeomorphisms on open charts. They preserve Hausdorff dimension by local bi-Lipschitz bounds and countable exhaustion. For any parallelogram the direction map induced by an invertible affine image of the square is likewise a smooth diffeomorphism. This completes the proof of Theorem~\ref{main}.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{HM} C. R. H. Hanusa and A. V. Mahankali, \emph{A billiards-like dynamical system for attacking chess pieces}, European J. Combin. \textbf{95} (2021), 103341. \href{https://doi.org/10.1016/j.ejc.2021.103341}{doi:10.1016/j.ejc.2021.103341}.
+\bibitem{periodic} \emph{Periodic directions in square chess billiards have full measure}, companion proof manuscript, November 2026. Included in this collection as \texttt{manuscript.pdf}.
+\bibitem{PS} R. S. Phillips and P. Sarnak, \emph{On the spectrum of the Hecke groups}, Duke Math. J. \textbf{52} (1985), 211--221. \href{https://doi.org/10.1215/S0012-7094-85-05212-3}{doi:10.1215/S0012-7094-85-05212-3}.
+\bibitem{Soares} L. Soares, \emph{Hecke triangle groups, transfer operators and Hausdorff dimension}, Ann. Henri Poincar\'e \textbf{23} (2022), 1239--1281. \href{https://doi.org/10.1007/s00023-021-01117-1}{doi:10.1007/s00023-021-01117-1}.
+\end{thebibliography}
+\end{document}

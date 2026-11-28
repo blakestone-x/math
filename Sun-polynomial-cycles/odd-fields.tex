@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\F}{\mathbb F}
+\title{Circular orderings with quadratic labels over every odd finite field of order greater than three}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $K=\F_q$ with $q>3$ odd. For every quadratic $P\in K[X]$ of degree two, there is a circular order of all $q$ field elements in which the labels $P(a_i)+a_{i+1}$ are all distinct. For squaring we construct full cycles with at least $(q+1)/2$ distinct successors of zero. The prime-field construction used the cardinality of a connected component as a nonzero field element. In a proper extension that cardinality can vanish. Choosing the ratio of the two multipliers to generate $K^\times$ supplies enough power moments to exclude precisely this obstruction.
+\end{abstract}
+
+In September 2013 Zhi-Wei Sun asked for circular orderings with prescribed polynomial labels, first in the prime-field square case and more generally for polynomials over finite fields and subsets of fields \cite{sun,oeis}. A circular order is directed, indices wrap around, and its successor map is a permutation with one cycle on the entire set. The earlier manuscript \cite{prime} proved the square case for residue rings of order relatively prime to six. Here the underlying set is a field, including nonprime fields of characteristic three.
+
+\begin{theorem}\label{th:main}
+If $K$ is a finite field of odd order $q>3$ and $P(X)=aX^2+bX+c$ with $a\ne0$, there is a single-cycle permutation $\sigma$ of $K$ such that $x\mapsto P(x)+\sigma(x)$ permutes $K$. For $P=X^2$ at least $(q+1)/2$ choices of $\sigma(0)$ occur. At $q=3$ no quadratic of degree two has this property.
+\end{theorem}
+
+\section*{The multipliers and the translation}
+Put $m=(q-1)/2$ and choose a generator $g$ of $K^\times$. Since $q>3$, $g\ne-1$. Set
+\[
+ v=-\frac1{g+1},\qquad u=gv .
+\]
+The ratio $u/v$ is a nonsquare, and $u+v=-1$. Take one representative from each nonzero pair $\{x,-x\}$. Define $f(0)=0$ and assign the values $ux^2,vx^2$ to $f(x),f(-x)$ in either order. The pairs of values cover both nonzero square classes. The labels $x^2+f(x)$ have multipliers $1+u=-v$ and $1+v=-u$, so these labels also cover both classes. It follows that $f_t(x)=f(x)+t$ and $x^2+f_t(x)$ are both permutations for each $t\in K$.
+
+Form the undirected graph on $K$ with edges $\{x,f_t(x)\}$ and $\{x,-x\}$. A connected component $B$ is invariant under negation and under $f_t$ in both directions. Write $M_j=\sum_{x\in B}x^j$, with $M_0=|B|\cdot1_K$. Its odd moments vanish. For $r\ge1$, summing over opposite pairs and using $f_t(B)=B$ gives
+\begin{equation}\label{eq:mom}
+ c_r M_{2r}=\sum_{x\in B} f(x)^r
+ =\sum_{x\in B}(x-t)^r
+ =\sum_{j=0}^{\lfloor r/2\rfloor}\binom{r}{2j}(-t)^{r-2j}M_{2j},
+ \qquad c_r=(u^r+v^r)/2 .
+\end{equation}
+The choice of generator gives $c_r\ne0$ for $1\le r<m$ and $c_m=0$, since $g^r=-1$ first occurs at $r=m$.
+
+\begin{lemma}\label{lem:mass}
+Every nonempty proper component has $M_0\ne0$.
+\end{lemma}
+\begin{proof}
+If $M_0=0$, induction in \eqref{eq:mom} gives $M_{2r}=0$ through $r=m-1$, since every $j$ on the right is smaller than $r$. Together with the odd moments this gives $M_i=0$ for $0\le i\le q-2$. Fix $b\in B$. The polynomial
+\[
+ L_b(X)=\prod_{y\in B\setminus\{b\}}(X-y)
+\]
+has degree $|B|-1\le q-2$. The sum of its values on $B$ is zero by linearity and the vanishing moments. It also equals $L_b(b)\ne0$. This contradiction proves the lemma in all characteristics under consideration.
+\end{proof}
+
+\section*{Finding a connected translation}
+With $A_0(T)=1$, define polynomials for $1\le r<m$ by
+\[
+ A_r(T)=c_r^{-1}\sum_{j=0}^{\lfloor r/2\rfloor}
+ \binom r{2j}(-T)^{r-2j}A_j(T).
+\]
+Each $A_r$ has degree at most $r$, and \eqref{eq:mom} gives $M_{2r}=M_0 A_r(t)$ by induction. If the graph is disconnected we may use a nonempty proper component. At $r=m$ its mass is nonzero by Lemma~\ref{lem:mass}, so \eqref{eq:mom} gives $D(t)=0$, where
+\[
+ D(T)=\sum_{j=0}^{\lfloor m/2\rfloor}\binom m{2j}(-T)^{m-2j}A_j(T).
+\]
+The term at $j=0$ is $(-T)^m$, and every other term has degree at most $m-j<m$. Thus $D$ has at most $m$ roots. At least $q-m=(q+1)/2$ translations give a connected graph.
+
+\section*{Building the cycle}
+Contract every $f_t$-cycle to a vertex. For a connected translation the edges joining opposite arguments connect this quotient. Choose a spanning tree. For each of its edges exchange the successor values at its two arguments $x,-x$. Taking tree edges in any order joins two distinct current cycles each time. Indeed the cycles already joined correspond to components of the forest of used edges. The two changed square labels exchange places since $x^2=(-x)^2$. The last permutation consists of one cycle and retains all labels. We never exchange a successor at zero, so $\sigma(0)=t$ distinguishes the translations.
+
+For a general quadratic, put $r=1/a$ and $s=-b/(2a)$. The substitution $z=rx+s$ gives $P(rx+s)=rx^2+C$ for a constant $C$. Transport the square cycle by this bijection. Its labels undergo the same nonzero scaling and a fixed translation. Finally, in $\F_3$, any two permutation lists have the same sum, whereas $\sum_x P(x)=2a\ne0$. This proves Theorem~\ref{th:main}.
+
+\begin{corollary}
+For all odd finite fields $K$ of order $q>3$ there are at least
+$\varphi(q-1)(q+1)/4$ directed cyclic orders, up to rotation, with all square labels distinct.
+\end{corollary}
+\begin{proof}
+Generators $g$ and $g^{-1}$ give the same unordered pair $\{u,v\}$. No other generator gives that pair, since the two possible ratios are inverses. Each final cycle recovers $t$ from its successor at zero and the pair from $\{\sigma(1)-t,\sigma(-1)-t\}$. Hence the $\varphi(q-1)/2$ pairs and their successful translations count distinct cycles.
+\end{proof}
+
+\paragraph{Scope and verification.} The theorem covers the degree-two, odd-field part of Sun's question. The broader assertions also involve other degrees, characteristic two and arbitrary subsets. The companion files \texttt{FieldMoments.lean} and \texttt{verify\_odd\_fields.py} record the formal scope and reconstruct examples, respectively. Neither sample enumeration nor a conjecture about connectivity is used in the proof.
+
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, \emph{Determinants, Permutations and Additive Combinatorics}, slide 36, conjecture dated 30 September 2013. \url{https://www.mathnet.ru/PresentFiles/21090/sun.pdf}.
+\bibitem{oeis} Z.-W. Sun, OEIS A229827. \url{https://oeis.org/A229827}.
+\bibitem{prime} Blake Stone's mathematics project, \emph{When cyclic labels $a_i^2+a_{i+1}$ cover every residue}, November 26, 2026. \href{https://github.com/blakestone-x/math/blob/33768157ccaf033ea0fa5578ea061ed272e8fb20/Sun-polynomial-cycles/square-circle.pdf}{Manuscript}.
+\end{thebibliography}
+\end{document}

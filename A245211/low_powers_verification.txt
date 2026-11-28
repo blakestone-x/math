@@ -1,0 +1,4 @@
+All profiles surviving modular tests: [(6, 2, 2), (50, 6, 2)]
+Largest second-prime bound actually sieved: 342300
+Full integral products tested: 47103
+Integral equalities: []

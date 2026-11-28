@@ -1,0 +1,68 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,xcolor,hyperref}
+\geometry{left=.92in,right=.92in,top=.72in,bottom=.70in}
+\definecolor{ink}{HTML}{195552}
+\hypersetup{colorlinks=true,urlcolor=ink,linkcolor=ink,pdftitle={Every 140th-term ratio subsequence oscillates in two Gray--Fibonacci recurrences}}
+\newtheorem{theorem}{Theorem}\newcommand{\fl}[1]{\left\lfloor#1\right\rfloor}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\begin{document}
+{\small\sffamily\color{ink} INTEGER SEQUENCES \hfill RESEARCH NOTE}\par
+{\LARGE\bfseries Every 140th-term ratio subsequence oscillates\\[2pt] in two Gray--Fibonacci recurrences}\par
+{\small Research note for Blake Stone, developed with OpenAI Codex}\par
+\medskip
+For $G(m)=m\mathbin{\mathrm{XOR}}\fl{m/2}$, let $a_1=a_2=b_1=b_2=1$ and
+\[
+ a_{n+2}=G(a_n+a_{n+1}),\qquad b_{n+2}=G(b_n)+G(b_{n+1}).
+\]
+These are Sykora's OEIS A265385 and A265387 [1,2]. Write $p=140$ and $s_x(n)=x_n/x_{n-1}$. The companion paper [3] separates the 140 residue classes of ratios for each sequence, and proves that some class fails to converge. We prove this for every class individually.
+
+\begin{theorem}
+For $x=a,b$ and every $r\in\mathbb Z/140\mathbb Z$,
+\[
+ \limsup_{\substack{n\to\infty\\ n\equiv r\ (140)}}|s_x(n+140)-s_x(n)|\ \ge\ 2^{-184}.
+\]
+Each residue class contains two accumulation points at least $2^{-184}$ apart. Each full ratio sequence has at least \textbf{280 distinct accumulation points}. More explicitly, for every $n\ge24001$, at least one of the next $2^{368}$ successive comparisons along $n,n+140,n+280,\ldots$ has absolute difference at least $2^{-184}$.
+\end{theorem}
+
+\subsection*{The prefix graph}
+At precision $t$, a vertex at index $n$ is
+\[
+  (u,v)=\bigl(\fl{2^{t-n}a_n},\fl{2^{t-n-1}a_{n+1}}\bigr),
+  \qquad \text{phase } n\bmod p.
+\]
+From $(u,v)$ the potential successors are $(v,G(h))$, for every integer $h$ between $\fl{(u+2v)/4}$ and $\fl{(u+2v+2)/4}$. The two discarded fractions contribute a total in $[0,3)$ before division by four, and truncation commutes with $G$. Choose the observable $\xi\in\{a,b\}$. Use the prefix pair $(x,y)=(u,v)$ for $a$ and $(x,y)=(G^{-1}(u),G^{-1}(v))$ for $b$. The latter substitution follows from $a_n=G(b_n)$ and commutation of $G^{-1}$ with truncation. Since $2y/(x+1)<s_\xi(n+1)<2(y+1)/x$, the ratio belongs to
+\[
+ J_t(x,y)=2^{-t}\left[\fl{2^t\,\frac{2y}{x+1}},                    \left\lceil 2^t\,\frac{2(y+1)}{x}\right\rceil\right].
+\]
+Here $x,y$ inside $J_t$ denote prefix integers. A pair of disjoint such closed intervals has distance at least $2^{-t}$. The initial finite graph is obtained by exact closure from the integer seed at $n=24000$ with $t=132$. There are 126281 states with consistent phases. At this precision each of the 140 classes lies in its own closed ratio band, disjoint from those of the other 139 classes in the same sequence [3].
+
+\subsection*{Keeping all possible small-return paths}
+Fix a phase $r$ of the prefix \emph{pair} (the ratio phase is $r+1$), and one of the two ratio observables. Form a directed graph on vertices of phase $r$. Draw $i\longrightarrow j$ when a length-$p$ path joins $i$ to $j$ in the current prefix graph and their intervals $J_t$ intersect. Keep an edge only when its endpoints belong to the same strongly connected component. For every retained edge, mark all vertices on all its realizing length-$p$ paths, including both endpoints. Take the union of marked vertices over the 140 phases and both observables.
+
+\newpage
+At precision $t+1$, allow the four children $(2u+e,2v+f)$ for $e,f\in\{0,1\}$ of each marked vertex. Join children by the prefix successor rule and repeat the preceding marking. Truncating a fine actual trajectory gives a coarse actual trajectory. More generally, projection of its segments commutes with the transition when they are concatenated into a closed walk with identical endpoint prefixes.
+
+\begin{center}
+\begin{tabular}{c|rrrrrr}
+precision &132&140&150&160&170&180\\\midrule
+marked vertices&49218&27315&39029&38893&24241&7527\\\addlinespace
+precision&181&182&183&184&&\\\midrule
+marked vertices&3162&2029&964&0&&
+\end{tabular}
+\end{center}
+The calculation uses integer comparisons. To find the realizing paths without listing them individually, assign one bit to each possible source vertex in phase $r$. Propagate bitset unions through $p$ layers, recording the sources that can reach each intermediate vertex and endpoint. Intersect endpoint reachability with interval overlap to construct each of the two directed return graphs and compute their strongly connected components. At each endpoint put the admissible source bits from the internal edges of either component decomposition. Propagate these bits backwards. An intermediate vertex is marked precisely when its forward and backward bitsets meet. The start and end use different copies of the phase-$r$ layer. Sorting and rank-compressing rational interval endpoints after outward rounding preserves every intersection and tie.
+
+\subsection*{Proof of the theorem}
+Take $S=184$, $M=2^{2S}$, and suppose that all $M$ consecutive lag-$p$ comparisons beginning at a ratio index $n\ge24001$ have size less than $2^{-S}$. The $M+1$ corresponding phase-$r$ pairs begin at $n-1,n-1+p,\ldots,n-1+Mp$. At precision $S$ both prefix integers are below $2^S$ since $0<a_j/2^j<1$ throughout this range [3]. Two of the $M+1$ pairs therefore coincide at precision $S$. Use the actual subpath between them as a finite closed walk. At every precision $t\le S$ its endpoints still agree and all its transitions come from the actual orbit.
+
+At $t=132$ the entire walk occurs in the initial graph. At this and every finer precision through $S$, each comparison in the subpath has size less than $2^{-S}\le 2^{-t}$. The two corresponding intervals $J_t$ must therefore intersect. The sampled vertices along the walk form a directed closed walk in the selected return graph. Each sampled edge has both endpoints in the same strongly connected component. Every vertex of each realizing path is consequently marked. All children on the actual walk are available at the next precision, so the argument repeats. The empty marked set at $S$ is a contradiction. This proves the explicit bounded-gap assertion and hence the limsup bound.
+
+For fixed $r$ choose infinitely many such comparisons. Boundedness of the two ratios gives a convergent subsequence of ordered pairs whose coordinate limits are separated by at least $2^{-184}$ and both are accumulated within residue $r$. Disjoint bands across the 140 residues now prove the lower bound of 280. Whether either limit set is infinite remains open.
+
+\subsection*{Sources and verification}
+\small
+[1] S. Sykora, \href{https://oeis.org/A265385}{A265385}, The On-Line Encyclopedia of Integer Sequences (2015).\par
+[2] S. Sykora, \href{https://oeis.org/A265387}{A265387}, The On-Line Encyclopedia of Integer Sequences (2015).\par
+[3] B. Stone with OpenAI Codex, \emph{Five-phase oscillation for Gray--Fibonacci recurrences with arbitrary seeds}, accompanying manuscript, Theorem 3. The 70-phase precursor is \href{https://github.com/blakestone-x/math/tree/c18014b822980b0d6cb9b78fc228e5efda2718c6/A265387}{available in the previous release}.\par
+\texttt{python3 phase\_paths.py --cross-check} rebuilds the finite proof, including independently generated graphs in both underlying Gray coordinates. A C++17 compiler and Python 3.9 or newer suffice.
+\end{document}

@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[hmargin=.86in,vmargin=.76in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\den}{\operatorname{den}}
+\newcommand{\Z}{\mathbb Z}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+\begin{center}
+{\LARGE Boundary constructions for large vertex denominators\\[2pt]of chess riders\par}
+\medskip November 26, 2026
+\end{center}
+\begin{abstract}
+We give counterexamples to Conjectures 5.5, 5.8, 5.10 and 6.7 of Chaiken, Hanusa and Zaslavsky. Their candidates for the largest denominator of a vertex are golden parallelograms for three-move riders and twisted Fibonacci spirals for four-move riders. Three pieces suffice to separate the candidates from the maximum: for moves $(j,1)$, $1\le j\le s$, the maximum is $s(s-1)$ and the largest candidate triangle has denominator $(s-1)^2$. Ten ordinary semiqueens attain $9$ and seven tridents attain $8$, exceeding their conjectured maxima $8$ and $7$. A cyclic semiqueen construction grows at the plastic constant per piece. Finally, we give a fixed three-move rider and a fixed four-move rider for which the respective candidates fail for every number of pieces $q\ge3$.
+\end{abstract}
+
+\section{The three-piece maximum}
+A rider has a set of nonparallel primitive integer move vectors. With $q$ labels and square board $[0,1]^2$, the board polytope is $[0,1]^{2q}$. Two labels satisfy an attack equation for direction $(c,d)$ when $d(x_i-x_j)=c(y_i-y_j)$. A board fixation sets one coordinate equal to $0$ or $1$. A vertex is a point of the board uniquely specified by attack equations and fixations. Its denominator is the least positive integer clearing all coordinates. We write $\Delta_q(P)$ for the largest vertex denominator of rider $P$. These are the definitions of \cite[\S2]{chz}. Boundary trajectories for two-move riders were studied systematically by Hanusa and Mahankali~\cite{billiards}.
+
+For $N\ge1$ and $s\ge3$, let $P_{N,s}$ have the $s$ moves
+\[
+ (N,1),(N+1,1),\ldots,(U,1),\qquad U=N+s-1.
+\]
+\begin{theorem}\label{t:three}
+For every $N\ge1$ and $s\ge3$,
+\[
+  \Delta_3(P_{N,s})=U(U-1).
+\]
+The largest denominator of a triangle with its three sides in three distinct move directions is $(U-1)(s-1)$.
+\end{theorem}
+
+\begin{proof}
+A vertex attaining the first expression is
+\[
+       (0,0),\qquad (1,1/(U-1)),\qquad(1,1/U).
+\]
+The first point is a fixed corner. The others are the intersections of two different move lines through it with $x=1$. Since $U$ and $U-1$ are coprime, the least denominator is $U(U-1)$.
+
+For a triangle, take its directions $(a,1),(b,1),(c,1)$ with $a<b<c$. The primitive integral dependence has signed coefficients $(c-b,-(c-a),b-a)/g$ with $g=\gcd(c-b,b-a)$. Indeed the sum of the three coefficients and their scalar product with $(a,b,c)$ both vanish. The differences of the integral vertices obtained by using these edge vectors have content one, since the three vertical components are relatively prime. The horizontal span is the largest absolute horizontal edge component, $b(c-a)/g$, and the vertical span is $(c-a)/g$. Translating the coordinate minima to zero and dividing by the horizontal span gives a vertex with exactly this denominator. More generally, three independent board fixations must fix both translations and the scale. Some axis has two opposite sides fixed, so its span determines that scale. The denominator can never exceed the larger span. This is also the triangle formula of \cite[Prop.~5.1]{chz}. Maximizing gives $(U-1)(s-1)$, attained using $a=N,b=U-1,c=U$.
+
+It remains to bound all other vertices. For a nonconstant configuration of three points the move equations through it have rank at most three, since two translations and scaling give independent kernel vectors. With rank three and three distinct points, all three pairs must attack. A collinear triple yields rank at most two, leaving precisely the triangle case above. If two of the three coincide and the rank is three, the third lies on an attack line through the coincident pair. Translation and scale describe a single integral segment in direction $(a,1)$, whose denominator after board fixation is at most $a\le U$. A constant configuration can be a vertex only at a board corner.
+
+For move rank $r\le2$, complete a basis of the active move rows with $6-r$ independent board fixations. The remaining $r$ coordinates are unknown. At $r=0$ the point is integral, and at $r=1$ the denominator is at most $U$. At $r=2$, if both unknowns are horizontal coordinates, the coefficient matrix is a nonsingular minor of an oriented graph incidence matrix, with determinant $\pm1$. If both are vertical coordinates, divide the two equations by the respective move parameters $a,b$. The resulting coefficient matrix is again an incidence minor of determinant $\pm1$, and the right-hand sides have denominators dividing $a,b$. The solution's denominator divides $\operatorname{lcm}(a,b)\le U(U-1)$. The assertion about incidence minors here also follows by inspecting the rows: each has at most one $+1$ and one $-1$, and two rows with both entries nonzero are dependent. With one unknown of each kind, the determinant has absolute value at most $a+b\le2U\le U(U-1)$. This exhausts all possibilities.
+\end{proof}
+
+In Conjecture~5.5 of \cite{chz} the candidates are the golden parallelogram configurations of the three-move piece; at $q=3$ their labels form the primitive move triangle. In Conjecture~6.7 the candidates are twisted Fibonacci spirals. The defining move equations at $q=3$ assign three distinct move directions to the three pairs~\cite[\S6]{chz}. Theorem~\ref{t:three} with $N=1$, $s=3$ gives maximum $6$ and triangle maximum $4$. With $N=1$, $s=4$ the two numbers are $12$ and $9$. Thus both extremal assertions fail already at three labels.
+
+\section{The ordinary semiqueen}
+The semiqueen has horizontal, vertical and negative-diagonal moves. Write $G_0=G_1=1$, $G_{j+2}=G_{j+1}+G_j$, following \cite[\S5.2]{chz}. For this piece Conjecture 5.8 in \cite{chz} proposes the maximum $G_{\lfloor q/2\rfloor}$ at even $q$ and $G_{\lfloor q/2\rfloor+1}-1$ at odd $q$.
+\begin{theorem}\label{t:semi}
+Ten semiqueens have a vertex of denominator $9$, exceeding the proposed $G_5=8$. More generally there is an absolute $c>0$ such that $\Delta_q\ge c\rho^q$ for all $q\ge3$, where $\rho>1$ satisfies $\rho^3=\rho+1$. Hence Conjecture 5.8 fails for all sufficiently large $q$.
+\end{theorem}
+\begin{proof}
+Divide the coordinates in the following four groups by $9$:
+\[
+ \begin{array}{c|l}
+ \text{sum in the integral square}&\text{points}\\ \hline
+ 4&(2,2),\ (3,1),\ (4,0)\\
+ 5&(0,5),\ (3,2),\ (4,1)\\
+ 2&(0,2),\ (2,0)\\
+ 9&(0,9),\ (4,5)
+ \end{array}
+\]
+Require equality of matching horizontal and vertical coordinates, and fix each boundary coordinate at its displayed side. Let $a,b,c$ denote the three interior horizontal coordinates and $d,e,f$ the three interior vertical coordinates, in increasing order. The four displayed groups impose
+\[
+ a+e=b+d=c,\qquad f=b+e=c+d,\qquad e=a,\qquad c+f=1 .
+\]
+Consequently $c=2a$, $d=a/2$, $b=3a/2$, $f=5a/2$, and $a=2/9$. The solution is unique and contains $d=1/9$.
+
+For the all-size construction let $X=x$, $Y=y$, $Z=-x-y$. Begin with the integral triangle $(-1,-1),(2,-1),(-1,2)$. The three distinct attack directions make its shape unique up to two translations and a common scale. Write six signed forms in cyclic order:
+\[
+ X,\quad -Y,\quad Z,\quad -X,\quad Y,\quad -Z.
+\]
+Each form is the sum of its two neighbors as a linear functional. Store for each form a seed label where that form is positive. To update position $j$, introduce a new label equating each neighboring form with its value at that neighbor's stored label. These are two distinct permitted move directions, so the intersection is unique. The signed value at $j$ is now the sum of the two positive stored values. Replace its stored label with the new one. Repeat the updates cyclically in the displayed order.
+
+Number the produced values $u_1,u_2,\ldots$. From $n=6$ onward they obey $u_n=u_{n-1}+u_{n-5}$, because the two neighboring positions were last visited one and five steps earlier. Since $\rho^5=\rho^4+1$ (factor $x^5-x^4-1=(x^3-x-1)(x^2-x+1)$), induction bounds $u_n$ above and below by positive constant multiples of $\rho^n$. The constants are obtained from the first five ratios $u_i/\rho^i$.
+
+At every label, $X,Y,Z$ are integral and congruent to $-1$ modulo $3$. This is true of the seed and remains true when the missing coordinate is recovered from $X+Y+Z=0$. The content of all pairwise coordinate differences is exactly three, since the seed has a horizontal difference of three. If $M$ is the larger horizontal or vertical span after $n$ updates, then $M\ge u_n/2$: the seed also has the opposite sign for the form being updated, and the span of $Z$ is at most the sum of the other two spans. Conversely $M=O(\rho^n)$, since each coordinate is a signed stored or produced value. Translate both coordinate minima to zero and divide by $M$. The larger span fixes the scale by opposing board facets, while a minimum in each axis fixes the translations. This gives a $(3+n)$-label vertex of exact denominator $M/3$. Finally $\rho>\sqrt\varphi$, where $\varphi=(1+\sqrt5)/2$, since $x^3-x-1$ is increasing for $x\ge1$ and its value at $\sqrt\varphi$ is $1/\sqrt\varphi-1<0$. Both claimed Fibonacci maxima are $O(\varphi^{q/2})$.
+\end{proof}
+
+\section{The trident}
+The trident has moves $(0,1),(1,1),(-1,1)$. Conjecture 5.10 there gives the proposed maximum $2G_{q/2}-1$ for even $q$ and $G_{(q+3)/2}-1$ for odd $q$.
+\begin{theorem}\label{t:trident}
+For every $k\ge1$, a vertex of $2k+1$ tridents has denominator $2^k$. In particular the proposed trident maximum fails at $q=7$ and at every $q\ge9$.
+\end{theorem}
+\begin{proof}
+Fix $O=(0,0)$ and $B_0=(1,0)$ by board facets. Given $B_{i-1}=(t,0)$, put $Q_i$ at the intersection of the positive diagonal through $O$ and the negative diagonal through $B_{i-1}$. Then $Q_i=(t/2,t/2)$. When another step is needed, impose $x_{B_i}=x_{Q_i}$ and $y_{B_i}=0$, giving $B_i=(t/2,0)$. Every new point is uniquely determined by two independent allowed equations after the preceding points are fixed. Stopping at $Q_k$ uses the two corners, $k$ diagonal intersections and $k-1$ vertical projections, or $2k+1$ tridents. All coordinates have denominator dividing $2^k$ and the last has numerator one. Extra labels may be fixed at a corner. At $q=7$ this gives $8$, while $G_5-1=7$. For odd $q=2k+1$ the inequality $2^k\ge G_{k+2}$ holds from $k=3$ because $G_{j+1}<2G_j$ for $j\ge2$. For even $q=2k$, use $2^{k-1}\ge2G_k$ from $k=5$. For instance, twelve tridents realize $32$, compared with the proposed $25$.
+\end{proof}
+
+\section{A fixed counterexample for every number of pieces}
+Call a nonconstant vertex configuration rigid up to translation and scale when the rank of its active move equations is $2q-3$. Their real solution space then consists exactly of the two translations and multiples of one shape. Both families proposed in Conjectures 5.5 and 6.7 have this property. In each construction the move equations and three board fixations specify a vertex~\cite[\S\S5.2,6]{chz}. Three fixations can remove at most three dimensions, and the two translations and scale are independent before they are imposed.
+
+\begin{lemma}\label{l:shear}
+For $s=3$ or $4$, any $q$-label vertex of $P_{N,s}$ whose shape is rigid up to translation and scale has denominator at most $2(N+1)20^q$.
+\end{lemma}
+\begin{proof}
+Undo the integer shear $(x,y)\mapsto(x+Ny,y)$. The transformed move directions are $(j,1)$ for $0\le j<s$. Fix the first point temporarily at the origin to remove translations. A set of $2q-3$ independent move rows on the remaining $2q-2$ coordinates has a one-dimensional nullspace. Each row has Euclidean norm at most $\sqrt{2(1+3^2)}=\sqrt{20}$. The signed maximal minors provide a nonzero integer null vector. Hadamard's inequality bounds the magnitude of each component by $(\sqrt{20})^{2q-3}<20^q$. Dividing by the content gives a primitive integral shape with the same upper bound.
+
+After reapplying the shear, horizontal and vertical spans are at most $2(N+1)20^q$. Three independent board fixations may be chosen to resolve translations and the scale. Two of them pin opposite sides in one axis, making the scale the reciprocal of an integral coordinate difference of that size or less. Each translation is then fixed by a board coordinate in that axis. Thus all coordinate denominators divide the same difference.
+\end{proof}
+
+\begin{theorem}\label{t:uniform}
+For each $s\in\{3,4\}$, the fixed rider $P_{1,000,001,s}$ has, for every $q\ge3$, a vertex with denominator greater than that of every shape rigid up to translation and scale. In particular the golden parallelograms for $s=3$ and twisted Fibonacci spirals for $s=4$ fail to maximize at every such $q$.
+\end{theorem}
+\begin{proof}
+For an odd integer $N\ge1$, fix $O=(0,0)$. Intersect the $(N,1)$-line through $O$ with $x=1$ to obtain $A=(1,1/N)$. Intersect the $(N+1,1)$-line through $A$ with $x=0$ to obtain $R_0=(0,1/[N(N+1)])$. Given $R=(0,y)$, require $Q$ to lie on the $(N,1)$-line through $O$ and the $(N+2,1)$-line through $R$. Next intersect the $(N+1,1)$-line through $Q$ with $x=0$ to obtain $R'$. Substitution gives
+\[
+ Q=\left(\frac{N(N+2)y}{2},\frac{(N+2)y}{2}\right),\qquad
+ R'=\left(0,\frac{N+2}{2(N+1)}y\right).
+\]
+All coordinates lie in the unit square. Indeed $y$ only decreases from $1/[N(N+1)]$, and $x_Q\le(N+2)/[2(N+1)]<1$. All the defining intersections are transverse. After $k$ repetitions, the last vertical coordinate has reduced denominator
+\[
+     H_k=N(N+1)\,[2(N+1)]^k.
+\]
+Its numerator is $(N+2)^k$, coprime to $2N(N+1)$ for odd $N$. The construction uses $3+2k$ labels. At $4+2k$ labels fix one further label at the unused corner $(0,1)$.
+
+Now take $N=1,000,001$. We have $N>2\cdot20^4$ and $2(N+1)>20^2$. Consequently $H_k>2(N+1)20^{4+2k}$ for every $k\ge0$. Comparing this with Lemma~\ref{l:shear} proves the assertion for both parities.
+\end{proof}
+
+The accompanying exact enumeration finds 244 labelled three-piece vertices for the moves $(j,1)$, $1\le j\le3$, and 448 for $1\le j\le4$. The accompanying Lean files check the seven-trident system and the ten-semiqueen system after the shared axes and board fixations are imposed. They verify unique solutions over linearly ordered fields, containment in the square and the rational denominators $8$ and $9$.
+
+The four refuted assertions concern maximal vertex denominators. The ordinary queen's specific maximality, interval and counting-period questions are separate statements in \cite[\S6]{chz}.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{chz} S. Chaiken, C. R. H. Hanusa and T. Zaslavsky, \emph{A $q$-Queens Problem IV. Attacking configurations and their denominators}, Discrete Math. \textbf{343} (2020), 111649. \href{https://doi.org/10.1016/j.disc.2019.111649}{doi:10.1016/j.disc.2019.111649}, \href{https://arxiv.org/abs/1807.04741}{arXiv:1807.04741}.
+\bibitem{billiards} C. R. H. Hanusa and A. V. Mahankali, \emph{A billiards-like dynamical system for attacking chess pieces}, European J. Combin. \textbf{95} (2021), 103341. \href{https://arxiv.org/abs/1901.01917}{arXiv:1901.01917}.
+\end{thebibliography}
+\end{document}

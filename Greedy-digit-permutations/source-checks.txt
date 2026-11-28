@@ -1,0 +1,7 @@
+A218468: all 89 source terms agree
+A318698: all 69 source terms agree
+A318699: all 100 source terms agree
+A340138: all 68 source terms agree
+A350831: all 66 source terms agree
+A275482: all 92 source terms agree
+Both alternate conventions produced the stated initial terms

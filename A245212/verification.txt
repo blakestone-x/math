@@ -1,0 +1,1 @@
+Nontrivial odd parts checked through 100000000: 49999999. Equalities at any dyadic exponent: 0.

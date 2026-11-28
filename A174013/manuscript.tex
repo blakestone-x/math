@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{The minimal recurrence orders of three signed Del\'eham triangle sequences}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+The first column, row sums, and antidiagonal sums of the signed Del\'eham triangle A174014 have minimal polynomial-coefficient recurrence orders four, four, and six. We prove the three recurrences proposed by R. J. Mathar in A174015, A174016, and A174013. The order-seven conjecture for the antidiagonal sums is the sum of a shorter recurrence and four times its shift. A branch-point and pole argument proves minimality against recurrences of unrestricted polynomial degree. The input is the known bivariate generating function for the triangle.
+\end{abstract}
+
+\section{The triangle and its specializations}
+For a polynomial $u=u(x)$ with real coefficients, let $F=F_u$ denote the power series with constant term one satisfying
+\[
+ F=\frac{1}{1-ux/(1-x/(1+xF))}.
+\]
+Iterating the three levels exhibits the periodic continued fraction with successive signed numerators $ux,x,-x$. Equivalently,
+\begin{equation}
+ x(1-ux)F^2+\bigl(1-(u+2)x\bigr)F+x-1=0.\label{eq:quadratic}
+\end{equation}
+Each coefficient of positive index occurs with coefficient $1$ once the previous coefficients have been specified. This proves formal existence and uniqueness. Put
+\[
+ L=1-ux,\qquad D=L^2+4ux^3,\qquad P=(u+2)x-1,\qquad Q=2xL.
+\]
+The quadratic equation gives $F=(P+\sqrt D)/Q$ in the formal Laurent field, with the square root taking constant term $1$. This agrees with Mathar's formula (28) for A174014 after putting $t=u-1$ in his bivariate generating function \cite{delta}. Setting $u=1,2,1+x$ gives respectively the first column (A174015), the row sums (A174016), and the sums $\sum_{i+j=n}T(i,j)$ (A174013) for that triangle \cite{column,rows,diag}. All three sequences begin at $n=0$. We use $a_n=[x^n]F_u$ and set $a_j=0$ for $j<0$ when extracting coefficients.
+
+\section{A certificate and a lower bound}
+\begin{theorem}
+Set $\theta=x\,d/dx$. The following polynomial identity in $F_u$ holds:
+\begin{equation}
+ A\theta F_u+BF_u=C,\qquad
+ A=DL,\quad B=\frac{2DQ'-D'Q}{4},\quad C=\frac{2DP'-D'P}{4}.
+ \label{eq:cert}
+\end{equation}
+Suppose $L$ and $D$ are relatively prime and squarefree and $D$ is nonconstant. The smallest possible shift span of a nonzero eventual recurrence with polynomial coefficients for $a_n$ is $\deg D+\deg L$.
+\end{theorem}
+\begin{proof}
+Differentiating $QF_u-P=\sqrt D$ gives $2D(QF_u-P)' - D'(QF_u-P)=0$, which yields \eqref{eq:cert}. Its coefficient of $x^n$ on the left is
+\[
+ \sum_{j\geq0}\bigl((n-j)[x^j]A+[x^j]B\bigr)a_{n-j}.
+\]
+The right-hand coefficient vanishes for $n>\deg C$. Since $\deg B\leq\deg D+\deg L$ and $A=DL$, this yields the upper bound.
+
+For the lower bound, suppose $\sum_{j=0}^r p_j(n)a_{n-j}=0$ holds for all sufficiently large $n$, with real polynomials $p_j$, at least one nonzero. Translating shifts normalizes the least index $j$ to zero. The operator $\mathcal L=\sum_{j=0}^r x^j p_j(\theta+j)$ sends $F_u$ to a polynomial, by direct coefficient extraction. Write $d=\max_j\deg p_j$. The coefficient of $\theta^d$ is the nonzero polynomial $H(x)=\sum_{j=0}^r [n^d]p_j(n)x^j$, of degree at most $r$.
+
+Work over $\mathbb C(x)$. Since $D$ is nonconstant and squarefree, algebraic conjugation takes $\sqrt D$ to $-\sqrt D$ and commutes with differentiation, as follows from $(\sqrt D)'=D'/(2\sqrt D)$. Consequently $G=2\sqrt D/Q$, the difference of the two conjugates of $F_u$, satisfies $\mathcal LG=0$. At a simple root $\alpha$ of $D$, the leading local exponent of $G$ is $1/2$. At a root of $L$, it is $-1$. These roots are nonzero since $D(0)=L(0)=1$. If $H(\alpha)\ne 0$, the top ordinary derivative in $\mathcal L$ has nonzero coefficient $\alpha^d H(\alpha)$ there. For either exponent $s\in\{1/2,-1\}$, its contribution has a nonzero term of degree $s-d$ in $x-\alpha$. All lower derivatives have degree at least $s-d+1$. This contradicts $\mathcal L G=0$ and proves $H(\alpha)=0$. Thus $H$ has at least $\deg D+\deg L$ distinct roots, and $r\geq\deg D+\deg L$.
+\end{proof}
+
+\section{The three catalogue conjectures}
+\begin{corollary}
+For any real constant $u=t\ne0$, the following recurrence has least possible shift span and holds for $n\geq4$:
+\begin{align*}
+0={}&(n+1)a_n-3tn a_{n-1}+3t^2(n-1)a_{n-2}\\
+ &-t\bigl((t^2-4)n-2t^2+14\bigr)a_{n-3}
+     -2t^2(2n-7)a_{n-4}.
+\end{align*}
+The cases $t=1$ and $t=2$ are Mathar's November 13, 2012 conjectures for A174015 and A174016.
+\end{corollary}
+\begin{proof}
+The coefficients of $A$ and $B$ in increasing power order in \eqref{eq:cert} are, respectively,
+\[
+ (1,-3t,3t^2,4t-t^3,-4t^2),\quad (1,-3t,3t^2,-2t-t^3,-2t^2).
+\]
+Here $C=1-tx+3tx^2-(t^2+2t)x^3$. Substitution gives the asserted coefficients. The cubic $D$ has discriminant $-16t^2(t^2+27)$ and $D(1/t)=4/t^2$. The theorem therefore gives the lower bound four.
+\end{proof}
+
+\begin{corollary}
+Let $a_n$ be A174013. The following six-step expression $R_n$ is zero for $n\geq6$:
+\begin{align*}
+R_n={}&(n+1)a_n-3n a_{n-1}+3(3n-8)a_{n-3}-6a_{n-4}\\
+ &+(46-11n)a_{n-5}-5(n-5)a_{n-6}.
+\end{align*}
+It has least possible shift span. Mathar's January 12, 2013 conjecture for A174013 holds for $n\geq7$.
+\end{corollary}
+\begin{proof}
+At $u=1+x$ we have $L=1-x-x^2$ and $D=1-2x-x^2+6x^3+5x^4$. In increasing power order, the coefficient lists in \eqref{eq:cert} are
+\[
+\begin{split}
+ A&:(1,-3,0,9,0,-11,-5),\\
+ B&:(1,-3,0,3,-6,-9,-5),\\
+ C&:(1,-1,3,0,-6).
+\end{split}
+\]
+Extraction gives $R_n=0$. The quadratic $L$ has discriminant $5$ and the quartic $D$ has discriminant $20224$. At each root of $L$ one has $ux=1$, so $D=4x^2\ne0$. Minimality follows from the theorem. Finally $R_n+4R_{n-1}$ is precisely the conjectured left side,
+\begin{align*}
+ &(n+1)a_n+na_{n-1}+12(1-n)a_{n-2}+3(3n-8)a_{n-3}\\
+ &\qquad+6(6n-23)a_{n-4}+11(2-n)a_{n-5}+(253-49n)a_{n-6}
+          +20(6-n)a_{n-7}.
+\end{align*}
+\end{proof}
+
+\paragraph{Scope and verification.}
+The sequence definitions and the bivariate generating function precede this note. The cited OEIS entries list the three linear recurrences as conjectures. Our conclusions concern those recurrences and their minimal orders. The companion file \texttt{verify.py} checks the polynomial identities exactly and generates independent coefficients from \eqref{eq:quadratic}.
+
+\begin{thebibliography}{9}
+\bibitem{delta} R. J. Mathar, \emph{Properties of Del\'eham's Delta Transformation: OEIS A084938}, Example 20, Eq.~(28). \url{https://oeis.org/A084938/a084938.pdf}
+\bibitem{column} OEIS Foundation Inc., A174015, entry by Paul Barry, with a conjecture by R. J. Mathar. \url{https://oeis.org/A174015}
+\bibitem{rows} OEIS Foundation Inc., A174016, entry by Paul Barry, with a conjecture by R. J. Mathar. \url{https://oeis.org/A174016}
+\bibitem{diag} OEIS Foundation Inc., A174013, entry by Paul Barry, with a conjecture by R. J. Mathar. \url{https://oeis.org/A174013}
+\end{thebibliography}
+\end{document}

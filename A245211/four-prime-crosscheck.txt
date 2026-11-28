@@ -1,0 +1,1 @@
+4701 exponent/base pairs; 224606 triples below the cubic upper bound; zero prime completions

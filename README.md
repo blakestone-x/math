@@ -1,5 +1,10 @@
-# math
-math proofs
+# Math proofs
+
+[Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
+
+- [Bala’s companion supercongruences for every integer parameter](Bala-companion-supercongruences/README.md) · [The exact power of two in every cubic Franel row one below a power of two](Franel-dyadic-cubes/README.md)
+
+- [Havermann's fixed points and six greedy digit sequences](Greedy-digit-permutations/README.md) · [Four-prime exclusion for Krizek's fixed points](A245211/four-primes.pdf) · [Circular orderings for singular affine maps](Sun-polynomial-cycles/singular.pdf) · [Square-root digit runs in every base](Square-root-digit-blocks/README.md)
 
 - [A291897 — squares dividing every Euler-polynomial numerator in the source family](A291897/README.md)
 - [A104722 — repeated-Catalan convolution recurrence and its exact starting index](A104722/README.md)
@@ -167,7 +172,7 @@ math proofs
 - [A294532–A294565 — golden-ratio convergence for 34 complementary equations](A294532/README.md) · [Lean family](A294532/Proof.lean) · [Lean analytic theorem](A294532/Analytic.lean)
 - [A300984 — necessary prime-power conditions for two squarefree divisor sums](A300984/README.md) · [Lean proof](A300984/Proof.lean)
 - [A301984 — binary subsequence records and their first indices](A301984/README.md) · [Verifier](A301984/verify.py)
-- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md)
+- [A316994 — infinitude of the greedy binary-substring sequence](A316994/README.md) · [Omitted values and density](A316994/omitted-values.md) · [Subexponential growth and range bounds](A316994/growth.md)
 - [A323111 — asymptotics of compositions with range equal to half the total](A323111/README.md)
 - [A324017 — two tetration proofs, a canonical counterexample, and corrected compatibility](A324017/README.md) · [Lean proof](A324017/Proof.lean)
 - [A330904 — the longest consecutive run](A330904/README.md) · [Lean proof](A330904/Proof.lean) · [PDF](A330904/A330904_proof.pdf)

@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,microtype,booktabs,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!60!black]{hyperref}
+\geometry{hmargin=.91in,vmargin=.82in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\F}{\mathbb F}
+\newcommand{\ord}{\operatorname{ord}}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+\begin{center}
+{\LARGE Circular orderings of finite-field squares\\[3pt]with prescribed quadratic label class}\par\medskip
+Blake Stone's mathematics project, developed with OpenAI Codex\\November 27, 2026
+\end{center}
+\begin{abstract}
+For every odd finite field we determine whether its nonzero squares admit a circular ordering in which the consecutive sums or differences run through a prescribed quadratic class. For field orders greater than thirteen, the only failures are at order twenty-five, for both square-valued targets. At that field there is no twelve-vertex path with distinct square-valued labels, even before it is closed into a cycle. This settles the exceptional field omitted from Sun's square-target theorem and identifies the precise obstruction to the finite-field formulation in OEIS A229878. A Jacobi-sum bound reduces all four classifications to fields of order at most 1025. The finite obstruction at 25 has an independent Lean certificate.
+\end{abstract}
+
+Fix an odd prime power $q=2n+1$. Write $S$ for the nonzero squares in $\F_q$ and $T$ for the nonsquares. For $\epsilon\in\{1,-1\}$ and $R\in\{S,T\}$ ask for a circular ordering $(a_i)_{i\in\mathbb Z/n\mathbb Z}$ of $S$ such that
+\[
+ \{a_i+\epsilon a_{i+1}:i\in\mathbb Z/n\mathbb Z\}=R.
+\]
+In particular the labels must be distinct. For $n=1$ this definition uses the single edge from the unique square to itself.
+
+\begin{theorem}\label{T}
+The complete failure lists, by field order, are
+\[
+\begin{array}{ccl}
+\toprule
+\text{labels}&\text{target}&\text{field orders with no such circle}\\\midrule
+a_i+a_{i+1}& S&3,5,7,9,13,25\\
+a_i+a_{i+1}& T&5\\
+a_i-a_{i+1}& S&3,5,9,25\\
+a_i-a_{i+1}& T&3,13\\\bottomrule
+\end{array}
+\]
+In every other case a geometric ordering $1,r,\ldots,r^{n-1}$ of $S$ suffices.
+\end{theorem}
+
+Sun proposed the finite-field question in OEIS A229878~\cite{OEIS}. His published Theorem~1.5~\cite{Sun} proves existence for square-valued sums for every $q>13$ except $25$, and for square-valued differences for every $q>5$ except $9,25$. His Lemma~2.1 also excludes geometric witnesses for the two square targets at 25. In particular the prime-field conjecture in A229878 had already been proved. The proof below gives all four sharp lists, including the impossibility of the square targets at 25. Sun also gave the four prescribed targets for $q>2^{66}$ with a character-theoretic existence theorem~\cite[slides 12--13]{Graz}.
+
+\section{A character bound for the geometric ordering}
+
+Let $\chi$ be the quadratic character, extended by zero at zero. For $n>2$ no generator $r$ of $S$ is $1$ or $-1$. The labels of its geometric order are $r^i(1+\epsilon r)$ and cover the quadratic class of $1+\epsilon r$. Let $N_{\epsilon,\eta}$ count the generators with $\chi(1+\epsilon r)=\eta$, $\eta\in\{1,-1\}$; put $k=\omega(n)$, the number of distinct prime divisors.
+
+\begin{lemma}\label{character}
+For $n>2$ and every choice of signs,
+\[
+ \left|N_{\epsilon,\eta}-\frac{\varphi(n)}2\right|
+ \le \frac{\varphi(n)}{2n}\,2^k\sqrt q .
+\]
+\end{lemma}
+\begin{proof}
+For each multiplicative character $\psi$ of $\F_q^\times$ the sum $\sum_{x\ne0}\psi(x)\chi(1+\epsilon x)$ has absolute value at most $\sqrt q$. Substituting $z=-\epsilon x$ reduces it, up to a unit factor, to the Jacobi sum $J(\psi,\chi)$. For completeness, extend all multiplicative characters by zero at zero. If $\psi$ is trivial, the magnitude is one by summing $\chi$ over all field elements except one. If $\psi\chi$ is trivial, the substitution $u=z/(1-z)$ ranges over the field except $-1$ and gives magnitude one again. In the other cases let $G(\lambda)=\sum_x\lambda(x)e(x)$ for a nontrivial additive character $e$. For any nontrivial multiplicative $\lambda$, expansion of $|G(\lambda)|^2$ and substitution $x=uy$ gives
+\[
+ |G(\lambda)|^2=\sum_{u\ne0}\lambda(u)\sum_{y\ne0}e((u-1)y)=q .
+\]
+Expanding $G(\psi)G(\chi)$ by the value of $x+y$ gives $J(\psi,\chi)G(\psi\chi)$; the terms with $x+y=0$ vanish since $\psi\chi$ is nontrivial. This proves the bound.
+
+Each character $\lambda$ of $S$ extends to two characters of $\F_q^\times$, differing by $\chi$. Averaging their two sums shows
+\[
+ \left|\sum_{r\in S}\lambda(r)\chi(1+\epsilon r)\right|\le\sqrt q .
+\]
+The generator indicator on the cyclic group $S$ is
+\[
+ \mathbf 1_{\ord r=n}
+ =\frac{\varphi(n)}n\sum_{d\mid n}\frac{\mu(d)}{\varphi(d)}
+              \sum_{\substack{\lambda\in\widehat S\\\ord\lambda=d}}\lambda(r).
+\]
+Indeed, factor the sum into one factor for each prime $v\mid n$. If $r=h^j$ for a generator $h$, the sum of order-$v$ characters at $r$ is $v-1$ when $v\mid j$ and $-1$ otherwise. The product therefore vanishes for nongenerators and equals $n/\varphi(n)$ for generators before normalization. There are $\varphi(d)$ characters of exact order $d$ and $2^k$ squarefree divisors. Multiplying the indicator by $\chi(1+\epsilon r)$ and summing proves that the two generator counts differ by at most $(\varphi(n)/n)2^k\sqrt q$. They add to $\varphi(n)$.
+\end{proof}
+
+If $n\ge2\cdot4^k+1$, then $n^2>4^k(2n+1)$, so all four counts are positive. When $n>512$ and $k\le4$ this inequality holds. When $k\ge5$ the product of the first five primes is $2310>2\cdot4^5$, and every additional prime factor exceeds four. Thus all $q>1025$ satisfy the theorem with a geometric ordering.
+
+\section{Finite field computations and the order 25 obstruction}
+
+For clarity we describe the complete finite calculation. Construct $\F_{p^e}$ as the polynomial quotient over $\F_p$ by the lexicographically first monic irreducible of degree $e$ in increasing coefficient order; for degree one use the usual residues. Irreducibility is tested by trial division by all monic polynomials through degree $\lfloor e/2\rfloor$, including $X$ through the constant-term check. Find a generator $g$ of $\F_q^\times$ by testing $g^{(q-1)/v}\ne1$ for every prime divisor $v$ of $q-1$. Put $h=g^2$. For each $j$ prime to $n$, test whether $1+\epsilon h^j$ belongs to $R$. The accompanying verifier also builds every claimed witnessing circle and compares the full label set with $R$. Among the 188 odd prime powers through 1025, these tests succeed in 739 of the 752 cases. The remaining thirteen cases are exactly the entries of the four lists in Theorem~\ref{T}.
+
+To determine whether any other circle works in those cases, fix the initial square $1$. Write vertices as $h^i$ and label elements as $b h^c$, where $b=1$ for $S$ and $b=g$ for $T$. Precompute the pairs
+\[
+ (d,e)\quad\text{such that}\quad 1+\epsilon h^d=b h^e .
+\]
+The allowed transition from $i$ goes to $i+d$ with label $i+e$, all indices modulo $n$. For $n>1$ a step $d=0$ is excluded. Start with $U=\{0\}$ the used vertices, $V=\varnothing$ the used labels, and current vertex $i=0$. Extend a partial path by each pair for which $i+d\notin U$ and $i+e\notin V$, inserting those two indices into the respective sets. When $U$ is full, count a completion for each pair with $i+d=0$ and $i+e\notin V$. This recurrence counts each valid directed circle starting at 1 once, by induction on the path length. Every circle has such a rotation. The cases $n=1,2$ can also be read directly from the definition. Applying the recurrence yields zero in each of the thirteen cases.
+
+In the exceptional field use $z^2+z+1=0$ over $\F_5$ and $h=(2+z)^2=3+3z$. Direct multiplication shows $h$ generates the twelve squares. For target $S$ the possible $(d,e)$ for sums and differences, respectively, are
+\[
+ \{(3,6),(4,2),(8,10),(9,3)\},\qquad
+ \{(2,10),(3,3),(6,9),(9,6),(10,2)\}.
+\]
+For an explicit check the successive numbers of paths beginning at 1, with all vertices and labels distinct, are
+\[
+\begin{array}{crrrrrrrrrrrr}
+\toprule
+\text{vertices}&1&2&3&4&5&6&7&8&9&10&11&12\\\midrule
++&1&4&12&30&66&132&218&256&174&60&8&0\\
+-&1&5&18&56&142&302&496&624&536&302&48&0\\\bottomrule
+\end{array}
+\]
+Multiplication by a square normalizes any starting point to 1 while preserving the square class and distinctness. The last column therefore excludes even a Hamilton path with distinct square-valued labels. The Lean file verifies the field-to-exponent tables and proves that its exhaustive search detects every path admitted by those tables, before checking that neither table allows eleven successive steps from 1. Together with Lemma~\ref{character}, this concludes the classification.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{OEIS} Zhi-Wei Sun, \emph{The On-Line Encyclopedia of Integer Sequences}, A229878, 2013. \url{https://oeis.org/A229878}.
+\bibitem{Sun} Zhi-Wei Sun, \emph{Some new problems in additive combinatorics}, Nanjing Univ. J. Math. Biquarterly \textbf{36} (2019), 134--155, Theorem~1.5. \href{https://arxiv.org/abs/1309.1679}{arXiv:1309.1679}.
+\bibitem{Graz} Zhi-Wei Sun, \emph{Some new problems and results in combinatorial and additive number theory}, lecture slides, Graz, 2016, slides 12--13. \href{https://static.uni-graz.at/fileadmin/veranstaltungen/additive2016/Talks/sun_zw_slides.pdf}{Lecture slides}.
+\end{thebibliography}
+\end{document}

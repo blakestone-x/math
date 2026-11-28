@@ -1,0 +1,7 @@
+five source identities in their proved ranges [144, 144, 120, 144, 144]
+boundary evaluations compared with original matrices 24
+boundary degrees checked by exact differences for k=1..8
+source boundary counterexample -21 versus predicted -16
+Bernoulli leading coefficients tested on original matrices 16
+cubic discrepancy at (k,m)=(2,1) satisfies third difference -392
+all exact checks passed

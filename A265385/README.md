@@ -102,3 +102,7 @@ pdflatex -interaction=nonstopmode -halt-on-error A265385_proof.tex
 The live [OEIS entry](https://oeis.org/A265385) and its [internal representation](https://oeis.org/A265385/internal) were inspected on November 26, 2026. The entry still stated the mean-growth assertion conjecturally, and its internal revision was `#18 Jan 16 2016 18:01:31`. Searches by exact sequence identifier and equivalent recurrence descriptions did not locate an earlier proof. This establishes the source status checked during this work; it does not certify exhaustive publication priority or imply acceptance by OEIS.
 
 The theorem proves the mean growth limit of 2. The separate observation in the OEIS comment about persistent fluctuations of adjacent-term ratios is outside its scope. The PDF also derives the ordinary root-growth limit and an explicit logarithmic error bound; these are elementary written corollaries, while the Lean files formally verify the bounds and the stated OEIS mean-growth limit.
+
+## Adjacent-term fluctuations
+
+The companion manuscript now proves the persistent fluctuations from Sykora’s original comment. For each of A265385 and A265387, the original adjacent-term ratios have at least 280 distinct accumulation points and every progression modulo 140 fails to converge. Both recurrences have mean growth 2 for every positive pair of seeds. [Proof manuscripts, formal growth theorems and exact certificates](../A265387/universal.md)

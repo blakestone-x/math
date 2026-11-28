@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hmargin=0.90in,vmargin=0.72in]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\begin{document}
+\begin{center}
+{\LARGE Large irreducible factors of Sun's\\[2pt] Franel-number polynomials\par}
+\medskip November 26, 2026
+\end{center}
+\begin{abstract}
+For a family of binomial polynomials conjectured by Zhi-Wei Sun to be irreducible, we prove irreducibility at four indices around each prime $p$, namely $p-2,p-1,p,p+1$ in the domain $n\ge2$. At every index there is a unique irreducible factor of degree greater than half the degree of the polynomial. The ratio of these two degrees tends to one. Finite-field certificates also establish irreducibility at every index through 2048. The proofs use coefficient valuations at the nearest larger prime and, at prime or prime-successor indices, a second reduction of the reciprocal polynomial.
+\end{abstract}
+
+\section{A dominant factor for every index}
+In his March 21, 2013 comment on OEIS A000172, Sun conjectured that the following polynomial is irreducible over $\Q$ for every $n\ge2$ \cite{sun}. Reindexing his sum by $j=n-k$ gives
+\[
+ f_n(X)=\sum_{j=0}^{d}a_jX^j,\qquad
+ a_j=\binom nj^2\binom{2n-2j}{n},\qquad d=\lfloor n/2\rfloor.
+\]
+Here $a_d>0$, and indices beyond $d$ have zero coefficient. The value $f_n(1)$ is the $n$th Franel number by Strehl's identity \cite{strehl}.
+
+\begin{theorem}\label{thm:giant}
+Let $q$ be the smallest prime greater than $n\ge2$, and write $D_n$ for the largest degree of an irreducible factor of $f_n$ in $\Q[X]$. Then
+\begin{equation}\label{eq:bound}
+ D_n\ge s:=n-\frac{q-1}{2}>\frac{d}{2}.
+\end{equation}
+The factor of degree $D_n$ is unique up to scalars and has multiplicity one. Moreover $D_n/d\to1$ as $n\to\infty$.
+\end{theorem}
+\begin{proof}
+By Bertrand's postulate, $n<q<2n$. As $q$ is odd and $q>n$, all $\binom nj$ are units modulo $q$. The denominator $n!(n-2j)!$ in the second binomial coefficient is also a unit. Its numerator $(2n-2j)!$ contains one factor of $q$ if $2n-2j\ge q$ and none otherwise. Thus
+\[
+ v_q(a_j)=\begin{cases}1&0\le j<s,\\0&s\le j\le d.\end{cases}
+\]
+In particular $f_n$ has a $q$-unit leading coefficient and content prime to $q$. By Gauss's lemma write $f_n$ as its content times a product of primitive integral irreducibles, counted with multiplicity. Reduction modulo $q$ preserves each degree. Since $v_q(a_0)=1$, exactly one factor has constant term divisible by $q$. All $s$ copies of the root $X=0$ in $\overline{f_n}\in\F_q[X]$ must come from this factor, whose degree is therefore at least $s$.
+
+For $n>25$, Nagura's theorem gives $q<6n/5$; the same holds at $n=25$ because $q=29$ \cite{nagura}. Hence $s>2n/5>d/2$. For $2\le n\le24$, the successive possible values of $q$ are displayed with the minimum of $2s-d$ on each interval:
+\[
+\begin{array}{c|rrrrrrrrr}
+ n&2&3\!:\!4&5\!:\!6&7\!:\!10&11\!:\!12&13\!:\!16&17\!:\!18&19\!:\!22&23\!:\!24\\ \hline
+ q&3&5&7&11&13&17&19&23&29\\
+ \min(2s-d)&1&1&2&1&5&4&8&7&7
+\end{array}
+\]
+Two occurrences of factors of degree greater than $d/2$ cannot fit into degree $d$. Finally the prime number theorem gives $q/n\to1$: for each fixed $\varepsilon>0$, $\pi((1+\varepsilon)n)-\pi(n)\sim\varepsilon n/\log n$ \cite{pnt}. Thus $s/d\to1$, and \eqref{eq:bound} gives the claimed limit.
+\end{proof}
+
+\section{Four indices around each prime}
+\begin{theorem}\label{thm:four}
+If $p$ is prime and $n\in\{p-2,p-1,p,p+1\}$ with $n\ge2$, then $f_n$ is irreducible over $\Q$.
+\end{theorem}
+\begin{proof}
+The linear cases $n=2,3$ cover the prime $p=2$ wherever it is relevant. Assume henceforth that $p$ is odd. If $n=p-2$ or $p-1$, $p$ is the next prime above $n$ (with the already settled $n=2$ allowed). Substitution in \eqref{eq:bound} gives $s=d$. Equivalently, the defining coefficients satisfy Eisenstein's criterion at $p$.
+
+It remains to treat $n=p,p+1$ with $d\ge2$. For these indices,
+\begin{equation}\label{eq:vp}
+ v_p(a_0)=0,\qquad v_p(a_d)=2,\qquad
+ v_p(a_1)\ge1,\qquad v_p(a_j)=2\quad(2\le j\le d).
+\end{equation}
+In fact, for $n=p$ every $\binom pj$ with $1\le j\le d$ has valuation one, and $\binom{2p-2j}{p}$ is a unit because $p\le2p-2j<2p$. The central binomial $\binom{2p}p$ is a unit. For $n=p+1$, the central binomial $\binom{2p+2}{p+1}$ is again a unit, since $p\ge3$ and $2p+2<p^2$. At $j=1$ the second binomial $\binom{2p}{p+1}$ has valuation one. For $2\le j\le d$, the binomial $\binom{p+1}j$ has valuation one and $p+1\le2p+2-2j<2p$ shows that $\binom{2p+2-2j}{p+1}$ is a unit. These facts prove \eqref{eq:vp}.
+
+Suppose the reciprocal $F(X)=X^df_n(1/X)$ factors into two nonconstant integer polynomials $G,H$, allowing an integer content in one factor. Gauss's lemma permits this choice whenever $f_n$ is reducible over $\Q$. By \eqref{eq:vp}, $F$ reduces modulo $p$ to a unit times $X^d$. Each factor has unit leading coefficient and reduces to a scalar monomial of its full degree. Both constant terms therefore have positive valuation. Their product has valuation two, so each has valuation one.
+
+Theorem~\ref{thm:giant} permits us to choose $H$ to be the reciprocal of the unique dominant irreducible factor, up to a scalar. Then $1\le e:=\deg G<\deg H=d-e$. In the coefficient of $X^e$ in $GH$, the term from the leading coefficient of $G$ times the constant of $H$ has valuation one. Every other term uses two nonleading coefficients, each divisible by $p$. It follows that $v_p([X^e]F)=1$. But $[X^e]F=a_{d-e}$ with $d-e\ge2$, contradicting \eqref{eq:vp}.
+\end{proof}
+
+\section{Exact certificates through index 2048}
+\begin{theorem}
+For every $2\le n\le2048$, $f_n$ is irreducible over $\Q$.
+\end{theorem}
+\begin{proof}
+Of these 2047 indices, 1107 lie in Theorem~\ref{thm:four}. For the other 940 set $g=d-s$. At each such $n$, the file \texttt{primes.txt} supplies a prime $\ell>2n$ at which all coefficients are defined by unit factorial quotients, and the leading coefficient stays nonzero. In $\F_\ell[X]$, the supplied certificate satisfies
+\begin{equation}\label{eq:gcd}
+ \gcd(\overline f_n,X^{\ell^i}-X)=1\qquad (1\le i\le g).
+\end{equation}
+The finite computation of \eqref{eq:gcd} uses the following procedure. Make $\overline f_n$ monic, put $u=X$, and repeat $g$ times: replace $u$ by $u^\ell\bmod\overline f_n$, then check $\gcd(\overline f_n,u-X)=1$ by Euclidean division. The program \texttt{verify.cpp} checks every required index, the primality and range of each witness, and all these gcds. For example $n=25$ has $d=12$, $q=29$, $s=11$ and $g=1$, so only a linear factor needs to be excluded.
+
+If $f_n$ were reducible, its dominant factor would leave a positive-degree cofactor of degree at most $g$. Reduction preserves the cofactor's degree because the leading coefficient of $f_n$ is a unit modulo $\ell$. Take an irreducible factor of that reduction, of degree $i\le g$. It divides $X^{\ell^i}-X$, since each of its roots lies in the field of $\ell^i$ elements. This contradicts \eqref{eq:gcd}.
+\end{proof}
+
+\paragraph{Remaining case.} At any index not settled by Theorem~\ref{thm:four}, a proof of the full conjecture can concentrate on complementary factors of total degree at most $d-s=(q-1)/2-\lceil n/2\rceil$. This bound concerns each individual polynomial, including indices far from the four prime-index families.
+
+\begin{thebibliography}{9}
+\bibitem{sun} Zhi-Wei Sun. Comment dated March 21, 2013, in OEIS A000172, \emph{Franel numbers}. \url{https://oeis.org/A000172/internal}.
+\bibitem{strehl} V. Strehl. Binomial identities: combinatorial and algorithmic aspects. \emph{Discrete Math.} \textbf{136} (1994), 309--346. \url{https://doi.org/10.1016/0012-365X(94)00118-3}.
+\bibitem{nagura} J. Nagura. On the interval containing at least one prime number. \emph{Proceedings of the Japan Academy} \textbf{28} (1952), 177--181. \url{https://doi.org/10.3792/pja/1195570997}.
+\bibitem{pnt} \emph{NIST Digital Library of Mathematical Functions}, Section~27.12, Prime Number Theorem. \url{https://dlmf.nist.gov/27.12}.
+\end{thebibliography}
+\end{document}

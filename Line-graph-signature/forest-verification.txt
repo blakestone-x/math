@@ -1,0 +1,143 @@
+45866 graphs and 228531 target matching sizes agree.
+10 cycles, 45 root vertices, line inertia (+,0,-) = (29,1,24), signature 5.
+11 cycles, 50 root vertices, line inertia (+,0,-) = (33,0,27), signature 6.
+12 cycles, 54 root vertices, line inertia (+,0,-) = (35,1,29), signature 6.
+13 cycles, 59 root vertices, line inertia (+,0,-) = (39,0,32), signature 7.
+Neutral-square gluing inertias agree in 361 rooted pairs.
+Spanning-tree construction verified on 27505 connected subcubic graphs.
+Canonical cubic types at order 18 with matching size at most 3: 1040
+c=10 inputs=1040 cubic inflations=1040
+  rank loss 0; retained partitions 1040; signed forms 17151; violations 0
+  rank loss 1; retained partitions 3980; signed forms 58916; violations 0
+  rank loss 2; retained partitions 7912; signed forms 104507; violations 0
+  rank loss 3; retained partitions 5275; signed forms 47746; violations 0
+Cubic inflations requiring tighter pass 560.
+  tight rank/cost 0; retained domains 560; signed forms 9763
+  tight rank/cost 1; retained domains 5904; signed forms 93751
+  tight rank/cost 2; retained domains 28577; signed forms 381205
+  tight rank/cost 3; retained domains 52535; signed forms 585555
+Independent characteristic-polynomial checks 6160.
+Canonical cubic types at order 20 with matching size at most 3: 324
+c=11 inputs=324 cubic inflations=324
+  rank loss 0; retained partitions 324; signed forms 5264; violations 0
+  rank loss 1; retained partitions 1020; signed forms 14994; violations 0
+  rank loss 2; retained partitions 2257; signed forms 30438; violations 0
+  rank loss 3; retained partitions 1519; signed forms 13046; violations 0
+Cubic inflations requiring tighter pass 234.
+  tight rank/cost 0; retained domains 234; signed forms 3962
+  tight rank/cost 1; retained domains 2487; signed forms 39788
+  tight rank/cost 2; retained domains 11142; signed forms 157087
+  tight rank/cost 3; retained domains 20350; signed forms 249992
+Independent characteristic-polynomial checks 2442.
+Canonical cubic types at order 22 with matching size at most 3: 52
+c=12 inputs=52 cubic inflations=52
+  rank loss 0; retained partitions 52; signed forms 974; violations 0
+  rank loss 1; retained partitions 52; signed forms 974; violations 0
+  rank loss 2; retained partitions 52; signed forms 974; violations 0
+  rank loss 3; retained partitions 52; signed forms 52; violations 0
+Cubic inflations requiring tighter pass 52.
+  tight rank/cost 0; retained domains 52; signed forms 974
+  tight rank/cost 1; retained domains 624; signed forms 11688
+  tight rank/cost 2; retained domains 2496; signed forms 46752
+  tight rank/cost 3; retained domains 3370; signed forms 62651
+Independent characteristic-polynomial checks 596.
+Canonical cubic types at order 22 with matching size at most 4: 27117
+c=12 inputs=27117 cubic inflations=27117
+  rank loss 0; retained partitions 27117; signed forms 998692; violations 0
+  rank loss 1; retained partitions 163750; signed forms 5534554; violations 0
+  rank loss 2; retained partitions 561207; signed forms 17005494; violations 0
+  rank loss 3; retained partitions 873500; signed forms 22179634; violations 0
+  rank loss 4; retained partitions 488510; signed forms 9413298; violations 0
+Cubic inflations requiring tighter pass 11634.
+  tight rank/cost 0; retained domains 11634; signed forms 438448
+  tight rank/cost 1; retained domains 168951; signed forms 5703541
+  tight rank/cost 2; retained domains 1214596; signed forms 34702760
+  tight rank/cost 3; retained domains 4410988; signed forms 107149529
+  tight rank/cost 4; retained domains 6465870; signed forms 134580333
+Independent characteristic-polynomial checks 33775.
+Inverse reconstruction at order 22
+c=12 inputs=27117 cubic inflations=27117
+  rank loss 0; retained partitions 27117; signed forms 998692; violations 0
+  rank loss 1; retained partitions 316397; signed forms 10531296; violations 0
+  rank loss 2; retained partitions 1429645; signed forms 41214994; violations 0
+  rank loss 3; retained partitions 2979936; signed forms 72214238; violations 0
+  rank loss 4; retained partitions 2405672; signed forms 46071786; violations 0
+Relaxed partitions sent to reconstruction 104655.
+Cubic inflations requiring tighter pass 0.
+  tight rank/cost 0; retained domains 0; signed forms 0
+  tight rank/cost 1; retained domains 0; signed forms 0
+  tight rank/cost 2; retained domains 5089; signed forms 129268
+  tight rank/cost 3; retained domains 7767; signed forms 216694
+  tight rank/cost 4; retained domains 198632; signed forms 4288076
+Independent characteristic-polynomial checks 17570.
+Canonical cubic types at order 24 with matching size at most 4: 10308
+c=13 inputs=10308 cubic inflations=10308
+  rank loss 0; retained partitions 10308; signed forms 358399; violations 0
+  rank loss 1; retained partitions 56410; signed forms 1774210; violations 0
+  rank loss 2; retained partitions 204581; signed forms 6015676; violations 0
+  rank loss 3; retained partitions 327951; signed forms 8589639; violations 0
+  rank loss 4; retained partitions 182470; signed forms 3671682; violations 0
+Cubic inflations requiring tighter pass 5728.
+  tight rank/cost 0; retained domains 5728; signed forms 210635
+  tight rank/cost 1; retained domains 81000; signed forms 2788959
+  tight rank/cost 2; retained domains 552357; signed forms 16599938
+  tight rank/cost 3; retained domains 1935811; signed forms 49966688
+  tight rank/cost 4; retained domains 2779814; signed forms 61330644
+Independent characteristic-polynomial checks 15135.
+Inverse reconstruction at order 24
+c=13 inputs=10308 cubic inflations=10308
+  rank loss 0; retained partitions 10308; signed forms 358399; violations 0
+  rank loss 1; retained partitions 131106; signed forms 4300908; violations 0
+  rank loss 2; retained partitions 625399; signed forms 18922328; violations 0
+  rank loss 3; retained partitions 1340358; signed forms 36497028; violations 0
+  rank loss 4; retained partitions 1103466; signed forms 25809286; violations 0
+Relaxed partitions sent to reconstruction 27034.
+Cubic inflations requiring tighter pass 0.
+  tight rank/cost 0; retained domains 0; signed forms 0
+  tight rank/cost 1; retained domains 0; signed forms 0
+  tight rank/cost 2; retained domains 378; signed forms 12390
+  tight rank/cost 3; retained domains 171; signed forms 6916
+  tight rank/cost 4; retained domains 45505; signed forms 1159564
+Independent characteristic-polynomial checks 8710.
+Canonical cubic types at order 26 with matching size at most 4: 2401
+c=14 inputs=2401 cubic inflations=2401
+  rank loss 0; retained partitions 2401; signed forms 84886; violations 0
+  rank loss 1; retained partitions 9576; signed forms 309658; violations 0
+  rank loss 2; retained partitions 36744; signed forms 1122964; violations 0
+  rank loss 3; retained partitions 64672; signed forms 1825720; violations 0
+  rank loss 4; retained partitions 35534; signed forms 737513; violations 0
+Cubic inflations requiring tighter pass 1788.
+  tight rank/cost 0; retained domains 1788; signed forms 65254
+  tight rank/cost 1; retained domains 26127; signed forms 917714
+  tight rank/cost 2; retained domains 168689; signed forms 5441298
+  tight rank/cost 3; retained domains 565796; signed forms 16404774
+  tight rank/cost 4; retained domains 779547; signed forms 20584152
+Independent characteristic-polynomial checks 4754.
+Canonical cubic types at order 28 with matching size at most 4: 284
+c=15 inputs=284 cubic inflations=284
+  rank loss 0; retained partitions 284; signed forms 11811; violations 0
+  rank loss 1; retained partitions 284; signed forms 11811; violations 0
+  rank loss 2; retained partitions 284; signed forms 11811; violations 0
+  rank loss 3; retained partitions 284; signed forms 11811; violations 0
+  rank loss 4; retained partitions 284; signed forms 284; violations 0
+Cubic inflations requiring tighter pass 284.
+  tight rank/cost 0; retained domains 284; signed forms 11811
+  tight rank/cost 1; retained domains 4544; signed forms 188976
+  tight rank/cost 2; retained domains 27264; signed forms 1133856
+  tight rank/cost 3; retained domains 73373; signed forms 3034909
+  tight rank/cost 4; retained domains 75922; signed forms 3076212
+Independent characteristic-polynomial checks 756.
+Canonical cubic types at order 30 with matching size at most 4: 0
+c=16 inputs=0 cubic inflations=0
+  rank loss 0; retained partitions 0; signed forms 0; violations 0
+  rank loss 1; retained partitions 0; signed forms 0; violations 0
+  rank loss 2; retained partitions 0; signed forms 0; violations 0
+  rank loss 3; retained partitions 0; signed forms 0; violations 0
+  rank loss 4; retained partitions 0; signed forms 0; violations 0
+Cubic inflations requiring tighter pass 0.
+  tight rank/cost 0; retained domains 0; signed forms 0
+  tight rank/cost 1; retained domains 0; signed forms 0
+  tight rank/cost 2; retained domains 0; signed forms 0
+  tight rank/cost 3; retained domains 0; signed forms 0
+  tight rank/cost 4; retained domains 0; signed forms 0
+Independent characteristic-polynomial checks 0.

@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\title{One coefficient identity for eighty Choulet convolution recurrences}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For arbitrary integer parameters $b,k,\ell$ we derive a linear recurrence with polynomial coefficients for the sequence $a_0=1$, $a_1=b$,
+$a_{n+1}=\sum_{i=0}^n a_i a_{n-i}+(n+1)k+\ell$ for $n\ge1$. Its coefficients are given by a polynomial of degree at most four and its derivative. This one identity gives the printed recurrence in eighty OEIS entries from the Left to Solve catalogue. Each match was checked symbolically against a fixed revision of the source. Earlier authors had already proved individual cases and described the differential-equation method.
+\end{abstract}
+
+Christian Choulet's sequences vary the initial value and two constants in a Catalan-type convolution. R. J. Mathar proposed recurrences for many of these sequences in 2016. Tong Niu gives a proof for A176677 and explains the general algebraic-to-differential procedure \cite{niu}. Several source entries already credit Robert Israel with verification from a differential equation, for example A177111. We give an explicit parameter formula, together with coefficient-by-coefficient comparisons. The eighty entries are applications of one theorem.
+
+\begin{theorem}
+Write $F(x)=\sum_{n\ge0}a_nx^n$ and put $s=1$ if $k=0$, $s=2$ otherwise. Define
+\begin{align*}
+ H(x)&=1+(b-1)x+\ell\frac{x^2}{1-x}+k\frac{x^2(2-x)}{(1-x)^2},\\
+ S(x)&=(1-x)^s(1-4xH(x)),\\
+ B(x)&=(1-x)S(x),\qquad E(x)=(1-x)S'(x)+sS(x).
+\end{align*}
+Then $S,B,E$ are polynomials, $\deg S\le s+2$, $\deg B\le s+3$, and $\deg E\le s+2$. If $B_j=[x^j]B$, $E_j=[x^j]E$, with negative subscripts read as zero, then for every $n\ge0$
+\begin{equation}\label{eq:coeff}
+ \sum_{j=0}^{\min(n,s+3)}
+ \left((n-j+1)B_j-\tfrac12 E_{j-1}\right)a_{n-j}
+ =-\tfrac14 E_n .
+\end{equation}
+In particular the recurrence is homogeneous for $n\ge s+3$. The coefficient of $a_n$ is $n+1$.
+\end{theorem}
+
+\begin{proof}
+Taking the coefficient of $x^{n+1}$, including the special initial value at $n=0$, gives $F=H+xF^2$. The identity uses $\sum_{n\ge1}(n+1)x^{n+1}=x^2(2-x)/(1-x)^2$. Put $D=(1-x)^s$ and $Y=1-2xF$. Completing the square yields $D Y^2=S$. Differentiate this identity in $\mathbb Q[[x]]$ and multiply by $D Y$:
+\[
+ (D S'-S D')Y=2 D S Y' .
+\]
+Substitute $Y=1-2xF$. Since $D S'-S D'=(1-x)^{s-1}E$ and $D S=(1-x)^{s-1}B$, cancel the invertible series $(1-x)^{s-1}$. Rearrangement gives
+\[
+ 4xB F'+(4B-2xE)F=-E .
+\]
+Taking the $n$th coefficient proves \eqref{eq:coeff}. The degree bounds follow by clearing the displayed denominators. Since $S(0)=1$, we have $B_0=1$.
+\end{proof}
+
+\section*{An example and the source comparison}
+For $(b,k,\ell)=(9,0,1)$ the coefficient row in \eqref{eq:coeff} gives A177130. In descending index order it is
+\[
+ n+1,\quad 2-6n,\quad 51-23n,\quad 56(n-3),\quad 28(4-n).
+\]
+It holds for every $n\ge4$. The two endpoint terms at $n=4$ can also be read directly from $a_0,\ldots,a_4=1,9,19,120,583$.
+
+The accompanying table \texttt{identities.csv} records the OEIS identifier, $(b,k,\ell)$, its six printed coefficient polynomials indexed by lag (padded with zero), and the SHA-256 digest of the original entry. Below are the numbers of distinct entries in each parameter group.
+\begin{center}\begin{tabular}{rrr|rrr|rrr}
+\toprule
+$k$&$\ell$&Entries&$k$&$\ell$&Entries&$k$&$\ell$&Entries\\\midrule
+0&$-2$&11&1&$-1$&11&$-1$&$-1$&11\\
+0&$-1$&9&1&1&8&$-1$&1&10\\
+0&1&9&$-2$&0&5&$-1$&0&6\\\bottomrule
+\end{tabular}\end{center}
+For 79 entries the coefficients printed by Mathar equal those in \eqref{eq:coeff}. A177126 includes an additional common factor $n$ in every coefficient. Symbolic comparison also checks cases where a leading lag vanishes. For all eighty, the largest nonzero lag already exceeds $\deg E$; the formula therefore holds at every index for which all its nonzero terms are defined.
+The check uses identities in $\mathbb Q[n]$. Direct regeneration of the OEIS initial data and a check through $n=39$ provide a separate test of the indexing. The source archive, comparison table and verifier are identified in the project README.
+
+\section*{Verification scope}
+The Lean companion formalizes the formal-series differentiation step for arbitrary series $F,D,S$ satisfying $D(1-2xF)^2=S$. The generating-function derivation, cancellation and coefficient extraction appear above. The eighty exact polynomial comparisons are performed by the supplied SymPy verifier. We make no separate priority claim for individual entries.
+
+\begin{thebibliography}{9}
+\bibitem{niu} T. Niu, \emph{A short proof of Mathar's 2016 recurrence conjecture for OEIS A176677}, 2026, \url{https://arxiv.org/abs/2605.04369}.
+\bibitem{choulet} C. Choulet, R. J. Mathar and contributors, OEIS entries \href{https://oeis.org/A176605}{A176605}, \href{https://oeis.org/A176677}{A176677}, \href{https://oeis.org/A177111}{A177111}, \href{https://oeis.org/A177130}{A177130} and the other entries indexed in the table. \href{https://github.com/oeis/oeisdata/tree/091a90f51479669655f4e46343867ea2abd5d4ff}{OEIS data revision}.
+\end{thebibliography}
+\end{document}

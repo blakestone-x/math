@@ -1,0 +1,93 @@
+{'all-even': 510, 'odd': 14846, 'cut': 72024} path decorations 87380
+J=14 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 16 2038 3692
+contraction count 0; retained labelled kernels 2054
+  charged operations 0; patterns 16; signed forms 81; full characteristic polynomials 81; violations 0
+  charged operations 1; patterns 192; signed forms 972; full characteristic polynomials 128; violations 0
+  charged operations 2; patterns 22484; signed forms 165252; full characteristic polynomials 14584; violations 0
+contraction count 1; retained labelled kernels 3580
+  charged operations 0; patterns 64; signed forms 324; full characteristic polynomials 64; violations 0
+  charged operations 1; patterns 12400; signed forms 102198; full characteristic polynomials 11960; violations 0
+contraction count 2; retained labelled kernels 1652
+  charged operations 0; patterns 1652; signed forms 15735; full characteristic polynomials 2382; violations 0
+J=16 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 2259 5577
+contraction count 0; retained labelled kernels 2259
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 96; signed forms 729; full characteristic polynomials 64; violations 0
+  charged operations 2; patterns 17912; signed forms 183321; full characteristic polynomials 11680; violations 0
+contraction count 1; retained labelled kernels 3528
+  charged operations 0; patterns 32; signed forms 243; full characteristic polynomials 32; violations 0
+  charged operations 1; patterns 10792; signed forms 122733; full characteristic polynomials 10576; violations 0
+contraction count 2; retained labelled kernels 1616
+  charged operations 0; patterns 1616; signed forms 20754; full characteristic polynomials 2384; violations 0
+J=18 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 1698 3734
+contraction count 0; retained labelled kernels 1698
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 2; patterns 10944; signed forms 105138; full characteristic polynomials 6016; violations 0
+contraction count 1; retained labelled kernels 2664
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 6912; signed forms 69660; full characteristic polynomials 5696; violations 0
+contraction count 2; retained labelled kernels 1088
+  charged operations 0; patterns 1088; signed forms 11583; full characteristic polynomials 1344; violations 0
+J=20 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 1000 1688
+contraction count 0; retained labelled kernels 1000
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 2; patterns 6240; signed forms 87480; full characteristic polynomials 3712; violations 0
+contraction count 1; retained labelled kernels 1528
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 4096; signed forms 60264; full characteristic polynomials 3648; violations 0
+contraction count 2; retained labelled kernels 672
+  charged operations 0; patterns 672; signed forms 10449; full characteristic polynomials 896; violations 0
+J=22 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 320 256
+contraction count 0; retained labelled kernels 320
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 2; patterns 1728; signed forms 19683; full characteristic polynomials 768; violations 0
+contraction count 1; retained labelled kernels 512
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 1152; signed forms 13122; full characteristic polynomials 768; violations 0
+contraction count 2; retained labelled kernels 192
+  charged operations 0; patterns 192; signed forms 2187; full characteristic polynomials 192; violations 0
+J=24 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 128 0
+contraction count 0; retained labelled kernels 128
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 2; patterns 1152; signed forms 19683; full characteristic polynomials 512; violations 0
+contraction count 1; retained labelled kernels 256
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 768; signed forms 13122; full characteristic polynomials 512; violations 0
+contraction count 2; retained labelled kernels 128
+  charged operations 0; patterns 128; signed forms 2187; full characteristic polynomials 128; violations 0
+J=26 simple skeletons 27505; cubic by packing 0, 1, 2, 3+: 0 0 0 0
+contraction count 0; retained labelled kernels 0
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 2; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+contraction count 1; retained labelled kernels 0
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+contraction count 2; retained labelled kernels 0
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+J=14 simple skeletons 262044; cubic by packing 0, 1, 2, 3+: 0 6 1625 19465
+contraction count 0; retained labelled kernels 1631
+  charged operations 0; patterns 6; signed forms 35; full characteristic polynomials 35; violations 0
+  charged operations 1; patterns 114; signed forms 582; full characteristic polynomials 582; violations 0
+  charged operations 2; patterns 14961; signed forms 116219; full characteristic polynomials 116219; violations 0
+contraction count 1; retained labelled kernels 2863
+  charged operations 0; patterns 38; signed forms 194; full characteristic polynomials 194; violations 0
+  charged operations 1; patterns 8914; signed forms 75314; full characteristic polynomials 75314; violations 0
+contraction count 2; retained labelled kernels 1305
+  charged operations 0; patterns 1305; signed forms 12175; full characteristic polynomials 12175; violations 0
+Identical canonical exceptional kernel sets at cubic order 14: 1631
+J=16 simple skeletons 4101318; cubic by packing 0, 1, 2, 3+: 0 0 1710 202928
+contraction count 0; retained labelled kernels 1710
+  charged operations 0; patterns 0; signed forms 0; full characteristic polynomials 0; violations 0
+  charged operations 1; patterns 72; signed forms 567; full characteristic polynomials 567; violations 0
+  charged operations 2; patterns 11586; signed forms 118508; full characteristic polynomials 118508; violations 0
+contraction count 1; retained labelled kernels 2596
+  charged operations 0; patterns 24; signed forms 189; full characteristic polynomials 189; violations 0
+  charged operations 1; patterns 7234; signed forms 79602; full characteristic polynomials 79602; violations 0
+contraction count 2; retained labelled kernels 1120
+  charged operations 0; patterns 1120; signed forms 13387; full characteristic polynomials 13387; violations 0
+Identical canonical exceptional kernel sets at cubic order 16: 1710

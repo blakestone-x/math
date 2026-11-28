@@ -95,3 +95,21 @@ lake build
 ```
 
 For an already provisioned checkout, `lake build` suffices. `verification.txt` records the successful packaged build. The five reported theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`; the source contains no `sorry`, new axiom declarations, `native_decide`, or external proof oracle. The independent audit is recorded separately in `AUDIT.md` and `audit-verification.txt`.
+
+## A correction to the finite prime count
+
+The prime $937$ also occurs below $10^7$. At $n=4\cdot937^2=3{,}511{,}876$ the two divisor sums are $2814=2\cdot3\cdot7\cdot67$ and $6{,}149{,}535=3\cdot5\cdot7\cdot58{,}567$. The smaller prime 13 excludes 937 from A082539 because $14\mid938$. This corrects Lagneau's finite example to 39 of 47 prime bases, or 82.98%. The strict majority persists through $10^{16}$, where the count is 369,981 of 644,008. The conjecture at all decimal cutoffs remains open. [Proof and table](prime-counts.pdf) · [LaTeX](prime-counts.tex) · [Machine-readable counts](majority.csv)
+
+From this directory run the following to reproduce the complete table and the independent audit through $10^9$. The audit enumerates the original divisors and requires SymPy. [Sieve](majority.cpp) · [Divisor audit](check_majority.py)
+
+```sh
+c++ -O3 -std=c++17 majority.cpp -o /tmp/a300984-majority
+/tmp/a300984-majority 16
+python3 -B check_majority.py
+```
+
+## The geometric-sum step on Left to Solve
+
+For every odd prime $p$, $j>0$ and $i\ge0$, Lean now proves both divisor-sum formulas from their original definitions. The squarefree sum is $(1+p)$ for $i=0$ and $3(1+p)$ for $i>0$. The sum over the other divisors is the product of the two geometric series minus that squarefree sum. This supplies H1 of the reduction proposed by @dwilfand-sys. Its H2 is the open majority assertion. [Lean theorem](DivisorFormulas.lean) · [Proposed reduction, PR 16565](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/16565) · [Prepared proof of H1](https://github.com/blakestone-x/open-math-agents/blob/7f0b2c15ade39d044ecbb9dd53f5ff0af5fdb87e/proofs/oeis-a300984.R1.H1.lean)
+
+Lean 4.33.1 checked the standalone theorem and the adapter to the proposed H1 with the standard three axioms. For the adapter check the statement imported the relevant Mathlib modules individually. Its definitions and the proposed reduction were copied verbatim. The board can accept a step submission after the parent reduction merges.

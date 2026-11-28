@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.94in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,hyperref,microtype}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\title{The real zeros of Sun's Franel polynomials}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+Every zero of the binomial polynomial in Sun's Franel irreducibility conjecture is simple and negative. We determine the limiting distribution of all zeros, with quantile magnitudes $\tan^2(\pi u/2)$ for $0<u<1$. At each fixed rank the smallest magnitudes have Bessel limits on scale $n^{-2}$. At the other end the magnitudes have scale $n^2$ with distinct cosine and sine constants according to the parity of $n$. The results describe the archimedean roots; irreducibility over $\mathbb Q$ for arbitrary $n$ remains open.
+\end{abstract}
+
+Set $d=\lfloor n/2\rfloor$, $n\ge2$, and write
+\[
+ f_n(X)=\sum_{j=0}^d a_{n,j}X^j,\qquad a_{n,j}=\binom nj^2\binom{2n-2j}n.
+\]
+At $X=1$ this is Strehl's binomial expression for the Franel number. Sun conjectured that every $f_n$ is irreducible over $\mathbb Q$ \cite{source,strehl}. We analyze the roots in the complex plane.
+
+\begin{theorem}\label{simple}
+All $d$ zeros of $f_n$ are simple and negative.
+\end{theorem}
+\begin{proof}
+Let $A_n(x)=\sum_k\binom nk^2 x^k$. The identity
+\[
+ \frac1{n!}\frac{d^n}{dy^n}\big[y^n(1+y)^n\big]=(1+y)^n A_n\big(y/(1+y)\big)
+\]
+follows by the product rule. The polynomial on the left has $n$ distinct roots in $(-1,0)$. At each of the first $n$ differentiations Rolle's theorem gives one new interior interval zero between each consecutive pair of distinct zeros, retaining both endpoint zeros until the last differentiation. Thus $A_n$ has $n$ distinct negative roots. Consequently $A_n(-y^2)$ has $2n$ distinct real roots. Applying Rolle's theorem $n$ times again shows its $n$th derivative has $n$ simple real zeros. For $y\ne0$ the derivative is
+\[
+ \frac1{n!}\frac{d^n}{dy^n} A_n(-y^2)=(-1)^n y^n f_n(-y^{-2}).
+\]
+By parity, zero occurs once for odd $n$ and is absent for even $n$ (the latter also follows from its nonzero constant coefficient). The remaining $2d$ roots occur in opposite pairs. Their $d$ distinct images under $y\mapsto-y^{-2}$ account for the full degree of $f_n$.
+\end{proof}
+
+Write the root magnitudes in order as $0<\lambda_{n,1}<\cdots<\lambda_{n,d}$. For $k\ge1$ let $j_{0,k}$ be the $k$th positive zero of the Bessel function $J_0$.
+\begin{theorem}\label{bulk}
+For $s>0$,
+\[
+ \lim_{n\to\infty}\frac{\#\{k:\lambda_{n,k}\le s\}}{d}
+ =\frac{2}{\pi}\arctan\sqrt s .
+\]
+Hence whenever $k/d\to u\in(0,1)$, we have $\lambda_{n,k}\to\tan^2(\pi u/2)$.
+\end{theorem}
+\begin{proof}
+Fix $x>0$, normalize $a_{n,j}x^j$ to a probability distribution, and denote its random index by $J$. The ratio of consecutive coefficients is
+\begin{equation}\label{rat}
+ \frac{a_{n,j+1}}{a_{n,j}}=
+ \frac{(n-j)^2}{(j+1)^2}\frac{n-2j}{2n-2j}\frac{n-2j-1}{2n-2j-1},\quad 0\le j<d .
+\end{equation}
+The three factors decrease with $j$. At $j/n\to v\in(0,1/2)$, the ratio tends to $(1-2v)^2/(4v^2)$. After multiplication by $x$ this crosses one at $v_x=\sqrt{x}/(2(1+\sqrt{x}))$. In particular $J/n\to v_x$ in probability. For a direct estimate, given a small $\delta>0$, the ratios up to $n(v_x-\delta/2)$ exceed $1+\eta$ for some $\eta>0$, and those from $n(v_x+\delta/2)$ are below $1-\eta$. Each weight beyond distance $n\delta$ from $nv_x$ is therefore exponentially small relative to the total. Since $J/n$ is bounded its mean tends to $v_x$.
+
+Write $\mu_n=d^{-1}\sum_k\delta_{\lambda_{n,k}}$. Logarithmic differentiation and the preceding limit yield
+\[
+ \int \frac{x}{x+s}\,d\mu_n(s)=\frac{xf_n'(x)}{df_n(x)}=\frac{\mathbb E J}{d}
+ \longrightarrow\frac{\sqrt x}{1+\sqrt x}.
+\]
+The probability measure $d\mu(s)=ds/(\pi\sqrt{s}(1+s))$ has exactly this transform. Substitution $s=t^2$ and partial fractions evaluate the integral for $x\ne1$; continuity covers $x=1$. For a short uniqueness argument, take a subsequential limit on the compactified half-line $[0,\infty]$, defining the transform kernel to be zero at infinity. Under $z=(1+s)^{-1}$ this kernel is $xz/(1+(x-1)z)$. Its Taylor series near $x=1$, after dividing by $x$, identifies every positive moment of $z\in[0,1]$. The zeroth moment is one, so polynomial approximation gives uniqueness. Thus the entire sequence converges to $\mu$. Its distribution function is continuous and strictly increasing, giving the asserted counts and quantiles.
+\end{proof}
+
+\begin{theorem}\label{extreme}
+For every fixed $k\ge1$,
+\[
+ n^2\lambda_{n,k}\longrightarrow j_{0,k}^2,
+ \qquad
+ \frac{\lambda_{n,d+1-k}}{n^2}\longrightarrow
+ \begin{cases}
+ 1/[\pi^2(k-\tfrac12)^2],& n\text{ even},\\
+ 1/(\pi^2 k^2),&n\text{ odd}.
+ \end{cases}
+\]
+\end{theorem}
+\begin{proof}
+For fixed $j$, \eqref{rat} gives $a_{n,j}/(a_{n,0}n^{2j})\to1/(4^j(j!)^2)$. For all $j$ this quotient is at most $1/(j!)^2$, since $a_{n,j+1}/a_{n,j}\le n^2/(j+1)^2$. It follows that $f_n(z/n^2)/a_{n,0}$ converges locally uniformly to $\sum_{j\ge0}(z/4)^j/(j!)^2$, whose values at $z=-y^2$ equal $J_0(y)$. Its zeros at $-j_{0,k}^2$ are simple, and these give all its zeros \cite{bessel}.
+
+At the other end form $g_n(z)=\sum_{i=0}^d a_{n,d-i} z^i/(a_{n,d}n^{2i})$. For fixed $i\ge1$, the quotient of successive coefficients tends by \eqref{rat} to $1/[(2i)(2i-1)]$ for even $n$ and to $1/[(2i+1)(2i)]$ for odd $n$. For both parities the quotient is at most $4/[(2i)(2i-1)]$; in the inverse of \eqref{rat} use $(j+1)/(n-j)\le1$ at $j=d-i$ and $2n-2j\le2n$. Therefore the $i$th coefficient is bounded by $4^i/(2i)!$. The limits are locally uniform and equal $\sum_{i\ge0}z^i/(2i)!$ and $\sum_{i\ge0}z^i/(2i+1)!$, respectively. At $z=-y^2$ these are $\cos y$ and $\sin(y)/y$. In all three limits disjoint small circles about the first $k$ zeros, together with a circle enclosing precisely these zeros, give convergence with the asserted ranks by Rouch\'e's theorem. The magnitudes for $g_n$ are $n^2/\lambda_{n,d+1-k}$ in increasing order, giving the claimed constants.
+\end{proof}
+\begin{thebibliography}{9}
+\bibitem{source} Z.-W. Sun, conjecture of March 21, 2013, \emph{The On-Line Encyclopedia of Integer Sequences}, A000172. \url{https://oeis.org/A000172}.
+\bibitem{strehl} V. Strehl, \emph{Binomial identities---combinatorial and algorithmic aspects}, Discrete Math. 136 (1994), 309--346. \url{https://doi.org/10.1016/0012-365X(94)00118-3}.
+\bibitem{bessel} NIST Digital Library of Mathematical Functions, \S10.21(i), zeros of Bessel functions. \url{https://dlmf.nist.gov/10.21}.
+\end{thebibliography}\end{document}

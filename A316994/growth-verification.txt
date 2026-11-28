@@ -1,0 +1,6 @@
+All 130816 pairs with 1 <= x <= S <= 511 checked by binary substrings.
+n=1000 sum=516145 largest_term=1560 least_unused=543
+n=10000 sum=51127437 largest_term=17106 least_unused=6822
+n=100000 sum=5106094370 largest_term=220348 least_unused=65279
+n=1000000 sum=506007688844 largest_term=1638414 least_unused=525676
+SHA-256 of 1000000 decimal terms, one per line: 3b46995a942b09dae0f3276fdbc431031dec396e64e2c5727bd313a0a99068b1

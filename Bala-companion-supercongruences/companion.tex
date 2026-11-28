@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\vp}{v_p}
+\newcommand{\Z}{\mathbb Z}
+\title{Supercongruences for Peter Bala's companion binomial sums}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 28, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every integer $m$ the companion sequence $v_m$ introduced by Peter Bala satisfies
+$v_m(np^r)\equiv v_m(np^{r-1})\pmod {p^{3r}}$ at every prime $p\ge5$.
+A change of variable turns its alternating single sum into a signed convolution of four ordinary binomial coefficients.
+In that convolution the terms with two unit indices require one more power of $p$ than pointwise divisibility gives.
+Grouping those indices into nested residue blocks supplies the missing power. The same argument gives modulus $3^{3r-1}$ at the prime three.
+\end{abstract}
+
+\section{The conjecture and the change of variable}
+For $N\ge0$ and $\ell\in\Z$ write
+\[
+ V(N,\ell)=\sum_{k=0}^N(-4)^{N-k}\binom Nk
+       \binom{\ell+2k}{2k}\binom{2k}{k},\qquad v_m(N)=V(N,mN).
+\]
+Every lower index in this paper is nonnegative. We use the polynomial binomial coefficient, so $\binom{-a}{k}=(-1)^k\binom{a+k-1}{k}$ for $a>0$.
+In July 2023 Bala conjectured a prime-power congruence for this family and for
+$u_m$, obtained by replacing $\binom{mN+2k}{2k}$ with $\binom{mN+k}{k}$ \cite{bala}.
+Wentao Li's November 2026 formalization proves the $u_m$ congruence for all integer $m$ \cite{li}. Our theorem treats $v_m$.
+
+\begin{theorem}\label{main}
+Let $m\in\Z$, $n,r\ge1$ and $p$ be an odd prime. Put $e_p=1$ if $p=3$ and $e_p=0$ otherwise. Then
+\[
+ v_m(np^r)\equiv v_m(np^{r-1})\pmod {p^{3r-e_p}}.
+\]
+In particular the three sequence conjectures A363986, A363988 and A363990 hold, at $m=2,3,4$ respectively. The loss at three can occur already at $m=2$, $n=r=1$, since $v_2(3)-v_2(1)=5984-8=5976$ has 3-adic valuation two.
+\end{theorem}
+
+\begin{lemma}\label{change}
+For every integer $\ell$ and every $N\ge0$,
+\[
+ V(N,\ell)=[y^N](1+y)^\ell(1-y)^{2N-2\ell}
+                  \sum_{j=0}^N\binom\ell j^2y^j .
+\]
+\end{lemma}
+\begin{proof}
+First fix $\ell\ge0$. The bivariate series before the ordinary binomial transform is
+\[
+ \sum_{\ell,k\ge0}\binom{\ell+2k}{2k}\binom{2k}{k} u^\ell z^k
+ =\frac1{\sqrt{(1-u)^2-4z}},
+\]
+by summing first over $\ell$. The transform replaces $z$ with $t/(1+4t)$ and multiplies by $1/(1+4t)$. Comparing coefficients of $u$ with the Legendre generating function $(1-2xs+s^2)^{-1/2}=\sum P_\ell(x)s^\ell$ gives
+\[
+ \sum_{N\ge0}V(N,\ell)t^N=(1+4t)^{(\ell-1)/2}P_\ell(\sqrt{1+4t}).
+\]
+Rodrigues' formula and the product rule give
+$P_\ell(x)=2^{-\ell}\sum_j\binom\ell j^2(x-1)^j(x+1)^{\ell-j}$.
+Set $t=y/(1-y)^2$, so that $\sqrt{1+4t}=(1+y)/(1-y)$. The right side becomes
+$(1+y)^{\ell-1}(1-y)^{1-2\ell}\sum_j\binom\ell j^2y^j$.
+In the formal residue for $[t^N]$ we have $dt/t=(1+y)\,dy/((1-y)y)$ and $t^{-N}=y^{-N}(1-y)^{2N}$. This proves the identity when $\ell\ge0$. For each fixed $N$, both sides are polynomials in $\ell$ over $\mathbb Q$, proving the general case.
+\end{proof}
+
+\section{Cancellation in the two unit indices}
+Fix $p$ odd and write $v=v_p$, with $v(0)=+\infty$. All rational congruences in the proof are in the localization $\Z_{(p)}$.
+\begin{lemma}\label{unit}
+Suppose $r\ge1$, $p^r\mid A,D$, $h>0$, and $s=\min(r,v(h))\ge1$. For any $\epsilon,\theta\in\{1,-1\}$,
+\[
+ \sum_{\substack{0<i<h\\p\nmid i}}\epsilon^i\theta^{h-i}
+                 \binom Ai\binom D{h-i}\equiv0\pmod {p^{2r+s-e_p}}.
+\]
+\end{lemma}
+\begin{proof}
+For $h-i$ also a unit, remove the factors $A/i$ and $D/(h-i)$. More precisely put
+\[
+ U_A(i)=(-1)^{i-1}\binom{A-1}{i-1}
+       =\prod_{l=1}^{i-1}(1-A/l),\quad
+ W(i)=U_A(i)U_D(h-i),\quad \rho=\epsilon\theta .
+\]
+Up to the fixed sign $(-1)^{h-2}\theta^h$ the sum is
+$AD\sum_i b(i)W(i)$, where $b(i)=\rho^i/(i(h-i))$.
+All $W(i)$ are integers, including when some binomial coefficient vanishes. It suffices to gain $s-e_p$ further powers.
+
+For $1\le t\le s$, take a block $Lp^t<i<(L+1)p^t$, summing over its unit indices. These give a complete system of unit residues modulo $p^t$. Since $h\equiv0\pmod {p^t}$, the denominator is congruent to $-i^2$ there. For $\rho=1$, multiplication of the unit residues by $2$ gives $3\sum_{u}u^{-2}\equiv0\pmod{p^t}$. For $\rho=-1$, the residues $u$ and $p^t-u$ have opposite signs and equal inverse squares, after extracting the fixed sign $(-1)^{Lp^t}$. Thus in both cases
+\[
+ v\!\left(\sum_{i\text{ unit in block}} b(i)\right)\ge t-e_p. \tag{1}
+\]
+
+Within the same block, the factors between any two values of $U_A$ differ from $1$ by multiples of $p^{r-t+1}$, since every internal $l$ has $v(l)\le t-1$. Multiplying the intervening factors onto the earlier integral value proves the congruence even if that value is zero. Reversing a block by $i\mapsto h-i$ gives the same conclusion for $U_D$. Hence $W(i)$ is constant modulo $p^{r-t+1}$ on that block.
+
+Represent $W$ on each $t$-block by its value at one unit, denoting the resulting function $W_t$. Put $W_0=W$ on the individual unit indices. For $0\le t<s$, $W_t-W_{t+1}$ is constant on each $t$-block and divisible by $p^{r-t}$. Equation (1) gives valuation at least $r-e_p$ for its weighted block sum, using integrality for the singleton blocks $t=0$. The sum with $W_s$ has valuation at least $s-e_p$ by (1). Telescope $W=W_s+\sum_{t<s}(W_t-W_{t+1})$. All blocks are complete because $p^s\mid h$. This proves the lemma.
+\end{proof}
+
+\section{A signed binomial convolution}
+\begin{theorem}\label{general}
+Fix $a,b,c,d\in\Z$ and $\epsilon,\eta,\theta\in\{1,-1\}$. Set
+\[
+ Z(N)=\sum_{\substack{i,j,k\ge0\\i+j+k=N}}
+   \epsilon^i\eta^j\theta^k\binom{aN}i\binom{bN}j\binom{cN}j\binom{dN}k .
+\]
+For every odd prime $p$ and $n,r\ge1$,
+$Z(np^r)\equiv Z(np^{r-1})\pmod {p^{3r-e_p}}$.
+\end{theorem}
+\begin{proof}
+Write $N=np^r$. First pair the triples whose indices are all divisible by $p$ with the triples at $N/p$. The signs agree. Let $t=\min(r,v(i),v(j),v(k))$, so $1\le t\le r$. Jacobsthal's congruence, in the integer-top form of Straub \cite[Lemma 5.1]{straub}, gives
+\[
+ \binom Ah/\binom{A/p}{h/p}\equiv1\pmod{p^{r+2t-e_p}} \tag{2}
+\]
+for each of the four factors. Indeed $v(Ah(A-h))\ge r+2t$, and for odd primes the possible loss from $12$ in Jacobsthal's formula is $e_p$. If the binomial vanishes, it vanishes at both scales and the paired terms are zero. The coefficients at $h=0$ or $A=h$ are unchanged.
+
+If $t<r$, the sum $i+j+k=N$ forces at least two of the indices to have valuation $t$. At the lower scale, each such index contributes a factor of valuation at least $r-t$, by $h'\binom{A'}{h'}=A'\binom{A'-1}{h'-1}$. Multiplying (2) by the lower-scale product therefore gives valuation at least $r+2t-e_p+2(r-t)=3r-e_p$ for the difference. If $t=r$, (2) suffices on its own.
+
+For the remaining triples with $p\nmid j$, the two $j$ factors contribute $p^{2r}$, and at least one of $i,k$ is a unit, contributing $p^r$. If $p\mid j$, then both $i,k$ must be units. Fix $j$ and put $h=N-j$. Empty sums give zero. Otherwise $s=\min(r,v(h))=\min(r,v(j))\ge1$. The two $j$ factors contribute at least $2(r-s)$ powers, also valid at $j=0$. Lemma~\ref{unit} supplies $2r+s-e_p$ further powers. Their sum $4r-s-e_p$ is at least $3r-e_p$. This accounts for all triples.
+\end{proof}
+
+Expanding Lemma~\ref{change} with $\ell=mN$ identifies $v_m(N)$ with Theorem~\ref{general} at $a=b=c=m$, $d=2(1-m)$, $\epsilon=\eta=1$, $\theta=-1$. This proves Theorem~\ref{main}. At $m=1$ the $k$ index is forced to zero, and the transformation recovers the classical cubic Franel sum.
+
+\begin{thebibliography}{9}
+\bibitem{bala} P. Bala, OEIS entries \href{https://oeis.org/A363985}{A363985},
+\href{https://oeis.org/A363986}{A363986}, \href{https://oeis.org/A363988}{A363988} and \href{https://oeis.org/A363990}{A363990}, July 2023.
+\bibitem{li} W. Li, with Claude, \href{https://github.com/VictorLiwentao/fc-palomar-proofs/tree/2329f9d4bebb30be1bb59e40476a89b44d6e034c/FCPalomar/OeisA363985}{OEIS A363985 and siblings}, Lean proofs for the $u_m$ family, November 2026.
+\bibitem{straub} A. Straub, \href{https://doi.org/10.2140/ant.2014.8.1985}{Multivariate Ap\'ery numbers and supercongruences of rational functions}, Algebra Number Theory \textbf{8} (2014), 1985--2008.
+\end{thebibliography}
+\end{document}

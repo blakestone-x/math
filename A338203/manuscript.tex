@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\rev}{\operatorname{rev}}
+\setlength{\emergencystretch}{2em}
+\title{Termination of binary reverse subtraction at every word width}
+\author{Blake Stone research collection\\\small Proof developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Repeatedly subtract a binary word's reversal, keeping the word width fixed and discarding the final borrow. Every initial word reaches a palindrome. At width $2m$ or $2m+1$, at most $2^{m+1}-2$ subtractions are needed. We prove termination by following pairs of borrows outwards from the center and obtain the bound by tracking how long they can alternate. Deleting the central bit at odd width preserves each hitting time. An exact enumeration of signed mirror pairs gives the next five row maxima after the terms tabulated in OEIS A338205.
+\end{abstract}
+
+\section{The orbit and its paired columns}
+For $0\le w<2^n$, let $\rev_n(w)$ reverse exactly $n$ binary digits, retaining leading zeroes. Set $F_n(w)=(w-\rev_n(w))\bmod 2^n$. Write $T_n(w)$ for the first $t\ge0$ with $F_n^t(w)=\rev_n(F_n^t(w))$, allowing infinity initially. For example, at width four the orbit of $0101$ first reaches a palindrome after four steps,
+\[
+0101\longmapsto1011\longmapsto1110\longmapsto0111\longmapsto1001.
+\]
+Scheuerle reported a search through 32 bits and asked whether a loop could prevent termination. His entry credits Kevin Ryde with suggesting a proof through the central pair and records central-bit deletion at odd widths. We give an all-width argument and explicit time bounds.\ \cite{tri,max}
+
+\begin{theorem}\label{thm:main}
+For every $n\ge0$ and every $n$-bit word $w$, $T_n(w)$ is finite. The only cycle of $F_n$ is the fixed point zero.
+\end{theorem}
+
+Index the mirrored pairs from the outside inwards. At a single time, write $x,y$ for the bits of one pair, low bit first. In the low column let $a,c$ be the incoming and outgoing borrows in the usual least-significant-first subtraction. In the high column let $b,h$ be the incoming and outgoing borrows. Thus $(a,h)$ faces outside, $(c,b)$ faces inside, and adjacent pairs share these boundaries. Write $s=x\mathbin\oplus y$ for mismatch and use a prime for the next word. Binary subtraction gives
+\begin{equation}\label{eq:borrow}
+ x'=s\oplus a,\qquad y'=s\oplus b,\qquad
+ (c,h)=\begin{cases}(a,b)&s=0,\\(y,x)&s=1.\end{cases}
+\end{equation}
+In particular, $s'=a\oplus b$. The incoming borrow at the least significant bit is always zero.
+
+\section{Excluding a periodic orbit}
+\begin{lemma}\label{lem:period}
+Suppose a pair lies on a periodic orbit and its inner borrows agree at every time, $c_t=b_t=u_t$. Its mismatch $s_t$ is constant. If $u_t$ alternates, then its outer borrows agree and alternate as well.
+\end{lemma}
+\begin{proof}
+If $s_t=0$, then $a_t=c_t=b_t$, so $s_{t+1}=0$. Periodicity makes $s_t$ constant. When it is always zero, $a_t=h_t=u_t$. When it is always one, $y_t=c_t=u_t$, $h_t=x_t=1-u_t$, and $s_{t+1}=1$ forces $a_t=1-b_t=1-u_t$. In the latter case, $y_{t+1}=1-b_t=1-y_t$, so $u_t$ itself alternates.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Assume a periodic orbit different from zero. Some pair must mismatch at some time, since each palindrome maps to zero. Choose the innermost such pair. At every time all digits strictly between its two positions match their reversals, including the middle digit at odd width. Subtracting equal digits passes the borrow through unchanged, so $c_t=b_t$ for the chosen pair. Lemma~\ref{lem:period} makes its mismatch constantly one and gives equal alternating outer borrows. Repeated applications of the lemma to the pairs farther out propagate that property to the outer boundary. This would make the incoming borrow at the least significant digit alternate, a contradiction. Every orbit in the finite state space therefore reaches zero. Zero is itself a palindrome.
+\end{proof}
+
+\section{How long the middle pair can remain unequal}
+Call a run of $L$ successive time indices at a boundary \emph{alternating} when the two borrows there coincide at each index and the common value flips between consecutive indices. Label the outermost boundary $0$ and label the boundary after $j$ pairs $j$.
+\begin{lemma}\label{lem:runs}
+Any alternating run at boundary $j$ has length at most $2^{j+1}-1$.
+\end{lemma}
+\begin{proof}
+At boundary $0$ the incoming low borrow is always zero, so a run has length at most one. Take an alternating run at the inner boundary of a pair, with common bits $u_t$. Within that run, an equal pair stays equal at the next time by \eqref{eq:borrow}. The mismatches therefore consist of an initial block of ones followed by a block of zeroes, either possibly empty. In the zero block, $a_t=h_t=u_t$. In the one block, except possibly at its last index, the next mismatch is also one, so $a_t=h_t=1-u_t$. Each of the two indicated subintervals is an alternating run at the outer boundary of the pair. If every such outer run has length at most $M$, the inner run has length at most $2M+1$. Induction proves the bound.
+\end{proof}
+
+\begin{theorem}\label{thm:quant}
+At width $2m$ with $m\ge1$, the middle pair becomes equal within $2^m$ steps and then stays equal. At widths $2m$ and $2m+1$ with $m\ge0$, every input reaches a palindrome within $2^{m+1}-2$ steps. For every even width $n>2$ the first middle-pair agreement occurs strictly before $2^{n-2}$ steps.
+\end{theorem}
+\begin{proof}
+At the innermost pair of an even-width word the low outgoing and high incoming borrows are the same wire. Equality, once reached, persists. If the first $T$ states have an unequal central pair, $y_t=c_t=b_t$ and $y_{t+1}=1-y_t$ throughout. At the first $T-1$ of these indices, $s_{t+1}=1$ gives $a_t=h_t=1-y_t$. This is an alternating run at boundary $m-1$. Thus $T-1\le2^m-1$ by Lemma~\ref{lem:runs}; the conclusion is immediate when $T=0$.
+
+At an odd width, delete the unpaired middle bit. Its subtraction passes the borrow unchanged, and reversal on the remaining positions agrees with reversal of the shortened word. Hence deletion commutes with $F$ at the two widths. It also preserves and reflects being a palindrome. Every shortened input has two lifts, so the entire odd-width hitting-time distribution doubles the multiplicities of the preceding even width. At even width with two equal central digits, deleting both commutes with $F$ by the same borrow argument, and the two next central digits coincide. Palindromicity is again preserved and reflected on this invariant set. For $M_m=\max_w T_{2m}(w)$ we obtain $M_0=0$ and $M_m\le 2^m+M_{m-1}$. Summing gives the stated total. For $m\ge3$ the inequality $2^m<2^{2m-2}$ gives the strict claim. For $m=2$, direct subtraction at the sixteen inputs gives the list $(0,0,1,1,2,2,0,0,0,0,3,1,1,2,0,0)$, with maximum $3<4$.\end{proof}
+
+There is also a general lower bound $M_m\ge m$. Start at $w_0=2^m-1$ in width $2m$. For $1\le t\le m$ direct subtraction gives
+\[
+ w_t=2^{m+t-1}+2^{m-t+1}-1.
+\]
+Indeed, $w_1=2^{m+1}-1$. The high bit of $w_t$ and its low run of ones reverse to the integer $2^{2m}-2^{m+t-1}+2^{m-t}$, yielding the displayed formula at $t+1$ for $t<m$. Before time $m$, the outer bits disagree. At time $m$ the word has value $2^{2m-1}+1$, a palindrome.
+
+\section{Exact row maxima}
+For even width $2m$ index the original bits by $w_i$ starting at the low end. Define $d_i=w_i-w_{2m-1-i}\in\{-1,0,1\}$ for $0\le i<m$. Then
+\[
+ F_{2m}(w)\equiv\sum_{i=0}^{m-1}d_i(2^i-2^{2m-1-i})\pmod{2^{2m}}.
+\]
+Every one of the $3^m$ signed vectors occurs. The zero vector is exactly the palindrome condition. Given a vector, compute the displayed sum modulo $2^{2m}$ and take its signed vector again. The distance to the zero vector in this graph is exactly $T_{2m}(w)$ by induction on successive iterates. Enumerating this graph and recording distances backwards along each path produces the table. Each displayed witness is a starting word in decimal. The column at width $2m+1$ has the same maximum by Theorem~\ref{thm:quant}.
+\begin{center}
+\begin{tabular}{rrrrr}\toprule
+$m$ & width & signed vectors & $M_m$ & witness\\\midrule
+16 & 32 & 43,046,721 & 76 & 44,739,262\\
+17 & 34 & 129,140,163 & 83 & 169,166,014\\
+18 & 36 & 387,420,489 & 91 & 52,688,125,952\\
+19 & 38 & 1,162,261,467 & 113 & 4,384,446,221\\
+20 & 40 & 3,486,784,401 & 115 & 17,536,997,133\\\bottomrule
+\end{tabular}
+\end{center}
+The exact computation reproduces A338205 through its tabulated $m=15$. The upper bounds in the table use the complete finite graphs. A companion Lean 4.19 file formalizes termination for concrete words and proves their subtraction agrees with modular integer subtraction. The run-length bounds have mathematical proofs above. Determining the order of growth of $M_m$ remains open in this work.
+
+\begin{thebibliography}{9}
+\bibitem{tri} Thomas Scheuerle, OEIS A338203 (2020), row hitting times of binary reverse subtraction, including a suggestion by Kevin Ryde. \url{https://oeis.org/A338203}
+\bibitem{max} Thomas Scheuerle, OEIS A338205 (2020), maximal hitting time, with additional computed terms by Michael S. Branicky. \url{https://oeis.org/A338205}
+\end{thebibliography}
+\end{document}

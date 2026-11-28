@@ -11,3 +11,5 @@
 The finite-state proof and transfer proof identify precisely which mathematical steps have Lean certificates. These research notes do not constitute board acceptance.
 
 [Eight public Left to Solve submissions and their companion proofs](Board-submissions.md)
+
+[Four additional statement submissions and their checked proofs](board-proofs.md) cover square concatenations, partition prefixes, regular polygon foldings and bar tilings.

@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.87in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\rad}{\operatorname{rad}}
+\title{Forced predecessors in Sun's coprime-power cycles}
+\author{Blake Stone's mathematics project\\\small Proof developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+Zhi-Wei Sun conjectured that for each positive exponent $k$, only finitely many sizes $n$ admit no ordering from $0$ to $n$ whose cyclic labels $x^k+y$ are coprime to $n-1$ and $n+1$. Let $r$ count the primes $p$ with $p-1\mid k$. We exhibit $3\cdot 2^{r-1}-3$ distinct exceptional sizes. Thus there is no uniform bound on the number of exceptions as the exponent varies. At $k=2$ the construction gives precisely the three sizes Sun predicts. Across all exponents, the displayed families cover a set of sizes of natural density $7/\pi^2$, and any finite subset of those sizes is exceptional for every exponent in one arithmetic progression.
+\end{abstract}
+
+For $k\ge1$, let $E(k)$ consist of the positive integers $n$ for which no permutation $(i_0,\ldots,i_n)$ of $\{0,\ldots,n\}$ with $i_0=0$, $i_n=n$ has every cyclic label $i_j^k+i_{j+1}$ relatively prime to both $n-1$ and $n+1$. Indices wrap at $n+1$. Sun posed the finiteness of each $E(k)$ in OEIS A229130 and conjectured $E(2)=\{2,5,11\}$~\cite{sun}. The results below give lower bounds on the exceptional sets. The fixed-exponent finiteness conjecture and the reverse inclusion for $E(2)$ remain open in this work.
+
+\begin{theorem}\label{th:main}
+Let $\mathcal P_k=\{p:\ p\text{ prime},\ p-1\mid k\}$. For every squarefree product $P>2$ of primes from $\mathcal P_k$, one has $P-1\in E(k)$. For every such $P$ that is even, one also has $2P-1\in E(k)$. Writing $r=|\mathcal P_k|$, these are $3\cdot2^{r-1}-3$ different exceptions.
+\end{theorem}
+
+\begin{lemma}\label{lem:sat}
+Let $n\ge2$ and let $D>1$ be a squarefree divisor of $n+1$ whose prime factors belong to $\mathcal P_k$. Write $n+1=Dm$. In any admissible ordering the successor $y$ of $0$ must satisfy
+\[
+     y=jD-1,\qquad 1\le j<m,\qquad \gcd(y,n^2-1)=1.
+\]
+\end{lemma}
+\begin{proof}
+Consider a target $y$ for which $D\mid y+1$, and let $x$ be its predecessor. If $p\mid D$ but $p\nmid x$, Fermat's little theorem and $p-1\mid k$ give $x^k\equiv1\pmod p$. The label $x^k+y$ would be divisible by $p\mid n+1$. Hence $p\mid x$ for every $p\mid D$, which gives $D\mid x$ by squarefreeness.
+
+There are exactly $m$ targets $D-1,2D-1,\ldots,mD-1$ and exactly $m$ multiples $0,D,\ldots,(m-1)D$ in $[0,n]$. Each target has a different predecessor, so every one of those multiples is used, in particular $0$. Its successor cannot be the terminal element $n$ because $n\ge2$ and the prescribed linear order starts at $0$ and ends at $n$. Its edge label equals $y$, giving the required coprimality.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:main}]
+At $n=P-1$, apply Lemma~\ref{lem:sat} with $D=P$ and $m=1$. There is no allowed $j$. At $n=2P-1$, use $D=P$ and $m=2$. The sole candidate $P-1$ divides $n-1=2(P-1)$ and exceeds one. Both cases therefore force failure.
+
+The first family has $2^r-2$ members, since the empty product and the product $2$ are omitted. The second has $2^{r-1}-1$ members because it requires the factor $2$ and at least one other prime. The numbers $n+1$ in the first family are squarefree, while all those in the second are multiples of four. This proves the count.
+\end{proof}
+
+Given any $s$ primes, take $k$ to be the least common multiple of their predecessors $p-1$. Then $r\ge s$, proving that $|E(k)|$ is unbounded as $k$ ranges over the positive integers. For $k=2$ the eligible primes are $2,3$ and the exceptional sizes supplied are $2,5,11$. Sun already identified the forced common predecessor $6$ at $n=11$ in the sequence entry. The theorem realizes that computation as an entire family for arbitrary exponents.
+
+\begin{theorem}\label{th:sharp}
+Suppose $n\ge2$ and every prime divisor of $n+1$ belongs to $\mathcal P_k$. Set $P=\rad(n+1)$ and $m=(n+1)/P$. The necessary first-step condition of Lemma~\ref{lem:sat} with $D=P$ fails exactly when $m=1$ or $m=2$ and $P>2$.
+\end{theorem}
+\begin{proof}
+Every $Pj-1$ is coprime to $n+1$, since the latter has precisely the prime divisors of $P$. Any common divisor of $Pj-1$ and $n-1=Pm-2$ divides
+\[
+       m(Pj-1)-j(Pm-2)=2j-m .
+\]
+For odd $m\ge3$, choose $j=(m-1)/2$. For even $m\ge4$, one has $2\mid P$ and one may take $j=m/2-1$. The respective right sides are $-1,-2$, and in the second case $Pj-1$ is odd. Both choices give an admissible first-step candidate. When $m=2$, the only candidate is $P-1$ and its gcd with $n-1$ is $P-1$, equal to one exactly when $P=2$. The case $m=1$ was already settled.
+\end{proof}
+
+\begin{corollary}
+There is a set $\mathcal D$ of sizes $n\ge2$ of natural density $7/\pi^2$ such that, for every finite subset $B\subset\mathcal D$, there is a positive integer $K$ with $B\subset E(k)$ for every positive multiple $k$ of $K$.
+\end{corollary}
+\begin{proof}
+Take $\mathcal D$ to consist of $n$ for which $n+1$ is squarefree or $n+1=4u$ with $u>1$ odd and squarefree. For any finite $B$ take $K$ to be the least common multiple of $p-1$ over all primes dividing a member of $\{n+1:n\in B\}$, with $K=1$ for the empty set. Theorem~\ref{th:main} applies simultaneously at every $n\in B$.
+
+The two shapes of $n+1$ are disjoint. Squarefree integers have density $1/\zeta(2)=6/\pi^2$. Odd squarefree integers have density
+\[
+    \frac12\prod_{p>2}(1-p^{-2})=\frac4{\pi^2}.
+\]
+These products follow by excluding pairs of prime factors through a fixed bound and then letting the bound grow. The upper density of integers divisible by $p^2$ for some $p>Y$ is at most $\sum_{d>Y}d^{-2}$, which tends to zero. Multiplication of the odd squarefree integers by four contributes $1/\pi^2$, and shifting both sets by one leaves their densities intact.
+\end{proof}
+
+For fixed $n\ge2$, membership in $E(k)$ is periodic in the positive exponent $k$, with period dividing $\operatorname{lcm}_{p\mid n^2-1}(p-1)$. Indeed, for each such prime the residue $x^k\bmod p$ is periodic with that period when $p\nmid x$, and is zero for all positive $k$ otherwise. Thus every possible edge has the same admissibility after adding the period. In particular each size in $\mathcal D$ is exceptional for a positive proportion of exponents.
+
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, \emph{The On-Line Encyclopedia of Integer Sequences}, A229130, September 15, 2013. \url{https://oeis.org/A229130}.
+\end{thebibliography}
+\end{document}

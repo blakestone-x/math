@@ -1,5 +1,13 @@
 # Partial results on fixed points of OEIS A245211
 
+**Four-prime classification with three simple factors.** No fixed point has the form $p^a qrs$ for distinct primes and any $a\ge1$. Thus any four-prime fixed point must have at least two repeated prime factors. The proof bounds $a$ by 22 and every possible $p$ by $32(8a+9)+7$. Two exact programs give zero prime completions. They examine 225,422 and 224,606 triples, respectively, using different bounds on the smallest simple base. [Manuscript](four-primes.pdf) · [LaTeX](four-primes.tex) · [Formal denominator lemmas](FourPrime.lean)
+
+Run `python3 four_prime_check.py` and `python3 four_prime_crosscheck.py` from this directory. The first enumerates rational gaps and reports seven integer completions, all involving a composite. The second uses a cubic monotonicity bound and an independently implemented recovery of the two remaining bases. [First verifier](four_prime_check.py) · [Per-exponent counts](four-prime-checks.csv) · [Second verifier](four_prime_crosscheck.py) · [Independent result](four-prime-crosscheck.txt)
+
+**21 is the only positive fixed point with at most three distinct prime factors.** The new manuscript covers all prime bases and exponents, gives a radical bound for any number of prime divisors, and shows that a four-prime solution must have an exponent at most 24. Four equal exponents are excluded for every choice of the four primes. An independent integer computation with different interval bounds reproduces the exclusion. [Three-prime proof and reproduction commands](three-primes.md) · [Independent verification](three_prime_independent.py)
+
+The [earlier exponent-bound paper](simple-prime.md) proves that any three-prime fixed point has ordered exponents $a\ge b\ge c$ with $4\le c\le25$, $b\le10c+7$, and $a\le(3c+4)b+3c$. It also gives a congruence obstruction for any number of prime factors.
+
 **Blake Stone · Developed with OpenAI Astra 6.2**
 
 Jaroslav Krizek asked whether $21$ is the only positive integer $n$ equal to the sum of $d\,\tau(d)$ over its proper positive divisors, where $\tau(d)$ is the number of positive divisors of $d$. The proper divisors of $21$ give $1+6+14=21$. The unrestricted conjecture remains open. [OEIS A245211](https://oeis.org/A245211)

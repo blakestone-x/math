@@ -1,0 +1,4 @@
+Checked 753 odd moduli and 473,812 directed edges.
+n=15 circular order: [1, 14, 7, 8, 4, 11, 13, 2]
+n=35 circular order: [1, 2, 24, 23, 31, 27, 9, 13, 16, 32, 34, 18, 6, 12, 4, 33, 11, 22, 19, 8, 26, 17, 29, 3]
+n=35 sums and differences both exhaust the 24 units.

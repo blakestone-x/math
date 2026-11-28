@@ -1,0 +1,4 @@
+Exact counts for n=2,...,9: 0 0 0 4 0 24 0 0
+All n from 2 through 3000: 999 verified circles, 1499999 verified quadratic labels, all other n fail the sum condition.
+All 8650 admissible pair/translation choices at primes 5 through 31: every disconnected choice is a root of D; both counting bounds hold.
+Example modulo 35: 0 16 34 17 18 5 1 14 2 13 10 11 19 22 28 30 6 24 32 33 15 21 9 27 3 25 26 29 7 23 20 31 4 12 8

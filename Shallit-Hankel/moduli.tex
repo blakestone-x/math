@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Sharp length bounds for nonvanishing Hankel minors modulo two through seven}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 26, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For each modulus $m$ from $2$ to $7$ we determine the largest possible length of a residue word in which every contiguous square Hankel determinant is nonzero modulo $m$. The respective lengths are $2,4,24,22,42,52$. A finite exact enumeration proves the upper bounds. Each lower bound has an explicit witness. This settles the six indicated cases of Shallit's Conjecture 45.
+\end{abstract}
+Let $x_0,\ldots,x_{n-1}$ be a finite word over $\mathbb{Z}/m\mathbb{Z}$. Write
+$H_r(s)=\det(x_{s+i+j})_{0\le i,j<r}$ whenever $s\ge0$ and $s+2r-2<n$. Call the word admissible if every such determinant with $r\ge1$ is nonzero modulo $m$. Shallit conjectured that no infinite admissible word exists for any integer modulus $m\ge2$ \cite[Conjecture 45]{shallit}. This problem ranges over all words for a fixed modulus. His neighboring Problem 44 specifies a morphic integer word and asks about nonvanishing over the integers. Lunnon studied the related depth and deficiency of number walls over prime fields and described the elementary ternary depth obstruction \cite[pp.~140--142]{pagoda}.
+
+\begin{theorem}
+For $2\le m\le7$ the largest length of an admissible word is given in the following table. The last column counts words at that length subject to the normalization below.
+\begin{center}
+\begin{tabular}{rrrr}\toprule
+$m$&Maximum length&Normalized prefixes, including empty&Normalized extremizers\\\midrule
+2&2&3&1\\3&4&5&1\\4&24&4904&7\\5&22&2504&2\\
+6&42&53,179,810&4\\7&52&70,787,726&1\\\bottomrule
+\end{tabular}
+\end{center}
+\end{theorem}
+
+\begin{proof}
+Unit multipliers $u,v$ act by $x_i\mapsto uv^ix_i$. The order-$r$ determinant at $s$ is multiplied by $u^rv^{rs+r(r-1)}$, a unit. Over a prime field every admissible word of length at least two may therefore begin with $1,1$. For $m=4,6$, the units are the two signs and they act independently on the first two positions: choose $u$ for the first sign and $v$ for the ratio of the second to the first sign. It suffices to allow each of these two entries to range through $1,\ldots,m/2$. Use the same first-coordinate convention for length one. Subsequent digits range through $1,\ldots,m-1$, since a zero symbol is already a vanishing first-order determinant.
+
+For a prefix ending at $e$, write $T_r(e)=H_r(e-2r+2)$ and $T_0(e)=1$. Suppose we append an indeterminate $X$ at position $e$. The only new minors end there. Write $F_r(X)=T_r(e)$, with $F_1=X$. Expansion at the bottom-right entry of each Hankel matrix gives
+\[
+        F_r(X)=T_{r-1}(e-2)\,X+B_r,\qquad B_1=0 .
+\]
+Desnanot--Jacobi, evaluated at $X=0$, gives, for $2\le r\le \lfloor(e+2)/2\rfloor$,
+\[
+ B_r=\frac{T_{r-1}(e-2)B_{r-1}-T_{r-1}(e-1)^2}{T_{r-2}(e-2)}.
+\]
+The denominator belongs to the admissible prefix, or is the empty determinant. For prime $m$ it is invertible in the field. For $m=4,6$ we instead keep determinants for the standard integer representatives of the digits. The denominator is then a nonzero integer, and the displayed division is exact since $B_r$ is an integer determinant. A multiple of a nonunit modulo $m$ therefore needs no modular inverse. The calculation tests $F_r(t)\not\equiv0\pmod m$ at every new order and recurses exactly on the surviving digits $t$.
+
+For clarity, the complete tree rule is the following. Count the current word, determine the normalized possible next digits, and intersect them with the allowed values of each affine polynomial $F_r$. For every surviving digit store its new end determinants and visit the corresponding child. Backtracking reuses the fixed-prefix determinant diagonals. The empty word is the root. Every normalized admissible word appears once by induction on its length, and a discarded prefix cannot lead to any admissible extension. The reference implementation \texttt{verify\_moduli.cpp} exhausts the tree, obtaining exactly the counts in the table. It aborts on reaching its storage limit or on any out-of-range stored integer. The two largest trees terminate at depths $42$ and $52$ respectively.
+
+Examples attaining the six bounds, with adjacent digits denoting adjacent entries, are
+\begin{center}\small
+\begin{tabular}{rl}\toprule
+$m$&Word\\\midrule
+2&\texttt{11}\\
+3&\texttt{1122}\\
+4&\texttt{112332211233122133121132}\\
+5&\texttt{1121123133434434331321}\\
+6&\texttt{122143241454155212524325455443534254145145}\\
+7&\texttt{1166314334235126611463641661463641166215324334136611}\\\bottomrule
+\end{tabular}
+\end{center}
+A separate fraction-free determinant calculation checks all 1460 minors of these six words. It also searches the unnormalized prefix trees for $m\le5$, testing the suffix minors directly by elimination, and obtains the same four maxima. Thus every longer word contains a zero minor. Taking a prefix one letter past the maximum gives the corresponding infinite-word assertion.
+\end{proof}
+
+The source code, exact output and independent witness checks accompany this manuscript. The argument leaves $m\ge8$ open here.
+\begin{thebibliography}{9}
+\bibitem{shallit} J. Shallit, On patterns and pattern avoidance, in \emph{Mini-Workshop: Combinatorics on Words}, Oberwolfach Reports 7 (2010), 2230--2235, Conjecture 45 on p.~2234. \href{https://doi.org/10.4171/OWR/2010/37}{doi:10.4171/OWR/2010/37}.
+\bibitem{pagoda} F. Lunnon, The Pagoda sequence, \emph{Electron. Proc. Theor. Comput. Sci.} 1 (2009), 130--148. \href{https://doi.org/10.4204/EPTCS.1.13}{doi:10.4204/EPTCS.1.13}.
+\end{thebibliography}
+\end{document}

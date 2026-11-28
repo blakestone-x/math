@@ -1,4 +1,40 @@
-# All shifts of Shallit's Hankel problem through order 4096
+# Shallit’s shifted Hankel determinants
+
+For Shallit's integer-alphabet Problem 43, an explicit word on $\{1,4,7\}$ has nonzero determinants of every odd order at every shift, and of every order at a prescribed shift. The paper determines the exact 3-adic valuation on a larger set of order–shift pairs. For each cutoff $R$ it also constructs a three-symbol alphabet in $[1,48R]$ working through order $R$ at every shift. [Integer-word manuscript and checks](integer-lifts.md)
+
+For a word $w$, write $H_r(s)=\det(w_{s+i+j})_{0\le i,j<r}$. Shallit’s 2010 Oberwolfach article asks both about one particular four-letter word over the integers (Problem 44) and about every possible integer word modulo a fixed modulus (Conjecture 45). [Original problem statements, p. 2234](https://doi.org/10.4171/OWR/2010/37)
+
+## Uniform bounds at every order and shift
+
+For Shallit’s four-letter substitution word, each of the following finite sets of integer determinants has gcd one, for every $s\ge0$ and $r\ge1$.
+
+| Fixed parameter | Determinants in the set |
+|---|---|
+| Order $r$ | $H_r(s+i)$ for $0\le i<\lceil13r/2\rceil$ |
+| Shift $s$ | $H_k(s)$ for $r\le k\le\lfloor15r/2\rfloor$ |
+
+Thus every prime has a nonzero determinant in each indicated interval, at every scale. The proof finds equal strings of preceding symbols with distinct next values differing by one. Such a pair contradicts a proposed linear recurrence over any field. A triangular Gram matrix and a separate sliding-minor argument turn the recurrence obstruction into the two bounds. Whether every individual integer determinant is nonzero remains open. [Proof manuscript](gcd.pdf) · [LaTeX](gcd.tex) · [Finite factor tables and independent sample gcds](verify_gcd.py) · [Recorded output](gcd-verification.txt)
+
+## Sharp bounds for six moduli
+
+The longest residue word whose shifted Hankel determinants are all nonzero has the following length. Every longer word, including every infinite word, has a vanishing minor modulo the specified modulus.
+
+| Modulus | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---:|---:|---:|---:|---:|---:|
+| Maximum length | 2 | 4 | 24 | 22 | 42 | 52 |
+
+The proof enumerates the complete normalized prefix trees. For the composite moduli it divides exact integer determinants. It uses field arithmetic for the four primes. A separate fraction-free elimination checks all 1,460 minors in the six attaining words and repeats the complete unnormalized searches for moduli two through five. The general modulus conjecture remains open. [Proof manuscript](moduli.pdf) · [LaTeX](moduli.tex) · [Complete search](verify_moduli.cpp) · [Extremizers and counts](moduli-verification.txt) · [Independent checks](check_moduli.py) · [Cross-check output](moduli-crosscheck.txt)
+
+Run the new checks with Python 3.9 or later and a C++17 compiler supporting signed 128-bit integers.
+
+~~~sh
+python3 -B verify_gcd.py
+c++ -O3 -std=c++17 verify_moduli.cpp -o /tmp/verify-shallit-moduli
+/tmp/verify-shallit-moduli
+python3 -B check_moduli.py
+~~~
+
+## All shifts through order 4096
 
 **Blake Stone · Computation and proof developed with OpenAI Codex.**
 
