@@ -1,0 +1,3 @@
+'OMA.solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A265386Proof.growth_rate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A265386Proof.persistent_fluctuations' depends on axioms: [propext, Classical.choice, Quot.sound]

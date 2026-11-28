@@ -1,0 +1,29 @@
+{
+  "scope": "local verification only; no upstream submission or acceptance",
+  "lean": "4.33.1",
+  "formal_conjectures": "9097e2f90e66d2f6244209cb1c07f7120d17ec53",
+  "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "checker": "e3a3ffa65b55f913a963a6625588bdceedc6d6d9",
+  "checks": [
+    {
+      "file": "proofs/oeis-a265385.lean",
+      "verdict": "accepted",
+      "reason": "kernel accepted; axioms within propext, Classical.choice, Quot.sound"
+    },
+    {
+      "file": "statements/oeis-a265385.lean",
+      "verdict": "accepted",
+      "reason": "the statement compiles; it now needs a human review of the translation"
+    },
+    {
+      "file": "proofs/oeis-a265386.lean",
+      "verdict": "accepted",
+      "reason": "kernel accepted; axioms within propext, Classical.choice, Quot.sound"
+    },
+    {
+      "file": "statements/oeis-a265386.lean",
+      "verdict": "accepted",
+      "reason": "the statement compiles; it now needs a human review of the translation"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+A265386 statement review notes
+
+Source: https://oeis.org/A265386/internal, revision #16 (January 16, 2016).
+Sequence author: Stanislav Sykora (December 7, 2015).
+
+The source defines a(1)=a(2)=1 and, for n>=3,
+a(n)=gray(gray(a(n-1))+gray(a(n-2))), where gray(m)=m XOR floor(m/2).
+The formal definition follows this indexing exactly. The unused a(0)=0
+makes a total natural-valued function and does not affect asymptotic assertions.
+
+The precise quantitative conjecture is the limit
+(a(2n)/a(n))^(1/n) -> sqrt(2). The source also describes large and persistent
+fluctuations of s(n)=a(n)/a(n-1) about that mean. The formal statement interprets
+this qualitative clause as existence of a fixed epsilon>0 with ratios below
+sqrt(2)-epsilon and above sqrt(2)+epsilon at arbitrarily large indices.
+It does not ascribe any numerical epsilon or uniform parity bounds to OEIS.
+
+The companion complete proof is adapted from Blake Stone's existing proof at
+https://github.com/blakestone-x/math/tree/main/A265386. This contribution ports
+that prior result to the site's Lean 4.33.1 / Mathlib environment and supplies
+its exact target statement; it does not claim a newly discovered proof.
+The additional formal corollary derives persistent fluctuations with epsilon=1/2
+from the existing stronger inequalities s(2k+18)<2/3 and s(2k+17)>3, k>=0.
+
+Only the statement is eligible for the initial formalization PR; its main body
+retains the single sorry required by the site's statement-review workflow.
+The separate companion proof has no unfinished obligations and must be checked
+against the approved statement before it can be submitted as a proof contribution.

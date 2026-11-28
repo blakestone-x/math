@@ -1,0 +1,26 @@
+Source reviewed: https://oeis.org/A265385 (official OEIS entry).
+Source author: Stanislav Sykora, December 7, 2015.
+Exact source recurrence: a(1)=a(2)=1; a(n)=gray(a(n-1)+a(n-2)); gray(m)=bitxor(m,m>>1).
+Source conjecture: (a(2n)/a(n))^(1/n) tends to 2; the adjacent ratios a(n)/a(n-1) show small persistent fluctuations around 2.
+
+Statement scope:
+The proposed theorem formalizes the real limit and a standard precise persistence assertion: there exists epsilon>0 such that both s(m)<2-epsilon and s(n)>2+epsilon occur at arbitrarily large indices. The approximate one-percent description in the source does not prescribe an exact numerical bound; the statement does not invent one.
+The definitions of gray, a, and meanGrowth are identical to Blake Stone's existing user-math/A265385 proof. The source uses one-based indexing. The auxiliary a(0)=0 is never used for positive-index recurrence terms and does not affect either asymptotic assertion. ConsecutiveRatio n is exactly the source's a(n)/a(n-1).
+The proof imports these exact definitions and does not define a replacement sequence.
+
+Provenance:
+The mean-growth proof ports Blake Stone's November 26, 2026 proof (developed with OpenAI Astra 6.2) to the site's exact statement/checker contract. This limit was already proved before this session.
+The persistent-fluctuation extension was developed in this session on November 28, 2026. It strengthens the original proof by establishing a three-state prefix invariant and cofinal separated-ratio witnesses. No claim of priority over all published mathematics has been established.
+
+Mathematical mechanism:
+For every k>=0, the normalized prefix pair (floor(a(k+9)/2^k), floor(a(k+10)/2^(k+1))) is one of A=(211,209), B=(209,211), C=(211,211). The exact recurrence forces A->B, B->A or C, and C->A. Therefore A and B each occur in every three consecutive states.
+At A, 211*a(k+10)<420*a(k+9); at B, 422*a(k+9)<210*a(k+10). Positivity translates these to real ratios below 420/211 and above 422/210. The explicit epsilon=1/106 satisfies both required separations from 2.
+The main theorem has no hypotheses and conjoins the original limit with this persistence property.
+
+Verification completed:
+- The revised statement and proof pass the site's static tools/lint.py gates.
+- The original discrete growth proof and the new discrete oscillation proof compile with Lean 4.33.1; the latter depends only on propext and Quot.sound.
+- The final statement elaborates successfully under Lean 4.33.1 at the pinned formal-conjectures commit 9097e2f90e66d2f6244209cb1c07f7120d17ec53, with the single intentional statement-body sorry.
+- The exact full one-file proof compiles successfully against that imported statement, with no warnings or errors.
+- OMA.solution, growth_rate_limit, and persistent_fluctuations each audit to exactly [propext, Classical.choice, Quot.sound]. No sorryAx or additional axiom occurs.
+- Raw axiom report: verification.txt. Static gate results: statement-lint.json and proof-lint.json.
