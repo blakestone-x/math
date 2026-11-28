@@ -70,6 +70,20 @@ $$
 
 Each integer missed by the direct witness has $g(n)>2^k$. Choosing $k$ with $2^{-k}\le\varepsilon$ proves the claimed bound.
 
+### How often the interval property fails
+
+Let $E(X)$ count those $2\le n\le X$ with no divisor of $\sigma(n)$ in $(n,2n]$. In fact
+
+$$
+E(X)=\frac{X}{(\log X)^{1+o(1)}}.
+$$
+
+For the lower bound, choose a finite set $P$ of odd primes such that $A=\prod_{p\in P}p/(p-1)>4$. Such a set exists by divergence of the Euler product at 1. Fix an integer $M>2A$. Choose a sufficiently large positive exponent $e$ divisible by $\ell(\ell-1)$ for every prime $\ell\le M$, and set $B=\prod_{p\in P}p^e$. Since $\sigma(B)/B$ approaches $A$ as $e$ increases, we may take $\sigma(B)/B>4$. For each prime $\ell\le M$ one has $\sigma(p^e)\equiv1\pmod\ell$. This follows directly if $p\equiv0$ or $1\pmod\ell$. Otherwise use $p^e\equiv1\pmod\ell$ in $(p-1)\sigma(p^e)=p^{e+1}-1$.
+
+Set $H=4\prod_{3\le\ell\le M,\ \ell\ {\rm prime}}\ell$. For every prime $q\equiv1\pmod H$ outside $P$, set $n=Bq$. The integer $\sigma(n)=\sigma(B)(q+1)$ is divisible by 2 exactly once, and is coprime to every odd prime $\ell\le M$. Its only positive divisors below $M$ are 1 and 2. Nevertheless $4<R=\sigma(n)/n<A(1+1/q)<M$. If $n<d\le2n$ divided $\sigma(n)$, its complementary divisor $\sigma(n)/d$ would belong to $[R/2,R)\subset(2,M)$, which is impossible.
+
+The prime number theorem for the fixed progression $q\equiv1\pmod H$ now gives $E(X)\gg X/\log X$. Combined with Theorem 1, this proves the exponent displayed above. This lower bound counts failures of the interval property. An integer in this count may satisfy Sun's conjecture through its totient factor. [Prime number theorem for arithmetic progressions, MIT 18.785, Problem 5](https://math.mit.edu/classes/18.785/2021fa/ProblemSet9.pdf).
+
 ## Theorem 2
 
 For an odd integer $u$, form the square

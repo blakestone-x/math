@@ -48,3 +48,5 @@ lake env bash -ec '
 ```
 
 The statement file declares the board’s target with its required placeholder. The separate proof establishes that target. The axiom audit reports exactly `propext`, `Classical.choice`, and `Quot.sound`.
+
+[Board submission](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/18237) · [Local kernel verdict for the complete proof](proof-verdict.json)
