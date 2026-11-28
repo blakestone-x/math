@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,geometry,hyperref}
+\hypersetup{hidelinks}
+\geometry{margin=0.92in}\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}\newcommand{\seqref}[1]{\href{https://oeis.org/#1}{#1}}
+\title{Runs with a prescribed prefix in the fractional part of a square root}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}\maketitle
+\begin{abstract}A pair of integer ceilings determines every block of radicands whose square roots begin with a given fractional digit word in any base. The endpoints have an exact translation law, giving a rational generating function for the sequence of block starts. We obtain all ten decimal run-start sequences, the rounded run length in A034097, Wu's two formulas for A034108, and Lowell's greedy description of A063656. The individual conjectures also have earlier formal submissions.\end{abstract}
+\begin{theorem}Fix an integer base $b\ge2$, a word of $j\ge1$ digits with numerical value $0\le h<W=b^j$, and an integer part $k\ge0$. Use terminating expansions at endpoints. The complete interval of radicands is $[L_h(k),L_{h+1}(k)-1]$, where
+\[
+ L_h(k)=\left\lceil\frac{(Wk+h)^2}{W^2}\right\rceil.
+\]
+The interval may be empty. Its length $D_h(k)$ satisfies $D_h(k+W)=D_h(k)+2$. For $k\ge\lceil W/2\rceil$ the interval is nonempty, and the ordinary generating function of its successive nonempty starts is rational, with denominator dividing $(1-z)^2(1-z^W)$. Removing squares from the zero-prefix word gives the same eventual denominator.\end{theorem}
+\begin{proof}The word is present precisely when $k+h/W\le\sqrt n<k+(h+1)/W$. Squaring both endpoints gives the two integer ceilings, including the strict upper endpoint. The interval before rounding has length $2k/W+(2h+1)/W^2$, which exceeds one for $2k\ge W$. Also
+\[
+ L_h(k+W)-L_h(k)=2Wk+W^2+2h,
+\]
+so differencing in $h$ gives the length claim. Once $k$ is large enough all blocks are nonempty, and their starts form a sequence whose step-$W$ difference is affine. Taking two more ordinary differences yields zero. Finitely many initial terms only change the numerator of the generating function. When squares are removed from the zero-word class, replace every lower endpoint $k^2$ by $k^2+1$. Eventually the block length exceeds two, so this also gives the asserted denominator.\end{proof}
+
+\paragraph{Decimal runs.} For $W=10$, let $L_0^*(k)=k^2+1$ and $L_h^*=L_h$ for $h>0$. These implement De Geest's exclusion of squares at digit zero. The nonempty blocks are separated by a missing square, with squares outside every digit class in this convention. In all ten classes every $k\ge5$ contributes. For $h=0$ this follows separately from $L_1(k)-k^2-1=\lfloor k/5\rfloor$. Direct substitution in the two ceilings gives the finite table. With one-based index $n$, the tail term is $L_h^*(n+\delta)$ once $k=n+\delta\ge5$.
+\[
+\begin{array}{c|cccccccccc}
+h&0&1&2&3&4&5&6&7&8&9\\\hline
+k<5\text{ present}& -&3,4&2,4&3,4&1,2,3,4&4&2,3,4&1,3,4&2,3,4&-\\
+\delta&4&2&2&2&0&3&1&1&1&4
+\end{array}
+\]
+These are the ten sequences \seqref{A034106} through \seqref{A034115}. For $h=1$, the lower and upper included endpoints are $k^2+\lfloor k/5\rfloor+1$ and $k^2+\lfloor 2k/5\rfloor$, as in Robert Israel's description of \seqref{A034097}. Indeed in taking the respective floors the added constants $1/100$ and $1/25$ do not cross the next integer. For $k=5t+i$, $0\le i<5$, subtraction of the floors gives
+\[
+ D_1(k)=\lfloor 2k/5\rfloor-\lfloor k/5\rfloor
+ =\lfloor(k+2)/5\rfloor=\operatorname{round}(k/5+1/25).
+\]
+No rounding tie occurs. This proves the run length proposed by Papadopoulos.
+
+For $h=2$, $a(1)=5$ and for $n\ge2$ the index $k=n+2$ gives
+$a(n)=k^2+\lfloor2k/5\rfloor+1$. The step-five difference is affine for $n\ge2$, so $a_n=2a_{n-1}-a_{n-2}+a_{n-5}-2a_{n-6}+a_{n-7}$ for $n\ge9$. Multiplying the generating series by $(1-z)^2(1-z^5)$ cancels every coefficient from degree nine onward. Using the first eight terms $5,18,28,39,52,68,85,105$ leaves
+\[
+ \sum_{n\ge1}a_nz^n=\frac{z(5+8z-3z^2+z^3+2z^4-2z^5-7z^6+6z^7)}{(1-z)^2(1-z^5)}.
+\]
+These are the recurrence and generating function proposed by Chai Wah Wu in \seqref{A034108}.
+
+\paragraph{A triangular greedy rule.} In base two the one-digit prefix zero includes precisely the radicands with $\lfloor\sqrt n\rfloor=\operatorname{round}(\sqrt n)$. Here the squares are included. With integer part $k$ the interval is $[k^2,k^2+k]$. With zero-based indexing its first position is $T_k=k(k+1)/2$, the sum of the preceding block lengths. At each nontriangular position the next integer is the next nonsquare in its block. At each positive triangular position the least larger square is $k^2$. Starting at $a(1)=1$ this proves J. Lowell's greedy rule for \seqref{A063656}; the initial zero at index zero is consistent with both descriptions.
+
+\paragraph{Verification and earlier work.} The integer inequalities and the rounded decimal run length are checked in \texttt{Prefix.lean}. \texttt{verify.py} compares interval endpoints against direct integer square roots, reproduces the ten decimal tables, and tests the displayed recurrence and generating-function numerator. Earlier Left to Solve submissions already address the individual conjectures \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/2504}{A034097}, \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/13440}{A034108}, and \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/14929}{A063656}. The OEIS entries linked above give the original attributions.
+\end{document}

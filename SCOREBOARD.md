@@ -1,6 +1,17 @@
 # Proof fleet scoreboard
 
-The four scoreboard releases contain **50 manuscripts**. This release adds three papers and four contributions to Left to Solve. The first three releases recorded 47 manuscripts across a snapshot of 133 research projects. Project counts refer to the snapshot in which they were recorded. [Open review](https://github.com/blakestone-x/math/pull/1) · [Next proof targets](RESEARCH_PLAN.md)
+The five scoreboard releases contain **54 manuscripts**. The fifth adds four papers and nine pages. The first three releases recorded 47 manuscripts across a snapshot of 133 research projects. Project counts refer to the snapshot in which they were recorded. [Open review](https://github.com/blakestone-x/math/pull/1) · [Research queue](RESEARCH_PLAN.md)
+
+## Fifth release
+
+| Problem | Result | Manuscript and verification |
+|---|---|---|
+| Havermann's fixed points and five related digit sequences | A218468 is a permutation and fixes every $2\cdot10^k$, with long fixed intervals. The paper also proves quantitative displacement for A318698/A318699, exact coverage for A350831, both lag conventions for A340138, and the positive and zero-admitting versions of A275482. | [Paper](Greedy-digit-permutations/decimal-permutations.pdf) · [Lean proofs, eight induction seeds and six sequences](Greedy-digit-permutations/README.md) |
+| Krizek's four-prime fixed points | Queue item 2 is solved. No integer $p^a qrs$ with four distinct primes and $a\ge1$ equals its weighted proper-divisor sum. Any four-prime solution must have at least two repeated bases. | [Paper](A245211/four-primes.pdf) · [Two complete searches and denominator lemmas](A245211/README.md) |
+| Circular orders for singular affine maps | Every affine map with singular linear part on a finite vector space of size $Q$ admits at least $(k!)^{Q/k}/k$ orders, with $k$ the kernel size. In particular all mixed quadratics work in characteristic two. | [Paper](Sun-polynomial-cycles/singular.pdf) · [Lean lemmas and finite enumerations](Sun-polynomial-cycles/README.md) |
+| Runs of square-root digits | An arbitrary-base interval formula determines the blocks and their translation law. It gives all ten decimal run-start sequences, Papadopoulos's rounded length, Wu's recurrence and generating function, and Lowell's greedy rule. Earlier formal contributions on the individual conjectures are linked. | [Paper](Square-root-digit-blocks/blocks.pdf) · [Integer checks and Lean lemmas](Square-root-digit-blocks/README.md) |
+
+Four new first-statement submissions are in human review at Left to Solve. Three complete Lean results passed the pinned checker locally, and the A218468 permutation proof checks separately. The A218468 fixed-point proof appears in the manuscript. [Statement reviews, proof files and scope](Greedy-digit-permutations/README.md)
 
 ## Fourth release
 

@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,booktabs,hyperref}
+\hypersetup{hidelinks}
+\geometry{margin=0.9in}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}
+\title{A four-prime exclusion for Krizek's weighted proper-divisor sum}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+No positive integer of the form $p^a qrs$, with four distinct prime bases and $a\ge1$, is the sum of $d\tau(d)$ over its proper divisors. Three successive estimates bound the free exponent by 22. A short divisibility argument bounds the repeated base even when it is the largest prime. After these reductions a finite certificate checks 225,422 triples and yields no prime completion. This settles the four-prime question with three simple factors on the project's research scoreboard.
+\end{abstract}
+Jaroslav Krizek asked in 2014 whether $21$ is the only positive fixed point of $S(n)=\sum_{d\mid n,\,d<n}d\tau(d)$, where $\tau$ counts positive divisors \cite{oeis}. Previous work treats small total multiplicity \cite{sugui} and classifies all fixed points on at most three distinct prime bases \cite{three}.
+\begin{theorem}If a fixed point has exactly four distinct prime factors, at least two of those factors divide it to exponent at least two.\end{theorem}
+\begin{proof}
+Write a putative exception as $n=p^a qrs$ with $q<r<s$. Put $C=8(a+1)+1$, $H=\sum_{j=0}^a(j+1)p^j$ and $F=H/p^a$. Adding $n\tau(n)$ to both sides of $S(n)=n$ and using multiplicativity gives
+\begin{equation}\label{main}
+ F(2+1/q)(2+1/r)(2+1/s)=C,\qquad p^a\mid(2q+1)(2r+1)(2s+1).
+\end{equation}
+The divisibility uses $H\equiv1\pmod p$. The proper divisors $1$ and $n/t$, for each prime $t\mid n$, give $t>\tau(n/t)$. Thus $p>8a$ and $q,r,s>4(a+1)$. All four bases are odd and $C<2p$. The parity of $H$ is that of $(a+1)(a+2)/2$, which must be odd by \eqref{main}. Hence $a\equiv0,1\pmod4$.
+
+\paragraph{The exponent.} Summing the geometric progression gives
+\[
+ F=a+1+\frac a{p-1}-\frac{1-p^{-a}}{(p-1)^2}
+   =\frac{U+p^{-a}}{(p-1)^2},\qquad U=(a+1)p^2-(a+2)p.
+\]
+Let $\delta_j$ be the difference between $C$ and the left side of \eqref{main} after retaining the first $j$ simple factors and replacing the others by $2$. Each gap is positive for $j=0,1,2$. If $t$ is the smallest remaining base, then
+\[
+ \frac{\delta_j}{C}=1-\prod_{v\ \mathrm{remaining}}\left(1-\frac{1}{2v+1}\right)
+ \le \sum_{v\ \mathrm{remaining}}\frac1{2v+1}<\frac{3-j}{2t}.
+\]
+Since $p-1\ge8a$, the displayed formula for $F$ gives $\delta_0=C-8F\ge8/[p(p-1)]$. Consequently $q<3C/(2\delta_0)<p^3$.
+
+Suppose $a\ge23$, so $p>184$. The quantity $(p-1)^2q\delta_1$ is an integer minus $4(2q+1)/p^a$. This subtracted term is below $12p^3/p^a<1/2$ and the difference is positive. Thus $\delta_1>1/[2(p-1)^2q]$ and $r<C/\delta_1<4p^6$. Likewise $(p-1)^2qr\delta_2$ is an integer minus $2(2q+1)(2r+1)/p^a<54p^9/p^a<1/2$. This gives $s<C/(2\delta_2)<8p^{12}$. The product in \eqref{main} is then below $(3p^3)(9p^6)(17p^{12})=459p^{21}<p^{23}$, a contradiction. It remains to consider $a\le22$.
+
+\paragraph{The prime bases.} Let $x$ be the smallest base. For an exponent $e$ and base $t$, let $F_e(t)=\sum_{j=0}^e(j+1)t^{j-e}$. The geometric series gives $F_e(t)<(e+1)t/(t-1)$. Dividing $\prod(e+1)=C-1$ by $\prod F_e(t)=C$ shows
+\[
+ \frac1C=1-\prod_{t^e\parallel n}\frac{e+1}{F_e(t)}<\sum_{t\mid n,\ t\ \mathrm{prime}}\frac1t\le\frac4x.
+\]
+In particular $x\le4C$. If $p=x$ its size is bounded already. Otherwise $x$ is simple and $2x+1>C$ divides $Cn$ by \eqref{main}. It has a prime factor dividing $n$. Any proper prime factor of this odd number is at most $(2x+1)/3<x$, so $y=2x+1$ itself is a prime dividing $n$. If $p=y$ we are done. Otherwise $y$ is also simple. The integer $2y+1=4x+3>C$ similarly has a prime factor $z\mid n$. Neither $x$ nor $y$ divides $4x+3$, since $x>3$. If $z=p$, then $p\le4x+3$. In the remaining case $x,y,z$ are the three simple bases, all at most $4x+3$. By \eqref{main}, $p$ divides one of their doubled successors $2t+1$. In every case $p\le8x+7\le32C+7$.
+
+\paragraph{The finite certificate.} For each surviving $a$, enumerate primes $8a<p\le32C+7$ and distinct primes $4(a+1)<q<3Cp^a/[2(Cp^a-8H)]$. Reduce $Cp^a q/[H(2q+1)]=c/b$ to lowest terms. Necessarily
+\[
+ 4<c/b=(2+1/r)(2+1/s)<5,\qquad b\mid rs.
+\]
+The upper bound uses $r,s\ge5$. The ratio rules out $b=1$. If $b=r$ or $s$, the other base is $b(2b+1)/[cb-2b(2b+1)]$ and must be a positive integer. If $b=rs$, then $2(r+s)=c-4b-1$. A nonnegative square discriminant and the sum recover both roots. These cases exhaust all reduced denominators for distinct primes. The integer verifier tests ordering, distinctness, the original equation, and primality by trial division. Its counts are
+\[
+\begin{array}{r|r|r|r|r}
+(a,p)&(a,p,q)&4<c/b<5&\text{integer completions}&\text{prime completions}\\\hline
+4701&225422&182970&7&0
+\end{array}
+\]
+All seven integer completions occur at $a=1$. This proves the exclusion.\end{proof}
+An independent enumeration instead stops the $q$ search when $H(2q+1)^3\le Cp^a q^3$, since $r,s>q$. It checks 224,606 triples and again finds no prime completion. The program \texttt{four\_prime\_check.py} produces the accompanying per-exponent CSV using Python's integer arithmetic. \texttt{FourPrime.lean} verifies the terminal denominator classification and the product-denominator sum identity. The unrestricted uniqueness of $21$ remains open.
+\begin{thebibliography}{9}
+\bibitem{oeis} J. Krizek, OEIS \href{https://oeis.org/A245211}{A245211}, 2014.
+\bibitem{sugui} M. A. Sugui, work on $\tau$-weighted perfect numbers, \href{https://doi.org/10.5281/zenodo.24437886}{Zenodo}.
+\bibitem{three} B. Stone's mathematics project, \emph{The three-prime classification for Krizek's weighted proper-divisor fixed points}, in this directory, 2026.
+\end{thebibliography}\end{document}

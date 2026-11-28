@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,hyperref}
+\hypersetup{hidelinks}
+\geometry{left=0.86in,right=0.86in,top=0.77in,bottom=0.78in}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\seqref}[1]{\href{https://oeis.org/#1}{#1}}
+\title{Fixed intervals and coverage in six greedy decimal sequences}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+The least-unused multiple of a digit of the previous term defines a permutation of the positive integers. For every $k\ge0$ its term at index $2\cdot10^k$ equals that index, as predicted by Hans Havermann. Entire terminal intervals of $[10^k,2\cdot10^k]$ consist of fixed points. A sparse-exception argument bounds displacement in this permutation and two alternating-parity permutations. A separate recurrence argument determines the ranges of three further sequences, including two entries whose wording and programs use different conventions.
+\end{abstract}
+Write $\alpha=\log_{10}9$. The number of positive integers at most $X$ missing a specified decimal digit is $O(X^\alpha)$. Indeed among $j$-digit strings the number is at most $9^j$, and summing over $j\le\lfloor\log_{10} X\rfloor+1$ gives the bound. The same estimate holds for numbers missing at least one of the ten digits.
+
+\section{The least unused multiple of a digit}
+In Angelini and Hasler's \seqref{A218468}, $a(1)=1$. Each next term is the least unused positive multiple of a nonzero digit of its predecessor. The entry and \seqref{A226179} record Havermann's 2013 fixed-point prediction.
+\begin{theorem}\label{fixed}
+The sequence is a permutation, $a(n)=n+O(n^\alpha)$, and $a(2\cdot10^k)=2\cdot10^k$ for every $k\ge0$. Moreover, for $k\ge8$ put
+\[
+ B_k=16\cdot9^{k-1}+\sum_{s=2}^8(s-1)s^{k-1}.
+\]
+Then every integer in $[10^k+B_k+10,2\cdot10^k]$ is fixed. The lower and upper asymptotic densities of the fixed set are at least $1/9$ and $5/9$, respectively.
+\end{theorem}
+\begin{proof}
+Every positive multiple of 2520 is always eligible. Thus each choice exists, terms are distinct, and $a(i)\le2520i$. After $N$ terms, at most $E=O(N^\alpha)$ predecessors lack the digit 1. All other moves choose the least unused integer. Counting the initial choice of 1 as unrestricted, the least unused value $M$ after $N$ terms is at least $N-E+1$ and at most $N+1$. At most $E$ chosen values are above $M$. Any predecessor has a nonzero digit $d\le9$ and the first $E+1$ multiples of $d$ at or above $M$ include an unused one. This proves the displacement bound and $M\to\infty$, hence surjectivity.
+
+We prove the stronger induction claim that the first $2\cdot10^k$ terms are exactly $[1,2\cdot10^k]$ and the last is $2\cdot10^k$. For $k=0,\ldots,7$ the finite certificate \texttt{decimal\_check.cpp} generates the recurrence directly. For each digit $d$ it maintains a cursor at a positive multiple of $d$. When queried, the cursor skips used multiples until reaching the first unused one. Used values never re-enter, so taking the minimum over the predecessor's digits gives the exact recurrence. At each of the eight specified indices the last term and the maximum both equal the index. The program checks uniqueness on insertion. The complete eight-line certificate is \texttt{fixed-prefixes.csv}.
+
+For $k\ge8$ let $L=10^k$, and begin with the complete prefix ending at $T=2\cdot10^{k-1}$. Call values below $L$ low. While low values remain unused, a predecessor containing 1 must choose a low value. Every value in $[L,2L)$ contains 1. Start a record at $R=L-1$ and increase it only when a new term exceeds it. From a low predecessor $x$ lacking 1 any increase is at most its smallest nonzero digit $d(x)$, since the next multiple of $d(x)$ strictly above $R$ is unused. All such predecessors lie in $[T,L)$ and are distinct. For $2\le j\le9$ the number in this range whose smallest nonzero digit is at least $j$ equals $(10-j)(11-j)^{k-1}$: the leading digit is at least $j$ and each other digit is zero or at least $j$. Twice the $j=2$ count plus the counts for $j=3,\ldots,9$ sums their smallest digits, yielding $B_k$.
+
+Now $B_8=97{,}914{,}660$ and $B_k/10^k$ decreases thereafter term by term, so $L-1+B_k+9<2L-1$. By induction on the moves, the record stays at most $L-1+B_k$ until the last low value is chosen. A first crossing of $2L$ would have to occur from a low predecessor without 1 and is already covered by the record bound. Low values are eventually exhausted by surjectivity. The move immediately after the last low value selects a value in $[L,L-1+B_k+9]$, since an eligible multiple occurs within 9 above the record. From there, each predecessor below $2L$ contains 1. It therefore fills every gap in increasing order through $2L$. All values above $L+B_k+9$ in this last stretch appear at their own indices, and the prefix ends exactly as claimed. Finally $B_k=o(10^k)$. Summing these fixed intervals over completed decades gives $(1/9-o(1))10^k$ fixed values before the $k$th interval, and $(10/9-o(1))10^k$ by $2\cdot10^k$. Between successive intervals the minimum guaranteed proportion is at the next start; within each interval it increases. This proves the density bounds.
+\end{proof}
+
+\section{Alternating parity with a common digit}
+Navarrete's \seqref{A318698} and \seqref{A318699} start at 0 and 1, respectively, at index zero. Each move is the least unused nonnegative integer of the opposite parity sharing a decimal digit with its predecessor. An earlier formal contribution by Sai-yr treats surjectivity for both seeds \cite{nav}.
+\begin{theorem}For either seed the sequence permutes the nonnegative integers and satisfies $a(n)=n+O(n^\alpha)$.\end{theorem}
+\begin{proof}
+If the predecessor has digit $d$ and the required parity is $e\in\{0,1\}$, every $1000t+100+10d+e$ is eligible. Thus each term exists and $a(i)=O(i+1)$. Only $O(N^\alpha)$ of the first $N$ distinct predecessors are missing a digit. On all other turns the least unused value of the required parity is chosen. In each parity class order values by rank, starting at zero. After $N$ moves each class has $N/2+O(1)$ chosen values, its least unused rank is $N/2+O(N^\alpha)$, and there are $O(N^\alpha)$ used ranks above it. In this rank order the displayed progression has gaps of 500 and first rank below 500. It supplies an unused eligible value within $O(N^\alpha)$ ranks of the least missing one. Returning to the value gives the claim. The least missing rank of each parity tends to infinity.
+\end{proof}
+
+\section{Targets allowed at recurrent states}
+\begin{lemma}\label{recur}In an infinite injective greedy sequence, any fixed value eligible at infinitely many turns must appear.\end{lemma}
+\begin{proof}If it never appeared, each of those turns would choose a different smaller value. There are only finitely many.\end{proof}
+Sloane used this argument in his comments on \seqref{A228407}. A Lean proof accompanies this paper.
+
+\paragraph{Prime digit pairs, \seqref{A350831}.} Start at 1. The program uses positive candidates with nonzero final digit. The last digit of the predecessor and first digit of the candidate, in either order, must form a two-digit prime. An ending zero could have no successor under the two-digit rule. For each last digit $d=1,\ldots,9$, choose an allowed first digit $f$ using, in order, the primes
+\[
+ 11,\ 23,\ 13,\ 41,\ 53,\ 61,\ 71,\ 83,\ 19.
+\]
+Each state has infinitely many eligible values, giving an infinite injective sequence. At least one last digit occurs infinitely. From that state the entire class of live numbers beginning with its chosen $f$ is eligible. The lemma puts them all in the sequence, so every possible last digit now occurs infinitely often. The displayed prime-pair relation is symmetric, giving every target with nonzero last digit a recurrent allowable predecessor. The sequence consequently contains precisely the positive nonmultiples of 10.
+
+\paragraph{Digital-root requests, \seqref{A340138}.} De Vlieger's displayed sequence starts $0,10,1$ and its program requests the previous term's root. The title instead requests the root two positions back. With the same two seeds, the latter rule starts $0,10,20$, taking the digital root of 0 to be 0. The permutation claim holds in both versions. Any number containing all ten digits is always eligible. Infinitely many such numbers exist, and the lemma says every one is eventually selected. Infinitely many have any prescribed root $r=1,\ldots,9$: append between zero and eight ones to 1023456789 to realize the residue modulo 9, then append arbitrarily many zeros. Thus every positive root is requested infinitely often under either fixed lag. Any positive number has a nonzero digit and hence is eligible infinitely often. Both sequences use zero as an initial seed, and fresh choices give injectivity.
+
+\paragraph{Divisibility at the join, \seqref{A275482}.} Angelini and Falcoz start at 1. If $x$ ends in $d$ and $y$ begins with $f$, where $y$ has length $j$, eligibility means $d+f\mid10^jx+y$. Both programs search positive $y$, and the displayed sequence starts $1,2$. We show that it contains every positive integer. The conjecture as printed asks for every nonnegative integer, which fails for this program at zero. In the variant admitting zero, the second term is zero ($1\mid10$) and every nonnegative integer occurs. Use the one-digit representation of 0.
+
+For any $d$ choose a leading digit $f$ and $s=d+f$ as follows. If $d=0$, use $f=s=1$. If $1\le d\le6$, use $s=7$, $f=7-d$. If $7\le d\le9$, use $s=13$, $f=13-d$. Here $s$ is coprime to 110. In a fixed residue class of $x$ modulo $910=10\cdot7\cdot13$, both $d$ and $x\bmod s$ are fixed. Choose arbitrarily large lengths $j$ with $10^j\equiv1\pmod s$ (all lengths for $s=1$). Given any residue $u\bmod110$, the congruences $y\equiv u\pmod{110}$ and $y\equiv-x\pmod s$ are compatible. For large $j$ the interval of $j$-digit integers beginning with $f$ contains representatives of this residue modulo $110s$. Every such $y$ is eligible at every visit to the given class of $x$.
+
+This first proves infinitely many eligible choices for each $x$, hence infinite continuation. Some class modulo 910 is recurrent. Applying the lemma to its constructed values shows that every class modulo 110 is recurrent. If a target $m\ge1$ begins with 1, all predecessors ending in 0 allow it. If it begins with $f\ge2$, choose a predecessor ending in $11-f$ with $x\equiv-m10^{-j}\pmod{11}$, where $j$ is the number of digits of $m$. The Chinese remainder theorem gives a class of such $x$ modulo 110. Every target is therefore reached under either convention. This also proves the range assertion for the published positive search.
+\begin{thebibliography}{9}
+\bibitem{nav} Sai-yr, \emph{Statement and proof for OEIS A318698}, with the second seed covered, \href{https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/7629}{Left to Solve contribution 7629}.
+\end{thebibliography}\end{document}

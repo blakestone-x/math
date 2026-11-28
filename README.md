@@ -2,6 +2,8 @@
 
 [Research scoreboard and proof manuscripts](SCOREBOARD.md) · [Next proof targets](RESEARCH_PLAN.md)
 
+- [Havermann's fixed points and six greedy digit sequences](Greedy-digit-permutations/README.md) · [Four-prime exclusion for Krizek's fixed points](A245211/four-primes.pdf) · [Circular orderings for singular affine maps](Sun-polynomial-cycles/singular.pdf) · [Square-root digit runs in every base](Square-root-digit-blocks/README.md)
+
 - [Layman’s quadratic equation — exact count of positive solutions and a complete Lean proof of A134002](A134002/README.md)
 
 - [All-column ternary digit recurrences](ternary-digit-variation/README.md) · [Mathar’s product recurrence in Lean](A249056/README.md) · [Sun’s divisor–totient conjecture on a density-one set](A248029/README.md) · [Seven power-sum rounding exceptions through 10¹⁰⁰⁰](A072633/README.md)

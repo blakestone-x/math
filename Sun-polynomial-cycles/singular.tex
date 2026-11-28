@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,geometry,hyperref}
+\hypersetup{hidelinks}
+\geometry{margin=0.92in}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\F}{\mathbb F}
+\title{Circular orderings for singular affine maps on finite vector spaces}
+\author{Blake Stone's mathematics project\\\small Developed with OpenAI Codex}
+\date{November 27, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For a singular endomorphism $L$ of a finite vector space of order $Q$, write $k=|\ker L|$. There are at least $(k!)^{Q/k}/k$ directed circular orders in which $L(x)$ plus the successor of $x$ takes every value exactly once. The construction counts Euler tours of a regular directed multigraph whose walks become uniform after finitely many steps. It covers every mixed quadratic $aX^2+bX+c$, $ab\ne0$, in characteristic two.
+\end{abstract}
+Sun's September 2013 finite-field question asks for a circular order $x_1,\ldots,x_Q$ making the labels $P(x_i)+x_{i+1}$ distinct \cite{sun}. Indices are taken cyclically. A circle is identified up to rotation, and its direction is retained. Equivalently, its successor $\sigma$ is a single cycle. Adding a constant to every label preserves the condition.
+\begin{theorem}\label{main}
+Let $V$ be a $d$-dimensional vector space over $\F_p$, $L:V\to V$ singular, $Q=p^d$, $K=\ker L$, $k=|K|$ and $v=Q/k$. For each $c\in V$ there are at least $(k!)^v/k$ circular orders on $V$ for which $x\mapsto Lx+c+\sigma(x)$ is bijective.
+\end{theorem}
+\begin{lemma}\label{basis}
+Fix $0\ne h\in K$. If $L\ne0$, except possibly when $p=d=2$ and $\operatorname{im}L=K$, there is a linear automorphism $S$ such that $S+L$ is invertible and $h,Sh,\ldots,S^{d-1}h$ are a basis.
+\end{lemma}
+\begin{proof}
+Start with $e_1=h$ and set $Se_j=e_{j+1}$ as each vector is chosen. Write $W_i=\langle e_{j+1}+Le_j:1\le j\le i\rangle$. For $p\ge3$, at step $i<d$ avoid $\langle e_1,\ldots,e_i\rangle$ and $-Le_i+W_{i-1}$. Their total size is at most $p^i+p^{i-1}<p^d$. To choose $Se_d$, avoid $H=\langle e_2,\ldots,e_d\rangle$ and $-Le_d+W_{d-1}$. Their combined size is at most $2p^{d-1}<p^d$. These choices give independent images for both maps.
+
+Suppose $p=2$ and $d\ge3$. Choose nonzero $y\in\operatorname{im}L$ and a linear functional $\ell$ with $\ell(h)=\ell(y)=1$. This is consistent whether $y=h$ or the two vectors are independent. Put $H=\ker\ell$. From a preimage $z$ of $y$ take $e_2=z-\ell(z)h\in H$, so $Le_2=y\notin H$. Set $Sh=e_2$. Choose $e_3\in H\setminus\langle e_2\rangle$. Then $e_3+Le_2\notin H$, so $W_2$ crosses $H$ and has dimension two. For $3\le i<d$ choose $e_{i+1}$ in $H$ outside $\langle e_2,\ldots,e_i\rangle$ and $-Le_i+W_{i-1}$. The first excludes $2^{i-1}$ choices. Since $W_{i-1}$ crosses $H$, the second excludes $2^{i-2}$ choices in $H$. Their sum is strictly below $2^{d-1}$. At the last step the two forbidden affine hyperplanes have distinct direction spaces $H$ and $W_{d-1}$, so their union misses a point. This supplies $Se_d$.
+
+For $p=d=2$ and $\operatorname{im}L\ne K$, choose its nonzero vector $e_2$. Then $Le_2=e_2$. Set $Sh=e_2$ and $Se_2=h$. The images under $S+L$ are $e_2$ and $h+e_2$, also independent.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{main}]
+Take $c=0$. If $L=0$, every circular order works and their number is $(Q-1)!$. In the exceptional binary plane $L$ vanishes on $K$ and takes the same value $h\in K$ on its other coset. Any alternating circular order between these two cosets works. The two successors of inputs from $K$ exhaust the other coset, and the translated successors of the other inputs exhaust $K$. There are two such circles, equal to the claimed lower bound.
+
+In the remaining cases use Lemma \ref{basis}. For $t\in V$, start with the map $x\mapsto Sx+t$. For each coset $x+K$ independently, freely assign its inputs the successors in $S(x+K)+t$, using each once. Both the successors and their labels remain permutations, since $L$ is constant on each input coset and $S+L$ was invertible. We count which assignments form one cycle.
+
+Use $V/K$ as the vertex set of a directed multigraph. For each $y\in V$, insert its own labeled edge from $\overline{S^{-1}(y-t)}$ to $\bar y$, with bars denoting cosets modulo $K$. The next edge after $y$ can have any label in $S(y+K)+t$, exactly the permitted successors. Thus Euler tours up to rotation correspond bijectively to the desired assignments. All vertices have indegree and outdegree $k$.
+
+Write $A$ for the adjacency matrix counting edges with multiplicity. A walk from the coset of $x_0$ chooses successively $x_j=S(x_{j-1}+u_j)+t$ with $u_j\in K$. Its endpoint after $d$ steps is an affine function of $(u_1,\ldots,u_d)$ with direction $SK+\cdots+S^dK$ modulo $K$. This is surjective: $Sh,\ldots,S^dh$ form a basis because $S$ is invertible. From any starting vertex every endpoint therefore has the same number of walks. In matrix form $A^d=(k^d/v)J$, where $J$ is the all-ones matrix. In particular the graph is strongly connected. On the constants $A$ acts by $k$. The zero-sum subspace is $A$-invariant by the column sums, and on it $A^d=0$.
+
+It follows that $\det(zI+kI-A)=z(z+k)^{v-1}$. Its degree-one coefficient is the sum of the principal cofactors of $kI-A$. These cofactors are equal since the one-dimensional left and right kernels are spanned by the constant vector (equivalently, apply the adjugate identity). By the directed matrix-tree theorem, each rooted in-arborescence count is $k^{v-1}/v$. The BEST theorem for tours starting with a fixed labeled edge now gives
+\[
+ \frac{k^{v-1}}v\big((k-1)!\big)^v=\frac{(k!)^v}{Q}
+\]
+circles for this translation \cite{best}. One may fix edge $0$ since each tour uses it once. Finally, translations with distinct residues modulo $SK$ have disjoint allowed sets of successors of $0$. There are $v$ residues. Multiplication gives the asserted bound.\end{proof}
+\begin{corollary}
+For $P(X)=aX^2+bX+c$ over $\F_{2^d}$ with $a,b\ne0$, at least $2^{2^{d-1}-1}$ directed circular orders give distinct labels.
+\end{corollary}
+\begin{proof}
+The map $x\mapsto ax^2+bx$ is $\F_2$-linear with kernel $\{0,b/a\}$. Apply Theorem \ref{main} with $k=2$.
+\end{proof}
+The remaining binary quadratic family is $aX^2+c$ with $a\ne0$. Squaring already fails over $\F_8$ in the earlier classification. The preceding odd-field paper treats all degree-two polynomials over odd fields, with order three exceptional.
+
+\texttt{verify\_singular.py} constructs witnesses for every singular map in the binary spaces of dimensions two, three and four and the ternary plane. It also enumerates all circular orders in the three smallest spaces. \texttt{SingularSwitch.lean} checks the last hyperplane choice and invariance of bijective labels under a switch in a fiber.
+\begin{thebibliography}{9}
+\bibitem{sun} Z.-W. Sun, \emph{Determinants, Permutations and Additive Combinatorics}, 2013 lecture, \href{https://www.mathnet.ru/PresentFiles/21090/sun.pdf}{slide 36}.
+\bibitem{best} M.-T. Yang, \emph{BEST Theorem}, Nagoya University graph theory seminar, 2024, \href{https://www.math.nagoya-u.ac.jp/~richard/teaching/s2024/SML_Yang_1.pdf}{Theorems 1--2}. The tours here carry distinct edge labels, including parallel edges and loops.
+\end{thebibliography}\end{document}
