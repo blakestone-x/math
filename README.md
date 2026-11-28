@@ -1,6 +1,8 @@
 # math
 math proofs
 
+- [Collatz windows and logarithmic stopping time — conditional equivalence and a counting obstruction](Collatz-windows/README.md) · [Lean proofs](Collatz-windows/CollatzWindows.lean)
+
 - [A067576 — binary-column doubling and the exact least starting row](A067576/README.md) · [Complete Lean proof](A067576/Proof.lean)
 - [A192250 / A192251 — both central-binomial reduction recurrences](A192250/README.md) · [Complete Lean proofs](A192250/Proof.lean)
 - [A227013 — quartic harmonic-mean floors and the generating function](A227013/README.md) · [Complete Lean proof](A227013/Proof.lean)
