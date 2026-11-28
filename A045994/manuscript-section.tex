@@ -1,0 +1,127 @@
+\section{A045994: a recurrence for a Motzkin convolution}
+
+Let $m_0=m_1=1$ and
+\[
+ m_{r+2}=m_{r+1}+\sum_{k=0}^{r}m_km_{r-k}\qquad(r\ge0)
+\]
+be the Motzkin numbers. The defining recurrence of A045994 is
+\begin{equation}\label{eq:a045994-source}
+ a_0=1,\qquad
+ a_n=m_n+\sum_{k=1}^{n-1}m_ka_{n-k-1}\quad(n\ge1).
+\end{equation}
+In particular, $a_0,\ldots,a_5=1,1,3,7,18,47$.
+We prove the recurrence conjectured by R.~J.~Mathar in 2013
+\cite{a045994-source}.
+
+\begin{theorem}\label{thm:a045994}
+For every integer $n\ge5$, the sequence defined by
+\eqref{eq:a045994-source} satisfies
+\[
+\begin{aligned}
+0={}&(n+1)a_n+2(-2n-1)a_{n-1}+2(-n+3)a_{n-2}\\
+ &+(11n-19)a_{n-3}+(11n-27)a_{n-4}+3(n-3)a_{n-5}.
+\end{aligned}
+\]
+\end{theorem}
+
+\begin{proof}
+Work in the formal power-series ring $\mathbb Q[[x]]$, and put
+$M=\sum_{n\ge0}m_nx^n$ and $A=\sum_{n\ge0}a_nx^n$.
+The two defining recurrences give
+\begin{equation}\label{eq:a045994-gfs}
+ M=1+xM+x^2M^2,\qquad A=M+x(M-1)A.
+\end{equation}
+The second equality follows directly from the Cauchy product:
+the coefficient of $x^n$ in $x(M-1)A$ is
+$\sum_{k=1}^{n-1}m_ka_{n-k-1}$.
+It gives $(1+xA)M=(1+x)A$, or equivalently
+$A=M/(1+x-xM)$; the denominator has constant term one.
+
+Define
+\[
+ p=x^4+3x^3+2x^2-x,\qquad q=x^2+2x-1.
+\]
+Eliminating $M$ from \eqref{eq:a045994-gfs} yields
+\begin{equation}\label{eq:a045994-quadratic}
+ pA^2+qA+1=0.
+\end{equation}
+For an explicit elimination certificate, set $U=1+xA$ and
+$V=(1+x)A$. Polynomial expansion gives
+\[
+\begin{aligned}
+pA^2+qA+1={}&
+ U^2\{x^2M^2+(x-1)M+1\}\\
+ &-(UM-V)\{x^2(UM+V)+(x-1)U\}.
+\end{aligned}
+\]
+Both terms on the right vanish by \eqref{eq:a045994-gfs}.
+
+Differentiating \eqref{eq:a045994-quadratic} gives
+\begin{equation}\label{eq:a045994-derivative}
+ (2pA+q)A'+p'A^2+q'A=0.
+\end{equation}
+Now put
+\[
+\begin{aligned}
+u&=x-4x^2-2x^3+11x^4+11x^5+3x^6,\\
+v&=1-6x+2x^2+14x^3+17x^4+6x^5,\\
+w&=1-4x+x^2,\qquad
+L=1-6x+8x^2+2x^3-x^4.
+\end{aligned}
+\]
+A second polynomial certificate is
+\[
+\begin{aligned}
+(2pA+q)(uA'+vA-w)
+={}&u\{(2pA+q)A'+p'A^2+q'A\}\\
+&+L(pA^2+qA+1).
+\end{aligned}
+\]
+The right side is zero by \eqref{eq:a045994-quadratic} and
+\eqref{eq:a045994-derivative}. The constant coefficient of
+$2pA+q$ is $-1$, so it is a unit. Cancellation proves the exact
+differential equation
+\begin{equation}\label{eq:a045994-ode}
+ uA'+vA=w.
+\end{equation}
+
+For $n\ge6$, coefficient extraction in
+\eqref{eq:a045994-ode} gives the asserted recurrence: if
+$u=\sum_{j=0}^{5}\alpha_jx^{j+1}$ and
+$v=\sum_{j=0}^{5}\gamma_jx^j$, its left coefficient is
+$\sum_{j=0}^{5}\{\alpha_j(n-j)+\gamma_j\}a_{n-j}$.
+The coefficient of $x^n$ on the right is zero.
+The remaining endpoint $n=5$ follows from the six initial values:
+\[
+6\cdot47-22\cdot18-4\cdot7+36\cdot3+28\cdot1+6\cdot1=0.
+\]
+This proves every index $n\ge5$.
+\end{proof}
+
+\paragraph{Correction to the printed generating function.}
+The source also prints $1/(1-x(1+x)M)$, which is incompatible with
+its defining recurrence. Since $M=1+x+2x^2+O(x^3)$, that reciprocal
+has coefficient $8$ at $x^3$, whereas \eqref{eq:a045994-source}
+gives $a_3=7$. The proof above therefore uses the literal source
+definition and derives its transform. The discrepancy and the
+recurrence are one target family.
+
+\paragraph{Prior work and formal scope.}
+The Motzkin generating-function equation is classical
+\cite{a045994-motzkin}. The source links Kruchinin and Kruchinin's
+general composita methods \cite{a045994-kruchinin}; these are
+credited as background. Niu's 2026 treatment of A176677
+\cite{a045994-niu} is a related application of algebraic elimination
+to a different recurrence. No novelty is claimed for that method.
+The bounded source and repository search, including inspected
+implementation hits, is recorded in \texttt{source\_checks.md};
+it is not a proof of global priority.
+
+The Lean development starts from the two literal natural-number
+recurrences, proves \eqref{eq:a045994-gfs}, checks both polynomial
+certificates, and extracts coefficients for the full range.
+Its final theorems are
+\texttt{A045994.source\_recurrence} and
+\texttt{A045994.printed\_generating\_function\_false}.
+No assertion about the separate path interpretation in the source
+comments is included.

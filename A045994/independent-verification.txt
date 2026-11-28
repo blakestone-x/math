@@ -1,0 +1,42 @@
+Fresh source-only independent build
+Date (UTC): 2026-11-28T07:10:25.513092+00:00
+Compiler: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Mathlib revision: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Source directory: /workspace/scratch/5f072ff518ad/output/batch15/A045994
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A045994/independent-20261128T071025-d0c09005
+External pinned dependency caches are shared; no local compiled objects are copied.
+Explicit default roots: Algebra, Proof, Source
+SHA256 Algebra.lean: f6762f164aa69b17ac3c31f198d7717f4225d1651160113aa2489c781a2d6b54
+SHA256 Proof.lean: b6d2fedffbdb6f96e809e99bd6e580c10a155833b7c38f6635165dac0c075ba0
+SHA256 Source.lean: 132eee8e5a1f2baf4acdf94c0207c09c047ff09cb78c1e656ec0f97e74d91e6d
+SHA256 lake-manifest.json: dcbe5beb8fd090296176e3799b18c20feb3d3893ac3f4069ff2800f30e8e894d
+SHA256 lakefile.lean: d439de979368caa0a485590951c604005adc7c92fa98083c557c11118e34ad3a
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+Command: lake build
+ℹ [1409/1412] Built Source
+info: ././././Source.lean:82:0: 'A045994.motzkin_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Source.lean:83:0: 'A045994.source_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1410/1412] Built Algebra
+info: ././././Algebra.lean:57:0: 'A045994.source_motzkin_relation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Algebra.lean:58:0: 'A045994.quadratic_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Algebra.lean:59:0: 'A045994.differential_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1411/1412] Built Proof
+info: ././././Proof.lean:60:0: 'A045994.source_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:61:0: 'A045994.printed_generating_function_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+All local roots compiled: True
+Standard axiom audit: True
+Status: PASS
+
+Supplementary replay by the independent reviewer
+Date (UTC): 2026-11-28T07:12:08.907020+00:00
+Command: python verify.py
+PASS: immutable source snapshot sizes and SHA256 hashes.
+PASS: all 28 source terms match the literal recurrence.
+PASS: exact recurrence checks for every 5 <= n <= 200.
+PASS: exact polynomial elimination and differential certificates.
+PASS: printed generating function has coefficient 8 at x^3; source has 7.
+PASS: supplementary verification complete; no finite test is used as the universal proof.
+Exit code: 0

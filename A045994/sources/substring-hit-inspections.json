@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-28 UTC",
+  "description": "Fresh immutable-file reads; ID matches occur inside unrelated hexadecimal data. Header excerpts and surrounding match context retained.",
+  "files": [
+    {
+      "url": "https://github.com/the-omega-institute/trureturing/blob/8c0727e92a0b9376eff4a6cd78e647a1feab3bb8/D5/S3/Arith/Divisors/ErdosNicolas/Data/Main22.lean",
+      "bytes": 79780,
+      "sha256": "8dd4e5047811760be90828460848cbf7a78664fbef69719f8c3939ceacbc753b",
+      "needle": "A045994",
+      "occurrences": 1,
+      "contexts": [
+        "  0x329ee8b850ac2ba3b25959a754cb3e7b4ce92f94fd7036a33a68acfabb844d7bfe87664d68b6a045994eb872,\n    0x42ae8a42c36b0b9b312799e407cab576d654cdca3adfef4948812845c6f1deaa19d"
+      ],
+      "first_lines": "/- GID: D5/S3/Arith/Divisors/ErdosNicolas/Data/Main22\n   generality: I\n   mirror-B: none(waiver:finite-reduction-premise-in-main-proof-closure)\n   mirror-E: none(waiver:pure-mathematics-no-experimental-evidence-claim)\n   anchors: []\n   utility: kind=numeric-reduction; basis=consumer=D5/S3/Arith/Divisors/ErdosNicolas/Main.erdos_nicolas; premises=D5/S3/Arith/Divisors/ErdosNicolas/Data/Main22.chunk_checked\n   digest: Exact numerical and binary coverage certificate for the main exponent box. -/\n"
+    }
+  ]
+}

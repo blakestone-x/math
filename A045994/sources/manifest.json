@@ -1,0 +1,21 @@
+{
+  "retrieved": "2026-11-28 America/Chicago",
+  "sources": [
+    {
+      "file": "A045994.seq",
+      "repository": "oeis/oeisdata",
+      "commit": "72c53dd50967ac7166f7d31bf79be95174ec5bc6",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/72c53dd50967ac7166f7d31bf79be95174ec5bc6/seq/A045/A045994.seq",
+      "bytes": 1652,
+      "sha256": "3a9c172b609ecb4c493e743f02d1d484b177bea5f51c205503138a7dd5ad92e3"
+    },
+    {
+      "file": "A001006.seq",
+      "repository": "oeis/oeisdata",
+      "commit": "8496aacd31f383b1dc5d340495c56c84e7514e4b",
+      "url": "https://raw.githubusercontent.com/oeis/oeisdata/8496aacd31f383b1dc5d340495c56c84e7514e4b/seq/A001/A001006.seq",
+      "bytes": 67854,
+      "sha256": "25d4f8565b084c697bb30a08e80ce04f2f862f4ccb19b1a01f354a75beb30df2"
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 # math
 math proofs
 
+- [A045994 — the Motzkin-convolution recurrence and corrected generating function](A045994/README.md)
+- [A202253 / A202254 — exact bounded zero-sum array counts, recurrences, and generating functions](A202253/README.md)
+- [Motzkin convolutions and bounded zero-sum arrays — Batch 15 manuscript](notes/Math_Proofs_Batch15.pdf) · [Collection guide](notes/Math_Proofs_Batch15_README.md)
+
 - [Layman’s quadratic equation — exact count of positive solutions and a complete Lean proof of A134002](A134002/README.md)
 
 - [All-column ternary digit recurrences](ternary-digit-variation/README.md) · [Mathar’s product recurrence in Lean](A249056/README.md) · [Sun’s divisor–totient conjecture on a density-one set](A248029/README.md) · [Seven power-sum rounding exceptions through 10¹⁰⁰⁰](A072633/README.md)

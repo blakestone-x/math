@@ -1,0 +1,438 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.38em}
+\setlength{\emergencystretch}{2em}
+\Urlmuskip=0mu plus 2mu
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Batch 15: Motzkin convolutions and bounded zero-sum arrays}
+\author{BlakeStone\\\small Proofs developed with ChatGPT}
+\date{November 28, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the recorded A045994 recurrence from its literal Motzkin
+convolution and derive the compatible generating function, correcting a
+different expression printed in the source. We then count the literal
+bounded zero-sum arrays underlying A202253 and A202254, proving their
+floor and parity formulas, recurrences, and source-indexed generating
+functions. These are two mathematical families covering three OEIS
+entries. Complete human proofs accompany ten checked Lean modules.
+Classical ingredients and inspected prior work are credited; the bounded
+searches do not establish worldwide priority.
+\end{abstract}
+
+\section{A045994: a recurrence for a Motzkin convolution}
+
+Let $m_0=m_1=1$ and
+\[
+ m_{r+2}=m_{r+1}+\sum_{k=0}^{r}m_km_{r-k}\qquad(r\ge0)
+\]
+be the Motzkin numbers. The defining recurrence of A045994 is
+\begin{equation}\label{eq:a045994-source}
+ a_0=1,\qquad
+ a_n=m_n+\sum_{k=1}^{n-1}m_ka_{n-k-1}\quad(n\ge1).
+\end{equation}
+In particular, $a_0,\ldots,a_5=1,1,3,7,18,47$.
+We prove the recurrence conjectured by R.~J.~Mathar in 2013
+\cite{a045994-source}.
+
+\begin{theorem}\label{thm:a045994}
+For every integer $n\ge5$, the sequence defined by
+\eqref{eq:a045994-source} satisfies
+\[
+\begin{aligned}
+0={}&(n+1)a_n+2(-2n-1)a_{n-1}+2(-n+3)a_{n-2}\\
+ &+(11n-19)a_{n-3}+(11n-27)a_{n-4}+3(n-3)a_{n-5}.
+\end{aligned}
+\]
+\end{theorem}
+
+\begin{proof}
+Work in the formal power-series ring $\mathbb Q[[x]]$, and put
+$M=\sum_{n\ge0}m_nx^n$ and $A=\sum_{n\ge0}a_nx^n$.
+The two defining recurrences give
+\begin{equation}\label{eq:a045994-gfs}
+ M=1+xM+x^2M^2,\qquad A=M+x(M-1)A.
+\end{equation}
+The second equality follows directly from the Cauchy product:
+the coefficient of $x^n$ in $x(M-1)A$ is
+$\sum_{k=1}^{n-1}m_ka_{n-k-1}$.
+It gives $(1+xA)M=(1+x)A$, or equivalently
+$A=M/(1+x-xM)$; the denominator has constant term one.
+
+Define
+\[
+ p=x^4+3x^3+2x^2-x,\qquad q=x^2+2x-1.
+\]
+Eliminating $M$ from \eqref{eq:a045994-gfs} yields
+\begin{equation}\label{eq:a045994-quadratic}
+ pA^2+qA+1=0.
+\end{equation}
+For an explicit elimination certificate, set $U=1+xA$ and
+$V=(1+x)A$. Polynomial expansion gives
+\[
+\begin{aligned}
+pA^2+qA+1={}&
+ U^2\{x^2M^2+(x-1)M+1\}\\
+ &-(UM-V)\{x^2(UM+V)+(x-1)U\}.
+\end{aligned}
+\]
+Both terms on the right vanish by \eqref{eq:a045994-gfs}.
+
+Differentiating \eqref{eq:a045994-quadratic} gives
+\begin{equation}\label{eq:a045994-derivative}
+ (2pA+q)A'+p'A^2+q'A=0.
+\end{equation}
+Now put
+\[
+\begin{aligned}
+u&=x-4x^2-2x^3+11x^4+11x^5+3x^6,\\
+v&=1-6x+2x^2+14x^3+17x^4+6x^5,\\
+w&=1-4x+x^2,\qquad
+L=1-6x+8x^2+2x^3-x^4.
+\end{aligned}
+\]
+A second polynomial certificate is
+\[
+\begin{aligned}
+(2pA+q)(uA'+vA-w)
+={}&u\{(2pA+q)A'+p'A^2+q'A\}\\
+&+L(pA^2+qA+1).
+\end{aligned}
+\]
+The right side is zero by \eqref{eq:a045994-quadratic} and
+\eqref{eq:a045994-derivative}. The constant coefficient of
+$2pA+q$ is $-1$, so it is a unit. Cancellation proves the exact
+differential equation
+\begin{equation}\label{eq:a045994-ode}
+ uA'+vA=w.
+\end{equation}
+
+For $n\ge6$, coefficient extraction in
+\eqref{eq:a045994-ode} gives the asserted recurrence: if
+$u=\sum_{j=0}^{5}\alpha_jx^{j+1}$ and
+$v=\sum_{j=0}^{5}\gamma_jx^j$, its left coefficient is
+$\sum_{j=0}^{5}\{\alpha_j(n-j)+\gamma_j\}a_{n-j}$.
+The coefficient of $x^n$ on the right is zero.
+The remaining endpoint $n=5$ follows from the six initial values:
+\[
+6\cdot47-22\cdot18-4\cdot7+36\cdot3+28\cdot1+6\cdot1=0.
+\]
+This proves every index $n\ge5$.
+\end{proof}
+
+\paragraph{Correction to the printed generating function.}
+The source also prints $1/(1-x(1+x)M)$, which is incompatible with
+its defining recurrence. Since $M=1+x+2x^2+O(x^3)$, that reciprocal
+has coefficient $8$ at $x^3$, whereas \eqref{eq:a045994-source}
+gives $a_3=7$. The proof above therefore uses the literal source
+definition and derives its transform. The discrepancy and the
+recurrence are one target family.
+
+\paragraph{Prior work and formal scope.}
+The Motzkin generating-function equation is classical
+\cite{a045994-motzkin}. The source links Kruchinin and Kruchinin's
+general composita methods \cite{a045994-kruchinin}; these are
+credited as background. Niu's 2026 treatment of A176677
+\cite{a045994-niu} is a related application of algebraic elimination
+to a different recurrence. No novelty is claimed for that method.
+The bounded source and repository search, including inspected
+implementation hits, is recorded in \texttt{source\_checks.md};
+it is not a proof of global priority.
+
+The Lean development starts from the two literal natural-number
+recurrences, proves \eqref{eq:a045994-gfs}, checks both polynomial
+certificates, and extracts coefficients for the full range.
+Its final theorems are
+\texttt{A045994.source\_recurrence} and
+\texttt{A045994.printed\_generating\_function\_false}.
+No assertion about the separate path interpretation in the source
+comments is included.
+
+
+\section{A202253 and A202254: bounded zero-sum arrays}
+
+For $r\in\{3,4\}$ and $n\ge0$, let $A_r(n)$ denote the number of
+ordered integer arrays $(a_1,\ldots,a_r)$ such that
+\[
+ -n\le a_i\le n,\qquad \sum_{i=1}^r a_i=0,\qquad
+ -n\le a_i-a_{i+1}\le n\quad(1\le i<r).
+\]
+Thus adjacency is along the linear array, without a wraparound edge.
+The source sequences A202253 and A202254 begin at $n=1$
+\cite{a202253-source,a202254-source}; at $n=0$ their natural
+combinatorial extensions both equal one.
+
+\begin{theorem}\label{thm:bounded-zero-sum}
+For every integer $n\ge0$,
+\[
+ A_3(n)=1+2\left\lfloor\frac{2n^2+2n}{3}\right\rfloor,
+\]
+and
+\[
+ A_4(n)=
+ \begin{cases}
+ (22n^3+33n^2+26n+12)/12,&n\text{ even},\\
+ (22n^3+33n^2+26n+3)/12,&n\text{ odd}.
+ \end{cases}
+\]
+These prove the recorded formula conjectures of Kimberling and Barker
+for the literal array definitions.
+\end{theorem}
+
+\begin{proof}
+First consider three entries. Substitute $z=-x-y$ in an array
+$(x,y,z)$. For $y\ge0$, the entry bounds and the two adjacent-difference
+bounds are equivalent to
+\[
+ y-n\le x\le n-2y.
+\]
+The interval is nonempty exactly when $3y\le2n$. Put
+$m=\lfloor2n/3\rfloor$. The slice at $y=0$ has $2n+1$ points, and
+negation bijects every positive-middle slice with its negative-middle
+counterpart. Therefore
+\begin{equation}\label{eq:three-slices}
+ A_3(n)=2n+1+2\sum_{y=1}^{m}(2n-3y+1)
+       =2n+1+m(4n-3m-1).
+\end{equation}
+For $n=3q,3q+1,3q+2$, this gives respectively
+\[
+ 12q^2+4q+1,\qquad12q^2+12q+3,\qquad12q^2+20q+9.
+\]
+These are exactly the three residue-class evaluations of the asserted
+floor expression.
+
+For four entries, write an array as $(a,b,c,d)$ and put $s=b+c$.
+Negation pairs the slices at $s$ and $-s$, so first suppose $s\ge0$.
+The two outer differences satisfy
+$c-d=(a-b)+2s$; since both lie in $[-n,n]$, we have $0\le s\le n$.
+Set
+\[
+ m=n-s,\qquad h=\lfloor m/2\rfloor,\qquad
+ \epsilon=m\bmod2,\qquad v=a+c.
+\]
+Then
+\[
+ c=s-b,\qquad a=v-s+b,\qquad d=-v-b.
+\]
+Substituting these expressions into all the entry and difference
+bounds gives the following equivalent conditions:
+\begin{equation}\label{eq:four-rectangle}
+ -h\le b\le n-h-\epsilon,\qquad
+ -m\le v\le m,\qquad -m\le b+v\le n.
+\end{equation}
+The first two intervals contain
+$(n+1-\epsilon)(2m+1)$ integer points. To count the upper forbidden
+corner, write
+\[
+ b=n-h-\epsilon-i,\qquad v=m-j.
+\]
+Since $m=2h+\epsilon$, the inequality $b+v>n$ becomes $i+j<h$.
+For $i,j\ge0$ this is a triangle with $h(h+1)/2$ points. All those
+points lie in the rectangle: $m\le n$ ensures the horizontal bound,
+and the vertical bound follows from $i+j<h\le m$. Conversely,
+every rectangle point above the diagonal gives such a pair $(i,j)$.
+The map
+\[
+ (b,v)\longmapsto(n-m-b,-v)
+\]
+preserves the rectangle and interchanges the upper forbidden corner
+with the lower forbidden corner $b+v<-m$. The two corners are disjoint.
+Consequently the fixed-$s$ slice has
+\begin{equation}\label{eq:four-slice-polynomial}
+ F_n(m)=(n+1-\epsilon)(2m+1)-h(h+1)
+\end{equation}
+points. The central slice $s=0$ corresponds to $m=n$, and all others
+are paired by negation, giving
+\begin{equation}\label{eq:four-slices}
+ A_4(n)=F_n(n)+2\sum_{m=0}^{n-1}F_n(m).
+\end{equation}
+In particular,
+\[
+ F_n(2q)=-q^2+(4n+3)q+n+1,\qquad
+ F_n(2q+1)=-q^2+(4n-1)q+3n.
+\]
+For completeness, the two prefix sums used to evaluate
+\eqref{eq:four-slices} are
+\begin{align*}
+ 3\sum_{m=0}^{2q-1}F_n(m)
+   &=-2q^3+(12n+6)q^2-q,\\
+ 3\sum_{m=0}^{2q}F_n(m)
+   &=-2q^3+(12n+3)q^2+(12n+8)q+3n+3.
+\end{align*}
+Each follows by summing the displayed quadratic slice polynomials,
+or by induction on $q$. Substitution of $n=2q$ and $n=2q+1$ in
+\eqref{eq:four-slices} yields the asserted parity formula.
+\end{proof}
+
+\begin{theorem}\label{thm:bounded-zero-sum-gf}
+As identities of formal power series,
+\begin{align*}
+ \sum_{n\ge1}A_3(n)x^n
+   &=\frac{x(3+3x+2x^2-x^3+x^4)}{(1-x)^3(1+x+x^2)},\\
+ \sum_{n\ge1}A_4(n)x^n
+   &=\frac{x(7+10x+2x^2+4x^3-x^4)}{(1-x)^4(1+x)}.
+\end{align*}
+For every $n\ge6$ in the source's indexing,
+\begin{align*}
+ A_3(n)&=2A_3(n-1)-A_3(n-2)+A_3(n-3)
+                    -2A_3(n-4)+A_3(n-5),\\
+ A_4(n)&=3A_4(n-1)-2A_4(n-2)-2A_4(n-3)
+                    +3A_4(n-4)-A_4(n-5).
+\end{align*}
+The same recurrences hold at $n=5$ with the natural extension
+$A_3(0)=A_4(0)=1$.
+\end{theorem}
+
+\begin{proof}
+The formulas of Theorem~\ref{thm:bounded-zero-sum} give
+\[
+ A_3(n+3)-A_3(n)=8n+16,\qquad
+ A_4(n+2)-A_4(n)=11n^2+33n+30.
+\]
+Taking two further finite differences in the first identity and three
+in the second proves the stated recurrences. The corresponding
+expanded denominator polynomials are
+\begin{align*}
+ D_3(x)&=1-2x+x^2-x^3+2x^4-x^5
+          =(1-x)^3(1+x+x^2),\\
+ D_4(x)&=1-3x+2x^2+2x^3-3x^4+x^5
+          =(1-x)^4(1+x).
+\end{align*}
+Write $S_r(x)=\sum_{n\ge1}A_r(n)x^n$, whose constant coefficient is
+zero. The recurrences imply $[x^n](D_rS_r)=0$ for all $n\ge6$.
+The initial positive-index terms are
+\[
+ (A_3(1),\ldots,A_3(5))=(3,9,17,27,41),\qquad
+ (A_4(1),\ldots,A_4(5))=(7,31,81,171,309).
+\]
+They give
+\[
+ D_3S_3=3x+3x^2+2x^3-x^4+x^5,\qquad
+ D_4S_4=7x+10x^2+2x^3+4x^4-x^5.
+\]
+Both denominators have constant coefficient one, so they are
+invertible as formal power series; division yields the claims.
+\end{proof}
+
+\paragraph{Formal scope and prior work.}
+The Lean development defines each sequence as the cardinality of the
+literal finite set of source arrays. It proves the signed-slice
+bijections, both triangular corner counts, the disjoint partition,
+the polynomial sums, and coefficientwise generating-function
+identities. The formal generating functions use coefficient zero
+equal to zero and source counts at every positive index. All seven
+modules are default build roots under pinned Lean~4.19.0 and mathlib.
+The floor sequence underlying the three-entry answer is already
+A143978 \cite{a202253-floor}; its elementary algebra is prior
+background. The existing open-math-agents A202253 file is an admitted
+statement, and Sequencelib supplies a synthetic formula definition;
+neither inspected file proves the source array count
+\cite{a202253-oma,a202253-sequencelib}. This package treats two entries
+as one family, with recurrences and generating functions as
+consequences of the count formulas. A202253's separate empirical
+interpretation by bounded solutions of $w+2x+3y=0$ is outside the
+selected claims. The bounded searches recorded with the source
+snapshots do not establish worldwide priority.
+
+\section{Verification and scope of the release}
+
+The accompanying repository packages contain all Lean sources, pinned
+toolchain and dependency manifests, frozen OEIS source snapshots with
+hashes, supplementary exact-arithmetic scripts, build logs, and separate
+agent review reports. Each package's complete set of local proof modules
+is listed as an explicit default build target. The command
+\texttt{lake build} checks the package under Lean~4.19.0 and mathlib
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+
+For this release, each of the two packages passed an author build and
+a separate fresh source-only build: four successful package builds in
+total. The builds used separate local directories and copied no compiled
+proof objects from one another. They shared the same pinned compiler and
+external dependency caches. The word ``independent'' describes this
+separate compilation and a review by another proof agent, not verification
+by a second theorem prover or external peer review.
+
+The printed principal theorem audits use only Lean's standard
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}
+axioms. Source checks exclude local admissions, custom axiom declarations,
+and \texttt{native\_decide}. Input hashes in the build logs bind the
+checks to the published sources. The supplementary finite calculations
+help detect source, index, and sign mistakes; the universal mathematical
+assertions are established by the human and Lean proofs, with the
+formal boundaries stated in the relevant sections.
+
+The counts in this collection refer to mathematical families and selected
+recorded assertions. Supporting identities, boundary corrections, and
+corollaries are not separately counted as solved open problems. Each
+package's \texttt{source\_checks.md} records a bounded prior-work inquiry
+and credits known ingredients. Neither the recorded conjecture label nor
+those searches establishes current worldwide open status or priority.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{a045994-source}
+The OEIS Foundation, \emph{A045994}; recurrence conjecture by
+R.~J.~Mathar, September 27, 2013.
+Immutable source commit
+\texttt{72c53dd50967ac7166f7d31bf79be95174ec5bc6}.
+\url{https://oeis.org/A045994}.
+
+\bibitem{a045994-motzkin}
+The OEIS Foundation, \emph{A001006: Motzkin numbers}.
+Immutable source commit
+\texttt{8496aacd31f383b1dc5d340495c56c84e7514e4b}.
+\url{https://oeis.org/A001006}.
+
+\bibitem{a045994-kruchinin}
+V.~V.~Kruchinin and D.~V.~Kruchinin,
+\emph{Composita and its properties}, arXiv:1103.2582v2, 2013.
+\url{https://arxiv.org/abs/1103.2582v2}.
+
+\bibitem{a045994-niu}
+T.~Niu, \emph{A short proof of Mathar's 2016 recurrence conjecture
+for OEIS A176677}, arXiv:2605.04369v1, 2026.
+\url{https://arxiv.org/abs/2605.04369v1}.
+
+
+\bibitem{a202253-source}
+R. H. Hardin; formula conjecture by C. Kimberling; generating function
+by C. Barker. \emph{OEIS A202253}, revision 19, March 3, 2018.
+\url{https://oeis.org/A202253}.
+
+\bibitem{a202254-source}
+R. H. Hardin; formula and generating-function conjectures by C. Barker.
+\emph{OEIS A202254}, revision 11, March 3, 2018.
+\url{https://oeis.org/A202254}.
+
+\bibitem{a202253-floor}
+The OEIS Foundation, \emph{A143978: $a(n)=\lfloor2n(n+1)/3\rfloor$},
+revision 56, August 12, 2025. \url{https://oeis.org/A143978}.
+
+\bibitem{a202253-oma}
+GuillaumeBAUD-coder/open-math-agents, \emph{Statement of OEIS A202253};
+AI formalization attributed in the file to Claude Code and jleguina.
+Inspected at commit \texttt{ea1e36f03c18db17e965436584565254807e6c7e};
+the theorem is admitted.
+\url{https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/ea1e36f03c18db17e965436584565254807e6c7e/statements/oeis-a202253.lean}.
+
+\bibitem{a202253-sequencelib}
+W. Moreira and J. Stubbs, with original sequence-synthesis work credited
+to T. Gauthier and J. Urban, \emph{Sequencelib synthetic A202253 definition}.
+Inspected at commit \texttt{dfb06c18bba196b5aa5bcb3725fe9d201fb9a61a}.
+\url{https://github.com/provables/sequencelib/blob/dfb06c18bba196b5aa5bcb3725fe9d201fb9a61a/Sequencelib/Synthetic/A202/A202253.lean}.
+
+\end{thebibliography}
+\end{document}

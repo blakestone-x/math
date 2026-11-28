@@ -1,0 +1,6 @@
+PASS: immutable source snapshot sizes and SHA256 hashes.
+PASS: all 28 source terms match the literal recurrence.
+PASS: exact recurrence checks for every 5 <= n <= 200.
+PASS: exact polynomial elimination and differential certificates.
+PASS: printed generating function has coefficient 8 at x^3; source has 7.
+PASS: supplementary verification complete; no finite test is used as the universal proof.

@@ -1,0 +1,82 @@
+{
+  "checked_client_date": "2026-11-28",
+  "note": "Fresh bounded GitHub code queries after workspace recovery; incomplete_results was false for each. Earlier web and semantic checks are separately identified in source_checks.md.",
+  "checks": [
+    {
+      "query": "A202253 repo:kolinhuang0427/open-math-results",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202254 repo:kolinhuang0427/open-math-results",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202253 repo:blakestone-x/math",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202254 repo:blakestone-x/math",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202253 repo:GuillaumeBAUD-coder/open-math-agents",
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "repository": "GuillaumeBAUD-coder/open-math-agents",
+          "path": "statements/oeis-a202253.lean",
+          "url": "https://github.com/GuillaumeBAUD-coder/open-math-agents/blob/250e4c2d5e1ab9e72b355638e380ba2d598a5527/statements/oeis-a202253.lean"
+        }
+      ]
+    },
+    {
+      "query": "\"zero-sum\" repo:kolinhuang0427/open-math-results",
+      "total_count": 3,
+      "incomplete_results": false,
+      "items": [
+        {
+          "path": "targets/oeis-A100691/PROOF.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A100691/PROOF.md",
+          "sha": "30ff6979868664cecd72c4d6a69dc7226c79ae2c"
+        },
+        {
+          "path": "targets/oeis-A100691/notes/novelty-gate2-watch-5.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A100691/notes/novelty-gate2-watch-5.md",
+          "sha": "be01847dccbdd745da3035668c03bcd2db9eb808"
+        },
+        {
+          "path": "targets/oeis-A100691/notes/audit-helper-oeis.md",
+          "url": "https://github.com/kolinhuang0427/open-math-results/blob/f4fea05c78ea954ace0f1d51da6c9c189e68ccf0/targets/oeis-A100691/notes/audit-helper-oeis.md",
+          "sha": "38388250a5193b184788936dd700c515275e7b0f"
+        }
+      ]
+    },
+    {
+      "query": "A202253 repo:the-omega-institute/trureturing",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202254 repo:the-omega-institute/trureturing",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    },
+    {
+      "query": "A202254 repo:GuillaumeBAUD-coder/open-math-agents",
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": []
+    }
+  ]
+}

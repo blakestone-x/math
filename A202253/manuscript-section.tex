@@ -1,0 +1,184 @@
+\section{A202253 and A202254: bounded zero-sum arrays}
+
+For $r\in\{3,4\}$ and $n\ge0$, let $A_r(n)$ denote the number of
+ordered integer arrays $(a_1,\ldots,a_r)$ such that
+\[
+ -n\le a_i\le n,\qquad \sum_{i=1}^r a_i=0,\qquad
+ -n\le a_i-a_{i+1}\le n\quad(1\le i<r).
+\]
+Thus adjacency is along the linear array, without a wraparound edge.
+The source sequences A202253 and A202254 begin at $n=1$
+\cite{a202253-source,a202254-source}; at $n=0$ their natural
+combinatorial extensions both equal one.
+
+\begin{theorem}\label{thm:bounded-zero-sum}
+For every integer $n\ge0$,
+\[
+ A_3(n)=1+2\left\lfloor\frac{2n^2+2n}{3}\right\rfloor,
+\]
+and
+\[
+ A_4(n)=
+ \begin{cases}
+ (22n^3+33n^2+26n+12)/12,&n\text{ even},\\
+ (22n^3+33n^2+26n+3)/12,&n\text{ odd}.
+ \end{cases}
+\]
+These prove the recorded formula conjectures of Kimberling and Barker
+for the literal array definitions.
+\end{theorem}
+
+\begin{proof}
+First consider three entries. Substitute $z=-x-y$ in an array
+$(x,y,z)$. For $y\ge0$, the entry bounds and the two adjacent-difference
+bounds are equivalent to
+\[
+ y-n\le x\le n-2y.
+\]
+The interval is nonempty exactly when $3y\le2n$. Put
+$m=\lfloor2n/3\rfloor$. The slice at $y=0$ has $2n+1$ points, and
+negation bijects every positive-middle slice with its negative-middle
+counterpart. Therefore
+\begin{equation}\label{eq:three-slices}
+ A_3(n)=2n+1+2\sum_{y=1}^{m}(2n-3y+1)
+       =2n+1+m(4n-3m-1).
+\end{equation}
+For $n=3q,3q+1,3q+2$, this gives respectively
+\[
+ 12q^2+4q+1,\qquad12q^2+12q+3,\qquad12q^2+20q+9.
+\]
+These are exactly the three residue-class evaluations of the asserted
+floor expression.
+
+For four entries, write an array as $(a,b,c,d)$ and put $s=b+c$.
+Negation pairs the slices at $s$ and $-s$, so first suppose $s\ge0$.
+The two outer differences satisfy
+$c-d=(a-b)+2s$; since both lie in $[-n,n]$, we have $0\le s\le n$.
+Set
+\[
+ m=n-s,\qquad h=\lfloor m/2\rfloor,\qquad
+ \epsilon=m\bmod2,\qquad v=a+c.
+\]
+Then
+\[
+ c=s-b,\qquad a=v-s+b,\qquad d=-v-b.
+\]
+Substituting these expressions into all the entry and difference
+bounds gives the following equivalent conditions:
+\begin{equation}\label{eq:four-rectangle}
+ -h\le b\le n-h-\epsilon,\qquad
+ -m\le v\le m,\qquad -m\le b+v\le n.
+\end{equation}
+The first two intervals contain
+$(n+1-\epsilon)(2m+1)$ integer points. To count the upper forbidden
+corner, write
+\[
+ b=n-h-\epsilon-i,\qquad v=m-j.
+\]
+Since $m=2h+\epsilon$, the inequality $b+v>n$ becomes $i+j<h$.
+For $i,j\ge0$ this is a triangle with $h(h+1)/2$ points. All those
+points lie in the rectangle: $m\le n$ ensures the horizontal bound,
+and the vertical bound follows from $i+j<h\le m$. Conversely,
+every rectangle point above the diagonal gives such a pair $(i,j)$.
+The map
+\[
+ (b,v)\longmapsto(n-m-b,-v)
+\]
+preserves the rectangle and interchanges the upper forbidden corner
+with the lower forbidden corner $b+v<-m$. The two corners are disjoint.
+Consequently the fixed-$s$ slice has
+\begin{equation}\label{eq:four-slice-polynomial}
+ F_n(m)=(n+1-\epsilon)(2m+1)-h(h+1)
+\end{equation}
+points. The central slice $s=0$ corresponds to $m=n$, and all others
+are paired by negation, giving
+\begin{equation}\label{eq:four-slices}
+ A_4(n)=F_n(n)+2\sum_{m=0}^{n-1}F_n(m).
+\end{equation}
+In particular,
+\[
+ F_n(2q)=-q^2+(4n+3)q+n+1,\qquad
+ F_n(2q+1)=-q^2+(4n-1)q+3n.
+\]
+For completeness, the two prefix sums used to evaluate
+\eqref{eq:four-slices} are
+\begin{align*}
+ 3\sum_{m=0}^{2q-1}F_n(m)
+   &=-2q^3+(12n+6)q^2-q,\\
+ 3\sum_{m=0}^{2q}F_n(m)
+   &=-2q^3+(12n+3)q^2+(12n+8)q+3n+3.
+\end{align*}
+Each follows by summing the displayed quadratic slice polynomials,
+or by induction on $q$. Substitution of $n=2q$ and $n=2q+1$ in
+\eqref{eq:four-slices} yields the asserted parity formula.
+\end{proof}
+
+\begin{theorem}\label{thm:bounded-zero-sum-gf}
+As identities of formal power series,
+\begin{align*}
+ \sum_{n\ge1}A_3(n)x^n
+   &=\frac{x(3+3x+2x^2-x^3+x^4)}{(1-x)^3(1+x+x^2)},\\
+ \sum_{n\ge1}A_4(n)x^n
+   &=\frac{x(7+10x+2x^2+4x^3-x^4)}{(1-x)^4(1+x)}.
+\end{align*}
+For every $n\ge6$ in the source's indexing,
+\begin{align*}
+ A_3(n)&=2A_3(n-1)-A_3(n-2)+A_3(n-3)
+                    -2A_3(n-4)+A_3(n-5),\\
+ A_4(n)&=3A_4(n-1)-2A_4(n-2)-2A_4(n-3)
+                    +3A_4(n-4)-A_4(n-5).
+\end{align*}
+The same recurrences hold at $n=5$ with the natural extension
+$A_3(0)=A_4(0)=1$.
+\end{theorem}
+
+\begin{proof}
+The formulas of Theorem~\ref{thm:bounded-zero-sum} give
+\[
+ A_3(n+3)-A_3(n)=8n+16,\qquad
+ A_4(n+2)-A_4(n)=11n^2+33n+30.
+\]
+Taking two further finite differences in the first identity and three
+in the second proves the stated recurrences. The corresponding
+expanded denominator polynomials are
+\begin{align*}
+ D_3(x)&=1-2x+x^2-x^3+2x^4-x^5
+          =(1-x)^3(1+x+x^2),\\
+ D_4(x)&=1-3x+2x^2+2x^3-3x^4+x^5
+          =(1-x)^4(1+x).
+\end{align*}
+Write $S_r(x)=\sum_{n\ge1}A_r(n)x^n$, whose constant coefficient is
+zero. The recurrences imply $[x^n](D_rS_r)=0$ for all $n\ge6$.
+The initial positive-index terms are
+\[
+ (A_3(1),\ldots,A_3(5))=(3,9,17,27,41),\qquad
+ (A_4(1),\ldots,A_4(5))=(7,31,81,171,309).
+\]
+They give
+\[
+ D_3S_3=3x+3x^2+2x^3-x^4+x^5,\qquad
+ D_4S_4=7x+10x^2+2x^3+4x^4-x^5.
+\]
+Both denominators have constant coefficient one, so they are
+invertible as formal power series; division yields the claims.
+\end{proof}
+
+\paragraph{Formal scope and prior work.}
+The Lean development defines each sequence as the cardinality of the
+literal finite set of source arrays. It proves the signed-slice
+bijections, both triangular corner counts, the disjoint partition,
+the polynomial sums, and coefficientwise generating-function
+identities. The formal generating functions use coefficient zero
+equal to zero and source counts at every positive index. All seven
+modules are default build roots under pinned Lean~4.19.0 and mathlib.
+The floor sequence underlying the three-entry answer is already
+A143978 \cite{a202253-floor}; its elementary algebra is prior
+background. The existing open-math-agents A202253 file is an admitted
+statement, and Sequencelib supplies a synthetic formula definition;
+neither inspected file proves the source array count
+\cite{a202253-oma,a202253-sequencelib}. This package treats two entries
+as one family, with recurrences and generating functions as
+consequences of the count formulas. A202253's separate empirical
+interpretation by bounded solutions of $w+2x+3y=0$ is outside the
+selected claims. The bounded searches recorded with the source
+snapshots do not establish worldwide priority.

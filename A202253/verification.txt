@@ -1,0 +1,51 @@
+Fresh source-only author build
+Date (UTC): 2026-11-28T07:08:31.863426+00:00
+Compiler: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Mathlib revision: c44e0c8ee63ca166450922a373c7409c5d26b00b
+Source directory: /workspace/scratch/5f072ff518ad/output/batch15/A202253
+Fresh build directory: /workspace/scratch/5f072ff518ad/research/runtime15/builds/A202253/author-20261128T070831-f7f028a3
+External pinned dependency caches are shared; no local compiled objects are copied.
+Explicit default roots: Arithmetic, CornerCount, GeneratingFunction, Proof, QuadrupleCount, QuadrupleFormula, TripleCount
+SHA256 Arithmetic.lean: c73a6ede2a3410025048eb16c2062adeb0cead3ba4615e545409317887fe5510
+SHA256 CornerCount.lean: bb3a78a2fbb13a44d7a39b47514c61ad0e0e1409419da1dc168a8532d980b40e
+SHA256 GeneratingFunction.lean: 9cfd5fe9b7acbd65a7798da0783bbd29571edb8be6fefe254deb58b1041c9389
+SHA256 Proof.lean: 20982a8e5281960bf7278204954d47268fa94b677b202292d02e1d017ad0b2a9
+SHA256 QuadrupleCount.lean: 7dcb4ee07f099794a1188e41b9577d78713d3e814873914d9dae9ea27ec6ab95
+SHA256 QuadrupleFormula.lean: 57f95737e0eb39d983c6fbedcfcb94a3de41fd6521c0ac7342ccb7a0085868d7
+SHA256 TripleCount.lean: 5684d1bd61c5991ec96a5f2b0e89d1eb7de7d906def286954fd97fc20bb0dbd1
+SHA256 lake-manifest.json: 0d6973ca5f31dd8bb918a5d44d102a8ce9adc72e343dd9d434a798aa1f4e4626
+SHA256 lakefile.lean: 473f5251628c6729eb0de29238630c18f81e528b94fa66bf982c92af2e4acb5c
+SHA256 lean-toolchain: 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea
+Command: lake build
+ℹ [1249/1256] Built Arithmetic
+info: ././././Arithmetic.lean:76:0: 'ZeroSumArrays.closed3_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Arithmetic.lean:77:0: 'ZeroSumArrays.slices_formula3' depends on axioms: [propext, Quot.sound]
+ℹ [1250/1256] Built CornerCount
+info: ././././CornerCount.lean:135:0: 'ZeroSumArrays.slice4_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1251/1256] Built TripleCount
+info: ././././TripleCount.lean:130:0: 'ZeroSumArrays.source3_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1252/1256] Built QuadrupleCount
+info: ././././QuadrupleCount.lean:96:0: 'ZeroSumArrays.source4_eq_slices' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1253/1256] Built QuadrupleFormula
+info: ././././QuadrupleFormula.lean:84:0: 'ZeroSumArrays.source4_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././QuadrupleFormula.lean:85:0: 'ZeroSumArrays.source4_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1254/1256] Built GeneratingFunction
+info: ././././GeneratingFunction.lean:158:0: 'ZeroSumArrays.source3_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GeneratingFunction.lean:159:0: 'ZeroSumArrays.source3_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././GeneratingFunction.lean:160:0: 'ZeroSumArrays.source4_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1255/1256] Built Proof
+info: ././././Proof.lean:20:0: 'ZeroSumArrays.a202253_conjectured_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:21:0: 'ZeroSumArrays.a202254_even_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:22:0: 'ZeroSumArrays.a202254_odd_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:23:0: 'ZeroSumArrays.source3_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:24:0: 'ZeroSumArrays.source4_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:25:0: 'ZeroSumArrays.series3_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:26:0: 'ZeroSumArrays.series4_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:27:0: 'ZeroSumArrays.source3_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Proof.lean:28:0: 'ZeroSumArrays.source4_generating_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully.
+
+Exit code: 0
+All local roots compiled: True
+Standard axiom audit: True
+Status: PASS

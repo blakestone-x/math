@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "method": "exact Python integer arithmetic; supplementary finite replay",
+  "source_hashes": 4,
+  "frozen_A202253_terms": 49,
+  "frozen_A202254_terms": 39,
+  "literal_triples_n": [
+    0,
+    50
+  ],
+  "literal_quadruples_n": [
+    0,
+    18
+  ],
+  "nonnegative_middle_sum_slices": 190,
+  "slice_sum_formula_n": [
+    0,
+    499
+  ],
+  "natural_extension_recurrence_n": [
+    5,
+    999
+  ],
+  "source_GF_product_coefficients_n": [
+    0,
+    999
+  ],
+  "natural_count_constant": 1,
+  "source_GF_constant": 0
+}
