@@ -1,6 +1,8 @@
 # math
 math proofs
 
+- [Propp’s 1999 determinant problems — honeycomb hexagons, Aztec rectangles, and the fool’s-diamond square roots](Propp-Gram-determinants/README.md) · [Manuscript](Propp-Gram-determinants/propp-gram.pdf) · [Manyama’s two parity formulas in Lean](Propp-Gram-determinants/Parity.lean)
+
 - [Left to Solve — Sun’s Catalan determinants, sharp tree bounds, and tiling identities](notes/left-to-solve-2026-11-27/README.md) · [Proof book](notes/left-to-solve-2026-11-27/Proofs.pdf)
 
 - [Collatz windows and logarithmic stopping time — conditional equivalence and a counting obstruction](Collatz-windows/README.md) · [Lean proofs](Collatz-windows/CollatzWindows.lean)
